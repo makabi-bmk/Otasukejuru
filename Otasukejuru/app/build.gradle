@@ -4,7 +4,7 @@ android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
     defaultConfig {
-        applicationId "com.example.mi161332.otasukejuru"
+        applicationId "jp.ict.maffin.otasukejuru"
         minSdkVersion 21
         targetSdkVersion 25
         versionCode 1
@@ -15,6 +15,11 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    productFlavors {
+        flavor1 {
+            applicationId = "jp.ict.maffin.otasukejuru" //変更したいパッケージ名
         }
     }
 }
