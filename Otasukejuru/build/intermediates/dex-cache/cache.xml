@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/Users/mito/github/Otasukejuru/Otasukejuru/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="2c968d6b4d52448bd78fed2cc4bc63b7f9f0403d">
+        <dex dex="/Users/mito/github/Otasukejuru/Otasukejuru/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_55ab00e9ff4d020c91a37a0d375fc03aa0b56029/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/mito/github/Otasukejuru/Otasukejuru/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="/Users/mito/github/Otasukejuru/Otasukejuru/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_3194ddd4ee4e0d3c281f4ddd57cde17e981e4e91/classes.dex" />
+    </item>
+
+</items>
