@@ -16,6 +16,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.Calendar;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -24,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Calendar calendar = Calendar.getInstance();
+        toolbar.setTitle((calendar.get(Calendar.MONTH) + 1) + "月" + calendar.get(Calendar.DATE) + "日");
         setSupportActionBar(toolbar);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
