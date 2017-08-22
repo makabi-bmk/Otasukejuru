@@ -1,4 +1,4 @@
-package jp.ict.maffin.otasukejuru;
+package jp.ict.muffin.otasukejuru;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
