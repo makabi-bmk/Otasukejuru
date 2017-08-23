@@ -9,6 +9,7 @@ import android.view.MotionEvent
  */
 class HoldableViewPager: android.support.v4.view.ViewPager {
     private var isSwipeHoldVar = false
+    
     constructor(context: Context): super(context)
     constructor(context: Context, attrs: AttributeSet): super(context, attrs)
     

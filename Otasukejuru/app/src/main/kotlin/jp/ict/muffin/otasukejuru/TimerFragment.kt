@@ -11,12 +11,14 @@ import android.view.ViewGroup
  */
 public class TimerFragment : Fragment() {
     companion object {
-        fun getInstance(): TimerFragment {
-            return TimerFragment()
-        }
+        fun getInstance(): TimerFragment = TimerFragment()
     }
     
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        return inflater.inflate(R.layout.fragment_timer, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
+            inflater.inflate(R.layout.fragment_timer, container, false)
+    
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        
     }
 }
