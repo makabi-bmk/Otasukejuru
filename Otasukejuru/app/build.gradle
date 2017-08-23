@@ -22,6 +22,10 @@ android {
             applicationId = "jp.ict.muffin.otasukejuru" //変更したいパッケージ名
         }
     }
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+
+    }
 }
 
 dependencies {
