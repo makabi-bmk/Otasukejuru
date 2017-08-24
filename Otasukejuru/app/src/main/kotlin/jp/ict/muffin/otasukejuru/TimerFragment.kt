@@ -19,11 +19,4 @@ class TimerFragment : Fragment() {
     
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? =
             TimerFragmentUI().createView(AnkoContext.create(ctx, this))
-    
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        
-    }
-    
-    
 }
