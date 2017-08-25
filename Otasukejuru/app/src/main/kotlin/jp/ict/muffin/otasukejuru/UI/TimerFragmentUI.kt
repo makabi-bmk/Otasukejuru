@@ -17,11 +17,13 @@ class TimerFragmentUI : AnkoComponent<TimerFragment>{
             lparams {
                 gravity = Gravity.CENTER_HORIZONTAL
             }
+            frameLayout {
+                id = 1
+            }.lparams(height = 1480, width = 1480)
             val timerText = textView {
                 text = context.getString(R.string.initTime)
                 textSize = 20f
                 gravity = Gravity.CENTER_HORIZONTAL
-                topPadding = dip(150)
             }
             button("start") {
                 height = wrapContent
