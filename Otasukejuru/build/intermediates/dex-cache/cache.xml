@@ -3,48 +3,21 @@
 
     <item
         is-multidex="true"
-        jar="/Users/mito/.android/build-cache/b51df8acf0406e1cbc3d391acbfb0bc9daa4e601/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="d4cf6227dd6a2ceff0f7dcf0c324380b7abf2c28">
-        <dex dex="/Users/mito/github/Otasukejuru/Otasukejuru/app/build/intermediates/transforms/dex/flavor1/debug/folders/1000/10/classes_5fc84f085bdf73f729669f422cd52a590d1dd8d9/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/mito/github/Otasukejuru/Otasukejuru/app/build/intermediates/incremental-classes/flavor1/debug/instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="721de55d7b7c1e03954a94647bbff55605e4334b">
-        <dex dex="/Users/mito/github/Otasukejuru/Otasukejuru/app/build/intermediates/transforms/dex/flavor1/debug/folders/1000/10000/instant-run-bootstrap_2c359110468cf8a3f6d335e25b988452ea5e162d/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/mito/.android/build-cache/b211a949154870577a0830681da95a313476a1ae/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="38789e20ace9ab7dbd00554bd2673ab424478d3b">
-        <dex dex="/Users/mito/github/Otasukejuru/Otasukejuru/app/build/intermediates/transforms/dex/flavor1/debug/folders/1000/10/classes_fa3f97760f9993ef378990b1a8df8f1bc98cf4e0/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/mito/github/Otasukejuru/Otasukejuru/app/build/intermediates/incremental-runtime-classes/flavor1/debug/instant-run.jar"
+        jar="C:\Users\mi161332\Documents\GitHub\Otasukejuru\Otasukejuru\app\build\intermediates\incremental-runtime-classes\flavor1\debug\instant-run.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
-        <dex dex="/Users/mito/github/Otasukejuru/Otasukejuru/app/build/intermediates/transforms/dex/flavor1/debug/folders/1000/10000/instant-run_7bd0385fdf461c8bf4fbb093b34620eb95e4520e/classes.dex" />
+        <dex dex="C:\Users\mi161332\Documents\GitHub\Otasukejuru\Otasukejuru\app\build\intermediates\transforms\dex\flavor1\debug\folders\1000\10000\instant-run_1b67c6b82cd6565528ee937d7149cedaf4a2c4f0\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/Users/mito/.android/build-cache/549d2c2d1f2f02ca00d951513ca937162dd5ffdc/output/jars/classes.jar"
+        jar="C:\Users\mi161332\Documents\GitHub\Otasukejuru\Otasukejuru\app\build\intermediates\incremental-classes\flavor1\debug\instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="95519720620b553f63afc789beba9ad582807f7c">
-        <dex dex="/Users/mito/github/Otasukejuru/Otasukejuru/app/build/intermediates/transforms/dex/flavor1/debug/folders/1000/10/classes_01912ceff5e35ed2bc55d2110e6ce5f9db631a76/classes.dex" />
+        sha1="b4d8d79d0515166f26d36a43af0fd5daee1095c5">
+        <dex dex="C:\Users\mi161332\Documents\GitHub\Otasukejuru\Otasukejuru\app\build\intermediates\transforms\dex\flavor1\debug\folders\1000\10000\instant-run-bootstrap_80a1759e5542d3ec5091a5eb4f553cfdda3eeedd\classes.dex" />
     </item>
 
 </items>
