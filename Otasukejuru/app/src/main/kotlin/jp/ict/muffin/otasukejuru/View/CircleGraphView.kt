@@ -13,14 +13,14 @@ import java.util.*
  * Created by mito on 2017/08/25.
  */
 
-class CircleGraphView(context: Context, private var params: ArrayList<HashMap<String, String>>?) : View(context) {
+class CircleGraphView(context: Context, private var params: ArrayList<HashMap<String, String>>) : View(context) {
     internal var _end_angle = -90f
 
     public override fun onDraw(c: Canvas) {
         val width = c.width
-        val length = params!!.size
+        val length = params.size
         val max = (0 until length)
-                .map { Integer.parseInt(params!![it]["value"]).toFloat() }
+                .map { Integer.parseInt(params[it]["value"]).toFloat() }
                 .sum()
         val radius = (width / 2 - 30).toFloat()
         var start_angle = -90f
@@ -28,12 +28,12 @@ class CircleGraphView(context: Context, private var params: ArrayList<HashMap<St
         val x = radius + 15f
         val y = radius + 15f
         for (i in 0 until length) {
-            val `val` = Integer.parseInt(params!![i]["value"]).toFloat()
-            end_angle = start_angle + 360 * (`val` / max)
+            val valParam = Integer.parseInt(params[i]["value"]).toFloat()
+            end_angle = start_angle + 360 * (valParam / max)
             if (end_angle > _end_angle) {
                 end_angle = _end_angle
             }
-            this.createPieSlice(c, Integer.parseInt(params!![i]["color"]), start_angle, end_angle, x, y, radius)
+            this.createPieSlice(c, Integer.parseInt(params[i]["color"]), start_angle, end_angle, x, y, radius)
             start_angle = end_angle
         }
     }
@@ -56,7 +56,7 @@ class CircleGraphView(context: Context, private var params: ArrayList<HashMap<St
 
     internal lateinit var timer: Timer
 
-    fun startAnimation() {
+    fun startAnimation(time: Long) {
         _end_angle = -90f
         val handler = Handler()
         val task = object : TimerTask() {
@@ -73,7 +73,7 @@ class CircleGraphView(context: Context, private var params: ArrayList<HashMap<St
 
         timer = Timer()
         //アニメーションのスピード調整できるようにしたいところ
-        timer.schedule(task, 0, 30)
+        timer.schedule(task, 0, time)
 
     }
 
