@@ -26,12 +26,12 @@ class CircleGraphView(context: Context, private var param: HashMap<String, Strin
         var end_angle: Float
         val x = radius + 15f
         val y = radius + 15f
-            val valParam = Integer.parseInt(param["value"]).toFloat()
-            end_angle = start_angle + 360 * (valParam / max)
-            if (end_angle > _end_angle) {
-                end_angle = _end_angle
-            }
-            this.createPieSlice(c, Integer.parseInt(param["color"]), start_angle, end_angle, x, y, radius)
+        val valParam = Integer.parseInt(param["value"]).toFloat()
+        end_angle = start_angle + 360 * (valParam / max)
+        if (end_angle > _end_angle) {
+            end_angle = _end_angle
+        }
+        this.createPieSlice(c, Integer.parseInt(param["color"]), start_angle, end_angle, x, y, radius)
     }
 
     private fun createPieSlice(c: Canvas, color: Int, start_angle: Float, end_angle: Float, x: Float, y: Float, r: Float) {
@@ -43,7 +43,7 @@ class CircleGraphView(context: Context, private var param: HashMap<String, Strin
 
         //外枠
         paint = Paint()
-        paint.color = Color.argb(255, 0, 0, 0)
+        paint.color = Color.argb(0, 0, 0, 0)
         paint.style = Paint.Style.STROKE
         c.drawArc(oval1, start_angle, end_angle - start_angle, true, paint)
 
