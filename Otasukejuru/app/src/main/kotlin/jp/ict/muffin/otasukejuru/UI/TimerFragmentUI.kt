@@ -19,7 +19,7 @@ class TimerFragmentUI : AnkoComponent<TimerFragment>{
             }
             frameLayout {
                 id = 1
-            }.lparams(height = wrapContent, width = wrapContent)
+            }.lparams(height = 750, width = 750)
             val timerText = textView {
                 text = context.getString(R.string.initTime)
                 textSize = 20f
