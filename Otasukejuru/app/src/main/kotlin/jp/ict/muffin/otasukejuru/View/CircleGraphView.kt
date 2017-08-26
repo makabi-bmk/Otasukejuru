@@ -13,29 +13,25 @@ import java.util.*
  * Created by mito on 2017/08/25.
  */
 
-class CircleGraphView(context: Context, private var params: ArrayList<HashMap<String, String>>) : View(context) {
+class CircleGraphView(context: Context, private var param: HashMap<String, String>) : View(context) {
     internal var _end_angle = -90f
 
     public override fun onDraw(c: Canvas) {
         val width = c.width
-        val length = params.size
-        val max = (0 until length)
-                .map { Integer.parseInt(params[it]["value"]).toFloat() }
+        val max = (0 until 1)
+                .map { Integer.parseInt(param["value"]).toFloat() }
                 .sum()
         val radius = (width / 2 - 30).toFloat()
-        var start_angle = -90f
-        var end_angle = 0f
+        val start_angle = -90f
+        var end_angle: Float
         val x = radius + 15f
         val y = radius + 15f
-        for (i in 0 until length) {
-            val valParam = Integer.parseInt(params[i]["value"]).toFloat()
+            val valParam = Integer.parseInt(param["value"]).toFloat()
             end_angle = start_angle + 360 * (valParam / max)
             if (end_angle > _end_angle) {
                 end_angle = _end_angle
             }
-            this.createPieSlice(c, Integer.parseInt(params[i]["color"]), start_angle, end_angle, x, y, radius)
-            start_angle = end_angle
-        }
+            this.createPieSlice(c, Integer.parseInt(param["color"]), start_angle, end_angle, x, y, radius)
     }
 
     private fun createPieSlice(c: Canvas, color: Int, start_angle: Float, end_angle: Float, x: Float, y: Float, r: Float) {
@@ -77,8 +73,8 @@ class CircleGraphView(context: Context, private var params: ArrayList<HashMap<St
 
     }
 
-    fun changeParam(params: ArrayList<HashMap<String, String>>) {
-        this.params = params
+    fun changeParam(param: HashMap<String, String>) {
+        this.param = param
         this.invalidate()
     }
 }
