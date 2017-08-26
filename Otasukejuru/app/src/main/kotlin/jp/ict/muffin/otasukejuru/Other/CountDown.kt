@@ -1,6 +1,5 @@
 package jp.ict.muffin.otasukejuru
 
-import android.app.Activity
 import android.os.CountDownTimer
 import android.widget.TextView
 
@@ -10,7 +9,7 @@ import android.widget.TextView
 class CountDown(millisUntilFinished: Long, countDownInterval: Long, private val timerText: TextView) : CountDownTimer(millisUntilFinished, countDownInterval) {
     
     override fun onFinish() {
-        timerText.text = Activity().getString(R.string.initTime)
+        //TODO:Add Task
     }
     
     override fun onTick(millisUntilFinished: Long) {
