@@ -31,7 +31,7 @@ class TimerFragmentUI : AnkoComponent<TimerFragment>{
                 gravity = Gravity.CENTER_HORIZONTAL
             }.setOnClickListener {
                 if (!isPushStartButton) {
-                    countDown = CountDown(180000, 100, timerText)
+                    countDown = CountDown(3600000, 100, timerText)
                     countDown.start()
                     isPushStartButton = true
                 }
