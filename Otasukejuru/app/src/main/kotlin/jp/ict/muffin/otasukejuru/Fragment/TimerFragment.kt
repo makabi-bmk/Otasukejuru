@@ -38,6 +38,13 @@ class TimerFragment : Fragment() {
         val circleGraphView = CircleGraphView(context, map)
         circle.addView(circleGraphView)
         
-        circleGraphView.startAnimation(36000)
+        circleGraphView.startAnimation(1)
+        val map1 = HashMap<String, String>()
+        map1.put("color", Color.argb(255, 255, 255, 255).toString())
+        map1.put("value", "1")
+    
+        val circleGraphView1 = CircleGraphView(context, map1)
+        circle.addView(circleGraphView1)
+        circleGraphView1.startAnimation(36000)
     }
 }
