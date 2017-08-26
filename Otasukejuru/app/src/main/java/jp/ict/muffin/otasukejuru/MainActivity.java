@@ -1,6 +1,7 @@
 package jp.ict.muffin.otasukejuru;
 
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -17,7 +18,10 @@ import android.widget.TextView;
 
 import java.util.Calendar;
 
+import jp.ict.muffin.otasukejuru.Other.GlobalValue;
+
 public class MainActivity extends AppCompatActivity {
+    public GlobalValue globalValue = new GlobalValue();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +63,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        CoordinatorLayout coordinatorLayout = (CoordinatorLayout)findViewById(R.id.main_content);
+        globalValue.setDisplayHeight(coordinatorLayout.getHeight());
+        globalValue.setDisplayWidth(coordinatorLayout.getWidth());
     }
 
 
