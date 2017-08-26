@@ -18,7 +18,7 @@ import android.widget.TextView;
 
 import java.util.Calendar;
 
-import jp.ict.muffin.otasukejuru.Other.GlobalValue;
+import jp.ict.muffin.otasukejuru.GlobalValue;
 
 public class MainActivity extends AppCompatActivity {
     public GlobalValue globalValue = new GlobalValue();

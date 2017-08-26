@@ -1,4 +1,4 @@
-package jp.ict.muffin.otasukejuru.Other;
+package jp.ict.muffin.otasukejuru;
 
 /**
  * Created by mito on 2017/08/26.
