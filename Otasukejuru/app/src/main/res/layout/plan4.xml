@@ -22,7 +22,7 @@
         android:layout_marginLeft="30dp" />
 
     <RadioGroup
-        android:id="@+id/radio"
+        android:id="@+id/radio_plan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -31,7 +31,7 @@
         android:layout_marginTop="46dp">
 
         <RadioButton
-            android:id="@+id/radio1"
+            android:id="@+id/radio_plan1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
@@ -40,7 +40,7 @@
             android:textSize="25dp" />
 
         <RadioButton
-            android:id="@+id/radio2"
+            android:id="@+id/radio_plan2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
@@ -48,7 +48,7 @@
             android:textSize="25dp" />
 
         <RadioButton
-            android:id="@+id/radio3"
+            android:id="@+id/radio_plan3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
@@ -56,7 +56,7 @@
             android:textSize="25dp" />
 
         <RadioButton
-            android:id="@+id/radio4"
+            android:id="@+id/radio_plan4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
@@ -64,7 +64,7 @@
             android:textSize="25dp" />
 
         <RadioButton
-            android:id="@+id/radio5"
+            android:id="@+id/radio_plan5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"

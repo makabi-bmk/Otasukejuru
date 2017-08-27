@@ -29,7 +29,7 @@
         android:gravity="center">
 
         <Button
-            android:id="@+id/no"
+            android:id="@+id/no_s"
             android:layout_width="145dp"
             android:layout_height="145dp"
             android:layout_margin="15dp"
@@ -39,7 +39,7 @@
             android:textSize="30dp" />
 
         <Button
-            android:id="@+id/yes"
+            android:id="@+id/yes_s"
             android:layout_width="145dp"
             android:layout_height="145dp"
             android:layout_margin="15dp"

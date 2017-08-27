@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.NumberPicker;
 
 public class TaskAddition extends Activity {
 
@@ -43,6 +44,15 @@ public class TaskAddition extends Activity {
 
     private void plan2(){
         setContentView(R.layout.plan2);
+
+        NumberPicker numberPicker1 = (NumberPicker)findViewById(R.id.month);
+        numberPicker1.setMaxValue(12);
+        numberPicker1.setMinValue(1);
+
+        NumberPicker numberPicker2 = (NumberPicker)findViewById(R.id.day);
+        numberPicker2.setMaxValue(31);
+        numberPicker2.setMinValue(1);
+
         Button next = (Button) findViewById(R.id.next);
         next.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,6 +64,23 @@ public class TaskAddition extends Activity {
     }
     private void plan3(){
         setContentView(R.layout.plan3);
+
+        NumberPicker numberPicker1 = (NumberPicker)findViewById(R.id.start_hours);
+        numberPicker1.setMaxValue(23);
+        numberPicker1.setMinValue(0);
+
+        NumberPicker numberPicker2 = (NumberPicker)findViewById(R.id.start_minits);
+        numberPicker2.setMaxValue(59);
+        numberPicker2.setMinValue(0);
+
+        NumberPicker numberPicker3 = (NumberPicker)findViewById(R.id.finish_hours);
+        numberPicker3.setMaxValue(23);
+        numberPicker3.setMinValue(0);
+
+        NumberPicker numberPicker4 = (NumberPicker)findViewById(R.id.finish_minits);
+        numberPicker4.setMaxValue(59);
+        numberPicker4.setMinValue(0);
+
         Button next = (Button) findViewById(R.id.next);
         next.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,7 +138,7 @@ public class TaskAddition extends Activity {
             }
         });
 
-        Button noPeriod = (Button) findViewById(R.id.noPeriod);
+        Button noPeriod = (Button) findViewById(R.id.no_period);
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
