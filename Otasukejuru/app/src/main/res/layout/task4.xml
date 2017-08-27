@@ -2,40 +2,49 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center">
+    android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="タスクの優先度"
         android:textSize="30dp"
-        android:text="何を追加しますか?" />
+        android:textColor="@color/colorPrimary"
+        android:layout_margin="7dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="やらなければならない\n(must)タスクですか？"
+        android:textSize="25dp"
+        android:layout_marginLeft="30dp" />
 
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
         android:orientation="horizontal"
         android:gravity="center">
 
         <Button
-            android:id="@+id/plan"
+            android:id="@+id/no"
             android:layout_width="145dp"
             android:layout_height="145dp"
             android:layout_margin="15dp"
             android:background="@color/colorPrimary"
-            android:text="予定"
+            android:text="いいえ"
             android:textColor="#000"
             android:textSize="30dp" />
 
         <Button
-            android:id="@+id/task"
+            android:id="@+id/yes"
             android:layout_width="145dp"
             android:layout_height="145dp"
             android:layout_margin="15dp"
             android:background="@color/colorPrimary"
-            android:text="タスク"
+            android:text="はい"
             android:textColor="#000"
             android:textSize="30dp" />
 

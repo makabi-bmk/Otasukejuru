@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FBFBF0">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="予定の時間"
+        android:textSize="30dp"
+        android:textColor="@color/colorPrimary"
+        android:layout_margin="7dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="時間はいつから\nいつまでですか？"
+        android:textSize="25dp"
+        android:layout_marginLeft="30dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom">
+
+        <Button
+            android:id="@+id/next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#FBFBF0"
+            android:text="次へ"
+            android:textSize="20dp"
+            android:textColor="@color/colorPrimary"
+            android:layout_marginLeft="300dp"
+            style="?android:attr/borderlessButtonStyle" />
+
+    </LinearLayout>
+</LinearLayout>
