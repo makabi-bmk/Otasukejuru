@@ -13,23 +13,21 @@ import java.util.*
  * Created by mito on 2017/08/25.
  */
 
-class CircleGraphView(context: Context, private var param: HashMap<String, String>) : View(context) {
-    internal var _end_angle = -0f
-    private var _start_angle = 0f
+class CircleGraphView(context: Context, private var param: Int, angle: Float = -90f) : View(context) {
+    internal var _end_angle = 0f
+    private var _start_angle = angle
 
     public override fun onDraw(c: Canvas) {
         val width = c.width
-        val max = Integer.parseInt(param["value"]).toFloat()
         val radius = (width / 2 - 30).toFloat()
         val start_angle = _start_angle
         val x = radius + 15f
         val y = radius + 15f
-        val valParam = Integer.parseInt(param["value"]).toFloat()
-        var end_angle = start_angle + 360 * (valParam / max)
+        var end_angle = start_angle + 360
         if (end_angle > _end_angle) {
             end_angle = _end_angle
         }
-        this.createPieSlice(c, Integer.parseInt(param["color"]), start_angle, end_angle, x, y, radius)
+        this.createPieSlice(c, param, start_angle, end_angle, x, y, radius)
     }
 
     private fun createPieSlice(c: Canvas, color: Int, start_angle: Float, end_angle: Float, x: Float, y: Float, r: Float) {
@@ -51,7 +49,7 @@ class CircleGraphView(context: Context, private var param: HashMap<String, Strin
     internal lateinit var timer: Timer
 
     fun startAnimation(time: Long) {
-        _end_angle = -0f
+//        _end_angle = -90f
         val handler = Handler()
         val task = object : TimerTask() {
             override fun run() {
@@ -71,7 +69,7 @@ class CircleGraphView(context: Context, private var param: HashMap<String, Strin
 
     }
 
-    fun changeParam(param: HashMap<String, String>) {
+    fun changeParam(param: Int) {
         this.param = param
         this.invalidate()
     }

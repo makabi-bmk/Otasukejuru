@@ -31,17 +31,11 @@ class TimerFragment : Fragment() {
         val circle = find<FrameLayout>(1)
         circle.backgroundColor = Color.argb(0, 0, 0, 0)
         
-        val map = HashMap<String, String>()
-        map.put("color", Color.argb(255, 255, 0, 0).toString())
-        map.put("value", "1")
-        val circleGraphView = CircleGraphView(context, map)
+        val circleGraphView = CircleGraphView(context, Color.argb(255, 255, 0, 0), 0f)
         circle.addView(circleGraphView)
         circleGraphView.startAnimation(1)
         
-        val map1 = HashMap<String, String>()
-        map1.put("color", Color.argb(255, 255, 255, 0).toString())
-        map1.put("value", "1")
-        val circleGraphView1 = CircleGraphView(context, map1)
+        val circleGraphView1 = CircleGraphView(context, Color.argb(255, 255, 255, 255), 0f)
         circle.addView(circleGraphView1)
         circleGraphView1.startAnimation(200)
     }
