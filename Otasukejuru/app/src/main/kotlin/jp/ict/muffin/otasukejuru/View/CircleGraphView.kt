@@ -14,20 +14,18 @@ import java.util.*
  */
 
 class CircleGraphView(context: Context, private var param: HashMap<String, String>) : View(context) {
-    internal var _end_angle = -90f
+    internal var _end_angle = -0f
+    private var _start_angle = 0f
 
     public override fun onDraw(c: Canvas) {
         val width = c.width
-        val max = (0 until 1)
-                .map { Integer.parseInt(param["value"]).toFloat() }
-                .sum()
+        val max = Integer.parseInt(param["value"]).toFloat()
         val radius = (width / 2 - 30).toFloat()
-        val start_angle = -90f
-        var end_angle: Float
+        val start_angle = _start_angle
         val x = radius + 15f
         val y = radius + 15f
         val valParam = Integer.parseInt(param["value"]).toFloat()
-        end_angle = start_angle + 360 * (valParam / max)
+        var end_angle = start_angle + 360 * (valParam / max)
         if (end_angle > _end_angle) {
             end_angle = _end_angle
         }
@@ -53,7 +51,7 @@ class CircleGraphView(context: Context, private var param: HashMap<String, Strin
     internal lateinit var timer: Timer
 
     fun startAnimation(time: Long) {
-        _end_angle = -90f
+        _end_angle = -0f
         val handler = Handler()
         val task = object : TimerTask() {
             override fun run() {
@@ -69,7 +67,7 @@ class CircleGraphView(context: Context, private var param: HashMap<String, Strin
 
         timer = Timer()
         //アニメーションのスピード調整できるようにしたいところ
-        timer.schedule(task, 0, time)
+        timer.schedule(task, 0, time + (time / 4))
 
     }
 
