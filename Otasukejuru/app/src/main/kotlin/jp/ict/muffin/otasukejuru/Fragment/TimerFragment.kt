@@ -9,9 +9,6 @@ import org.jetbrains.anko.AnkoContext
 import org.jetbrains.anko.support.v4.ctx
 
 
-/**
- * Created by mito on 2017/08/23.
- */
 class TimerFragment : Fragment() {
     companion object {
         fun getInstance(): TimerFragment = TimerFragment()

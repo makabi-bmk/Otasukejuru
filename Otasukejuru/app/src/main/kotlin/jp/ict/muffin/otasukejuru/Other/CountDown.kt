@@ -3,9 +3,6 @@ package jp.ict.muffin.otasukejuru
 import android.os.CountDownTimer
 import android.widget.TextView
 
-/**
- * Created by mito on 2017/08/24.
- */
 class CountDown(millisUntilFinished: Long, countDownInterval: Long, private val timerText: TextView) : CountDownTimer(millisUntilFinished, countDownInterval) {
     
     override fun onFinish() {

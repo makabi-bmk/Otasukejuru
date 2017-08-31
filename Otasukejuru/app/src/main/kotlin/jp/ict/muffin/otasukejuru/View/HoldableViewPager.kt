@@ -4,9 +4,6 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.MotionEvent
 
-/**
- * Created by mito on 2017/08/23.
- */
 class HoldableViewPager: android.support.v4.view.ViewPager {
     private var isSwipeHoldVar = false
     

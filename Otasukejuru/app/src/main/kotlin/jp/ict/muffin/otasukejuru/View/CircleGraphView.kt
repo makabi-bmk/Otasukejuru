@@ -9,9 +9,6 @@ import android.os.Handler
 import android.view.View
 import java.util.*
 
-/**
- * Created by mito on 2017/08/25.
- */
 
 class CircleGraphView(context: Context, private var param: Int, private var time: Long, isInit: Boolean) : View(context) {
     private var _start_angle: Float = (60 - time) * 6f
