@@ -9,9 +9,6 @@ import android.widget.FrameLayout
 import jp.ict.muffin.otasukejuru.View.CircleGraphView
 import org.jetbrains.anko.*
 
-/**
- * Created by mito on 2017/08/24.
- */
 class TimerFragmentUI : AnkoComponent<TimerFragment>{
     lateinit var countDown: CountDown
     var isPushStartButton = false
