@@ -1,7 +1,12 @@
 package jp.ict.muffin.otasukejuru
 
+import android.content.Context
+import android.graphics.Color
+import android.text.InputType
 import android.view.Gravity
 import android.view.View
+import android.widget.FrameLayout
+import jp.ict.muffin.otasukejuru.View.CircleGraphView
 import org.jetbrains.anko.*
 
 /**
@@ -12,18 +17,17 @@ class TimerFragmentUI : AnkoComponent<TimerFragment>{
     var isPushStartButton = false
     
     override fun createView(ui: AnkoContext<TimerFragment>): View = with(ui) {
-        
         verticalLayout {
             lparams {
                 gravity = Gravity.CENTER_HORIZONTAL
             }
-            frameLayout {
-                id = 1
-            }.lparams(height = 750, width = 750)
-            val timerText = textView {
-                text = context.getString(R.string.initTime)
-                textSize = 20f
+            val circle = frameLayout {
                 gravity = Gravity.CENTER_HORIZONTAL
+                backgroundColor = Color.argb(0, 0, 0, 0)
+            }.lparams(height = 700, width = 700)
+            val editTime = editText {
+                gravity = Gravity.CENTER_HORIZONTAL
+                inputType = InputType.TYPE_CLASS_NUMBER
             }
             button("start") {
                 height = wrapContent
@@ -31,19 +35,27 @@ class TimerFragmentUI : AnkoComponent<TimerFragment>{
                 gravity = Gravity.CENTER_HORIZONTAL
             }.setOnClickListener {
                 if (!isPushStartButton) {
-                    countDown = CountDown(3600000, 100, timerText)
-                    countDown.start()
+                    val time = editTime.text.toString().toLong()
+                    if (time <= 60L) {
+                        drawCircle(context, circle, time)
+                    } else {
+                        context.toast("over")
+                    }
+                    editTime.text.clear()
+                    editTime.clearFocus()
                     isPushStartButton = true
                 }
             }
-            button("cancel") {
-            }.setOnClickListener {
-                if (isPushStartButton) {
-                    countDown.cancel()
-                    timerText.text = context.getString(R.string.initTime)
-                    isPushStartButton = false
-                }
-            }
         }
+    }
+    
+    private fun drawCircle(context: Context, circle: FrameLayout, time: Long) {
+        val circleGraphView = CircleGraphView(context, Color.argb(255, 255, 0, 0), time, true)
+        circle.addView(circleGraphView)
+        circleGraphView.startAnimation()
+    
+        val circleGraphView1 = CircleGraphView(context, Color.argb(255, 255, 255, 255), time, false)
+        circle.addView(circleGraphView1)
+        circleGraphView1.startAnimation()
     }
 }

@@ -7,7 +7,6 @@ import android.graphics.Paint
 import android.graphics.RectF
 import android.os.Handler
 import android.view.View
-import org.jetbrains.anko.toast
 import java.util.*
 
 /**
@@ -26,7 +25,6 @@ class CircleGraphView(context: Context, private var param: Int, private var time
         }
         _start_angle -= 90
         _end_angle = _start_angle
-        context.toast(_start_angle.toString())
     }
 
     public override fun onDraw(c: Canvas) {
