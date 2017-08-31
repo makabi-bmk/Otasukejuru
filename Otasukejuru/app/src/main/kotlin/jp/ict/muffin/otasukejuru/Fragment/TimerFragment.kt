@@ -31,12 +31,13 @@ class TimerFragment : Fragment() {
         val circle = find<FrameLayout>(1)
         circle.backgroundColor = Color.argb(0, 0, 0, 0)
         
-        val circleGraphView = CircleGraphView(context, Color.argb(255, 255, 0, 0), 0f)
+        val time = 25L
+        val circleGraphView = CircleGraphView(context, Color.argb(255, 255, 0, 0), time, true)
         circle.addView(circleGraphView)
-        circleGraphView.startAnimation(1)
-        
-        val circleGraphView1 = CircleGraphView(context, Color.argb(255, 255, 255, 255), 0f)
+        circleGraphView.startAnimation()
+
+        val circleGraphView1 = CircleGraphView(context, Color.argb(255, 255, 255, 255), time, false)
         circle.addView(circleGraphView1)
-        circleGraphView1.startAnimation(200)
+        circleGraphView1.startAnimation()
     }
 }
