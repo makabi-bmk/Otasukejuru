@@ -7,26 +7,35 @@ import android.graphics.Paint
 import android.graphics.RectF
 import android.os.Handler
 import android.view.View
+import org.jetbrains.anko.toast
 import java.util.*
 
 /**
  * Created by mito on 2017/08/25.
  */
 
-class CircleGraphView(context: Context, private var param: Int, angle: Float = -90f) : View(context) {
-    internal var _end_angle = 0f
-    private var _start_angle = angle
+class CircleGraphView(context: Context, private var param: Int, private var time: Long, isInit: Boolean) : View(context) {
+    private var _start_angle: Float = (60 - time) * 6f
+    internal var _end_angle: Float = 0.0f
+    
+    init {
+        if (isInit) {
+            time = 1
+        } else {
+            time *= 60 * 10L
+        }
+        _start_angle -= 90
+        _end_angle = _start_angle
+        context.toast(_start_angle.toString())
+    }
 
     public override fun onDraw(c: Canvas) {
         val width = c.width
-        val radius = (width / 2 - 30).toFloat()
-        val start_angle = _start_angle
+        val radius = (width / 2f - 30f)
+        val start_angle: Float = _start_angle % 360
         val x = radius + 15f
         val y = radius + 15f
-        var end_angle = start_angle + 360
-        if (end_angle > _end_angle) {
-            end_angle = _end_angle
-        }
+        val end_angle = Math.min(start_angle + 360, _end_angle)
         this.createPieSlice(c, param, start_angle, end_angle, x, y, radius)
     }
 
@@ -42,20 +51,17 @@ class CircleGraphView(context: Context, private var param: Int, angle: Float = -
         paint.color = Color.argb(0, 0, 0, 0)
         paint.style = Paint.Style.STROKE
         c.drawArc(oval1, start_angle, end_angle - start_angle, true, paint)
-
     }
-
 
     internal lateinit var timer: Timer
 
-    fun startAnimation(time: Long) {
-//        _end_angle = -90f
+    fun startAnimation() {
         val handler = Handler()
         val task = object : TimerTask() {
             override fun run() {
-                val angle = (360 / 100.0).toFloat()
+                val angle = (360 / 100f)
                 _end_angle += angle
-                if (_end_angle > 270) {
+                if (_end_angle > 270f) {
                     _end_angle = 270f
                     timer.cancel()
                 }
@@ -65,8 +71,7 @@ class CircleGraphView(context: Context, private var param: Int, angle: Float = -
 
         timer = Timer()
         //アニメーションのスピード調整できるようにしたいところ
-        timer.schedule(task, 0, time + (time / 4))
-
+        timer.schedule(task, 0, time)
     }
 
     fun changeParam(param: Int) {
