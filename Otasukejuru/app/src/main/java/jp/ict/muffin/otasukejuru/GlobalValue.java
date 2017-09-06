@@ -5,20 +5,27 @@ package jp.ict.muffin.otasukejuru;
  */
 
 public class GlobalValue {
-    private static int displayWidth;
-    private static int displayHeight;
+    private static int displayWidth = 0;
+    private static int displayHeight = 0;
+    private static boolean timerFlag = false;
 
-    public int getDisplayWidth() {
+    public static int getDisplayWidth() {
         return displayWidth;
     }
-    public int getDisplayHeight() {
+    public static int getDisplayHeight() {
         return displayHeight;
     }
+    public static boolean getTimerFlag() {
+        return timerFlag;
+    }
 
-    public void setDisplayWidth(int width) {
+    public static void setDisplayWidth(int width) {
         displayWidth = width;
     }
-    public void setDisplayHeight(int height) {
+    public static void setDisplayHeight(int height) {
         displayHeight = height;
+    }
+    public static void setTimerFlag(Boolean flag) {
+        timerFlag = flag;
     }
 }

@@ -19,7 +19,6 @@ import android.widget.TextView;
 import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
-    public GlobalValue globalValue = new GlobalValue();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,8 +61,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
         CoordinatorLayout coordinatorLayout = (CoordinatorLayout)findViewById(R.id.main_content);
-        globalValue.setDisplayHeight(coordinatorLayout.getHeight());
-        globalValue.setDisplayWidth(coordinatorLayout.getWidth());
+        GlobalValue.setDisplayHeight(coordinatorLayout.getHeight());
+        GlobalValue.setDisplayWidth(coordinatorLayout.getWidth());
     }
 
 
