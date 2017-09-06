@@ -63,7 +63,7 @@ class CircleGraphView(context: Context, private var param: Int, private var time
                     _end_angle = 270f
                     timer.cancel()
 //                    if (!isInit) {
-                        GlobalValue.setTimerFlag(true)
+                    GlobalValue.timerFlag = true
 //                    }
                 }
                 handler.post { invalidate() }

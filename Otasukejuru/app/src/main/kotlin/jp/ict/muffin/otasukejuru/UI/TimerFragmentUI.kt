@@ -43,8 +43,8 @@ class TimerFragmentUI : AnkoComponent<TimerFragment>{
                         }
                         drawCircle(context, circle, drawTime)
                         totalTime -= drawTime
-                        while (!GlobalValue.getTimerFlag()){}
-                        GlobalValue.setTimerFlag(false)
+                        while (!GlobalValue.timerFlag){}
+                        GlobalValue.timerFlag = true
                     }
                     isPushStartButton = true
                 }
