@@ -6,11 +6,13 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.RectF
 import android.os.Handler
+import android.util.Log
 import android.view.View
+import jp.ict.muffin.otasukejuru.GlobalValue
 import java.util.*
 
 
-class CircleGraphView(context: Context, private var param: Int, private var time: Long, isInit: Boolean) : View(context) {
+class CircleGraphView(context: Context, private var param: Int, private var time: Long, private var isInit: Boolean) : View(context) {
     private var _start_angle: Float = (60 - time) * 6f
     internal var _end_angle: Float = 0.0f
     
@@ -49,16 +51,20 @@ class CircleGraphView(context: Context, private var param: Int, private var time
     }
 
     internal lateinit var timer: Timer
-
+    private var ct = 0
     fun startAnimation() {
         val handler = Handler()
         val task = object : TimerTask() {
             override fun run() {
                 val angle = (360 / 100f)
                 _end_angle += angle
+                Log.d("time:", ct++.toString())
                 if (_end_angle > 270f) {
                     _end_angle = 270f
                     timer.cancel()
+//                    if (!isInit) {
+                        GlobalValue.setTimerFlag(true)
+//                    }
                 }
                 handler.post { invalidate() }
             }

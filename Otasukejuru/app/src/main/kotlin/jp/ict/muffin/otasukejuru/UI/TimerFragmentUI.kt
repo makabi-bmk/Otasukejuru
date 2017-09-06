@@ -10,7 +10,6 @@ import jp.ict.muffin.otasukejuru.View.CircleGraphView
 import org.jetbrains.anko.*
 
 class TimerFragmentUI : AnkoComponent<TimerFragment>{
-    lateinit var countDown: CountDown
     var isPushStartButton = false
     
     override fun createView(ui: AnkoContext<TimerFragment>): View = with(ui) {
@@ -33,13 +32,20 @@ class TimerFragmentUI : AnkoComponent<TimerFragment>{
             }.setOnClickListener {
                 if (!isPushStartButton) {
                     val time = editTime.text.toString().toLong()
-                    if (time <= 60L) {
-                        drawCircle(context, circle, time)
-                    } else {
-                        context.toast("over")
-                    }
+                    var totalTime = time
                     editTime.text.clear()
                     editTime.clearFocus()
+                    while (0L < totalTime) {
+                        val drawTime = if (totalTime % 60 == 0L) {
+                            60L
+                        } else {
+                            totalTime % 60L
+                        }
+                        drawCircle(context, circle, drawTime)
+                        totalTime -= drawTime
+                        while (!GlobalValue.getTimerFlag()){}
+                        GlobalValue.setTimerFlag(false)
+                    }
                     isPushStartButton = true
                 }
             }
@@ -50,7 +56,7 @@ class TimerFragmentUI : AnkoComponent<TimerFragment>{
         val circleGraphView = CircleGraphView(context, Color.argb(255, 255, 0, 0), time, true)
         circle.addView(circleGraphView)
         circleGraphView.startAnimation()
-    
+
         val circleGraphView1 = CircleGraphView(context, Color.argb(255, 255, 255, 255), time, false)
         circle.addView(circleGraphView1)
         circleGraphView1.startAnimation()
