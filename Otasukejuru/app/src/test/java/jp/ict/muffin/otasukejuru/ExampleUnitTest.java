@@ -1,4 +1,4 @@
-package jp.ict.maffin.otasukejuru;
+package jp.ict.muffin.otasukejuru;
 
 import org.junit.Test;
 
