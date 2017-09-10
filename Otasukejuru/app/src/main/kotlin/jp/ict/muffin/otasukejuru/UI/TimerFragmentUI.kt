@@ -44,7 +44,7 @@ class TimerFragmentUI : AnkoComponent<TimerFragment>{
                         drawCircle(context, circle, drawTime)
                         totalTime -= drawTime
                         while (!GlobalValue.timerFlag){}
-                        GlobalValue.timerFlag = true
+                        GlobalValue.timerFlag = false
                     }
                     isPushStartButton = true
                 }
@@ -56,6 +56,8 @@ class TimerFragmentUI : AnkoComponent<TimerFragment>{
         val circleGraphView = CircleGraphView(context, Color.argb(255, 255, 0, 0), time, true)
         circle.addView(circleGraphView)
         circleGraphView.startAnimation()
+        
+        GlobalValue.timerFlag = false
 
         val circleGraphView1 = CircleGraphView(context, Color.argb(255, 255, 255, 255), time, false)
         circle.addView(circleGraphView1)
