@@ -1,10 +1,11 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
     defaultConfig {
-        applicationId "jp.ict.maffin.otasukejuru"
+        applicationId "jp.ict.muffin.otasukejuru"
         minSdkVersion 21
         targetSdkVersion 25
         versionCode 1
@@ -19,8 +20,12 @@ android {
     }
     productFlavors {
         flavor1 {
-            applicationId = "jp.ict.maffin.otasukejuru" //変更したいパッケージ名
+            applicationId = "jp.ict.muffin.otasukejuru" //変更したいパッケージ名
         }
+    }
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+
     }
 }
 
@@ -30,6 +35,10 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha7'
+    compile 'com.android.support:design:25.+'
     testCompile 'junit:junit:4.12'
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+}
+repositories {
+    mavenCentral()
 }
