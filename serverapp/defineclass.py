@@ -3,8 +3,9 @@ import datetime as dt
 
 
 class Task:
-    def __init__(self, task_name, registration_date, due_date, priority,
-                 run_time):
+    def __init__(self, task_name: str, registration_date: dt.datetime,
+                 due_date: dt.datetime, priority: int,
+                 run_time: int):
         self.registration_date: dt.datetime = registration_date  # 登録日
         self.due_date: dt.datetime = due_date  # 期限
         self.task_name: str = task_name
@@ -21,16 +22,16 @@ class Task:
         else:
             return self.priority > other.priority
 
-    def update_priority(self, new_priority) -> None:
+    def update_priority(self, new_priority: int) -> None:
         # 優先度が決まるのって期限までの日数でだっけ
         self.priority = new_priority
 
-    def update_progress(self, new_progress) -> None:
+    def update_progress(self, new_progress: int) -> None:
         self.progress = new_progress
 
 
 class Schedule:
-    def __init__(self, schedule_name, date):
+    def __init__(self, schedule_name: int, date: dt.datetime):
         self.schedule_name: str = schedule_name
         self.date = date
 
