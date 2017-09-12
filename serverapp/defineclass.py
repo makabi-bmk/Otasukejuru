@@ -3,8 +3,9 @@ import datetime as dt
 
 
 class Task:
-    def __init__(self, task_name, regi_date, due_date, priority, run_time):
-        self.Registration_date: dt.datetime = regi_date  # 登録日
+    def __init__(self, task_name, registration_date, due_date, priority,
+                 run_time):
+        self.registration_date: dt.datetime = registration_date  # 登録日
         self.due_date: dt.datetime = due_date  # 期限
         self.task_name: str = task_name
         self.priority: int = priority
