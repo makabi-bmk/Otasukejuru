@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Otasukejuru</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+
+    <string name="main_tab1">Calender</string>
+    <string name="main_tab2">ToDo</string>
+    <string name="main_tab3">Timer</string>
 </resources>
