@@ -3,7 +3,7 @@
     <color name="colorPrimary">#66B7EC</color>
     <color name="colorPrimaryDark">#4372C4</color>
     <color name="colorAccent">#C8D627</color>
-<<<<<<< HEAD
+
     <color name="back">#FBFBF0</color>
 
     <color name="todayColor">#FDF37F</color>
@@ -11,6 +11,5 @@
     <color name="highPriority">#FFC000</color>
     <color name="middlePriority">#5B9BD5</color>
     <color name="lowPriority">#70AD47</color>
-=======
->>>>>>> taskAddition
+
 </resources>

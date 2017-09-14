@@ -62,13 +62,9 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-<<<<<<< HEAD
-                //TODO : Add task
-=======
 
                 Intent intent = new Intent(MainActivity.this, TaskAddition.class);
                 startActivity(intent);
->>>>>>> taskAddition
             }
         });
 
