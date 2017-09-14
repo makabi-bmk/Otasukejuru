@@ -5,6 +5,23 @@
     android:layout_height="match_parent"
     android:background="#FBFBF0">
 
+    <Toolbar
+        android:id="@+id/toolbar_back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="?android:actionBarSize"
+        android:background="?android:colorPrimary"
+        android:padding="0dp"
+        android:layout_margin="0dp">
+        <ImageButton
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="0dp"
+            android:layout_margin="0dp"
+            android:background="@drawable/back" />
+    </Toolbar>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -36,7 +53,7 @@
             android:text="開始:"
             android:textSize="16dp"/>
         <NumberPicker
-            android:id="@+id/start_hours"
+            android:id="@+id/start_hour"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <TextView
@@ -47,7 +64,7 @@
             android:text="時"
             android:textSize="16dp" />
         <NumberPicker
-            android:id="@+id/start_minits"
+            android:id="@+id/start_minute"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
@@ -73,7 +90,7 @@
             android:text="終了:"
             android:textSize="16dp"/>
         <NumberPicker
-            android:id="@+id/finish_hours"
+            android:id="@+id/finish_hour"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
@@ -84,7 +101,7 @@
             android:text="時"
             android:textSize="16dp" />
         <NumberPicker
-            android:id="@+id/finish_minits"
+            android:id="@+id/finish_minute"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
