@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         /*
       The {@link ViewPager} that will host the section contents.
      */
+
         HoldableViewPager mViewPager = (HoldableViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
         mViewPager.setSwipeHold(true);

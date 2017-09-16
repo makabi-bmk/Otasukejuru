@@ -78,7 +78,7 @@ public class TaskAddition extends Activity {
             @Override
             public void onClick(View v) {
                 name = editText.getText().toString();
-                if (name == "") name = "無題";
+                if (name.equals("")) name = "無題";
 
                 plan2();
             }
@@ -287,7 +287,7 @@ public class TaskAddition extends Activity {
             @Override
             public void onClick(View v) {
                 name = editText.getText().toString();
-                if (name == "") name = "無題";
+                if (name.equals("")) name = "無題";
 
                 task2();
             }
