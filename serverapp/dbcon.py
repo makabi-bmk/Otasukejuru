@@ -1,7 +1,7 @@
 import datetime as dt
 from logging import getLogger, StreamHandler, DEBUG
 from pymongo import MongoClient
-from serverapp.defineclass import Task, Schedule
+from serverapp.defineclass import Task, Schedule, Every
 
 logger = getLogger(__name__)
 handler = StreamHandler()
@@ -38,3 +38,14 @@ def add_schedule(schedule_name: str, date: dt.datetime):
     #    "date": date
     # }
     task_col.insert_one(post)
+
+
+def add_every(name: str, start_time: dt.datetime, end_time: dt.datetime):
+    every = Every(name, start_time, end_time)
+    post = {"every": every}
+    # post = {
+    #     "name": name,
+    #     "start_time": start_time,
+    #     "end_time": end_time,
+    # }
+    every_col.insert_one(post)
