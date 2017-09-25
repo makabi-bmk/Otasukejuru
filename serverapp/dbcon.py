@@ -1,4 +1,5 @@
 import datetime as dt
+from pytz import timezone
 from logging import getLogger, StreamHandler, DEBUG
 from pymongo import MongoClient
 
@@ -17,13 +18,12 @@ schedule_col = client['schedule']
 task_col = client['task']
 
 
-def add_task(task_name: str, registration_date: dt.datetime,
-             due_date: dt.datetime, priority: int):
+def add_task(task_name: str, due_date: dt.datetime, priority: int):
     # task = Task(task_name, registration_date, due_date, priority, run_time=0)
     # post = {"task": task}
     post = {
         "task_name": task_name,
-        "registration_date": registration_date,
+        "registration_date": dt.datetime.now(timezone('Asia/Tokyo')),
         "due_date": due_date,
         "priority": priority,
         "run_time": 0
