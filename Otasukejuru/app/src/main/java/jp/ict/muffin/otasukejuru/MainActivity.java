@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
      */
         HoldableViewPager mViewPager = (HoldableViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
-        mViewPager.setSwipeHold(true);
+        mViewPager.setSwipeHoldVar(true);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
