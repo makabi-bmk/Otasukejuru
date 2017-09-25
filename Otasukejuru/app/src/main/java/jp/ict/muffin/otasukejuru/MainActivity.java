@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         Calendar calendar = Calendar.getInstance();
         toolbar.setTitle((calendar.get(Calendar.MONTH) + 1) + "月" + calendar.get(Calendar.DATE) + "日");
@@ -65,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        CoordinatorLayout coordinatorLayout = (CoordinatorLayout)findViewById(R.id.main_content);
+        CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.main_content);
         GlobalValues.setDisplayHeight(coordinatorLayout.getHeight());
         GlobalValues.setDisplayWidth(coordinatorLayout.getWidth());
     }

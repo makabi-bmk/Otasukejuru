@@ -9,7 +9,7 @@ import android.widget.FrameLayout
 import jp.ict.muffin.otasukejuru.View.CircleGraphView
 import org.jetbrains.anko.*
 
-class TimerFragmentUI : AnkoComponent<TimerFragment>{
+class TimerFragmentUI : AnkoComponent<TimerFragment> {
     var isPushStartButton = false
     
     override fun createView(ui: AnkoContext<TimerFragment>): View = with(ui) {
@@ -43,7 +43,8 @@ class TimerFragmentUI : AnkoComponent<TimerFragment>{
                         }
                         drawCircle(context, circle, drawTime)
                         totalTime -= drawTime
-                        while (!GlobalValues.isTimerFlag()){}
+                        while (!GlobalValues.isTimerFlag()) {
+                        }
                         GlobalValues.setTimerFlag(false)
                     }
                     isPushStartButton = true
@@ -58,7 +59,7 @@ class TimerFragmentUI : AnkoComponent<TimerFragment>{
         circleGraphView.startAnimation()
         
         GlobalValues.setTimerFlag(false)
-
+        
         val circleGraphView1 = CircleGraphView(context, Color.argb(255, 255, 255, 255), time, false)
         circle.addView(circleGraphView1)
         circleGraphView1.startAnimation()
