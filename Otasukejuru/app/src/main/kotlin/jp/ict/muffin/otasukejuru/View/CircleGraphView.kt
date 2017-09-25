@@ -8,7 +8,7 @@ import android.graphics.RectF
 import android.os.Handler
 import android.util.Log
 import android.view.View
-import jp.ict.muffin.otasukejuru.GlobalValue
+import jp.ict.muffin.otasukejuru.GlobalValues
 import java.util.*
 
 
@@ -62,7 +62,7 @@ class CircleGraphView(context: Context, private var param: Int, private var time
                 if (_end_angle > 270f) {
                     _end_angle = 270f
                     timer.cancel()
-                    GlobalValue.timerFlag = true
+                    GlobalValues.setTimerFlag(true)
                 }
                 handler.post { invalidate() }
             }

@@ -8,8 +8,6 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -22,7 +20,6 @@ import android.widget.TextView;
 import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
-    private GlobalValue globalValue = GlobalValue.INSTANCE;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,8 +66,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
         CoordinatorLayout coordinatorLayout = (CoordinatorLayout)findViewById(R.id.main_content);
-        globalValue.setDisplayHeight(coordinatorLayout.getHeight());
-        globalValue.setDisplayWidth(coordinatorLayout.getWidth());
+        GlobalValues.setDisplayHeight(coordinatorLayout.getHeight());
+        GlobalValues.setDisplayWidth(coordinatorLayout.getWidth());
     }
 
 
