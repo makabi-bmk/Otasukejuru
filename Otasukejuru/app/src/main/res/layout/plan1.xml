@@ -1,38 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FBFBF0">
+    android:background="#FBFBF0"
+    android:orientation="vertical">
 
     <Toolbar
         android:id="@+id/toolbar_back"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="?android:actionBarSize"
         android:background="?android:colorPrimary"
+        android:minHeight="?android:actionBarSize"
         >
+
         <ImageButton
             android:id="@+id/back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/back" />
+            android:background="@drawable/back"/>
     </Toolbar>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="7dp"
         android:text="予定名"
-        android:textSize="30dp"
         android:textColor="@color/colorPrimary"
-        android:layout_margin="7dp"/>
+        android:textSize="30sp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
         android:text="予定名はなんですか？"
-        android:textSize="25dp"
-        android:layout_marginLeft="30dp" />
+        android:textSize="25sp"/>
 
     <EditText
         android:id="@+id/plan_name"
@@ -53,14 +55,14 @@
 
         <Button
             android:id="@+id/next"
+            style="?android:attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="300dp"
             android:background="#FBFBF0"
             android:text="次へ"
-            android:textSize="20dp"
             android:textColor="@color/colorPrimary"
-            android:layout_marginLeft="300dp"
-            style="?android:attr/borderlessButtonStyle" />
+            android:textSize="20sp"/>
 
     </LinearLayout>
 
