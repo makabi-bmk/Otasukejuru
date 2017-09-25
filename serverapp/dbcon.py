@@ -31,12 +31,14 @@ def add_task(task_name: str, due_date: dt.datetime, priority: int):
     task_col.insert_one(post)
 
 
-def add_schedule(schedule_name: str, date: dt.datetime):
+def add_schedule(schedule_name: str, start_time: dt.datetime,
+                 end_time: dt.datetime):
     # schedule = Schedule(schedule_name, date)
     # post = {"schedule": schedule}
     post = {
         "schedule_name": schedule_name,
-        "date": date
+        "start_time": start_time,
+        "end_time": end_time
     }
     task_col.insert_one(post)
 
