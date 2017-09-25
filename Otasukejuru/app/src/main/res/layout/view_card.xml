@@ -14,6 +14,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="5dp"
+        android:foreground="?android:attr/selectableItemBackground"
         card_view:cardCornerRadius="4dp">
 
         <!-- カードに載せる情報 -->
