@@ -20,7 +20,7 @@ class TimerFragmentUI : AnkoComponent<TimerFragment> {
             val circle = frameLayout {
                 gravity = Gravity.CENTER_HORIZONTAL
                 backgroundColor = Color.argb(0, 0, 0, 0)
-            }.lparams(height = 700, width = 700)
+            }.lparams(height = GlobalValues.getDisplayWidth(), width = GlobalValues.getDisplayWidth())
             val editTime = editText {
                 gravity = Gravity.CENTER_HORIZONTAL
                 inputType = InputType.TYPE_CLASS_NUMBER
