@@ -1,8 +1,8 @@
 package jp.ict.muffin.otasukejuru;
 
 import android.content.Intent;
+import android.graphics.Point;
 import android.os.Bundle;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -10,6 +10,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -65,12 +66,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.main_content);
-        GlobalValues.setDisplayHeight(coordinatorLayout.getHeight());
-        GlobalValues.setDisplayWidth(coordinatorLayout.getWidth());
-        Toast.makeText(this, "GlobalValues.getDisplayWidth():" + GlobalValues.getDisplayWidth(), Toast.LENGTH_SHORT).show();
-    }
+        Display display = getWindowManager().getDefaultDisplay();
+        Point point = new Point();
+        display.getSize(point);
 
+        GlobalValues.setDisplayHeight(point.y);
+        GlobalValues.setDisplayWidth(point.x);
+        Toast.makeText(this, "GlobalValues.getDisplayWidth():" + GlobalValues.getDisplayWidth(), Toast.LENGTH_SHORT).show();
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

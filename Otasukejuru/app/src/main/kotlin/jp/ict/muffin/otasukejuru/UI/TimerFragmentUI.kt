@@ -20,7 +20,12 @@ class TimerFragmentUI : AnkoComponent<TimerFragment> {
             val circle = frameLayout {
                 gravity = Gravity.CENTER_HORIZONTAL
                 backgroundColor = Color.argb(0, 0, 0, 0)
-            }.lparams(height = GlobalValues.getDisplayWidth(), width = GlobalValues.getDisplayWidth())
+            }.lparams {
+                height = GlobalValues.getDisplayWidth()
+                width = GlobalValues.getDisplayWidth()
+                topMargin = 30
+                marginStart = 15
+            }
             val editTime = editText {
                 gravity = Gravity.CENTER_HORIZONTAL
                 inputType = InputType.TYPE_CLASS_NUMBER
@@ -52,16 +57,16 @@ class TimerFragmentUI : AnkoComponent<TimerFragment> {
             }
         }
     }
+}
+
+private fun drawCircle(context: Context, circle: FrameLayout, time: Long) {
+    val circleGraphView = CircleGraphView(context, Color.argb(255, 255, 0, 0), time, true)
+    circle.addView(circleGraphView)
+    circleGraphView.startAnimation()
     
-    private fun drawCircle(context: Context, circle: FrameLayout, time: Long) {
-        val circleGraphView = CircleGraphView(context, Color.argb(255, 255, 0, 0), time, true)
-        circle.addView(circleGraphView)
-        circleGraphView.startAnimation()
-        
-        GlobalValues.setTimerFlag(false)
-        
-        val circleGraphView1 = CircleGraphView(context, Color.argb(255, 255, 255, 255), time, false)
-        circle.addView(circleGraphView1)
-        circleGraphView1.startAnimation()
-    }
+    GlobalValues.setTimerFlag(false)
+    
+    val circleGraphView1 = CircleGraphView(context, Color.argb(255, 255, 255, 255), time, false)
+    circle.addView(circleGraphView1)
+    circleGraphView1.startAnimation()
 }
