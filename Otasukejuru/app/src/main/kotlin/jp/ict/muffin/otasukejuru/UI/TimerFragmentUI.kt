@@ -30,7 +30,7 @@ class TimerFragmentUI : AnkoComponent<TimerFragment> {
                 width = 50
                 gravity = Gravity.CENTER_HORIZONTAL
             }.setOnClickListener {
-                if (!isPushStartButton) {
+                if (!isPushStartButton && !editTime.text.toString().equals("")) {
                     val time = editTime.text.toString().toLong()
                     var totalTime = time
                     editTime.text.clear()

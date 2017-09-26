@@ -22,7 +22,7 @@ class ToDoListFragment : Fragment() {
     
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        (0..6).forEach {
+        (0..3).forEach {
             val inflater: LayoutInflater = context.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
             val linearLayout: LinearLayout = inflater.inflate(R.layout.view_card, null) as LinearLayout
             linearLayout.apply {
