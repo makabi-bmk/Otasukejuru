@@ -17,7 +17,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.Calendar;
 
@@ -72,8 +71,6 @@ public class MainActivity extends AppCompatActivity {
 
         GlobalValues.setDisplayHeight(point.y);
         GlobalValues.setDisplayWidth(point.x);
-        Toast.makeText(this, "GlobalValues.getDisplayWidth():" + GlobalValues.getDisplayWidth(), Toast.LENGTH_SHORT).show();
-
     }
 
     @Override
