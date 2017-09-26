@@ -20,7 +20,6 @@ public class GlobalValues {
     }
 
     public static int getDisplayWidth() {
-
         return displayWidth;
     }
 
