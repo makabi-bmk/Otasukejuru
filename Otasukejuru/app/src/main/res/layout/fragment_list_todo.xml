@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:animation_wrap_layout="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <!--<ScrollView-->
@@ -10,11 +11,20 @@
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="match_parent">-->
 
-        <LinearLayout
-            android:id="@+id/cardLinear"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"/>
+        <!--<LinearLayout-->
+            <!--android:id="@+id/cardLinear"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:orientation="horizontal"/>-->
     <!--</ScrollView>-->
 
-</LinearLayout>
+    <com.github.sjnyag.AnimationWrapLayout
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        animation_wrap_layout:each_margin_height="4dp"
+        animation_wrap_layout:each_margin_width="4dp" />
+
+</RelativeLayout>
