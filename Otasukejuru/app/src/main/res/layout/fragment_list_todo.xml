@@ -23,7 +23,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:padding="10dp"
-                android:text="最優先"
+                android:text="@string/mostPriority"
                 android:textSize="20sp"/>
 
             <ImageView
@@ -52,7 +52,7 @@
                 android:layout_below="@id/mostPriorityCardLinear"
                 android:layout_marginTop="20dp"
                 android:padding="10dp"
-                android:text="高優先"
+                android:text="@string/highPriority"
                 android:textSize="20sp"/>
 
             <ImageView
@@ -89,7 +89,7 @@
                 android:layout_below="@id/highPriorityCardLinear2"
                 android:layout_marginTop="20dp"
                 android:padding="10dp"
-                android:text="中優先"
+                android:text="@string/middlePriority"
                 android:textSize="20sp"/>
 
             <ImageView
@@ -126,7 +126,7 @@
                 android:layout_below="@id/middlePriorityCardLinear2"
                 android:layout_marginTop="20dp"
                 android:padding="10dp"
-                android:text="低優先"
+                android:text="@string/lowPriority"
                 android:textSize="20sp"/>
 
             <ImageView

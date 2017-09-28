@@ -8,4 +8,9 @@
     <string name="main_tab3">Timer</string>
 
     <string name="initTime">00:00.000</string>
+
+    <string name="mostPriority">最優先</string>
+    <string name="highPriority">高優先</string>
+    <string name="middlePriority">中優先</string>
+    <string name="lowPriority">低優先</string>
 </resources>
