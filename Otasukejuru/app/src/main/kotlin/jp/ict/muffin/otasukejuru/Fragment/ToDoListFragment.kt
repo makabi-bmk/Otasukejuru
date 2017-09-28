@@ -13,9 +13,6 @@ import org.jetbrains.anko.support.v4.toast
 
 
 class ToDoListFragment : Fragment() {
-    companion object {
-        fun getInstance(): ToDoListFragment = ToDoListFragment()
-    }
     
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
             inflater.inflate(R.layout.fragment_list_todo, container, false)
