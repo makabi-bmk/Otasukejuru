@@ -22,19 +22,30 @@ class ToDoListFragment : Fragment() {
     
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        (0..3).forEach {
-            val inflater: LayoutInflater = context.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
-            val linearLayout: LinearLayout = inflater.inflate(R.layout.view_card, null) as LinearLayout
-            linearLayout.apply {
-                textBox.text = "9/2"
-                cardView.apply {
-                    tag = it
-                    setOnClickListener {
-                        toast(it.tag.toString())
+        (0..3).forEach { i ->
+            (0..6).forEach { it ->
+                val inflater: LayoutInflater = context.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
+                val linearLayout: LinearLayout = inflater.inflate(R.layout.view_card, null) as LinearLayout
+                linearLayout.apply {
+                    textBox.text = "9/2"
+                    cardView.apply {
+                        tag = it
+                        setOnClickListener {
+                            toast(it.tag.toString())
+                        }
                     }
                 }
+                when (it) {
+                    0 -> mostPriorityCardLinear
+                    1 -> highPriorityCardLinear1
+                    2 -> highPriorityCardLinear2
+                    3 -> middlePriorityCardLinear1
+                    4 -> middlePriorityCardLinear2
+                    5 -> lowPriorityCardLinear1
+                    else -> lowPriorityCardLinear2
+                }.addView(linearLayout, i)
+//                mostPriorityCardLinear.addView(linearLayout, it)
             }
-            mostPriorityCardLinear.addView(linearLayout, it)
         }
     }
 }
