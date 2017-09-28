@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.fragment_list_todo.*
-import kotlinx.android.synthetic.main.taskCardView.view.*
+import kotlinx.android.synthetic.main.task_card_view.view.*
 import org.jetbrains.anko.support.v4.toast
 
 
@@ -22,9 +22,9 @@ class ToDoListFragment : Fragment() {
         (0..3).forEach { i ->
             (0..6).forEach { it ->
                 val inflater: LayoutInflater = context.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
-                val linearLayout: LinearLayout = inflater.inflate(R.layout.taskCardView, null) as LinearLayout
+                val linearLayout: LinearLayout = inflater.inflate(R.layout.task_card_view, null) as LinearLayout
                 linearLayout.apply {
-                    textBox.text = "9/2"
+                    dateTextView.text = "2"
                     cardView.apply {
                         tag = it
                         setOnClickListener {
