@@ -5,29 +5,152 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-
-    <TextView
-        android:id="@+id/mostPriorityTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:text="最優先"/>
-
-    <ImageView
-        android:id="@+id/mostPriorityLine"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/mostPriorityTextView"
-        android:background="@color/colorAccent"
-        android:contentDescription=""/>
+        android:layout_height="match_parent">
 
-    <LinearLayout
-        android:id="@+id/cardLinear"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/mostPriorityLine"
-        android:orientation="horizontal"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <!--most priority-->
+
+            <TextView
+                android:id="@+id/mostPriorityTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:padding="10dp"
+                android:text="最優先"
+                android:textSize="20sp"/>
+
+            <ImageView
+                android:id="@+id/mostPriorityLine"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/mostPriorityTextView"
+                android:background="@color/mostPriority"
+                android:contentDescription=""/>
+
+            <LinearLayout
+                android:id="@+id/mostPriorityCardLinear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/mostPriorityLine"
+                android:orientation="horizontal"/>
+
+            <!--high priority-->
+
+            <TextView
+                android:id="@+id/highPriorityTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/mostPriorityCardLinear"
+                android:layout_marginTop="20dp"
+                android:padding="10dp"
+                android:text="高優先"
+                android:textSize="20sp"/>
+
+            <ImageView
+                android:id="@+id/highPriorityLine"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/highPriorityTextView"
+                android:background="@color/highPriority"
+                android:contentDescription=""/>
+
+            <LinearLayout
+                android:id="@+id/highPriorityCardLinear1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/highPriorityLine"
+                android:orientation="horizontal"/>
+
+            <LinearLayout
+                android:id="@+id/highPriorityCardLinear2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/highPriorityCardLinear1"
+                android:orientation="horizontal"/>
+
+            <!--middle priority-->
+
+            <TextView
+                android:id="@+id/middlePriorityTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/highPriorityCardLinear2"
+                android:layout_marginTop="20dp"
+                android:padding="10dp"
+                android:text="中優先"
+                android:textSize="20sp"/>
+
+            <ImageView
+                android:id="@+id/middlePriorityLine"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/middlePriorityTextView"
+                android:background="@color/middlePriority"
+                android:contentDescription=""/>
+
+            <LinearLayout
+                android:id="@+id/middlePriorityCardLinear1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/middlePriorityLine"
+                android:orientation="horizontal"/>
+
+            <LinearLayout
+                android:id="@+id/middlePriorityCardLinear2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/middlePriorityCardLinear1"
+                android:orientation="horizontal"/>
+
+            <!--low priority-->
+
+            <TextView
+                android:id="@+id/lowPriorityTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/middlePriorityCardLinear2"
+                android:layout_marginTop="20dp"
+                android:padding="10dp"
+                android:text="低優先"
+                android:textSize="20sp"/>
+
+            <ImageView
+                android:id="@+id/lowPriorityLine"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/lowPriorityTextView"
+                android:background="@color/lowPriority"
+                android:contentDescription=""/>
+
+            <LinearLayout
+                android:id="@+id/lowPriorityCardLinear1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/lowPriorityLine"
+                android:orientation="horizontal"/>
+
+            <LinearLayout
+                android:id="@+id/lowPriorityCardLinear2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/lowPriorityCardLinear1"
+                android:orientation="horizontal"/>
+        </RelativeLayout>
+    </ScrollView>
 </RelativeLayout>

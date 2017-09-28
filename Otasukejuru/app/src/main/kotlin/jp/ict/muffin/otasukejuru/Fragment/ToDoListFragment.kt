@@ -34,7 +34,7 @@ class ToDoListFragment : Fragment() {
                     }
                 }
             }
-            cardLinear.addView(linearLayout, it)
+            mostPriorityCardLinear.addView(linearLayout, it)
         }
     }
 }
