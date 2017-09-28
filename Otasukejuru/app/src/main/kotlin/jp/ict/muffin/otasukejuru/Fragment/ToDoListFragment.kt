@@ -26,7 +26,7 @@ class ToDoListFragment : Fragment() {
             val inflater: LayoutInflater = context.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
             val linearLayout: LinearLayout = inflater.inflate(R.layout.view_card, null) as LinearLayout
             linearLayout.apply {
-                textBox.text = "CardView$it"
+                textBox.text = "9/2"
                 cardView.apply {
                     tag = it
                     setOnClickListener {

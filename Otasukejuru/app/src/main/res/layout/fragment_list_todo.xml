@@ -5,15 +5,29 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <ScrollView
-        android:id="@+id/scrollView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-        <LinearLayout
-            android:id="@+id/cardLinear"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"/>
-    </ScrollView>
+    <TextView
+        android:id="@+id/mostPreferredTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:text="最優先"/>
+
+    <ImageView
+        android:id="@+id/mostPreferredLine"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/mostPreferredTextView"
+        android:background="@color/colorAccent"
+        android:contentDescription=""/>
+
+    <LinearLayout
+        android:id="@+id/cardLinear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/mostPreferredLine"
+        android:orientation="horizontal"/>
 </RelativeLayout>
