@@ -3,6 +3,7 @@ package jp.ict.muffin.otasukejuru;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -259,8 +260,8 @@ public class TaskAddition extends Activity {
                 messageTime = Integer.parseInt(str);
 
                 AlertDialog.Builder alert = new AlertDialog.Builder(TaskAddition.this);
-                alert.setMessage("タイトル名:" + name + "\n予定開始の日付:" + month + "月" + day + "日" + "\n予定開始の時間:" + hour + "時" + minute + "分"
-                        + "\n予定終了の時間:" + finishHour + "時" + finishMinute + "分" + "\n繰り返し:" + repeat + "\n何分前に通知するか:" + messageTime).show();
+                Log.d("plan", "タイトル名:" + name + "\n予定開始の日付:" + month + "月" + day + "日" + "\n予定開始の時間:" + hour + "時" + minute + "分"
+                        + "\n予定終了の時間:" + finishHour + "時" + finishMinute + "分" + "\n繰り返し:" + repeat + "\n何分前に通知するか:" + messageTime);
 
                 finish();
             }
@@ -283,16 +284,15 @@ public class TaskAddition extends Activity {
         final EditText editText = (EditText) findViewById(R.id.task_name);
 
         Button next = (Button) findViewById(R.id.next);
-        next.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        name = editText.getText().toString();
-                        if (name.equals("")) name = "無題";
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                name = editText.getText().toString();
+                if (name.equals("")) name = "無題";
 
-                        task2();
-                    }
-                });
+                task2();
+            }
+        });
 
         ImageButton imageButton = (ImageButton) findViewById(R.id.back);
         imageButton.setOnClickListener(new View.OnClickListener() {
@@ -538,9 +538,8 @@ public class TaskAddition extends Activity {
                     str = month + "月" + day + "日" + hour + "時" + day + "分";
                 }
 
-                AlertDialog.Builder alert = new AlertDialog.Builder(TaskAddition.this);
-                alert.setMessage("タイトル名:" + name + "\n期限の開始:" + str + "\n繰り返し:" + repeat
-                        + "\nmust:" + must + "\nshould:" + should + "\nwant to:" + want + "\n終了目安:" + finishHour + "時間" + finishMinute + "分").show();
+                Log.d("task", "タイトル名:" + name + "\n期限の開始:" + str + "\n繰り返し:" + repeat
+                        + "\nmust:" + must + "\nshould:" + should + "\nwant to:" + want + "\n終了目安:" + finishHour + "時間" + finishMinute + "分");
 
                 finish();
             }
