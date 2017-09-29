@@ -19,15 +19,15 @@ public class TaskAddition extends Activity {
 
     //common
     boolean select;
-    String name;
+    String taskTitleName;
     int month, day, hour, minute;
     int finishHour, finishMinute;
-    String repeat;
+    String taskRepeat;
 
     //plan
     int messageTime;
     //task
-    boolean must, should, want;
+    boolean isMust, isShould, isWant;
 
     Calendar calendar = Calendar.getInstance();
 
@@ -79,8 +79,8 @@ public class TaskAddition extends Activity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                name = editText.getText().toString();
-                if (name.equals("")) name = "無題";
+                taskTitleName = editText.getText().toString();
+                if (taskTitleName.equals("")) taskTitleName = "無題";
 
                 plan2();
             }
@@ -225,9 +225,9 @@ public class TaskAddition extends Activity {
                 int num = radioGroup.getCheckedRadioButtonId();
 
                 if (num != -1) {
-                    repeat = String.valueOf(((RadioButton) findViewById(num)).getText());
+                    taskRepeat = String.valueOf(((RadioButton) findViewById(num)).getText());
                 } else {
-                    repeat = "選択されていない";
+                    taskRepeat = "選択されていない";
                 }
                 plan5();
             }
@@ -260,8 +260,8 @@ public class TaskAddition extends Activity {
                 messageTime = Integer.parseInt(str);
 
                 AlertDialog.Builder alert = new AlertDialog.Builder(TaskAddition.this);
-                Log.d("plan", "タイトル名:" + name + "\n予定開始の日付:" + month + "月" + day + "日" + "\n予定開始の時間:" + hour + "時" + minute + "分"
-                        + "\n予定終了の時間:" + finishHour + "時" + finishMinute + "分" + "\n繰り返し:" + repeat + "\n何分前に通知するか:" + messageTime);
+                Log.d("plan", "タイトル名:" + taskTitleName + "\n予定開始の日付:" + month + "月" + day + "日" + "\n予定開始の時間:" + hour + "時" + minute + "分"
+                        + "\n予定終了の時間:" + finishHour + "時" + finishMinute + "分" + "\n繰り返し:" + taskRepeat + "\n何分前に通知するか:" + messageTime);
 
                 finish();
             }
@@ -287,8 +287,8 @@ public class TaskAddition extends Activity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                name = editText.getText().toString();
-                if (name.equals("")) name = "無題";
+                taskTitleName = editText.getText().toString();
+                if (taskTitleName.equals("")) taskTitleName = "無題";
 
                 task2();
             }
@@ -396,9 +396,9 @@ public class TaskAddition extends Activity {
                 int num = radioGroup.getCheckedRadioButtonId();
 
                 if (num != -1) {
-                    repeat = String.valueOf(((RadioButton) findViewById(num)).getText());
+                    taskRepeat = String.valueOf(((RadioButton) findViewById(num)).getText());
                 } else {
-                    repeat = "選択されてない";
+                    taskRepeat = "選択されてない";
                 }
                 task4();
             }
@@ -422,7 +422,7 @@ public class TaskAddition extends Activity {
         no.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                must = false;
+                isMust = false;
                 task5();
             }
         });
@@ -431,7 +431,7 @@ public class TaskAddition extends Activity {
         yes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                must = true;
+                isMust = true;
                 task5();
             }
         });
@@ -453,7 +453,7 @@ public class TaskAddition extends Activity {
         no.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                should = false;
+                isShould = false;
                 task6();
             }
         });
@@ -462,7 +462,7 @@ public class TaskAddition extends Activity {
         yes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                should = true;
+                isShould = true;
                 task6();
             }
         });
@@ -485,7 +485,7 @@ public class TaskAddition extends Activity {
         no.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                want = false;
+                isWant = false;
                 task7();
             }
         });
@@ -494,7 +494,7 @@ public class TaskAddition extends Activity {
         yes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                want = true;
+                isWant = true;
                 task7();
             }
         });
@@ -525,21 +525,21 @@ public class TaskAddition extends Activity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String str;
-                str = h.getText().toString();
-                finishHour = Integer.parseInt(str);
+                String dateLimit;
+                dateLimit = h.getText().toString();
+                finishHour = Integer.parseInt(dateLimit);
 
-                str = m.getText().toString();
-                finishMinute = Integer.parseInt(str);
+                dateLimit = m.getText().toString();
+                finishMinute = Integer.parseInt(dateLimit);
 
                 if (month == -1) {
-                    str = "期限なし";
+                    dateLimit = "期限なし";
                 } else {
-                    str = month + "月" + day + "日" + hour + "時" + day + "分";
+                    dateLimit = month + "月" + day + "日" + hour + "時" + day + "分";
                 }
 
-                Log.d("task", "タイトル名:" + name + "\n期限の開始:" + str + "\n繰り返し:" + repeat
-                        + "\nmust:" + must + "\nshould:" + should + "\nwant to:" + want + "\n終了目安:" + finishHour + "時間" + finishMinute + "分");
+                Log.d("task", "タイトル名:" + taskTitleName + "\n期限の開始:" + dateLimit + "\n繰り返し:" + taskRepeat
+                        + "\nisMust:" + isMust + "\nisShould:" + isShould + "\nisWant to:" + isWant + "\n終了目安:" + finishHour + "時間" + finishMinute + "分");
 
                 finish();
             }
