@@ -57,14 +57,16 @@ class ToDoListFragment : Fragment() {
         var highPriorityNum = 0
         var middlePriorityNum = 0
         var lowPriorityNum = 0
-        val today = Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
+        val calendar = Calendar.getInstance()
+        val today = calendar.get(Calendar.MONTH) * 100 + calendar.get(Calendar.DAY_OF_MONTH)
+        
         
         (0 until taskInformationArrayList.size).forEach {
             val inflater: LayoutInflater = context.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
             val linearLayout: LinearLayout = inflater.inflate(R.layout.task_card_view, null) as LinearLayout
             linearLayout.apply {
                 dateTextView.apply {
-                    text = (taskInformationArrayList[it].limitDate % 100 - today).toString()
+                    text = (diffDayNum(today, taskInformationArrayList[it].limitDate, calendar.get(Calendar.YEAR))).toString()
                     if (taskInformationArrayList[it].priority == 0) {
                         textColor = context.resources.getColor(R.color.mostPriority)
                     }
@@ -105,5 +107,20 @@ class ToDoListFragment : Fragment() {
                 }
             }.addView(linearLayout, 0)
         }
+    }
+    
+    private fun diffDayNum(beforeDate: Int, afterDate: Int, year: Int): Int {
+        
+        val totalDays = if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0) {
+            intArrayOf(0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334)
+        } else {
+            intArrayOf(0, 31, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335)
+        }
+        
+        val beforeDay = beforeDate % 100
+        val beforeMonth = beforeDate / 100
+        val afterDay = afterDate % 100
+        val afterMonth = afterDate / 100
+        return (totalDays[afterMonth] + afterDay - (totalDays[beforeMonth] + beforeDay))
     }
 }
