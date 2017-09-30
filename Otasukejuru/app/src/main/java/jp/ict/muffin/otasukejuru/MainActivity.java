@@ -18,9 +18,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
+    public static ArrayList<TaskInformation> taskInformationArrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +73,8 @@ public class MainActivity extends AppCompatActivity {
 
         GlobalValues.setDisplayHeight(point.y);
         GlobalValues.setDisplayWidth(point.x);
+
+        taskInformationArrayList = new ArrayList<>();
     }
 
     @Override

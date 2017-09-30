@@ -2,7 +2,6 @@ package jp.ict.muffin.otasukejuru;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -15,6 +14,8 @@ import android.widget.Toolbar;
 
 import java.util.Calendar;
 
+import static jp.ict.muffin.otasukejuru.MainActivity.taskInformationArrayList;
+
 public class TaskAddition extends Activity {
 
     //common
@@ -23,6 +24,7 @@ public class TaskAddition extends Activity {
     int month, day, hour, minute;
     int finishHour, finishMinute;
     String taskRepeat;
+    String dateLimit;
 
     //plan
     int messageTime;
@@ -259,7 +261,6 @@ public class TaskAddition extends Activity {
                 str = m.getText().toString();
                 messageTime = Integer.parseInt(str);
 
-                AlertDialog.Builder alert = new AlertDialog.Builder(TaskAddition.this);
                 Log.d("plan", "タイトル名:" + taskTitleName + "\n予定開始の日付:" + month + "月" + day + "日" + "\n予定開始の時間:" + hour + "時" + minute + "分"
                         + "\n予定終了の時間:" + finishHour + "時" + finishMinute + "分" + "\n繰り返し:" + taskRepeat + "\n何分前に通知するか:" + messageTime);
 
@@ -525,7 +526,7 @@ public class TaskAddition extends Activity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String dateLimit;
+
                 dateLimit = finishHourEditText.getText().toString();
                 finishHour = Integer.parseInt(dateLimit);
 
@@ -541,6 +542,8 @@ public class TaskAddition extends Activity {
                 Log.d("task", "タイトル名:" + taskTitleName + "\n期限の開始:" + dateLimit + "\n繰り返し:" + taskRepeat
                         + "\nisMust:" + isMust + "\nisShould:" + isShould + "\nisWant to:" + isWant + "\n終了目安:" + finishHour + "時間" + finishMinute + "分");
 
+                setTaskInformation();
+
                 finish();
             }
         });
@@ -552,5 +555,19 @@ public class TaskAddition extends Activity {
                 task6();
             }
         });
+    }
+
+    void setTaskInformation() {
+        TaskInformation taskInformation = new TaskInformation();
+        taskInformation.setName(taskTitleName);
+        taskInformation.setLimitDate(dateLimit);
+        taskInformation.setRepeat(taskRepeat);
+        taskInformation.setMust(isMust);
+        taskInformation.setShould(isShould);
+        taskInformation.setWant(isWant);
+        taskInformation.setFinishTimeMinutes(finishHour * 60 + finishMinute);
+
+        taskInformationArrayList.add(0, taskInformation);
+
     }
 }

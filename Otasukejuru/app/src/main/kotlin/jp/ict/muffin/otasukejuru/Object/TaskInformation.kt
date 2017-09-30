@@ -1,12 +1,12 @@
 package jp.ict.muffin.otasukejuru
 
 
-object TaskInformation {
-    private var name: String = ""
-    private var limitDate: String = ""
-    private var repeat: String = ""
-    private var must: Boolean = false
-    private var should: Boolean = false
-    private var want: Boolean = false
-    private var finishTimeMinutes: Int = 0
+internal class TaskInformation {
+    var name: String = ""
+    var limitDate: String = ""
+    var repeat: String = ""
+    var must: Boolean = false
+    var should: Boolean = false
+    var want: Boolean = false
+    var finishTimeMinutes: Int = 0
 }
