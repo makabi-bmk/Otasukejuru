@@ -3,7 +3,8 @@ package jp.ict.muffin.otasukejuru
 
 internal class TaskInformation {
     var name: String = ""
-    var limitDate: String = ""
+    var limitDate: Int = 0
+    var limitTime: Int = 0
     var repeat: String = ""
     var must: Boolean = false
     var should: Boolean = false

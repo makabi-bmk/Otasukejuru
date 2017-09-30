@@ -24,7 +24,8 @@ public class TaskAddition extends Activity {
     int month, day, hour, minute;
     int finishHour, finishMinute;
     String taskRepeat;
-    String dateLimit;
+    int dateLimit;
+    int timeLimit;
 
     //plan
     int messageTime;
@@ -527,16 +528,14 @@ public class TaskAddition extends Activity {
             @Override
             public void onClick(View v) {
 
-                dateLimit = finishHourEditText.getText().toString();
-                finishHour = Integer.parseInt(dateLimit);
-
-                dateLimit = finishMinutesEditText.getText().toString();
-                finishMinute = Integer.parseInt(dateLimit);
+                finishHour = Integer.parseInt(finishHourEditText.getText().toString());
+                finishMinute = Integer.parseInt(finishMinutesEditText.getText().toString());
 
                 if (month == -1) {
-                    dateLimit = "期限なし";
+                    dateLimit = -1;
                 } else {
-                    dateLimit = month + "月" + day + "日" + TaskAddition.this.hour + "時" + day + "分";
+                    dateLimit = month  * 100 + day;
+                    timeLimit = TaskAddition.this.hour * 100 + day;
                 }
 
                 Log.d("task", "タイトル名:" + taskTitleName + "\n期限の開始:" + dateLimit + "\n繰り返し:" + taskRepeat
@@ -561,11 +560,12 @@ public class TaskAddition extends Activity {
         TaskInformation taskInformation = new TaskInformation();
         taskInformation.setName(taskTitleName);
         taskInformation.setLimitDate(dateLimit);
+        taskInformation.setLimitTime(timeLimit);
         taskInformation.setRepeat(taskRepeat);
         taskInformation.setMust(isMust);
         taskInformation.setShould(isShould);
         taskInformation.setWant(isWant);
-        taskInformation.setFinishTimeMinutes(finishHour * 60 + finishMinute);
+        taskInformation.setFinishTimeMinutes(finishHour * 100 + finishMinute);
 
         taskInformationArrayList.add(0, taskInformation);
 
