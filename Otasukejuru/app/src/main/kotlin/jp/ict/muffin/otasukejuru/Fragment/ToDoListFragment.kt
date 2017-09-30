@@ -57,12 +57,14 @@ class ToDoListFragment : Fragment() {
         var highPriorityNum = 0
         var middlePriorityNum = 0
         var lowPriorityNum = 0
+        val today = Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
+        
         (0 until taskInformationArrayList.size).forEach {
             val inflater: LayoutInflater = context.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
             val linearLayout: LinearLayout = inflater.inflate(R.layout.task_card_view, null) as LinearLayout
             linearLayout.apply {
                 dateTextView.apply {
-                    text = (taskInformationArrayList[it].limitDate % 100).toString()
+                    text = (taskInformationArrayList[it].limitDate % 100 - today).toString()
                     if (taskInformationArrayList[it].priority == 0) {
                         textColor = context.resources.getColor(R.color.mostPriority)
                     }
