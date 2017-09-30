@@ -30,7 +30,7 @@ class ToDoListFragment : Fragment() {
                 linearLayout.apply {
                     dateTextView.apply {
                         text = "1"
-                        textColor = context.getColor(R.color.mostPriority)
+                        textColor = context.resources.getColor(R.color.mostPriority)
                     }
                     cardView.apply {
                         tag = it

@@ -513,12 +513,12 @@ public class TaskAddition extends Activity {
         setContentView(R.layout.task7);
         setActionBar((Toolbar) findViewById(R.id.toolbar_back));
 
-        final EditText h = (EditText) findViewById(R.id.finish_hour);
-        h.setText("0");
+        final EditText finishHourEditText = (EditText) findViewById(R.id.finish_hour);
+        finishHourEditText.setText("0");
         finishHour = 0;
 
-        final EditText m = (EditText) findViewById(R.id.finish_minute);
-        m.setText("5");
+        final EditText finishMinutesEditText = (EditText) findViewById(R.id.finish_minute);
+        finishMinutesEditText.setText("5");
         finishMinute = 5;
 
         Button next = (Button) findViewById(R.id.next);
@@ -526,16 +526,16 @@ public class TaskAddition extends Activity {
             @Override
             public void onClick(View v) {
                 String dateLimit;
-                dateLimit = h.getText().toString();
+                dateLimit = finishHourEditText.getText().toString();
                 finishHour = Integer.parseInt(dateLimit);
 
-                dateLimit = m.getText().toString();
+                dateLimit = finishMinutesEditText.getText().toString();
                 finishMinute = Integer.parseInt(dateLimit);
 
                 if (month == -1) {
                     dateLimit = "期限なし";
                 } else {
-                    dateLimit = month + "月" + day + "日" + hour + "時" + day + "分";
+                    dateLimit = month + "月" + day + "日" + TaskAddition.this.hour + "時" + day + "分";
                 }
 
                 Log.d("task", "タイトル名:" + taskTitleName + "\n期限の開始:" + dateLimit + "\n繰り返し:" + taskRepeat
