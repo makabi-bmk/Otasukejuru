@@ -8,4 +8,6 @@
     <string name="main_tab3">Timer</string>
 
     <string name="initTime">00:00.000</string>
+
+    <string name="format_month_year">2017/09/29</string>
 </resources>
