@@ -566,6 +566,7 @@ public class TaskAddition extends Activity {
         taskInformation.setShould(isShould);
         taskInformation.setWant(isWant);
         taskInformation.setFinishTimeMinutes(finishHour * 100 + finishMinute);
+        taskInformation.setPriority(0);
 
         taskInformationArrayList.add(0, taskInformation);
 

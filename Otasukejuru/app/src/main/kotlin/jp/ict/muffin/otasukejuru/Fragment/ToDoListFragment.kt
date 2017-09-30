@@ -53,13 +53,19 @@ class ToDoListFragment : Fragment() {
                 else -> lowPriorityCardLinear2
             }.removeAllViews()
         }
+        
+        var highPriorityNum = 0
+        var middlePriorityNum = 0
+        var lowPriorityNum = 0
         (0 until taskInformationArrayList.size).forEach {
             val inflater: LayoutInflater = context.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
             val linearLayout: LinearLayout = inflater.inflate(R.layout.task_card_view, null) as LinearLayout
             linearLayout.apply {
                 dateTextView.apply {
                     text = (taskInformationArrayList[it].limitDate % 100).toString()
-                    textColor = context.resources.getColor(R.color.mostPriority)
+                    if (taskInformationArrayList[it].priority == 0) {
+                        textColor = context.resources.getColor(R.color.mostPriority)
+                    }
                 }
                 cardView.apply {
                     tag = taskInformationArrayList[it].limitDate
@@ -69,15 +75,33 @@ class ToDoListFragment : Fragment() {
                 }
                 taskNameTextView.text = taskInformationArrayList[it].name
             }
-            when (it / 4) {
+            when (taskInformationArrayList[it].priority) {
                 0 -> mostPriorityCardLinear
-                1 -> highPriorityCardLinear1
-                2 -> highPriorityCardLinear2
-                3 -> middlePriorityCardLinear1
-                4 -> middlePriorityCardLinear2
-                5 -> lowPriorityCardLinear1
-                else -> lowPriorityCardLinear2
-            }.addView(linearLayout, it % 4)
+                1 -> {
+                    highPriorityNum++
+                    if (4 < highPriorityNum) {
+                        highPriorityCardLinear1
+                    } else {
+                        highPriorityCardLinear2
+                    }
+                }
+                2 -> {
+                    middlePriorityNum++
+                    if (4 < middlePriorityNum) {
+                        middlePriorityCardLinear1
+                    } else {
+                        middlePriorityCardLinear2
+                    }
+                }
+                else -> {
+                    lowPriorityNum++
+                    if (4 < lowPriorityNum) {
+                        lowPriorityCardLinear1
+                    } else {
+                        lowPriorityCardLinear2
+                    }
+                }
+            }.addView(linearLayout, 0)
         }
     }
 }

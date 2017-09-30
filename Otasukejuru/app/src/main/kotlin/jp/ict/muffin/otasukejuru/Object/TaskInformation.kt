@@ -10,4 +10,5 @@ internal class TaskInformation {
     var should: Boolean = false
     var want: Boolean = false
     var finishTimeMinutes: Int = 0
+    var priority: Int = 0
 }
