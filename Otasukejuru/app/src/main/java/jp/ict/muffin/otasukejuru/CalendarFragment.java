@@ -36,7 +36,8 @@ public class CalendarFragment extends Fragment {
     }
 
     void calendarView(View view){
-        //タイトル(表示されているカレンダーの年月日)
+
+        //タイトル(カレンダーの年月日)
         TextView title = (TextView) view.findViewById(R.id.title);
         title.setText(String.valueOf(year) + "年" + String.valueOf(month + 1) + "月");
 
@@ -53,17 +54,18 @@ public class CalendarFragment extends Fragment {
 
         //月末日
         int lastDayOfMonth = cal.getActualMaximum(Calendar.DATE);
-
+        //月の初めの曜日
         int firstWeekday = cal.get(Calendar.DAY_OF_WEEK);
-
-        //第一土曜日の日
+        //第一土曜日
         int firstSaturday = 8 - firstWeekday;
+        //土日かどうか判別するための変数
         int saturDay = firstSaturday % 7;
         int sunDay = (firstSaturday + 1) % 7;
 
-
+        //日付の文字の大きさ(sp)
         int textFontSize = 25;
 
+        //空白スペースの表示
         for (int i = 1; i < firstWeekday; i++){
             TextView textView = new TextView(getContext());
             textView.setGravity(Gravity.LEFT | Gravity.TOP);
@@ -72,7 +74,7 @@ public class CalendarFragment extends Fragment {
             textView.setText("");
             gridLayout.addView(textView);
         }
-
+        //日付の表示
         for (int i = 1; i <= lastDayOfMonth; i++){
             TextView textView = new TextView(getContext());
             textView.setGravity(Gravity.LEFT | Gravity.TOP);
@@ -84,7 +86,7 @@ public class CalendarFragment extends Fragment {
             textView.setText(String.valueOf(i));
             gridLayout.addView(textView);
         }
-
+        //空白スペースの表示
         for (int i = lastDayOfMonth + 1; i <= 42; i++){
             TextView textView = new TextView(getContext());
             textView.setGravity(Gravity.LEFT | Gravity.TOP);
