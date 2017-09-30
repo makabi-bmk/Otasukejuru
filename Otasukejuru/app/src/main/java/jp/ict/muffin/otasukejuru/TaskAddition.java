@@ -14,7 +14,8 @@ import android.widget.Toolbar;
 
 import java.util.Calendar;
 
-import static jp.ict.muffin.otasukejuru.MainActivity.taskInformationArrayList;
+import jp.ict.muffin.otasukejuru.Object.GlobalValue;
+
 
 public class TaskAddition extends Activity {
 
@@ -568,7 +569,7 @@ public class TaskAddition extends Activity {
         taskInformation.setFinishTimeMinutes(finishHour * 100 + finishMinute);
         taskInformation.setPriority(0);
 
-        taskInformationArrayList.add(0, taskInformation);
+        GlobalValue.INSTANCE.getTaskInformationArrayList().add(0, taskInformation);
 
     }
 }

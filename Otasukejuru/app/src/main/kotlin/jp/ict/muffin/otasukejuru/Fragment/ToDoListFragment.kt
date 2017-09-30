@@ -8,7 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import jp.ict.muffin.otasukejuru.MainActivity.taskInformationArrayList
+import jp.ict.muffin.otasukejuru.Object.GlobalValue
 import kotlinx.android.synthetic.main.fragment_list_todo.*
 import kotlinx.android.synthetic.main.task_card_view.view.*
 import org.jetbrains.anko.support.v4.toast
@@ -58,7 +58,7 @@ class ToDoListFragment : Fragment() {
         val calendar = Calendar.getInstance()
         val today = calendar.get(Calendar.MONTH) * 100 + calendar.get(Calendar.DAY_OF_MONTH)
         
-        taskInformationArrayList.forEach {
+        GlobalValue.taskInformationArrayList.forEach {
             val diffDays = diffDayNum(today, it.limitDate, calendar.get(Calendar.YEAR))
             
             val inflater: LayoutInflater = context.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater

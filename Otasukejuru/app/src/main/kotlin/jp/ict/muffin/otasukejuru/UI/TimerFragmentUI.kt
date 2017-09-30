@@ -6,6 +6,7 @@ import android.text.InputType
 import android.view.Gravity
 import android.view.View
 import android.widget.FrameLayout
+import jp.ict.muffin.otasukejuru.Object.GlobalValue
 import jp.ict.muffin.otasukejuru.View.CircleGraphView
 import org.jetbrains.anko.*
 
@@ -21,8 +22,8 @@ class TimerFragmentUI : AnkoComponent<TimerFragment> {
                 gravity = Gravity.CENTER_HORIZONTAL
                 backgroundColor = Color.argb(0, 0, 0, 0)
             }.lparams {
-                height = GlobalValues.getDisplayWidth()
-                width = GlobalValues.getDisplayWidth()
+                height = GlobalValue.displayWidth
+                width = GlobalValue.displayWidth
                 topMargin = 30
                 marginStart = 15
             }
@@ -48,9 +49,9 @@ class TimerFragmentUI : AnkoComponent<TimerFragment> {
                         }
                         drawCircle(context, circle, drawTime)
                         totalTime -= drawTime
-                        while (!GlobalValues.isTimerFlag()) {
+                        while (!GlobalValue.timerFlag) {
                         }
-                        GlobalValues.setTimerFlag(false)
+                        GlobalValue.timerFlag = false
                     }
                     isPushStartButton = true
                 }
@@ -64,7 +65,7 @@ private fun drawCircle(context: Context, circle: FrameLayout, time: Long) {
     circle.addView(circleGraphView)
     circleGraphView.startAnimation()
     
-    GlobalValues.setTimerFlag(false)
+    GlobalValue.timerFlag = false
     
     val circleGraphView1 = CircleGraphView(context, Color.argb(255, 255, 255, 255), time, false)
     circle.addView(circleGraphView1)

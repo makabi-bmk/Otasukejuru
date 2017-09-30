@@ -18,11 +18,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 
+import jp.ict.muffin.otasukejuru.Object.GlobalValue;
+
 public class MainActivity extends AppCompatActivity {
-    public static ArrayList<TaskInformation> taskInformationArrayList;
+//    public static ArrayList<TaskInformation> taskInformationArrayList;
+    private GlobalValue globalValue = GlobalValue.INSTANCE;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,10 +73,9 @@ public class MainActivity extends AppCompatActivity {
         Point point = new Point();
         display.getSize(point);
 
-        GlobalValues.setDisplayHeight(point.y);
-        GlobalValues.setDisplayWidth(point.x);
+        globalValue.setDisplayHeight(point.y);
+        globalValue.setDisplayWidth(point.x);
 
-        taskInformationArrayList = new ArrayList<>();
     }
 
     @Override
