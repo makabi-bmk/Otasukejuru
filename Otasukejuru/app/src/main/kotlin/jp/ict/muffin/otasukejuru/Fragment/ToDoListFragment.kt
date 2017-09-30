@@ -58,7 +58,7 @@ class ToDoListFragment : Fragment() {
             val linearLayout: LinearLayout = inflater.inflate(R.layout.task_card_view, null) as LinearLayout
             linearLayout.apply {
                 dateTextView.apply {
-                    text = taskInformationArrayList[it].limitDate.toString()
+                    text = (taskInformationArrayList[it].limitDate % 100).toString()
                     textColor = context.resources.getColor(R.color.mostPriority)
                 }
                 cardView.apply {
