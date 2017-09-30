@@ -36,8 +36,6 @@ class ToDoListFragment : Fragment() {
                     setCardView()
                 }
             }
-            
-            
         }, 5000, 5000)
     }
     
@@ -60,26 +58,28 @@ class ToDoListFragment : Fragment() {
         val calendar = Calendar.getInstance()
         val today = calendar.get(Calendar.MONTH) * 100 + calendar.get(Calendar.DAY_OF_MONTH)
         
-        
-        (0 until taskInformationArrayList.size).forEach {
+        taskInformationArrayList.forEach {
+            val diffDays = diffDayNum(today, it.limitDate, calendar.get(Calendar.YEAR))
+            
             val inflater: LayoutInflater = context.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
             val linearLayout: LinearLayout = inflater.inflate(R.layout.task_card_view, null) as LinearLayout
+            
             linearLayout.apply {
                 dateTextView.apply {
-                    text = (diffDayNum(today, taskInformationArrayList[it].limitDate, calendar.get(Calendar.YEAR))).toString()
-                    if (taskInformationArrayList[it].priority == 0) {
+                    text = diffDays.toString()
+                    if (it.priority == 0) {
                         textColor = context.resources.getColor(R.color.mostPriority)
                     }
                 }
                 cardView.apply {
-                    tag = taskInformationArrayList[it].limitDate
+                    tag = it.limitDate
                     setOnClickListener {
                         toast(tag.toString())
                     }
                 }
-                taskNameTextView.text = taskInformationArrayList[it].name
+                taskNameTextView.text = it.name
             }
-            when (taskInformationArrayList[it].priority) {
+            when (it.priority) {
                 0 -> mostPriorityCardLinear
                 1 -> {
                     highPriorityNum++
