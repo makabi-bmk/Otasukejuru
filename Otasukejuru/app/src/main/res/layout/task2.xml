@@ -10,18 +10,14 @@
         android:id="@+id/toolbar_back"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="0dp"
         android:background="?android:colorPrimary"
-        android:minHeight="?android:actionBarSize"
-        android:padding="0dp">
+        android:minHeight="?android:actionBarSize">
 
         <ImageButton
             android:id="@+id/back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="0dp"
-            android:background="@drawable/ic_arrow_back_white_48dp"
-            android:padding="0dp"/>
+            android:background="@drawable/ic_arrow_back_white_48dp"/>
     </Toolbar>
 
     <TextView
@@ -30,7 +26,7 @@
         android:layout_margin="7dp"
         android:text="タスクの期限"
         android:textColor="@color/colorPrimary"
-        android:textSize="30dp"/>
+        android:textSize="30sp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -38,7 +34,7 @@
         android:layout_marginLeft="30dp"
         android:layout_marginTop="10dp"
         android:text="期限はいつまでですか？"
-        android:textSize="25dp"/>
+        android:textSize="25sp"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -60,7 +56,7 @@
             android:layout_marginLeft="4dp"
             android:layout_marginRight="4dp"
             android:text="月"
-            android:textSize="16dp"/>
+            android:textSize="16sp"/>
 
         <NumberPicker
             android:id="@+id/limit_day"
@@ -73,7 +69,7 @@
             android:layout_marginLeft="4dp"
             android:layout_marginRight="4dp"
             android:text="日"
-            android:textSize="16dp"/>
+            android:textSize="16sp"/>
     </LinearLayout>
 
     <LinearLayout
@@ -94,7 +90,7 @@
             android:layout_marginLeft="4dp"
             android:layout_marginRight="4dp"
             android:text="時"
-            android:textSize="16dp"/>
+            android:textSize="16sp"/>
 
         <NumberPicker
             android:id="@+id/limit_minute"
@@ -107,7 +103,7 @@
             android:layout_marginLeft="4dp"
             android:layout_marginRight="4dp"
             android:text="分"
-            android:textSize="16dp"/>
+            android:textSize="16sp"/>
     </LinearLayout>
 
     <LinearLayout

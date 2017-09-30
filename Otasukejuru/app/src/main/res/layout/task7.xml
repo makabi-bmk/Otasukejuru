@@ -10,18 +10,14 @@
         android:id="@+id/toolbar_back"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="0dp"
         android:background="?android:colorPrimary"
-        android:minHeight="?android:actionBarSize"
-        android:padding="0dp">
+        android:minHeight="?android:actionBarSize">
 
         <ImageButton
             android:id="@+id/back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="0dp"
-            android:background="@drawable/ic_arrow_back_white_48dp"
-            android:padding="0dp"/>
+            android:background="@drawable/ic_arrow_back_white_48dp"/>
     </Toolbar>
 
 
@@ -31,7 +27,7 @@
         android:layout_margin="7dp"
         android:text="タスク終了の目安時間"
         android:textColor="@color/colorPrimary"
-        android:textSize="30dp"/>
+        android:textSize="30sp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -39,7 +35,7 @@
         android:layout_marginLeft="30dp"
         android:layout_marginTop="10dp"
         android:text="タスクが終了する目安は\n何時間ですか？"
-        android:textSize="25dp"/>
+        android:textSize="25sp"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -55,14 +51,14 @@
             android:layout_height="wrap_content"
             android:inputType="number"
             android:maxLines="1"
-            android:textSize="25dp"
+            android:textSize="25sp"
             android:theme="@style/EditTextColorControl"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="時間"
-            android:textSize="25dp"/>
+            android:textSize="25sp"/>
 
         <EditText
             android:id="@+id/finish_minute"
@@ -70,14 +66,14 @@
             android:layout_height="wrap_content"
             android:inputType="number"
             android:maxLines="1"
-            android:textSize="25dp"
+            android:textSize="25sp"
             android:theme="@style/EditTextColorControl"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="分"
-            android:textSize="25dp"/>
+            android:textSize="25sp"/>
 
     </LinearLayout>
 
@@ -95,7 +91,7 @@
             android:background="#FBFBF0"
             android:text="追加"
             android:textColor="@color/colorPrimary"
-            android:textSize="20dp"/>
+            android:textSize="20sp"/>
 
     </LinearLayout>
 </LinearLayout>

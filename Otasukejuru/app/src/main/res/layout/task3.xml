@@ -10,18 +10,14 @@
         android:id="@+id/toolbar_back"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="0dp"
         android:background="?android:colorPrimary"
-        android:minHeight="?android:actionBarSize"
-        android:padding="0dp">
+        android:minHeight="?android:actionBarSize">
 
         <ImageButton
             android:id="@+id/back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="0dp"
-            android:background="@drawable/ic_arrow_back_white_48dp"
-            android:padding="0dp"/>
+            android:background="@drawable/ic_arrow_back_white_48dp"/>
     </Toolbar>
 
     <TextView
@@ -30,7 +26,7 @@
         android:layout_margin="7dp"
         android:text="タスクの繰り返し"
         android:textColor="@color/colorPrimary"
-        android:textSize="30dp"/>
+        android:textSize="30sp"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -38,14 +34,12 @@
         android:layout_marginLeft="30dp"
         android:layout_marginTop="10dp"
         android:text="このタスクを繰り返し\nスケジュールに\n入れますか？"
-        android:textSize="25dp"/>
+        android:textSize="25sp"/>
 
     <RadioGroup
         android:id="@+id/radio_task"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
         android:layout_marginLeft="60dp"
         android:layout_marginTop="46dp">
 
@@ -56,7 +50,7 @@
             android:layout_margin="5dp"
             android:checked="true"
             android:text="今日だけ"
-            android:textSize="25dp"/>
+            android:textSize="25sp"/>
 
         <RadioButton
             android:id="@+id/radio_task2"
@@ -64,7 +58,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:text="毎日"
-            android:textSize="25dp"/>
+            android:textSize="25sp"/>
 
         <RadioButton
             android:id="@+id/radio_task3"
@@ -72,7 +66,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:text="毎週"
-            android:textSize="25dp"/>
+            android:textSize="25sp"/>
 
         <RadioButton
             android:id="@+id/radio_task4"
@@ -80,7 +74,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:text="毎月"
-            android:textSize="25dp"/>
+            android:textSize="25sp"/>
 
         <RadioButton
             android:id="@+id/radio_task5"
@@ -88,7 +82,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:text="毎年"
-            android:textSize="25dp"/>
+            android:textSize="25sp"/>
     </RadioGroup>
 
 
@@ -106,7 +100,7 @@
             android:background="#FBFBF0"
             android:text="次へ"
             android:textColor="@color/colorPrimary"
-            android:textSize="20dp"/>
+            android:textSize="20sp"/>
 
     </LinearLayout>
 
