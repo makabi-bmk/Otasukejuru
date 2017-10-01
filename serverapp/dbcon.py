@@ -33,8 +33,6 @@ def get_schedule_list():
 
 def add_task(task_name: str, due_date: dt.datetime, repeat: int, task_type: int,
              guide_time: dt.datetime, progress: int,  priority: int) -> None:
-    # task = Task(task_name, registration_date, due_date, priority, run_time=0)
-    # post = {"task": task}
     post = {
         "task_name": task_name,
         "registration_date": dt.datetime.now(timezone('Asia/Tokyo')),
@@ -52,8 +50,6 @@ def add_task(task_name: str, due_date: dt.datetime, repeat: int, task_type: int,
 # 3日以上のスケジュール死
 def add_schedule(schedule_name: str, start_time: dt.datetime,
                  end_time: dt.datetime) -> None:
-    # schedule = Schedule(schedule_name, date)
-    # post = {"schedule": schedule}
     res = check_2day(start_time, end_time)
     if res["result"]:
         before = {
@@ -104,8 +100,6 @@ def check_2day(start_time: dt.datetime, end_time: dt.datetime):
 
 def add_every(name: str, repeat_type: int, start_time: dt.datetime,
               end_time: dt.datetime) -> None:
-    # every = Every(name, start_time, end_time)
-    # post = {"every": every}
     post = {
         "name": name,
         "repeat_type": repeat_type,
