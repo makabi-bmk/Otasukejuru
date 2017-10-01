@@ -37,7 +37,7 @@ class TimerFragmentUI : AnkoComponent<TimerFragment> {
 //                centerHorizontally()
                 
                 textView {
-                    text = "1"
+                    text = ""
                     textSize = 40F
                 }.lparams {
                     translationZ = 2F
