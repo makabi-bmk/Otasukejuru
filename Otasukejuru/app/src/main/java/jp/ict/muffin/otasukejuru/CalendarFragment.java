@@ -5,13 +5,11 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.TextView;
 
@@ -67,9 +65,9 @@ public class CalendarFragment extends Fragment {
         return view;
     }
 
-    void calendarView(View view){
+    void calendarView(View view) {
 
-        WindowManager wm = (WindowManager)getContext().getSystemService(Context.WINDOW_SERVICE);
+        WindowManager wm = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
         Display disp = wm.getDefaultDisplay();
         int width = disp.getWidth();
         int height = disp.getHeight();
@@ -79,7 +77,7 @@ public class CalendarFragment extends Fragment {
         TextView title = (TextView) view.findViewById(R.id.title);
         title.setText(String.valueOf(year) + "年" + String.valueOf(month + 1) + "月");
 
-        GridLayout gridLayout = (GridLayout)view.findViewById(R.id.grid_layout);
+        GridLayout gridLayout = (GridLayout) view.findViewById(R.id.grid_layout);
         gridLayout.setPadding(0, 5, 0, 0);
         int backgroundColor = getResources().getColor(R.color.back);
         gridLayout.removeAllViews();
@@ -107,8 +105,8 @@ public class CalendarFragment extends Fragment {
 
         int cnt = 0;
         //空白スペースの表示
-        for (int i = 1; i < firstWeekday; i++){
-            textView[cnt]= new TextView(getContext());
+        for (int i = 1; i < firstWeekday; i++) {
+            textView[cnt] = new TextView(getContext());
 
             textView[cnt].setBackground(getResources().getDrawable(R.drawable.border));
             textView[cnt].setWidth(width / 7);
@@ -119,8 +117,8 @@ public class CalendarFragment extends Fragment {
             cnt++;
         }
         //日付の表示
-        for (int date = 1; date <= lastDayOfMonth; date++){
-            textView[cnt]= new TextView(getContext());
+        for (int date = 1; date <= lastDayOfMonth; date++) {
+            textView[cnt] = new TextView(getContext());
             textView[cnt].setBackground(getResources().getDrawable(R.drawable.border));
             textView[cnt].setWidth(width / 7);
             textView[cnt].setHeight(height / 9);
@@ -129,15 +127,17 @@ public class CalendarFragment extends Fragment {
             textView[cnt].setTag(String.valueOf(date));
 
             //土日の日付に色を追加
-            if (date % 7 == sunDay) textView[cnt].setTextColor(getResources().getColor(R.color.sundayColor));
-            else if (date % 7 == saturDay) textView[cnt].setTextColor(getResources().getColor(R.color.saturdayColor));
+            if (date % 7 == sunDay)
+                textView[cnt].setTextColor(getResources().getColor(R.color.sundayColor));
+            else if (date % 7 == saturDay)
+                textView[cnt].setTextColor(getResources().getColor(R.color.saturdayColor));
             textView[cnt].setText(String.valueOf(date));
             gridLayout.addView(textView[cnt]);
             cnt++;
         }
 
         //空白スペースの表示
-        for (int i = lastDayOfMonth + 1; i <= 42; i++){
+        for (int i = lastDayOfMonth + 1; i <= 42; i++) {
             textView[cnt] = new TextView(getContext());
             textView[cnt].setBackground(getResources().getDrawable(R.drawable.border));
             textView[cnt].setWidth(width / 7);
