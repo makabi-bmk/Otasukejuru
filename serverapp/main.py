@@ -62,18 +62,6 @@ def add_schedule():
     return 'succeeded'
 
 
-# TODO: 毎日の予定追加の処理を書く
-@app.route('/add/every', methods=['POST'])
-def add_schedule():
-    if request.content_type != 'application/json':
-        logger.debug('err invalid content_type. url: /add/every, '
-                     'content_type: {}'.format(request.content_type))
-        return 'failed'
-    for key, value in request.json.items():
-        print("{}: {}".format(key, value))
-    return 'succeeded'
-
-
 @app.route('/get', methods=['POST'])
 def get():
     pass
