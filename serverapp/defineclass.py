@@ -4,21 +4,18 @@ import datetime as dt
 
 class Task:
     def __init__(self, task_name: str, registration_date: dt.datetime,
-                 due_date: dt.datetime, priority: int,
-                 run_time: int):
+                 due_date: dt.datetime, repeat: int, task_type: int,
+                 guide_time: dt.datetime, progress: int, priority: int):
+        self.mongo_id
+        self.task_name: str = task_name
         self.registration_date: dt.datetime = registration_date  # 登録日
         self.due_date: dt.datetime = due_date  # 期限
-        self.task_name: str = task_name
+        self.repeat: int = repeat
+        self.task_type: int = task_type
+        self.guide_time: dt.datetime = guide_time
+        # self.run_time: int = run_time  # 作業時間(単位(時間))
+        self.progress: int = progress
         self.priority: int = priority
-        self.run_time: int = run_time  # 作業時間(単位(時間))
-        self.progress: float = 0.
-
-    def update_priority(self, new_priority: int) -> None:
-        # 優先度が決まるのって期限までの日数でだっけ
-        self.priority = new_priority
-
-    def update_progress(self, new_progress: int) -> None:
-        self.progress = new_progress
 
 
 class Schedule:
