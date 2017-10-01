@@ -23,6 +23,7 @@
             android:textSize="20sp"
             android:gravity="center"
             android:textColor="@color/sundayColor"
+            android:background="@drawable/bordar_day"
             android:text="日" />
         <TextView
             android:layout_width="0dp"
@@ -30,6 +31,7 @@
             android:layout_weight="1"
             android:textSize="20sp"
             android:gravity="center"
+            android:background="@drawable/bordar_day"
             android:text="月" />
         <TextView
             android:layout_width="0dp"
@@ -37,6 +39,7 @@
             android:layout_weight="1"
             android:textSize="20sp"
             android:gravity="center"
+            android:background="@drawable/bordar_day"
             android:text="火" />
         <TextView
             android:layout_width="0dp"
@@ -44,6 +47,7 @@
             android:layout_weight="1"
             android:textSize="20sp"
             android:gravity="center"
+            android:background="@drawable/bordar_day"
             android:text="水" />
         <TextView
             android:layout_width="0dp"
@@ -51,6 +55,7 @@
             android:layout_weight="1"
             android:textSize="20sp"
             android:gravity="center"
+            android:background="@drawable/bordar_day"
             android:text="木" />
         <TextView
             android:layout_width="0dp"
@@ -58,6 +63,7 @@
             android:layout_weight="1"
             android:textSize="20sp"
             android:gravity="center"
+            android:background="@drawable/bordar_day"
             android:text="金" />
         <TextView
             android:layout_width="0dp"
@@ -65,6 +71,7 @@
             android:layout_weight="1"
             android:textSize="20sp"
             android:gravity="center"
+            android:background="@drawable/bordar_day"
             android:textColor="@color/saturdayColor"
             android:text="土" />
     </LinearLayout>
@@ -77,9 +84,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:columnCount="7"
-        android:columnOrderPreserved="false"
-        android:rowOrderPreserved="false"
-        android:layout_margin="0.5sp">
+        android:background="@color/back">
 
     </GridLayout>
 

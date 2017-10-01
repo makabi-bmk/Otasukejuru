@@ -9,6 +9,8 @@ public abstract class FlickCheck {
 
     public static final int LEFT_FLICK= 0;
     public static final int RIGHT_FLICK = 1;
+    public static final int UP_FLICK = 2;
+    public static final int DOWN_FLICK = 3;
 
     private float adjustX = 150.0f;
     private float adjustY = 150.0f;
