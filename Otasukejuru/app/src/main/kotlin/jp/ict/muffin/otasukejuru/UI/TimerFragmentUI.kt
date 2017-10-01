@@ -10,7 +10,7 @@ import jp.ict.muffin.otasukejuru.View.CircleGraphView
 import org.jetbrains.anko.*
 
 class TimerFragmentUI : AnkoComponent<TimerFragment> {
-    var isPushStartButton = false
+    private var isPushStartButton = false
     
     override fun createView(ui: AnkoContext<TimerFragment>): View = with(ui) {
         relativeLayout {
@@ -30,14 +30,14 @@ class TimerFragmentUI : AnkoComponent<TimerFragment> {
             val circleMini = frameLayout {
             }.lparams {
                 translationZ = 2F
-                height = 200
-                width = 200
-                topMargin = GlobalValue.displayWidth / 2 - 85
-                leftMargin = GlobalValue.displayWidth / 2 - 85
+                height = GlobalValue.displayWidth / 3
+                width = GlobalValue.displayWidth / 3
+                topMargin = GlobalValue.displayWidth / 3 + 15
+                leftMargin = GlobalValue.displayWidth / 3 + 15
 //                centerHorizontally()
                 
                 textView {
-                    text = ""
+                    text = "1"
                     textSize = 40F
                 }.lparams {
                     translationZ = 2F
