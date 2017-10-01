@@ -13,4 +13,6 @@
     <string name="highPriority">高優先</string>
     <string name="middlePriority">中優先</string>
     <string name="lowPriority">低優先</string>
+
+    <string name="format_month_year">2017/09/29</string>
 </resources>

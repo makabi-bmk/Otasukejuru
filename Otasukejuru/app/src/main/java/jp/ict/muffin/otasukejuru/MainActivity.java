@@ -23,7 +23,7 @@ import java.util.Calendar;
 import jp.ict.muffin.otasukejuru.Object.GlobalValue;
 
 public class MainActivity extends AppCompatActivity {
-//    public static ArrayList<TaskInformation> taskInformationArrayList;
+    //    public static ArrayList<TaskInformation> taskInformationArrayList;
     private GlobalValue globalValue = GlobalValue.INSTANCE;
 
     @Override
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
-        /*
+        /*G
       The {@link android.support.v4.view.PagerAdapter} that will provide
       fragments for each of the sections. We use a
       {@link FragmentPagerAdapter} derivative, which will keep every
@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         /*
       The {@link ViewPager} that will host the section contents.
      */
+
         HoldableViewPager mViewPager = (HoldableViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
         mViewPager.setSwipeHoldVar(true);
@@ -150,7 +151,9 @@ public class MainActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            if (position == 1) {
+            if (position == 0) {
+                return new CalendarFragment();
+            } else if (position == 1) {
                 return new ToDoListFragment();
             } else if (position == 2) {
                 return new TimerFragment();
