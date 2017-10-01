@@ -32,7 +32,7 @@ def get_schedule_list():
 
 
 def add_task(task_name: str, due_date: dt.datetime, repeat: int, task_type: int,
-             guide_time: dt.datetime, progress: int,  priority: int) -> None:
+             guide_time: dt.datetime, progress: int, priority: int) -> None:
     post = {
         "task_name": task_name,
         "registration_date": dt.datetime.now(timezone('Asia/Tokyo')),
@@ -42,28 +42,23 @@ def add_task(task_name: str, due_date: dt.datetime, repeat: int, task_type: int,
         "guide_time": guide_time,
         "progress": progress,
         "priority": priority,
-        "run_time": 0
+        # "run_time": 0
     }
     task_col.insert_one(post)
 
 
-# 3日以上のスケジュール死
-def add_schedule(schedule_name: str, start_time: dt.datetime,
-                 end_time: dt.datetime) -> None:
-    res = check_2day(start_time, end_time)
+def add_schedule(schedule_name: str, start_date: dt.datetime,
+                 start_time: dt.datetime, end_time: dt.datetime,
+                 notice: int) -> None:
+    res = check_days(start_time, end_time)
     if res["result"]:
-        before = {
-            "schedule_name": schedule_name,
-            "start_time": res["before_day"][0],
-            "end_time": res["before_day"][1]
-        }
-        after = {
-            "schedule_name": schedule_name,
-            "start_time": res["after_day"][0],
-            "end_time": res["after_day"][1]
-        }
-        schedule_col.insert_one(before)
-        schedule_col.insert_one(after)
+        for day in res["days"]:
+            post = {
+                "schedule_name": schedule_name,
+                "start_time": day[0],
+                "end_time": day[1]
+            }
+            schedule_col.insert_one(post)
     else:
         post = {
             "schedule_name": schedule_name,
@@ -73,23 +68,33 @@ def add_schedule(schedule_name: str, start_time: dt.datetime,
         schedule_col.insert_one(post)
 
 
-def make_zero_time(time: dt.datetime) -> dt.timedelta:
-    return dt.timedelta(hours=time.hour, minutes=time.minute,
-                        seconds=time.second)
+def make_zero_time(date: dt.datetime) -> dt.datetime:
+    return date - dt.timedelta(hours=date.hour, minutes=date.minute,
+                               seconds=date.second)
 
 
-def add_day(dist: int) -> dt.timedelta:
-    return dt.timedelta(days=dist)
+def make_last_time(date: dt.datetime) -> dt.datetime:
+    return date + dt.timedelta(hours=23 - date.hour, minutes=59 - date.minute,
+                               seconds=59 - date.second)
 
 
-def check_2day(start_time: dt.datetime, end_time: dt.datetime):
+def add_day(date: dt.datetime, dist: int) -> dt.datetime:
+    return date + dt.timedelta(days=dist)
+
+
+def check_days(start_time: dt.datetime, end_time: dt.datetime):
     if start_time.day != end_time.day:
         res = {
             "result": True,
-            "before_day": [start_time, end_time - make_zero_time(end_time)],
-            "after_day": [end_time - make_zero_time(end_time) + add_day(1),
-                          end_time]
+            "days": []
         }
+        zero_time = make_zero_time(start_time)
+        last_time = make_last_time(start_time)
+        res['days'].append([start_time, last_time])
+        for i in range(end_time.day - start_time.day - 1):
+            res['days'].append([add_day(zero_time, i + 1),
+                                add_day(last_time, i + 1)])
+        res['days'].append([make_zero_time(end_time), end_time])
     else:
         res = {
             "result": False,
