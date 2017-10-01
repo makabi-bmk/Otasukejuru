@@ -27,18 +27,27 @@ class TimerFragmentUI : AnkoComponent<TimerFragment> {
                 topMargin = 30
                 leftMargin = 30
             }
-            textView {
-                text = "1"
-                textSize = 40F
+            val circleMini = frameLayout {
             }.lparams {
                 translationZ = 2F
-                width = wrapContent
-                height = wrapContent
-                topMargin = GlobalValue.displayWidth / 2 - 40
+                height = 200
+                width = 200
+                topMargin = GlobalValue.displayWidth / 2 - 85
+                leftMargin = GlobalValue.displayWidth / 2 - 85
+//                centerHorizontally()
+                
+                textView {
+                    text = "1"
+                    textSize = 40F
+                }.lparams {
+                    translationZ = 2F
+                    width = wrapContent
+                    height = wrapContent
+                    topMargin = GlobalValue.displayWidth / 2 - 40
 //                leftMargin = GlobalValue.displayWidth / 2 - 10
-                centerHorizontally()
-//                centerVertically()
-                bottomMargin = 400
+                    centerHorizontally()
+//                    centerVertically()
+                }
             }
             val editTime = editText {
                 inputType = InputType.TYPE_CLASS_NUMBER
@@ -59,6 +68,11 @@ class TimerFragmentUI : AnkoComponent<TimerFragment> {
                     var totalTime = time
                     editTime.text.clear()
                     editTime.clearFocus()
+    
+                    val circleGraphView = CircleGraphView(context, Color.argb(255, 251, 251, 240), 60, true)
+                    circleMini.addView(circleGraphView)
+                    circleGraphView.startAnimation()
+                    
                     while (0L < totalTime) {
                         val drawTime = if (totalTime % 60 == 0L) {
                             60L
@@ -85,7 +99,7 @@ private fun drawCircle(context: Context, circle: FrameLayout, time: Long) {
     
     GlobalValue.timerFlag = false
     
-    val circleGraphView1 = CircleGraphView(context, Color.argb(255, 255, 255, 255), time, false)
+    val circleGraphView1 = CircleGraphView(context, Color.argb(255, 251, 251, 240), time, false)
     circle.addView(circleGraphView1)
     circleGraphView1.startAnimation()
 }
