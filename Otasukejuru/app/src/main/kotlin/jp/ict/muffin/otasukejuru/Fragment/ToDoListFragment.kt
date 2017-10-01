@@ -1,5 +1,6 @@
 package jp.ict.muffin.otasukejuru
 
+import android.app.AlertDialog
 import android.content.Context.LAYOUT_INFLATER_SERVICE
 import android.os.Bundle
 import android.os.Handler
@@ -74,7 +75,7 @@ class ToDoListFragment : Fragment() {
                 cardView.apply {
                     tag = it.limitDate
                     setOnClickListener {
-                        toast(tag.toString())
+                        createDialog(tag.toString())
                     }
                 }
                 taskNameTextView.text = it.name
@@ -107,6 +108,23 @@ class ToDoListFragment : Fragment() {
                 }
             }.addView(linearLayout, 0)
         }
+    }
+    
+    private fun createDialog(tagName: String) {
+        val listDialog = arrayOfNulls<String>(3)
+        listDialog[0] = "開始"
+        listDialog[1] = "変更"
+        listDialog[2] = "削除"
+        val dialog = AlertDialog.Builder(context)
+        dialog.setItems(listDialog, { _, i ->
+            toast(when (i) {
+                0 -> "Start"
+                1 -> "Change"
+                else -> "Delete"
+            })
+            
+        })
+        dialog.create().show()
     }
     
     private fun diffDayNum(beforeDate: Int, afterDate: Int, year: Int): Int {
