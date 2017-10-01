@@ -45,7 +45,7 @@ class CircleGraphView(context: Context, private var param: Int, private var time
         
         //外枠
         paint = Paint()
-        paint.color = Color.argb(0, 0, 0, 0)
+        paint.color = Color.argb(255, 251, 251, 240)
         paint.style = Paint.Style.STROKE
         c.drawArc(oval1, startAngle, endAngle - startAngle, true, paint)
     }

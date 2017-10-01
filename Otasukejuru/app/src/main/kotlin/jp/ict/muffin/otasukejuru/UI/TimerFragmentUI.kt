@@ -3,7 +3,6 @@ package jp.ict.muffin.otasukejuru
 import android.content.Context
 import android.graphics.Color
 import android.text.InputType
-import android.view.Gravity
 import android.view.View
 import android.widget.FrameLayout
 import jp.ict.muffin.otasukejuru.Object.GlobalValue
@@ -11,36 +10,69 @@ import jp.ict.muffin.otasukejuru.View.CircleGraphView
 import org.jetbrains.anko.*
 
 class TimerFragmentUI : AnkoComponent<TimerFragment> {
-    var isPushStartButton = false
+    private var isPushStartButton = false
     
     override fun createView(ui: AnkoContext<TimerFragment>): View = with(ui) {
-        verticalLayout {
+        relativeLayout {
             lparams {
-                gravity = Gravity.CENTER_HORIZONTAL
+                height = matchParent
+                width = matchParent
             }
             val circle = frameLayout {
-                gravity = Gravity.CENTER_HORIZONTAL
                 backgroundColor = Color.argb(0, 0, 0, 0)
+                id = 1
             }.lparams {
-                height = GlobalValue.displayWidth
-                width = GlobalValue.displayWidth
+                height = GlobalValue.displayWidth - 30
+                width = GlobalValue.displayWidth - 30
                 topMargin = 30
-                marginStart = 15
+                leftMargin = 30
+            }
+            val circleMini = frameLayout {
+            }.lparams {
+                translationZ = 2F
+                height = GlobalValue.displayWidth / 3
+                width = GlobalValue.displayWidth / 3
+                topMargin = GlobalValue.displayWidth / 3 + 15
+                leftMargin = GlobalValue.displayWidth / 3 + 15
+//                centerHorizontally()
+                
+                textView {
+                    text = "1"
+                    textSize = 40F
+                }.lparams {
+                    translationZ = 2F
+                    width = wrapContent
+                    height = wrapContent
+                    topMargin = GlobalValue.displayWidth / 2 - 40
+//                leftMargin = GlobalValue.displayWidth / 2 - 10
+                    centerHorizontally()
+//                    centerVertically()
+                }
             }
             val editTime = editText {
-                gravity = Gravity.CENTER_HORIZONTAL
                 inputType = InputType.TYPE_CLASS_NUMBER
+                id = 2
+            }.lparams {
+                height = wrapContent
+                width = matchParent
+                below(circle)
             }
             button("start") {
                 height = wrapContent
-                width = 50
-                gravity = Gravity.CENTER_HORIZONTAL
+                width = matchParent
+            }.lparams {
+                below(editTime)
             }.setOnClickListener {
-                if (!isPushStartButton && !editTime.text.toString().equals("")) {
+                if (!isPushStartButton && editTime.text.toString() != "") {
                     val time = editTime.text.toString().toLong()
                     var totalTime = time
                     editTime.text.clear()
                     editTime.clearFocus()
+    
+                    val circleGraphView = CircleGraphView(context, Color.argb(255, 251, 251, 240), 60, true)
+                    circleMini.addView(circleGraphView)
+                    circleGraphView.startAnimation()
+                    
                     while (0L < totalTime) {
                         val drawTime = if (totalTime % 60 == 0L) {
                             60L
@@ -67,7 +99,7 @@ private fun drawCircle(context: Context, circle: FrameLayout, time: Long) {
     
     GlobalValue.timerFlag = false
     
-    val circleGraphView1 = CircleGraphView(context, Color.argb(255, 255, 255, 255), time, false)
+    val circleGraphView1 = CircleGraphView(context, Color.argb(255, 251, 251, 240), time, false)
     circle.addView(circleGraphView1)
     circleGraphView1.startAnimation()
 }
