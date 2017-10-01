@@ -17,20 +17,39 @@ every_col = client['every']
 schedule_col = client['schedule']
 task_col = client['task']
 
+res_list = []
 
-def add_task(task_name: str, due_date: dt.datetime, priority: int) -> None:
+
+def get_schedule_list():
+    for data in schedule_col:
+        del (data["_id"])
+        res_list.append(data)
+    for data in every_col:
+        del (data["_id"])
+        res_list.append(data)
+    res_list.sort(key=lambda x, y: x["start_time"] < y["end_time"])
+    # TODO: 優先度順にタスクを詰めていく
+
+
+def add_task(task_name: str, due_date: dt.datetime, repeat: int, task_type: int,
+             guide_time: dt.datetime, progress: int,  priority: int) -> None:
     # task = Task(task_name, registration_date, due_date, priority, run_time=0)
     # post = {"task": task}
     post = {
         "task_name": task_name,
         "registration_date": dt.datetime.now(timezone('Asia/Tokyo')),
         "due_date": due_date,
+        "repeat": repeat,
+        "task_type": task_type,
+        "guide_time": guide_time,
+        "progress": progress,
         "priority": priority,
         "run_time": 0
     }
     task_col.insert_one(post)
 
 
+# 3日以上のスケジュール死
 def add_schedule(schedule_name: str, start_time: dt.datetime,
                  end_time: dt.datetime) -> None:
     # schedule = Schedule(schedule_name, date)
@@ -68,7 +87,7 @@ def add_day(dist: int) -> dt.timedelta:
 
 
 def check_2day(start_time: dt.datetime, end_time: dt.datetime):
-    if start_time != end_time:
+    if start_time.day != end_time.day:
         res = {
             "result": True,
             "before_day": [start_time, end_time - make_zero_time(end_time)],
@@ -83,14 +102,14 @@ def check_2day(start_time: dt.datetime, end_time: dt.datetime):
     return res
 
 
-def add_every(name: str, start_time: dt.datetime, end_time: dt.datetime) -> \
-        None:
+def add_every(name: str, repeat_type: int, start_time: dt.datetime,
+              end_time: dt.datetime) -> None:
     # every = Every(name, start_time, end_time)
     # post = {"every": every}
     post = {
         "name": name,
+        "repeat_type": repeat_type,
         "start_time": start_time,
         "end_time": end_time,
     }
     every_col.insert_one(post)
-
