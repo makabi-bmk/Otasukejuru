@@ -18,6 +18,8 @@ import java.util.*
 
 class ToDoListFragment : Fragment() {
     
+    private var mTimer: Timer? = null
+    
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
             inflater.inflate(R.layout.fragment_list_todo, container, false)
     
@@ -29,14 +31,20 @@ class ToDoListFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         val mHandler = Handler()
-        val mTimer = Timer()
-        mTimer.schedule(object : TimerTask() {
+        mTimer = Timer()
+        mTimer?.schedule(object : TimerTask() {
             override fun run() {
                 mHandler.post {
                     setCardView()
                 }
             }
         }, 5000, 5000)
+    }
+    
+    override fun onStop() {
+        super.onStop()
+        mTimer?.cancel()
+        mTimer = null
     }
     
     fun setCardView() {

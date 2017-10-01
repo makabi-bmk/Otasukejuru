@@ -3,7 +3,6 @@ package jp.ict.muffin.otasukejuru
 import android.content.Context
 import android.graphics.Color
 import android.text.InputType
-import android.view.Gravity
 import android.view.View
 import android.widget.FrameLayout
 import jp.ict.muffin.otasukejuru.Object.GlobalValue
@@ -14,29 +13,48 @@ class TimerFragmentUI : AnkoComponent<TimerFragment> {
     var isPushStartButton = false
     
     override fun createView(ui: AnkoContext<TimerFragment>): View = with(ui) {
-        verticalLayout {
+        relativeLayout {
             lparams {
-                gravity = Gravity.CENTER_HORIZONTAL
+                height = matchParent
+                width = matchParent
             }
             val circle = frameLayout {
-                gravity = Gravity.CENTER_HORIZONTAL
                 backgroundColor = Color.argb(0, 0, 0, 0)
+                id = 1
             }.lparams {
-                height = GlobalValue.displayWidth
-                width = GlobalValue.displayWidth
+                height = GlobalValue.displayWidth - 30
+                width = GlobalValue.displayWidth - 30
                 topMargin = 30
-                marginStart = 15
+                leftMargin = 30
+            }
+            textView {
+                text = "1"
+                textSize = 40F
+            }.lparams {
+                translationZ = 2F
+                width = wrapContent
+                height = wrapContent
+                topMargin = GlobalValue.displayWidth / 2 - 40
+//                leftMargin = GlobalValue.displayWidth / 2 - 10
+                centerHorizontally()
+//                centerVertically()
+                bottomMargin = 400
             }
             val editTime = editText {
-                gravity = Gravity.CENTER_HORIZONTAL
                 inputType = InputType.TYPE_CLASS_NUMBER
+                id = 2
+            }.lparams {
+                height = wrapContent
+                width = matchParent
+                below(circle)
             }
             button("start") {
                 height = wrapContent
-                width = 50
-                gravity = Gravity.CENTER_HORIZONTAL
+                width = matchParent
+            }.lparams {
+                below(editTime)
             }.setOnClickListener {
-                if (!isPushStartButton && !editTime.text.toString().equals("")) {
+                if (!isPushStartButton && editTime.text.toString() != "") {
                     val time = editTime.text.toString().toLong()
                     var totalTime = time
                     editTime.text.clear()
