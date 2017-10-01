@@ -1,6 +1,5 @@
 from flask import request, Flask
 from logging import getLogger, StreamHandler, DEBUG
-
 from serverapp import dbcon
 
 logger = getLogger(__name__)
@@ -27,7 +26,6 @@ def test_form():
     return 'ok'
 
 
-# TODO タスク追加の処理を書く
 # DBはMongoDBでいいのかな
 @app.route('/add/task', methods=['POST'])
 def add_task():
@@ -35,8 +33,15 @@ def add_task():
         logger.debug('err invalid content_type. url: /add/task, content_type: '
                      '{}'.format(request.content_type))
         return 'failed'
-    for key, value in request.json.items():
-        print("{}: {}".format(key, value))
+    task_name = request.json['task_name']
+    due_date = request.json['due_date']
+    repeat = request.json['task_repeat']
+    task_type = request.json['priority']
+    guide_time = request.json['guide_time']
+    progress = request.json['progress']
+    priority = request.json['priority']
+    dbcon.add_task(task_name, due_date, repeat, task_type, guide_time,
+                   progress, priority)
     return 'succeeded'
 
 
@@ -47,8 +52,8 @@ def add_schedule():
         logger.debug('err invalid content_type. url: /add/schedule, '
                      'content_type: {}'.format(request.content_type))
         return 'failed'
-    for key, value in request.json.items():
-        print("{}: {}".format(key, value))
+    schedule_name = request.json['schedule']
+
     return 'succeeded'
 
 
