@@ -45,7 +45,6 @@ def add_task():
     return 'succeeded'
 
 
-# TODO スケジュール追加の処理を書く
 @app.route('/add/schedule', methods=['POST'])
 def add_schedule():
     if request.content_type != 'application/json':
@@ -53,11 +52,17 @@ def add_schedule():
                      'content_type: {}'.format(request.content_type))
         return 'failed'
     schedule_name = request.json['schedule']
-
+    start_date = request.json['start_date']
+    start_time = request.json['start_time']
+    end_time = request.json['end_time']
+    repeat = request.json['repeat']
+    notice = request.json['notice']
+    dbcon.add_schedule(schedule_name, start_date, start_time, end_time,
+                       repeat, notice)
     return 'succeeded'
 
 
-# TODO 毎日の予定追加の処理を書く
+# TODO: 毎日の予定追加の処理を書く
 @app.route('/add/every', methods=['POST'])
 def add_schedule():
     if request.content_type != 'application/json':
