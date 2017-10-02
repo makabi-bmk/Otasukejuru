@@ -1,90 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#FBFBF0">
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="#FBFBF0"
+              android:orientation="vertical">
 
     <TextView
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="30sp"
         android:layout_margin="10sp"
-        android:gravity="center" />
+        android:gravity="center"
+        android:textSize="30sp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center">
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="20sp"
+            android:background="@drawable/bordar_day"
             android:gravity="center"
+            android:text="日"
             android:textColor="@color/sundayColor"
-            android:background="@drawable/bordar_day"
-            android:text="日" />
+            android:textSize="20sp"/>
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="20sp"
-            android:gravity="center"
             android:background="@drawable/bordar_day"
-            android:text="月" />
+            android:gravity="center"
+            android:text="月"
+            android:textSize="20sp"/>
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="20sp"
-            android:gravity="center"
             android:background="@drawable/bordar_day"
-            android:text="火" />
+            android:gravity="center"
+            android:text="火"
+            android:textSize="20sp"/>
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="20sp"
-            android:gravity="center"
             android:background="@drawable/bordar_day"
-            android:text="水" />
+            android:gravity="center"
+            android:text="水"
+            android:textSize="20sp"/>
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="20sp"
-            android:gravity="center"
             android:background="@drawable/bordar_day"
-            android:text="木" />
+            android:gravity="center"
+            android:text="木"
+            android:textSize="20sp"/>
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="20sp"
-            android:gravity="center"
             android:background="@drawable/bordar_day"
-            android:text="金" />
+            android:gravity="center"
+            android:text="金"
+            android:textSize="20sp"/>
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="20sp"
-            android:gravity="center"
             android:background="@drawable/bordar_day"
+            android:gravity="center"
+            android:text="土"
             android:textColor="@color/saturdayColor"
-            android:text="土" />
+            android:textSize="20sp"/>
     </LinearLayout>
 
     <GridLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/grid_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:columnCount="7"
-        android:background="@color/back">
+        android:background="@color/back"
+        android:columnCount="7">
 
     </GridLayout>
 
