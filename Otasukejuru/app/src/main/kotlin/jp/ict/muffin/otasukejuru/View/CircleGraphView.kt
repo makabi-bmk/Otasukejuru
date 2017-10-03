@@ -12,7 +12,7 @@ import jp.ict.muffin.otasukejuru.Object.GlobalValue
 import java.util.*
 
 
-class CircleGraphView(context: Context, private var param: Int, private var time: Long, isInit: Boolean) : View(context) {
+class CircleGraphView(context: Context, private var param: Int, private var time: Long, private val isInit: Boolean) : View(context) {
     private var startAngleTmp: Float = (60 - time) * 6f
     internal var endAngleTmp: Float = 0.0f
     
@@ -24,6 +24,7 @@ class CircleGraphView(context: Context, private var param: Int, private var time
         }
         startAngleTmp -= 90
         endAngleTmp = startAngleTmp
+        GlobalValue.timerFlag = false
     }
     
     public override fun onDraw(c: Canvas) {
@@ -62,7 +63,9 @@ class CircleGraphView(context: Context, private var param: Int, private var time
                 if (endAngleTmp > 270f) {
                     endAngleTmp = 270f
                     timer.cancel()
-                    GlobalValue.timerFlag = true
+                    if (!isInit) {
+                        GlobalValue.timerFlag = true
+                    }
                 }
                 handler.post { invalidate() }
             }

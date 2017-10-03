@@ -2,7 +2,10 @@ package jp.ict.muffin.otasukejuru
 
 import android.content.Context
 import android.graphics.Color
+import android.os.Handler
+import android.os.Looper
 import android.text.InputType
+import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.FrameLayout
@@ -68,33 +71,55 @@ class TimerFragmentUI : AnkoComponent<TimerFragment> {
         }
     }
     
+    private fun startTimer(context: Context, totalTime: Long) {
+        val drawTime: Long = if (totalTime % 60 == 0L) {
+            60L
+        } else {
+            totalTime % 60L
+        }
+        drawCircle(context, circle, drawTime)
+        if (totalTime - drawTime != 0L) {
+            Handler(Looper.getMainLooper()).postDelayed({
+                startTimer(context, totalTime - drawTime)
+                Log.d("startTimer", drawTime.toString())
+            }, drawTime * 60 * 1000)
+        }
+        
+    }
+    
     private fun startButtonClickListener(context: Context) {
         if (!isPushStartButton && editTime.text.toString() != "") {
             val time = editTime.text.toString().toLong()
-            var totalTime = time
             editTime.text.clear()
             editTime.clearFocus()
             
             val circleGraphView = CircleGraphView(context, Color.argb(255, 251, 251, 240), 60, true)
             circleMini.addView(circleGraphView)
             circleGraphView.startAnimation()
+
+//            while (0L < totalTime) {
+//                val drawTime: Long = if (totalTime % 60 == 0L) {
+//                    60L
+//                } else {
+//                    totalTime % 60L
+//                }
+//                drawCircle(context, circle, drawTime)
+//                totalTime -= drawTime
+//
+//                Handler(Looper.getMainLooper()).postDelayed({
+//                    startTimer()
+//                }, drawTime * 60 * 1000)
             
-            while (0L < totalTime) {
-                val drawTime = if (totalTime % 60 == 0L) {
-                    60L
-                } else {
-                    totalTime % 60L
-                }
-                drawCircle(context, circle, drawTime)
-                totalTime -= drawTime
-                while (!GlobalValue.timerFlag) {
-                }
-                GlobalValue.timerFlag = false
-            }
+            startTimer(context, time)
+
+//                while (!GlobalValue.timerFlag) {
+//                    Log.d("totalTimer", totalTime.toString())
+//                }
+//                GlobalValue.timerFlag = false
+//            }
             isPushStartButton = true
         }
     }
-    
     
     private fun drawCircle(context: Context, circle: FrameLayout, time: Long) {
         val circleGraphView = CircleGraphView(context, Color.argb(255, 255, 0, 0), time, true)
