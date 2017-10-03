@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Color
 import android.text.InputType
 import android.view.View
+import android.widget.EditText
 import android.widget.FrameLayout
 import jp.ict.muffin.otasukejuru.Object.GlobalValue
 import jp.ict.muffin.otasukejuru.View.CircleGraphView
@@ -11,6 +12,9 @@ import org.jetbrains.anko.*
 
 class TimerFragmentUI : AnkoComponent<TimerFragment> {
     private var isPushStartButton = false
+    private lateinit var circleMini: FrameLayout
+    private lateinit var circle: FrameLayout
+    private lateinit var editTime: EditText
     
     override fun createView(ui: AnkoContext<TimerFragment>): View = with(ui) {
         relativeLayout {
@@ -18,7 +22,7 @@ class TimerFragmentUI : AnkoComponent<TimerFragment> {
                 height = matchParent
                 width = matchParent
             }
-            val circle = frameLayout {
+            circle = frameLayout {
                 backgroundColor = Color.argb(0, 0, 0, 0)
                 id = 1
             }.lparams {
@@ -27,7 +31,7 @@ class TimerFragmentUI : AnkoComponent<TimerFragment> {
                 topMargin = 30
                 leftMargin = 30
             }
-            val circleMini = frameLayout {
+            circleMini = frameLayout {
             }.lparams {
                 translationZ = 2F
                 height = GlobalValue.displayWidth / 3
@@ -49,7 +53,7 @@ class TimerFragmentUI : AnkoComponent<TimerFragment> {
 //                    centerVertically()
                 }
             }
-            val editTime = editText {
+            editTime = editText {
                 inputType = InputType.TYPE_CLASS_NUMBER
                 id = 2
             }.lparams {
@@ -63,32 +67,39 @@ class TimerFragmentUI : AnkoComponent<TimerFragment> {
             }.lparams {
                 below(editTime)
             }.setOnClickListener {
-                if (!isPushStartButton && editTime.text.toString() != "") {
-                    val time = editTime.text.toString().toLong()
-                    var totalTime = time
-                    editTime.text.clear()
-                    editTime.clearFocus()
-    
-                    val circleGraphView = CircleGraphView(context, Color.argb(255, 251, 251, 240), 60, true)
-                    circleMini.addView(circleGraphView)
-                    circleGraphView.startAnimation()
-                    
-                    while (0L < totalTime) {
-                        val drawTime = if (totalTime % 60 == 0L) {
-                            60L
-                        } else {
-                            totalTime % 60L
-                        }
-                        drawCircle(context, circle, drawTime)
-                        totalTime -= drawTime
-                        while (!GlobalValue.timerFlag) {
-                        }
-                        GlobalValue.timerFlag = false
-                    }
-                    isPushStartButton = true
-                }
+                startButtonClickListener(context)
             }
         }
+    }
+    
+    
+    private fun startButtonClickListener(context: Context) {
+        if (!isPushStartButton && editTime.text.toString() != "") {
+            val time = editTime.text.toString().toLong()
+            var totalTime = time
+            editTime.text.clear()
+            editTime.clearFocus()
+            
+            val circleGraphView = CircleGraphView(context, Color.argb(255, 251, 251, 240), 60, true)
+            circleMini.addView(circleGraphView)
+            circleGraphView.startAnimation()
+            
+            while (0L < totalTime) {
+                val drawTime = if (totalTime % 60 == 0L) {
+                    60L
+                } else {
+                    totalTime % 60L
+                }
+                drawCircle(context, circle, drawTime)
+                totalTime -= drawTime
+                while (!GlobalValue.timerFlag) {
+                }
+                GlobalValue.timerFlag = false
+            }
+            isPushStartButton = true
+        }
+        
+        
     }
 }
 
