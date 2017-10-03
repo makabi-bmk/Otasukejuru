@@ -9,7 +9,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import jp.ict.muffin.otasukejuru.Object.GlobalValue
 import kotlinx.android.synthetic.main.fragment_list_todo.*
 import kotlinx.android.synthetic.main.task_card_view.view.*
 import org.jetbrains.anko.support.v4.toast

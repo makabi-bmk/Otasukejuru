@@ -1,4 +1,4 @@
-package jp.ict.muffin.otasukejuru.View
+package jp.ict.muffin.otasukejuru
 
 import android.content.Context
 import android.graphics.Canvas
@@ -8,7 +8,6 @@ import android.graphics.RectF
 import android.os.Handler
 import android.util.Log
 import android.view.View
-import jp.ict.muffin.otasukejuru.Object.GlobalValue
 import java.util.*
 
 
@@ -20,7 +19,7 @@ class CircleGraphView(context: Context, private var param: Int, private var time
         if (isInit) {
             time = 1
         } else {
-            time *= 60 * 10L
+            time *= 60 * 100L
         }
         startAngleTmp -= 90
         endAngleTmp = startAngleTmp

@@ -9,8 +9,7 @@ import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.FrameLayout
-import jp.ict.muffin.otasukejuru.Object.GlobalValue
-import jp.ict.muffin.otasukejuru.View.CircleGraphView
+import android.widget.TextView
 import org.jetbrains.anko.*
 
 class TimerFragmentUI : AnkoComponent<TimerFragment> {
@@ -18,6 +17,7 @@ class TimerFragmentUI : AnkoComponent<TimerFragment> {
     private lateinit var circleMini: FrameLayout
     private lateinit var circle: FrameLayout
     private lateinit var editTime: EditText
+    private lateinit var remainingHourText: TextView
     
     override fun createView(ui: AnkoContext<TimerFragment>): View = with(ui) {
         relativeLayout {
@@ -41,7 +41,7 @@ class TimerFragmentUI : AnkoComponent<TimerFragment> {
                 width = GlobalValue.displayWidth / 3
                 topMargin = GlobalValue.displayWidth / 3 + 15
                 leftMargin = GlobalValue.displayWidth / 3 + 15
-                textView {
+                remainingHourText = textView {
                     text = ""
                     textSize = 40F
                 }.lparams {
@@ -77,6 +77,7 @@ class TimerFragmentUI : AnkoComponent<TimerFragment> {
         } else {
             totalTime % 60L
         }
+        remainingHourText.text = ((totalTime - 1) / 60).toString()
         drawCircle(context, circle, drawTime)
         if (totalTime - drawTime != 0L) {
             Handler(Looper.getMainLooper()).postDelayed({
@@ -96,27 +97,9 @@ class TimerFragmentUI : AnkoComponent<TimerFragment> {
             val circleGraphView = CircleGraphView(context, Color.argb(255, 251, 251, 240), 60, true)
             circleMini.addView(circleGraphView)
             circleGraphView.startAnimation()
-
-//            while (0L < totalTime) {
-//                val drawTime: Long = if (totalTime % 60 == 0L) {
-//                    60L
-//                } else {
-//                    totalTime % 60L
-//                }
-//                drawCircle(context, circle, drawTime)
-//                totalTime -= drawTime
-//
-//                Handler(Looper.getMainLooper()).postDelayed({
-//                    startTimer()
-//                }, drawTime * 60 * 1000)
             
             startTimer(context, time)
-
-//                while (!GlobalValue.timerFlag) {
-//                    Log.d("totalTimer", totalTime.toString())
-//                }
-//                GlobalValue.timerFlag = false
-//            }
+            
             isPushStartButton = true
         }
     }

@@ -20,8 +20,6 @@ import android.widget.TextView;
 
 import java.util.Calendar;
 
-import jp.ict.muffin.otasukejuru.Object.GlobalValue;
-
 public class MainActivity extends AppCompatActivity {
     //    public static ArrayList<TaskInformation> taskInformationArrayList;
     private GlobalValue globalValue = GlobalValue.INSTANCE;
