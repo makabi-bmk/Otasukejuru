@@ -7,7 +7,7 @@ import android.view.View.OnTouchListener;
 
 public abstract class FlickCheck {
 
-    public static final int LEFT_FLICK= 0;
+    public static final int LEFT_FLICK = 0;
     public static final int RIGHT_FLICK = 1;
     public static final int UP_FLICK = 2;
     public static final int DOWN_FLICK = 3;
@@ -22,11 +22,12 @@ public abstract class FlickCheck {
     /**
      * frickViewにはフリックを検知させるViewをセット<br/>
      * adjustXには左右のフリック距離目安、adjustYには上下のフリック距離目安をセット
+     *
      * @param frickView
      * @param adjustX
      * @param adjustY
      */
-    public FlickCheck(View frickView, float adjustX, float adjustY){
+    public FlickCheck(View frickView, float adjustX, float adjustY) {
 
         this.adjustX = adjustX;
         this.adjustY = adjustY;
@@ -60,23 +61,19 @@ public abstract class FlickCheck {
     /**
      * どの方向にフリックしたかチェック
      */
-    private void check(){
+    private void check() {
         Log.d("FlickPoint", "startX:" + touchX + " endX:" + nowTouchX
                 + " startY:" + touchY + " endY:" + nowTouchY);
         // 左フリック
-        if(touchX > nowTouchX)
-        {
-            if(touchX - nowTouchX > adjustX)
-            {
+        if (touchX > nowTouchX) {
+            if (touchX - nowTouchX > adjustX) {
                 getFlick(LEFT_FLICK);
                 return;
             }
         }
         // 右フリック
-        if(nowTouchX > touchX)
-        {
-            if(nowTouchX - touchX > adjustX)
-            {
+        if (nowTouchX > touchX) {
+            if (nowTouchX - touchX > adjustX) {
                 getFlick(RIGHT_FLICK);
                 return;
             }
@@ -85,6 +82,7 @@ public abstract class FlickCheck {
 
     /**
      * 抽象メソッド：フリックを感知した際、方向を表す値をセットする
+     *
      * @param swipe
      */
     public abstract void getFlick(int swipe);
