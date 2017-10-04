@@ -81,6 +81,24 @@ public abstract class FlickCheck {
                 return;
             }
         }
+        // 上フリック
+        if(touchY > nowTouchY)
+        {
+            if(touchY - nowTouchY > adjustY)
+            {
+                getFlick(UP_FLICK);
+                return;
+            }
+        }
+        // 下フリック
+        if(nowTouchY > touchY)
+        {
+            if(nowTouchY - touchY > adjustY)
+            {
+                getFlick(DOWN_FLICK);
+                return;
+            }
+        }
     }
 
     /**
