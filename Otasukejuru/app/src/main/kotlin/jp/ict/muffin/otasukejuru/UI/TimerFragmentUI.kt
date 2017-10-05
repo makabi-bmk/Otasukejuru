@@ -107,7 +107,7 @@ class TimerFragmentUI : AnkoComponent<TimerFragment> {
     private fun drawCircle(context: Context, circle: FrameLayout, time: Long) {
         val colors = arrayListOf(Color.argb(255, 255, 0, 0), Color.argb(255, 251, 251, 240))
         val init = arrayListOf(true, false)
-        colors.forEachIndexed { it, _ ->
+        (0 until 2).forEach {
             val circleGraphView = CircleGraphView(context, colors[it], time, init[it])
             circle.addView(circleGraphView)
             circleGraphView.startAnimation()
