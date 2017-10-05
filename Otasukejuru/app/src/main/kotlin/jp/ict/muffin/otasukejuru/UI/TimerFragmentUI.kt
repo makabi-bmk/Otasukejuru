@@ -109,8 +109,6 @@ class TimerFragmentUI : AnkoComponent<TimerFragment> {
         circle.addView(circleGraphView)
         circleGraphView.startAnimation()
         
-        GlobalValue.timerFlag = false
-        
         val circleGraphView1 = CircleGraphView(context, Color.argb(255, 251, 251, 240), time, false)
         circle.addView(circleGraphView1)
         circleGraphView1.startAnimation()
