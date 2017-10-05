@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.FrameLayout
+import android.widget.LinearLayout
 import android.widget.TextView
 import org.jetbrains.anko.*
 
@@ -52,21 +53,51 @@ class TimerFragmentUI : AnkoComponent<TimerFragment> {
                     centerHorizontally()
                 }
             }
-            editTime = editText {
-                inputType = InputType.TYPE_CLASS_NUMBER
-                id = 2
+            linearLayout {
+                orientation = LinearLayout.HORIZONTAL
+                relativeLayout {
+                    editTime = editText {
+                        inputType = InputType.TYPE_CLASS_NUMBER
+                        id = 2
+                    }.lparams {
+                        height = wrapContent
+                        width = matchParent
+                    }
+                    button("start") {
+                        height = wrapContent
+                        width = matchParent
+                    }.lparams {
+                        below(editTime)
+                    }.setOnClickListener {
+                        startButtonClickListener(context)
+                    }
+                }.lparams {
+                    width = GlobalValue.displayWidth / 2
+                    height = wrapContent
+                }
+                relativeLayout {
+                    val poyo = editText {
+                        inputType = InputType.TYPE_CLASS_NUMBER
+                        id = 3
+                    }.lparams {
+                        height = wrapContent
+                        width = matchParent
+                    }
+                    button("start") {
+                        height = wrapContent
+                        width = matchParent
+                    }.lparams {
+                        below(poyo)
+                    }.setOnClickListener {
+                        startButtonClickListener(context)
+                    }
+                    
+                }.lparams {
+                    width = GlobalValue.displayWidth / 2
+                    height = wrapContent
+                }
             }.lparams {
-                height = wrapContent
-                width = matchParent
                 below(circle)
-            }
-            button("start") {
-                height = wrapContent
-                width = matchParent
-            }.lparams {
-                below(editTime)
-            }.setOnClickListener {
-                startButtonClickListener(context)
             }
         }
     }
