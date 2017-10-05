@@ -53,8 +53,9 @@ class TimerFragmentUI : AnkoComponent<TimerFragment> {
                     centerHorizontally()
                 }
             }
-            linearLayout {
+            val inputLinear = linearLayout {
                 orientation = LinearLayout.HORIZONTAL
+                id = 3
                 relativeLayout {
                     editTime = editText {
                         inputType = InputType.TYPE_CLASS_NUMBER
@@ -63,41 +64,31 @@ class TimerFragmentUI : AnkoComponent<TimerFragment> {
                         height = wrapContent
                         width = matchParent
                     }
-                    button("start") {
-                        height = wrapContent
-                        width = matchParent
-                    }.lparams {
-                        below(editTime)
-                    }.setOnClickListener {
-                        startButtonClickListener(context)
-                    }
                 }.lparams {
                     width = GlobalValue.displayWidth / 2
                     height = wrapContent
                 }
                 relativeLayout {
-                    val poyo = editText {
+                    editText {
                         inputType = InputType.TYPE_CLASS_NUMBER
-                        id = 3
                     }.lparams {
                         height = wrapContent
                         width = matchParent
                     }
-                    button("start") {
-                        height = wrapContent
-                        width = matchParent
-                    }.lparams {
-                        below(poyo)
-                    }.setOnClickListener {
-                        startButtonClickListener(context)
-                    }
-                    
                 }.lparams {
                     width = GlobalValue.displayWidth / 2
                     height = wrapContent
                 }
             }.lparams {
                 below(circle)
+            }
+            button("start") {
+            }.lparams {
+                width = matchParent
+                height = wrapContent
+                below(inputLinear)
+            }.setOnClickListener {
+                startButtonClickListener(context)
             }
         }
     }

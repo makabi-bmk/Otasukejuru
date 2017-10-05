@@ -6,7 +6,6 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.RectF
 import android.os.Handler
-import android.util.Log
 import android.view.View
 import java.util.*
 
@@ -15,7 +14,6 @@ class CircleGraphView(context: Context, private var param: Int, private var time
     private var startAngleTmp: Float = (60 - time) * 6f
     internal var endAngleTmp: Float = 0.0f
     internal lateinit var timer: Timer
-    private var ct = 0
     
     init {
         if (isInit) {
@@ -57,7 +55,6 @@ class CircleGraphView(context: Context, private var param: Int, private var time
             override fun run() {
                 val angle = (360 / 100f)
                 endAngleTmp += angle
-                Log.d("time:", ct++.toString())
                 if (endAngleTmp > 270f) {
                     endAngleTmp = 270f
                     timer.cancel()
