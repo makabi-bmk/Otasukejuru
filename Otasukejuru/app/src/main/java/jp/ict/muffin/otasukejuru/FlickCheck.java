@@ -39,10 +39,12 @@ public abstract class FlickCheck {
                     case MotionEvent.ACTION_DOWN:
                         touchX = event.getX();
                         touchY = event.getY();
+                        Log.d("hoge", "ACTION_DOWN");
                         break;
                     case MotionEvent.ACTION_UP:
                         nowTouchX = event.getX();
                         nowTouchY = event.getY();
+                        Log.d("hoge", "ACTION_UP");
                         check();
                         v.performClick();
                         break;

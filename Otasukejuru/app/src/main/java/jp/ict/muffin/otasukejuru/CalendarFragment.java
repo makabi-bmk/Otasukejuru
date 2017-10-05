@@ -1,17 +1,17 @@
 package jp.ict.muffin.otasukejuru;
 
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TableLayout;
 import android.widget.TextView;
 
 import java.util.Calendar;
@@ -27,7 +27,6 @@ public class CalendarFragment extends Fragment {
     int year;
     int month;
 
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -38,7 +37,7 @@ public class CalendarFragment extends Fragment {
         month = cal.get(Calendar.MONTH);
 
         calendarView();
-        //flickCheck();
+        flickCheck();
 
         return view;
     }
@@ -190,7 +189,7 @@ public class CalendarFragment extends Fragment {
                 switch (flickData) {
                     case FlickCheck.LEFT_FLICK:
                         // 左フリック
-                        Log.d("hoge", "left");
+                        Log.d("hoge", "左フリック");
                         if (month == 11){
                             year++;
                             month = 0;
@@ -202,7 +201,7 @@ public class CalendarFragment extends Fragment {
 
                     case FlickCheck.RIGHT_FLICK:
                         // 右フリック
-                        Log.d("hoge", "right");
+                        Log.d("hoge", "右クリック");
                         if (month == 0){
                             year--;
                             month = 11;
@@ -214,18 +213,15 @@ public class CalendarFragment extends Fragment {
 
                     case FlickCheck.UP_FLICK:
                         // 上フリック
-                        Log.d("hoge", "up");
                         break;
 
                     case FlickCheck.DOWN_FLICK:
                         // 下フリック
-                        Log.d("hoge", "down");
                         break;
-
                 }
             }
         };
-
     }
+
 
 }
