@@ -65,18 +65,7 @@ class TimerFragmentUI : AnkoComponent<TimerFragment> {
                         width = matchParent
                     }
                 }.lparams {
-                    width = GlobalValue.displayWidth / 2
-                    height = wrapContent
-                }
-                relativeLayout {
-                    editText {
-                        inputType = InputType.TYPE_CLASS_NUMBER
-                    }.lparams {
-                        height = wrapContent
-                        width = matchParent
-                    }
-                }.lparams {
-                    width = GlobalValue.displayWidth / 2
+                    width = matchParent
                     height = wrapContent
                 }
             }.lparams {
