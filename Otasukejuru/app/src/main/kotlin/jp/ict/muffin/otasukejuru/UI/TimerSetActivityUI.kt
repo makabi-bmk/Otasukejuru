@@ -5,16 +5,14 @@ import android.graphics.Color
 import android.os.Handler
 import android.os.Looper
 import android.text.InputType
-import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.FrameLayout
-import android.widget.LinearLayout
 import android.widget.TextView
 import org.jetbrains.anko.*
 
 
-class TimerSetActivityUI() : AnkoComponent<TimerSetActivity> {
+class TimerSetActivityUI : AnkoComponent<TimerSetActivity> {
     private var isPushStartButton = false
     private lateinit var circleMini: FrameLayout
     private lateinit var circle: FrameLayout
@@ -23,11 +21,13 @@ class TimerSetActivityUI() : AnkoComponent<TimerSetActivity> {
     
     override fun createView(ui: AnkoContext<TimerSetActivity>): View = with(ui) {
         linearLayout {
+            backgroundColor = Color.argb(255, 251, 251, 240)
             relativeLayout {
                 lparams {
                     height = matchParent
                     width = matchParent
                 }
+                
                 circle = frameLayout {
                     backgroundColor = Color.argb(0, 0, 0, 0)
                     id = 1
@@ -37,6 +37,7 @@ class TimerSetActivityUI() : AnkoComponent<TimerSetActivity> {
                     topMargin = 30
                     leftMargin = 30
                 }
+                
                 circleMini = frameLayout {
                 }.lparams {
                     translationZ = 2F
@@ -55,29 +56,21 @@ class TimerSetActivityUI() : AnkoComponent<TimerSetActivity> {
                         centerHorizontally()
                     }
                 }
-                val inputLinear = linearLayout {
-                    orientation = LinearLayout.HORIZONTAL
-                    id = 3
-                    relativeLayout {
-                        editTime = editText {
-                            inputType = InputType.TYPE_CLASS_NUMBER
-                            id = 2
-                        }.lparams {
-                            height = wrapContent
-                            width = matchParent
-                        }
-                    }.lparams {
-                        width = matchParent
-                        height = wrapContent
-                    }
+                
+                editTime = editText {
+                    inputType = InputType.TYPE_CLASS_NUMBER
+                    id = 2
                 }.lparams {
+                    height = wrapContent
+                    width = matchParent
                     below(circle)
                 }
+                
                 button("start") {
                 }.lparams {
                     width = matchParent
                     height = wrapContent
-                    below(inputLinear)
+                    below(editTime)
                 }.setOnClickListener {
                     startButtonClickListener(context)
                 }
