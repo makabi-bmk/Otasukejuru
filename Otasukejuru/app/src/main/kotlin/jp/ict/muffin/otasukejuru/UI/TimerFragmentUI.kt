@@ -76,8 +76,10 @@ class TimerFragmentUI : AnkoComponent<TimerFragment> {
     private fun startButtonClickListener(context: Context) {
         if (!isPushStartButton && editTime.text.toString() != "") {
             val time = editTime.text.toString().toLong()
-            editTime.text.clear()
-            editTime.clearFocus()
+            editTime.apply {
+                text.clear()
+                clearFocus()
+            }
             
             val circleGraphView = CircleGraphView(context, Color.argb(255, 251, 251, 240), 60, true)
             circleMini.addView(circleGraphView)

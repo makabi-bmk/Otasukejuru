@@ -111,6 +111,7 @@ class TimerSetActivityUI() : AnkoComponent<TimerSetActivity> {
             circleGraphView.startAnimation()
         }
     }
+    
     private fun startTimer(context: Context, totalTime: Long) {
         val drawTime: Long = if (totalTime % 60 == 0L) {
             60L
@@ -122,9 +123,7 @@ class TimerSetActivityUI() : AnkoComponent<TimerSetActivity> {
         if (totalTime - drawTime != 0L) {
             Handler(Looper.getMainLooper()).postDelayed({
                 startTimer(context, totalTime - drawTime)
-                Log.d("startTimer", drawTime.toString())
             }, drawTime * 60 * 1000)
         }
-        
     }
 }
