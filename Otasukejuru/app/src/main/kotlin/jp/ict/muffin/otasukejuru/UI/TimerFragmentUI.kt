@@ -16,6 +16,7 @@ class TimerFragmentUI : AnkoComponent<TimerFragment> {
     private lateinit var circle: FrameLayout
     private lateinit var editTime: EditText
     private lateinit var remainingHourText: TextView
+    private var time = 0L
     
     override fun createView(ui: AnkoContext<TimerFragment>): View = with(ui) {
         relativeLayout {
@@ -75,10 +76,10 @@ class TimerFragmentUI : AnkoComponent<TimerFragment> {
     
     private fun startButtonClickListener(context: Context) {
         if (!isPushStartButton && editTime.text.toString() != "") {
-            val time = editTime.text.toString().toLong()
+            time = editTime.text.toString().toLong()
             editTime.apply {
                 text.clear()
-                clearFocus()
+                editTime.clearFocus()
             }
             
             val circleGraphView = CircleGraphView(context, Color.argb(255, 251, 251, 240), 60, true)
@@ -88,7 +89,7 @@ class TimerFragmentUI : AnkoComponent<TimerFragment> {
             isPushStartButton = true
             drawCircle(context, time)
         } else {
-            context.startActivity<TimerSetActivity>()
+            context.startActivity<TimerSetActivity>("time" to time)
         }
     }
     
