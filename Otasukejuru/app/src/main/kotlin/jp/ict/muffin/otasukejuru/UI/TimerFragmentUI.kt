@@ -50,31 +50,25 @@ class TimerFragmentUI : AnkoComponent<TimerFragment> {
                     centerHorizontally()
                 }
             }
-            val inputLinear = linearLayout {
+            linearLayout {
                 orientation = LinearLayout.HORIZONTAL
                 id = 3
-                relativeLayout {
-                    editTime = editText {
-                        inputType = InputType.TYPE_CLASS_NUMBER
-                        id = 2
-                    }.lparams {
-                        height = wrapContent
-                        width = matchParent
-                    }
+                button("start") {
                 }.lparams {
-                    width = matchParent
+                    width = wrapContent
                     height = wrapContent
+                }.setOnClickListener {
+                    startButtonClickListener(context)
+                }
+                editTime = editText {
+                    inputType = InputType.TYPE_CLASS_NUMBER
+                    id = 2
+                }.lparams {
+                    height = wrapContent
+                    width = 400
                 }
             }.lparams {
                 below(circle)
-            }
-            button("start") {
-            }.lparams {
-                width = matchParent
-                height = wrapContent
-                below(inputLinear)
-            }.setOnClickListener {
-                startButtonClickListener(context)
             }
         }
     }
