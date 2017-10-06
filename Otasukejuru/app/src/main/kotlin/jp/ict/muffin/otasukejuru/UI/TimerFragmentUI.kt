@@ -2,10 +2,7 @@ package jp.ict.muffin.otasukejuru
 
 import android.content.Context
 import android.graphics.Color
-import android.os.Handler
-import android.os.Looper
 import android.text.InputType
-import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.FrameLayout
@@ -82,23 +79,6 @@ class TimerFragmentUI : AnkoComponent<TimerFragment> {
         }
     }
     
-    private fun startTimer(context: Context, totalTime: Long) {
-        val drawTime: Long = if (totalTime % 60 == 0L) {
-            60L
-        } else {
-            totalTime % 60L
-        }
-        remainingHourText.text = ((totalTime - 1) / 60).toString()
-        drawCircle(context, circle, drawTime)
-        if (totalTime - drawTime != 0L) {
-            Handler(Looper.getMainLooper()).postDelayed({
-                startTimer(context, totalTime - drawTime)
-                Log.d("startTimer", drawTime.toString())
-            }, drawTime * 60 * 1000)
-        }
-        
-    }
-    
     private fun startButtonClickListener(context: Context) {
         if (!isPushStartButton && editTime.text.toString() != "") {
             val time = editTime.text.toString().toLong()
@@ -109,13 +89,12 @@ class TimerFragmentUI : AnkoComponent<TimerFragment> {
             circleMini.addView(circleGraphView)
             circleGraphView.startAnimation()
             
-            startTimer(context, time)
-            
             isPushStartButton = true
+            drawCircle(context, time)
         }
     }
     
-    private fun drawCircle(context: Context, circle: FrameLayout, time: Long) {
+    private fun drawCircle(context: Context, time: Long) {
         val colors = arrayListOf(Color.argb(255, 255, 0, 0), Color.argb(255, 251, 251, 240))
         val init = arrayListOf(true, false)
         (0 until 2).forEach {
