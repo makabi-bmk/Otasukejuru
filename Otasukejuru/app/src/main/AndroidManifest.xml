@@ -24,7 +24,10 @@
             android:name=".TaskAddition"
             android:label="">
         </activity>
-        <activity android:name=".TimerSetActivity">
+
+        <activity
+            android:name=".TimerSetActivity"
+            android:label="">
         </activity>
     </application>
 
