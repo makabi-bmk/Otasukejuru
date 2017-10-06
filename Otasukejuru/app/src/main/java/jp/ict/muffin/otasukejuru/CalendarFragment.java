@@ -6,12 +6,9 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
-import android.view.GestureDetector;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.Calendar;
@@ -44,13 +41,13 @@ public class CalendarFragment extends Fragment {
 
     public void calendarView() {
 
-
         //タイトル(カレンダーの年月日)
         TextView title = (TextView) view.findViewById(R.id.title);
         title.setText(String.valueOf(year) + "年" + String.valueOf(month + 1) + "月");
 
 
         //月を切り替えるボタン
+
 //        Button buttonNext = (Button) view.findViewById(R.id.next_month);
 //        buttonNext.setOnClickListener(new View.OnClickListener() {
 //            public void onClick(View view) {
@@ -77,16 +74,18 @@ public class CalendarFragment extends Fragment {
 //            }
 //        });
 
-        int[] xml = new int[]{R.id.button0, R.id.button1, R.id.button2, R.id.button3, R.id.button4, R.id.button5, R.id.button6,
-                R.id.button7, R.id.button8, R.id.button9, R.id.button10, R.id.button11, R.id.button12, R.id.button13,
-                R.id.button14, R.id.button15, R.id.button16, R.id.button17, R.id.button18, R.id.button19, R.id.button20,
-                R.id.button21, R.id.button22, R.id.button23, R.id.button24, R.id.button25, R.id.button26, R.id.button27,
-                R.id.button28, R.id.button29, R.id.button30, R.id.button31, R.id.button32, R.id.button33, R.id.button34,
-                R.id.button35, R.id.button36, R.id.button37, R.id.button38, R.id.button39, R.id.button40, R.id.button41};
+        int[] xml = new int[]{R.id.date0, R.id.date1, R.id.date2, R.id.date3, R.id.date4, R.id.date5, R.id.date6,
+                R.id.date7, R.id.date8, R.id.date9, R.id.date10, R.id.date11, R.id.date12, R.id.date13,
+                R.id.date14, R.id.date15, R.id.date16, R.id.date17, R.id.date18, R.id.date19, R.id.date20,
+                R.id.date21, R.id.date22, R.id.date23, R.id.date24, R.id.date25, R.id.date26, R.id.date27,
+                R.id.date28, R.id.date29, R.id.date30, R.id.date31, R.id.date32, R.id.date33, R.id.date34,
+                R.id.date35, R.id.date36, R.id.date37, R.id.date38, R.id.date39, R.id.date40, R.id.date41};
 
-        Button[] button = new Button[42];
+        View[] layout = new View[42];
+        TextView[] textView = new TextView[42];
         for (int i = 0; i < 42; i++){
-            button[i] = (Button) view.findViewById(xml[i]);
+            layout[i] = (View) view.findViewById(xml[i]);
+            textView[i] = (TextView)layout[i].findViewById(R.id.date_view);
         }
 
         //今日の年月日
@@ -104,51 +103,38 @@ public class CalendarFragment extends Fragment {
         //第一土曜日
         int firstSaturday = 8 - firstWeekday;
         //土日かどうか判別するための変数
-        int saturDay = firstSaturday % 7;
-        int sunDay = (firstSaturday + 1) % 7;
+        int saturday = firstSaturday % 7;
+        int sunday = (firstSaturday + 1) % 7;
 
         //日付の文字の大きさ(sp)
         int textFontSize = 25;
-
-
         int cnt = 0;
+
         //空白スペースの表示
         for (int i = 1; i < firstWeekday; i++) {
-            button[cnt].setTextSize(COMPLEX_UNIT_SP, textFontSize);
-            button[cnt].setTag("");
-            button[cnt].setText("");
-            // Listnerをセット
-            button[cnt].setOnClickListener(new View.OnClickListener() {
-                public void onClick(View view) {
-                    new AlertDialog.Builder(getActivity())
-                            .setMessage("空")
-                            .setPositiveButton("OK", null)
-                            .show();
-                }
-            });
-
+            layout[cnt].setClickable(false);
+            textView[cnt].setText("");
             cnt++;
-
-
         }
 
         //日付の表示
         for (int date = 1; date <= lastDayOfMonth; date++) {
-            button[cnt].setTextSize(COMPLEX_UNIT_SP, textFontSize);
-            button[cnt].setTag(String.valueOf(date));
-
+            //textView[cnt].setTextSize(COMPLEX_UNIT_SP, textFontSize);
             //土日の日付に色を追加
-            if (date % 7 == sunDay)
-                button[cnt].setTextColor(getResources().getColor(R.color.sundayColor));
-            else if (date % 7 == saturDay)
-                button[cnt].setTextColor(getResources().getColor(R.color.saturdayColor));
-            button[cnt].setText(String.valueOf(date));
+            if (date % 7 == sunday)
+                textView[cnt].setTextColor(getResources().getColor(R.color.sundayColor));
+            else if (date % 7 == saturday)
+                textView[cnt].setTextColor(getResources().getColor(R.color.saturdayColor));
 
-            // Listnerをセット
-            button[date].setOnClickListener(new View.OnClickListener() {
-                public void onClick(View view) {
+            textView[cnt].setText(String.valueOf(date));
+            textView[cnt].setClickable(true);
+
+            final int finalDate = date;
+            layout[cnt].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
                     new AlertDialog.Builder(getActivity())
-                            .setMessage("Button Tapped: " + view.getTag().toString())
+                            .setMessage(String.valueOf(finalDate) + "日")
                             .setPositiveButton("OK", null)
                             .show();
                 }
@@ -158,18 +144,8 @@ public class CalendarFragment extends Fragment {
 
         //空白スペースの表示
         for (int i = cnt; i < 42; i++) {
-            button[cnt].setTextSize(COMPLEX_UNIT_SP, textFontSize);
-            button[cnt].setText("");
-            button[cnt].setTag("");
-            // Listnerをセット
-            button[cnt].setOnClickListener(new View.OnClickListener() {
-                public void onClick(View view) {
-                    new AlertDialog.Builder(getActivity())
-                            .setMessage("空")
-                            .setPositiveButton("OK", null)
-                            .show();
-                }
-            });
+            textView[cnt].setText("");
+            layout[cnt].setClickable(false);
             cnt++;
 
         }
@@ -201,7 +177,7 @@ public class CalendarFragment extends Fragment {
 
                     case FlickCheck.RIGHT_FLICK:
                         // 右フリック
-                        Log.d("hoge", "右クリック");
+                        Log.d("hoge", "右フリック");
                         if (month == 0){
                             year--;
                             month = 11;
