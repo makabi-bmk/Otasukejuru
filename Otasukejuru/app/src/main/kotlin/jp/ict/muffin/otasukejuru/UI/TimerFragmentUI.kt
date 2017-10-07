@@ -89,7 +89,7 @@ class TimerFragmentUI : AnkoComponent<TimerFragment> {
             isPushStartButton = true
             drawCircle(context, time)
         } else {
-            context.startActivity<TimerSetActivity>("time" to time)
+            context.startActivity<TimerActivity>("time" to time)
         }
     }
     

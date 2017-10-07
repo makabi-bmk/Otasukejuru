@@ -4,10 +4,10 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import org.jetbrains.anko.setContentView
 
-class TimerSetActivity : AppCompatActivity() {
+class TimerActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        TimerSetActivityUI(intent.getLongExtra("time", 0)).setContentView(this)
+        TimerActivityUI(intent.getLongExtra("time", 0)).setContentView(this)
     }
 }

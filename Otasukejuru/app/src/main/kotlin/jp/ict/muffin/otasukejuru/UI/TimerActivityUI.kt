@@ -10,13 +10,13 @@ import android.widget.TextView
 import org.jetbrains.anko.*
 
 
-class TimerSetActivityUI(private val time: Long) : AnkoComponent<TimerSetActivity> {
+class TimerActivityUI(private val time: Long) : AnkoComponent<TimerActivity> {
     private var isPushStartButton = false
     private lateinit var circleMini: FrameLayout
     private lateinit var circle: FrameLayout
     private lateinit var remainingHourText: TextView
     
-    override fun createView(ui: AnkoContext<TimerSetActivity>): View = with(ui) {
+    override fun createView(ui: AnkoContext<TimerActivity>): View = with(ui) {
         linearLayout {
             backgroundColor = Color.argb(255, 251, 251, 240)
             relativeLayout {
