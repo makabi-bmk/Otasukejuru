@@ -9,11 +9,11 @@ import org.jetbrains.anko.AnkoContext
 import org.jetbrains.anko.support.v4.ctx
 
 
-class TimerFragment : Fragment() {
+class TimerSetTimeFragment : Fragment() {
     companion object {
-        fun getInstance(): TimerFragment = TimerFragment()
+        fun getInstance(): TimerSetTimeFragment = TimerSetTimeFragment()
     }
     
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? =
-            TimerFragmentUI().createView(AnkoContext.create(ctx, this))
+            TimerSetTimeFragmentUI().createView(AnkoContext.create(ctx, this))
 }

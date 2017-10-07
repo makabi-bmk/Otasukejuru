@@ -154,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
             } else if (position == 1) {
                 return new ToDoListFragment();
             } else if (position == 2) {
-                return new TimerFragment();
+                return new TimerSetTimeFragment();
             }
             return PlaceholderFragment.newInstance(position + 1);
         }

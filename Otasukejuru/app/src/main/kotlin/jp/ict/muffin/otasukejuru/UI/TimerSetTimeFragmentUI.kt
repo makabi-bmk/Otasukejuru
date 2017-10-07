@@ -10,7 +10,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import org.jetbrains.anko.*
 
-class TimerFragmentUI : AnkoComponent<TimerFragment> {
+class TimerSetTimeFragmentUI : AnkoComponent<TimerSetTimeFragment> {
     private var isPushStartButton = false
     private lateinit var circleMini: FrameLayout
     private lateinit var circle: FrameLayout
@@ -18,7 +18,7 @@ class TimerFragmentUI : AnkoComponent<TimerFragment> {
     private lateinit var remainingHourText: TextView
     private var time = 0L
     
-    override fun createView(ui: AnkoContext<TimerFragment>): View = with(ui) {
+    override fun createView(ui: AnkoContext<TimerSetTimeFragment>): View = with(ui) {
         relativeLayout {
             lparams {
                 height = matchParent
