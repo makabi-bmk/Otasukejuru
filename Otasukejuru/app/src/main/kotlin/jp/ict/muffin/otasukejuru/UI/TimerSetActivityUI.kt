@@ -4,19 +4,16 @@ import android.content.Context
 import android.graphics.Color
 import android.os.Handler
 import android.os.Looper
-import android.text.InputType
 import android.view.View
-import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.TextView
 import org.jetbrains.anko.*
 
 
-class TimerSetActivityUI : AnkoComponent<TimerSetActivity> {
+class TimerSetActivityUI(private val time: Long) : AnkoComponent<TimerSetActivity> {
     private var isPushStartButton = false
     private lateinit var circleMini: FrameLayout
     private lateinit var circle: FrameLayout
-    private lateinit var editTime: EditText
     private lateinit var remainingHourText: TextView
     
     override fun createView(ui: AnkoContext<TimerSetActivity>): View = with(ui) {
@@ -57,20 +54,11 @@ class TimerSetActivityUI : AnkoComponent<TimerSetActivity> {
                     }
                 }
                 
-                editTime = editText {
-                    inputType = InputType.TYPE_CLASS_NUMBER
-                    id = 2
-                }.lparams {
-                    height = wrapContent
-                    width = matchParent
-                    below(circle)
-                }
-                
                 button("start") {
                 }.lparams {
                     width = matchParent
                     height = wrapContent
-                    below(editTime)
+                    below(circle)
                 }.setOnClickListener {
                     startButtonClickListener(context)
                 }
@@ -80,10 +68,7 @@ class TimerSetActivityUI : AnkoComponent<TimerSetActivity> {
     
     
     private fun startButtonClickListener(context: Context) {
-        if (!isPushStartButton && editTime.text.toString() != "") {
-            val time = editTime.text.toString().toLong()
-            editTime.text.clear()
-            editTime.clearFocus()
+        if (!isPushStartButton) {
             
             val circleGraphView = CircleGraphView(context, Color.argb(255, 251, 251, 240), 60, true)
             circleMini.addView(circleGraphView)
