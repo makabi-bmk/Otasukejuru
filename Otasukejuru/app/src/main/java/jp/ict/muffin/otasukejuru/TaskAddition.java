@@ -15,7 +15,6 @@ import android.widget.Toolbar;
 import java.util.Calendar;
 
 
-
 public class TaskAddition extends Activity {
 
     //common
@@ -262,8 +261,10 @@ public class TaskAddition extends Activity {
                 str = m.getText().toString();
                 messageTime = Integer.parseInt(str);
 
-                Log.d("plan", "タイトル名:" + taskTitleName + "\n予定開始の日付:" + month + "月" + day + "日" + "\n予定開始の時間:" + hour + "時" + minute + "分"
-                        + "\n予定終了の時間:" + finishHour + "時" + finishMinute + "分" + "\n繰り返し:" + taskRepeat + "\n何分前に通知するか:" + messageTime);
+                Log.d("plan", "タイトル名:" + taskTitleName + "\n予定開始の日付:" +
+                        month + "月" + day + "日" + "\n予定開始の時間:" + hour + "時" + minute + "分" +
+                        "\n予定終了の時間:" + finishHour + "時" + finishMinute + "分" +
+                        "\n繰り返し:" + taskRepeat + "\n何分前に通知するか:" + messageTime);
 
                 finish();
             }
@@ -534,12 +535,14 @@ public class TaskAddition extends Activity {
                 if (month == -1) {
                     dateLimit = -1;
                 } else {
-                    dateLimit = month  * 100 + day;
+                    dateLimit = month * 100 + day;
                     timeLimit = TaskAddition.this.hour * 100 + day;
                 }
 
-                Log.d("task", "タイトル名:" + taskTitleName + "\n期限の開始:" + dateLimit + "\n繰り返し:" + taskRepeat
-                        + "\nisMust:" + isMust + "\nisShould:" + isShould + "\nisWant to:" + isWant + "\n終了目安:" + finishHour + "時間" + finishMinute + "分");
+                Log.d("task", "タイトル名:" + taskTitleName + "\n期限の開始:" + dateLimit +
+                        "\n繰り返し:" + taskRepeat +
+                        "\nisMust:" + isMust + "\nisShould:" + isShould + "\nisWant to:" +
+                        isWant + "\n終了目安:" + finishHour + "時間" + finishMinute + "分");
 
                 setTaskInformation();
 

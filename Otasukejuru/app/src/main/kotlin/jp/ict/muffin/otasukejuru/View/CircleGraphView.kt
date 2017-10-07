@@ -10,7 +10,8 @@ import android.view.View
 import java.util.*
 
 
-class CircleGraphView(context: Context, private var param: Int, private var time: Long, isInit: Boolean) : View(context) {
+class CircleGraphView(context: Context, private var param: Int, private var time: Long,
+                      isInit: Boolean) : View(context) {
     private var startAngleTmp: Float = (60 - time) * 6f
     internal var endAngleTmp: Float = 0.0f
     internal lateinit var timer: Timer
@@ -35,7 +36,8 @@ class CircleGraphView(context: Context, private var param: Int, private var time
         this.createPieSlice(c, param, startAngle, endAngle, x, y, radius)
     }
     
-    private fun createPieSlice(c: Canvas, color: Int, startAngle: Float, endAngle: Float, x: Float, y: Float, r: Float) {
+    private fun createPieSlice(c: Canvas, color: Int, startAngle: Float,
+                               endAngle: Float, x: Float, y: Float, r: Float) {
         var paint = Paint()
         paint.isAntiAlias = false
         paint.color = color

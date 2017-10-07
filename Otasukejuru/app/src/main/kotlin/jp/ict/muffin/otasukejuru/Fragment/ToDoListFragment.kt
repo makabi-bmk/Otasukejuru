@@ -20,7 +20,8 @@ class ToDoListFragment : Fragment() {
     
     private var mTimer: Timer? = null
     
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View =
             inflater.inflate(R.layout.fragment_list_todo, container, false)
     
     override fun onActivityCreated(savedInstanceState: Bundle?) {

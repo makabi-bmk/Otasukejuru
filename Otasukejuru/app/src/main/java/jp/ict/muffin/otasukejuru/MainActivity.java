@@ -21,7 +21,6 @@ import android.widget.TextView;
 import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
-    //    public static ArrayList<TaskInformation> taskInformationArrayList;
     private GlobalValue globalValue = GlobalValue.INSTANCE;
 
     @Override
@@ -32,7 +31,8 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         Calendar calendar = Calendar.getInstance();
-        toolbar.setTitle((calendar.get(Calendar.MONTH) + 1) + "月" + calendar.get(Calendar.DATE) + "日");
+        toolbar.setTitle((calendar.get(Calendar.MONTH) + 1) + "月" +
+                calendar.get(Calendar.DATE) + "日");
         setSupportActionBar(toolbar);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
@@ -44,7 +44,8 @@ public class MainActivity extends AppCompatActivity {
       may be best to switch to a
       {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
-        SectionsPagerAdapter mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        SectionsPagerAdapter mSectionsPagerAdapter =
+                new SectionsPagerAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
         /*

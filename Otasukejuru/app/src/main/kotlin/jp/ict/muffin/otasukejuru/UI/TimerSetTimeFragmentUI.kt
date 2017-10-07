@@ -82,7 +82,8 @@ class TimerSetTimeFragmentUI : AnkoComponent<TimerSetTimeFragment> {
                 editTime.clearFocus()
             }
             
-            val circleGraphView = CircleGraphView(context, Color.argb(255, 251, 251, 240), 60, true)
+            val circleGraphView = CircleGraphView(context,
+                    Color.argb(255, 251, 251, 240), 60, true)
             circleMini.addView(circleGraphView)
             circleGraphView.startAnimation()
             

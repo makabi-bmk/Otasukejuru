@@ -8,6 +8,6 @@ import org.jetbrains.anko.AnkoContext
 
 class TimerIntervalActivityUI : AnkoComponent<TimerIntervalActivity> {
     override fun createView(ui: AnkoContext<TimerIntervalActivity>): View {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        TODO("not implemented")
     }
 }
