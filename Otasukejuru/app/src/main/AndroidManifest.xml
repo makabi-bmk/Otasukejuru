@@ -24,10 +24,13 @@
             android:name=".TaskAddition"
             android:label="">
         </activity>
-
         <activity
             android:name=".TimerActivity"
             android:label="">
+        </activity>
+        <activity android:name=".Activity.TimerIntervalActivity">
+        </activity>
+        <activity android:name=".Activity.TimerNotificationActivity">
         </activity>
     </application>
 

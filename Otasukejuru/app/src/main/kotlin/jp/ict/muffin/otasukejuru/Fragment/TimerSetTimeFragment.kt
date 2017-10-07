@@ -14,6 +14,7 @@ class TimerSetTimeFragment : Fragment() {
         fun getInstance(): TimerSetTimeFragment = TimerSetTimeFragment()
     }
     
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? =
+    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? =
             TimerSetTimeFragmentUI().createView(AnkoContext.create(ctx, this))
 }
