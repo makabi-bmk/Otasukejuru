@@ -27,7 +27,7 @@ class TimerActivityUI(private val time: Long) : AnkoComponent<TimerActivity> {
                 
                 circle = frameLayout {
                     backgroundColor = Color.argb(0, 0, 0, 0)
-                    id = 1
+                    id = R.id.circleFrame
                 }.lparams {
                     height = GlobalValue.displayWidth - 30
                     width = GlobalValue.displayWidth - 30
@@ -58,7 +58,7 @@ class TimerActivityUI(private val time: Long) : AnkoComponent<TimerActivity> {
                 }.lparams {
                     width = matchParent
                     height = wrapContent
-                    below(circle)
+                    below(R.id.circleFrame)
                 }.setOnClickListener {
                     startButtonClickListener(context)
                 }

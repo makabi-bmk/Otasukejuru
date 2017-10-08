@@ -26,7 +26,7 @@ class TimerSetTimeFragmentUI : AnkoComponent<TimerSetTimeFragment> {
             }
             circle = frameLayout {
                 backgroundColor = Color.argb(0, 0, 0, 0)
-                id = 1
+                id = R.id.circleFrame
             }.lparams {
                 height = GlobalValue.displayWidth - 30
                 width = GlobalValue.displayWidth - 30
@@ -53,7 +53,6 @@ class TimerSetTimeFragmentUI : AnkoComponent<TimerSetTimeFragment> {
             }
             linearLayout {
                 orientation = LinearLayout.HORIZONTAL
-                id = 3
                 button("start") {
                 }.lparams {
                     width = wrapContent
@@ -63,13 +62,12 @@ class TimerSetTimeFragmentUI : AnkoComponent<TimerSetTimeFragment> {
                 }
                 editTime = editText {
                     inputType = InputType.TYPE_CLASS_NUMBER
-                    id = 2
                 }.lparams {
                     height = wrapContent
                     width = 400
                 }
             }.lparams {
-                below(circle)
+                below(R.id.circleFrame)
             }
         }
     }
