@@ -7,6 +7,7 @@ import android.os.Looper
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.TextView
+import jp.ict.muffin.otasukejuru.Activity.TimerIntervalActivity
 import org.jetbrains.anko.*
 
 
@@ -60,7 +61,11 @@ class TimerActivityUI(private val time: Long) : AnkoComponent<TimerActivity> {
                     height = wrapContent
                     below(R.id.circleFrame)
                 }.setOnClickListener {
-                    startButtonClickListener(context)
+                    if (!isPushStartButton) {
+                        startButtonClickListener(context)
+                    } else {
+                        startActivity<TimerIntervalActivity>()
+                    }
                 }
             }
         }

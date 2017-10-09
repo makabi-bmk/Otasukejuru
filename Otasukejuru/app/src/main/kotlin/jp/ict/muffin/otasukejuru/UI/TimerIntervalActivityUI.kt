@@ -20,12 +20,37 @@ class TimerIntervalActivityUI : AnkoComponent<TimerIntervalActivity> {
                 alignParentStart()
                 alignParentTop()
             }
+            
             textView {
                 id = R.id.titleIntervalFocusTime
                 text = "集中する時間"
             }.lparams {
                 below(R.id.titleInterval)
+                topMargin = 10
+                alignStart(R.id.focusTimeRelative)
+            }
+            
+            relativeLayout {
+                id = R.id.focusTimeRelative
+                numberPicker {
+                    id = R.id.focusHourNumPick
+                }.lparams {
+                    alignParentStart()
+                    centerVertically()
+                    marginStart = 60
+                }
+    
+                numberPicker {
+                    id = R.id.focusMinuteNumPick
+                }.lparams {
+                    alignParentStart()
+                    centerVertically()
+                    marginStart = 120
+                }
                 
+            }.lparams {
+                alignEnd(R.id.nextButton)
+                below(R.id.titleIntervalFocusTime)
             }
         }
         
