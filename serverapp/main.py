@@ -1,6 +1,9 @@
 from flask import request, Flask
 from logging import getLogger, StreamHandler, DEBUG
+import datetime as dt
+import pytz
 from serverapp import dbcon
+from serverapp import strtime
 
 logger = getLogger(__name__)
 handler = StreamHandler()
@@ -10,6 +13,17 @@ logger.addHandler(handler)
 logger.propagate = False
 
 app = Flask(__name__)
+
+
+def change_timezone(date: str, timezone='Asia/Tokyo') -> dt.datetime:
+    if isinstance(date, str):
+        return dt.datetime.strptime(date, '%Y-%m-%d %H:%M:%S').replace(
+            tzinfo=pytz.timezone(timezone))
+    elif isinstance(date, dt.datetime):
+        return date.replace(tzinfo=pytz.timezone(timezone))
+    else:
+        logger.debug("change_timezone: arg is not dt.datetime instance")
+        return None
 
 
 @app.route('/')
@@ -34,13 +48,12 @@ def add_task():
                      '{}'.format(request.content_type))
         return 'failed'
     task_name = request.json['task_name']
-    due_date = request.json['due_date']
-    repeat = request.json['task_repeat']
-    task_type = request.json['priority']
+    due_date = change_timezone(strtime.str_to_time(request.json['due_date']))
+    task_type = request.json['task_type']
     guide_time = request.json['guide_time']
     progress = request.json['progress']
     priority = request.json['priority']
-    dbcon.add_task(task_name, due_date, repeat, task_type, guide_time,
+    dbcon.add_task(task_name, due_date, task_type, guide_time,
                    progress, priority)
     return 'succeeded'
 
@@ -53,12 +66,9 @@ def add_schedule():
         return 'failed'
     schedule_name = request.json['schedule']
     start_date = request.json['start_date']
-    start_time = request.json['start_time']
-    end_time = request.json['end_time']
-    repeat = request.json['repeat']
+    end_date = request.json['end_date']
     notice = request.json['notice']
-    dbcon.add_schedule(schedule_name, start_date, start_time, end_time,
-                       repeat, notice)
+    dbcon.add_schedule(schedule_name, start_date, end_date, notice)
     return 'succeeded'
 
 

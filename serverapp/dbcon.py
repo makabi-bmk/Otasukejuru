@@ -12,60 +12,72 @@ logger.setLevel(DEBUG)
 logger.addHandler(handler)
 logger.propagate = False
 
-client = MongoClient('localhost', 27017)
-every_col = client['every']
-schedule_col = client['schedule']
-task_col = client['task']
+# client = MongoClient('localhost', 27017)
+# every_col = client['every']
+# schedule_col = client['schedule']
+# task_col = client['task']
 
 res_list = []
 
 
-def get_schedule_list():
-    for data in schedule_col:
-        del (data["_id"])
-        res_list.append(data)
-    for data in every_col:
-        del (data["_id"])
-        res_list.append(data)
-    res_list.sort(key=lambda x, y: x["start_time"] < y["end_time"])
-    # TODO: 優先度順にタスクを詰めていく
+# def get_schedule_list():
+#     for data in schedule_col:
+#         del (data["_id"])
+#         res_list.append(data)
+#     for data in every_col:
+#         del (data["_id"])
+#         res_list.append(data)
+#     res_list.sort(key=lambda x, y: x["start_time"] < y["end_time"])
+#     # TODO: 優先度順にタスクを詰めていく
 
 
-def add_task(task_name: str, due_date: dt.datetime, repeat: int, task_type: int,
+def add_task(task_name: str, due_date: dt.datetime, task_type: int,
              guide_time: dt.datetime, progress: int, priority: int) -> None:
     post = {
         "task_name": task_name,
         "registration_date": dt.datetime.now(timezone('Asia/Tokyo')),
         "due_date": due_date,
-        "repeat": repeat,
         "task_type": task_type,
         "guide_time": guide_time,
         "progress": progress,
         "priority": priority,
         # "run_time": 0
     }
-    task_col.insert_one(post)
+    print(post)
+    # task_col.insert_one(post)
 
 
 def add_schedule(schedule_name: str, start_date: dt.datetime,
-                 start_time: dt.datetime, end_time: dt.datetime,
-                 notice: int) -> None:
-    res = check_days(start_time, end_time)
+                 end_date: dt.datetime, notice: int) -> None:
+    res = check_days(start_date, end_date)
+    # 複数スケジュールだった場合、分割
     if res["result"]:
-        for day in res["days"]:
-            post = {
-                "schedule_name": schedule_name,
-                "start_time": day[0],
-                "end_time": day[1]
-            }
-            schedule_col.insert_one(post)
+        for i, day in enumerate(res["days"]):
+            # 連日スケジュールの初日だけ通知
+            if i == 0:
+                post = {
+                    "schedule_name": schedule_name,
+                    "start_time": day[0],
+                    "end_time": day[1],
+                    "notice": notice
+                }
+            else:
+                post = {
+                    "schedule_name": schedule_name,
+                    "start_time": day[0],
+                    "end_time": day[1],
+                }
+            print(post)
+            # schedule_col.insert_one(post)
     else:
         post = {
             "schedule_name": schedule_name,
             "start_time": res["day"][0],
-            "end_time": res["day"][1]
+            "end_time": res["day"][1],
+            "notice": notice
         }
-        schedule_col.insert_one(post)
+        print(post)
+        # schedule_col.insert_one(post)
 
 
 def make_zero_time(date: dt.datetime) -> dt.datetime:
@@ -111,4 +123,14 @@ def add_every(name: str, repeat_type: int, start_time: dt.datetime,
         "start_time": start_time,
         "end_time": end_time,
     }
-    every_col.insert_one(post)
+    print(post)
+    # every_col.insert_one(post)
+
+
+if __name__ == '__main__':
+    a = dt.datetime.now()
+    r = check_days(a, a + dt.timedelta(days=1))
+    print(r)
+    a = dt.datetime.now()
+    r = check_days(a, a + dt.timedelta(days=0))
+    print(r)
