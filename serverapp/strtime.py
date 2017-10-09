@@ -19,7 +19,7 @@ def str_to_date(date: str):
 
 def str_to_datetime(dtime: str):
     """
-    :param datetime: "%Y-%m-%d %H:%M:%S"
+    :param dtime: "%Y-%m-%d %H:%M:%S"
     :return:
     """
     return datetime.datetime.strptime(dtime, "%Y-%m-%d %H:%M:%S")
