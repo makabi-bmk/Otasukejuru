@@ -34,7 +34,9 @@ class TimerIntervalActivityUI : AnkoComponent<TimerIntervalActivity> {
                 id = R.id.focusTimeRelative
                 numberPicker {
                     id = R.id.focusHourNumPick
-                }.lparams {
+                    minValue = 0
+                    maxValue = 24
+                    setFormatter { value -> String.format("%02d", value) }}.lparams {
                     alignParentStart()
                     centerVertically()
                     marginStart = dip(95)
@@ -42,6 +44,9 @@ class TimerIntervalActivityUI : AnkoComponent<TimerIntervalActivity> {
                 
                 numberPicker {
                     id = R.id.focusMinuteNumPick
+                    minValue = 0
+                    maxValue = 59
+                    setFormatter { value -> String.format("%02d", value) }
                 }.lparams {
                     alignParentEnd()
                     centerVertically()
@@ -68,6 +73,9 @@ class TimerIntervalActivityUI : AnkoComponent<TimerIntervalActivity> {
                 id = R.id.intervalTimeRelative
                 numberPicker {
                     id = R.id.intervalHourNumPick
+                    minValue = 0
+                    maxValue = 24
+                    setFormatter { value -> String.format("%02d", value) }
                 }.lparams {
                     alignParentStart()
                     centerVertically()
@@ -76,6 +84,9 @@ class TimerIntervalActivityUI : AnkoComponent<TimerIntervalActivity> {
                 
                 numberPicker {
                     id = R.id.intervalMinuteNumPick
+                    minValue = 0
+                    maxValue = 59
+                    setFormatter { value -> String.format("%02d", value) }
                 }.lparams {
                     alignParentEnd()
                     centerVertically()
