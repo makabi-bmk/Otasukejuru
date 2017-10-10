@@ -14,7 +14,7 @@
         android:minHeight="?android:actionBarSize">
 
         <ImageButton
-            android:id="@+id/back"
+            android:id="@+id/button_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/ic_arrow_back_white_48dp"/>
@@ -45,7 +45,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/no_s"
+            android:id="@+id/no_should"
             android:layout_width="145dp"
             android:layout_height="145dp"
             android:layout_margin="15dp"
@@ -55,7 +55,7 @@
             android:textSize="30sp"/>
 
         <Button
-            android:id="@+id/yes_s"
+            android:id="@+id/yes_should"
             android:layout_width="145dp"
             android:layout_height="145dp"
             android:layout_margin="15dp"

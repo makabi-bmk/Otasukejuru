@@ -11,10 +11,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?android:colorPrimary"
-        android:minHeight="?android:actionBarSize">
+        android:minHeight="?android:actionBarSize"
+        >
 
         <ImageButton
-            android:id="@+id/back"
+            android:id="@+id/button_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/ic_arrow_back_white_48dp"/>
@@ -24,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="7dp"
-        android:text="タスク名"
+        android:text="予定名"
         android:textColor="@color/colorPrimary"
         android:textSize="30sp"/>
 
@@ -32,18 +33,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="10dp"
-        android:text="タスク名はなんですか？"
+        android:text="予定名はなんですか？"
         android:textSize="25sp"/>
 
     <EditText
-        android:id="@+id/task_name"
+        android:id="@+id/plan_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="100dp"
-        android:hint="タスク名"
+        android:hint="予定名"
         android:inputType="text"
         android:maxLines="1"
         android:theme="@style/EditTextColorControl"/>
@@ -54,7 +54,7 @@
         android:gravity="bottom">
 
         <Button
-            android:id="@+id/next"
+            android:id="@+id/button_next"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

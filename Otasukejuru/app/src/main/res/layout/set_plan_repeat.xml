@@ -14,7 +14,7 @@
         android:minHeight="?android:actionBarSize">
 
         <ImageButton
-            android:id="@+id/back"
+            android:id="@+id/button_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/ic_arrow_back_white_48dp"/>
@@ -24,42 +24,67 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="7dp"
-        android:text="予定開始・終了前の通知"
+        android:text="予定の繰り返し"
         android:textColor="@color/colorPrimary"
         android:textSize="30sp"/>
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="10dp"
-        android:text="開始・終了何分前に\n通知しますか？"
+        android:text="この予定を繰り返し\nスケジュールに\n入れますか？"
         android:textSize="25sp"/>
 
-    <LinearLayout
+    <RadioGroup
+        android:id="@+id/plan_repeat_radio_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="130dp"
-        android:layout_marginTop="100dp"
-        android:gravity="center"
-        android:orientation="horizontal">
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="46dp">
 
-        <EditText
-            android:id="@+id/message_time"
+        <RadioButton
+            android:id="@+id/radio_plan1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="number"
-            android:maxLength="2"
-            android:textSize="25sp"
-            android:theme="@style/EditTextColorControl"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="分前"
+            android:layout_margin="5dp"
+            android:checked="true"
+            android:text="今日だけ"
             android:textSize="25sp"/>
 
-    </LinearLayout>
+        <RadioButton
+            android:id="@+id/radio_plan2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="毎日"
+            android:textSize="25sp"/>
+
+        <RadioButton
+            android:id="@+id/radio_plan3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="毎週"
+            android:textSize="25sp"/>
+
+        <RadioButton
+            android:id="@+id/radio_plan4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="毎月"
+            android:textSize="25sp"/>
+
+        <RadioButton
+            android:id="@+id/radio_plan5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="毎年"
+            android:textSize="25sp"/>
+    </RadioGroup>
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -67,15 +92,16 @@
         android:gravity="bottom">
 
         <Button
-            android:id="@+id/next"
+            android:id="@+id/button_next"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="300dp"
             android:background="#FBFBF0"
-            android:text="追加"
+            android:text="次へ"
             android:textColor="@color/colorPrimary"
             android:textSize="20sp"/>
 
     </LinearLayout>
+
 </LinearLayout>

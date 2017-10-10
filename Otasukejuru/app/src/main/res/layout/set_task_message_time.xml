@@ -11,21 +11,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?android:colorPrimary"
-        android:minHeight="?android:actionBarSize"
-        >
+        android:minHeight="?android:actionBarSize">
 
         <ImageButton
-            android:id="@+id/back"
+            android:id="@+id/button_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/ic_arrow_back_white_48dp"/>
     </Toolbar>
 
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="7dp"
-        android:text="予定名"
+        android:text="タスク終了の目安時間"
         android:textColor="@color/colorPrimary"
         android:textSize="30sp"/>
 
@@ -33,20 +33,49 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
-        android:text="予定名はなんですか？"
+        android:layout_marginTop="10dp"
+        android:text="タスクが終了する目安は\n何時間ですか？"
         android:textSize="25sp"/>
 
-    <EditText
-        android:id="@+id/plan_name"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginLeft="110dp"
         android:layout_marginTop="100dp"
-        android:hint="予定名"
-        android:inputType="text"
-        android:maxLines="1"
-        android:theme="@style/EditTextColorControl"/>
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/finish_hour_num_pick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:maxLines="1"
+            android:textSize="25sp"
+            android:theme="@style/EditTextColorControl"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="時間"
+            android:textSize="25sp"/>
+
+        <EditText
+            android:id="@+id/finish_minute_num_pick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:maxLines="1"
+            android:textSize="25sp"
+            android:theme="@style/EditTextColorControl"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="分"
+            android:textSize="25sp"/>
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -54,17 +83,15 @@
         android:gravity="bottom">
 
         <Button
-            android:id="@+id/next"
+            android:id="@+id/button_next"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="300dp"
             android:background="#FBFBF0"
-            android:text="次へ"
+            android:text="追加"
             android:textColor="@color/colorPrimary"
             android:textSize="20sp"/>
 
     </LinearLayout>
-
-
 </LinearLayout>

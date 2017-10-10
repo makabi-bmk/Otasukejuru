@@ -3,8 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/back">
+    android:background="@color/back"
+    android:orientation="vertical">
 
     <Toolbar
         android:id="@+id/toolbar_back"
@@ -14,18 +14,17 @@
         android:minHeight="?android:actionBarSize">
 
         <ImageButton
-            android:id="@+id/back"
+            android:id="@+id/button_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/ic_arrow_back_white_48dp"/>
     </Toolbar>
 
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="7dp"
-        android:text="タスクの優先度"
+        android:text="タスク名"
         android:textColor="@color/colorPrimary"
         android:textSize="30sp"/>
 
@@ -34,37 +33,38 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="10dp"
-        android:text="やりたい\n(want to)タスクですか？"
+        android:text="タスク名はなんですか？"
         android:textSize="25sp"/>
 
+    <EditText
+        android:id="@+id/input_task_name_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="100dp"
+        android:hint="タスク名"
+        android:inputType="text"
+        android:maxLines="1"
+        android:theme="@style/EditTextColorControl"/>
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
-        android:gravity="center"
-        android:orientation="horizontal">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom">
 
         <Button
-            android:id="@+id/no_w"
-            android:layout_width="145dp"
-            android:layout_height="145dp"
-            android:layout_margin="15dp"
-            android:background="@color/colorPrimary"
-            android:text="いいえ"
-            android:textColor="#000"
-            android:textSize="30sp"/>
-
-        <Button
-            android:id="@+id/yes_w"
-            android:layout_width="145dp"
-            android:layout_height="145dp"
-            android:layout_margin="15dp"
-            android:background="@color/colorPrimary"
-            android:text="はい"
-            android:textColor="#000"
-            android:textSize="30sp"/>
+            android:id="@+id/button_next"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="300dp"
+            android:background="#FBFBF0"
+            android:text="次へ"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20sp"/>
 
     </LinearLayout>
+
 
 </LinearLayout>

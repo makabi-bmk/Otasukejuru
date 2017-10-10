@@ -20,10 +20,10 @@ import jp.ict.muffin.otasukejuru.Object.GlobalValue;
 public class TaskAddition extends Activity {
 
     //common
-    boolean select;
+    boolean isPlan;
     String taskTitleName;
-    int month, day, hour, minute;
-    int finishHour, finishMinute;
+    int startMonth, startDay, startHour, startMinute;
+    int finishMonth, finishDay, finishHour, finishMinute;
     String taskRepeat;
     int dateLimit;
     int timeLimit;
@@ -38,34 +38,34 @@ public class TaskAddition extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        selection();
+        selectAddType();
     }
 
-    private void selection() {
+    private void selectAddType() {
         setContentView(R.layout.selection);
 
         setActionBar((Toolbar) findViewById(R.id.toolbar_back));
 
-        Button plan = (Button) findViewById(R.id.plan);
-        plan.setOnClickListener(new View.OnClickListener() {
+        Button planButton = (Button) findViewById(R.id.button_plan);
+        planButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                select = true;
-                plan1();
+                isPlan = true;
+                inputPlanName();
             }
         });
 
-        Button task = (Button) findViewById(R.id.task);
-        task.setOnClickListener(new View.OnClickListener() {
+        Button taskButton = (Button) findViewById(R.id.button_task);
+        taskButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                select = false;
-                task1();
+                isPlan = false;
+                inputTaskName();
             }
         });
 
-        ImageButton imageButton = (ImageButton) findViewById(R.id.back);
-        imageButton.setOnClickListener(new View.OnClickListener() {
+        ImageButton backButton = (ImageButton) findViewById(R.id.button_back);
+        backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
@@ -73,423 +73,450 @@ public class TaskAddition extends Activity {
         });
     }
 
-    private void plan1() {
-        setContentView(R.layout.plan1);
+    private void inputPlanName() {
+        setContentView(R.layout.input_plan_name);
         setActionBar((Toolbar) findViewById(R.id.toolbar_back));
 
-        final EditText editText = (EditText) findViewById(R.id.plan_name);
+        final EditText inputNameEdit = (EditText) findViewById(R.id.plan_name);
 
-        Button next = (Button) findViewById(R.id.next);
-        next.setOnClickListener(new View.OnClickListener() {
+        Button nextButton = (Button) findViewById(R.id.button_next);
+        nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                taskTitleName = editText.getText().toString();
+                taskTitleName = inputNameEdit.getText().toString();
                 if (taskTitleName.equals("")) taskTitleName = "無題";
 
-                plan2();
+                startPlanTime();
             }
         });
 
-        ImageButton imageButton = (ImageButton) findViewById(R.id.back);
-        imageButton.setOnClickListener(new View.OnClickListener() {
+        ImageButton backButton = (ImageButton) findViewById(R.id.button_back);
+        backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selection();
+                selectAddType();
             }
         });
 
     }
 
-    private void plan2() {
-        setContentView(R.layout.plan2);
+    //TODO:CHANGE XML
+    private void startPlanTime() {
+        setContentView(R.layout.start_plan_time);
         setActionBar((Toolbar) findViewById(R.id.toolbar_back));
 
-        month = calendar.get(Calendar.MONTH);
-        day = calendar.get(Calendar.DAY_OF_MONTH);
+        startMonth = calendar.get(Calendar.MONTH);
+        startDay = calendar.get(Calendar.DAY_OF_MONTH);
+        startHour = calendar.get(Calendar.HOUR_OF_DAY);
+        startMinute = calendar.get(Calendar.MINUTE);
 
-        NumberPicker numberPicker1 = (NumberPicker) findViewById(R.id.month);
-        numberPicker1.setMaxValue(12);
-        numberPicker1.setMinValue(1);
-        numberPicker1.setValue(month);
-        numberPicker1.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+        NumberPicker startMonthNumPick = (NumberPicker) findViewById(R.id.start_month_num_pick);
+        startMonthNumPick.setMaxValue(12);
+        startMonthNumPick.setMinValue(1);
+        startMonthNumPick.setValue(startMonth);
+        startMonthNumPick.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-                month = newVal;
+                startMonth = newVal;
             }
         });
 
-        NumberPicker numberPicker2 = (NumberPicker) findViewById(R.id.day);
-        numberPicker2.setMaxValue(31);
-        numberPicker2.setMinValue(1);
-        numberPicker2.setValue(day);
-        numberPicker2.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+        NumberPicker startDayNumPick = (NumberPicker) findViewById(R.id.start_day_num_pick);
+        startDayNumPick.setMaxValue(31);
+        startDayNumPick.setMinValue(1);
+        startDayNumPick.setValue(startDay);
+        startDayNumPick.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-                day = newVal;
+                startDay = newVal;
             }
         });
 
-        Button next = (Button) findViewById(R.id.next);
+        NumberPicker startHourNumPick = (NumberPicker) findViewById(R.id.start_hour_num_pick);
+        startHourNumPick.setMaxValue(23);
+        startHourNumPick.setMinValue(0);
+        startHourNumPick.setValue(startHour);
+        startHourNumPick.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            @Override
+            public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+                startHour = newVal;
+            }
+        });
+
+        NumberPicker startMinuteNumPick = (NumberPicker) findViewById(R.id.start_minute_num_pick);
+        startMinuteNumPick.setMaxValue(59);
+        startMinuteNumPick.setMinValue(0);
+        startMinuteNumPick.setValue(startMinute);
+        startMinuteNumPick.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            @Override
+            public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+                startMinute = newVal;
+            }
+        });
+
+        Button next = (Button) findViewById(R.id.button_next);
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                plan3();
+                finishPlanTime();
             }
         });
 
-        ImageButton imageButton = (ImageButton) findViewById(R.id.back);
-        imageButton.setOnClickListener(new View.OnClickListener() {
+        ImageButton backButton = (ImageButton) findViewById(R.id.button_back);
+        backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                plan1();
+                inputPlanName();
             }
         });
 
     }
 
-    private void plan3() {
-        setContentView(R.layout.plan3);
+    private void finishPlanTime() {
+        setContentView(R.layout.finish_plan_time);
         setActionBar((Toolbar) findViewById(R.id.toolbar_back));
 
-        finishHour = hour = calendar.get(Calendar.HOUR_OF_DAY);
-        finishMinute = minute = calendar.get(Calendar.MINUTE);
+        finishMonth = startMonth;
+        finishDay = startDay;
+        finishHour = startHour;
+        finishMinute = startMinute;
 
-        NumberPicker numberPicker1 = (NumberPicker) findViewById(R.id.start_hour);
-        numberPicker1.setMaxValue(23);
-        numberPicker1.setMinValue(0);
-        numberPicker1.setValue(hour);
-        numberPicker1.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+        NumberPicker finishMonthNumPick = (NumberPicker) findViewById(R.id.finish_month_num_pick);
+        finishMonthNumPick.setMaxValue(12);
+        finishMonthNumPick.setMinValue(1);
+        finishMonthNumPick.setValue(finishMonth);
+        finishMonthNumPick.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-                hour = newVal;
+                finishMonth = newVal;
             }
         });
 
-        NumberPicker numberPicker2 = (NumberPicker) findViewById(R.id.start_minute);
-        numberPicker2.setMaxValue(59);
-        numberPicker2.setMinValue(0);
-        numberPicker2.setValue(minute);
-        numberPicker2.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+        NumberPicker finishDayNumPick = (NumberPicker) findViewById(R.id.finish_day_num_pick);
+        finishDayNumPick.setMaxValue(31);
+        finishDayNumPick.setMinValue(1);
+        finishDayNumPick.setValue(finishDay);
+        finishDayNumPick.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-                minute = newVal;
+                finishDay = newVal;
             }
         });
 
-        NumberPicker numberPicker3 = (NumberPicker) findViewById(R.id.finish_hour);
-        numberPicker3.setMaxValue(23);
-        numberPicker3.setMinValue(0);
-        numberPicker3.setValue(finishHour);
-        numberPicker3.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+        NumberPicker finishHourNumPick = (NumberPicker) findViewById(R.id.finish_hour_num_pick);
+        finishHourNumPick.setMaxValue(23);
+        finishHourNumPick.setMinValue(0);
+        finishHourNumPick.setValue(finishHour);
+        finishHourNumPick.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
                 finishHour = newVal;
             }
         });
 
-        NumberPicker numberPicker4 = (NumberPicker) findViewById(R.id.finish_minute);
-        numberPicker4.setMaxValue(59);
-        numberPicker4.setMinValue(0);
-        numberPicker4.setValue(finishMinute);
-        numberPicker4.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+        NumberPicker finishMinuteNumPick = (NumberPicker) findViewById(R.id.finish_minute_num_pick);
+        finishMinuteNumPick.setMaxValue(59);
+        finishMinuteNumPick.setMinValue(0);
+        finishMinuteNumPick.setValue(finishMinute);
+        finishMinuteNumPick.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
                 finishMinute = newVal;
             }
         });
 
-        Button next = (Button) findViewById(R.id.next);
+        Button next = (Button) findViewById(R.id.button_next);
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                plan4();
+                setPlanRepeat();
             }
         });
 
-        ImageButton imageButton = (ImageButton) findViewById(R.id.back);
-        imageButton.setOnClickListener(new View.OnClickListener() {
+        ImageButton backButton = (ImageButton) findViewById(R.id.button_back);
+        backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                plan2();
+                startPlanTime();
             }
         });
 
     }
 
-    private void plan4() {
-        setContentView(R.layout.plan4);
+    private void setPlanRepeat() {
+        setContentView(R.layout.set_plan_repeat);
         setActionBar((Toolbar) findViewById(R.id.toolbar_back));
 
-        final RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radio_plan);
+        final RadioGroup planRepeatRadioGroup = (RadioGroup) findViewById(R.id.plan_repeat_radio_group);
 
-        Button next = (Button) findViewById(R.id.next);
+        Button next = (Button) findViewById(R.id.button_next);
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int num = radioGroup.getCheckedRadioButtonId();
+                int num = planRepeatRadioGroup.getCheckedRadioButtonId();
 
                 if (num != -1) {
                     taskRepeat = String.valueOf(((RadioButton) findViewById(num)).getText());
                 } else {
                     taskRepeat = "選択されていない";
                 }
-                plan5();
+                setPlanMessageTime();
             }
         });
 
-        ImageButton imageButton = (ImageButton) findViewById(R.id.back);
-        imageButton.setOnClickListener(new View.OnClickListener() {
+        ImageButton backButton = (ImageButton) findViewById(R.id.button_back);
+        backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                plan3();
+                finishPlanTime();
             }
         });
 
     }
 
-    private void plan5() {
-        setContentView(R.layout.plan5);
+    private void setPlanMessageTime() {
+        setContentView(R.layout.set_plan_message_time);
         setActionBar((Toolbar) findViewById(R.id.toolbar_back));
 
-        final EditText m = (EditText) findViewById(R.id.message_time);
-        m.setText("5");
+        final EditText setMessageTimeEdit = (EditText) findViewById(R.id.set_message_time_edit);
+        setMessageTimeEdit.setText("5");
         messageTime = 5;
 
-        Button next = (Button) findViewById(R.id.next);
+        Button next = (Button) findViewById(R.id.button_next);
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String str;
-                str = m.getText().toString();
+                str = setMessageTimeEdit.getText().toString();
                 messageTime = Integer.parseInt(str);
 
-                Log.d("plan", "タイトル名:" + taskTitleName + "\n予定開始の日付:" + month + "月" + day + "日" + "\n予定開始の時間:" + hour + "時" + minute + "分"
-                        + "\n予定終了の時間:" + finishHour + "時" + finishMinute + "分" + "\n繰り返し:" + taskRepeat + "\n何分前に通知するか:" + messageTime);
+                Log.d("plan", "タイトル名:" + taskTitleName + "\n予定開始の日付:" + startMonth + "月" + startDay + "日" + startHour + "時" + startMinute + "分"
+                        + "\n予定終了の時間:" + finishMonth + "月" + finishMonth + "似り" + finishHour + "時" + finishMinute + "分" + "\n繰り返し:" + taskRepeat + "\n何分前に通知するか:" + messageTime);
 
                 finish();
             }
         });
 
-        ImageButton imageButton = (ImageButton) findViewById(R.id.back);
-        imageButton.setOnClickListener(new View.OnClickListener() {
+        ImageButton backButton = (ImageButton) findViewById(R.id.button_back);
+        backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                plan4();
+                setPlanRepeat();
             }
         });
 
     }
 
-    private void task1() {
-        setContentView(R.layout.task1);
+    private void inputTaskName() {
+        setContentView(R.layout.input_task_name);
         setActionBar((Toolbar) findViewById(R.id.toolbar_back));
 
-        final EditText editText = (EditText) findViewById(R.id.task_name);
+        final EditText inputTaskNameEdit = (EditText) findViewById(R.id.input_task_name_edit);
 
-        Button next = (Button) findViewById(R.id.next);
+        Button next = (Button) findViewById(R.id.button_next);
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                taskTitleName = editText.getText().toString();
+                taskTitleName = inputTaskNameEdit.getText().toString();
                 if (taskTitleName.equals("")) taskTitleName = "無題";
 
-                task2();
+                finishTaskTime();
             }
         });
 
-        ImageButton imageButton = (ImageButton) findViewById(R.id.back);
-        imageButton.setOnClickListener(new View.OnClickListener() {
+        ImageButton backButton = (ImageButton) findViewById(R.id.button_back);
+        backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selection();
+                selectAddType();
             }
         });
     }
 
-    private void task2() {
-        setContentView(R.layout.task2);
+    private void finishTaskTime() {
+        setContentView(R.layout.finish_task_time);
         setActionBar((Toolbar) findViewById(R.id.toolbar_back));
 
-        month = calendar.get(Calendar.MONTH);
-        day = calendar.get(Calendar.DAY_OF_MONTH);
-        hour = calendar.get(Calendar.HOUR_OF_DAY);
-        minute = calendar.get(Calendar.MINUTE);
+        finishMonth = calendar.get(Calendar.MONTH);
+        finishDay = calendar.get(Calendar.DAY_OF_MONTH);
+        finishHour = calendar.get(Calendar.HOUR_OF_DAY);
+        finishMinute = calendar.get(Calendar.MINUTE);
 
-        NumberPicker numberPicker1 = (NumberPicker) findViewById(R.id.limit_month);
-        numberPicker1.setMaxValue(12);
-        numberPicker1.setMinValue(1);
-        numberPicker1.setValue(month);
-        numberPicker1.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+        NumberPicker finishMonthNumPick = (NumberPicker) findViewById(R.id.finish_month_num_pick);
+        finishMonthNumPick.setMaxValue(12);
+        finishMonthNumPick.setMinValue(1);
+        finishMonthNumPick.setValue(finishMonth);
+        finishMonthNumPick.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-                month = newVal;
+                finishMonth = newVal;
             }
         });
 
-        NumberPicker numberPicker2 = (NumberPicker) findViewById(R.id.limit_day);
-        numberPicker2.setMaxValue(31);
-        numberPicker2.setMinValue(1);
-        numberPicker2.setValue(day);
-        numberPicker2.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+        NumberPicker finishDayNumPick = (NumberPicker) findViewById(R.id.finish_day_num_pick);
+        finishDayNumPick.setMaxValue(31);
+        finishDayNumPick.setMinValue(1);
+        finishDayNumPick.setValue(finishDay);
+        finishDayNumPick.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-                day = newVal;
+                finishDay = newVal;
             }
         });
 
-        NumberPicker numberPicker3 = (NumberPicker) findViewById(R.id.limit_hour);
-        numberPicker3.setMaxValue(23);
-        numberPicker3.setMinValue(0);
-        numberPicker3.setValue(hour);
-        numberPicker3.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+        NumberPicker finishHourNumPick = (NumberPicker) findViewById(R.id.finish_hour_num_pick);
+        finishHourNumPick.setMaxValue(23);
+        finishHourNumPick.setMinValue(0);
+        finishHourNumPick.setValue(finishHour);
+        finishHourNumPick.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-                hour = newVal;
+                finishHour = newVal;
             }
         });
 
-        NumberPicker numberPicker4 = (NumberPicker) findViewById(R.id.limit_minute);
-        numberPicker4.setMaxValue(59);
-        numberPicker4.setMinValue(0);
-        numberPicker4.setValue(minute);
-        numberPicker4.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+        NumberPicker finishMinuteNumPick = (NumberPicker) findViewById(R.id.finish_minute_num_pick);
+        finishMinuteNumPick.setMaxValue(59);
+        finishMinuteNumPick.setMinValue(0);
+        finishMinuteNumPick.setValue(finishMinute);
+        finishMinuteNumPick.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-                minute = newVal;
+                finishMinute = newVal;
             }
         });
 
-        Button next = (Button) findViewById(R.id.next);
+        Button next = (Button) findViewById(R.id.button_next);
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                task3();
+                setTaskRepeat();
             }
         });
 
-        Button noPeriod = (Button) findViewById(R.id.no_period);
-        noPeriod.setOnClickListener(new View.OnClickListener() {
+        Button noLimit = (Button) findViewById(R.id.no_limit);
+        noLimit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                month = -1;
-                task3();
+                startMonth = -1;
+                setTaskRepeat();
             }
         });
 
-        ImageButton imageButton = (ImageButton) findViewById(R.id.back);
-        imageButton.setOnClickListener(new View.OnClickListener() {
+        ImageButton backButton = (ImageButton) findViewById(R.id.button_back);
+        backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                task1();
+                inputTaskName();
             }
         });
 
     }
 
-    private void task3() {
-        setContentView(R.layout.task3);
+    private void setTaskRepeat() {
+        setContentView(R.layout.set_task_repeat);
         setActionBar((Toolbar) findViewById(R.id.toolbar_back));
 
-        final RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radio_task);
+        final RadioGroup planRepeatRadioGroup = (RadioGroup) findViewById(R.id.plan_repeat_radio_group);
 
-        Button next = (Button) findViewById(R.id.next);
+        Button next = (Button) findViewById(R.id.button_next);
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int num = radioGroup.getCheckedRadioButtonId();
+                int num = planRepeatRadioGroup.getCheckedRadioButtonId();
 
                 if (num != -1) {
                     taskRepeat = String.valueOf(((RadioButton) findViewById(num)).getText());
                 } else {
                     taskRepeat = "選択されてない";
                 }
-                task4();
+                setMust();
             }
         });
 
-        ImageButton imageButton = (ImageButton) findViewById(R.id.back);
-        imageButton.setOnClickListener(new View.OnClickListener() {
+        ImageButton backButton = (ImageButton) findViewById(R.id.button_back);
+        backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                task2();
+                finishTaskTime();
             }
         });
 
     }
 
-    private void task4() {
-        setContentView(R.layout.task4);
+    private void setMust() {
+        setContentView(R.layout.set_must);
         setActionBar((Toolbar) findViewById(R.id.toolbar_back));
 
-        Button no = (Button) findViewById(R.id.no_m);
-        no.setOnClickListener(new View.OnClickListener() {
+        Button noMust = (Button) findViewById(R.id.no_must);
+        noMust.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 isMust = false;
-                task5();
+                setShould();
             }
         });
 
-        Button yes = (Button) findViewById(R.id.yes_m);
-        yes.setOnClickListener(new View.OnClickListener() {
+        Button yesMust = (Button) findViewById(R.id.yes_must);
+        yesMust.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 isMust = true;
-                task5();
+                setShould();
             }
         });
 
-        ImageButton imageButton = (ImageButton) findViewById(R.id.back);
-        imageButton.setOnClickListener(new View.OnClickListener() {
+        ImageButton backButton = (ImageButton) findViewById(R.id.button_back);
+        backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                task3();
+                setTaskRepeat();
             }
         });
     }
 
-    private void task5() {
-        setContentView(R.layout.task5);
+    private void setShould() {
+        setContentView(R.layout.set_should);
         setActionBar((Toolbar) findViewById(R.id.toolbar_back));
 
-        Button no = (Button) findViewById(R.id.no_s);
-        no.setOnClickListener(new View.OnClickListener() {
+        Button noShould = (Button) findViewById(R.id.no_should);
+        noShould.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 isShould = false;
-                task6();
+                setWantTo();
             }
         });
 
-        Button yes = (Button) findViewById(R.id.yes_s);
-        yes.setOnClickListener(new View.OnClickListener() {
+        Button yesShould = (Button) findViewById(R.id.yes_should);
+        yesShould.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 isShould = true;
-                task6();
+                setWantTo();
             }
         });
 
-        ImageButton imageButton = (ImageButton) findViewById(R.id.back);
-        imageButton.setOnClickListener(new View.OnClickListener() {
+        ImageButton backButton = (ImageButton) findViewById(R.id.button_back);
+        backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                task4();
+                setMust();
             }
         });
 
     }
 
-    private void task6() {
-        setContentView(R.layout.task6);
+    private void setWantTo() {
+        setContentView(R.layout.set_want_to);
         setActionBar((Toolbar) findViewById(R.id.toolbar_back));
 
-        Button no = (Button) findViewById(R.id.no_w);
-        no.setOnClickListener(new View.OnClickListener() {
+        Button noWantTo = (Button) findViewById(R.id.no_want_to);
+        noWantTo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 isWant = false;
-                task7();
+                setTaskMessageTime();
             }
         });
 
@@ -498,45 +525,45 @@ public class TaskAddition extends Activity {
             @Override
             public void onClick(View v) {
                 isWant = true;
-                task7();
+                setTaskMessageTime();
             }
         });
 
-        ImageButton imageButton = (ImageButton) findViewById(R.id.back);
+        ImageButton imageButton = (ImageButton) findViewById(R.id.button_back);
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                task5();
+                setShould();
             }
         });
 
     }
 
-    private void task7() {
-        setContentView(R.layout.task7);
+    private void setTaskMessageTime() {
+        setContentView(R.layout.set_task_message_time);
         setActionBar((Toolbar) findViewById(R.id.toolbar_back));
 
-        final EditText finishHourEditText = (EditText) findViewById(R.id.finish_hour);
-        finishHourEditText.setText("0");
+        final EditText finishHourEdit = (EditText) findViewById(R.id.finish_hour_num_pick);
+        finishHourEdit.setText("0");
         finishHour = 0;
 
-        final EditText finishMinutesEditText = (EditText) findViewById(R.id.finish_minute);
-        finishMinutesEditText.setText("5");
+        final EditText finishMinutesEdit = (EditText) findViewById(R.id.finish_minute_num_pick);
+        finishMinutesEdit.setText("5");
         finishMinute = 5;
 
-        Button next = (Button) findViewById(R.id.next);
+        Button next = (Button) findViewById(R.id.button_next);
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                finishHour = Integer.parseInt(finishHourEditText.getText().toString());
-                finishMinute = Integer.parseInt(finishMinutesEditText.getText().toString());
+                finishHour = Integer.parseInt(finishHourEdit.getText().toString());
+                finishMinute = Integer.parseInt(finishMinutesEdit.getText().toString());
 
-                if (month == -1) {
+                if (startMonth == -1) {
                     dateLimit = -1;
                 } else {
-                    dateLimit = month  * 100 + day;
-                    timeLimit = TaskAddition.this.hour * 100 + day;
+                    dateLimit = startMonth * 100 + startDay;
+                    timeLimit = TaskAddition.this.startHour * 100 + startDay;
                 }
 
                 Log.d("task", "タイトル名:" + taskTitleName + "\n期限の開始:" + dateLimit + "\n繰り返し:" + taskRepeat
@@ -548,11 +575,11 @@ public class TaskAddition extends Activity {
             }
         });
 
-        ImageButton imageButton = (ImageButton) findViewById(R.id.back);
-        imageButton.setOnClickListener(new View.OnClickListener() {
+        ImageButton backButton = (ImageButton) findViewById(R.id.button_back);
+        backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                task6();
+                setWantTo();
             }
         });
     }

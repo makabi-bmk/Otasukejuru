@@ -10,11 +10,13 @@
         android:id="@+id/toolbar_back"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="0dp"
         android:background="?android:colorPrimary"
-        android:minHeight="?android:actionBarSize">
+        android:minHeight="?android:actionBarSize"
+        android:padding="0dp">
 
         <ImageButton
-            android:id="@+id/back"
+            android:id="@+id/button_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/ic_arrow_back_white_48dp"/>
@@ -24,7 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="7dp"
-        android:text="タスクの期限"
+        android:text="予定開始時間"
         android:textColor="@color/colorPrimary"
         android:textSize="30sp"/>
 
@@ -33,20 +35,19 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="10dp"
-        android:text="期限はいつまでですか？"
+        android:text="予定はいつからですか？"
         android:textSize="25sp"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="170dp"
-        android:layout_marginLeft="100dp"
-        android:layout_marginTop="5dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="90dp"
+        android:layout_marginTop="80dp"
         android:gravity="center"
         android:orientation="horizontal">
 
-
         <NumberPicker
-            android:id="@+id/limit_month"
+            android:id="@+id/start_month_num_pick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
@@ -56,10 +57,10 @@
             android:layout_marginLeft="4dp"
             android:layout_marginRight="4dp"
             android:text="月"
-            android:textSize="16sp"/>
+            android:textSize="25sp"/>
 
         <NumberPicker
-            android:id="@+id/limit_day"
+            android:id="@+id/start_day_num_pick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
@@ -69,18 +70,19 @@
             android:layout_marginLeft="4dp"
             android:layout_marginRight="4dp"
             android:text="日"
-            android:textSize="16sp"/>
+            android:textSize="25sp"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="170dp"
-        android:layout_marginLeft="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="90dp"
+        android:layout_marginTop="80dp"
         android:gravity="center"
         android:orientation="horizontal">
 
         <NumberPicker
-            android:id="@+id/limit_hour"
+            android:id="@+id/start_hour_num_pick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
@@ -90,10 +92,10 @@
             android:layout_marginLeft="4dp"
             android:layout_marginRight="4dp"
             android:text="時"
-            android:textSize="16sp"/>
+            android:textSize="25sp"/>
 
         <NumberPicker
-            android:id="@+id/limit_minute"
+            android:id="@+id/start_minute_num_pick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
@@ -103,35 +105,24 @@
             android:layout_marginLeft="4dp"
             android:layout_marginRight="4dp"
             android:text="分"
-            android:textSize="16sp"/>
+            android:textSize="25sp"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="bottom"
-        android:orientation="horizontal">
+        android:gravity="bottom">
 
         <Button
-            android:id="@+id/no_period"
+            android:id="@+id/button_next"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#FBFBF0"
-            android:text="期限なし"
-            android:textColor="@color/colorPrimary"
-            android:textSize="20dp"/>
-
-        <Button
-            android:id="@+id/next"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="210dp"
+            android:layout_marginLeft="300dp"
             android:background="#FBFBF0"
             android:text="次へ"
             android:textColor="@color/colorPrimary"
-            android:textSize="20dp"/>
+            android:textSize="20sp"/>
 
     </LinearLayout>
 </LinearLayout>
