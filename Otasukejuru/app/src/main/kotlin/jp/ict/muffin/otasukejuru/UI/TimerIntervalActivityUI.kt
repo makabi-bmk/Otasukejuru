@@ -11,6 +11,7 @@ class TimerIntervalActivityUI : AnkoComponent<TimerIntervalActivity> {
     override fun createView(ui: AnkoContext<TimerIntervalActivity>): View = with(ui) {
         
         relativeLayout {
+            backgroundColor = Color.argb(255, 251, 251, 240)
             textView {
                 id = R.id.titleInterval
                 text = "集中時間と休憩時間"

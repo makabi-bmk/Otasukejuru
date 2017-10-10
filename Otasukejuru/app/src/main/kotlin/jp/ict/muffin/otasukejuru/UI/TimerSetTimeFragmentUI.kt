@@ -21,6 +21,7 @@ class TimerSetTimeFragmentUI : AnkoComponent<TimerSetTimeFragment> {
     
     override fun createView(ui: AnkoContext<TimerSetTimeFragment>): View = with(ui) {
         relativeLayout {
+            backgroundColor = Color.argb(255, 251, 251, 240)
             lparams {
                 height = matchParent
                 width = matchParent
