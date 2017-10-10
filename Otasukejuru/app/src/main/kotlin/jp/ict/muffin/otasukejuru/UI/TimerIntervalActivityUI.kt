@@ -3,6 +3,7 @@ package jp.ict.muffin.otasukejuru
 import android.graphics.Color
 import android.view.View
 import jp.ict.muffin.otasukejuru.Activity.TimerIntervalActivity
+import jp.ict.muffin.otasukejuru.Activity.TimerNotificationActivity
 import org.jetbrains.anko.*
 
 
@@ -110,9 +111,8 @@ class TimerIntervalActivityUI : AnkoComponent<TimerIntervalActivity> {
                 centerHorizontally()
             }
             
-            button {
+            button("次へ") {
                 id = R.id.nextButton
-                text = "次へ"
                 backgroundColor = Color.argb(0, 0, 0, 0)
                 textColor = Color.argb(255, 102, 183, 236)
                 textSize = 20f
@@ -121,6 +121,8 @@ class TimerIntervalActivityUI : AnkoComponent<TimerIntervalActivity> {
                 bottomMargin = dip(20)
                 below(R.id.circleFrame)
                 alignParentEnd()
+            }.setOnClickListener {
+                startActivity<TimerNotificationActivity>()
             }
         }
     }

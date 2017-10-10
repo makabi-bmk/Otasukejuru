@@ -8,6 +8,7 @@ import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.TextView
+import jp.ict.muffin.otasukejuru.Activity.TimerIntervalActivity
 import org.jetbrains.anko.*
 
 class TimerSetTimeFragmentUI : AnkoComponent<TimerSetTimeFragment> {
@@ -88,7 +89,7 @@ class TimerSetTimeFragmentUI : AnkoComponent<TimerSetTimeFragment> {
             isPushStartButton = true
             drawCircle(context, time)
         } else {
-            context.startActivity<TimerActivity>("time" to time)
+            context.startActivity<TimerIntervalActivity>("time" to time)
         }
     }
     
