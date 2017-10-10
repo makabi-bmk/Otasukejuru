@@ -66,7 +66,7 @@ class TimerIntervalActivityUI : AnkoComponent<TimerIntervalActivity> {
                 text = "休憩する時間"
             }.lparams {
                 below(R.id.focusTimeRelative)
-                topMargin = dip(10)
+//                topMargin = dip(10)
                 alignStart(R.id.focusTimeRelative)
             }
             relativeLayout {
@@ -111,10 +111,13 @@ class TimerIntervalActivityUI : AnkoComponent<TimerIntervalActivity> {
             
             button {
                 id = R.id.nextButton
-                text = "Next"
-                
+                text = "次へ"
+                backgroundColor = Color.argb(0, 0, 0, 0)
+                textColor = Color.argb(255, 102, 183, 236)
+                textSize = 20f
             }.lparams {
-                marginEnd = dip(45)
+                marginEnd = dip(30)
+                bottomMargin = dip(20)
                 below(R.id.circleFrame)
                 alignParentEnd()
             }
