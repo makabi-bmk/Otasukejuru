@@ -16,7 +16,7 @@ class TimerIntervalActivityUI : AnkoComponent<TimerIntervalActivity> {
                 textColor = Color.argb(255, 102, 183, 236)
                 textSize = 30f
             }.lparams {
-                topMargin = 10
+                topMargin = dip(10)
                 alignParentStart()
                 alignParentTop()
             }
@@ -26,7 +26,7 @@ class TimerIntervalActivityUI : AnkoComponent<TimerIntervalActivity> {
                 text = "集中する時間"
             }.lparams {
                 below(R.id.titleInterval)
-                topMargin = 10
+                topMargin = dip(10)
                 alignStart(R.id.focusTimeRelative)
             }
             
@@ -37,7 +37,7 @@ class TimerIntervalActivityUI : AnkoComponent<TimerIntervalActivity> {
                 }.lparams {
                     alignParentStart()
                     centerVertically()
-                    marginStart = 60
+                    marginStart = dip(95)
                 }
                 
                 numberPicker {
@@ -45,14 +45,15 @@ class TimerIntervalActivityUI : AnkoComponent<TimerIntervalActivity> {
                 }.lparams {
                     alignParentEnd()
                     centerVertically()
-                    marginEnd = 60
+                    marginEnd = dip(95)
                 }
                 
             }.lparams {
                 alignParentStart()
                 alignParentEnd()
                 below(R.id.titleIntervalFocusTime)
-                height = 100
+                height = dip(100)
+                width = matchParent
             }
             
             textView {
@@ -60,7 +61,7 @@ class TimerIntervalActivityUI : AnkoComponent<TimerIntervalActivity> {
                 text = "休憩する時間"
             }.lparams {
                 below(R.id.focusTimeRelative)
-                topMargin = 10
+                topMargin = dip(10)
                 alignStart(R.id.focusTimeRelative)
             }
             relativeLayout {
@@ -70,7 +71,7 @@ class TimerIntervalActivityUI : AnkoComponent<TimerIntervalActivity> {
                 }.lparams {
                     alignParentStart()
                     centerVertically()
-                    marginStart = 60
+                    marginStart = dip(95)
                 }
                 
                 numberPicker {
@@ -78,21 +79,21 @@ class TimerIntervalActivityUI : AnkoComponent<TimerIntervalActivity> {
                 }.lparams {
                     alignParentEnd()
                     centerVertically()
-                    marginEnd = 60
+                    marginEnd = dip(95)
                 }
                 
             }.lparams {
                 alignParentStart()
                 alignParentEnd()
                 below(R.id.titleIntervalBreakTime)
-                height = 100
+                height = dip(100)
             }
             
             frameLayout {
                 id = R.id.circleFrame
             }.lparams {
-                width = 150
-                height = 150
+                width = dip(150)
+                height = dip(150)
                 below(R.id.intervalTimeRelative)
                 centerHorizontally()
             }
@@ -102,7 +103,7 @@ class TimerIntervalActivityUI : AnkoComponent<TimerIntervalActivity> {
                 text = "Next"
                 
             }.lparams {
-                marginEnd = 45
+                marginEnd = dip(45)
                 below(R.id.circleFrame)
                 alignParentEnd()
             }
