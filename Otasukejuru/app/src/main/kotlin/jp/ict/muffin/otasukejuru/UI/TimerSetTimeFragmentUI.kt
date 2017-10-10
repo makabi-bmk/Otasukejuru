@@ -95,10 +95,16 @@ class TimerSetTimeFragmentUI : AnkoComponent<TimerSetTimeFragment> {
     private fun drawCircle(context: Context, time: Long) {
         val colors = arrayListOf(Color.argb(255, 255, 0, 0), Color.argb(255, 251, 251, 240))
         val init = arrayListOf(true, false)
+        val drawTime: Long = if (time % 60 == 0L) {
+            60L
+        } else {
+            time % 60L
+        }
         (0 until 2).forEach {
-            val circleGraphView = CircleGraphView(context, colors[it], time, init[it])
+            val circleGraphView = CircleGraphView(context, colors[it], drawTime, init[it])
             circle.addView(circleGraphView)
             circleGraphView.startAnimation()
         }
+        remainingHourText.text = ((time - 1) / 60).toString()
     }
 }
