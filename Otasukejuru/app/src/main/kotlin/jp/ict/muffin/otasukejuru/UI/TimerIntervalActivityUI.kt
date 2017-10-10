@@ -36,7 +36,8 @@ class TimerIntervalActivityUI : AnkoComponent<TimerIntervalActivity> {
                     id = R.id.focusHourNumPick
                     minValue = 0
                     maxValue = 24
-                    setFormatter { value -> String.format("%02d", value) }}.lparams {
+                    setFormatter { value -> String.format("%02d", value) }
+                }.lparams {
                     alignParentStart()
                     centerVertically()
                     marginStart = dip(95)
