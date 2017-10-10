@@ -39,20 +39,73 @@ class TimerIntervalActivityUI : AnkoComponent<TimerIntervalActivity> {
                     centerVertically()
                     marginStart = 60
                 }
-    
+                
                 numberPicker {
                     id = R.id.focusMinuteNumPick
                 }.lparams {
-                    alignParentStart()
+                    alignParentEnd()
                     centerVertically()
-                    marginStart = 120
+                    marginEnd = 60
                 }
                 
             }.lparams {
-                alignEnd(R.id.nextButton)
+                alignParentStart()
+                alignParentEnd()
                 below(R.id.titleIntervalFocusTime)
+                height = 100
+            }
+            
+            textView {
+                id = R.id.titleIntervalBreakTime
+                text = "休憩する時間"
+            }.lparams {
+                below(R.id.focusTimeRelative)
+                topMargin = 10
+                alignStart(R.id.focusTimeRelative)
+            }
+            relativeLayout {
+                id = R.id.intervalTimeRelative
+                numberPicker {
+                    id = R.id.intervalHourNumPick
+                }.lparams {
+                    alignParentStart()
+                    centerVertically()
+                    marginStart = 60
+                }
+                
+                numberPicker {
+                    id = R.id.intervalMinuteNumPick
+                }.lparams {
+                    alignParentEnd()
+                    centerVertically()
+                    marginEnd = 60
+                }
+                
+            }.lparams {
+                alignParentStart()
+                alignParentEnd()
+                below(R.id.titleIntervalBreakTime)
+                height = 100
+            }
+            
+            frameLayout {
+                id = R.id.circleFrame
+            }.lparams {
+                width = 150
+                height = 150
+                below(R.id.intervalTimeRelative)
+                centerHorizontally()
+            }
+            
+            button {
+                id = R.id.nextButton
+                text = "Next"
+                
+            }.lparams {
+                marginEnd = 45
+                below(R.id.circleFrame)
+                alignParentEnd()
             }
         }
-        
     }
 }

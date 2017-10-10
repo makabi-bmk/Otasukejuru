@@ -3,11 +3,13 @@
     <item name="titleInterval" type="id"/>
     <item name="titleIntervalFocusTime" type="id"/>
     <item name="focusTimeRelative" type="id"/>
-    <item name="breakTimeRelative" type="id"/>
+    <item name="intervalTimeRelative" type="id"/>
     <item name="circleFrame" type="id"/>
+    <item name="miniCircleFrame" type="id"/>
     <item name="nextButton" type="id"/>
     <item name="focusHourNumPick" type="id"/>
     <item name="focusMinuteNumPick" type="id"/>
     <item name="intervalHourNumPick" type="id"/>
     <item name="intervalMinuteNumPick" type="id"/>
+    <item name="titleIntervalBreakTime" type="id"/>
 </resources>
