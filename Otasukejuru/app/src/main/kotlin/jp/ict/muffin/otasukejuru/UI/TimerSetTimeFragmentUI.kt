@@ -28,18 +28,20 @@ class TimerSetTimeFragmentUI : AnkoComponent<TimerSetTimeFragment> {
                 backgroundColor = Color.argb(0, 0, 0, 0)
                 id = R.id.circleFrame
             }.lparams {
-                height = GlobalValue.displayWidth - 30
-                width = GlobalValue.displayWidth - 30
-                topMargin = 30
-                leftMargin = 30
+                height = dip(GlobalValue.displayWidth / 2 - 30)
+                width = dip(GlobalValue.displayWidth / 2 - 30)
+                topMargin = dip(30)
+                alignParentTop()
+                centerHorizontally()
             }
             circleMini = frameLayout {
             }.lparams {
                 translationZ = 2F
-                height = GlobalValue.displayWidth / 3
-                width = GlobalValue.displayWidth / 3
-                topMargin = GlobalValue.displayWidth / 3 + 15
-                leftMargin = GlobalValue.displayWidth / 3 + 15
+                height = dip(GlobalValue.displayWidth / 5)
+                width = dip(GlobalValue.displayWidth / 5)
+                topMargin = dip(GlobalValue.displayWidth / 5 - 20)
+                centerHorizontally()
+                alignParentTop()
                 remainingHourText = textView {
                     text = ""
                     textSize = 40F
@@ -47,8 +49,9 @@ class TimerSetTimeFragmentUI : AnkoComponent<TimerSetTimeFragment> {
                     translationZ = 2F
                     width = wrapContent
                     height = wrapContent
-                    topMargin = GlobalValue.displayWidth / 2 - 40
+                    topMargin = dip(GlobalValue.displayWidth / 4 - 20)
                     centerHorizontally()
+                    alignParentTop()
                 }
             }
             linearLayout {
@@ -64,7 +67,7 @@ class TimerSetTimeFragmentUI : AnkoComponent<TimerSetTimeFragment> {
                     inputType = InputType.TYPE_CLASS_NUMBER
                 }.lparams {
                     height = wrapContent
-                    width = 400
+                    width = dip(300)
                 }
             }.lparams {
                 below(R.id.circleFrame)
