@@ -64,7 +64,7 @@ def add_schedule():
         logger.debug('err invalid content_type. url: /add/schedule, '
                      'content_type: {}'.format(request.content_type))
         return 'failed'
-    schedule_name = request.json['schedule']
+    schedule_name = request.json['schedule_name']
     start_date = request.json['start_date']
     end_date = request.json['end_date']
     notice = request.json['notice']
