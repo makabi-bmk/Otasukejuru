@@ -12,4 +12,7 @@
     <item name="intervalHourNumPick" type="id"/>
     <item name="intervalMinuteNumPick" type="id"/>
     <item name="titleIntervalBreakTime" type="id"/>
+    <item name="titleNotification" type="id"/>
+    <item name="notificationNumPick" type="id"/>
+    <item name="notificationText" type="id"/>
 </resources>
