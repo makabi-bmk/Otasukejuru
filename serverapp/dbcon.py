@@ -116,12 +116,13 @@ def check_days(start_time: dt.datetime, end_time: dt.datetime):
 
 
 def add_every(name: str, repeat_type: int, start_time: dt.datetime,
-              end_time: dt.datetime) -> None:
+              end_time: dt.datetime, repeat: int) -> None:
     post = {
         "name": name,
         "repeat_type": repeat_type,
         "start_time": start_time,
         "end_time": end_time,
+        "repeat": repeat
     }
     print(post)
     # every_col.insert_one(post)
