@@ -19,6 +19,7 @@ class TimerIntervalActivityUI : AnkoComponent<TimerIntervalActivity> {
                 textSize = 30f
             }.lparams {
                 topMargin = dip(10)
+                leftMargin = dip(30)
                 alignParentStart()
                 alignParentTop()
             }
@@ -29,6 +30,7 @@ class TimerIntervalActivityUI : AnkoComponent<TimerIntervalActivity> {
             }.lparams {
                 below(R.id.titleInterval)
                 topMargin = dip(10)
+                leftMargin = dip(50)
                 alignStart(R.id.focusTimeRelative)
             }
             
@@ -70,6 +72,7 @@ class TimerIntervalActivityUI : AnkoComponent<TimerIntervalActivity> {
             }.lparams {
                 below(R.id.focusTimeRelative)
 //                topMargin = dip(10)
+                leftMargin = dip(50)
                 alignStart(R.id.focusTimeRelative)
             }
             relativeLayout {
