@@ -2,6 +2,7 @@ package jp.ict.muffin.otasukejuru
 
 import android.app.AlertDialog
 import android.content.Context.LAYOUT_INFLATER_SERVICE
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.support.v4.app.Fragment
@@ -77,13 +78,15 @@ class ToDoListFragment : Fragment() {
                 dateTextView.apply {
                     text = diffDays.toString()
                     if (it.priority == 0) {
-                        textColor = context.resources.getColor(R.color.mostPriority)
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                            textColor = context.getColor(R.color.mostPriority)
+                        }
                     }
                 }
                 cardView.apply {
                     tag = it.limitDate
                     setOnClickListener {
-                        createDialog(tag.toString())
+                        createDialog()
                     }
                 }
                 taskNameTextView.text = it.name
@@ -118,7 +121,7 @@ class ToDoListFragment : Fragment() {
         }
     }
     
-    private fun createDialog(tagName: String) {
+    private fun createDialog() {
         val listDialog = arrayOfNulls<String>(3)
         listDialog[0] = "開始"
         listDialog[1] = "変更"
