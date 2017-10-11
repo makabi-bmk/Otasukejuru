@@ -11,9 +11,9 @@ class TimerNotificationActivityUI : AnkoComponent<TimerNotificationActivity> {
         
         relativeLayout {
             backgroundColor = Color.argb(255, 251, 251, 240)
-            textView {
+            
+            textView("終了前の通知") {
                 id = R.id.titleInterval
-                text = "終了前の通知"
                 textColor = Color.argb(255, 102, 183, 236)
                 textSize = 30f
             }.lparams {
@@ -22,9 +22,8 @@ class TimerNotificationActivityUI : AnkoComponent<TimerNotificationActivity> {
                 alignParentTop()
             }
             
-            textView {
+            textView("終了何分前に\n通知しますか？") {
                 id = R.id.titleNotification
-                text = "終了何分前に\n通知しますか？"
                 textSize = 30f
             }.lparams {
                 centerHorizontally()
@@ -32,6 +31,7 @@ class TimerNotificationActivityUI : AnkoComponent<TimerNotificationActivity> {
             }
             
             relativeLayout {
+                
                 numberPicker {
                     id = R.id.notificationNumPick
                     maxValue = 30
@@ -40,18 +40,20 @@ class TimerNotificationActivityUI : AnkoComponent<TimerNotificationActivity> {
                     centerVertically()
                     alignParentStart()
                 }
-                textView {
+                
+                textView("分前") {
                     id = R.id.notificationText
-                    text = "分前"
                     textSize = 30f
                 }.lparams {
                     centerVertically()
                     rightOf(R.id.notificationNumPick)
                 }
+                
             }.lparams {
                 centerHorizontally()
                 centerVertically()
             }
+            
             button("次へ") {
                 id = R.id.nextButton
                 backgroundColor = Color.argb(0, 0, 0, 0)

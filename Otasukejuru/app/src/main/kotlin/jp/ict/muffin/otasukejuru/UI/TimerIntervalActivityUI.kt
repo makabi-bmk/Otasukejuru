@@ -12,9 +12,9 @@ class TimerIntervalActivityUI : AnkoComponent<TimerIntervalActivity> {
         
         relativeLayout {
             backgroundColor = Color.argb(255, 251, 251, 240)
-            textView {
+            
+            textView("集中時間と休憩時間") {
                 id = R.id.titleInterval
-                text = "集中時間と休憩時間"
                 textColor = Color.argb(255, 102, 183, 236)
                 textSize = 30f
             }.lparams {
@@ -24,9 +24,8 @@ class TimerIntervalActivityUI : AnkoComponent<TimerIntervalActivity> {
                 alignParentTop()
             }
             
-            textView {
+            textView("集中する時間") {
                 id = R.id.titleIntervalFocusTime
-                text = "集中する時間"
             }.lparams {
                 below(R.id.titleInterval)
                 topMargin = dip(10)
@@ -36,6 +35,7 @@ class TimerIntervalActivityUI : AnkoComponent<TimerIntervalActivity> {
             
             relativeLayout {
                 id = R.id.focusTimeRelative
+                
                 numberPicker {
                     id = R.id.focusHourNumPick
                     minValue = 0
@@ -66,17 +66,17 @@ class TimerIntervalActivityUI : AnkoComponent<TimerIntervalActivity> {
                 width = matchParent
             }
             
-            textView {
+            textView("休憩する時間") {
                 id = R.id.titleIntervalBreakTime
-                text = "休憩する時間"
             }.lparams {
                 below(R.id.focusTimeRelative)
-//                topMargin = dip(10)
                 leftMargin = dip(50)
                 alignStart(R.id.focusTimeRelative)
             }
+            
             relativeLayout {
                 id = R.id.intervalTimeRelative
+                
                 numberPicker {
                     id = R.id.intervalHourNumPick
                     minValue = 0

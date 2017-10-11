@@ -19,6 +19,7 @@ class TimerActivityUI(private val time: Long) : AnkoComponent<TimerActivity> {
     override fun createView(ui: AnkoContext<TimerActivity>): View = with(ui) {
         linearLayout {
             backgroundColor = Color.argb(255, 251, 251, 240)
+            
             relativeLayout {
                 lparams {
                     height = matchParent
