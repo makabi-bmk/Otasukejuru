@@ -17,7 +17,7 @@ app = Flask(__name__)
 
 def change_timezone(date: str, timezone='Asia/Tokyo') -> dt.datetime:
     if isinstance(date, str):
-        return dt.datetime.strptime(date, '%Y-%m-%d %H:%M:%S').replace(
+        return strtime.str_to_datetime(date).replace(
             tzinfo=pytz.timezone(timezone))
     elif isinstance(date, dt.datetime):
         return date.replace(tzinfo=pytz.timezone(timezone))
@@ -48,9 +48,9 @@ def add_task():
                      '{}'.format(request.content_type))
         return 'failed'
     task_name = request.json['task_name']
-    due_date = change_timezone(strtime.str_to_time(request.json['due_date']))
+    due_date = change_timezone(request.json['due_date'])
     task_type = request.json['task_type']
-    guide_time = request.json['guide_time']
+    guide_time = strtime.str_to_time(request.json['guide_time'])
     progress = request.json['progress']
     priority = request.json['priority']
     dbcon.add_task(task_name, due_date, task_type, guide_time,
@@ -65,10 +65,65 @@ def add_schedule():
                      'content_type: {}'.format(request.content_type))
         return 'failed'
     schedule_name = request.json['schedule_name']
-    start_date = request.json['start_date']
-    end_date = request.json['end_date']
+    start_date = change_timezone(request.json['start_date'])
+    end_date = change_timezone(request.json['end_date'])
     notice = request.json['notice']
     dbcon.add_schedule(schedule_name, start_date, end_date, notice)
+    return 'succeeded'
+
+
+@app.route('/add/every', methods=['POST'])
+def add_every():
+    if request.content_type != 'application/json':
+        logger.debug('err invalid content_type. url: /add/every, '
+                     'content_type: {}'.format(request.content_type))
+        return 'failed'
+    schedule_name = request.json['every_name']
+    start_date = change_timezone(request.json['start_date'])
+    end_date = change_timezone(request.json['end_date'])
+    notice = request.json['notice']
+    repeat = request.json['repeat']
+    dbcon.add_every(schedule_name, start_date, end_date, notice, repeat)
+    return 'succeeded'
+
+
+@app.route('/delete/task', methods=['POST'])
+def delete_task():
+    if request.content_type != 'application/json':
+        logger.debug('err invalid content_type. url: /delete/task, '
+                     'content_type: '
+                     '{}'.format(request.content_type))
+        return 'failed'
+    task_name = request.json['task_name']
+    due_date = change_timezone(request.json['due_date'])
+    # TODO: make dbcon.delete_task
+    dbcon.delete_task(task_name, due_date)
+    return 'succeeded'
+
+
+@app.route('/delete/schedule', methods=['POST'])
+def delete_schedule():
+    if request.content_type != 'application/json':
+        logger.debug('err invalid content_type. url: /delete/schedule, '
+                     'content_type: {}'.format(request.content_type))
+        return 'failed'
+    schedule_name = request.json['schedule_name']
+    start_date = change_timezone(request.json['start_date'])
+    # TODO: make dbcon.delete_task
+    dbcon.delete_schedule(schedule_name, start_date)
+    return 'succeeded'
+
+
+@app.route('/delete/every', methods=['POST'])
+def delete_every():
+    if request.content_type != 'application/json':
+        logger.debug('err invalid content_type. url: /delete/every, '
+                     'content_type: {}'.format(request.content_type))
+        return 'failed'
+    schedule_name = request.json['every_name']
+    start_date = change_timezone(request.json['start_date'])
+    # TODO: dbcon.delete_every
+    dbcon.delete_every(schedule_name, start_date)
     return 'succeeded'
 
 
