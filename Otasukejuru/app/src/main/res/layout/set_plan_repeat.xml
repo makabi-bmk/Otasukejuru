@@ -18,90 +18,98 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/ic_arrow_back_white_48dp"/>
+
     </Toolbar>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="7dp"
-        android:text="予定の繰り返し"
-        android:textColor="@color/colorPrimary"
-        android:textSize="30sp"/>
-
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="10dp"
-        android:text="この予定を繰り返し\nスケジュールに\n入れますか？"
-        android:textSize="25sp"/>
+        android:layout_height="match_parent">
 
-    <RadioGroup
-        android:id="@+id/plan_repeat_radio_group"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="60dp"
-        android:layout_marginTop="46dp">
-
-        <RadioButton
-            android:id="@+id/radio_plan1"
+        <TextView
+            android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:checked="true"
-            android:text="今日だけ"
-            android:textSize="25sp"/>
+            android:layout_centerHorizontal="true"
+            android:padding="10sp"
+            android:text="予定の繰り返し"
+            android:textColor="@color/colorPrimary"
+            android:textSize="30sp"/>
 
-        <RadioButton
-            android:id="@+id/radio_plan2"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:text="毎日"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/title"
+            android:padding="10sp"
+            android:text="この予定を繰り返し\nスケジュールに入れますか？"
             android:textSize="25sp"/>
 
-        <RadioButton
-            android:id="@+id/radio_plan3"
+        <RadioGroup
+            android:id="@+id/plan_repeat_radio_group"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:text="毎週"
-            android:textSize="25sp"/>
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true">
 
-        <RadioButton
-            android:id="@+id/radio_plan4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:text="毎月"
-            android:textSize="25sp"/>
+            <RadioButton
+                android:id="@+id/radio_plan1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:checked="true"
+                android:text="今日だけ"
+                android:textSize="25sp"/>
 
-        <RadioButton
-            android:id="@+id/radio_plan5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:text="毎年"
-            android:textSize="25sp"/>
-    </RadioGroup>
+            <RadioButton
+                android:id="@+id/radio_plan2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="毎日"
+                android:textSize="25sp"/>
+
+            <RadioButton
+                android:id="@+id/radio_plan3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="毎週"
+                android:textSize="25sp"/>
+
+            <RadioButton
+                android:id="@+id/radio_plan4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="毎月"
+                android:textSize="25sp"/>
+
+            <RadioButton
+                android:id="@+id/radio_plan5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="毎年"
+                android:textSize="25sp"/>
+        </RadioGroup>
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="bottom">
+
 
         <Button
             android:id="@+id/button_next"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="300dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
             android:background="#FBFBF0"
             android:text="次へ"
             android:textColor="@color/colorPrimary"
             android:textSize="20sp"/>
 
-    </LinearLayout>
+    </RelativeLayout>
+
+
 
 </LinearLayout>

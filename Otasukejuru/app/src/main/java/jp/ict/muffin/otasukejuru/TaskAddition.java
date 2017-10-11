@@ -508,7 +508,7 @@ public class TaskAddition extends Activity {
     }
 
     private void setWantTo() {
-        setContentView(R.layout.set_want_to);
+        setContentView(R.layout.set_want);
         setActionBar((Toolbar) findViewById(R.id.toolbar_back));
 
         Button noWantTo = (Button) findViewById(R.id.no_want_to);
