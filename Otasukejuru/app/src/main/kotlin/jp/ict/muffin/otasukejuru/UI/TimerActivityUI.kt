@@ -18,72 +18,68 @@ class TimerActivityUI(private val time: Long) : AnkoComponent<TimerActivity> {
     private lateinit var remainingHourText: TextView
     
     override fun createView(ui: AnkoContext<TimerActivity>): View = with(ui) {
-        linearLayout {
+        relativeLayout {
             backgroundColor = Color.argb(255, 251, 251, 240)
+            lparams {
+                height = matchParent
+                width = matchParent
+            }
             
-            relativeLayout {
-                lparams {
-                    height = matchParent
-                    width = matchParent
-                }
-                
-                circle = frameLayout {
-                    backgroundColor = Color.argb(0, 0, 0, 0)
-                    id = R.id.circleFrame
-                }.lparams {
-                    height = GlobalValue.displayWidth - 30
-                    width = GlobalValue.displayWidth - 30
-                    topMargin = 30
-                    leftMargin = 30
-                }
-                
-                circleMini = frameLayout {
+            circle = frameLayout {
+                backgroundColor = Color.argb(0, 0, 0, 0)
+                id = R.id.circleFrame
+            }.lparams {
+                height = GlobalValue.displayWidth - 30
+                width = GlobalValue.displayWidth - 30
+                topMargin = 30
+                leftMargin = 30
+            }
+            
+            circleMini = frameLayout {
+            }.lparams {
+                translationZ = 2F
+                height = GlobalValue.displayWidth / 3
+                width = GlobalValue.displayWidth / 3
+                topMargin = GlobalValue.displayWidth / 3 + 15
+                leftMargin = GlobalValue.displayWidth / 3 + 15
+                remainingHourText = textView {
+                    text = ""
+                    textSize = 40F
                 }.lparams {
                     translationZ = 2F
-                    height = GlobalValue.displayWidth / 3
-                    width = GlobalValue.displayWidth / 3
-                    topMargin = GlobalValue.displayWidth / 3 + 15
-                    leftMargin = GlobalValue.displayWidth / 3 + 15
-                    remainingHourText = textView {
-                        text = ""
-                        textSize = 40F
-                    }.lparams {
-                        translationZ = 2F
-                        width = wrapContent
-                        height = wrapContent
-                        topMargin = GlobalValue.displayWidth / 2 - 40
-                        centerHorizontally()
-                    }
-                }
-                
-                button("start") {
-                }.lparams {
-                    width = matchParent
+                    width = wrapContent
                     height = wrapContent
-                    below(R.id.circleFrame)
-                    onClick {
-                        if (!isPushStartButton) {
-                            startButtonClickListener(getContext())
-                        }
+                    topMargin = GlobalValue.displayWidth / 2 - 40
+                    centerHorizontally()
+                }
+            }
+            
+            button("start") {
+                onClick {
+                    if (!isPushStartButton) {
+                        startButtonClickListener(getContext())
+                        isPushStartButton = true
                     }
                 }
+            }.lparams {
+                width = matchParent
+                height = wrapContent
+                below(R.id.circleFrame)
             }
         }
     }
     
     
     private fun startButtonClickListener(context: Context) {
-        if (!isPushStartButton) {
-            
-            val circleGraphView = CircleGraphView(context,
-                    Color.argb(255, 251, 251, 240), 60, true)
-            circleMini.addView(circleGraphView)
-            circleGraphView.startAnimation()
-            
-            startTimer(context, time)
-            
-            isPushStartButton = true
-        }
+        
+        val circleGraphView = CircleGraphView(context,
+                Color.argb(255, 251, 251, 240), 60, true)
+        circleMini.addView(circleGraphView)
+        circleGraphView.startAnimation()
+        
+        startTimer(context, time)
+        
+        isPushStartButton = true
     }
     
     private fun drawCircle(context: Context, circle: FrameLayout, time: Long) {
