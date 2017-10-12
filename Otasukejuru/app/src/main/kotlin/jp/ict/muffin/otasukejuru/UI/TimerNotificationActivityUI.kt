@@ -35,8 +35,9 @@ class TimerNotificationActivityUI(private val time: Long) : AnkoComponent<TimerN
                 
                 numberPicker {
                     id = R.id.notificationNumPick
-                    maxValue = 30
-                    minValue = 5
+                    minValue = 1
+                    maxValue = 6
+                    setFormatter { value -> String.format("%d", value * 5) }
                 }.lparams {
                     centerVertically()
                     alignParentStart()
