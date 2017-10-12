@@ -8,6 +8,6 @@ class TimerNotificationActivity : AppCompatActivity() {
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        TimerNotificationActivityUI().setContentView(this)
+        TimerNotificationActivityUI(intent.getLongExtra("time", 0)).setContentView(this)
     }
 }

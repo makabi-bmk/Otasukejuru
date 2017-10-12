@@ -8,7 +8,7 @@ class TimerIntervalActivity : AppCompatActivity() {
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        TimerIntervalActivityUI().setContentView(this)
+        TimerIntervalActivityUI(intent.getLongExtra("time", 0)).setContentView(this)
     }
     
     

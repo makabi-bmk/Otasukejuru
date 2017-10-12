@@ -5,7 +5,7 @@ import android.view.View
 import org.jetbrains.anko.*
 
 
-class TimerIntervalActivityUI : AnkoComponent<TimerIntervalActivity> {
+class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerIntervalActivity> {
     override fun createView(ui: AnkoContext<TimerIntervalActivity>): View = with(ui) {
         
         relativeLayout {
@@ -124,7 +124,7 @@ class TimerIntervalActivityUI : AnkoComponent<TimerIntervalActivity> {
                 below(R.id.circleFrame)
                 alignParentEnd()
             }.setOnClickListener {
-                startActivity<TimerNotificationActivity>()
+                startActivity<TimerNotificationActivity>("time" to time)
             }
         }
     }
