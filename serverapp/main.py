@@ -82,8 +82,8 @@ def add_every():
     start_date = change_timezone(request.json['start_date'])
     end_date = change_timezone(request.json['end_date'])
     notice = request.json['notice']
-    repeat = request.json['repeat']
-    dbcon.add_every(schedule_name, start_date, end_date, notice, repeat)
+    repeat_type = request.json['repeat_type']
+    dbcon.add_every(schedule_name, start_date, end_date, notice, repeat_type)
     return 'succeeded'
 
 
@@ -96,7 +96,6 @@ def delete_task():
         return 'failed'
     task_name = request.json['task_name']
     due_date = change_timezone(request.json['due_date'])
-    # TODO: make dbcon.delete_task
     dbcon.delete_task(task_name, due_date)
     return 'succeeded'
 
@@ -109,7 +108,6 @@ def delete_schedule():
         return 'failed'
     schedule_name = request.json['schedule_name']
     start_date = change_timezone(request.json['start_date'])
-    # TODO: make dbcon.delete_task
     dbcon.delete_schedule(schedule_name, start_date)
     return 'succeeded'
 
@@ -122,7 +120,6 @@ def delete_every():
         return 'failed'
     schedule_name = request.json['every_name']
     start_date = change_timezone(request.json['start_date'])
-    # TODO: dbcon.delete_every
     dbcon.delete_every(schedule_name, start_date)
     return 'succeeded'
 
