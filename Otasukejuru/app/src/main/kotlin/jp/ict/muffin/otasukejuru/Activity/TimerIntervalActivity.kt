@@ -1,8 +1,7 @@
-package jp.ict.muffin.otasukejuru.Activity
+package jp.ict.muffin.otasukejuru
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import jp.ict.muffin.otasukejuru.TimerIntervalActivityUI
 import org.jetbrains.anko.setContentView
 
 class TimerIntervalActivity : AppCompatActivity() {

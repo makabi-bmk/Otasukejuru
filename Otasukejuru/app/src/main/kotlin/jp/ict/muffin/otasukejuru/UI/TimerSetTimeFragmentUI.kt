@@ -8,7 +8,6 @@ import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.TextView
-import jp.ict.muffin.otasukejuru.Activity.TimerIntervalActivity
 import org.jetbrains.anko.*
 
 class TimerSetTimeFragmentUI : AnkoComponent<TimerSetTimeFragment> {

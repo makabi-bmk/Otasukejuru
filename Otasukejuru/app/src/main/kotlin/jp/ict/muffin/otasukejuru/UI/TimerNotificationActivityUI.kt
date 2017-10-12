@@ -2,7 +2,6 @@ package jp.ict.muffin.otasukejuru
 
 import android.graphics.Color
 import android.view.View
-import jp.ict.muffin.otasukejuru.Activity.TimerNotificationActivity
 import org.jetbrains.anko.*
 
 
