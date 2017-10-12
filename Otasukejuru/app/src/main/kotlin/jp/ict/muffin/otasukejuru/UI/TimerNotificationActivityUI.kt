@@ -17,6 +17,7 @@ class TimerNotificationActivityUI(private val time: Long) : AnkoComponent<TimerN
                 textSize = 30f
             }.lparams {
                 topMargin = dip(10)
+                leftMargin = dip(30)
                 alignParentStart()
                 alignParentTop()
             }
@@ -25,8 +26,9 @@ class TimerNotificationActivityUI(private val time: Long) : AnkoComponent<TimerN
                 id = R.id.titleNotification
                 textSize = 30f
             }.lparams {
+                below(R.id.titleInterval)
                 centerHorizontally()
-                topMargin = dip(50)
+                topMargin = dip(30)
             }
             
             relativeLayout {
