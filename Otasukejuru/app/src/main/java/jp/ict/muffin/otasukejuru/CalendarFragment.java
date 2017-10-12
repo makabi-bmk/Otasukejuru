@@ -1,6 +1,7 @@
 package jp.ict.muffin.otasukejuru;
 
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,8 +14,6 @@ import android.widget.TextView;
 
 import java.util.Calendar;
 
-import static android.util.TypedValue.COMPLEX_UNIT_SP;
-
 public class CalendarFragment extends Fragment {
 
     Calendar cal = Calendar.getInstance();
@@ -23,6 +22,13 @@ public class CalendarFragment extends Fragment {
     //カレンダーに表示される年月日
     int year;
     int month;
+
+    //第何月曜日かカウントするための変数
+    int countMonday;
+    //春分の日、秋分の日
+    int vernalEquinoxDay, autumnalEquinoxDay;
+    //振替休日かどうかを判断する
+    boolean substituteHoliday = false;
 
     @Nullable
     @Override
@@ -86,6 +92,7 @@ public class CalendarFragment extends Fragment {
         for (int i = 0; i < 42; i++){
             layout[i] = (View) view.findViewById(xml[i]);
             textView[i] = (TextView)layout[i].findViewById(R.id.date_view);
+            textView[i].setTextColor(Color.BLACK);
         }
 
         //今日の年月日
@@ -102,51 +109,89 @@ public class CalendarFragment extends Fragment {
         int firstWeekday = cal.get(Calendar.DAY_OF_WEEK);
         //第一土曜日
         int firstSaturday = 8 - firstWeekday;
-        //土日かどうか判別するための変数
-        int saturday = firstSaturday % 7;
+
+        //月・土・日を選別するための変数
+        int monDay = (firstSaturday + 2) % 7;
+        int saturDay = firstSaturday % 7;
         int sunday = (firstSaturday + 1) % 7;
 
-        //日付の文字の大きさ(sp)
-        int textFontSize = 25;
-        int cnt = 0;
+        int elementsNum = 0;
 
         //空白スペースの表示
         for (int i = 1; i < firstWeekday; i++) {
-            layout[cnt].setClickable(false);
-            textView[cnt].setText("");
-            cnt++;
+            layout[elementsNum].setClickable(false);
+            textView[elementsNum].setText("");
+            elementsNum++;
         }
 
+        //初期化
+        countMonday = 0;
         //日付の表示
         for (int date = 1; date <= lastDayOfMonth; date++) {
-            //textView[cnt].setTextSize(COMPLEX_UNIT_SP, textFontSize);
-            //土日の日付に色を追加
-            if (date % 7 == sunday)
-                textView[cnt].setTextColor(getResources().getColor(R.color.sundayColor));
-            else if (date % 7 == saturday)
-                textView[cnt].setTextColor(getResources().getColor(R.color.saturdayColor));
+            //月曜日ならtrue
+            boolean judgeMonDay = false;
+            //日曜日ならtrue
+            boolean judgeSunDay = false;
 
-            textView[cnt].setText(String.valueOf(date));
-            textView[cnt].setClickable(true);
+
+            //月曜日かどうか判定
+            if (date % 7 == monDay) {
+                //第何月曜日かカウントする
+                countMonday++;
+                judgeMonDay = true;
+            }
+            //土日の判定
+            else if (date % 7 == sunday) {
+                textView[elementsNum].setTextColor(getResources().getColor(R.color.sundayColor));
+                judgeSunDay = true;
+            }
+            else if (date % 7 == saturDay) {
+                textView[elementsNum].setTextColor(getResources().getColor(R.color.saturdayColor));
+            }
+
+
+            //祝日かどうか判定
+            boolean addMessage = false;
+            //祝日名の取得
+            String publicHolidayName = publicHolidayDecision(date, judgeSunDay, judgeMonDay);
+            if (!(publicHolidayName.equals("NotPublicHoliday"))) {
+                textView[elementsNum].setTextColor(getResources().getColor(R.color.sundayColor));
+                addMessage = true;
+            }
+
+
+            textView[elementsNum].setText(String.valueOf(date));
+            textView[elementsNum].setClickable(true);
 
             final int finalDate = date;
-            layout[cnt].setOnClickListener(new View.OnClickListener() {
+            final String finalPublicHolidayName = publicHolidayName;
+
+            final boolean finalAddMessage = addMessage;
+            layout[elementsNum].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    new AlertDialog.Builder(getActivity())
-                            .setMessage(String.valueOf(finalDate) + "日")
-                            .setPositiveButton("OK", null)
-                            .show();
+                    if (finalAddMessage) {
+                        new AlertDialog.Builder(getActivity())
+                                .setMessage(String.valueOf(finalDate) + "日" + "\n" + finalPublicHolidayName)
+                                .setPositiveButton("OK", null)
+                                .show();
+                    } else {
+                        new AlertDialog.Builder(getActivity())
+                                .setMessage(String.valueOf(finalDate) + "日")
+                                .setPositiveButton("OK", null)
+                                .show();
+                    }
+
                 }
             });
-            cnt++;
+            elementsNum++;
         }
 
         //空白スペースの表示
-        for (int i = cnt; i < 42; i++) {
-            textView[cnt].setText("");
-            layout[cnt].setClickable(false);
-            cnt++;
+        for (int i = elementsNum; i < 42; i++) {
+            textView[elementsNum].setText("");
+            layout[elementsNum].setClickable(false);
+            elementsNum++;
 
         }
 
@@ -169,6 +214,10 @@ public class CalendarFragment extends Fragment {
                         if (month == 11){
                             year++;
                             month = 0;
+                            //年が変わったとき、春分の日と秋分の日を定義しなおす
+                            vernalEquinoxDay = (int)(20.8431+0.242194*(year - 1980) - (int)((year - 1980) / 4));
+                            autumnalEquinoxDay = (int)(23.2488 + 0.242194 * (year - 1980) - (int)((year - 1980) / 4));
+
                         } else {
                             month++;
                         }
@@ -181,22 +230,87 @@ public class CalendarFragment extends Fragment {
                         if (month == 0){
                             year--;
                             month = 11;
+                            //年が変わったとき、春分の日と秋分の日を定義しなおす
+                            vernalEquinoxDay = (int)(20.8431+0.242194*(year - 1980) - (int)((year - 1980) / 4));
+                            autumnalEquinoxDay = (int)(23.2488 + 0.242194 * (year - 1980) - (int)((year - 1980) / 4));
+
                         } else {
                             month--;
                         }
                         calendarView();
                         break;
 
-                    case FlickCheck.UP_FLICK:
-                        // 上フリック
-                        break;
-
-                    case FlickCheck.DOWN_FLICK:
-                        // 下フリック
-                        break;
                 }
             }
         };
+    }
+
+
+    public String publicHolidayDecision(int date, boolean judgeSunday, boolean judgeMonday) {
+
+        int month = this.month + 1;
+
+        if (month == 1 && date == 1){
+            if (judgeSunday) substituteHoliday = true;
+            return "元日";
+        }
+        else if (month == 1 && countMonday == 1 && judgeMonday) {
+            return "成人の日";
+        }
+        else if (month == 2 && date == 11) {
+            if (judgeSunday) substituteHoliday = true;
+            return "建国記念日";
+        }
+        else if (month == 3 && date == vernalEquinoxDay) {
+            if (judgeSunday) substituteHoliday = true;
+            return "春分の日";
+        }
+        else if (month == 4 && date == 29) {
+            if (judgeSunday) substituteHoliday = true;
+            return "昭和の日";
+        }
+        else if (month == 5 && date == 3) {
+            if (judgeSunday) substituteHoliday = true;
+            return "憲法記念日";
+        }
+        else if (month == 5 && date == 4) {
+            if (judgeSunday) substituteHoliday = true;
+            return "みどりの日";
+        }
+        else if (month == 5 && date == 5) {
+            if (judgeSunday) substituteHoliday = true;
+            return "こどもの日";
+        }
+        else if (month == 7 && countMonday == 3 && judgeMonday) {
+            return "海の日";
+        }
+        else if (month == 9 && date == autumnalEquinoxDay) {
+            if (judgeSunday) substituteHoliday = true;
+            return "秋分の日";
+        }
+        else if (month == 10 && countMonday == 2 && judgeMonday) {
+            return "体育の日";
+        }
+        else if (month == 11 && date == 3) {
+            if (judgeSunday) substituteHoliday = true;
+            return "文化の日";
+        }
+        else if (month == 11 && date == 23) {
+            if (judgeSunday) substituteHoliday = true;
+            return "勤労感謝の日";
+        }
+        else if (month == 12 && date == 23) {
+            if (judgeSunday) substituteHoliday = true;
+            return "天皇誕生日";
+        }
+        else if (substituteHoliday) {
+            substituteHoliday = false;
+            return "振替休日";
+        }
+
+        else {
+            return "NotPublicHoliday";
+        }
     }
 
 
