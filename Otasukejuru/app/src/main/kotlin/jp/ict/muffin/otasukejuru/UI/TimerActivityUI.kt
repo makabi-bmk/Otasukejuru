@@ -26,7 +26,6 @@ class TimerActivityUI(private val time: Long) : AnkoComponent<TimerActivity> {
             }
             
             circle = frameLayout {
-                backgroundColor = Color.argb(0, 0, 0, 0)
                 id = R.id.circleFrame
             }.lparams {
                 height = GlobalValue.displayWidth - 30
