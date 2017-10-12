@@ -9,6 +9,7 @@ import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.TextView
 import org.jetbrains.anko.*
+import org.jetbrains.anko.sdk25.coroutines.onClick
 
 class TimerSetTimeFragmentUI : AnkoComponent<TimerSetTimeFragment> {
     private var isPushStartButton = false
@@ -62,11 +63,12 @@ class TimerSetTimeFragmentUI : AnkoComponent<TimerSetTimeFragment> {
                 orientation = LinearLayout.HORIZONTAL
                 
                 button("start") {
+                    onClick {
+                        startButtonClickListener(getContext())
+                    }
                 }.lparams {
                     width = wrapContent
                     height = wrapContent
-                }.setOnClickListener {
-                    startButtonClickListener(context)
                 }
                 
                 editTime = editText {

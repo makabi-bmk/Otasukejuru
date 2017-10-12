@@ -3,6 +3,7 @@ package jp.ict.muffin.otasukejuru
 import android.graphics.Color
 import android.view.View
 import org.jetbrains.anko.*
+import org.jetbrains.anko.sdk25.coroutines.onClick
 
 
 class TimerNotificationActivityUI(private val time: Long) : AnkoComponent<TimerNotificationActivity> {
@@ -61,13 +62,14 @@ class TimerNotificationActivityUI(private val time: Long) : AnkoComponent<TimerN
                 backgroundColor = Color.argb(0, 0, 0, 0)
                 textColor = Color.argb(255, 102, 183, 236)
                 textSize = 20f
+                onClick {
+                    startActivity<TimerActivity>("time" to time)
+                }
             }.lparams {
                 marginEnd = dip(30)
                 bottomMargin = dip(20)
                 alignParentBottom()
                 alignParentRight()
-            }.setOnClickListener {
-                startActivity<TimerActivity>("time" to time)
             }
         }
         

@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.FrameLayout
 import android.widget.TextView
 import org.jetbrains.anko.*
+import org.jetbrains.anko.sdk25.coroutines.onClick
 
 
 class TimerActivityUI(private val time: Long) : AnkoComponent<TimerActivity> {
@@ -60,9 +61,10 @@ class TimerActivityUI(private val time: Long) : AnkoComponent<TimerActivity> {
                     width = matchParent
                     height = wrapContent
                     below(R.id.circleFrame)
-                }.setOnClickListener {
-                    if (!isPushStartButton) {
-                        startButtonClickListener(context)
+                    onClick {
+                        if (!isPushStartButton) {
+                            startButtonClickListener(getContext())
+                        }
                     }
                 }
             }

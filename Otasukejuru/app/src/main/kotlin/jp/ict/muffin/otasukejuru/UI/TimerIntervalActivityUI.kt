@@ -3,6 +3,7 @@ package jp.ict.muffin.otasukejuru
 import android.graphics.Color
 import android.view.View
 import org.jetbrains.anko.*
+import org.jetbrains.anko.sdk25.coroutines.onClick
 
 
 class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerIntervalActivity> {
@@ -118,13 +119,14 @@ class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerInter
                 backgroundColor = Color.argb(0, 0, 0, 0)
                 textColor = Color.argb(255, 102, 183, 236)
                 textSize = 20f
+                onClick {
+                    startActivity<TimerNotificationActivity>("time" to time)
+                }
             }.lparams {
                 marginEnd = dip(30)
                 bottomMargin = dip(20)
                 below(R.id.circleFrame)
                 alignParentEnd()
-            }.setOnClickListener {
-                startActivity<TimerNotificationActivity>("time" to time)
             }
         }
     }
