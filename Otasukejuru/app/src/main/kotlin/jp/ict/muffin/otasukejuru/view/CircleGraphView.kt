@@ -1,4 +1,4 @@
-package jp.ict.muffin.otasukejuru
+package jp.ict.muffin.otasukejuru.view
 
 import android.content.Context
 import android.graphics.Canvas

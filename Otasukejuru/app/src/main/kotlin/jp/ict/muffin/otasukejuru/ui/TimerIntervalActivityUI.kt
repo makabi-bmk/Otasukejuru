@@ -1,7 +1,10 @@
-package jp.ict.muffin.otasukejuru
+package jp.ict.muffin.otasukejuru.ui
 
 import android.graphics.Color
 import android.view.View
+import jp.ict.muffin.otasukejuru.R
+import jp.ict.muffin.otasukejuru.activity.TimerIntervalActivity
+import jp.ict.muffin.otasukejuru.activity.TimerNotificationActivity
 import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk25.coroutines.onClick
 

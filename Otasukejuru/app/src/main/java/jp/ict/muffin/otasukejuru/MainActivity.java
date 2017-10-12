@@ -20,6 +20,10 @@ import android.widget.TextView;
 
 import java.util.Calendar;
 
+import jp.ict.muffin.otasukejuru.fragment.TimerSetTimeFragment;
+import jp.ict.muffin.otasukejuru.fragment.ToDoListFragment;
+import jp.ict.muffin.otasukejuru.object.GlobalValue;
+
 public class MainActivity extends AppCompatActivity {
     private GlobalValue globalValue = GlobalValue.INSTANCE;
 

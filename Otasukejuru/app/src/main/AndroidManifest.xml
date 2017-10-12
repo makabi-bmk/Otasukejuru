@@ -25,12 +25,12 @@
             android:label="">
         </activity>
         <activity
-            android:name=".TimerActivity"
+            android:name=".activity.TimerActivity"
             android:label="">
         </activity>
-        <activity android:name=".TimerIntervalActivity">
+        <activity android:name=".activity.TimerIntervalActivity">
         </activity>
-        <activity android:name=".TimerNotificationActivity">
+        <activity android:name=".activity.TimerNotificationActivity">
         </activity>
     </application>
 

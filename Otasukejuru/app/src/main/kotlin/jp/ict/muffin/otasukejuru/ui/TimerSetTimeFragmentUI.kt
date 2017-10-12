@@ -1,4 +1,4 @@
-package jp.ict.muffin.otasukejuru
+package jp.ict.muffin.otasukejuru.ui
 
 import android.content.Context
 import android.graphics.Color
@@ -8,6 +8,11 @@ import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.TextView
+import jp.ict.muffin.otasukejuru.view.CircleGraphView
+import jp.ict.muffin.otasukejuru.`object`.GlobalValue
+import jp.ict.muffin.otasukejuru.R
+import jp.ict.muffin.otasukejuru.fragment.TimerSetTimeFragment
+import jp.ict.muffin.otasukejuru.activity.TimerIntervalActivity
 import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk25.coroutines.onClick
 

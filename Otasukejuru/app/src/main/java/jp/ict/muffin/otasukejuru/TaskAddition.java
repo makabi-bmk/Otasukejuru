@@ -14,6 +14,9 @@ import android.widget.Toolbar;
 
 import java.util.Calendar;
 
+import jp.ict.muffin.otasukejuru.object.GlobalValue;
+import jp.ict.muffin.otasukejuru.object.TaskInformation;
+
 
 public class TaskAddition extends Activity {
 

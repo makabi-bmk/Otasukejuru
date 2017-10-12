@@ -1,4 +1,4 @@
-package jp.ict.muffin.otasukejuru
+package jp.ict.muffin.otasukejuru.other
 
 import android.os.CountDownTimer
 import android.widget.TextView
