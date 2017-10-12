@@ -59,6 +59,7 @@ class TimerActivityUI(private val time: Long) : AnkoComponent<TimerActivity> {
                     if (!isPushStartButton) {
                         startButtonClickListener(getContext())
                         isPushStartButton = true
+                        
                     }
                 }
             }.lparams {
