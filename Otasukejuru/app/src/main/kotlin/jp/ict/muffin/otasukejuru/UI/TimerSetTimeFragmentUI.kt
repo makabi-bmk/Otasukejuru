@@ -46,9 +46,6 @@ class TimerSetTimeFragmentUI : AnkoComponent<TimerSetTimeFragment> {
 //                leftMargin = GlobalValue.displayWidth / 3 + 15
                 centerHorizontally()
                 centerVertically()
-            }
-            
-            relativeLayout {
                 remainingHourText = textView("") {
                     textSize = 40F
                 }.lparams {
@@ -60,12 +57,6 @@ class TimerSetTimeFragmentUI : AnkoComponent<TimerSetTimeFragment> {
 //                    centerHorizontally()
                     centerInParent()
                 }
-            }.lparams {
-//                centerHorizontally()
-//                centerVertically()
-                centerInParent()
-                height = GlobalValue.displayWidth / 3
-                width = GlobalValue.displayWidth / 3
             }
             
             linearLayout {
