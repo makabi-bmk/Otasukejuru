@@ -12,10 +12,10 @@ logger.setLevel(DEBUG)
 logger.addHandler(handler)
 logger.propagate = False
 
-# client = MongoClient('localhost', 27017)
-# every_col = client['every']
-# schedule_col = client['schedule']
-# task_col = client['task']
+client = MongoClient('localhost', 27017)
+every_col = client['every']
+schedule_col = client['schedule']
+task_col = client['task']
 
 res_list = []
 
@@ -126,6 +126,18 @@ def add_every(name: str, start_time: dt.datetime, end_time: dt.datetime,
     }
     print(post)
     # every_col.insert_one(post)
+
+
+def delete_task(task_name: str, start_date: dt.datetime):
+    task_col.remove({"task_name": task_name, "start_time": start_date})
+
+
+def delete_schedule(schedule_name: str, start_date: dt.datetime):
+    task_col.remove({"schedule_name": schedule_name, "start_time": start_date})
+
+
+def delete_every(every_name: str, start_date: dt.datetime):
+    task_col.remove({"every_name": every_name, "start_time": start_date})
 
 
 if __name__ == '__main__':
