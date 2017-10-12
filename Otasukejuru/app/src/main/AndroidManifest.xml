@@ -28,9 +28,9 @@
             android:name=".TimerActivity"
             android:label="">
         </activity>
-        <activity android:name=".Activity.TimerIntervalActivity">
+        <activity android:name=".TimerIntervalActivity">
         </activity>
-        <activity android:name=".Activity.TimerNotificationActivity">
+        <activity android:name=".TimerNotificationActivity">
         </activity>
     </application>
 
