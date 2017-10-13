@@ -2,6 +2,7 @@ package jp.ict.muffin.otasukejuru.ui
 
 import android.graphics.Color
 import android.view.View
+import android.widget.NumberPicker
 import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.activity.TimerIntervalActivity
 import jp.ict.muffin.otasukejuru.activity.TimerNotificationActivity
@@ -10,8 +11,13 @@ import org.jetbrains.anko.sdk25.coroutines.onClick
 
 
 class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerIntervalActivity> {
+    private lateinit var focusHourNumPick: NumberPicker
+    private lateinit var focusMinuteNumPick: NumberPicker
+    private lateinit var intervalHourNumPick: NumberPicker
+    private lateinit var intervalMinuteNumPick: NumberPicker
+    
+    
     override fun createView(ui: AnkoContext<TimerIntervalActivity>): View = with(ui) {
-        
         relativeLayout {
             backgroundColor = Color.argb(255, 251, 251, 240)
             
@@ -38,10 +44,10 @@ class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerInter
             relativeLayout {
                 id = R.id.focusTimeRelative
                 
-                numberPicker {
+                focusHourNumPick = numberPicker {
                     id = R.id.focusHourNumPick
                     minValue = 0
-                    maxValue = ((time + 1) / 60).toInt()
+                    maxValue = (time / 60).toInt()
 //                    setFormatter { value -> String.format("%02d", value) }
                 }.lparams {
                     alignParentStart()
@@ -49,15 +55,18 @@ class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerInter
                     marginStart = dip(95)
                 }
                 
-                numberPicker {
+                focusMinuteNumPick = numberPicker {
                     id = R.id.focusMinuteNumPick
-                    minValue = 0
+                    minValue = 1
                     maxValue = if (0 < time / 60) {
                         59
                     } else {
                         time.toInt() % 60
                     }
                     setFormatter { value -> String.format("%02d", value) }
+                    setOnValueChangedListener { _, _, newVal ->
+                        intervalMinuteNumPick.maxValue = (time - newVal).toInt()
+                    }
                 }.lparams {
                     alignParentEnd()
                     centerVertically()
@@ -83,10 +92,10 @@ class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerInter
             relativeLayout {
                 id = R.id.intervalTimeRelative
                 
-                numberPicker {
+                intervalHourNumPick = numberPicker {
                     id = R.id.intervalHourNumPick
                     minValue = 0
-                    maxValue = ((time + 1) / 60).toInt()
+                    maxValue = (time / 60).toInt()
 //                    setFormatter { value -> String.format("%02d", value) }
                 }.lparams {
                     alignParentStart()
@@ -94,7 +103,7 @@ class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerInter
                     marginStart = dip(95)
                 }
                 
-                numberPicker {
+                intervalMinuteNumPick = numberPicker {
                     id = R.id.intervalMinuteNumPick
                     minValue = 0
                     maxValue = if (0 < time / 60) {
@@ -103,6 +112,9 @@ class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerInter
                         time.toInt() % 60
                     }
                     setFormatter { value -> String.format("%02d", value) }
+                    setOnValueChangedListener { _, _, newVal ->
+                        focusMinuteNumPick.maxValue = (time - newVal).toInt()
+                    }
                 }.lparams {
                     alignParentEnd()
                     centerVertically()
