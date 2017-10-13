@@ -2,6 +2,8 @@ package jp.ict.muffin.otasukejuru.ui
 
 import android.content.Context
 import android.graphics.Color
+import android.os.Handler
+import android.os.Looper
 import android.text.InputType
 import android.view.View
 import android.widget.EditText
@@ -17,7 +19,6 @@ import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk25.coroutines.onClick
 
 class TimerSetTimeFragmentUI : AnkoComponent<TimerSetTimeFragment> {
-    private var isPushStartButton = false
     private lateinit var circleMini: FrameLayout
     private lateinit var circle: FrameLayout
     private lateinit var editTime: EditText
@@ -83,7 +84,7 @@ class TimerSetTimeFragmentUI : AnkoComponent<TimerSetTimeFragment> {
     }
     
     private fun startButtonClickListener(context: Context) {
-        if (!isPushStartButton && editTime.text.toString() != "") {
+        if (editTime.text.toString() != "") {
             time = editTime.text.toString().toLong()
             editTime.apply {
                 text.clear()
@@ -95,10 +96,10 @@ class TimerSetTimeFragmentUI : AnkoComponent<TimerSetTimeFragment> {
             circleMini.addView(circleGraphView)
             circleGraphView.startAnimation()
             
-            isPushStartButton = true
             drawCircle(context, time)
-        } else {
-            context.startActivity<TimerIntervalActivity>("time" to time)
+            Handler(Looper.getMainLooper()).postDelayed({
+                context.startActivity<TimerIntervalActivity>("time" to time)
+            }, 2 * 1000)
         }
     }
     
