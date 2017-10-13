@@ -108,7 +108,7 @@ class TimerSetTimeFragmentUI : AnkoComponent<TimerSetTimeFragment> {
         } else {
             time % 60L
         }
-        val circleGraphView = CircleGraphView(context, Color.argb(255, 0, 0, 0), drawTime, true)
+        val circleGraphView = CircleGraphView(context, Color.argb(255, 255, 0, 0), drawTime, true)
         circle.addView(circleGraphView)
         circleGraphView.startAnimation()
         remainingHourText.text = ((time - 1) / 60).toString()
