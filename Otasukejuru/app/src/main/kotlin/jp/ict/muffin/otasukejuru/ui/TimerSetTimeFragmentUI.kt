@@ -8,11 +8,11 @@ import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.TextView
-import jp.ict.muffin.otasukejuru.view.CircleGraphView
-import jp.ict.muffin.otasukejuru.`object`.GlobalValue
 import jp.ict.muffin.otasukejuru.R
-import jp.ict.muffin.otasukejuru.fragment.TimerSetTimeFragment
+import jp.ict.muffin.otasukejuru.`object`.GlobalValue
 import jp.ict.muffin.otasukejuru.activity.TimerIntervalActivity
+import jp.ict.muffin.otasukejuru.fragment.TimerSetTimeFragment
+import jp.ict.muffin.otasukejuru.view.CircleGraphView
 import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk25.coroutines.onClick
 
@@ -103,18 +103,14 @@ class TimerSetTimeFragmentUI : AnkoComponent<TimerSetTimeFragment> {
     }
     
     private fun drawCircle(context: Context, time: Long) {
-        val colors = arrayListOf(Color.argb(255, 255, 0, 0), Color.argb(255, 251, 251, 240))
-        val init = arrayListOf(true, false)
         val drawTime: Long = if (time % 60 == 0L) {
             60L
         } else {
             time % 60L
         }
-        (0 until 2).forEach {
-            val circleGraphView = CircleGraphView(context, colors[it], drawTime, init[it])
-            circle.addView(circleGraphView)
-            circleGraphView.startAnimation()
-        }
+        val circleGraphView = CircleGraphView(context, Color.argb(255, 0, 0, 0), drawTime, true)
+        circle.addView(circleGraphView)
+        circleGraphView.startAnimation()
         remainingHourText.text = ((time - 1) / 60).toString()
     }
 }
