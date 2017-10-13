@@ -52,7 +52,11 @@ class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerInter
                 numberPicker {
                     id = R.id.focusMinuteNumPick
                     minValue = 0
-                    maxValue = 59
+                    maxValue = if (0 < time / 60) {
+                        59
+                    } else {
+                        time.toInt() % 60
+                    }
                     setFormatter { value -> String.format("%02d", value) }
                 }.lparams {
                     alignParentEnd()
@@ -93,7 +97,11 @@ class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerInter
                 numberPicker {
                     id = R.id.intervalMinuteNumPick
                     minValue = 0
-                    maxValue = 59
+                    maxValue = if (0 < time / 60) {
+                        59
+                    } else {
+                        time.toInt() % 60
+                    }
                     setFormatter { value -> String.format("%02d", value) }
                 }.lparams {
                     alignParentEnd()
