@@ -23,7 +23,6 @@ class TimerSetTimeFragmentUI : AnkoComponent<TimerSetTimeFragment> {
     private lateinit var circle: FrameLayout
     private lateinit var editTime: EditText
     private lateinit var remainingHourText: TextView
-    private var time = 0L
     
     override fun createView(ui: AnkoContext<TimerSetTimeFragment>): View = with(ui) {
         relativeLayout {
@@ -85,7 +84,7 @@ class TimerSetTimeFragmentUI : AnkoComponent<TimerSetTimeFragment> {
     
     private fun startButtonClickListener(context: Context) {
         if (editTime.text.toString() != "") {
-            time = editTime.text.toString().toLong()
+            val time = editTime.text.toString().toLong()
             editTime.apply {
                 text.clear()
                 editTime.clearFocus()
