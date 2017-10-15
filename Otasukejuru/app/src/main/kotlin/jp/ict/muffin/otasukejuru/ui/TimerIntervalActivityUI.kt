@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.view.View
 import android.widget.NumberPicker
 import jp.ict.muffin.otasukejuru.R
+import jp.ict.muffin.otasukejuru.`object`.GlobalValue
 import jp.ict.muffin.otasukejuru.activity.TimerIntervalActivity
 import jp.ict.muffin.otasukejuru.activity.TimerNotificationActivity
 import org.jetbrains.anko.*
@@ -52,7 +53,13 @@ class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerInter
                 }.lparams {
                     alignParentStart()
                     centerVertically()
-                    marginStart = dip(95)
+                    marginStart = dip(GlobalValue.displayWidth / 6)
+                }
+                
+                textView("時") {
+                }.lparams {
+                    rightOf(R.id.focusHourNumPick)
+                    centerVertically()
                 }
                 
                 focusMinuteNumPick = numberPicker {
@@ -68,9 +75,14 @@ class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerInter
                         intervalMinuteNumPick.maxValue = (time - newVal).toInt()
                     }
                 }.lparams {
-                    alignParentEnd()
+                    leftOf(R.id.minuteTextView)
+                }
+                textView("分") {
+                    id = R.id.minuteTextView
+                }.lparams {
                     centerVertically()
-                    marginEnd = dip(95)
+                    marginEnd = dip(GlobalValue.displayWidth / 6)
+                    alignParentEnd()
                 }
                 
             }.lparams {
@@ -100,7 +112,13 @@ class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerInter
                 }.lparams {
                     alignParentStart()
                     centerVertically()
-                    marginStart = dip(95)
+//                    marginStart = dip(95)
+                    marginStart = dip(GlobalValue.displayWidth / 6)
+                }
+                textView("時") {
+                }.lparams {
+                    rightOf(R.id.intervalHourNumPick)
+                    centerVertically()
                 }
                 
                 intervalMinuteNumPick = numberPicker {
@@ -116,9 +134,14 @@ class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerInter
                         focusMinuteNumPick.maxValue = (time - newVal).toInt()
                     }
                 }.lparams {
-                    alignParentEnd()
+                    leftOf(R.id.minuteTextView)
+                }
+                textView("分") {
+                    id = R.id.minuteTextView
+                }.lparams {
                     centerVertically()
-                    marginEnd = dip(95)
+                    marginEnd = dip(GlobalValue.displayWidth / 6)
+                    alignParentEnd()
                 }
                 
             }.lparams {

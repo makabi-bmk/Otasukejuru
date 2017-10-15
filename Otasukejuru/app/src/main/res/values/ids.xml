@@ -15,4 +15,6 @@
     <item name="titleNotification" type="id"/>
     <item name="notificationNumPick" type="id"/>
     <item name="notificationText" type="id"/>
+    <item name="hourTextView" type="id"/>
+    <item name="minuteTextView" type="id"/>
 </resources>
