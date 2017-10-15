@@ -72,11 +72,12 @@ class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerInter
                     setFormatter { value -> String.format("%02d", value) }
                     setOnValueChangedListener { _, _, _ ->
                         val remindingTime: Int = (time - (intervalHourNumPick.value * 60 + intervalMinuteNumPick.value)).toInt()
-                        
-                        intervalMinuteNumPick.maxValue = if (60 <= remindingTime) {
-                            59
-                        } else {
-                            remindingTime
+
+//                        intervalHourNumPick.maxValue = (remindingTime - 1) / 60
+                        intervalMinuteNumPick.maxValue = when {
+                            60 <= remindingTime -> 59
+                            0 <= remindingTime -> remindingTime
+                            else -> 0
                         }
                     }
                 }.lparams {
@@ -137,11 +138,12 @@ class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerInter
                     setFormatter { value -> String.format("%02d", value) }
                     setOnValueChangedListener { _, _, _ ->
                         val remindingTime: Int = (time - (focusHourNumPick.value * 60 + focusMinuteNumPick.value)).toInt()
-                        
-                        focusMinuteNumPick.maxValue = if (60 <= remindingTime) {
-                            59
-                        } else {
-                            remindingTime
+
+//                        focusHourNumPick.maxValue = (remindingTime - 1) / 60
+                        focusMinuteNumPick.maxValue = when {
+                            60 <= remindingTime -> 59
+                            0 <= remindingTime -> remindingTime
+                            else -> 0
                         }
                     }
                 }.lparams {
