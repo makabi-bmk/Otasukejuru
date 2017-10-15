@@ -70,8 +70,14 @@ class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerInter
                         time.toInt() % 60
                     }
                     setFormatter { value -> String.format("%02d", value) }
-                    setOnValueChangedListener { _, _, newVal ->
-                        intervalMinuteNumPick.maxValue = (time - newVal).toInt()
+                    setOnValueChangedListener { _, _, _ ->
+                        val remindingTime: Int = (time - (intervalHourNumPick.value * 60 + intervalMinuteNumPick.value)).toInt()
+                        
+                        intervalMinuteNumPick.maxValue = if (60 <= remindingTime) {
+                            59
+                        } else {
+                            remindingTime
+                        }
                     }
                 }.lparams {
                     leftOf(R.id.minuteTextView)
@@ -129,8 +135,14 @@ class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerInter
                         time.toInt() % 60
                     }
                     setFormatter { value -> String.format("%02d", value) }
-                    setOnValueChangedListener { _, _, newVal ->
-                        focusMinuteNumPick.maxValue = (time - newVal).toInt()
+                    setOnValueChangedListener { _, _, _ ->
+                        val remindingTime: Int = (time - (focusHourNumPick.value * 60 + focusMinuteNumPick.value)).toInt()
+                        
+                        focusMinuteNumPick.maxValue = if (60 <= remindingTime) {
+                            59
+                        } else {
+                            remindingTime
+                        }
                     }
                 }.lparams {
                     leftOf(R.id.minuteTextView)
