@@ -49,7 +49,6 @@ class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerInter
                     id = R.id.focusHourNumPick
                     minValue = 0
                     maxValue = (time / 60).toInt()
-//                    setFormatter { value -> String.format("%02d", value) }
                 }.lparams {
                     alignParentStart()
                     centerVertically()
@@ -77,6 +76,7 @@ class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerInter
                 }.lparams {
                     leftOf(R.id.minuteTextView)
                 }
+                
                 textView("分") {
                     id = R.id.minuteTextView
                 }.lparams {
@@ -108,13 +108,12 @@ class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerInter
                     id = R.id.intervalHourNumPick
                     minValue = 0
                     maxValue = (time / 60).toInt()
-//                    setFormatter { value -> String.format("%02d", value) }
                 }.lparams {
                     alignParentStart()
                     centerVertically()
-//                    marginStart = dip(95)
                     marginStart = dip(GlobalValue.displayWidth / 6)
                 }
+                
                 textView("時") {
                 }.lparams {
                     rightOf(R.id.intervalHourNumPick)
