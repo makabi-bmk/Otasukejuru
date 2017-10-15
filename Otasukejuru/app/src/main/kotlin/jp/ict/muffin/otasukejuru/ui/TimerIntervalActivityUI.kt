@@ -52,7 +52,7 @@ class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerInter
                 }.lparams {
                     alignParentStart()
                     centerVertically()
-                    marginStart = dip(GlobalValue.displayWidth / 6)
+                    marginStart = GlobalValue.displayWidth / 5
                 }
                 
                 textView("時") {
@@ -81,7 +81,7 @@ class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerInter
                     id = R.id.minuteTextView
                 }.lparams {
                     centerVertically()
-                    marginEnd = dip(GlobalValue.displayWidth / 6)
+                    marginEnd = GlobalValue.displayWidth / 5
                     alignParentEnd()
                 }
                 
@@ -111,7 +111,7 @@ class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerInter
                 }.lparams {
                     alignParentStart()
                     centerVertically()
-                    marginStart = dip(GlobalValue.displayWidth / 6)
+                    marginStart = GlobalValue.displayWidth / 5
                 }
                 
                 textView("時") {
@@ -139,7 +139,7 @@ class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerInter
                     id = R.id.minuteTextView
                 }.lparams {
                     centerVertically()
-                    marginEnd = dip(GlobalValue.displayWidth / 6)
+                    marginEnd = GlobalValue.displayWidth / 5
                     alignParentEnd()
                 }
                 
