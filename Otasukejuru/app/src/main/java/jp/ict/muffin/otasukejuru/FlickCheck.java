@@ -39,10 +39,12 @@ public abstract class FlickCheck {
                     case MotionEvent.ACTION_DOWN:
                         touchX = event.getX();
                         touchY = event.getY();
+                        Log.d("hoge", "ACTION_DOWN");
                         break;
                     case MotionEvent.ACTION_UP:
                         nowTouchX = event.getX();
                         nowTouchY = event.getY();
+                        Log.d("hoge", "ACTION_UP");
                         check();
                         v.performClick();
                         break;
@@ -78,6 +80,24 @@ public abstract class FlickCheck {
             if(nowTouchX - touchX > adjustX)
             {
                 getFlick(RIGHT_FLICK);
+                return;
+            }
+        }
+        // 上フリック
+        if(touchY > nowTouchY)
+        {
+            if(touchY - nowTouchY > adjustY)
+            {
+                getFlick(UP_FLICK);
+                return;
+            }
+        }
+        // 下フリック
+        if(nowTouchY > touchY)
+        {
+            if(nowTouchY - touchY > adjustY)
+            {
+                getFlick(DOWN_FLICK);
                 return;
             }
         }
