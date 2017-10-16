@@ -52,6 +52,18 @@ class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerInter
                     setOnValueChangedListener { _, _, newValue ->
                         val remindingTime: Int = (time - (newValue * 60 + focusMinuteNumPick.value)).toInt()
                         intervalHourNumPick.maxValue = (remindingTime - 1) / 60
+                        intervalMinuteNumPick.maxValue = if (60 <= remindingTime) {
+                            59
+                        } else {
+                            remindingTime
+                        }
+                        
+                        val minuteTime = time.toInt() - (newValue * 60 + intervalHourNumPick.value * 60 + intervalMinuteNumPick.value)
+                        focusMinuteNumPick.maxValue = if (60 <= minuteTime) {
+                            59
+                        } else {
+                            minuteTime
+                        }
                         
                     }
                 }.lparams {
@@ -83,6 +95,7 @@ class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerInter
                             0 <= remindingTime -> remindingTime
                             else -> 0
                         }
+                        
                     }
                 }.lparams {
                     leftOf(R.id.minuteTextView)
@@ -120,8 +133,20 @@ class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerInter
                     minValue = 0
                     maxValue = (time / 60).toInt()
                     setOnValueChangedListener { _, _, newValue ->
-                        val remindingTime: Int = (time - (newValue * 60 + intervalMinuteNumPick.value)).toInt()
+                        val remindingTime: Int = (time - (newValue * 60 + focusMinuteNumPick.value)).toInt()
                         focusHourNumPick.maxValue = (remindingTime - 1) / 60
+                        focusMinuteNumPick.maxValue = if (60 <= remindingTime) {
+                            59
+                        } else {
+                            remindingTime
+                        }
+                        
+                        val minuteTime = time.toInt() - (newValue * 60 + focusHourNumPick.value * 60 + focusMinuteNumPick.value)
+                        intervalMinuteNumPick.maxValue = if (60 <= minuteTime) {
+                            59
+                        } else {
+                            minuteTime
+                        }
                     }
                 }.lparams {
                     alignParentStart()
