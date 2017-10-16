@@ -9,7 +9,8 @@ import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk25.coroutines.onClick
 
 
-class TimerNotificationActivityUI(private val time: Long) : AnkoComponent<TimerNotificationActivity> {
+class TimerNotificationActivityUI(private val time: Long) :
+        AnkoComponent<TimerNotificationActivity> {
     override fun createView(ui: AnkoContext<TimerNotificationActivity>): View = with(ui) {
         
         relativeLayout {
