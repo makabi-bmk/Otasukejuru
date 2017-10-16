@@ -1,4 +1,4 @@
-package jp.ict.muffin.otasukejuru.View
+package jp.ict.muffin.otasukejuru.view
 
 import android.content.Context
 import android.graphics.Canvas
@@ -6,21 +6,21 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.RectF
 import android.os.Handler
-import android.util.Log
 import android.view.View
-import jp.ict.muffin.otasukejuru.Object.GlobalValue
 import java.util.*
 
 
-class CircleGraphView(context: Context, private var param: Int, private var time: Long, isInit: Boolean) : View(context) {
+class CircleGraphView(context: Context, private var param: Int, private var time: Long,
+                      isInit: Boolean) : View(context) {
     private var startAngleTmp: Float = (60 - time) * 6f
     internal var endAngleTmp: Float = 0.0f
+    internal lateinit var timer: Timer
     
     init {
         if (isInit) {
             time = 1
         } else {
-            time *= 60 * 10L
+            time *= 60 * 100L
         }
         startAngleTmp -= 90
         endAngleTmp = startAngleTmp
@@ -36,7 +36,8 @@ class CircleGraphView(context: Context, private var param: Int, private var time
         this.createPieSlice(c, param, startAngle, endAngle, x, y, radius)
     }
     
-    private fun createPieSlice(c: Canvas, color: Int, startAngle: Float, endAngle: Float, x: Float, y: Float, r: Float) {
+    private fun createPieSlice(c: Canvas, color: Int, startAngle: Float,
+                               endAngle: Float, x: Float, y: Float, r: Float) {
         var paint = Paint()
         paint.isAntiAlias = false
         paint.color = color
@@ -50,19 +51,15 @@ class CircleGraphView(context: Context, private var param: Int, private var time
         c.drawArc(oval1, startAngle, endAngle - startAngle, true, paint)
     }
     
-    internal lateinit var timer: Timer
-    private var ct = 0
     fun startAnimation() {
         val handler = Handler()
         val task = object : TimerTask() {
             override fun run() {
                 val angle = (360 / 100f)
                 endAngleTmp += angle
-                Log.d("time:", ct++.toString())
                 if (endAngleTmp > 270f) {
                     endAngleTmp = 270f
                     timer.cancel()
-                    GlobalValue.timerFlag = true
                 }
                 handler.post { invalidate() }
             }

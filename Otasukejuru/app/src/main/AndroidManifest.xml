@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="jp.ict.muffin.otasukejuru">
+          package="jp.ict.muffin.otasukejuru">
 
     <application
         android:allowBackup="true"
@@ -15,14 +15,23 @@
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity
             android:name=".TaskAddition"
-            android:label=""></activity>
+            android:label="">
+        </activity>
+        <activity
+            android:name=".activity.TimerActivity"
+            android:label="">
+        </activity>
+        <activity android:name=".activity.TimerIntervalActivity">
+        </activity>
+        <activity android:name=".activity.TimerNotificationActivity">
+        </activity>
     </application>
 
 </manifest>

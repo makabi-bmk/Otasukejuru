@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="titleInterval" type="id"/>
+    <item name="titleIntervalFocusTime" type="id"/>
+    <item name="focusTimeRelative" type="id"/>
+    <item name="intervalTimeRelative" type="id"/>
+    <item name="circleFrame" type="id"/>
+    <item name="miniCircleFrame" type="id"/>
+    <item name="nextButton" type="id"/>
+    <item name="focusHourNumPick" type="id"/>
+    <item name="focusMinuteNumPick" type="id"/>
+    <item name="intervalHourNumPick" type="id"/>
+    <item name="intervalMinuteNumPick" type="id"/>
+    <item name="titleIntervalBreakTime" type="id"/>
+    <item name="titleNotification" type="id"/>
+    <item name="notificationNumPick" type="id"/>
+    <item name="notificationText" type="id"/>
+    <item name="hourTextView" type="id"/>
+    <item name="minuteTextView" type="id"/>
+</resources>

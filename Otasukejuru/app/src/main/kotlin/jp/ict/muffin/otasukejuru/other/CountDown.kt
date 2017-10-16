@@ -1,9 +1,11 @@
-package jp.ict.muffin.otasukejuru
+package jp.ict.muffin.otasukejuru.other
 
 import android.os.CountDownTimer
 import android.widget.TextView
 
-class CountDown(millisUntilFinished: Long, countDownInterval: Long, private val timerText: TextView) : CountDownTimer(millisUntilFinished, countDownInterval) {
+class CountDown(millisUntilFinished: Long, countDownInterval: Long,
+                private val timerText: TextView) :
+        CountDownTimer(millisUntilFinished, countDownInterval) {
     
     override fun onFinish() {
         //TODO:Add Task

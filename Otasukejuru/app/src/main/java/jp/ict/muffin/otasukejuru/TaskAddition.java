@@ -14,7 +14,8 @@ import android.widget.Toolbar;
 
 import java.util.Calendar;
 
-import jp.ict.muffin.otasukejuru.Object.GlobalValue;
+import jp.ict.muffin.otasukejuru.object.GlobalValue;
+import jp.ict.muffin.otasukejuru.object.TaskInformation;
 
 
 public class TaskAddition extends Activity {
@@ -566,8 +567,10 @@ public class TaskAddition extends Activity {
                     timeLimit = TaskAddition.this.startHour * 100 + startDay;
                 }
 
-                Log.d("task", "タイトル名:" + taskTitleName + "\n期限の開始:" + dateLimit + "\n繰り返し:" + taskRepeat
-                        + "\nisMust:" + isMust + "\nisShould:" + isShould + "\nisWant to:" + isWant + "\n終了目安:" + finishHour + "時間" + finishMinute + "分");
+                Log.d("task", "タイトル名:" + taskTitleName + "\n期限の開始:" + dateLimit +
+                        "\n繰り返し:" + taskRepeat +
+                        "\nisMust:" + isMust + "\nisShould:" + isShould + "\nisWant to:" +
+                        isWant + "\n終了目安:" + finishHour + "時間" + finishMinute + "分");
 
                 setTaskInformation();
 

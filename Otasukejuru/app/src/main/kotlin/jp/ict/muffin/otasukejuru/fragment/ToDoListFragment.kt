@@ -1,4 +1,4 @@
-package jp.ict.muffin.otasukejuru
+package jp.ict.muffin.otasukejuru.fragment
 
 import android.app.AlertDialog
 import android.content.Context.LAYOUT_INFLATER_SERVICE
@@ -10,7 +10,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import jp.ict.muffin.otasukejuru.Object.GlobalValue
+import jp.ict.muffin.otasukejuru.`object`.GlobalValue
+import jp.ict.muffin.otasukejuru.R
 import kotlinx.android.synthetic.main.fragment_list_todo.*
 import kotlinx.android.synthetic.main.task_card_view.view.*
 import org.jetbrains.anko.support.v4.toast
@@ -22,7 +23,8 @@ class ToDoListFragment : Fragment() {
     
     private var mTimer: Timer? = null
     
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View =
             inflater.inflate(R.layout.fragment_list_todo, container, false)
     
     override fun onActivityCreated(savedInstanceState: Bundle?) {
