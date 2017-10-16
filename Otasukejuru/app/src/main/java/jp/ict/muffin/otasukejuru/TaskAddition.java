@@ -248,7 +248,8 @@ public class TaskAddition extends Activity {
         setContentView(R.layout.set_plan_repeat);
         setActionBar((Toolbar) findViewById(R.id.toolbar_back));
 
-        final RadioGroup planRepeatRadioGroup = (RadioGroup) findViewById(R.id.plan_repeat_radio_group);
+        final RadioGroup planRepeatRadioGroup = (RadioGroup)
+                findViewById(R.id.plan_repeat_radio_group);
 
         Button next = (Button) findViewById(R.id.button_next);
         next.setOnClickListener(new View.OnClickListener() {
@@ -291,8 +292,11 @@ public class TaskAddition extends Activity {
                 str = setMessageTimeEdit.getText().toString();
                 messageTime = Integer.parseInt(str);
 
-                Log.d("plan", "タイトル名:" + taskTitleName + "\n予定開始の日付:" + startMonth + "月" + startDay + "日" + startHour + "時" + startMinute + "分"
-                        + "\n予定終了の時間:" + finishMonth + "月" + finishMonth + "似り" + finishHour + "時" + finishMinute + "分" + "\n繰り返し:" + taskRepeat + "\n何分前に通知するか:" + messageTime);
+                Log.d("plan", "タイトル名:" + taskTitleName + "\n予定開始の日付:" + startMonth + "月" +
+                        startDay + "日" + startHour + "時" + startMinute + "分" + "\n予定終了の時間:" +
+                        finishMonth + "月" + finishMonth + "似り" + finishHour + "時" +
+                        finishMinute + "分" + "\n繰り返し:" + taskRepeat + "\n何分前に通知するか:" +
+                        messageTime);
 
                 finish();
             }
@@ -418,7 +422,8 @@ public class TaskAddition extends Activity {
         setContentView(R.layout.set_task_repeat);
         setActionBar((Toolbar) findViewById(R.id.toolbar_back));
 
-        final RadioGroup planRepeatRadioGroup = (RadioGroup) findViewById(R.id.plan_repeat_radio_group);
+        final RadioGroup planRepeatRadioGroup = (RadioGroup)
+                findViewById(R.id.plan_repeat_radio_group);
 
         Button next = (Button) findViewById(R.id.button_next);
         next.setOnClickListener(new View.OnClickListener() {

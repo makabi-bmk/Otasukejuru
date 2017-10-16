@@ -2,6 +2,7 @@ package jp.ict.muffin.otasukejuru;
 
 
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -81,18 +82,20 @@ public class CalendarFragment extends Fragment {
 //            }
 //        });
 
-        int[] xml = new int[]{R.id.date0, R.id.date1, R.id.date2, R.id.date3, R.id.date4, R.id.date5, R.id.date6,
-                R.id.date7, R.id.date8, R.id.date9, R.id.date10, R.id.date11, R.id.date12, R.id.date13,
-                R.id.date14, R.id.date15, R.id.date16, R.id.date17, R.id.date18, R.id.date19, R.id.date20,
-                R.id.date21, R.id.date22, R.id.date23, R.id.date24, R.id.date25, R.id.date26, R.id.date27,
-                R.id.date28, R.id.date29, R.id.date30, R.id.date31, R.id.date32, R.id.date33, R.id.date34,
-                R.id.date35, R.id.date36, R.id.date37, R.id.date38, R.id.date39, R.id.date40, R.id.date41};
+        int[] xml = new int[]{R.id.date0, R.id.date1, R.id.date2, R.id.date3, R.id.date4,
+                R.id.date5, R.id.date6, R.id.date7, R.id.date8, R.id.date9, R.id.date10,
+                R.id.date11, R.id.date12, R.id.date13, R.id.date14, R.id.date15, R.id.date16,
+                R.id.date17, R.id.date18, R.id.date19, R.id.date20, R.id.date21, R.id.date22,
+                R.id.date23, R.id.date24, R.id.date25, R.id.date26, R.id.date27, R.id.date28,
+                R.id.date29, R.id.date30, R.id.date31, R.id.date32, R.id.date33, R.id.date34,
+                R.id.date35, R.id.date36, R.id.date37, R.id.date38, R.id.date39, R.id.date40,
+                R.id.date41};
 
         View[] layout = new View[42];
         TextView[] textView = new TextView[42];
-        for (int i = 0; i < 42; i++){
+        for (int i = 0; i < 42; i++) {
             layout[i] = view.findViewById(xml[i]);
-            textView[i] = (TextView)layout[i].findViewById(R.id.date_view);
+            textView[i] = (TextView) layout[i].findViewById(R.id.date_view);
             textView[i].setTextColor(Color.BLACK);
         }
 
@@ -155,7 +158,10 @@ public class CalendarFragment extends Fragment {
                 //リバーシブルデイの判定
                 if (eventName.equals("敬老の日") && date == 21) {
                     if ((judgePublicHoliday(23, false, false)).equals("秋分の日")) {
-                        textView[num + 1].setTextColor(getResources().getColor(R.color.sundayColor));
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                            textView[num + 1].
+                                    setTextColor(getContext().getColor(R.color.sundayColor));
+                        }
                     }
                 }
                 textView[num].setTextColor(getResources().getColor(R.color.sundayColor));
@@ -181,7 +187,8 @@ public class CalendarFragment extends Fragment {
                 public void onClick(View v) {
                     if (finalAddMessage) {
                         new AlertDialog.Builder(getActivity())
-                                .setMessage(String.valueOf(finalDate) + "日" + "\n" + finalEventName)
+                                .setMessage(String.valueOf(finalDate) + "日" + "\n" +
+                                        finalEventName)
                                 .setPositiveButton("OK", null)
                                 .show();
                     } else {
@@ -220,12 +227,14 @@ public class CalendarFragment extends Fragment {
                     case FlickCheck.LEFT_FLICK:
                         // 左フリック
                         Log.d("hoge", "左フリック");
-                        if (month == 11){
+                        if (month == 11) {
                             year++;
                             month = 0;
                             //年が変わったとき、春分の日と秋分の日を定義しなおす
-                            vernalEquinoxDay = (int)(20.8431+0.242194*(year - 1980) - (year - 1980) / 4);
-                            autumnalEquinoxDay = (int)(23.2488 + 0.242194 * (year - 1980) - (year - 1980) / 4);
+                            vernalEquinoxDay = (int) (20.8431 + 0.242194 * (year - 1980) -
+                                    (year - 1980) / 4);
+                            autumnalEquinoxDay = (int) (23.2488 + 0.242194 * (year - 1980) -
+                                    (year - 1980) / 4);
 
                         } else {
                             month++;
@@ -236,12 +245,14 @@ public class CalendarFragment extends Fragment {
                     case FlickCheck.RIGHT_FLICK:
                         // 右フリック
                         Log.d("hoge", "右フリック");
-                        if (month == 0){
+                        if (month == 0) {
                             year--;
                             month = 11;
                             //年が変わったとき、春分の日と秋分の日を定義しなおす
-                            vernalEquinoxDay = (int)(20.8431+0.242194*(year - 1980) - (year - 1980) / 4);
-                            autumnalEquinoxDay = (int)(23.2488 + 0.242194 * (year - 1980) - (year - 1980) / 4);
+                            vernalEquinoxDay = (int) (20.8431 + 0.242194 * (year - 1980) -
+                                    (year - 1980) / 4);
+                            autumnalEquinoxDay = (int) (23.2488 + 0.242194 * (year - 1980) -
+                                    (year - 1980) / 4);
 
                         } else {
                             month--;
@@ -258,64 +269,49 @@ public class CalendarFragment extends Fragment {
 
         int month = this.month + 1;
 
-        if (month == 1 && date == 1){
+        if (month == 1 && date == 1) {
             if (judgeSunday) substituteHoliday = true;
             return "元日";
-        }
-        else if (month == 1 && countMonday == 1 && judgeMonday) {
+        } else if (month == 1 && countMonday == 1 && judgeMonday) {
             return "成人の日";
-        }
-        else if (month == 2 && date == 11) {
+        } else if (month == 2 && date == 11) {
             if (judgeSunday) substituteHoliday = true;
             return "建国記念日";
-        }
-        else if (month == 3 && date == vernalEquinoxDay) {
+        } else if (month == 3 && date == vernalEquinoxDay) {
             if (judgeSunday) substituteHoliday = true;
             return "春分の日";
-        }
-        else if (month == 4 && date == 29) {
+        } else if (month == 4 && date == 29) {
             if (judgeSunday) substituteHoliday = true;
             return "昭和の日";
-        }
-        else if (month == 5 && date == 3) {
+        } else if (month == 5 && date == 3) {
             if (judgeSunday) substituteHoliday = true;
             return "憲法記念日";
-        }
-        else if (month == 5 && date == 4) {
+        } else if (month == 5 && date == 4) {
             if (judgeSunday) substituteHoliday = true;
             return "みどりの日";
-        }
-        else if (month == 5 && date == 5) {
+        } else if (month == 5 && date == 5) {
             if (judgeSunday) substituteHoliday = true;
             return "こどもの日";
-        }
-        else if (month == 7 && countMonday == 3 && judgeMonday) {
+        } else if (month == 7 && countMonday == 3 && judgeMonday) {
             return "海の日";
-        }
-        else if (month == 9 && date == autumnalEquinoxDay) {
+        } else if (month == 9 && date == autumnalEquinoxDay) {
             if (judgeSunday) substituteHoliday = true;
             return "秋分の日";
-        }
-        else if (month == 10 && countMonday == 2 && judgeMonday) {
+        } else if (month == 10 && countMonday == 2 && judgeMonday) {
             return "体育の日";
-        }
-        else if (month == 11 && date == 3) {
+        } else if (month == 11 && date == 3) {
             if (judgeSunday) substituteHoliday = true;
             return "文化の日";
-        }
-        else if (month == 11 && date == 23) {
+        } else if (month == 11 && date == 23) {
             if (judgeSunday) substituteHoliday = true;
             return "勤労感謝の日";
-        }
-        else if (month == 12 && date == 23) {
+        } else if (month == 12 && date == 23) {
             if (judgeSunday) substituteHoliday = true;
             return "天皇誕生日";
-        }
-        else if (substituteHoliday) {
+        } else if (substituteHoliday) {
             substituteHoliday = false;
             return "振替休日";
-        }
-        else {
+        } else {
             return "NotPublicHoliday";
         }
     }
@@ -326,41 +322,29 @@ public class CalendarFragment extends Fragment {
 
         if (month == 2 && date == 3) {
             return "節分の日";
-        }
-        else if (month == 2 && date == 14) {
+        } else if (month == 2 && date == 14) {
             return "バレンタインデー";
-        }
-        else if (month == 3 && date == 3) {
+        } else if (month == 3 && date == 3) {
             return "ひなまつり";
-        }
-        else if (month == 3 && date == 14) {
+        } else if (month == 3 && date == 14) {
             return "ホワイトデー";
-        }
-        else if (month == 4 && date == 1) {
+        } else if (month == 4 && date == 1) {
             return "エイプリルフール";
-        }
-        else if (month == 5 && countSunday == 2 && judgeSunday) {
+        } else if (month == 5 && countSunday == 2 && judgeSunday) {
             return "母の日";
-        }
-        else if (month == 6 && countSunday == 3 && judgeSunday) {
+        } else if (month == 6 && countSunday == 3 && judgeSunday) {
             return "父の日";
-        }
-        else if (month == 7 && date == 7) {
+        } else if (month == 7 && date == 7) {
             return "七夕";
-        }
-        else if (month == 8 && date == 15) {
+        } else if (month == 8 && date == 15) {
             return "終戦記念日";
-        }
-        else if (month == 12 && date == 24) {
+        } else if (month == 12 && date == 24) {
             return "クリスマスイブ";
-        }
-        else if (month == 12 && date == 25) {
+        } else if (month == 12 && date == 25) {
             return "クリスマス";
-        }
-        else if (month == 12 && date == 31) {
+        } else if (month == 12 && date == 31) {
             return "大晦日";
-        }
-        else {
+        } else {
             return "NotUnusualEvent";
         }
     }
