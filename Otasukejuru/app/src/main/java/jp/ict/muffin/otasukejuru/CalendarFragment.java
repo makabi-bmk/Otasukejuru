@@ -140,13 +140,17 @@ public class CalendarFragment extends Fragment {
             }
             //日曜日かどうか判定
             else if (num % 7 == 0 || (num == 0 && date == 1)) {
-                textView[num].setTextColor(getResources().getColor(R.color.sundayColor));
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    textView[num].setTextColor(getContext().getColor(R.color.sundayColor));
+                }
                 countSunday++;
                 judgeSunDay = true;
             }
             //土曜日かどうか判定
             else if (num % 7 == 6) {
-                textView[num].setTextColor(getResources().getColor(R.color.saturdayColor));
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    textView[num].setTextColor(getContext().getColor(R.color.saturdayColor));
+                }
             }
 
             boolean addMessage = false;
@@ -164,7 +168,9 @@ public class CalendarFragment extends Fragment {
                         }
                     }
                 }
-                textView[num].setTextColor(getResources().getColor(R.color.sundayColor));
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    textView[num].setTextColor(getContext().getColor(R.color.sundayColor));
+                }
                 addMessage = true;
             }
             //年間行事の判定

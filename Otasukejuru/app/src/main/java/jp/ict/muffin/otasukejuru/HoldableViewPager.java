@@ -9,10 +9,6 @@ import android.view.MotionEvent;
 public class HoldableViewPager extends ViewPager {
     private boolean isSwipeHoldVar = false;
 
-    HoldableViewPager(Context context) {
-        super(context);
-    }
-
     HoldableViewPager(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
     }

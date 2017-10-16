@@ -5,12 +5,12 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 
-public abstract class FlickCheck {
+abstract class FlickCheck {
 
-    public static final int LEFT_FLICK = 0;
-    public static final int RIGHT_FLICK = 1;
-    public static final int UP_FLICK = 2;
-    public static final int DOWN_FLICK = 3;
+    static final int LEFT_FLICK = 0;
+    static final int RIGHT_FLICK = 1;
+    private static final int UP_FLICK = 2;
+    private static final int DOWN_FLICK = 3;
 
     private float adjustX = 150.0f;
     private float adjustY = 150.0f;
@@ -23,16 +23,16 @@ public abstract class FlickCheck {
      * frickViewにはフリックを検知させるViewをセット<br/>
      * adjustXには左右のフリック距離目安、adjustYには上下のフリック距離目安をセット
      *
-     * @param frickView
+     * @param flickView
      * @param adjustX
      * @param adjustY
      */
-    public FlickCheck(View frickView, float adjustX, float adjustY) {
+    FlickCheck(View flickView, float adjustX, float adjustY) {
 
         this.adjustX = adjustX;
         this.adjustY = adjustY;
 
-        frickView.setOnTouchListener(new OnTouchListener() {
+        flickView.setOnTouchListener(new OnTouchListener() {
 
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -81,21 +81,16 @@ public abstract class FlickCheck {
             }
         }
         // 上フリック
-        if(touchY > nowTouchY)
-        {
-            if(touchY - nowTouchY > adjustY)
-            {
+        if (touchY > nowTouchY) {
+            if (touchY - nowTouchY > adjustY) {
                 getFlick(UP_FLICK);
                 return;
             }
         }
         // 下フリック
-        if(nowTouchY > touchY)
-        {
-            if(nowTouchY - touchY > adjustY)
-            {
+        if (nowTouchY > touchY) {
+            if (nowTouchY - touchY > adjustY) {
                 getFlick(DOWN_FLICK);
-                return;
             }
         }
     }
