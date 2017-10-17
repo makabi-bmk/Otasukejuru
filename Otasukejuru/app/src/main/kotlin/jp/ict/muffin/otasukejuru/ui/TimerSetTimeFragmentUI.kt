@@ -90,8 +90,15 @@ class TimerSetTimeFragmentUI : AnkoComponent<TimerSetTimeFragment> {
                 editTime.clearFocus()
             }
             
+            val params: ArrayList<HashMap<String, Int>> = java.util.ArrayList()
+            
+            val map = HashMap<String, Int>()
+            map.put("color", Color.argb(255, 251, 251, 240))
+            map.put("value", 60)
+            params.add(map)
+            
             val circleGraphView = CircleGraphView(context,
-                    Color.argb(255, 251, 251, 240), 60, true)
+                    params, true)
             circleMini.addView(circleGraphView)
             circleGraphView.startAnimation()
             
@@ -108,7 +115,18 @@ class TimerSetTimeFragmentUI : AnkoComponent<TimerSetTimeFragment> {
         } else {
             time % 60L
         }
-        val circleGraphView = CircleGraphView(context, Color.argb(255, 255, 0, 0), drawTime, true)
+        
+        val params: ArrayList<HashMap<String, Int>> = java.util.ArrayList()
+        val colors = arrayListOf(Color.argb(255, 251, 251, 240), Color.argb(255, 255, 0, 0))
+        val drawCircleTime = arrayListOf(60 - drawTime, drawTime)
+        (0 until 2).forEach {
+            val mapSI = HashMap<String, Int>()
+            mapSI.put("color", colors[it])
+            mapSI.put("value", drawCircleTime[it].toInt())
+            params.add(mapSI)
+        }
+        
+        val circleGraphView = CircleGraphView(context, params, true)
         circle.addView(circleGraphView)
         circleGraphView.startAnimation()
         remainingHourText.text = ((time - 1) / 60).toString()

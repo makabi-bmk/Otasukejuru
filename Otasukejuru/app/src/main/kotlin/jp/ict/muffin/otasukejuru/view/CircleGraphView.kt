@@ -10,54 +10,60 @@ import android.view.View
 import java.util.*
 
 
-class CircleGraphView(context: Context, private var param: Int, private var time: Long,
-                      isInit: Boolean) : View(context) {
-    private var startAngleTmp: Float = (60 - time) * 6f
-    internal var endAngleTmp: Float = 0.0f
+class CircleGraphView(context: Context, private var params: ArrayList<HashMap<String, Int>>, isInit: Boolean) : View(context) {
+    internal var endAngleTmp = -90f
     internal lateinit var timer: Timer
-    
-    init {
-        if (isInit) {
-            time = 1
-        } else {
-            time *= 60 * 100L
-        }
-        startAngleTmp -= 90
-        endAngleTmp = startAngleTmp
+    private val drawTime: Long = if (isInit) {
+        1L
+    } else {
+        (params[0]["value"] ?: 0) * 60 * 100L
     }
     
-    public override fun onDraw(c: Canvas) {
+    override fun onDraw(c: Canvas) {
         val width = c.width
-        val radius = (width / 2f - 30f)
-        val startAngle: Float = startAngleTmp % 360
+        val length = params.size
+        val max = (0 until length)
+                .map { params[it]["value"]?.toFloat() ?: 0f }
+                .sum()
+        val radius = (width / 2 - 30).toFloat()
+        var startAngle = -90f
+        var endAngle: Float
         val x = radius + 15f
         val y = radius + 15f
-        val endAngle = Math.min(startAngle + 360, endAngleTmp)
-        this.createPieSlice(c, param, startAngle, endAngle, x, y, radius)
+        (0 until length).forEach {
+            val value = params[it]["value"]?.toFloat() ?: 0f
+            endAngle = startAngle + 360 * (value / max)
+            if (endAngle > endAngleTmp) {
+                endAngle = endAngleTmp
+            }
+            this.createPieSlice(c, params[it]["color"] ?: 0, startAngle, endAngle, x, y, radius)
+            startAngle = endAngle
+        }
     }
     
-    private fun createPieSlice(c: Canvas, color: Int, startAngle: Float,
-                               endAngle: Float, x: Float, y: Float, r: Float) {
+    private fun createPieSlice(c: Canvas, color: Int, start_angle: Float, end_angle: Float, x: Float, y: Float, r: Float) {
         var paint = Paint()
         paint.isAntiAlias = false
         paint.color = color
         val oval1 = RectF(x - r, y - r, x + r, y + r)
-        c.drawArc(oval1, startAngle, endAngle - startAngle, true, paint)
+        c.drawArc(oval1, start_angle, end_angle - start_angle, true, paint)
         
         //外枠
         paint = Paint()
-        paint.color = Color.argb(255, 251, 251, 240)
+        paint.color = Color.argb(0, 0, 0, 0)
         paint.style = Paint.Style.STROKE
-        c.drawArc(oval1, startAngle, endAngle - startAngle, true, paint)
+        c.drawArc(oval1, start_angle, end_angle - start_angle, true, paint)
+        
     }
     
     fun startAnimation() {
+        endAngleTmp = -90f
         val handler = Handler()
         val task = object : TimerTask() {
             override fun run() {
-                val angle = (360 / 100f)
+                val angle = (360 / 100.0).toFloat()
                 endAngleTmp += angle
-                if (endAngleTmp > 270f) {
+                if (endAngleTmp > 270) {
                     endAngleTmp = 270f
                     timer.cancel()
                 }
@@ -67,11 +73,13 @@ class CircleGraphView(context: Context, private var param: Int, private var time
         
         timer = Timer()
         //アニメーションのスピード調整できるようにしたいところ
-        timer.schedule(task, 0, time)
+        timer.schedule(task, 0, drawTime)
+        
     }
     
-    fun changeParam(param: Int) {
-        this.param = param
+    fun changeParam(params: ArrayList<HashMap<String, Int>>) {
+        this.params = params
         this.invalidate()
     }
+    
 }

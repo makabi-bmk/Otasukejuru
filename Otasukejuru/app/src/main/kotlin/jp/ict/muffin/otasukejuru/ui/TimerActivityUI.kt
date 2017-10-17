@@ -7,10 +7,10 @@ import android.os.Looper
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.TextView
-import jp.ict.muffin.otasukejuru.view.CircleGraphView
 import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
 import jp.ict.muffin.otasukejuru.activity.TimerActivity
+import jp.ict.muffin.otasukejuru.view.CircleGraphView
 import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk25.coroutines.onClick
 
@@ -75,9 +75,14 @@ class TimerActivityUI(private val time: Long) : AnkoComponent<TimerActivity> {
     
     
     private fun startButtonClickListener(context: Context) {
+        val params: ArrayList<HashMap<String, Int>> = java.util.ArrayList()
         
+        val map = HashMap<String, Int>()
+        map.put("color", Color.argb(255, 251, 251, 240))
+        map.put("value", 60)
+        params.add(map)
         val circleGraphView = CircleGraphView(context,
-                Color.argb(255, 251, 251, 240), 60, true)
+                params, true)
         circleMini.addView(circleGraphView)
         circleGraphView.startAnimation()
         
@@ -87,10 +92,30 @@ class TimerActivityUI(private val time: Long) : AnkoComponent<TimerActivity> {
     }
     
     private fun drawCircle(context: Context, circle: FrameLayout, time: Long) {
-        val colors = arrayListOf(Color.argb(255, 255, 0, 0), Color.argb(255, 251, 251, 240))
+        val drawTime: Long = if (time % 60 == 0L) {
+            60L
+        } else {
+            time % 60L
+        }
+    
         val init = arrayListOf(true, false)
-        (0 until 2).forEach {
-            val circleGraphView = CircleGraphView(context, colors[it], time, init[it])
+        val drawCircleTime = arrayListOf(60 - drawTime, drawTime)
+        (0 until 2).forEach { i ->
+            val params: ArrayList<HashMap<String, Int>> = java.util.ArrayList()
+            val colors = if (i == 0) {
+                arrayListOf(Color.argb(255, 251, 251, 240), Color.argb(255, 255, 0, 0))
+            } else {
+                arrayListOf(Color.argb(255, 251, 251, 240), Color.argb(255, 251, 251, 240))
+            }
+    
+            (0 until 2).forEach { j ->
+                val mapSI = HashMap<String, Int>()
+                mapSI.put("color", colors[j])
+                mapSI.put("value", drawCircleTime[j].toInt())
+                params.add(mapSI)
+            }
+            
+            val circleGraphView = CircleGraphView(context, params, init[i])
             circle.addView(circleGraphView)
             circleGraphView.startAnimation()
         }
