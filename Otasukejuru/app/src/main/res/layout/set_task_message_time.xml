@@ -37,8 +37,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
             android:layout_below="@+id/title"
+            android:layout_centerHorizontal="true"
             android:padding="10dp"
             android:text="タスクが終了する目安は\n何時間ですか？"
             android:textSize="25sp"/>
@@ -87,8 +87,8 @@
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
             android:background="#FBFBF0"
             android:text="追加"
             android:textColor="@color/colorPrimary"

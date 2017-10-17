@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FBFBF0"
@@ -14,8 +15,8 @@
             android:id="@+id/back_month"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="back"
-            android:layout_gravity="start"/>
+            android:layout_gravity="start"
+            android:text="back"/>
 
         <TextView
             android:id="@+id/title"
@@ -29,11 +30,10 @@
             android:id="@+id/next_month"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="next"
-            android:layout_gravity="end"/>
+            android:layout_gravity="end"
+            android:text="next"/>
 
     </LinearLayout>
-
 
 
     <LinearLayout
@@ -115,8 +115,8 @@
         android:background="@drawable/bordar">
 
         <TableRow
-            android:layout_height="0dp"
             android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_weight="1">
 
             <jp.ict.muffin.otasukejuru.CustomCell
@@ -179,8 +179,8 @@
         </TableRow>
 
         <TableRow
-            android:layout_height="0dp"
             android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_weight="1">
 
             <jp.ict.muffin.otasukejuru.CustomCell
@@ -241,8 +241,8 @@
         </TableRow>
 
         <TableRow
-            android:layout_height="0dp"
             android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_weight="1">
 
             <jp.ict.muffin.otasukejuru.CustomCell
@@ -303,8 +303,8 @@
         </TableRow>
 
         <TableRow
-            android:layout_height="0dp"
             android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_weight="1">
 
             <jp.ict.muffin.otasukejuru.CustomCell
@@ -365,9 +365,10 @@
         </TableRow>
 
         <TableRow
-            android:layout_height="0dp"
             android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_weight="1">
+
             <jp.ict.muffin.otasukejuru.CustomCell
                 android:id="@+id/date28"
                 android:layout_width="0dp"
@@ -426,8 +427,8 @@
         </TableRow>
 
         <TableRow
-            android:layout_height="0dp"
             android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_weight="1">
 
             <jp.ict.muffin.otasukejuru.CustomCell
@@ -486,7 +487,7 @@
                 android:background="@drawable/bordar">
             </jp.ict.muffin.otasukejuru.CustomCell>
         </TableRow>
-        
+
     </TableLayout>
 
 

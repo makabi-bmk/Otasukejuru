@@ -56,11 +56,10 @@ public class CalendarFragment extends Fragment {
 
 
         //月を切り替えるボタン
-
         Button buttonNext = (Button) view.findViewById(R.id.next_month);
         buttonNext.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                if (month == 11){
+                if (month == 11) {
                     year++;
                     month = 0;
                 } else {
@@ -73,7 +72,7 @@ public class CalendarFragment extends Fragment {
         Button buttonBack = (Button) view.findViewById(R.id.back_month);
         buttonBack.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                if (month == 0){
+                if (month == 0) {
                     year--;
                     month = 11;
                 } else {

@@ -16,7 +16,7 @@
             android:id="@+id/button_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/ic_arrow_back_white_48dp" />
+            android:background="@drawable/ic_arrow_back_white_48dp"/>
 
     </Toolbar>
 
@@ -37,9 +37,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/title"
             android:layout_centerHorizontal="true"
             android:padding="10sp"
-            android:layout_below="@id/title"
             android:text="開始・終了何分前に\n通知しますか？"
             android:textSize="25sp"/>
 
@@ -74,8 +74,8 @@
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
             android:background="#FBFBF0"
             android:text="追加"
             android:textColor="@color/colorPrimary"
