@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.Calendar;
@@ -56,31 +57,31 @@ public class CalendarFragment extends Fragment {
 
         //月を切り替えるボタン
 
-//        Button buttonNext = (Button) view.findViewById(R.id.next_month);
-//        buttonNext.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View view) {
-//                if (month == 11){
-//                    year++;
-//                    month = 0;
-//                } else {
-//                    month++;
-//                }
-//                calendarView();
-//            }
-//        });
-//
-//        Button buttonBack = (Button) view.findViewById(R.id.back_month);
-//        buttonBack.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View view) {
-//                if (month == 0){
-//                    year--;
-//                    month = 11;
-//                } else {
-//                    month--;
-//                }
-//                calendarView();
-//            }
-//        });
+        Button buttonNext = (Button) view.findViewById(R.id.next_month);
+        buttonNext.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                if (month == 11){
+                    year++;
+                    month = 0;
+                } else {
+                    month++;
+                }
+                calendarView();
+            }
+        });
+
+        Button buttonBack = (Button) view.findViewById(R.id.back_month);
+        buttonBack.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                if (month == 0){
+                    year--;
+                    month = 11;
+                } else {
+                    month--;
+                }
+                calendarView();
+            }
+        });
 
         int[] xml = new int[]{R.id.date0, R.id.date1, R.id.date2, R.id.date3, R.id.date4,
                 R.id.date5, R.id.date6, R.id.date7, R.id.date8, R.id.date9, R.id.date10,
