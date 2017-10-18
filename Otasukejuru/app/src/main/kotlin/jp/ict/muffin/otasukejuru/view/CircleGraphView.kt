@@ -10,7 +10,8 @@ import android.view.View
 import java.util.*
 
 
-class CircleGraphView(context: Context, private var params: ArrayList<HashMap<String, Int>>, isInit: Boolean) : View(context) {
+class CircleGraphView(context: Context, private var params: ArrayList<HashMap<String, Int>>,
+                      isInit: Boolean) : View(context) {
     internal var endAngleTmp = -90f
     internal lateinit var timer: Timer
     private val drawTime: Long = if (isInit) {
@@ -41,7 +42,8 @@ class CircleGraphView(context: Context, private var params: ArrayList<HashMap<St
         }
     }
     
-    private fun createPieSlice(c: Canvas, color: Int, start_angle: Float, end_angle: Float, x: Float, y: Float, r: Float) {
+    private fun createPieSlice(c: Canvas, color: Int, start_angle: Float, end_angle: Float,
+                               x: Float, y: Float, r: Float) {
         var paint = Paint()
         paint.isAntiAlias = false
         paint.color = color
@@ -74,7 +76,5 @@ class CircleGraphView(context: Context, private var params: ArrayList<HashMap<St
         timer = Timer()
         //アニメーションのスピード調整できるようにしたいところ
         timer.schedule(task, 0, drawTime + 1)
-        
     }
-    
 }

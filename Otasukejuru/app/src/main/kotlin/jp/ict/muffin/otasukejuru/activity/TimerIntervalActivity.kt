@@ -11,6 +11,4 @@ class TimerIntervalActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         TimerIntervalActivityUI(intent.getLongExtra("time", 0)).setContentView(this)
     }
-    
-    
 }

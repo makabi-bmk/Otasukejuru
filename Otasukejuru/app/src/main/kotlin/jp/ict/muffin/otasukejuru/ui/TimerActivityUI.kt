@@ -97,7 +97,7 @@ class TimerActivityUI(private val time: Long) : AnkoComponent<TimerActivity> {
         } else {
             time % 60L
         }
-    
+        
         val init = arrayListOf(true, false)
         val drawCircleTime = arrayListOf(60 - drawTime, drawTime)
         (0 until 2).forEach { i ->
@@ -107,7 +107,7 @@ class TimerActivityUI(private val time: Long) : AnkoComponent<TimerActivity> {
             } else {
                 arrayListOf(Color.argb(255, 251, 251, 240), Color.argb(255, 251, 251, 240))
             }
-    
+            
             (0 until 2).forEach { j ->
                 val mapSI = HashMap<String, Int>()
                 mapSI.put("color", colors[j])
