@@ -2,10 +2,10 @@ package jp.ict.muffin.otasukejuru;
 
 
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -52,7 +52,7 @@ public class CalendarFragment extends Fragment {
 
         //タイトル(カレンダーの年月日)
         TextView title = (TextView) view.findViewById(R.id.title);
-        title.setText(String.valueOf(year) + "年" + String.valueOf(month + 1) + "月");
+        title.setText(year + "年" + (month + 1) + "月");
 
 
         //月を切り替えるボタン
@@ -140,17 +140,15 @@ public class CalendarFragment extends Fragment {
             }
             //日曜日かどうか判定
             else if (num % 7 == 0 || (num == 0 && date == 1)) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    textView[num].setTextColor(getContext().getColor(R.color.sundayColor));
-                }
+                textView[num].setTextColor(ContextCompat.getColor(getContext(),
+                        R.color.sundayColor));
                 countSunday++;
                 judgeSunDay = true;
             }
             //土曜日かどうか判定
             else if (num % 7 == 6) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    textView[num].setTextColor(getContext().getColor(R.color.saturdayColor));
-                }
+                textView[num].setTextColor(ContextCompat.getColor(getContext(),
+                        R.color.saturdayColor));
             }
 
             boolean addMessage = false;
@@ -162,20 +160,17 @@ public class CalendarFragment extends Fragment {
                 //リバーシブルデイの判定
                 if (eventName.equals("敬老の日") && date == 21) {
                     if ((judgePublicHoliday(23, false, false)).equals("秋分の日")) {
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                            textView[num + 1].
-                                    setTextColor(getContext().getColor(R.color.sundayColor));
-                        }
+                        textView[num + 1].setTextColor(ContextCompat.getColor(getContext(),
+                                R.color.sundayColor));
                     }
                 }
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    textView[num].setTextColor(getContext().getColor(R.color.sundayColor));
-                }
+                textView[num].setTextColor(ContextCompat.getColor(getContext(),
+                        R.color.sundayColor));
                 addMessage = true;
             }
             //年間行事の判定
             else {
-                eventName = judgeUnsualEvent(date, judgeSunDay);
+                eventName = judgeAnnualEvent(date, judgeSunDay);
                 if (!(eventName.equals("NotUnusualEvent"))) {
                     addMessage = true;
                 }
@@ -322,7 +317,7 @@ public class CalendarFragment extends Fragment {
         }
     }
 
-    public String judgeUnsualEvent(int date, boolean judgeSunday) {
+    public String judgeAnnualEvent(int date, boolean judgeSunday) {
 
         int month = this.month + 1;
 
