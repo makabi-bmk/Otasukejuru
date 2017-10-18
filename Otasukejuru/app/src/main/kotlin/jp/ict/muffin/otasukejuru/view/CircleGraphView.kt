@@ -73,13 +73,8 @@ class CircleGraphView(context: Context, private var params: ArrayList<HashMap<St
         
         timer = Timer()
         //アニメーションのスピード調整できるようにしたいところ
-        timer.schedule(task, 0, drawTime)
+        timer.schedule(task, 0, drawTime + 1)
         
-    }
-    
-    fun changeParam(params: ArrayList<HashMap<String, Int>>) {
-        this.params = params
-        this.invalidate()
     }
     
 }
