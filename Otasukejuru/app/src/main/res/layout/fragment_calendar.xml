@@ -6,33 +6,42 @@
     android:background="#FBFBF0"
     android:orientation="vertical">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <Button
             android:id="@+id/back_month"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
             android:layout_gravity="start"
-            android:text="back"/>
+            android:layout_marginStart="25dp"
+            android:background="@drawable/ic_navigate_before_black_18dp"/>
 
         <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10sp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10sp"
+            android:layout_marginRight="10sp"
             android:gravity="center"
             android:textSize="30sp"/>
 
         <Button
             android:id="@+id/next_month"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
             android:layout_gravity="end"
-            android:text="next"/>
+            android:layout_marginEnd="25dp"
+            android:background="@drawable/ic_navigate_next_black_18dp"/>
 
-    </LinearLayout>
+    </RelativeLayout>
 
 
     <LinearLayout
@@ -44,7 +53,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/bordar"
+            android:background="@drawable/border"
             android:gravity="center"
             android:text="日"
             android:textColor="@color/sundayColor"
@@ -54,7 +63,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/bordar"
+            android:background="@drawable/border"
             android:gravity="center"
             android:text="月"
             android:textSize="20sp"/>
@@ -63,7 +72,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/bordar"
+            android:background="@drawable/border"
             android:gravity="center"
             android:text="火"
             android:textSize="20sp"/>
@@ -72,7 +81,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/bordar"
+            android:background="@drawable/border"
             android:gravity="center"
             android:text="水"
             android:textSize="20sp"/>
@@ -81,7 +90,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/bordar"
+            android:background="@drawable/border"
             android:gravity="center"
             android:text="木"
             android:textSize="20sp"/>
@@ -90,7 +99,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/bordar"
+            android:background="@drawable/border"
             android:gravity="center"
             android:text="金"
             android:textSize="20sp"/>
@@ -99,7 +108,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/bordar"
+            android:background="@drawable/border"
             android:gravity="center"
             android:text="土"
             android:textColor="@color/saturdayColor"
@@ -111,7 +120,7 @@
         android:id="@+id/table_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/bordar">
+        android:background="@drawable/border">
 
         <TableRow
             android:layout_width="match_parent"
@@ -123,7 +132,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/bordar">
+                android:background="@drawable/border">
             </jp.ict.muffin.otasukejuru.CustomCell>
 
             <jp.ict.muffin.otasukejuru.CustomCell
@@ -131,7 +140,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/bordar">
+                android:background="@drawable/border">
             </jp.ict.muffin.otasukejuru.CustomCell>
 
             <jp.ict.muffin.otasukejuru.CustomCell
@@ -139,7 +148,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/bordar">
+                android:background="@drawable/border">
             </jp.ict.muffin.otasukejuru.CustomCell>
 
             <jp.ict.muffin.otasukejuru.CustomCell
@@ -147,7 +156,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/bordar">
+                android:background="@drawable/border">
             </jp.ict.muffin.otasukejuru.CustomCell>
 
             <jp.ict.muffin.otasukejuru.CustomCell
@@ -155,7 +164,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/bordar">
+                android:background="@drawable/border">
             </jp.ict.muffin.otasukejuru.CustomCell>
 
             <jp.ict.muffin.otasukejuru.CustomCell
@@ -163,7 +172,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/bordar">
+                android:background="@drawable/border">
             </jp.ict.muffin.otasukejuru.CustomCell>
 
             <jp.ict.muffin.otasukejuru.CustomCell
@@ -171,7 +180,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/bordar">
+                android:background="@drawable/border">
             </jp.ict.muffin.otasukejuru.CustomCell>
 
 
@@ -187,7 +196,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/bordar">
+                android:background="@drawable/border">
             </jp.ict.muffin.otasukejuru.CustomCell>
 
             <jp.ict.muffin.otasukejuru.CustomCell
@@ -195,7 +204,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/bordar">
+                android:background="@drawable/border">
             </jp.ict.muffin.otasukejuru.CustomCell>
 
             <jp.ict.muffin.otasukejuru.CustomCell
@@ -203,7 +212,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/bordar">
+                android:background="@drawable/border">
             </jp.ict.muffin.otasukejuru.CustomCell>
 
             <jp.ict.muffin.otasukejuru.CustomCell
@@ -211,7 +220,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/bordar">
+                android:background="@drawable/border">
             </jp.ict.muffin.otasukejuru.CustomCell>
 
             <jp.ict.muffin.otasukejuru.CustomCell
@@ -219,7 +228,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/bordar">
+                android:background="@drawable/border">
             </jp.ict.muffin.otasukejuru.CustomCell>
 
             <jp.ict.muffin.otasukejuru.CustomCell
@@ -227,7 +236,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/bordar">
+                android:background="@drawable/border">
             </jp.ict.muffin.otasukejuru.CustomCell>
 
             <jp.ict.muffin.otasukejuru.CustomCell
@@ -235,7 +244,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/bordar">
+                android:background="@drawable/border">
             </jp.ict.muffin.otasukejuru.CustomCell>
         </TableRow>
 
@@ -249,7 +258,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/bordar">
+                android:background="@drawable/border">
             </jp.ict.muffin.otasukejuru.CustomCell>
 
             <jp.ict.muffin.otasukejuru.CustomCell
@@ -257,7 +266,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/bordar">
+                android:background="@drawable/border">
             </jp.ict.muffin.otasukejuru.CustomCell>
 
             <jp.ict.muffin.otasukejuru.CustomCell
@@ -265,7 +274,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/bordar">
+                android:background="@drawable/border">
             </jp.ict.muffin.otasukejuru.CustomCell>
 
             <jp.ict.muffin.otasukejuru.CustomCell
@@ -273,7 +282,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/bordar">
+                android:background="@drawable/border">
             </jp.ict.muffin.otasukejuru.CustomCell>
 
             <jp.ict.muffin.otasukejuru.CustomCell
@@ -281,7 +290,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/bordar">
+                android:background="@drawable/border">
             </jp.ict.muffin.otasukejuru.CustomCell>
 
             <jp.ict.muffin.otasukejuru.CustomCell
@@ -289,7 +298,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/bordar">
+                android:background="@drawable/border">
             </jp.ict.muffin.otasukejuru.CustomCell>
 
             <jp.ict.muffin.otasukejuru.CustomCell
@@ -297,7 +306,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/bordar">
+                android:background="@drawable/border">
             </jp.ict.muffin.otasukejuru.CustomCell>
         </TableRow>
 
@@ -311,7 +320,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/bordar">
+                android:background="@drawable/border">
             </jp.ict.muffin.otasukejuru.CustomCell>
 
             <jp.ict.muffin.otasukejuru.CustomCell
@@ -319,7 +328,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/bordar">
+                android:background="@drawable/border">
             </jp.ict.muffin.otasukejuru.CustomCell>
 
             <jp.ict.muffin.otasukejuru.CustomCell
@@ -327,7 +336,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/bordar">
+                android:background="@drawable/border">
             </jp.ict.muffin.otasukejuru.CustomCell>
 
             <jp.ict.muffin.otasukejuru.CustomCell
@@ -335,7 +344,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/bordar">
+                android:background="@drawable/border">
             </jp.ict.muffin.otasukejuru.CustomCell>
 
             <jp.ict.muffin.otasukejuru.CustomCell
@@ -343,7 +352,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/bordar">
+                android:background="@drawable/border">
             </jp.ict.muffin.otasukejuru.CustomCell>
 
             <jp.ict.muffin.otasukejuru.CustomCell
@@ -351,7 +360,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/bordar">
+                android:background="@drawable/border">
             </jp.ict.muffin.otasukejuru.CustomCell>
 
             <jp.ict.muffin.otasukejuru.CustomCell
@@ -359,7 +368,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/bordar">
+                android:background="@drawable/border">
             </jp.ict.muffin.otasukejuru.CustomCell>
         </TableRow>
 
@@ -373,7 +382,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/bordar">
+                android:background="@drawable/border">
             </jp.ict.muffin.otasukejuru.CustomCell>
 
             <jp.ict.muffin.otasukejuru.CustomCell
@@ -381,7 +390,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/bordar">
+                android:background="@drawable/border">
             </jp.ict.muffin.otasukejuru.CustomCell>
 
             <jp.ict.muffin.otasukejuru.CustomCell
@@ -389,7 +398,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/bordar">
+                android:background="@drawable/border">
             </jp.ict.muffin.otasukejuru.CustomCell>
 
             <jp.ict.muffin.otasukejuru.CustomCell
@@ -397,7 +406,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/bordar">
+                android:background="@drawable/border">
             </jp.ict.muffin.otasukejuru.CustomCell>
 
             <jp.ict.muffin.otasukejuru.CustomCell
@@ -405,7 +414,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/bordar">
+                android:background="@drawable/border">
             </jp.ict.muffin.otasukejuru.CustomCell>
 
             <jp.ict.muffin.otasukejuru.CustomCell
@@ -413,7 +422,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/bordar">
+                android:background="@drawable/border">
             </jp.ict.muffin.otasukejuru.CustomCell>
 
             <jp.ict.muffin.otasukejuru.CustomCell
@@ -421,7 +430,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/bordar">
+                android:background="@drawable/border">
             </jp.ict.muffin.otasukejuru.CustomCell>
         </TableRow>
 
@@ -435,7 +444,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/bordar">
+                android:background="@drawable/border">
             </jp.ict.muffin.otasukejuru.CustomCell>
 
             <jp.ict.muffin.otasukejuru.CustomCell
@@ -443,7 +452,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/bordar">
+                android:background="@drawable/border">
             </jp.ict.muffin.otasukejuru.CustomCell>
 
             <jp.ict.muffin.otasukejuru.CustomCell
@@ -451,7 +460,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/bordar">
+                android:background="@drawable/border">
             </jp.ict.muffin.otasukejuru.CustomCell>
 
             <jp.ict.muffin.otasukejuru.CustomCell
@@ -459,7 +468,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/bordar">
+                android:background="@drawable/border">
             </jp.ict.muffin.otasukejuru.CustomCell>
 
             <jp.ict.muffin.otasukejuru.CustomCell
@@ -467,7 +476,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/bordar">
+                android:background="@drawable/border">
             </jp.ict.muffin.otasukejuru.CustomCell>
 
             <jp.ict.muffin.otasukejuru.CustomCell
@@ -475,7 +484,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/bordar">
+                android:background="@drawable/border">
             </jp.ict.muffin.otasukejuru.CustomCell>
 
             <jp.ict.muffin.otasukejuru.CustomCell
@@ -483,7 +492,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/bordar">
+                android:background="@drawable/border">
             </jp.ict.muffin.otasukejuru.CustomCell>
         </TableRow>
 

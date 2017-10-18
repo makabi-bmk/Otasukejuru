@@ -97,6 +97,7 @@ public class CalendarFragment extends Fragment {
             layout[i] = view.findViewById(xml[i]);
             textView[i] = (TextView) layout[i].findViewById(R.id.date_view);
             textView[i].setTextColor(Color.BLACK);
+            textView[i].setClickable(true);
         }
 
 
@@ -178,6 +179,8 @@ public class CalendarFragment extends Fragment {
 
             textView[num].setText(String.valueOf(date));
             textView[num].setClickable(true);
+            textView[num].setTextSize(20);
+
 
             //タッチイベントの設定
             final int finalDate = date;
@@ -186,6 +189,26 @@ public class CalendarFragment extends Fragment {
             layout[num].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Log.d("hoge", "poyo");
+                    if (finalAddMessage) {
+                        new AlertDialog.Builder(getActivity())
+                                .setMessage(String.valueOf(finalDate) + "日" + "\n" +
+                                        finalEventName)
+                                .setPositiveButton("OK", null)
+                                .show();
+                    } else {
+                        new AlertDialog.Builder(getActivity())
+                                .setMessage(String.valueOf(finalDate) + "日")
+                                .setPositiveButton("OK", null)
+                                .show();
+                    }
+
+                }
+            });
+            textView[num].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.d("hoge", "poyo");
                     if (finalAddMessage) {
                         new AlertDialog.Builder(getActivity())
                                 .setMessage(String.valueOf(finalDate) + "日" + "\n" +
