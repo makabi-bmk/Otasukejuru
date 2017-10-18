@@ -2,16 +2,16 @@ package jp.ict.muffin.otasukejuru.fragment
 
 import android.app.AlertDialog
 import android.content.Context.LAYOUT_INFLATER_SERVICE
-import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.support.v4.app.Fragment
+import android.support.v4.content.ContextCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import jp.ict.muffin.otasukejuru.`object`.GlobalValue
 import jp.ict.muffin.otasukejuru.R
+import jp.ict.muffin.otasukejuru.`object`.GlobalValue
 import kotlinx.android.synthetic.main.fragment_list_todo.*
 import kotlinx.android.synthetic.main.task_card_view.view.*
 import org.jetbrains.anko.support.v4.toast
@@ -80,9 +80,7 @@ class ToDoListFragment : Fragment() {
                 dateTextView.apply {
                     text = diffDays.toString()
                     if (it.priority == 0) {
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                            textColor = context.getColor(R.color.mostPriority)
-                        }
+                        textColor = ContextCompat.getColor(context, R.color.mostPriority)
                     }
                 }
                 cardView.apply {
