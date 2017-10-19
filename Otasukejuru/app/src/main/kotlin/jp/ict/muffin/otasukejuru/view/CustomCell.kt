@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.widget.LinearLayout
 import android.widget.TextView
 import jp.ict.muffin.otasukejuru.R
+import org.jetbrains.anko.find
 
 
 class CustomCell(context: Context, attr: AttributeSet) : LinearLayout(context, attr) {
@@ -18,9 +19,9 @@ class CustomCell(context: Context, attr: AttributeSet) : LinearLayout(context, a
         
         val layout = LayoutInflater.from(context).inflate(R.layout.cell, this)
         
-        viewTask1 = layout.findViewById(R.id.task_view1) as TextView
-        viewTask2 = layout.findViewById(R.id.task_view2) as TextView
-        viewTask3 = layout.findViewById(R.id.task_view3) as TextView
+        viewTask1 = layout.find<TextView>(R.id.task_view1)
+        viewTask2 = layout.find<TextView>(R.id.task_view2)
+        viewTask3 = layout.find<TextView>(R.id.task_view3)
     }
     
 }
