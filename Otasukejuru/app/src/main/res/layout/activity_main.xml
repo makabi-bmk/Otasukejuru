@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:background="@color/back"
     android:fitsSystemWindows="true"
-    tools:context="jp.ict.muffin.otasukejuru.MainActivity">
+    tools:context="jp.ict.muffin.otasukejuru.activity.MainActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
@@ -33,7 +33,7 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <jp.ict.muffin.otasukejuru.HoldableViewPager
+    <jp.ict.muffin.otasukejuru.view.HoldableViewPager
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

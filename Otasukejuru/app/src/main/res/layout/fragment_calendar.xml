@@ -127,61 +127,61 @@
             android:layout_height="0dp"
             android:layout_weight="1">
 
-            <jp.ict.muffin.otasukejuru.CustomCell
+            <jp.ict.muffin.otasukejuru.view.CustomCell
                 android:id="@+id/date0"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/border">
-            </jp.ict.muffin.otasukejuru.CustomCell>
+            </jp.ict.muffin.otasukejuru.view.CustomCell>
 
-            <jp.ict.muffin.otasukejuru.CustomCell
+            <jp.ict.muffin.otasukejuru.view.CustomCell
                 android:id="@+id/date1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/border">
-            </jp.ict.muffin.otasukejuru.CustomCell>
+            </jp.ict.muffin.otasukejuru.view.CustomCell>
 
-            <jp.ict.muffin.otasukejuru.CustomCell
+            <jp.ict.muffin.otasukejuru.view.CustomCell
                 android:id="@+id/date2"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/border">
-            </jp.ict.muffin.otasukejuru.CustomCell>
+            </jp.ict.muffin.otasukejuru.view.CustomCell>
 
-            <jp.ict.muffin.otasukejuru.CustomCell
+            <jp.ict.muffin.otasukejuru.view.CustomCell
                 android:id="@+id/date3"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/border">
-            </jp.ict.muffin.otasukejuru.CustomCell>
+            </jp.ict.muffin.otasukejuru.view.CustomCell>
 
-            <jp.ict.muffin.otasukejuru.CustomCell
+            <jp.ict.muffin.otasukejuru.view.CustomCell
                 android:id="@+id/date4"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/border">
-            </jp.ict.muffin.otasukejuru.CustomCell>
+            </jp.ict.muffin.otasukejuru.view.CustomCell>
 
-            <jp.ict.muffin.otasukejuru.CustomCell
+            <jp.ict.muffin.otasukejuru.view.CustomCell
                 android:id="@+id/date5"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/border">
-            </jp.ict.muffin.otasukejuru.CustomCell>
+            </jp.ict.muffin.otasukejuru.view.CustomCell>
 
-            <jp.ict.muffin.otasukejuru.CustomCell
+            <jp.ict.muffin.otasukejuru.view.CustomCell
                 android:id="@+id/date6"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/border">
-            </jp.ict.muffin.otasukejuru.CustomCell>
+            </jp.ict.muffin.otasukejuru.view.CustomCell>
 
 
         </TableRow>
@@ -191,61 +191,61 @@
             android:layout_height="0dp"
             android:layout_weight="1">
 
-            <jp.ict.muffin.otasukejuru.CustomCell
+            <jp.ict.muffin.otasukejuru.view.CustomCell
                 android:id="@+id/date7"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/border">
-            </jp.ict.muffin.otasukejuru.CustomCell>
+            </jp.ict.muffin.otasukejuru.view.CustomCell>
 
-            <jp.ict.muffin.otasukejuru.CustomCell
+            <jp.ict.muffin.otasukejuru.view.CustomCell
                 android:id="@+id/date8"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/border">
-            </jp.ict.muffin.otasukejuru.CustomCell>
+            </jp.ict.muffin.otasukejuru.view.CustomCell>
 
-            <jp.ict.muffin.otasukejuru.CustomCell
+            <jp.ict.muffin.otasukejuru.view.CustomCell
                 android:id="@+id/date9"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/border">
-            </jp.ict.muffin.otasukejuru.CustomCell>
+            </jp.ict.muffin.otasukejuru.view.CustomCell>
 
-            <jp.ict.muffin.otasukejuru.CustomCell
+            <jp.ict.muffin.otasukejuru.view.CustomCell
                 android:id="@+id/date10"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/border">
-            </jp.ict.muffin.otasukejuru.CustomCell>
+            </jp.ict.muffin.otasukejuru.view.CustomCell>
 
-            <jp.ict.muffin.otasukejuru.CustomCell
+            <jp.ict.muffin.otasukejuru.view.CustomCell
                 android:id="@+id/date11"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/border">
-            </jp.ict.muffin.otasukejuru.CustomCell>
+            </jp.ict.muffin.otasukejuru.view.CustomCell>
 
-            <jp.ict.muffin.otasukejuru.CustomCell
+            <jp.ict.muffin.otasukejuru.view.CustomCell
                 android:id="@+id/date12"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/border">
-            </jp.ict.muffin.otasukejuru.CustomCell>
+            </jp.ict.muffin.otasukejuru.view.CustomCell>
 
-            <jp.ict.muffin.otasukejuru.CustomCell
+            <jp.ict.muffin.otasukejuru.view.CustomCell
                 android:id="@+id/date13"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/border">
-            </jp.ict.muffin.otasukejuru.CustomCell>
+            </jp.ict.muffin.otasukejuru.view.CustomCell>
         </TableRow>
 
         <TableRow
@@ -253,61 +253,61 @@
             android:layout_height="0dp"
             android:layout_weight="1">
 
-            <jp.ict.muffin.otasukejuru.CustomCell
+            <jp.ict.muffin.otasukejuru.view.CustomCell
                 android:id="@+id/date14"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/border">
-            </jp.ict.muffin.otasukejuru.CustomCell>
+            </jp.ict.muffin.otasukejuru.view.CustomCell>
 
-            <jp.ict.muffin.otasukejuru.CustomCell
+            <jp.ict.muffin.otasukejuru.view.CustomCell
                 android:id="@+id/date15"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/border">
-            </jp.ict.muffin.otasukejuru.CustomCell>
+            </jp.ict.muffin.otasukejuru.view.CustomCell>
 
-            <jp.ict.muffin.otasukejuru.CustomCell
+            <jp.ict.muffin.otasukejuru.view.CustomCell
                 android:id="@+id/date16"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/border">
-            </jp.ict.muffin.otasukejuru.CustomCell>
+            </jp.ict.muffin.otasukejuru.view.CustomCell>
 
-            <jp.ict.muffin.otasukejuru.CustomCell
+            <jp.ict.muffin.otasukejuru.view.CustomCell
                 android:id="@+id/date17"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/border">
-            </jp.ict.muffin.otasukejuru.CustomCell>
+            </jp.ict.muffin.otasukejuru.view.CustomCell>
 
-            <jp.ict.muffin.otasukejuru.CustomCell
+            <jp.ict.muffin.otasukejuru.view.CustomCell
                 android:id="@+id/date18"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/border">
-            </jp.ict.muffin.otasukejuru.CustomCell>
+            </jp.ict.muffin.otasukejuru.view.CustomCell>
 
-            <jp.ict.muffin.otasukejuru.CustomCell
+            <jp.ict.muffin.otasukejuru.view.CustomCell
                 android:id="@+id/date19"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/border">
-            </jp.ict.muffin.otasukejuru.CustomCell>
+            </jp.ict.muffin.otasukejuru.view.CustomCell>
 
-            <jp.ict.muffin.otasukejuru.CustomCell
+            <jp.ict.muffin.otasukejuru.view.CustomCell
                 android:id="@+id/date20"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/border">
-            </jp.ict.muffin.otasukejuru.CustomCell>
+            </jp.ict.muffin.otasukejuru.view.CustomCell>
         </TableRow>
 
         <TableRow
@@ -315,61 +315,61 @@
             android:layout_height="0dp"
             android:layout_weight="1">
 
-            <jp.ict.muffin.otasukejuru.CustomCell
+            <jp.ict.muffin.otasukejuru.view.CustomCell
                 android:id="@+id/date21"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/border">
-            </jp.ict.muffin.otasukejuru.CustomCell>
+            </jp.ict.muffin.otasukejuru.view.CustomCell>
 
-            <jp.ict.muffin.otasukejuru.CustomCell
+            <jp.ict.muffin.otasukejuru.view.CustomCell
                 android:id="@+id/date22"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/border">
-            </jp.ict.muffin.otasukejuru.CustomCell>
+            </jp.ict.muffin.otasukejuru.view.CustomCell>
 
-            <jp.ict.muffin.otasukejuru.CustomCell
+            <jp.ict.muffin.otasukejuru.view.CustomCell
                 android:id="@+id/date23"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/border">
-            </jp.ict.muffin.otasukejuru.CustomCell>
+            </jp.ict.muffin.otasukejuru.view.CustomCell>
 
-            <jp.ict.muffin.otasukejuru.CustomCell
+            <jp.ict.muffin.otasukejuru.view.CustomCell
                 android:id="@+id/date24"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/border">
-            </jp.ict.muffin.otasukejuru.CustomCell>
+            </jp.ict.muffin.otasukejuru.view.CustomCell>
 
-            <jp.ict.muffin.otasukejuru.CustomCell
+            <jp.ict.muffin.otasukejuru.view.CustomCell
                 android:id="@+id/date25"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/border">
-            </jp.ict.muffin.otasukejuru.CustomCell>
+            </jp.ict.muffin.otasukejuru.view.CustomCell>
 
-            <jp.ict.muffin.otasukejuru.CustomCell
+            <jp.ict.muffin.otasukejuru.view.CustomCell
                 android:id="@+id/date26"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/border">
-            </jp.ict.muffin.otasukejuru.CustomCell>
+            </jp.ict.muffin.otasukejuru.view.CustomCell>
 
-            <jp.ict.muffin.otasukejuru.CustomCell
+            <jp.ict.muffin.otasukejuru.view.CustomCell
                 android:id="@+id/date27"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/border">
-            </jp.ict.muffin.otasukejuru.CustomCell>
+            </jp.ict.muffin.otasukejuru.view.CustomCell>
         </TableRow>
 
         <TableRow
@@ -377,61 +377,61 @@
             android:layout_height="0dp"
             android:layout_weight="1">
 
-            <jp.ict.muffin.otasukejuru.CustomCell
+            <jp.ict.muffin.otasukejuru.view.CustomCell
                 android:id="@+id/date28"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/border">
-            </jp.ict.muffin.otasukejuru.CustomCell>
+            </jp.ict.muffin.otasukejuru.view.CustomCell>
 
-            <jp.ict.muffin.otasukejuru.CustomCell
+            <jp.ict.muffin.otasukejuru.view.CustomCell
                 android:id="@+id/date29"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/border">
-            </jp.ict.muffin.otasukejuru.CustomCell>
+            </jp.ict.muffin.otasukejuru.view.CustomCell>
 
-            <jp.ict.muffin.otasukejuru.CustomCell
+            <jp.ict.muffin.otasukejuru.view.CustomCell
                 android:id="@+id/date30"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/border">
-            </jp.ict.muffin.otasukejuru.CustomCell>
+            </jp.ict.muffin.otasukejuru.view.CustomCell>
 
-            <jp.ict.muffin.otasukejuru.CustomCell
+            <jp.ict.muffin.otasukejuru.view.CustomCell
                 android:id="@+id/date31"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/border">
-            </jp.ict.muffin.otasukejuru.CustomCell>
+            </jp.ict.muffin.otasukejuru.view.CustomCell>
 
-            <jp.ict.muffin.otasukejuru.CustomCell
+            <jp.ict.muffin.otasukejuru.view.CustomCell
                 android:id="@+id/date32"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/border">
-            </jp.ict.muffin.otasukejuru.CustomCell>
+            </jp.ict.muffin.otasukejuru.view.CustomCell>
 
-            <jp.ict.muffin.otasukejuru.CustomCell
+            <jp.ict.muffin.otasukejuru.view.CustomCell
                 android:id="@+id/date33"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/border">
-            </jp.ict.muffin.otasukejuru.CustomCell>
+            </jp.ict.muffin.otasukejuru.view.CustomCell>
 
-            <jp.ict.muffin.otasukejuru.CustomCell
+            <jp.ict.muffin.otasukejuru.view.CustomCell
                 android:id="@+id/date34"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/border">
-            </jp.ict.muffin.otasukejuru.CustomCell>
+            </jp.ict.muffin.otasukejuru.view.CustomCell>
         </TableRow>
 
         <TableRow
@@ -439,61 +439,61 @@
             android:layout_height="0dp"
             android:layout_weight="1">
 
-            <jp.ict.muffin.otasukejuru.CustomCell
+            <jp.ict.muffin.otasukejuru.view.CustomCell
                 android:id="@+id/date35"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/border">
-            </jp.ict.muffin.otasukejuru.CustomCell>
+            </jp.ict.muffin.otasukejuru.view.CustomCell>
 
-            <jp.ict.muffin.otasukejuru.CustomCell
+            <jp.ict.muffin.otasukejuru.view.CustomCell
                 android:id="@+id/date36"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/border">
-            </jp.ict.muffin.otasukejuru.CustomCell>
+            </jp.ict.muffin.otasukejuru.view.CustomCell>
 
-            <jp.ict.muffin.otasukejuru.CustomCell
+            <jp.ict.muffin.otasukejuru.view.CustomCell
                 android:id="@+id/date37"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/border">
-            </jp.ict.muffin.otasukejuru.CustomCell>
+            </jp.ict.muffin.otasukejuru.view.CustomCell>
 
-            <jp.ict.muffin.otasukejuru.CustomCell
+            <jp.ict.muffin.otasukejuru.view.CustomCell
                 android:id="@+id/date38"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/border">
-            </jp.ict.muffin.otasukejuru.CustomCell>
+            </jp.ict.muffin.otasukejuru.view.CustomCell>
 
-            <jp.ict.muffin.otasukejuru.CustomCell
+            <jp.ict.muffin.otasukejuru.view.CustomCell
                 android:id="@+id/date39"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/border">
-            </jp.ict.muffin.otasukejuru.CustomCell>
+            </jp.ict.muffin.otasukejuru.view.CustomCell>
 
-            <jp.ict.muffin.otasukejuru.CustomCell
+            <jp.ict.muffin.otasukejuru.view.CustomCell
                 android:id="@+id/date40"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/border">
-            </jp.ict.muffin.otasukejuru.CustomCell>
+            </jp.ict.muffin.otasukejuru.view.CustomCell>
 
-            <jp.ict.muffin.otasukejuru.CustomCell
+            <jp.ict.muffin.otasukejuru.view.CustomCell
                 android:id="@+id/date41"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/border">
-            </jp.ict.muffin.otasukejuru.CustomCell>
+            </jp.ict.muffin.otasukejuru.view.CustomCell>
         </TableRow>
 
     </TableLayout>
