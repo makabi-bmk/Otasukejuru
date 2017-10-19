@@ -61,7 +61,7 @@ class ToDoListFragment : Fragment() {
                 4 -> middlePriorityCardLinear2
                 5 -> lowPriorityCardLinear1
                 else -> lowPriorityCardLinear2
-            }.removeAllViews()
+            }?.removeAllViews()
         }
         
         var highPriorityNum = 0
@@ -95,7 +95,7 @@ class ToDoListFragment : Fragment() {
                 0 -> mostPriorityCardLinear
                 1 -> {
                     highPriorityNum++
-                    if (4 < highPriorityNum) {
+                    if (highPriorityNum <= 4) {
                         highPriorityCardLinear1
                     } else {
                         highPriorityCardLinear2
@@ -103,7 +103,7 @@ class ToDoListFragment : Fragment() {
                 }
                 2 -> {
                     middlePriorityNum++
-                    if (4 < middlePriorityNum) {
+                    if (middlePriorityNum <= 4) {
                         middlePriorityCardLinear1
                     } else {
                         middlePriorityCardLinear2
@@ -111,7 +111,7 @@ class ToDoListFragment : Fragment() {
                 }
                 else -> {
                     lowPriorityNum++
-                    if (4 < lowPriorityNum) {
+                    if (lowPriorityNum <= 4) {
                         lowPriorityCardLinear1
                     } else {
                         lowPriorityCardLinear2
