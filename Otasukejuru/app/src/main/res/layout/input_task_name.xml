@@ -54,7 +54,7 @@
         android:gravity="bottom">
 
         <Button
-            android:id="@+id/button_next"
+            android:id="@+id/button_next_finish_task_time"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

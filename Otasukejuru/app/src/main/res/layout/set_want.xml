@@ -46,7 +46,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/no_want_to"
+            android:id="@+id/no_want"
             android:layout_width="145dp"
             android:layout_height="145dp"
             android:layout_margin="15dp"
@@ -56,7 +56,7 @@
             android:textSize="30sp"/>
 
         <Button
-            android:id="@+id/yes_w"
+            android:id="@+id/yes_want"
             android:layout_width="145dp"
             android:layout_height="145dp"
             android:layout_margin="15dp"

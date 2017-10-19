@@ -4,7 +4,6 @@ import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 
-internal abstract class FlickCheck
 /**
  * frickViewにはフリックを検知させるViewをセット<br></br>
  * adjustXには左右のフリック距離目安、adjustYには上下のフリック距離目安をセット
@@ -13,7 +12,7 @@ internal abstract class FlickCheck
  * @param adjustX
  * @param adjustY
  */
-(flickView: View?, adjustX: Float, adjustY: Float) {
+internal abstract class FlickCheck(flickView: View?, adjustX: Float, adjustY: Float) {
     
     private var adjustX = 150.0f
     private var adjustY = 150.0f
@@ -26,7 +25,7 @@ internal abstract class FlickCheck
         
         this.adjustX = adjustX
         this.adjustY = adjustY
-        
+    
         flickView?.setOnTouchListener { v, event ->
             when (event.action) {
                 MotionEvent.ACTION_DOWN -> {
@@ -57,31 +56,23 @@ internal abstract class FlickCheck
         Log.d("FlickPoint", "startX:" + touchX + " endX:" + nowTouchX
                 + " startY:" + touchY + " endY:" + nowTouchY)
         // 左フリック
-        if (touchX > nowTouchX) {
-            if (touchX - nowTouchX > adjustX) {
-                getFlick(LEFT_FLICK)
-                return
-            }
+        if (nowTouchX < touchX && adjustX < touchX - nowTouchX) {
+            getFlick(LEFT_FLICK)
+            return
         }
         // 右フリック
-        if (nowTouchX > touchX) {
-            if (nowTouchX - touchX > adjustX) {
-                getFlick(RIGHT_FLICK)
-                return
-            }
+        if (touchX < nowTouchX && adjustX < nowTouchX - touchX) {
+            getFlick(RIGHT_FLICK)
+            return
         }
         // 上フリック
-        if (touchY > nowTouchY) {
-            if (touchY - nowTouchY > adjustY) {
-                getFlick(UP_FLICK)
-                return
-            }
+        if (nowTouchY < touchY && adjustY < touchY - nowTouchY) {
+            getFlick(UP_FLICK)
+            return
         }
         // 下フリック
-        if (nowTouchY > touchY) {
-            if (nowTouchY - touchY > adjustY) {
-                getFlick(DOWN_FLICK)
-            }
+        if (touchY < nowTouchY && adjustY < nowTouchY - touchY) {
+            getFlick(DOWN_FLICK)
         }
     }
     

@@ -7,6 +7,16 @@ import android.widget.*
 import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
 import jp.ict.muffin.otasukejuru.`object`.TaskInformation
+import kotlinx.android.synthetic.main.input_task_name.*
+import kotlinx.android.synthetic.main.selection.*
+import kotlinx.android.synthetic.main.set_must.*
+import kotlinx.android.synthetic.main.set_plan_notification_time.*
+import kotlinx.android.synthetic.main.set_plan_repeat.*
+import kotlinx.android.synthetic.main.set_should.*
+import kotlinx.android.synthetic.main.set_task_notification_time.*
+import kotlinx.android.synthetic.main.set_task_repeat.*
+import kotlinx.android.synthetic.main.set_want.*
+import org.jetbrains.anko.find
 import java.util.*
 
 
@@ -44,160 +54,149 @@ class TaskAdditionActivity : Activity() {
     private fun selectAddType() {
         setContentView(R.layout.selection)
         
-        setActionBar(findViewById(R.id.toolbar_back) as Toolbar)
+        setActionBar(find(R.id.toolbar_back))
         
-        val planButton = findViewById(R.id.button_plan) as Button
-        planButton.setOnClickListener {
+        button_plan.setOnClickListener {
             isPlan = true
             inputPlanName()
         }
         
-        val taskButton = findViewById(R.id.button_task) as Button
-        taskButton.setOnClickListener {
+        button_task.setOnClickListener {
             isPlan = false
             inputTaskName()
         }
         
-        val backButton = findViewById(R.id.button_back) as ImageButton
-        backButton.setOnClickListener { finish() }
+        find<ImageButton>(R.id.button_back).setOnClickListener { finish() }
     }
     
     private fun inputPlanName() {
         setContentView(R.layout.input_plan_name)
-        setActionBar(findViewById(R.id.toolbar_back) as Toolbar)
+        setActionBar(find(R.id.toolbar_back))
         
         val inputNameEdit = findViewById(R.id.plan_name) as EditText
         
-        val nextButton = findViewById(R.id.button_next) as Button
-        nextButton.setOnClickListener {
+        find<Button>(R.id.button_next).setOnClickListener {
             taskTitleName = inputNameEdit.text.toString()
             if (taskTitleName == "") taskTitleName = "無題"
             
             startPlanTime()
         }
         
-        val backButton = findViewById(R.id.button_back) as ImageButton
-        backButton.setOnClickListener { selectAddType() }
+        find<ImageButton>(R.id.button_back).setOnClickListener { selectAddType() }
         
     }
     
     //TODO:CHANGE XML
     private fun startPlanTime() {
         setContentView(R.layout.start_plan_time)
-        setActionBar(findViewById(R.id.toolbar_back) as Toolbar)
+        setActionBar(find(R.id.toolbar_back))
         
         startMonth = calendar.get(Calendar.MONTH)
         startDay = calendar.get(Calendar.DAY_OF_MONTH)
         startHour = calendar.get(Calendar.HOUR_OF_DAY)
         startMinute = calendar.get(Calendar.MINUTE)
         
-        val startMonthNumPick = findViewById(R.id.start_month_num_pick) as NumberPicker
-        startMonthNumPick.maxValue = 12
-        startMonthNumPick.minValue = 1
-        startMonthNumPick.value = startMonth
-        startMonthNumPick.setOnValueChangedListener { _, _, newVal -> startMonth = newVal }
+        find<NumberPicker>(R.id.start_month_num_pick).apply {
+            maxValue = 12
+            minValue = 1
+            value = startMonth
+            setOnValueChangedListener { _, _, newVal -> startMonth = newVal }
+        }
         
-        val startDayNumPick = findViewById(R.id.start_day_num_pick) as NumberPicker
-        startDayNumPick.maxValue = 31
-        startDayNumPick.minValue = 1
-        startDayNumPick.value = startDay
-        startDayNumPick.setOnValueChangedListener { _, _, newVal -> startDay = newVal }
+        find<NumberPicker>(R.id.start_day_num_pick).apply {
+            maxValue = 31
+            minValue = 1
+            value = startDay
+            setOnValueChangedListener { _, _, newVal -> startDay = newVal }
+        }
         
-        val startHourNumPick = findViewById(R.id.start_hour_num_pick) as NumberPicker
-        startHourNumPick.maxValue = 23
-        startHourNumPick.minValue = 0
-        startHourNumPick.value = startHour
-        startHourNumPick.setOnValueChangedListener { _, _, newVal -> startHour = newVal }
+        find<NumberPicker>(R.id.start_hour_num_pick).apply {
+            maxValue = 23
+            minValue = 0
+            value = startHour
+            setOnValueChangedListener { _, _, newVal -> startHour = newVal }
+        }
         
-        val startMinuteNumPick = findViewById(R.id.start_minute_num_pick) as NumberPicker
-        startMinuteNumPick.maxValue = 59
-        startMinuteNumPick.minValue = 0
-        startMinuteNumPick.value = startMinute
-        startMinuteNumPick.setOnValueChangedListener { _, _, newVal -> startMinute = newVal }
         
-        val next = findViewById(R.id.button_next) as Button
-        next.setOnClickListener { finishPlanTime() }
+        find<NumberPicker>(R.id.start_minute_num_pick).apply {
+            maxValue = 59
+            minValue = 0
+            value = startMinute
+            setOnValueChangedListener { _, _, newVal -> startMinute = newVal }
+        }
         
-        val backButton = findViewById(R.id.button_back) as ImageButton
-        backButton.setOnClickListener { inputPlanName() }
+        find<Button>(R.id.button_next).setOnClickListener { finishPlanTime() }
+        find<ImageButton>(R.id.button_back).setOnClickListener { inputPlanName() }
         
     }
     
     private fun finishPlanTime() {
         setContentView(R.layout.finish_plan_time)
-        setActionBar(findViewById(R.id.toolbar_back) as Toolbar)
+        setActionBar(find(R.id.toolbar_back))
         
         finishMonth = startMonth
         finishDay = startDay
         finishHour = startHour
         finishMinute = startMinute
         
-        val finishMonthNumPick = findViewById(R.id.finish_month_num_pick) as NumberPicker
-        finishMonthNumPick.maxValue = 12
-        finishMonthNumPick.minValue = 1
-        finishMonthNumPick.value = finishMonth
-        finishMonthNumPick.setOnValueChangedListener { _, _, newVal -> finishMonth = newVal }
-        
-        val finishDayNumPick = findViewById(R.id.finish_day_num_pick) as NumberPicker
-        finishDayNumPick.maxValue = 31
-        finishDayNumPick.minValue = 1
-        finishDayNumPick.value = finishDay
-        finishDayNumPick.setOnValueChangedListener { _, _, newVal -> finishDay = newVal }
-        
-        val finishHourNumPick = findViewById(R.id.finish_hour_num_pick) as NumberPicker
-        finishHourNumPick.maxValue = 23
-        finishHourNumPick.minValue = 0
-        finishHourNumPick.value = finishHour
-        finishHourNumPick.setOnValueChangedListener { _, _, newVal -> finishHour = newVal }
-        
-        val finishMinuteNumPick = findViewById(R.id.finish_minute_num_pick) as NumberPicker
-        finishMinuteNumPick.maxValue = 59
-        finishMinuteNumPick.minValue = 0
-        finishMinuteNumPick.value = finishMinute
-        finishMinuteNumPick.setOnValueChangedListener { _, _, newVal -> finishMinute = newVal }
-        
-        val next = findViewById(R.id.button_next) as Button
-        next.setOnClickListener { setPlanRepeat() }
-        
-        val backButton = findViewById(R.id.button_back) as ImageButton
-        backButton.setOnClickListener { startPlanTime() }
+        find<NumberPicker>(R.id.finish_month_num_pick).apply {
+            maxValue = 12
+            minValue = 1
+            value = finishMonth
+            setOnValueChangedListener { _, _, newVal -> finishMonth = newVal }
+        }
+        find<NumberPicker>(R.id.finish_day_num_pick).apply {
+            maxValue = 31
+            minValue = 1
+            value = finishDay
+            setOnValueChangedListener { _, _, newVal -> finishDay = newVal }
+        }
+        find<NumberPicker>(R.id.finish_hour_edit).apply {
+            maxValue = 23
+            minValue = 0
+            value = finishHour
+            setOnValueChangedListener { _, _, newVal -> finishHour = newVal }
+        }
+        find<NumberPicker>(R.id.finish_minute_edit).apply {
+            maxValue = 59
+            minValue = 0
+            value = finishMinute
+            setOnValueChangedListener { _, _, newVal -> finishMinute = newVal }
+        }
+        find<Button>(R.id.button_next).setOnClickListener { setPlanRepeat() }
+        find<ImageButton>(R.id.button_back).setOnClickListener { startPlanTime() }
         
     }
     
     private fun setPlanRepeat() {
         setContentView(R.layout.set_plan_repeat)
-        setActionBar(findViewById(R.id.toolbar_back) as Toolbar)
+        setActionBar(find(R.id.toolbar_back))
         
-        val planRepeatRadioGroup = findViewById(R.id.plan_repeat_radio_group) as RadioGroup
         
-        val next = findViewById(R.id.button_next) as Button
-        next.setOnClickListener {
-            val num = planRepeatRadioGroup.checkedRadioButtonId
+        find<Button>(R.id.button_next).setOnClickListener {
+            val num = plan_repeat_radio_group.checkedRadioButtonId
             
             taskRepeat = if (num != -1) {
                 (findViewById(num) as RadioButton).text.toString()
             } else {
                 "選択されていない"
             }
-            setPlanMessageTime()
+            setPlanNotificationTime()
         }
         
-        val backButton = findViewById(R.id.button_back) as ImageButton
-        backButton.setOnClickListener { finishPlanTime() }
+        find<ImageButton>(R.id.button_back).setOnClickListener { finishPlanTime() }
         
     }
     
-    private fun setPlanMessageTime() {
-        setContentView(R.layout.set_plan_message_time)
-        setActionBar(findViewById(R.id.toolbar_back) as Toolbar)
+    private fun setPlanNotificationTime() {
+        setContentView(R.layout.set_plan_notification_time)
+        setActionBar(find(R.id.toolbar_back))
         
-        val setMessageTimeEdit = findViewById(R.id.set_message_time_edit) as EditText
-        setMessageTimeEdit.setText("5")
+        set_notification_time_edit.setText("5")
         messageTime = 5
         
-        val next = findViewById(R.id.button_next) as Button
-        next.setOnClickListener {
-            val str: String = setMessageTimeEdit.text.toString()
+        find<Button>(R.id.button_finish).setOnClickListener {
+            val str: String = set_notification_time_edit.text.toString()
             messageTime = Integer.parseInt(str)
             
             Log.d("plan", "タイトル名:" + taskTitleName + "\n予定開始の日付:" + startMonth + "月" +
@@ -209,27 +208,24 @@ class TaskAdditionActivity : Activity() {
             finish()
         }
         
-        val backButton = findViewById(R.id.button_back) as ImageButton
-        backButton.setOnClickListener { setPlanRepeat() }
+        find<Button>(R.id.button_back).setOnClickListener { setPlanRepeat() }
         
     }
     
     private fun inputTaskName() {
         setContentView(R.layout.input_task_name)
-        setActionBar(findViewById(R.id.toolbar_back) as Toolbar)
+        setActionBar(find(R.id.toolbar_back))
         
         val inputTaskNameEdit = findViewById(R.id.input_task_name_edit) as EditText
         
-        val next = findViewById(R.id.button_next) as Button
-        next.setOnClickListener {
+        button_next_finish_task_time.setOnClickListener {
             taskTitleName = inputTaskNameEdit.text.toString()
             if (taskTitleName == "") taskTitleName = "無題"
             
             finishTaskTime()
         }
         
-        val backButton = findViewById(R.id.button_back) as ImageButton
-        backButton.setOnClickListener { selectAddType() }
+        find<ImageButton>(R.id.button_back).setOnClickListener { selectAddType() }
     }
     
     private fun finishTaskTime() {
@@ -241,32 +237,35 @@ class TaskAdditionActivity : Activity() {
         finishHour = calendar.get(Calendar.HOUR_OF_DAY)
         finishMinute = calendar.get(Calendar.MINUTE)
         
-        val finishMonthNumPick = findViewById(R.id.finish_month_num_pick) as NumberPicker
-        finishMonthNumPick.maxValue = 12
-        finishMonthNumPick.minValue = 1
-        finishMonthNumPick.value = finishMonth
-        finishMonthNumPick.setOnValueChangedListener { _, _, newVal -> finishMonth = newVal }
+        find<NumberPicker>(R.id.finish_month_num_pick).apply {
+            maxValue = 12
+            minValue = 1
+            value = finishMonth
+            setOnValueChangedListener { _, _, newVal -> finishMonth = newVal }
+        }
         
-        val finishDayNumPick = findViewById(R.id.finish_day_num_pick) as NumberPicker
-        finishDayNumPick.maxValue = 31
-        finishDayNumPick.minValue = 1
-        finishDayNumPick.value = finishDay
-        finishDayNumPick.setOnValueChangedListener { _, _, newVal -> finishDay = newVal }
+        find<NumberPicker>(R.id.finish_day_num_pick).apply {
+            maxValue = 31
+            minValue = 1
+            value = finishDay
+            setOnValueChangedListener { _, _, newVal -> finishDay = newVal }
+        }
         
-        val finishHourNumPick = findViewById(R.id.finish_hour_num_pick) as NumberPicker
-        finishHourNumPick.maxValue = 23
-        finishHourNumPick.minValue = 0
-        finishHourNumPick.value = finishHour
-        finishHourNumPick.setOnValueChangedListener { _, _, newVal -> finishHour = newVal }
+        find<NumberPicker>(R.id.finish_hour_edit).apply {
+            maxValue = 23
+            minValue = 0
+            value = finishHour
+            setOnValueChangedListener { _, _, newVal -> finishHour = newVal }
+        }
         
-        val finishMinuteNumPick = findViewById(R.id.finish_minute_num_pick) as NumberPicker
-        finishMinuteNumPick.maxValue = 59
-        finishMinuteNumPick.minValue = 0
-        finishMinuteNumPick.value = finishMinute
-        finishMinuteNumPick.setOnValueChangedListener { _, _, newVal -> finishMinute = newVal }
+        find<NumberPicker>(R.id.finish_minute_edit).apply {
+            maxValue = 59
+            minValue = 0
+            value = finishMinute
+            setOnValueChangedListener { _, _, newVal -> finishMinute = newVal }
+        }
         
-        val next = findViewById(R.id.button_next) as Button
-        next.setOnClickListener { setTaskRepeat() }
+        find<Button>(R.id.button_next).setOnClickListener { setTaskRepeat() }
         
         val noLimit = findViewById(R.id.no_limit) as Button
         noLimit.setOnClickListener {
@@ -274,8 +273,7 @@ class TaskAdditionActivity : Activity() {
             setTaskRepeat()
         }
         
-        val backButton = findViewById(R.id.button_back) as ImageButton
-        backButton.setOnClickListener { inputTaskName() }
+        find<ImageButton>(R.id.button_back).setOnClickListener { inputTaskName() }
         
     }
     
@@ -283,12 +281,9 @@ class TaskAdditionActivity : Activity() {
         setContentView(R.layout.set_task_repeat)
         setActionBar(findViewById(R.id.toolbar_back) as Toolbar)
         
-        val planRepeatRadioGroup = findViewById(R.id.plan_repeat_radio_group) as RadioGroup
         
-        val next = findViewById(R.id.button_next) as Button
-        next.setOnClickListener {
-            val num = planRepeatRadioGroup.checkedRadioButtonId
-            
+        find<Button>(R.id.button_next).setOnClickListener {
+            val num = task_repeat_radio_group.checkedRadioButtonId
             taskRepeat = if (num != -1) {
                 (findViewById(num) as RadioButton).text.toString()
             } else {
@@ -297,8 +292,7 @@ class TaskAdditionActivity : Activity() {
             setMust()
         }
         
-        val backButton = findViewById(R.id.button_back) as ImageButton
-        backButton.setOnClickListener { finishTaskTime() }
+        find<ImageButton>(R.id.button_back).setOnClickListener { finishTaskTime() }
         
     }
     
@@ -306,80 +300,68 @@ class TaskAdditionActivity : Activity() {
         setContentView(R.layout.set_must)
         setActionBar(findViewById(R.id.toolbar_back) as Toolbar)
         
-        val noMust = findViewById(R.id.no_must) as Button
-        noMust.setOnClickListener {
+        no_must.setOnClickListener {
             isMust = false
             setShould()
         }
         
-        val yesMust = findViewById(R.id.yes_must) as Button
-        yesMust.setOnClickListener {
+        yes_must.setOnClickListener {
             isMust = true
             setShould()
         }
         
-        val backButton = findViewById(R.id.button_back) as ImageButton
-        backButton.setOnClickListener { setTaskRepeat() }
+        find<ImageButton>(R.id.button_back).setOnClickListener { setTaskRepeat() }
     }
     
     private fun setShould() {
         setContentView(R.layout.set_should)
-        setActionBar(findViewById(R.id.toolbar_back) as Toolbar)
+        setActionBar(find(R.id.toolbar_back))
         
-        val noShould = findViewById(R.id.no_should) as Button
-        noShould.setOnClickListener {
+        no_should.setOnClickListener {
             isShould = false
             setWantTo()
         }
         
-        val yesShould = findViewById(R.id.yes_should) as Button
-        yesShould.setOnClickListener {
+        yes_should.setOnClickListener {
             isShould = true
             setWantTo()
         }
         
-        val backButton = findViewById(R.id.button_back) as ImageButton
-        backButton.setOnClickListener { setMust() }
+        find<ImageView>(R.id.button_back).setOnClickListener { setMust() }
         
     }
     
     private fun setWantTo() {
         setContentView(R.layout.set_want)
-        setActionBar(findViewById(R.id.toolbar_back) as Toolbar)
+        setActionBar(find(R.id.toolbar_back))
         
-        val noWantTo = findViewById(R.id.no_want_to) as Button
-        noWantTo.setOnClickListener {
+        no_want.setOnClickListener {
             isWant = false
-            setTaskMessageTime()
+            setTaskNotificationTime()
         }
         
-        val yes = findViewById(R.id.yes_w) as Button
-        yes.setOnClickListener {
+        yes_want.setOnClickListener {
             isWant = true
-            setTaskMessageTime()
+            setTaskNotificationTime()
         }
         
-        val imageButton = findViewById(R.id.button_back) as ImageButton
-        imageButton.setOnClickListener { setShould() }
+        find<ImageButton>(R.id.button_back).setOnClickListener { setShould() }
         
     }
     
-    private fun setTaskMessageTime() {
-        setContentView(R.layout.set_task_message_time)
-        setActionBar(findViewById(R.id.toolbar_back) as Toolbar)
+    private fun setTaskNotificationTime() {
+        setContentView(R.layout.set_task_notification_time)
+        setActionBar(find(R.id.toolbar_back))
         
-        val finishHourEdit = findViewById(R.id.finish_hour_num_pick) as EditText
-        finishHourEdit.setText("0")
+        finish_hour_edit.setText("0")
         finishHour = 0
         
-        val finishMinutesEdit = findViewById(R.id.finish_minute_num_pick) as EditText
-        finishMinutesEdit.setText("5")
+        finish_minute_edit.setText("5")
         finishMinute = 5
         
-        val next = findViewById(R.id.button_next) as Button
-        next.setOnClickListener {
-            finishHour = Integer.parseInt(finishHourEdit.text.toString())
-            finishMinute = Integer.parseInt(finishMinutesEdit.text.toString())
+        find<Button>(R.id.button_next).setOnClickListener {
+            finishHour = Integer.parseInt(finish_hour_edit.text.toString())
+            finishMinute = Integer.parseInt(finish_minute_edit.text.toString())
             
             if (startMonth == -1) {
                 dateLimit = -1
@@ -398,22 +380,22 @@ class TaskAdditionActivity : Activity() {
             finish()
         }
         
-        val backButton = findViewById(R.id.button_back) as ImageButton
-        backButton.setOnClickListener { setWantTo() }
+        find<ImageButton>(R.id.button_back).setOnClickListener { setWantTo() }
     }
     
     private fun setTaskInformation() {
         val taskInformation = TaskInformation()
-        taskInformation.name = taskTitleName
-        taskInformation.limitDate = dateLimit
-        taskInformation.limitTime = timeLimit
-        taskInformation.repeat = taskRepeat
-        taskInformation.must = isMust
-        taskInformation.should = isShould
-        taskInformation.want = isWant
-        taskInformation.finishTimeMinutes = finishHour * 100 + finishMinute
-        taskInformation.priority = 0
-        
+        taskInformation.apply {
+            name = taskTitleName
+            limitDate = dateLimit
+            limitTime = timeLimit
+            repeat = taskRepeat
+            must = isMust
+            should = isShould
+            want = isWant
+            finishTimeMinutes = finishHour * 100 + finishMinute
+            priority = 0
+        }
         GlobalValue.taskInformationArrayList.add(0, taskInformation)
         
     }

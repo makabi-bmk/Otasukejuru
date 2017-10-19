@@ -51,7 +51,7 @@
             android:orientation="horizontal">
 
             <EditText
-                android:id="@+id/finish_hour_num_pick"
+                android:id="@+id/finish_hour_edit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="number"
@@ -66,7 +66,7 @@
                 android:textSize="25sp"/>
 
             <EditText
-                android:id="@+id/finish_minute_num_pick"
+                android:id="@+id/finish_minute_edit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="number"
