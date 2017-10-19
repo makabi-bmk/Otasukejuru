@@ -1,6 +1,7 @@
 package jp.ict.muffin.otasukejuru.ui
 
 import android.graphics.Color
+import android.support.v4.content.ContextCompat
 import android.view.View
 import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.activity.TimerActivity
@@ -14,11 +15,11 @@ class TimerNotificationActivityUI(private val time: Long) :
     override fun createView(ui: AnkoContext<TimerNotificationActivity>): View = with(ui) {
         
         relativeLayout {
-            backgroundColor = Color.argb(255, 251, 251, 240)
+            backgroundColor = ContextCompat.getColor(context, R.color.back)
             
             textView("終了前の通知") {
                 id = R.id.titleInterval
-                textColor = Color.argb(255, 102, 183, 236)
+                textColor = ContextCompat.getColor(context, R.color.colorPrimary)
                 textSize = 30f
             }.lparams {
                 topMargin = dip(10)
@@ -64,7 +65,7 @@ class TimerNotificationActivityUI(private val time: Long) :
             button("次へ") {
                 id = R.id.nextButton
                 backgroundColor = Color.argb(0, 0, 0, 0)
-                textColor = Color.argb(255, 102, 183, 236)
+                textColor = ContextCompat.getColor(context, R.color.colorPrimary)
                 textSize = 20f
                 onClick {
                     startActivity<TimerActivity>("time" to time)

@@ -1,9 +1,9 @@
 package jp.ict.muffin.otasukejuru.ui
 
 import android.content.Context
-import android.graphics.Color
 import android.os.Handler
 import android.os.Looper
+import android.support.v4.content.ContextCompat
 import android.text.InputType
 import android.view.View
 import android.widget.EditText
@@ -26,7 +26,7 @@ class TimerSetTimeFragmentUI : AnkoComponent<TimerSetTimeFragment> {
     
     override fun createView(ui: AnkoContext<TimerSetTimeFragment>): View = with(ui) {
         relativeLayout {
-            backgroundColor = Color.argb(255, 251, 251, 240)
+            backgroundColor = ContextCompat.getColor(context, R.color.back)
             lparams {
                 height = matchParent
                 width = matchParent
@@ -93,7 +93,7 @@ class TimerSetTimeFragmentUI : AnkoComponent<TimerSetTimeFragment> {
             val params: ArrayList<HashMap<String, Int>> = java.util.ArrayList()
             
             val map = HashMap<String, Int>()
-            map.put("color", Color.argb(255, 251, 251, 240))
+            map.put("color", ContextCompat.getColor(context, R.color.back))
             map.put("value", 60)
             params.add(map)
             
@@ -116,8 +116,11 @@ class TimerSetTimeFragmentUI : AnkoComponent<TimerSetTimeFragment> {
             time % 60L
         }
         
+        val backColor = ContextCompat.getColor(context, R.color.back)
+        val redColor = ContextCompat.getColor(context, R.color.mostPriority)
+        
         val params: ArrayList<HashMap<String, Int>> = java.util.ArrayList()
-        val colors = arrayListOf(Color.argb(255, 251, 251, 240), Color.argb(255, 255, 0, 0))
+        val colors = arrayListOf(backColor, redColor)
         val drawCircleTime = arrayListOf(60 - drawTime, drawTime)
         (0 until 2).forEach {
             val mapSI = HashMap<String, Int>()

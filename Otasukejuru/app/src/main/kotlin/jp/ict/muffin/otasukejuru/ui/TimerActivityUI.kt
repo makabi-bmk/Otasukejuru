@@ -1,9 +1,9 @@
 package jp.ict.muffin.otasukejuru.ui
 
 import android.content.Context
-import android.graphics.Color
 import android.os.Handler
 import android.os.Looper
+import android.support.v4.content.ContextCompat
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.TextView
@@ -23,7 +23,7 @@ class TimerActivityUI(private val time: Long) : AnkoComponent<TimerActivity> {
     
     override fun createView(ui: AnkoContext<TimerActivity>): View = with(ui) {
         relativeLayout {
-            backgroundColor = Color.argb(255, 251, 251, 240)
+            backgroundColor = ContextCompat.getColor(context, R.color.back)
             lparams {
                 height = matchParent
                 width = matchParent
@@ -78,7 +78,10 @@ class TimerActivityUI(private val time: Long) : AnkoComponent<TimerActivity> {
         val params: ArrayList<HashMap<String, Int>> = java.util.ArrayList()
         
         val map = HashMap<String, Int>()
-        map.put("color", Color.argb(255, 251, 251, 240))
+    
+        val back = ContextCompat.getColor(context, R.color.back)
+    
+        map.put("color", back)
         map.put("value", 60)
         params.add(map)
         val circleGraphView = CircleGraphView(context,
@@ -102,10 +105,13 @@ class TimerActivityUI(private val time: Long) : AnkoComponent<TimerActivity> {
         val drawCircleTime = arrayListOf(60 - drawTime, drawTime)
         (0 until 2).forEach { i ->
             val params: ArrayList<HashMap<String, Int>> = java.util.ArrayList()
+            val backColor = ContextCompat.getColor(context, R.color.back)
+            val redColor = ContextCompat.getColor(context, R.color.mostPriority)
+            
             val colors = if (i == 0) {
-                arrayListOf(Color.argb(255, 251, 251, 240), Color.argb(255, 255, 0, 0))
+                arrayListOf(backColor, redColor)
             } else {
-                arrayListOf(Color.argb(255, 251, 251, 240), Color.argb(255, 251, 251, 240))
+                arrayListOf(backColor, backColor)
             }
             
             (0 until 2).forEach { j ->

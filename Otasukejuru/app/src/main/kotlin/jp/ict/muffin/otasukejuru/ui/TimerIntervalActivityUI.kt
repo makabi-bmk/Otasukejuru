@@ -1,6 +1,7 @@
 package jp.ict.muffin.otasukejuru.ui
 
 import android.graphics.Color
+import android.support.v4.content.ContextCompat
 import android.view.View
 import android.widget.NumberPicker
 import jp.ict.muffin.otasukejuru.R
@@ -20,11 +21,11 @@ class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerInter
     
     override fun createView(ui: AnkoContext<TimerIntervalActivity>): View = with(ui) {
         relativeLayout {
-            backgroundColor = Color.argb(255, 251, 251, 240)
+            backgroundColor = ContextCompat.getColor(context, R.color.back)
             
             textView("集中時間と休憩時間") {
                 id = R.id.titleInterval
-                textColor = Color.argb(255, 102, 183, 236)
+                textColor = ContextCompat.getColor(context, R.color.colorPrimary)
                 textSize = 30f
             }.lparams {
                 topMargin = dip(10)
@@ -216,7 +217,7 @@ class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerInter
             button("次へ") {
                 id = R.id.nextButton
                 backgroundColor = Color.argb(0, 0, 0, 0)
-                textColor = Color.argb(255, 102, 183, 236)
+                textColor = ContextCompat.getColor(context, R.color.colorPrimary)
                 textSize = 20f
                 onClick {
                     startActivity<TimerNotificationActivity>("time" to time)
