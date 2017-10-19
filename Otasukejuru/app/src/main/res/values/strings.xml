@@ -15,4 +15,6 @@
     <string name="lowPriority">低優先</string>
 
     <string name="format_month_year">2017/09/29</string>
+
+    <string name="line">This is L¥line.</string>
 </resources>

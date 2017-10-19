@@ -1,6 +1,7 @@
 package jp.ict.muffin.otasukejuru;
 
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -15,6 +16,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.Calendar;
+
+import jp.ict.muffin.otasukejuru.activity.DateActivity;
 
 public class CalendarFragment extends Fragment {
 
@@ -189,19 +192,32 @@ public class CalendarFragment extends Fragment {
             layout[num].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Log.d("hoge", "poyo");
-                    if (finalAddMessage) {
-                        new AlertDialog.Builder(getActivity())
-                                .setMessage(String.valueOf(finalDate) + "日" + "\n" +
-                                        finalEventName)
-                                .setPositiveButton("OK", null)
-                                .show();
-                    } else {
-                        new AlertDialog.Builder(getActivity())
-                                .setMessage(String.valueOf(finalDate) + "日")
-                                .setPositiveButton("OK", null)
-                                .show();
-                    }
+//                    Log.d("hoge", "poyo");
+//                    if (finalAddMessage) {
+//                        new AlertDialog.Builder(getActivity())
+//                                .setMessage(String.valueOf(finalDate) + "日" + "\n" +
+//                                        finalEventName)
+//                                .setPositiveButton("OK", null)
+//                                .show();
+//                    } else {
+//                        new AlertDialog.Builder(getActivity())
+//                                .setMessage(String.valueOf(finalDate) + "日")
+//                                .setPositiveButton("OK", null)
+//                                .setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//                                    @Override
+//                                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    Intent intent = new Intent(getContext(), DateActivity.class);
+                    startActivity(intent);
+//                                    }
+//
+//                                    @Override
+//                                    public void onNothingSelected(AdapterView<?> parent) {
+//
+//                                    }
+//                                })
+//                                .show();
+//                    }
+
 
                 }
             });

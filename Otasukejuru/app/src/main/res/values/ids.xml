@@ -17,4 +17,6 @@
     <item name="notificationText" type="id"/>
     <item name="hourTextView" type="id"/>
     <item name="minuteTextView" type="id"/>
+    <item name="todayTaskText" type="id"/>
+    <item name="hourText" type="id"/>
 </resources>
