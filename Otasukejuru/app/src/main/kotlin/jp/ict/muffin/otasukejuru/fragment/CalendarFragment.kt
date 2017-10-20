@@ -16,6 +16,8 @@ import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.activity.DateActivity
 import jp.ict.muffin.otasukejuru.view.FlickCheck
 import kotlinx.android.synthetic.main.fragment_calendar.*
+import org.jetbrains.anko.find
+import org.jetbrains.anko.support.v4.find
 import org.jetbrains.anko.support.v4.startActivity
 import java.util.*
 
@@ -59,8 +61,7 @@ class CalendarFragment : Fragment() {
         
         
         //月を切り替えるボタン
-        val buttonNext = view!!.findViewById(R.id.next_month) as Button
-        buttonNext.setOnClickListener {
+        find<Button>(R.id.next_month).setOnClickListener {
             if (month == 11) {
                 year++
                 month = 0
@@ -70,8 +71,7 @@ class CalendarFragment : Fragment() {
             calendarView()
         }
         
-        val buttonBack = view!!.findViewById(R.id.back_month) as Button
-        buttonBack.setOnClickListener {
+        find<Button>(R.id.back_month).setOnClickListener {
             if (month == 0) {
                 year--
                 month = 11
@@ -91,11 +91,13 @@ class CalendarFragment : Fragment() {
         
         val layout = arrayOfNulls<View>(42)
         val textView = arrayOfNulls<TextView>(42)
-        for (i in 0..41) {
-            layout[i] = view?.findViewById(xml[i])
-            textView[i] = layout[i]?.findViewById(R.id.date_view) as TextView
-            textView[i]?.setTextColor(Color.BLACK)
-            textView[i]?.isClickable = true
+        (0..41).forEach {
+            layout[it] = find(xml[it])
+            textView[it] = layout[it]?.find(R.id.date_view)
+            textView[it]?.apply {
+                setTextColor(Color.BLACK)
+                isClickable = true
+            }
         }
         
         
@@ -104,8 +106,10 @@ class CalendarFragment : Fragment() {
 //        val todayMonth = cal.get(Calendar.MONTH)
 //        val todayDay = cal.get(Calendar.DAY_OF_MONTH)
         
-        cal.clear()
-        cal.set(year, month, 1)
+        cal.apply {
+            clear()
+            set(year, month, 1)
+        }
         
         //月末日
         val lastDayOfMonth = cal.getActualMaximum(Calendar.DATE)
@@ -115,7 +119,7 @@ class CalendarFragment : Fragment() {
         var num = 0
         
         //空白スペースの表示
-        for (i in 1 until firstWeekday) {
+        (1 until firstWeekday).forEach {
             layout[num]?.isClickable = false
             textView[num]?.text = ""
             num++
@@ -171,10 +175,11 @@ class CalendarFragment : Fragment() {
                 }
             }//年間行事の判定
             
-            textView[num]?.text = date.toString()
-            textView[num]?.isClickable = true
-            textView[num]?.textSize = 20f
-            
+            textView[num]?.apply {
+                text = date.toString()
+                isClickable = true
+                textSize = 20f
+            }
             
             //タッチイベントの設定
 //            val finalEventName = eventName
@@ -190,7 +195,7 @@ class CalendarFragment : Fragment() {
         }
         
         //空白スペースの表示
-        for (i in num..41) {
+        (num..41).forEach {
             textView[num]?.text = ""
             layout[num]?.isClickable = false
             num++
