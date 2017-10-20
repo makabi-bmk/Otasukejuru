@@ -8,7 +8,6 @@ import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
 import jp.ict.muffin.otasukejuru.`object`.TaskInformation
 import kotlinx.android.synthetic.main.input_task_name.*
-import kotlinx.android.synthetic.main.selection.*
 import kotlinx.android.synthetic.main.set_must.*
 import kotlinx.android.synthetic.main.set_plan_notification_time.*
 import kotlinx.android.synthetic.main.set_plan_repeat.*
@@ -55,13 +54,13 @@ class TaskAdditionActivity : Activity() {
         setContentView(R.layout.selection)
         
         setActionBar(find(R.id.toolbar_back))
-        
-        button_plan.setOnClickListener {
+       
+        find<Button>(R.id.button_plan).setOnClickListener {
             isPlan = true
             inputPlanName()
         }
         
-        button_task.setOnClickListener {
+        find<Button>(R.id.button_task).setOnClickListener {
             isPlan = false
             inputTaskName()
         }
