@@ -6,7 +6,7 @@ import android.util.Log
 import android.widget.*
 import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
-import jp.ict.muffin.otasukejuru.`object`.TaskInformation
+import jp.ict.muffin.otasukejuru.`object`.TaskInfo
 import kotlinx.android.synthetic.main.set_plan_notification_time.*
 import kotlinx.android.synthetic.main.set_plan_repeat.*
 import kotlinx.android.synthetic.main.set_task_repeat.*
@@ -380,7 +380,7 @@ class TaskAdditionActivity : Activity() {
     }
     
     private fun setTaskInformation() {
-        val taskInformation = TaskInformation()
+        val taskInformation = TaskInfo()
         taskInformation.apply {
             name = taskTitleName
             limitDate = dateLimit

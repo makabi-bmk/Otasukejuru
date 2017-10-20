@@ -1,7 +1,7 @@
 package jp.ict.muffin.otasukejuru.`object`
 
 
-class TaskInformation {
+class TaskInfo {
     var name: String = ""
     var limitDate: Int = 0
     var limitTime: Int = 0
