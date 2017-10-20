@@ -125,7 +125,8 @@ class MainActivity : AppCompatActivity() {
      * A [FragmentPagerAdapter] that returns a fragment corresponding to
      * one of the sections/tabs/pages.
      */
-    private inner class SectionsPagerAdapter internal constructor(fm: FragmentManager) : FragmentPagerAdapter(fm) {
+    private inner class SectionsPagerAdapter internal constructor(fm: FragmentManager) :
+            FragmentPagerAdapter(fm) {
         
         //TODO : Show screen what was chosen.
         // Return a PlaceholderFragment (defined as a static inner class below).

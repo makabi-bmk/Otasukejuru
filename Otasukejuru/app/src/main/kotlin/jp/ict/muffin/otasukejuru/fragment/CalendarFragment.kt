@@ -6,7 +6,6 @@ import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
-import android.support.v7.app.AlertDialog
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +16,7 @@ import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.activity.DateActivity
 import jp.ict.muffin.otasukejuru.view.FlickCheck
 import kotlinx.android.synthetic.main.fragment_calendar.*
+import org.jetbrains.anko.support.v4.startActivity
 import java.util.*
 
 class CalendarFragment : Fragment() {
@@ -37,7 +37,8 @@ class CalendarFragment : Fragment() {
     private var substituteHoliday = false
     
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View = inflater.inflate(R.layout.fragment_calendar, container, false)
+                              savedInstanceState: Bundle?): View =
+            inflater.inflate(R.layout.fragment_calendar, container, false)
     
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -54,7 +55,7 @@ class CalendarFragment : Fragment() {
         //タイトル(カレンダーの年月日)
 //        val title = view?.findViewById(R.id.title) as TextView
 //        title.text = "${year}年${(month + 1)}月"
-        title.text = "${year}年${month + 1}月"
+        title.text = "$year 年${month + 1}月"
         
         
         //月を切り替えるボタン
@@ -80,7 +81,13 @@ class CalendarFragment : Fragment() {
             calendarView()
         }
         
-        val xml = intArrayOf(R.id.date0, R.id.date1, R.id.date2, R.id.date3, R.id.date4, R.id.date5, R.id.date6, R.id.date7, R.id.date8, R.id.date9, R.id.date10, R.id.date11, R.id.date12, R.id.date13, R.id.date14, R.id.date15, R.id.date16, R.id.date17, R.id.date18, R.id.date19, R.id.date20, R.id.date21, R.id.date22, R.id.date23, R.id.date24, R.id.date25, R.id.date26, R.id.date27, R.id.date28, R.id.date29, R.id.date30, R.id.date31, R.id.date32, R.id.date33, R.id.date34, R.id.date35, R.id.date36, R.id.date37, R.id.date38, R.id.date39, R.id.date40, R.id.date41)
+        val xml = intArrayOf(R.id.date0, R.id.date1, R.id.date2, R.id.date3, R.id.date4, R.id.date5,
+                R.id.date6, R.id.date7, R.id.date8, R.id.date9, R.id.date10, R.id.date11,
+                R.id.date12, R.id.date13, R.id.date14, R.id.date15, R.id.date16, R.id.date17,
+                R.id.date18, R.id.date19, R.id.date20, R.id.date21, R.id.date22, R.id.date23,
+                R.id.date24, R.id.date25, R.id.date26, R.id.date27, R.id.date28, R.id.date29,
+                R.id.date30, R.id.date31, R.id.date32, R.id.date33, R.id.date34, R.id.date35,
+                R.id.date36, R.id.date37, R.id.date38, R.id.date39, R.id.date40, R.id.date41)
         
         val layout = arrayOfNulls<View>(42)
         val textView = arrayOfNulls<TextView>(42)
@@ -93,9 +100,9 @@ class CalendarFragment : Fragment() {
         
         
         //今日の年月日
-        val todayYear = cal.get(Calendar.YEAR)
-        val todayMonth = cal.get(Calendar.MONTH)
-        val todayDay = cal.get(Calendar.DAY_OF_MONTH)
+//        val todayYear = cal.get(Calendar.YEAR)
+//        val todayMonth = cal.get(Calendar.MONTH)
+//        val todayDay = cal.get(Calendar.DAY_OF_MONTH)
         
         cal.clear()
         cal.set(year, month, 1)
@@ -140,8 +147,8 @@ class CalendarFragment : Fragment() {
                         R.color.saturdayColor))
             }//土曜日かどうか判定
             //日曜日かどうか判定
-            
-            var addMessage = false
+
+//            var addMessage = false
             //祝日・イベント名の取得
             var eventName = judgePublicHoliday(date, judgeSunDay, judgeMonDay)
             
@@ -156,71 +163,36 @@ class CalendarFragment : Fragment() {
                 }
                 textView[num]?.setTextColor(ContextCompat.getColor(context,
                         R.color.sundayColor))
-                addMessage = true
+//                addMessage = true
             } else {
                 eventName = judgeAnnualEvent(date, judgeSunDay)
                 if (eventName != "NotUnusualEvent") {
-                    addMessage = true
+//                    addMessage = true
                 }
             }//年間行事の判定
             
-            textView[num]?.setText(date.toString())
-            textView[num]?.setClickable(true)
-            textView[num]?.setTextSize(20f)
+            textView[num]?.text = date.toString()
+            textView[num]?.isClickable = true
+            textView[num]?.textSize = 20f
             
             
             //タッチイベントの設定
-            val finalEventName = eventName
-            val finalAddMessage = addMessage
-            layout[num]?.setOnClickListener(View.OnClickListener {
-                //                    Log.d("hoge", "poyo");
-                //                    if (finalAddMessage) {
-                //                        new AlertDialog.Builder(getActivity())
-                //                                .setMessage(String.valueOf(finalDate) + "日" + "\n" +
-                //                                        finalEventName)
-                //                                .setPositiveButton("OK", null)
-                //                                .show();
-                //                    } else {
-                //                        new AlertDialog.Builder(getActivity())
-                //                                .setMessage(String.valueOf(finalDate) + "日")
-                //                                .setPositiveButton("OK", null)
-                //                                .setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                //                                    @Override
-                //                                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//            val finalEventName = eventName
+//            val finalAddMessage = addMessage
+            layout[num]?.setOnClickListener {
                 val intent = Intent(context, DateActivity::class.java)
                 startActivity(intent)
-                //                                    }
-                //
-                //                                    @Override
-                //                                    public void onNothingSelected(AdapterView<?> parent) {
-                //
-                //                                    }
-                //                                })
-                //                                .show();
-                //                    }
-            })
-            textView[num]?.setOnClickListener(View.OnClickListener {
-                Log.d("hoge", "poyo")
-                if (finalAddMessage) {
-                    AlertDialog.Builder(activity)
-                            .setMessage(date.toString() + "日" + "\n" +
-                                    finalEventName)
-                            .setPositiveButton("OK", null)
-                            .show()
-                } else {
-                    AlertDialog.Builder(activity)
-                            .setMessage(date.toString() + "日")
-                            .setPositiveButton("OK", null)
-                            .show()
-                }
-            })
+            }
+            textView[num]?.setOnClickListener {
+                startActivity<DateActivity>()
+            }
             num++
         }
         
         //空白スペースの表示
         for (i in num..41) {
-            textView[num]?.setText("")
-            layout[num]?.setClickable(false)
+            textView[num]?.text = ""
+            layout[num]?.isClickable = false
             num++
             
         }
@@ -229,14 +201,14 @@ class CalendarFragment : Fragment() {
         
     }
     
-    fun flickCheck() {
+    private fun flickCheck() {
         val adjustX = 150.0f
         val adjustY = 150.0f
         
         object : FlickCheck(view, adjustX, adjustY) {
             
-            override fun getFlick(flickData: Int) {
-                when (flickData) {
+            override fun getFlick(swipe: Int) {
+                when (swipe) {
                     LEFT_FLICK -> {
                         // 左フリック
                         Log.d("hoge", "左フリック")
@@ -244,8 +216,10 @@ class CalendarFragment : Fragment() {
                             year++
                             month = 0
                             //年が変わったとき、春分の日と秋分の日を定義しなおす
-                            vernalEquinoxDay = (20.8431 + 0.242194 * (year - 1980) - (year - 1980) / 4).toInt()
-                            autumnalEquinoxDay = (23.2488 + 0.242194 * (year - 1980) - (year - 1980) / 4).toInt()
+                            vernalEquinoxDay = (20.8431 + 0.242194 * (year - 1980) -
+                                    (year - 1980) / 4).toInt()
+                            autumnalEquinoxDay = (23.2488 + 0.242194 * (year - 1980) -
+                                    (year - 1980) / 4).toInt()
                             
                         } else {
                             month++
@@ -260,8 +234,10 @@ class CalendarFragment : Fragment() {
                             year--
                             month = 11
                             //年が変わったとき、春分の日と秋分の日を定義しなおす
-                            vernalEquinoxDay = (20.8431 + 0.242194 * (year - 1980) - (year - 1980) / 4).toInt()
-                            autumnalEquinoxDay = (23.2488 + 0.242194 * (year - 1980) - (year - 1980) / 4).toInt()
+                            vernalEquinoxDay = (20.8431 + 0.242194 * (year - 1980) -
+                                    (year - 1980) / 4).toInt()
+                            autumnalEquinoxDay = (23.2488 + 0.242194 * (year - 1980) -
+                                    (year - 1980) / 4).toInt()
                             
                         } else {
                             month--
@@ -273,7 +249,7 @@ class CalendarFragment : Fragment() {
         }
     }
     
-    fun judgePublicHoliday(date: Int, judgeSunday: Boolean, judgeMonday: Boolean): String {
+    private fun judgePublicHoliday(date: Int, judgeSunday: Boolean, judgeMonday: Boolean): String {
         
         val month = this.month + 1
         
@@ -324,7 +300,7 @@ class CalendarFragment : Fragment() {
         }
     }
     
-    fun judgeAnnualEvent(date: Int, judgeSunday: Boolean): String {
+    private fun judgeAnnualEvent(date: Int, judgeSunday: Boolean): String {
         
         val month = this.month + 1
         
