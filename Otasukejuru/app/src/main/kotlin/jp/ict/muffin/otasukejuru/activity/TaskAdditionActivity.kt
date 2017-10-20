@@ -7,14 +7,9 @@ import android.widget.*
 import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
 import jp.ict.muffin.otasukejuru.`object`.TaskInformation
-import kotlinx.android.synthetic.main.input_task_name.*
-import kotlinx.android.synthetic.main.set_must.*
 import kotlinx.android.synthetic.main.set_plan_notification_time.*
 import kotlinx.android.synthetic.main.set_plan_repeat.*
-import kotlinx.android.synthetic.main.set_should.*
-import kotlinx.android.synthetic.main.set_task_notification_time.*
 import kotlinx.android.synthetic.main.set_task_repeat.*
-import kotlinx.android.synthetic.main.set_want.*
 import org.jetbrains.anko.find
 import java.util.*
 
@@ -54,7 +49,7 @@ class TaskAdditionActivity : Activity() {
         setContentView(R.layout.selection)
         
         setActionBar(find(R.id.toolbar_back))
-       
+        
         find<Button>(R.id.button_plan).setOnClickListener {
             isPlan = true
             inputPlanName()
@@ -72,7 +67,7 @@ class TaskAdditionActivity : Activity() {
         setContentView(R.layout.input_plan_name)
         setActionBar(find(R.id.toolbar_back))
         
-        val inputNameEdit = findViewById(R.id.plan_name) as EditText
+        val inputNameEdit = find<EditText>(R.id.plan_name)
         
         find<Button>(R.id.button_next).setOnClickListener {
             taskTitleName = inputNameEdit.text.toString()
@@ -90,7 +85,7 @@ class TaskAdditionActivity : Activity() {
         setContentView(R.layout.start_plan_time)
         setActionBar(find(R.id.toolbar_back))
         
-        startMonth = calendar.get(Calendar.MONTH)
+        startMonth = calendar.get(Calendar.MONTH) + 1
         startDay = calendar.get(Calendar.DAY_OF_MONTH)
         startHour = calendar.get(Calendar.HOUR_OF_DAY)
         startMinute = calendar.get(Calendar.MINUTE)
@@ -217,7 +212,7 @@ class TaskAdditionActivity : Activity() {
         
         val inputTaskNameEdit = findViewById(R.id.input_task_name_edit) as EditText
         
-        button_next_finish_task_time.setOnClickListener {
+        find<Button>(R.id.button_next).setOnClickListener {
             taskTitleName = inputTaskNameEdit.text.toString()
             if (taskTitleName == "") taskTitleName = "無題"
             
@@ -229,9 +224,9 @@ class TaskAdditionActivity : Activity() {
     
     private fun finishTaskTime() {
         setContentView(R.layout.finish_task_time)
-        setActionBar(findViewById(R.id.toolbar_back) as Toolbar)
+        setActionBar(find(R.id.toolbar_back))
         
-        finishMonth = calendar.get(Calendar.MONTH)
+        finishMonth = calendar.get(Calendar.MONTH) + 1
         finishDay = calendar.get(Calendar.DAY_OF_MONTH)
         finishHour = calendar.get(Calendar.HOUR_OF_DAY)
         finishMinute = calendar.get(Calendar.MINUTE)
@@ -266,7 +261,7 @@ class TaskAdditionActivity : Activity() {
         
         find<Button>(R.id.button_next).setOnClickListener { setTaskRepeat() }
         
-        val noLimit = findViewById(R.id.no_limit) as Button
+        val noLimit = find<Button>(R.id.no_limit)
         noLimit.setOnClickListener {
             startMonth = -1
             setTaskRepeat()
@@ -299,12 +294,12 @@ class TaskAdditionActivity : Activity() {
         setContentView(R.layout.set_must)
         setActionBar(findViewById(R.id.toolbar_back) as Toolbar)
         
-        no_must.setOnClickListener {
+        find<Button>(R.id.no_must).setOnClickListener {
             isMust = false
             setShould()
         }
         
-        yes_must.setOnClickListener {
+        find<Button>(R.id.yes_must).setOnClickListener {
             isMust = true
             setShould()
         }
@@ -316,12 +311,12 @@ class TaskAdditionActivity : Activity() {
         setContentView(R.layout.set_should)
         setActionBar(find(R.id.toolbar_back))
         
-        no_should.setOnClickListener {
+        find<Button>(R.id.no_should).setOnClickListener {
             isShould = false
             setWantTo()
         }
         
-        yes_should.setOnClickListener {
+        find<Button>(R.id.yes_should).setOnClickListener {
             isShould = true
             setWantTo()
         }
@@ -334,12 +329,12 @@ class TaskAdditionActivity : Activity() {
         setContentView(R.layout.set_want)
         setActionBar(find(R.id.toolbar_back))
         
-        no_want.setOnClickListener {
+        find<Button>(R.id.no_want).setOnClickListener {
             isWant = false
             setTaskNotificationTime()
         }
         
-        yes_want.setOnClickListener {
+        find<Button>(R.id.yes_want).setOnClickListener {
             isWant = true
             setTaskNotificationTime()
         }
@@ -352,20 +347,22 @@ class TaskAdditionActivity : Activity() {
         setContentView(R.layout.set_task_notification_time)
         setActionBar(find(R.id.toolbar_back))
         
-        finish_hour_edit.setText("0")
+        val finishHourEdit = find<EditText>(R.id.finish_hour_edit)
+        finishHourEdit.setText("0")
         finishHour = 0
         
-        finish_minute_edit.setText("5")
+        val finishMinuteEdit = find<EditText>(R.id.finish_minute_edit)
+        finishMinuteEdit.setText("5")
         finishMinute = 5
         
         find<Button>(R.id.button_next).setOnClickListener {
-            finishHour = Integer.parseInt(finish_hour_edit.text.toString())
-            finishMinute = Integer.parseInt(finish_minute_edit.text.toString())
+            finishHour = Integer.parseInt(finishHourEdit.text.toString())
+            finishMinute = Integer.parseInt(finishMinuteEdit.text.toString())
             
             if (startMonth == -1) {
                 dateLimit = -1
             } else {
-                dateLimit = startMonth * 100 + startDay
+                dateLimit = (finishMonth - startMonth) * 100 + finishDay - startDay
                 timeLimit = this@TaskAdditionActivity.startHour * 100 + startDay
             }
             

@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -68,7 +69,7 @@ class ToDoListFragment : Fragment() {
         var middlePriorityNum = 0
         var lowPriorityNum = 0
         val calendar = Calendar.getInstance()
-        val today = calendar.get(Calendar.MONTH) * 100 + calendar.get(Calendar.DAY_OF_MONTH)
+        val today = (calendar.get(Calendar.MONTH) + 1) * 100 + calendar.get(Calendar.DAY_OF_MONTH)
         
         GlobalValue.taskInformationArrayList.forEach {
             val diffDays = diffDayNum(today, it.limitDate, calendar.get(Calendar.YEAR))
@@ -146,10 +147,11 @@ class ToDoListFragment : Fragment() {
             intArrayOf(0, 31, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335)
         }
         
-        val beforeDay = beforeDate % 100
-        val beforeMonth = beforeDate / 100
-        val afterDay = afterDate % 100
-        val afterMonth = afterDate / 100
+        Log.d("$beforeDate ", "$afterDate")
+        val beforeDay: Int = beforeDate % 100
+        val beforeMonth: Int = beforeDate / 100
+        val afterDay: Int = afterDate % 100
+        val afterMonth: Int = afterDate / 100
         return (totalDays[afterMonth] + afterDay - (totalDays[beforeMonth] + beforeDay))
     }
 }
