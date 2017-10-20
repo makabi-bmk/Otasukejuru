@@ -13,11 +13,25 @@ class DateActivityUI : AnkoComponent<DateActivity> {
     override fun createView(ui: AnkoContext<DateActivity>): View = with(ui) {
         
         relativeLayout {
-            
+            toolbar {
+                id = R.id.ankoToolbar
+                backgroundColor = ContextCompat.getColor(context, R.color.colorPrimary)
+                
+                imageButton {
+                    id = R.id.ankoBack
+                    backgroundDrawable = ContextCompat.getDrawable(context, R.drawable.ic_arrow_back_white_48dp)
+                }.lparams {
+                    width = wrapContent
+                    height = wrapContent
+                }
+            }.lparams {
+                width = matchParent
+                height = wrapContent
+            }
             relativeLayout {
                 textView("今日のタスク") {
                     id = R.id.todayTaskText
-                    textSize = sp(25).toFloat()
+                    textSize = 25f
                 }.lparams {
                     width = wrapContent
                     height = wrapContent
@@ -32,13 +46,14 @@ class DateActivityUI : AnkoComponent<DateActivity> {
                     }
                 }.lparams {
                     width = matchParent
-                    height = dip(150)
+                    height = 150
                     translationZ = 3f
                     below(R.id.todayTaskText)
                     backgroundDrawable = ContextCompat.getDrawable(context, R.drawable.frame_shape)
                 }
             }.lparams {
                 margin = dip(30)
+                below(R.id.ankoToolbar)
             }
             
             scrollView {
@@ -46,7 +61,7 @@ class DateActivityUI : AnkoComponent<DateActivity> {
                     orientation = LinearLayout.VERTICAL
                     textView("") {
                     }.lparams {
-                        height = dip(250)
+                        height = 250
                     }
                     (0..24).forEach {
                         relativeLayout {
@@ -84,6 +99,7 @@ class DateActivityUI : AnkoComponent<DateActivity> {
                 width = matchParent
                 height = matchParent
                 backgroundColor = ContextCompat.getColor(context, R.color.back)
+                below(R.id.ankoToolbar)
             }
         }
     }

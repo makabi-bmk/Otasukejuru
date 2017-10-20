@@ -32,7 +32,10 @@
         </activity>
         <activity android:name=".activity.TimerNotificationActivity">
         </activity>
-        <activity android:name=".activity.DateActivity">
+        <activity
+            android:name=".activity.DateActivity"
+            android:label=""
+            android:theme="@android:style/Theme.Light.NoTitleBar">
         </activity>
     </application>
 
