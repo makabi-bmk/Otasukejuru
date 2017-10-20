@@ -19,9 +19,9 @@ class CustomCell(context: Context, attr: AttributeSet) : LinearLayout(context, a
         
         val layout = LayoutInflater.from(context).inflate(R.layout.cell, this)
         
-        viewTask1 = layout.find<TextView>(R.id.task_view1)
-        viewTask2 = layout.find<TextView>(R.id.task_view2)
-        viewTask3 = layout.find<TextView>(R.id.task_view3)
+        viewTask1 = layout.find<TextView>(R.id.schedule_view1)
+        viewTask2 = layout.find<TextView>(R.id.schedule_view2)
+        viewTask3 = layout.find<TextView>(R.id.schedule_view3)
     }
     
 }

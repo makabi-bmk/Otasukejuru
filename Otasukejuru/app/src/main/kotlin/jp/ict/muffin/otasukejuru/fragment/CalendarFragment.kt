@@ -13,12 +13,15 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import jp.ict.muffin.otasukejuru.R
+import jp.ict.muffin.otasukejuru.`object`.GlobalValue
 import jp.ict.muffin.otasukejuru.activity.DateActivity
 import jp.ict.muffin.otasukejuru.view.FlickCheck
 import kotlinx.android.synthetic.main.fragment_calendar.*
+import org.jetbrains.anko.backgroundColor
 import org.jetbrains.anko.find
 import org.jetbrains.anko.support.v4.find
 import org.jetbrains.anko.support.v4.startActivity
+import org.jetbrains.anko.textColor
 import java.util.*
 
 class CalendarFragment : Fragment() {
@@ -50,6 +53,36 @@ class CalendarFragment : Fragment() {
         
         calendarView()
         flickCheck()
+        
+    }
+    
+    private fun setSchedule(dateViews: Array<View?>) {
+        val scheduleNum = IntArray(31)
+        
+        val totalScheduleSize = GlobalValue.scheduleInfoArrayList.size
+        (0 until totalScheduleSize).forEach {
+            val thisMonth = month + 1
+            val schedule = GlobalValue.scheduleInfoArrayList[it]
+            val scheduleDay = schedule.startDate % 100
+            if (thisMonth == schedule.startDate / 100) {
+                dateViews[scheduleDay]?.find<TextView>(when (scheduleNum[scheduleDay]++) {
+                    0 -> R.id.schedule_view1
+                    1 -> R.id.schedule_view2
+                    else -> R.id.schedule_view3
+                })?.apply {
+                    text = schedule.name
+                    backgroundColor = ContextCompat.getColor(context, when (schedule.priority) {
+                        0 -> R.color.mostPriority
+                        1 -> R.color.highPriority
+                        2 -> R.color.middlePriority
+                        else -> R.color.lowPriority
+                    })
+                    textColor = Color.WHITE
+                }
+            }
+        }
+        
+        
     }
     
     fun calendarView() {
@@ -81,7 +114,7 @@ class CalendarFragment : Fragment() {
             calendarView()
         }
         
-        val xml = intArrayOf(R.id.date0, R.id.date1, R.id.date2, R.id.date3, R.id.date4, R.id.date5,
+        val dateViewIds = intArrayOf(R.id.date0, R.id.date1, R.id.date2, R.id.date3, R.id.date4, R.id.date5,
                 R.id.date6, R.id.date7, R.id.date8, R.id.date9, R.id.date10, R.id.date11,
                 R.id.date12, R.id.date13, R.id.date14, R.id.date15, R.id.date16, R.id.date17,
                 R.id.date18, R.id.date19, R.id.date20, R.id.date21, R.id.date22, R.id.date23,
@@ -89,12 +122,12 @@ class CalendarFragment : Fragment() {
                 R.id.date30, R.id.date31, R.id.date32, R.id.date33, R.id.date34, R.id.date35,
                 R.id.date36, R.id.date37, R.id.date38, R.id.date39, R.id.date40, R.id.date41)
         
-        val layout = arrayOfNulls<View>(42)
-        val textView = arrayOfNulls<TextView>(42)
+        val dateViews = arrayOfNulls<View>(42)
+        val dateTextViews = arrayOfNulls<TextView>(42)
         (0..41).forEach {
-            layout[it] = find(xml[it])
-            textView[it] = layout[it]?.find(R.id.date_view)
-            textView[it]?.apply {
+            dateViews[it] = find(dateViewIds[it])
+            dateTextViews[it] = dateViews[it]?.find(R.id.date_view)
+            dateTextViews[it]?.apply {
                 setTextColor(Color.BLACK)
                 isClickable = true
             }
@@ -120,8 +153,8 @@ class CalendarFragment : Fragment() {
         
         //空白スペースの表示
         (1 until firstWeekday).forEach {
-            layout[num]?.isClickable = false
-            textView[num]?.text = ""
+            dateViews[num]?.isClickable = false
+            dateTextViews[num]?.text = ""
             num++
         }
         
@@ -142,12 +175,12 @@ class CalendarFragment : Fragment() {
                 countMonday++
                 judgeMonDay = true
             } else if (num % 7 == 0 || num == 0 && date == 1) {
-                textView[num]?.setTextColor(ContextCompat.getColor(context,
+                dateTextViews[num]?.setTextColor(ContextCompat.getColor(context,
                         R.color.sundayColor))
                 countSunday++
                 judgeSunDay = true
             } else if (num % 7 == 6) {
-                textView[num]?.setTextColor(ContextCompat.getColor(context,
+                dateTextViews[num]?.setTextColor(ContextCompat.getColor(context,
                         R.color.saturdayColor))
             }//土曜日かどうか判定
             //日曜日かどうか判定
@@ -161,11 +194,11 @@ class CalendarFragment : Fragment() {
                 //リバーシブルデイの判定
                 if (eventName == "敬老の日" && date == 21) {
                     if (judgePublicHoliday(23, false, false) == "秋分の日") {
-                        textView[num + 1]?.setTextColor(ContextCompat.getColor(context,
+                        dateTextViews[num + 1]?.setTextColor(ContextCompat.getColor(context,
                                 R.color.sundayColor))
                     }
                 }
-                textView[num]?.setTextColor(ContextCompat.getColor(context,
+                dateTextViews[num]?.setTextColor(ContextCompat.getColor(context,
                         R.color.sundayColor))
 //                addMessage = true
             } else {
@@ -175,7 +208,7 @@ class CalendarFragment : Fragment() {
                 }
             }//年間行事の判定
             
-            textView[num]?.apply {
+            dateTextViews[num]?.apply {
                 text = date.toString()
                 isClickable = true
                 textSize = 20f
@@ -184,11 +217,11 @@ class CalendarFragment : Fragment() {
             //タッチイベントの設定
 //            val finalEventName = eventName
 //            val finalAddMessage = addMessage
-            layout[num]?.setOnClickListener {
+            dateViews[num]?.setOnClickListener {
                 val intent = Intent(context, DateActivity::class.java)
                 startActivity(intent)
             }
-            textView[num]?.setOnClickListener {
+            dateTextViews[num]?.setOnClickListener {
                 startActivity<DateActivity>()
             }
             num++
@@ -196,13 +229,14 @@ class CalendarFragment : Fragment() {
         
         //空白スペースの表示
         (num..41).forEach {
-            textView[num]?.text = ""
-            layout[num]?.isClickable = false
+            dateTextViews[num]?.text = ""
+            dateViews[num]?.isClickable = false
             num++
             
         }
         
         flickCheck()
+        setSchedule(dateViews)
         
     }
     
