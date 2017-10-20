@@ -392,7 +392,7 @@ class TaskAdditionActivity : Activity() {
             finishTimeMinutes = finishHour * 100 + finishMinute
             priority = 0
         }
-        GlobalValue.taskInformationArrayList.add(0, taskInformation)
+        GlobalValue.taskInfoArrayList.add(0, taskInformation)
         
     }
 }

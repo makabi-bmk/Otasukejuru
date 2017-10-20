@@ -71,7 +71,7 @@ class ToDoListFragment : Fragment() {
         val calendar = Calendar.getInstance()
         val today = (calendar.get(Calendar.MONTH) + 1) * 100 + calendar.get(Calendar.DAY_OF_MONTH)
         
-        GlobalValue.taskInformationArrayList.forEach {
+        GlobalValue.taskInfoArrayList.forEach {
             val diffDays = diffDayNum(today, it.limitDate, calendar.get(Calendar.YEAR))
             
             val inflater: LayoutInflater = context.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
