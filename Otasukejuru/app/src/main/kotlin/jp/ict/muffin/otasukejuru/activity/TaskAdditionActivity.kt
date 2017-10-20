@@ -202,7 +202,7 @@ class TaskAdditionActivity : Activity() {
             finish()
         }
         
-        find<Button>(R.id.button_back).setOnClickListener { setPlanRepeat() }
+        find<ImageButton>(R.id.button_back).setOnClickListener { setPlanRepeat() }
         
     }
     
