@@ -28,6 +28,22 @@ class TimerActivityUI(private val time: Long) : AnkoComponent<TimerActivity> {
                 height = matchParent
                 width = matchParent
             }
+    
+            toolbar {
+                id = R.id.ankoToolbar
+                backgroundColor = ContextCompat.getColor(context, R.color.colorPrimary)
+        
+                imageButton {
+                    id = R.id.ankoBack
+                    backgroundDrawable = ContextCompat.getDrawable(context, R.drawable.ic_arrow_back_white_48dp)
+                }.lparams {
+                    width = wrapContent
+                    height = wrapContent
+                }
+            }.lparams {
+                width = matchParent
+                height = wrapContent
+            }
             
             circle = frameLayout {
                 id = R.id.circleFrame
@@ -36,6 +52,7 @@ class TimerActivityUI(private val time: Long) : AnkoComponent<TimerActivity> {
                 width = GlobalValue.displayWidth - 30
                 topMargin = 30
                 leftMargin = 30
+                below(R.id.ankoToolbar)
             }
             
             circleMini = frameLayout {
@@ -45,6 +62,7 @@ class TimerActivityUI(private val time: Long) : AnkoComponent<TimerActivity> {
                 width = GlobalValue.displayWidth / 3
                 topMargin = GlobalValue.displayWidth / 3 + 15
                 leftMargin = GlobalValue.displayWidth / 3 + 15
+                below(R.id.ankoToolbar)
                 remainingHourText = textView {
                     text = ""
                     textSize = 40F
@@ -54,6 +72,7 @@ class TimerActivityUI(private val time: Long) : AnkoComponent<TimerActivity> {
                     height = wrapContent
                     topMargin = GlobalValue.displayWidth / 2 - 40
                     centerHorizontally()
+                    below(R.id.ankoToolbar)
                 }
             }
             

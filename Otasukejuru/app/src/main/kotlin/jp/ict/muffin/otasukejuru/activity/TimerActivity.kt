@@ -1,11 +1,11 @@
 package jp.ict.muffin.otasukejuru.activity
 
+import android.app.Activity
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import jp.ict.muffin.otasukejuru.ui.TimerActivityUI
 import org.jetbrains.anko.setContentView
 
-class TimerActivity : AppCompatActivity() {
+class TimerActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
