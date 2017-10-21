@@ -2,6 +2,7 @@ import datetime as dt
 from pytz import timezone
 from logging import getLogger, StreamHandler, DEBUG
 from pymongo import MongoClient
+import json
 
 # from serverapp.defineclass import Task, Schedule, Every
 
@@ -145,9 +146,12 @@ def get_todo_list():
     todo_list = []
     for task in task_col.find():
         del(task["_id"])
+        del(task["registration_date"])
+        task["due_date"] = str(task["due_date"])
+        task["guide_time"] = str(task["guide_time"])
         todo_list.append(task)
     logger.debug("{} | get_todo_list: {}".format(dt.datetime.now(), todo_list))
-    return todo_list
+    return json.dumps(todo_list)
 
 
 if __name__ == '__main__':
