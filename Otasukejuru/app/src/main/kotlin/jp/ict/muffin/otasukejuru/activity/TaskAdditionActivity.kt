@@ -210,6 +210,7 @@ class TaskAdditionActivity : Activity() {
             if (taskRepeat == "今日だけ") {
                 setTaskInformation()
             } else {
+                setEveryInformation()
             }
             
             finish()
@@ -388,6 +389,7 @@ class TaskAdditionActivity : Activity() {
             if (taskRepeat == "今日だけ") {
                 setTaskInformation()
             } else {
+                setEveryInformation()
             }
             finish()
         }
@@ -396,8 +398,8 @@ class TaskAdditionActivity : Activity() {
     }
     
     private fun setEveryInformation() {
-        val everyInfomation = EveryInfo()
-        everyInfomation.apply {
+        val everyInformation = EveryInfo()
+        everyInformation.apply {
             every_name = taskTitleName
             start_date = "$startYear-$startMonth-$startDay $startHour:$startMinute:00"
             end_date = "$finishYear-$finishMonth-$finishDay $finishHour:$finishMinute:00"
@@ -414,7 +416,7 @@ class TaskAdditionActivity : Activity() {
         }
         //TODO:Remove comment out when Communication
 //        val postEveryInfo = PostEveryTaskInfoAsync()
-//        postEveryInfo.execute(everyInfomation)
+//        postEveryInfo.execute(everyInformation)
         
     }
     
@@ -427,8 +429,8 @@ class TaskAdditionActivity : Activity() {
         }
         GlobalValue.scheduleInfoArrayList.add(0, scheduleInformation)
         //TODO:Remove comment out when Communication
-//        val postTaskInfo = PostScheduleTaskInfoAsync()
-//        postTaskInfo.execute(scheduleInformation)
+//        val postScheduleInfo = PostScheduleTaskInfoAsync()
+//        postScheduleInfo.execute(scheduleInformation)
         
     }
     
