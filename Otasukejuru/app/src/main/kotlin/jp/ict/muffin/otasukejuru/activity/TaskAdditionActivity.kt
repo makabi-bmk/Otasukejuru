@@ -396,8 +396,8 @@ class TaskAdditionActivity : Activity() {
     }
     
     private fun setEveryInformation() {
-        val everyInfo = EveryInfo()
-        everyInfo.apply {
+        val everyInfomation = EveryInfo()
+        everyInfomation.apply {
             every_name = taskTitleName
             start_date = "$startYear-$startMonth-$startDay $startHour:$startMinute:00"
             end_date = "$finishYear-$finishMonth-$finishDay $finishHour:$finishMinute:00"
@@ -412,9 +412,9 @@ class TaskAdditionActivity : Activity() {
             }
             
         }
-        //TODO:Remove comment when Communication
-//        val postTaskInfo = PostScheduleTaskInfoAsync()
-//        postTaskInfo.execute(scheduleInformation)
+        //TODO:Remove comment out when Communication
+//        val postEveryInfo = PostEveryTaskInfoAsync()
+//        postEveryInfo.execute(everyInfomation)
         
     }
     
@@ -426,7 +426,7 @@ class TaskAdditionActivity : Activity() {
             end_date = finishMonth * 100 + finishDay
         }
         GlobalValue.scheduleInfoArrayList.add(0, scheduleInformation)
-        //TODO:Remove comment when Communication
+        //TODO:Remove comment out when Communication
 //        val postTaskInfo = PostScheduleTaskInfoAsync()
 //        postTaskInfo.execute(scheduleInformation)
         
@@ -456,7 +456,7 @@ class TaskAdditionActivity : Activity() {
         }
         Log.d("task", taskInformation.task_type)
         GlobalValue.taskInfoArrayList.add(0, taskInformation)
-        //TODO:Remove comment when Communication
+        //TODO:Remove comment out when Communication
 //        val postTaskInfo = PostTaskInfoAsync()
 //        postTaskInfo.execute(taskInformation)
     }
