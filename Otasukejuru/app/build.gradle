@@ -13,17 +13,6 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
-    productFlavors {
-        flavor1 {
-            applicationId = "jp.ict.muffin.otasukejuru" //変更したいパッケージ名
-        }
-    }
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
 
@@ -48,13 +37,4 @@ dependencies {
     compile 'com.squareup.okhttp3:okhttp:3.4.1'
     testCompile 'junit:junit:4.12'
     compile files('libs/moshi-1.5.0.jar')
-    compile files('libs/okhttp-3.9.0.jar')
-}
-repositories {
-    mavenCentral()
-}
-kotlin {
-    experimental {
-        coroutines "enable"
-    }
 }
