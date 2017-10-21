@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.*
 import jp.ict.muffin.otasukejuru.R
+import jp.ict.muffin.otasukejuru.`object`.EveryInfo
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
 import jp.ict.muffin.otasukejuru.`object`.ScheduleInfo
 import jp.ict.muffin.otasukejuru.`object`.TaskInfo
@@ -35,7 +36,7 @@ class TaskAdditionActivity : Activity() {
     private var timeLimit: Int = 0
     
     //plan
-    private var messageTime: Int = 0
+    private var notificationTime: Int = 0
     //task
     private var isMust: Boolean = false
     private var isShould: Boolean = false
@@ -193,17 +194,17 @@ class TaskAdditionActivity : Activity() {
         setActionBar(find(R.id.toolbar_back))
         
         set_notification_time_edit.setText("5")
-        messageTime = 5
+        notificationTime = 5
         
         find<Button>(R.id.button_finish).setOnClickListener {
             val str: String = set_notification_time_edit.text.toString()
-            messageTime = Integer.parseInt(str)
+            notificationTime = Integer.parseInt(str)
             
             Log.d("plan", "タイトル名:" + taskTitleName + "\n予定開始の日付:" + startMonth + "月" +
                     startDay + "日" + startHour + "時" + startMinute + "分" + "\n予定終了の時間:" +
                     finishMonth + "月" + finishMonth + "似り" + finishHour + "時" +
                     finishMinute + "分" + "\n繰り返し:" + taskRepeat + "\n何分前に通知するか:" +
-                    messageTime)
+                    notificationTime)
             
             setScheduleInformation()
             if (taskRepeat == "今日だけ") {
@@ -394,6 +395,29 @@ class TaskAdditionActivity : Activity() {
         find<ImageButton>(R.id.button_back).setOnClickListener { setWantTo() }
     }
     
+    private fun setEveryInformation() {
+        val everyInfo = EveryInfo()
+        everyInfo.apply {
+            every_name = taskTitleName
+            start_date = "$startYear-$startMonth-$startDay $startHour:$startMinute:00"
+            end_date = "$finishYear-$finishMonth-$finishDay $finishHour:$finishMinute:00"
+            notice = notificationTime
+            repeat_type = when (taskRepeat) {
+                getString(R.string.today) -> 0
+                getString(R.string.everyday) -> 1
+                getString(R.string.everyWeek) -> 2
+                getString(R.string.everyMonth) -> 3
+                getString(R.string.everyYear) -> 4
+                else -> -1
+            }
+            
+        }
+        //TODO:Remove comment when Communication
+//        val postTaskInfo = PostScheduleTaskInfoAsync()
+//        postTaskInfo.execute(scheduleInformation)
+        
+    }
+    
     private fun setScheduleInformation() {
         val scheduleInformation = ScheduleInfo()
         scheduleInformation.apply {
@@ -430,7 +454,6 @@ class TaskAdditionActivity : Activity() {
             guide_time = finishHour * 100 + finishMinute
             priority = 0
         }
-        "$finishYear-$finishMonth-$finishDay $finishHour:$finishMinute:00"
         Log.d("task", taskInformation.task_type)
         GlobalValue.taskInfoArrayList.add(0, taskInformation)
         //TODO:Remove comment when Communication

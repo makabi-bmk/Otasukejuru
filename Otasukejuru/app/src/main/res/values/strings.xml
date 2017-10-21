@@ -17,4 +17,10 @@
     <string name="format_month_year">2017/09/29</string>
 
     <string name="line">This is line.</string>
+
+    <string name="today">今日だけ</string>
+    <string name="everyday">毎日</string>
+    <string name="everyWeek">毎週</string>
+    <string name="everyMonth">毎月</string>
+    <string name="everyYear">毎年</string>
 </resources>
