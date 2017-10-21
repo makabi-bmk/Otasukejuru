@@ -69,7 +69,7 @@ def add_schedule(schedule_name: str, start_date: dt.datetime,
                     "end_time": day[1],
                 }
             print(post)
-            # schedule_col.insert_one(post)
+            schedule_col.insert_one(post)
     else:
         post = {
             "schedule_name": schedule_name,
@@ -78,7 +78,7 @@ def add_schedule(schedule_name: str, start_date: dt.datetime,
             "notice": notice
         }
         print(post)
-        # schedule_col.insert_one(post)
+        schedule_col.insert_one(post)
 
 
 def make_zero_time(date: dt.datetime) -> dt.datetime:
@@ -126,7 +126,7 @@ def add_every(name: str, start_time: dt.datetime, end_time: dt.datetime,
         "repeat_type": repeat_type,
     }
     print(post)
-    # every_col.insert_one(post)
+    every_col.insert_one(post)
 
 
 def delete_task(task_name: str, start_date: dt.datetime):
