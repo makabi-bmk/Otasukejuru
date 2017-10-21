@@ -178,7 +178,7 @@ class TaskAdditionActivity : Activity() {
             val num = plan_repeat_radio_group.checkedRadioButtonId
             
             taskRepeat = if (num != -1) {
-                (findViewById(num) as RadioButton).text.toString()
+                find<RadioButton>(num).text.toString()
             } else {
                 "選択されていない"
             }
@@ -224,7 +224,7 @@ class TaskAdditionActivity : Activity() {
         setContentView(R.layout.input_task_name)
         setActionBar(find(R.id.toolbar_back))
         
-        val inputTaskNameEdit = findViewById(R.id.input_task_name_edit) as EditText
+        val inputTaskNameEdit = find<EditText>(R.id.input_task_name_edit)
         
         find<Button>(R.id.button_next).setOnClickListener {
             taskTitleName = inputTaskNameEdit.text.toString()
@@ -288,13 +288,13 @@ class TaskAdditionActivity : Activity() {
     
     private fun setTaskRepeat() {
         setContentView(R.layout.set_task_repeat)
-        setActionBar(findViewById(R.id.toolbar_back) as Toolbar)
+        setActionBar(find(R.id.toolbar_back))
         
         
         find<Button>(R.id.button_next).setOnClickListener {
             val num = task_repeat_radio_group.checkedRadioButtonId
             taskRepeat = if (num != -1) {
-                (findViewById(num) as RadioButton).text.toString()
+                find<RadioButton>(num).text.toString()
             } else {
                 "選択されてない"
             }
@@ -307,7 +307,7 @@ class TaskAdditionActivity : Activity() {
     
     private fun setMust() {
         setContentView(R.layout.set_must)
-        setActionBar(findViewById(R.id.toolbar_back) as Toolbar)
+        setActionBar(find(R.id.toolbar_back))
         
         find<Button>(R.id.no_must).setOnClickListener {
             isMust = false
