@@ -8,6 +8,7 @@ import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
 import jp.ict.muffin.otasukejuru.`object`.ScheduleInfo
 import jp.ict.muffin.otasukejuru.`object`.TaskInfo
+import jp.ict.muffin.otasukejuru.communication.PostTaskInfoAsync
 import kotlinx.android.synthetic.main.set_plan_notification_time.*
 import kotlinx.android.synthetic.main.set_plan_repeat.*
 import kotlinx.android.synthetic.main.set_task_repeat.*
@@ -422,5 +423,7 @@ class TaskAdditionActivity : Activity() {
         Log.d("task", taskInformation.task_type)
         GlobalValue.taskInfoArrayList.add(0, taskInformation)
         //TODO:Communication
+        val postTaskInfo = PostTaskInfoAsync()
+        postTaskInfo.execute(taskInformation)
     }
 }
