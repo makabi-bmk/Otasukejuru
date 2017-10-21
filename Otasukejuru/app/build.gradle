@@ -38,3 +38,8 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile files('libs/moshi-1.5.0.jar')
 }
+kotlin {
+    experimental {
+        coroutines "enable"
+    }
+}
