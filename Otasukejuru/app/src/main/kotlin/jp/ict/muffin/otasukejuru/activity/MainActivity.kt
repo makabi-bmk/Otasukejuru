@@ -64,6 +64,9 @@ class MainActivity : AppCompatActivity() {
             displayHeight = point.y
             displayWidth = point.x
         }
+        //TODO:Remove comment out when Communication
+//        val getInfo = GetInformation()
+//        getInfo.execute()
         
     }
     

@@ -1,5 +1,6 @@
 package jp.ict.muffin.otasukejuru.communication
 
+import android.os.AsyncTask
 import com.squareup.moshi.Moshi
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
 import jp.ict.muffin.otasukejuru.`object`.ScheduleInfo
@@ -11,7 +12,11 @@ import org.json.JSONArray
 import java.io.IOException
 
 
-class getInformation {
+class GetInformation : AsyncTask<Unit, Unit, Unit>(){
+    override fun doInBackground(vararg params: Unit?) {
+        getInfo()
+    }
+    
     private val client = OkHttpClient()
     
     private fun run(url: String): String {
@@ -28,22 +33,29 @@ class getInformation {
         return response?.body().toString()
     }
     
-    fun getTaskInfo() {
+    private fun getInfo() {
+        
+        getTaskInfo()
+        getCalendarInfo()
+        
+    }
+    
+    private fun getTaskInfo() {
         val response = run("${GlobalValue.SERVER_URL}/get/todo_list")
         val moshi = Moshi.Builder().build()
         val adapter = moshi.adapter(TaskInfo::class.java)
-        
-        
+    
+    
         val jsonArray = JSONArray(response)
         (0 until jsonArray.length()).forEach { i ->
             val taskJSON = jsonArray.getJSONObject(i).toString()
             adapter.fromJson(taskJSON)?.let { GlobalValue.taskInfoArrayList.add(it) }
-            
+    
         }
-        
+    
     }
     
-    fun getCalendarInfo() {
+    private fun getCalendarInfo() {
         val response = run("${GlobalValue.SERVER_URL}/get/calendar")
     
         val moshi = Moshi.Builder().build()
