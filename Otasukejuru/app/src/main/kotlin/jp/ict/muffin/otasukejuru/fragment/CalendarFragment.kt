@@ -52,9 +52,10 @@ class CalendarFragment : Fragment() {
         month = cal.get(Calendar.MONTH)
         
         calendarView()
-        flickCheck()
+//        flickCheck()
         
     }
+    
     
     private fun setSchedule(dateViews: Array<View?>) {
         val scheduleNum = IntArray(31)
@@ -235,7 +236,7 @@ class CalendarFragment : Fragment() {
             
         }
         
-        flickCheck()
+//        flickCheck()
         setSchedule(dateViews)
         
     }

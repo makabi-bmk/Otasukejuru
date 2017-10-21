@@ -6,6 +6,7 @@ import android.util.Log
 import android.widget.*
 import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
+import jp.ict.muffin.otasukejuru.`object`.ScheduleInfo
 import jp.ict.muffin.otasukejuru.`object`.TaskInfo
 import kotlinx.android.synthetic.main.set_plan_notification_time.*
 import kotlinx.android.synthetic.main.set_plan_repeat.*
@@ -199,6 +200,8 @@ class TaskAdditionActivity : Activity() {
                     finishMinute + "分" + "\n繰り返し:" + taskRepeat + "\n何分前に通知するか:" +
                     messageTime)
             
+            setScheduleInformation()
+            
             finish()
         }
         
@@ -377,6 +380,21 @@ class TaskAdditionActivity : Activity() {
         }
         
         find<ImageButton>(R.id.button_back).setOnClickListener { setWantTo() }
+    }
+    
+    private fun setScheduleInformation() {
+        val scheduleInformation = ScheduleInfo()
+        scheduleInformation.apply {
+            name = taskTitleName
+            startDate = startMonth * 100 + startDay
+            startTime = startHour * 100 + startMinute
+            endDate = finishMonth * 100 + finishDay
+            endTime = finishHour * 100 + finishMinute
+            repeat = taskRepeat
+            priority = 0
+        }
+        GlobalValue.scheduleInfoArrayList.add(0, scheduleInformation)
+        
     }
     
     private fun setTaskInformation() {
