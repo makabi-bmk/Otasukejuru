@@ -2,8 +2,10 @@ from flask import request, Flask
 from logging import getLogger, StreamHandler, DEBUG
 import datetime as dt
 import pytz
-from serverapp import dbcon
-from serverapp import strtime
+# from serverapp import dbcon
+# from serverapp import strtime
+import dbcon
+import strtime
 
 logger = getLogger(__name__)
 handler = StreamHandler()
@@ -180,4 +182,4 @@ def get():
 
 if __name__ == '__main__':
     # app.run(host='0.0.0.0', port=5000)
-    app.run(debug=True, port=5000)
+    app.run(debug=True, port=3000)
