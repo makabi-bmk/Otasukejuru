@@ -8,7 +8,6 @@ import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
 import jp.ict.muffin.otasukejuru.`object`.ScheduleInfo
 import jp.ict.muffin.otasukejuru.`object`.TaskInfo
-import jp.ict.muffin.otasukejuru.communication.PostTaskInfoAsync
 import kotlinx.android.synthetic.main.set_plan_notification_time.*
 import kotlinx.android.synthetic.main.set_plan_repeat.*
 import kotlinx.android.synthetic.main.set_task_repeat.*
@@ -21,10 +20,12 @@ class TaskAdditionActivity : Activity() {
     //common
     private var isPlan: Boolean = false
     private var taskTitleName: String = ""
+    private var startYear: Int = 0
     private var startMonth: Int = 0
     private var startDay: Int = 0
     private var startHour: Int = 0
     private var startMinute: Int = 0
+    private var finishYear: Int = 0
     private var finishMonth: Int = 0
     private var finishDay: Int = 0
     private var finishHour: Int = 0
@@ -120,6 +121,7 @@ class TaskAdditionActivity : Activity() {
             value = startMinute
             setOnValueChangedListener { _, _, newVal -> startMinute = newVal }
         }
+        startYear = calendar.get(Calendar.YEAR)
         
         find<Button>(R.id.button_next).setOnClickListener { finishPlanTime() }
         find<ImageButton>(R.id.button_back).setOnClickListener { inputPlanName() }
@@ -159,6 +161,8 @@ class TaskAdditionActivity : Activity() {
             value = finishMinute
             setOnValueChangedListener { _, _, newVal -> finishMinute = newVal }
         }
+        finishYear = calendar.get(Calendar.YEAR)
+        
         find<Button>(R.id.button_next).setOnClickListener { setPlanRepeat() }
         find<ImageButton>(R.id.button_back).setOnClickListener { startPlanTime() }
         
@@ -273,6 +277,7 @@ class TaskAdditionActivity : Activity() {
             startMonth = -1
             setTaskRepeat()
         }
+        finishYear = calendar.get(Calendar.YEAR)
         
         find<ImageButton>(R.id.button_back).setOnClickListener { inputTaskName() }
         
@@ -370,7 +375,7 @@ class TaskAdditionActivity : Activity() {
                 dateLimit = -1
             } else {
                 dateLimit = (finishMonth - startMonth) * 100 + finishDay - startDay
-                timeLimit = this@TaskAdditionActivity.startHour * 100 + startDay
+                timeLimit = startHour * 100 + startDay
             }
             
             Log.d("task", "タイトル名:" + taskTitleName + "\n期限の開始:" + dateLimit +
@@ -403,7 +408,7 @@ class TaskAdditionActivity : Activity() {
         val taskInformation = TaskInfo()
         taskInformation.apply {
             task_name = taskTitleName
-            due_date = dateLimit
+            limitDate = dateLimit
             task_type = if (isMust) {
                 "1"
             } else {
@@ -417,13 +422,15 @@ class TaskAdditionActivity : Activity() {
             } else {
                 "0"
             }
+            due_date = "$finishYear-$finishMonth-$finishDay $finishHour:$finishMinute:00"
             guide_time = finishHour * 100 + finishMinute
             priority = 0
         }
+        "$finishYear-$finishMonth-$finishDay $finishHour:$finishMinute:00"
         Log.d("task", taskInformation.task_type)
         GlobalValue.taskInfoArrayList.add(0, taskInformation)
-        //TODO:Communication
-        val postTaskInfo = PostTaskInfoAsync()
-        postTaskInfo.execute(taskInformation)
+        //TODO:Remove comment when Communication
+//        val postTaskInfo = PostTaskInfoAsync()
+//        postTaskInfo.execute(taskInformation)
     }
 }
