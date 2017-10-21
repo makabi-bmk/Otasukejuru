@@ -2,6 +2,7 @@ package jp.ict.muffin.otasukejuru.communication
 
 import android.os.AsyncTask
 import com.squareup.moshi.Moshi
+import jp.ict.muffin.otasukejuru.`object`.GlobalValue
 import jp.ict.muffin.otasukejuru.`object`.TaskInfo
 import okhttp3.MediaType
 import okhttp3.OkHttpClient
@@ -14,7 +15,7 @@ class PostTaskInfoAsync() : AsyncTask<TaskInfo, Void, Unit>() {
     var client = OkHttpClient()
     
     override fun doInBackground(vararg params: TaskInfo) {
-        post("hoge", convertToJson(params[0]))
+        post(GlobalValue.SERVER_URL, convertToJson(params[0]))
     }
     
     private fun post(url: String, json: String): String? {

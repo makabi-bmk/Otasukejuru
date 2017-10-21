@@ -17,6 +17,4 @@
     <string name="format_month_year">2017/09/29</string>
 
     <string name="line">This is line.</string>
-
-    <string name="ServerURL">http://52.198.22.186:8080/</string>
 </resources>

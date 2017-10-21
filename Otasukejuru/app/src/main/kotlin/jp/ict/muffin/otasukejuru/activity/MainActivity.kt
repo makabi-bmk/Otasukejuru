@@ -18,7 +18,6 @@ import org.jetbrains.anko.startActivity
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
-    private val globalValue = GlobalValue
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,7 +60,7 @@ class MainActivity : AppCompatActivity() {
         val point = Point()
         display.getSize(point)
         
-        globalValue.apply {
+        GlobalValue.apply {
             displayHeight = point.y
             displayWidth = point.x
         }
