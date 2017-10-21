@@ -210,6 +210,7 @@ class TaskAdditionActivity : Activity() {
                 setTaskInformation()
             } else {
             }
+            
             finish()
         }
         
@@ -401,6 +402,9 @@ class TaskAdditionActivity : Activity() {
             end_date = finishMonth * 100 + finishDay
         }
         GlobalValue.scheduleInfoArrayList.add(0, scheduleInformation)
+        //TODO:Remove comment when Communication
+//        val postTaskInfo = PostScheduleTaskInfoAsync()
+//        postTaskInfo.execute(scheduleInformation)
         
     }
     
