@@ -201,7 +201,11 @@ class TaskAdditionActivity : Activity() {
                     messageTime)
             
             setScheduleInformation()
-            
+            if (taskRepeat == "今日だけ") {
+                
+            } else {
+                setTaskInformation()
+            }
             finish()
         }
         
@@ -374,8 +378,11 @@ class TaskAdditionActivity : Activity() {
                     "\nisMust:" + isMust + "\nisShould:" + isShould + "\nisWant to:" +
                     isWant + "\n終了目安:" + finishHour + "時間" + finishMinute + "分")
             
-            setTaskInformation()
-            
+            if (taskRepeat == "今日だけ") {
+                
+            } else {
+                setTaskInformation()
+            }
             finish()
         }
         
@@ -385,13 +392,9 @@ class TaskAdditionActivity : Activity() {
     private fun setScheduleInformation() {
         val scheduleInformation = ScheduleInfo()
         scheduleInformation.apply {
-            name = taskTitleName
-            startDate = startMonth * 100 + startDay
-            startTime = startHour * 100 + startMinute
-            endDate = finishMonth * 100 + finishDay
-            endTime = finishHour * 100 + finishMinute
-            repeat = taskRepeat
-            priority = 0
+            schedule_name = taskTitleName
+            start_date = startMonth * 100 + startDay
+            end_date = finishMonth * 100 + finishDay
         }
         GlobalValue.scheduleInfoArrayList.add(0, scheduleInformation)
         
@@ -400,16 +403,25 @@ class TaskAdditionActivity : Activity() {
     private fun setTaskInformation() {
         val taskInformation = TaskInfo()
         taskInformation.apply {
-            name = taskTitleName
-            limitDate = dateLimit
-            limitTime = timeLimit
-            repeat = taskRepeat
-            must = isMust
-            should = isShould
-            want = isWant
-            finishTimeMinutes = finishHour * 100 + finishMinute
+            task_name = taskTitleName
+            due_date = dateLimit
+            task_type = if (isMust) {
+                "1"
+            } else {
+                "0"
+            } + if (isShould) {
+                "1"
+            } else {
+                "0"
+            } + if (isWant) {
+                "1"
+            } else {
+                "0"
+            }
+            guide_time = finishHour * 100 + finishMinute
             priority = 0
         }
+        Log.d("task", taskInformation.task_type)
         GlobalValue.taskInfoArrayList.add(0, taskInformation)
         
     }

@@ -58,26 +58,21 @@ class CalendarFragment : Fragment() {
     
     
     private fun setSchedule(dateViews: Array<View?>) {
-        val scheduleNum = IntArray(31)
+        val scheduleNum = IntArray(35)
         
         val totalScheduleSize = GlobalValue.scheduleInfoArrayList.size
         (0 until totalScheduleSize).forEach {
             val thisMonth = month + 1
             val schedule = GlobalValue.scheduleInfoArrayList[it]
-            val scheduleDay = schedule.startDate % 100
-            if (thisMonth == schedule.startDate / 100) {
-                dateViews[scheduleDay]?.find<TextView>(when (scheduleNum[scheduleDay]++) {
+            val scheduleDay = schedule.start_date % 100
+            if (thisMonth == schedule.start_date / 100) {
+                dateViews[scheduleDay - 1]?.find<TextView>(when (scheduleNum[scheduleDay]++) {
                     0 -> R.id.schedule_view1
                     1 -> R.id.schedule_view2
                     else -> R.id.schedule_view3
                 })?.apply {
-                    text = schedule.name
-                    backgroundColor = ContextCompat.getColor(context, when (schedule.priority) {
-                        0 -> R.color.mostPriority
-                        1 -> R.color.highPriority
-                        2 -> R.color.middlePriority
-                        else -> R.color.lowPriority
-                    })
+                    text = schedule.schedule_name
+                    backgroundColor = ContextCompat.getColor(context, R.color.mostPriority)
                     textColor = Color.WHITE
                 }
             }
@@ -235,7 +230,7 @@ class CalendarFragment : Fragment() {
             num++
             
         }
-        
+
 //        flickCheck()
         setSchedule(dateViews)
         

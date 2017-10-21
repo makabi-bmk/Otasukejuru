@@ -72,7 +72,7 @@ class ToDoListFragment : Fragment() {
         val today = (calendar.get(Calendar.MONTH) + 1) * 100 + calendar.get(Calendar.DAY_OF_MONTH)
         
         GlobalValue.taskInfoArrayList.forEach {
-            val diffDays = diffDayNum(today, it.limitDate, calendar.get(Calendar.YEAR))
+            val diffDays = diffDayNum(today, it.due_date, calendar.get(Calendar.YEAR))
             
             val inflater: LayoutInflater = context.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
             val linearLayout: LinearLayout = inflater.inflate(R.layout.task_card_view, null) as LinearLayout
@@ -85,12 +85,12 @@ class ToDoListFragment : Fragment() {
                     }
                 }
                 cardView.apply {
-                    tag = it.limitDate
+                    tag = it.due_date
                     setOnClickListener {
                         createDialog()
                     }
                 }
-                taskNameTextView.text = it.name
+                taskNameTextView.text = it.task_name
             }
             when (it.priority) {
                 0 -> mostPriorityCardLinear
