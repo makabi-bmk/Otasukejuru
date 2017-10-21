@@ -175,9 +175,9 @@ def update_every():
     return 'succeeded'
 
 
-@app.route('/get', methods=['POST'])
-def get():
-    pass
+@app.route('/get/todo_list', methods=['GET'])
+def get_todo_list():
+    return dbcon.get_todo_list()
 
 
 if __name__ == '__main__':
