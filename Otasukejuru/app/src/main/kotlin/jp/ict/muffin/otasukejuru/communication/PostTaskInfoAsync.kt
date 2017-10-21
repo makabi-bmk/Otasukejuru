@@ -9,7 +9,7 @@ import okhttp3.Request
 import okhttp3.RequestBody
 
 
-class PostTaskInfo() : AsyncTask<TaskInfo, Void, Unit>() {
+class PostTaskInfoAsync() : AsyncTask<TaskInfo, Void, Unit>() {
     private val mediaType = MediaType.parse("application/json; charset=utf-8")
     var client = OkHttpClient()
     
