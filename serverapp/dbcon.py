@@ -13,9 +13,10 @@ logger.addHandler(handler)
 logger.propagate = False
 
 client = MongoClient('localhost', 27017)
-every_col = client['every']
-schedule_col = client['schedule']
-task_col = client['task']
+db = client['muffin']
+every_col = db['every']
+schedule_col = db['schedule']
+task_col = db['task']
 
 res_list = []
 
@@ -44,7 +45,7 @@ def add_task(task_name: str, due_date: dt.datetime, task_type: int,
         # "run_time": 0
     }
     print(post)
-    # task_col.insert_one(post)
+    task_col.insert_one(post)
 
 
 def add_schedule(schedule_name: str, start_date: dt.datetime,
