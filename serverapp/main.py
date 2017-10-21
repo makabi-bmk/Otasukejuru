@@ -124,6 +124,55 @@ def delete_every():
     return 'succeeded'
 
 
+# TODO: keyチェックをして
+@app.route('/update/task', methods=['POST'])
+def update_task():
+    if request.content_type != 'application/json':
+        logger.debug('err invalid content_type. url: /update/task, '
+                     'content_type: {}'.format(request.content_type))
+        return 'failed'
+    task_name = request.json['task_name']
+    due_date = change_timezone(request.json['due_date'])
+    task_type = request.json['task_type']
+    guide_time = strtime.str_to_time(request.json['guide_time'])
+    progress = request.json['progress']
+    priority = request.json['priority']
+    # dbcon.update_task(task_name, due_date, task_type, guide_time, progress,
+    # priority)
+    return 'succeeded'
+
+
+# TODO: keyチェックをして
+@app.route('/update/schedule', methods=['POST'])
+def update_schedule():
+    if request.content_type != 'application/json':
+        logger.debug('err invalid content_type. url: /update/schedule, '
+                     'content_type: {}'.format(request.content_type))
+        return 'failed'
+    schedule_name = request.json['schedule_name']
+    start_date = change_timezone(request.json['start_date'])
+    end_date = change_timezone(request.json['end_date'])
+    notice = request.json['notice']
+    # dbcon.update_schedule(schedule_name, start_date, end_date, notice)
+    return 'succeeded'
+
+
+# TODO: keyチェックをして
+@app.route('/update/every', methods=['POST'])
+def update_every():
+    if request.content_type != 'application/json':
+        logger.debug('err invalid content_type. url: /update/every, '
+                     'content_type: {}'.format(request.content_type))
+        return 'failed'
+    schedule_name = request.json['every_name']
+    start_date = change_timezone(request.json['start_date'])
+    end_date = change_timezone(request.json['end_date'])
+    notice = request.json['notice']
+    repeat_type = request.json['repeat_type']
+    # dbcon.update_every(schedule_name, start_date, end_date, notice, repeat_type)
+    return 'succeeded'
+
+
 @app.route('/get', methods=['POST'])
 def get():
     pass
