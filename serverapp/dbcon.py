@@ -141,6 +141,15 @@ def delete_every(every_name: str, start_date: dt.datetime):
     task_col.remove({"every_name": every_name, "start_time": start_date})
 
 
+def get_todo_list():
+    todo_list = []
+    for task in task_col.find():
+        del(task["_id"])
+        todo_list.append(task)
+    logger.debug("{} | get_todo_list: {}".format(dt.datetime.now(), todo_list))
+    return todo_list
+
+
 if __name__ == '__main__':
     a = dt.datetime.now()
     r = check_days(a, a + dt.timedelta(days=1))
