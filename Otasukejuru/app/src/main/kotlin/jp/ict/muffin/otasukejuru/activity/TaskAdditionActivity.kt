@@ -421,6 +421,6 @@ class TaskAdditionActivity : Activity() {
         }
         Log.d("task", taskInformation.task_type)
         GlobalValue.taskInfoArrayList.add(0, taskInformation)
-        
+        //TODO:Communication
     }
 }
