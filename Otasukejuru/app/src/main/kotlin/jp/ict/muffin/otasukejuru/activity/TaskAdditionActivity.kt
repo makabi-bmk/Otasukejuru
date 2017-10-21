@@ -202,9 +202,8 @@ class TaskAdditionActivity : Activity() {
             
             setScheduleInformation()
             if (taskRepeat == "今日だけ") {
-                
-            } else {
                 setTaskInformation()
+            } else {
             }
             finish()
         }
@@ -379,9 +378,8 @@ class TaskAdditionActivity : Activity() {
                     isWant + "\n終了目安:" + finishHour + "時間" + finishMinute + "分")
             
             if (taskRepeat == "今日だけ") {
-                
-            } else {
                 setTaskInformation()
+            } else {
             }
             finish()
         }
