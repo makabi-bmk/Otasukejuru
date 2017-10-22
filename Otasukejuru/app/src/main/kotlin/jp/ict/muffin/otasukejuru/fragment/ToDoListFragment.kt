@@ -71,6 +71,7 @@ class ToDoListFragment : Fragment() {
         val calendar = Calendar.getInstance()
         val today = (calendar.get(Calendar.MONTH) + 1) * 100 + calendar.get(Calendar.DAY_OF_MONTH)
         
+        val showTaskNum = GlobalValue.displayWidth / 90
         GlobalValue.taskInfoArrayList.forEach {
             val diffDays = diffDayNum(today, it.limitDate, calendar.get(Calendar.YEAR))
             
@@ -96,7 +97,7 @@ class ToDoListFragment : Fragment() {
                 0 -> mostPriorityCardLinear
                 1 -> {
                     highPriorityNum++
-                    if (highPriorityNum <= 4) {
+                    if (highPriorityNum <= showTaskNum) {
                         highPriorityCardLinear1
                     } else {
                         highPriorityCardLinear2
@@ -104,7 +105,7 @@ class ToDoListFragment : Fragment() {
                 }
                 2 -> {
                     middlePriorityNum++
-                    if (middlePriorityNum <= 4) {
+                    if (middlePriorityNum <= showTaskNum) {
                         middlePriorityCardLinear1
                     } else {
                         middlePriorityCardLinear2
@@ -112,7 +113,7 @@ class ToDoListFragment : Fragment() {
                 }
                 else -> {
                     lowPriorityNum++
-                    if (lowPriorityNum <= 4) {
+                    if (lowPriorityNum <= showTaskNum) {
                         lowPriorityCardLinear1
                     } else {
                         lowPriorityCardLinear2
