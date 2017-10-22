@@ -145,8 +145,8 @@ def delete_every(every_name: str, start_date: dt.datetime):
 def get_todo_list():
     todo_list = []
     for task in task_col.find():
-        del(task["_id"])
-        del(task["registration_date"])
+        task["_id"] = str(task["_id"])
+        task["registration_date"] = str(task["registration_date"])
         task["due_date"] = str(task["due_date"])
         task["guide_time"] = str(task["guide_time"])
         todo_list.append(task)
