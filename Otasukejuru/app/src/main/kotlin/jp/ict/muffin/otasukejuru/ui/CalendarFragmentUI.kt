@@ -7,6 +7,7 @@ import android.widget.LinearLayout
 import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.fragment.CalendarFragment2
 import org.jetbrains.anko.*
+import java.util.*
 
 class CalendarFragmentUI : AnkoComponent<CalendarFragment2> {
     override fun createView(ui: AnkoContext<CalendarFragment2>): View = with(ui) {
@@ -19,21 +20,31 @@ class CalendarFragmentUI : AnkoComponent<CalendarFragment2> {
                 width = matchParent
                 height = dip(90)
                 alignParentTop()
-                leftMargin = dip(50)
+                leftMargin = dip(90)
             }
             scrollView {
+                val calendar = Calendar.getInstance()
+                var today = (calendar.get(Calendar.MONTH) + 1) * 100 + calendar.get(Calendar.DAY_OF_MONTH)
                 linearLayout {
                     orientation = LinearLayout.VERTICAL
-                    (0..28).forEach {
+                    (0 until 28).forEach {
                         relativeLayout {
-                            textView(it.toString()) {
+                            textView(when (it % 4) {
+                                1 -> "朝"
+                                2 -> "昼"
+                                3 -> "夜"
+                                else -> "${today / 100}月${today % 100}日"
+                            }) {
                                 id = R.id.hourText
                             }.lparams {
                                 width = wrapContent
                                 height = wrapContent
                                 alignParentStart()
                                 centerVertically()
-                                leftMargin = dip(10)
+                                leftMargin = dip(when (it % 4) {
+                                    0 -> 20
+                                    else -> 70
+                                })
                             }
                             
                             imageView {
@@ -41,11 +52,11 @@ class CalendarFragmentUI : AnkoComponent<CalendarFragment2> {
                             }.lparams {
                                 width = matchParent
                                 height = dip(if (it % 4 == 0) {
-                                    3
+                                    2
                                 } else {
                                     1
                                 })
-                                leftMargin = dip(30)
+                                leftMargin = dip(90)
                                 rightMargin = dip(20)
                                 centerVertically()
                                 alignParentEnd()
@@ -54,6 +65,11 @@ class CalendarFragmentUI : AnkoComponent<CalendarFragment2> {
                         }.lparams {
                             width = matchParent
                             height = dip(50)
+                        }
+                        today += when {
+                            it % 4 == 0 -> 1
+                            today == 30 -> 70
+                            else -> 0
                         }
                     }
                 }.lparams {
