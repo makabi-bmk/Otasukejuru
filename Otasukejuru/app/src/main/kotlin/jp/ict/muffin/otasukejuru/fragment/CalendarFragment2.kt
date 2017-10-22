@@ -12,7 +12,6 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
-import jp.ict.muffin.otasukejuru.`object`.TaskInfo
 import jp.ict.muffin.otasukejuru.ui.CalendarFragmentUI
 import kotlinx.android.synthetic.main.task_card_view.*
 import org.jetbrains.anko.AnkoContext
@@ -28,6 +27,11 @@ class CalendarFragment2 : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View =
             CalendarFragmentUI().createView(AnkoContext.create(ctx, this))
+    
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        setCardView()
+    }
     
     override fun onResume() {
         super.onResume()
@@ -50,30 +54,27 @@ class CalendarFragment2 : Fragment() {
     private fun setCardView() {
         val calendar = Calendar.getInstance()
         val today = (calendar.get(Calendar.MONTH) + 1) * 100 + calendar.get(Calendar.DAY_OF_MONTH)
-        val showTaskNum = GlobalValue.displayWidth / 90
+        val showTaskNum = (GlobalValue.displayWidth - 50) / 90
     
-        val forNum = minOf(showTaskNum, GlobalValue.taskInfoArrayList.size)
-
         find<LinearLayout>(R.id.taskLinear).removeAllViews()
-        (0 until forNum).forEach {
-            val taskInfo: TaskInfo = GlobalValue.taskInfoArrayList[it]
-            val diffDays = diffDayNum(today, taskInfo.limitDate, calendar.get(Calendar.YEAR))
+        GlobalValue.taskInfoArrayList.forEach {
+            val diffDays = diffDayNum(today, it.limitDate, calendar.get(Calendar.YEAR))
 
             val inflater: LayoutInflater = context.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
-            val taskCardLinear: LinearLayout = inflater.inflate(R.layout.task_card_view, null) as LinearLayout
+            val linearLayout: LinearLayout = inflater.inflate(R.layout.task_card_view, null) as LinearLayout
     
-            taskCardLinear.apply {
+            linearLayout.apply {
                 dateTextView?.apply {
                     text = diffDays.toString()
-                    if (taskInfo.priority == 0) {
+                    if (it.priority == 0) {
                         textColor = ContextCompat.getColor(context, R.color.mostPriority)
                     }
                 }
                 cardView?.apply {
-                    tag = taskInfo.limitDate
+                    tag = it.limitDate
                 }
-                taskNameTextView?.text = taskInfo.task_name
-                find<LinearLayout>(R.id.taskLinear).addView(taskCardLinear, 0)
+                taskNameTextView?.text = it.task_name
+                find<LinearLayout>(R.id.taskLinear).addView(linearLayout, 0)
             }
 
         }

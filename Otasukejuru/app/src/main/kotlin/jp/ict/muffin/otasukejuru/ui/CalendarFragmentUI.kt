@@ -14,10 +14,12 @@ class CalendarFragmentUI : AnkoComponent<CalendarFragment2> {
         relativeLayout {
             linearLayout {
                 id = R.id.taskLinear
+                orientation = LinearLayout.HORIZONTAL
             }.lparams {
                 width = matchParent
                 height = dip(90)
                 alignParentTop()
+                leftMargin = dip(50)
             }
             scrollView {
                 linearLayout {
