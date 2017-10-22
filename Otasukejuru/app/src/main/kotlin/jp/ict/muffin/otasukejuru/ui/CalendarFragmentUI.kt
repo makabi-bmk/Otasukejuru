@@ -20,7 +20,7 @@ class CalendarFragmentUI : AnkoComponent<CalendarFragment2> {
                 width = matchParent
                 height = dip(90)
                 alignParentTop()
-                leftMargin = dip(90)
+                leftMargin = dip(80)
             }
             scrollView {
                 val calendar = Calendar.getInstance()
@@ -42,8 +42,8 @@ class CalendarFragmentUI : AnkoComponent<CalendarFragment2> {
                                 alignParentStart()
                                 centerVertically()
                                 leftMargin = dip(when (it % 4) {
-                                    0 -> 20
-                                    else -> 70
+                                    0 -> 10
+                                    else -> 60
                                 })
                             }
                             
@@ -56,7 +56,7 @@ class CalendarFragmentUI : AnkoComponent<CalendarFragment2> {
                                 } else {
                                     1
                                 })
-                                leftMargin = dip(90)
+                                leftMargin = dip(80)
                                 rightMargin = dip(20)
                                 centerVertically()
                                 alignParentEnd()
