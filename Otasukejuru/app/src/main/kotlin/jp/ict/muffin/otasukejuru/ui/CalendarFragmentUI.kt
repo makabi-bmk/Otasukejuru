@@ -12,42 +12,17 @@ class CalendarFragmentUI : AnkoComponent<CalendarFragment2> {
     override fun createView(ui: AnkoContext<CalendarFragment2>): View = with(ui) {
         
         relativeLayout {
-            relativeLayout {
-                textView("今日のタスク") {
-                    id = R.id.todayTaskText
-                    textSize = 25f
-                }.lparams {
-                    width = wrapContent
-                    height = wrapContent
-                    margin = dip(10)
-                }
-                
-                scrollView {
-                    textView("Hoge") {
-                    }.lparams {
-                        
-                        margin = dip(10)
-                    }
-                }.lparams {
-                    width = matchParent
-                    height = 150
-                    translationZ = 3f
-                    below(R.id.todayTaskText)
-                    backgroundDrawable = ContextCompat.getDrawable(context, R.drawable.frame_shape)
-                }
+            linearLayout {
+                id = R.id.taskLinear
             }.lparams {
-                margin = dip(30)
-                below(R.id.ankoToolbar)
+                width = matchParent
+                height = dip(90)
+                alignParentTop()
             }
-            
             scrollView {
                 linearLayout {
                     orientation = LinearLayout.VERTICAL
-                    textView("") {
-                    }.lparams {
-                        height = 250
-                    }
-                    (0..24).forEach {
+                    (0..28).forEach {
                         relativeLayout {
                             textView(it.toString()) {
                                 id = R.id.hourText
@@ -63,7 +38,11 @@ class CalendarFragmentUI : AnkoComponent<CalendarFragment2> {
                                 backgroundColor = Color.GRAY
                             }.lparams {
                                 width = matchParent
-                                height = dip(1)
+                                height = dip(if (it % 4 == 0) {
+                                    3
+                                } else {
+                                    1
+                                })
                                 leftMargin = dip(30)
                                 rightMargin = dip(20)
                                 centerVertically()
@@ -83,7 +62,7 @@ class CalendarFragmentUI : AnkoComponent<CalendarFragment2> {
                 width = matchParent
                 height = matchParent
                 backgroundColor = ContextCompat.getColor(context, R.color.back)
-                below(R.id.ankoToolbar)
+                below(R.id.taskLinear)
             }
         }
     }
