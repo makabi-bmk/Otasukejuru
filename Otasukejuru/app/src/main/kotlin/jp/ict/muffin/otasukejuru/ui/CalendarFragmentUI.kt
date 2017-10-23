@@ -25,8 +25,16 @@ class CalendarFragmentUI : AnkoComponent<CalendarFragment2> {
             scrollView {
                 val calendar = Calendar.getInstance()
                 var today = (calendar.get(Calendar.MONTH) + 1) * 100 + calendar.get(Calendar.DAY_OF_MONTH)
-                linearLayout {
-                    orientation = LinearLayout.VERTICAL
+                relativeLayout {
+                    id = R.id.taskRelative
+//                    imageView {
+//                        backgroundColor = ContextCompat.getColor(context, R.color.mostPriority)
+//                    }.lparams {
+//                        width = 3
+//                        height = 100
+//                        leftMargin = 100
+//                        topMargin = 20
+//                    }
                     (0 until 28).forEach {
                         relativeLayout {
                             textView(when (it % 4) {
@@ -65,6 +73,7 @@ class CalendarFragmentUI : AnkoComponent<CalendarFragment2> {
                         }.lparams {
                             width = matchParent
                             height = dip(50)
+                            topMargin = it * 50
                         }
                         today += when {
                             it % 4 == 0 -> 1
@@ -74,7 +83,7 @@ class CalendarFragmentUI : AnkoComponent<CalendarFragment2> {
                     }
                 }.lparams {
                     width = matchParent
-                    height = wrapContent
+                    height = matchParent
                 }
             }.lparams {
                 width = matchParent

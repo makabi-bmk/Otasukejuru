@@ -10,12 +10,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
 import jp.ict.muffin.otasukejuru.ui.CalendarFragmentUI
 import kotlinx.android.synthetic.main.task_card_view.*
 import org.jetbrains.anko.AnkoContext
+import org.jetbrains.anko.backgroundColor
 import org.jetbrains.anko.support.v4.ctx
+import org.jetbrains.anko.support.v4.dip
 import org.jetbrains.anko.support.v4.find
 import org.jetbrains.anko.textColor
 import java.util.*
@@ -37,7 +40,7 @@ class CalendarFragment2 : Fragment() {
         super.onResume()
         val mHandler = Handler()
         mTimer = Timer()
-        mTimer?.schedule(object : TimerTask(){
+        mTimer?.schedule(object : TimerTask() {
             override fun run() {
                 mHandler.post {
                     setCardView()
@@ -51,18 +54,21 @@ class CalendarFragment2 : Fragment() {
         mTimer?.cancel()
         mTimer = null
     }
+    
     private fun setCardView() {
         val calendar = Calendar.getInstance()
         val today = (calendar.get(Calendar.MONTH) + 1) * 100 + calendar.get(Calendar.DAY_OF_MONTH)
-        val showTaskNum = (GlobalValue.displayWidth - 50) / 90
-    
+        val showTaskNum = (GlobalValue.displayWidth - 50) / 90 - 1
+        
+        val forNum = minOf(showTaskNum, GlobalValue.taskInfoArrayList.size)
         find<LinearLayout>(R.id.taskLinear).removeAllViews()
-        GlobalValue.taskInfoArrayList.forEach {
+        (0 until forNum).forEach { i ->
+            val it = GlobalValue.taskInfoArrayList[i]
             val diffDays = diffDayNum(today, it.limitDate, calendar.get(Calendar.YEAR))
-
+            
             val inflater: LayoutInflater = context.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
             val linearLayout: LinearLayout = inflater.inflate(R.layout.task_card_view, null) as LinearLayout
-    
+            
             linearLayout.apply {
                 dateTextView?.apply {
                     text = diffDays.toString()
@@ -74,9 +80,23 @@ class CalendarFragment2 : Fragment() {
                     tag = it.limitDate
                 }
                 taskNameTextView?.text = it.task_name
-                find<LinearLayout>(R.id.taskLinear).addView(linearLayout, 0)
             }
-
+            find<LinearLayout>(R.id.taskLinear).addView(linearLayout, 0)
+            
+            
+            val line = LinearLayout(context)
+            val lParam = RelativeLayout.LayoutParams(0, 0)
+            lParam.apply {
+                width = 3
+                height = dip(diffDays * 200)
+                leftMargin = dip(80 + 45 + 90 * i)
+                topMargin = dip(25)
+            }
+            line.apply {
+                layoutParams = lParam
+                backgroundColor = ContextCompat.getColor(context, R.color.mostPriority)
+            }
+            find<RelativeLayout>(R.id.taskRelative).addView(line, 0)
         }
     }
     
