@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.os.Handler
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -62,9 +61,9 @@ class CalendarFragment2 : Fragment() {
         
         val forNum = minOf(showTaskNum, GlobalValue.taskInfoArrayList.size)
         find<LinearLayout>(R.id.taskLinear).removeAllViews()
-        (0 until forNum).forEach { i ->
-            val it = GlobalValue.taskInfoArrayList[i]
-            val diffDays = diffDayNum(today, it.limitDate, calendar.get(Calendar.YEAR))
+        (0 until forNum).forEach {
+            val taskInfo = GlobalValue.taskInfoArrayList[it]
+            val diffDays = diffDayNum(today, taskInfo.limitDate, calendar.get(Calendar.YEAR))
             
             val inflater: LayoutInflater = context.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
             val linearLayout: LinearLayout = inflater.inflate(R.layout.task_card_view, null) as LinearLayout
@@ -72,14 +71,14 @@ class CalendarFragment2 : Fragment() {
             linearLayout.apply {
                 dateTextView?.apply {
                     text = diffDays.toString()
-                    if (it.priority == 0) {
+                    if (taskInfo.priority == 0) {
                         textColor = ContextCompat.getColor(context, R.color.mostPriority)
                     }
                 }
                 cardView?.apply {
-                    tag = it.limitDate
+                    tag = taskInfo.limitDate
                 }
-                taskNameTextView?.text = it.task_name
+                taskNameTextView?.text = taskInfo.task_name
             }
             find<LinearLayout>(R.id.taskLinear).addView(linearLayout, 0)
             
@@ -89,7 +88,7 @@ class CalendarFragment2 : Fragment() {
             lParam.apply {
                 width = 3
                 height = dip(diffDays * 200)
-                leftMargin = dip(80 + 45 + 90 * i)
+                leftMargin = dip(80 + 45 + 90 * it)
                 topMargin = dip(25)
             }
             line.apply {
@@ -108,7 +107,6 @@ class CalendarFragment2 : Fragment() {
             intArrayOf(0, 31, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335)
         }
         
-        Log.d("$beforeDate ", "$afterDate")
         val beforeDay: Int = beforeDate % 100
         val beforeMonth: Int = beforeDate / 100
         val afterDay: Int = afterDate % 100

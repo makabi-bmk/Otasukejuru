@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.os.Handler
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -147,7 +146,6 @@ class ToDoListFragment : Fragment() {
             intArrayOf(0, 31, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335)
         }
         
-        Log.d("$beforeDate ", "$afterDate")
         val beforeDay: Int = beforeDate % 100
         val beforeMonth: Int = beforeDate / 100
         val afterDay: Int = afterDate % 100
