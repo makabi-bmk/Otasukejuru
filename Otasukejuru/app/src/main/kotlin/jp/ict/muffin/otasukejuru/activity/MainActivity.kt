@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
+import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
@@ -14,10 +15,12 @@ import jp.ict.muffin.otasukejuru.fragment.CalendarFragment2
 import jp.ict.muffin.otasukejuru.fragment.TimerSetTimeFragment
 import jp.ict.muffin.otasukejuru.fragment.ToDoListFragment
 import kotlinx.android.synthetic.main.activity_main.*
+import org.jetbrains.anko.find
 import org.jetbrains.anko.startActivity
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var mViewPager: ViewPager
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,8 +48,10 @@ class MainActivity : AppCompatActivity() {
       The {@link ViewPager} that will host the section contents.
      */
         
+        mViewPager = find(R.id.view_pager)
+        mViewPager.adapter = mSectionsPagerAdapter
         
-//        tabs.setupWithViewPager(view_pager)
+        tabs.setupWithViewPager(mViewPager)
         
         fab.setOnClickListener {
             startActivity<TaskAdditionActivity>()
