@@ -45,12 +45,8 @@ class MainActivity : AppCompatActivity() {
       The {@link ViewPager} that will host the section contents.
      */
         
-        view_pager.apply {
-            adapter = mSectionsPagerAdapter
-            setSwipeHoldVar(true)
-        }
         
-        tabs.setupWithViewPager(view_pager)
+//        tabs.setupWithViewPager(view_pager)
         
         fab.setOnClickListener {
             startActivity<TaskAdditionActivity>()
