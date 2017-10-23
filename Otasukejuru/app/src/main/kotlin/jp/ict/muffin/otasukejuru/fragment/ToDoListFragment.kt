@@ -12,8 +12,11 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
+import jp.ict.muffin.otasukejuru.ui.ToDoListFragmentUI
 import kotlinx.android.synthetic.main.fragment_list_todo.*
 import kotlinx.android.synthetic.main.task_card_view.view.*
+import org.jetbrains.anko.AnkoContext
+import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.toast
 import org.jetbrains.anko.textColor
 import java.util.*
@@ -25,7 +28,8 @@ class ToDoListFragment : Fragment() {
     
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View =
-            inflater.inflate(R.layout.fragment_list_todo, container, false)
+            ToDoListFragmentUI().createView(AnkoContext.create(ctx, this))
+//            inflater.inflate(R.layout.fragment_list_todo, container, false)
     
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
