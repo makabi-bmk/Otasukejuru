@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.FrameLayout
 import android.widget.NumberPicker
 import jp.ict.muffin.otasukejuru.R
+import jp.ict.muffin.otasukejuru.`object`.GlobalValue
 import jp.ict.muffin.otasukejuru.activity.TimerActivity
 import jp.ict.muffin.otasukejuru.view.CircleGraphView
 import org.jetbrains.anko.*
@@ -269,7 +270,10 @@ class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerActiv
     }
     
     private fun drawCircle(context: Context) {
-        
+        GlobalValue.apply {
+            focusTimeG = focusTime
+            intervalTimeG = intervalTime
+        }
         val intervalColor = ContextCompat.getColor(context, R.color.colorPrimaryDark)
         val redColor = ContextCompat.getColor(context, R.color.mostPriority)
         
