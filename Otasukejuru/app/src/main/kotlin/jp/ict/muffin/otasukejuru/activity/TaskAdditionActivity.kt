@@ -208,7 +208,7 @@ class TaskAdditionActivity : Activity() {
             
             setScheduleInformation()
             if (taskRepeat == "今日だけ") {
-                setTaskInformation()
+                setScheduleInformation()
             } else {
                 setEveryInformation()
             }
