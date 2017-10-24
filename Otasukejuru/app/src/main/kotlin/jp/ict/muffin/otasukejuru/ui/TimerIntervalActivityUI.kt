@@ -271,8 +271,8 @@ class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerActiv
     
     private fun drawCircle(context: Context) {
         GlobalValue.apply {
-            focusTimeG = focusTime
-            intervalTimeG = intervalTime
+            focusTimeG = focusTime.toLong()
+            intervalTimeG = intervalTime.toLong()
         }
         val intervalColor = ContextCompat.getColor(context, R.color.colorPrimaryDark)
         val redColor = ContextCompat.getColor(context, R.color.mostPriority)
