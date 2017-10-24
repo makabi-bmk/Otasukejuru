@@ -1,11 +1,14 @@
 package jp.ict.muffin.otasukejuru.ui
 
+import android.content.Context
 import android.graphics.Color
 import android.support.v4.content.ContextCompat
 import android.view.View
+import android.widget.FrameLayout
 import android.widget.NumberPicker
 import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.activity.TimerActivity
+import jp.ict.muffin.otasukejuru.view.CircleGraphView
 import org.jetbrains.anko.*
 
 
@@ -14,6 +17,9 @@ class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerActiv
     private lateinit var focusMinuteNumPick: NumberPicker
     private lateinit var intervalHourNumPick: NumberPicker
     private lateinit var intervalMinuteNumPick: NumberPicker
+    private lateinit var timerFrame: FrameLayout
+    private var focusTime: Int = 1
+    private var intervalTime: Int = 0
     
     
     override fun createView(ui: AnkoContext<TimerActivity>): View = with(ui) {
@@ -62,9 +68,12 @@ class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerActiv
                         id = R.id.focusHourNumPick
                         minValue = 0
                         maxValue = (time / 60).toInt()
-                        setOnValueChangedListener { _, _, newValue ->
-                            val remindingTime: Int = time.toInt() -
+                        setOnValueChangedListener { _, oldValue, newValue ->
+                            var remindingTime: Int = time.toInt() -
                                     (newValue * 60 + focusMinuteNumPick.value)
+                            if (remindingTime < 0) {
+                                remindingTime = 0
+                            }
                             intervalHourNumPick.maxValue = (remindingTime - 1) / 60
                             intervalMinuteNumPick.maxValue = if (60 <= remindingTime) {
                                 59
@@ -80,6 +89,8 @@ class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerActiv
                             } else {
                                 minuteTime
                             }
+                            focusTime += 60 * (newValue - oldValue)
+                            drawCircle(context)
                             
                         }
                     }.lparams {
@@ -102,15 +113,19 @@ class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerActiv
                             time.toInt() % 60
                         }
                         setFormatter { value -> String.format("%02d", value) }
-                        setOnValueChangedListener { _, _, newValue ->
-                            val remindingTime: Int = time.toInt() -
+                        setOnValueChangedListener { _, oldValue, newValue ->
+                            var remindingTime: Int = time.toInt() -
                                     (focusHourNumPick.value * 60 + newValue)
-                            
+                            if (remindingTime < 0) {
+                                remindingTime = 0
+                            }
                             intervalMinuteNumPick.maxValue = when {
                                 60 <= remindingTime -> 59
                                 0 <= remindingTime -> remindingTime
                                 else -> 0
                             }
+                            focusTime += newValue - oldValue
+                            drawCircle(context)
                             
                         }
                     }.lparams {
@@ -145,9 +160,12 @@ class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerActiv
                         id = R.id.intervalHourNumPick
                         minValue = 0
                         maxValue = (time / 60).toInt()
-                        setOnValueChangedListener { _, _, newValue ->
-                            val remindingTime: Int = time.toInt() -
+                        setOnValueChangedListener { _, oldValue, newValue ->
+                            var remindingTime: Int = time.toInt() -
                                     (newValue * 60 + focusMinuteNumPick.value)
+                            if (remindingTime < 0) {
+                                remindingTime = 0
+                            }
                             focusHourNumPick.maxValue = (remindingTime - 1) / 60
                             focusMinuteNumPick.maxValue = if (60 <= remindingTime) {
                                 59
@@ -163,6 +181,8 @@ class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerActiv
                             } else {
                                 minuteTime
                             }
+                            intervalTime += 60 * (newValue - oldValue)
+                            drawCircle(context)
                         }
                     }.lparams {
                         centerVertically()
@@ -184,15 +204,19 @@ class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerActiv
                             time.toInt() % 60
                         }
                         setFormatter { value -> String.format("%02d", value) }
-                        setOnValueChangedListener { _, _, newValue ->
-                            val remindingTime: Int = time.toInt() -
+                        setOnValueChangedListener { _, oldValue, newValue ->
+                            var remindingTime: Int = time.toInt() -
                                     (intervalHourNumPick.value * 60 + newValue)
-                            
+                            if (remindingTime < 0) {
+                                remindingTime = 0
+                            }
                             focusMinuteNumPick.maxValue = when {
                                 60 <= remindingTime -> 59
                                 0 <= remindingTime -> remindingTime
                                 else -> 0
                             }
+                            intervalTime += newValue - oldValue
+                            drawCircle(context)
                         }
                     }.lparams {
                         rightOf(R.id.hourTextView)
@@ -212,7 +236,7 @@ class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerActiv
                     height = wrapContent
                 }
                 
-                frameLayout {
+                timerFrame = frameLayout {
                     id = R.id.circleFrame
                 }.lparams {
                     width = dip(150)
@@ -226,9 +250,6 @@ class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerActiv
                     backgroundColor = Color.argb(0, 0, 0, 0)
                     textColor = ContextCompat.getColor(context, R.color.colorPrimary)
                     textSize = 20f
-//                    onClick {
-//                        startActivity<TimerNotificationActivity>("time" to time)
-//                    }
                 }.lparams {
                     margin = 30
                     alignParentBottom()
@@ -238,5 +259,50 @@ class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerActiv
                 below(R.id.ankoToolbar)
             }
         }
+    }
+    
+    private fun drawCircle(context: Context) {
+        
+        val intervalColor = ContextCompat.getColor(context, R.color.colorPrimaryDark)
+        val redColor = ContextCompat.getColor(context, R.color.mostPriority)
+        
+        val params: ArrayList<HashMap<String, Int>> = java.util.ArrayList()
+        var time = 0
+        val colors = arrayListOf<Int>()
+        val drawCircleTime = arrayListOf<Int>()
+        while (true) {
+            if (60 <= time + focusTime) {
+                drawCircleTime.add(60 - time)
+                colors.add(redColor)
+                break
+            } else if (focusTime != 0) {
+                drawCircleTime.add(focusTime)
+                colors.add(redColor)
+            } else {
+            }
+            time += focusTime
+            
+            if (60 <= time + intervalTime) {
+                drawCircleTime.add(60 - time)
+                colors.add(intervalColor)
+                break
+            } else if (intervalTime != 0) {
+                drawCircleTime.add(intervalTime)
+                colors.add(intervalColor)
+            } else {
+            }
+            time += intervalTime
+        }
+        (0 until colors.size).forEach {
+            val mapSI = HashMap<String, Int>()
+            mapSI.put("color", colors[it])
+            mapSI.put("value", drawCircleTime[it])
+            params.add(mapSI)
+        }
+        
+        val circleGraphView = CircleGraphView(context, params, true)
+        timerFrame.addView(circleGraphView)
+        circleGraphView.startAnimation()
+        
     }
 }
