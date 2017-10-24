@@ -23,7 +23,7 @@ import org.jetbrains.anko.textColor
 import java.util.*
 
 
-class CalendarFragment2 : Fragment() {
+class ScheduleFragment : Fragment() {
     private var mTimer: Timer? = null
     
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,

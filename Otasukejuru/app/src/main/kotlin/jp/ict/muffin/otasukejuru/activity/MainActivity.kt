@@ -12,7 +12,7 @@ import android.view.Menu
 import android.view.MenuItem
 import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
-import jp.ict.muffin.otasukejuru.fragment.CalendarFragment2
+import jp.ict.muffin.otasukejuru.fragment.ScheduleFragment
 import jp.ict.muffin.otasukejuru.fragment.TimerSetTimeFragment
 import jp.ict.muffin.otasukejuru.fragment.ToDoListFragment
 import kotlinx.android.synthetic.main.activity_main.*
@@ -100,7 +100,7 @@ class MainActivity : AppCompatActivity() {
         // Return a PlaceholderFragment (defined as a static inner class below).
         // getItem is called to instantiate the fragment for the given page.
         override fun getItem(position: Int): Fragment? = when (position) {
-            0 -> CalendarFragment2()
+            0 -> ScheduleFragment()
             1 -> ToDoListFragment()
             2 -> TimerSetTimeFragment()
             else -> null

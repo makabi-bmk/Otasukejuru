@@ -5,12 +5,12 @@ import android.support.v4.content.ContextCompat
 import android.view.View
 import android.widget.LinearLayout
 import jp.ict.muffin.otasukejuru.R
-import jp.ict.muffin.otasukejuru.fragment.CalendarFragment2
+import jp.ict.muffin.otasukejuru.fragment.ScheduleFragment
 import org.jetbrains.anko.*
 import java.util.*
 
-class CalendarFragmentUI : AnkoComponent<CalendarFragment2> {
-    override fun createView(ui: AnkoContext<CalendarFragment2>): View = with(ui) {
+class CalendarFragmentUI : AnkoComponent<ScheduleFragment> {
+    override fun createView(ui: AnkoContext<ScheduleFragment>): View = with(ui) {
         
         relativeLayout {
             linearLayout {
