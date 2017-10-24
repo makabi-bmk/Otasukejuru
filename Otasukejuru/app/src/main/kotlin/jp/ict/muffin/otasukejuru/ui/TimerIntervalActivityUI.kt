@@ -5,7 +5,6 @@ import android.support.v4.content.ContextCompat
 import android.view.View
 import android.widget.NumberPicker
 import jp.ict.muffin.otasukejuru.R
-import jp.ict.muffin.otasukejuru.`object`.GlobalValue
 import jp.ict.muffin.otasukejuru.activity.TimerActivity
 import org.jetbrains.anko.*
 
@@ -54,7 +53,6 @@ class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerActiv
                     below(R.id.titleInterval)
                     topMargin = dip(10)
                     leftMargin = dip(50)
-                    alignStart(R.id.focusTimeRelative)
                 }
                 
                 relativeLayout {
@@ -85,12 +83,11 @@ class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerActiv
                             
                         }
                     }.lparams {
-                        alignParentStart()
                         centerVertically()
-                        marginStart = GlobalValue.displayWidth / 5
                     }
                     
                     textView("時") {
+                        id = R.id.hourTextView
                     }.lparams {
                         rightOf(R.id.focusHourNumPick)
                         centerVertically()
@@ -117,23 +114,21 @@ class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerActiv
                             
                         }
                     }.lparams {
-                        leftOf(R.id.minuteTextView)
+                        rightOf(R.id.hourTextView)
                     }
                     
                     textView("分") {
                         id = R.id.minuteTextView
                     }.lparams {
+                        rightOf(R.id.focusMinuteNumPick)
                         centerVertically()
-                        marginEnd = GlobalValue.displayWidth / 5
-                        alignParentEnd()
                     }
                     
                 }.lparams {
-                    alignParentStart()
-                    alignParentEnd()
+                    centerHorizontally()
                     below(R.id.titleIntervalFocusTime)
-                    height = dip(100)
-                    width = matchParent
+                    height = wrapContent
+                    width = wrapContent
                 }
                 
                 textView("休憩する時間") {
@@ -141,7 +136,6 @@ class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerActiv
                 }.lparams {
                     below(R.id.focusTimeRelative)
                     leftMargin = dip(50)
-                    alignStart(R.id.focusTimeRelative)
                 }
                 
                 relativeLayout {
@@ -171,12 +165,11 @@ class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerActiv
                             }
                         }
                     }.lparams {
-                        alignParentStart()
                         centerVertically()
-                        marginStart = GlobalValue.displayWidth / 5
                     }
                     
                     textView("時") {
+                        id = R.id.hourTextView
                     }.lparams {
                         rightOf(R.id.intervalHourNumPick)
                         centerVertically()
@@ -202,21 +195,21 @@ class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerActiv
                             }
                         }
                     }.lparams {
-                        leftOf(R.id.minuteTextView)
+                        rightOf(R.id.hourTextView)
                     }
                     textView("分") {
                         id = R.id.minuteTextView
                     }.lparams {
+                        rightOf(R.id.intervalMinuteNumPick)
                         centerVertically()
-                        marginEnd = GlobalValue.displayWidth / 5
-                        alignParentEnd()
                     }
                     
                 }.lparams {
-                    alignParentStart()
-                    alignParentEnd()
+                    centerHorizontally()
+                    centerVertically()
                     below(R.id.titleIntervalBreakTime)
-                    height = dip(100)
+                    width = wrapContent
+                    height = wrapContent
                 }
                 
                 frameLayout {

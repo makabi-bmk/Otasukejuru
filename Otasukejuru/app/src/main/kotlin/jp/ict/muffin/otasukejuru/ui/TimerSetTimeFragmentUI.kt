@@ -60,25 +60,29 @@ class TimerSetTimeFragmentUI : AnkoComponent<TimerSetTimeFragment> {
             }
             
             linearLayout {
-                orientation = LinearLayout.HORIZONTAL
+                orientation = LinearLayout.VERTICAL
+                
+                editTime = editText {
+                    inputType = InputType.TYPE_CLASS_NUMBER
+                }.lparams {
+                    height = wrapContent
+                    width = matchParent
+                }
                 
                 button("start") {
                     onClick {
                         startButtonClickListener(getContext())
                     }
                 }.lparams {
-                    width = wrapContent
+                    width = matchParent
                     height = wrapContent
                 }
                 
-                editTime = editText {
-                    inputType = InputType.TYPE_CLASS_NUMBER
-                }.lparams {
-                    height = wrapContent
-                    width = 400
-                }
+                
             }.lparams {
                 below(R.id.circleFrame)
+                width = matchParent
+                height = wrapContent
             }
         }
     }
