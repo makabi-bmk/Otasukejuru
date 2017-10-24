@@ -94,6 +94,8 @@ class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerActiv
                             
                         }
                     }.lparams {
+                        width = wrapContent
+                        height = dip(100)
                         centerVertically()
                     }
                     
@@ -129,6 +131,8 @@ class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerActiv
                             
                         }
                     }.lparams {
+                        width = wrapContent
+                        height = dip(100)
                         rightOf(R.id.hourTextView)
                     }
                     
@@ -185,6 +189,8 @@ class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerActiv
                             drawCircle(context)
                         }
                     }.lparams {
+                        width = wrapContent
+                        height = dip(100)
                         centerVertically()
                     }
                     
@@ -219,6 +225,8 @@ class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerActiv
                             drawCircle(context)
                         }
                     }.lparams {
+                        width = wrapContent
+                        height = dip(100)
                         rightOf(R.id.hourTextView)
                     }
                     textView("分") {
@@ -230,7 +238,6 @@ class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerActiv
                     
                 }.lparams {
                     centerHorizontally()
-                    centerVertically()
                     below(R.id.titleIntervalBreakTime)
                     width = wrapContent
                     height = wrapContent
