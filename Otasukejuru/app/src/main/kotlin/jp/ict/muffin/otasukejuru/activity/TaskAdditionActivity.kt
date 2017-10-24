@@ -150,13 +150,13 @@ class TaskAdditionActivity : Activity() {
             value = finishDay
             setOnValueChangedListener { _, _, newVal -> finishDay = newVal }
         }
-        find<NumberPicker>(R.id.finish_hour_edit).apply {
+        find<NumberPicker>(R.id.finish_hour_num_pick).apply {
             maxValue = 23
             minValue = 0
             value = finishHour
             setOnValueChangedListener { _, _, newVal -> finishHour = newVal }
         }
-        find<NumberPicker>(R.id.finish_minute_edit).apply {
+        find<NumberPicker>(R.id.finish_minute_num_pick).apply {
             maxValue = 59
             minValue = 0
             value = finishMinute

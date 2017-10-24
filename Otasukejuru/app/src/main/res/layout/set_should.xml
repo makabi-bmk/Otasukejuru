@@ -24,55 +24,65 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:padding="10dp"
-            android:text="タスクの優先度"
-            android:textColor="@color/colorPrimary"
-            android:textSize="30sp"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/title"
-            android:layout_centerHorizontal="true"
-            android:padding="10dp"
-            android:text="やった方が良い\n(should)タスクですか？"
-            android:textSize="25sp"/>
+            <RelativeLayout
+                android:id="@+id/explanRelative"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="7dp"
+                    android:text="タスクの優先度"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="30sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/title"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:text="やった方が良い(should)タスクですか？"
+                    android:textSize="25sp"/>
+            </RelativeLayout>
 
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:gravity="center"
-            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/no_should"
-                android:layout_width="145dp"
-                android:layout_height="145dp"
-                android:layout_margin="15dp"
-                android:background="@color/colorPrimary"
-                android:text="いいえ"
-                android:textColor="#000"
-                android:textSize="30sp"/>
+                <Button
+                    android:id="@+id/no_should"
+                    android:layout_width="145dp"
+                    android:layout_height="145dp"
+                    android:layout_margin="15dp"
+                    android:background="@color/colorPrimary"
+                    android:text="いいえ"
+                    android:textColor="#000"
+                    android:textSize="30sp"/>
 
-            <Button
-                android:id="@+id/yes_should"
-                android:layout_width="145dp"
-                android:layout_height="145dp"
-                android:layout_margin="15dp"
-                android:background="@color/colorPrimary"
-                android:text="はい"
-                android:textColor="#000"
-                android:textSize="30sp"/>
+                <Button
+                    android:id="@+id/yes_should"
+                    android:layout_width="145dp"
+                    android:layout_height="145dp"
+                    android:layout_margin="15dp"
+                    android:background="@color/colorPrimary"
+                    android:text="はい"
+                    android:textColor="#000"
+                    android:textSize="30sp"/>
 
-        </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
     </RelativeLayout>
 
 </LinearLayout>

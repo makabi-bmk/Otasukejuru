@@ -10,8 +10,10 @@
         android:id="@+id/toolbar_back"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="0dp"
         android:background="?android:colorPrimary"
-        android:minHeight="?android:actionBarSize">
+        android:minHeight="?android:actionBarSize"
+        android:padding="0dp">
 
         <ImageButton
             android:id="@+id/button_back"
@@ -28,8 +30,7 @@
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:padding="10dp"
+            android:layout_margin="7dp"
             android:text="予定終了時間"
             android:textColor="@color/colorPrimary"
             android:textSize="30sp"/>
@@ -37,9 +38,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/title"
-            android:layout_centerHorizontal="true"
-            android:padding="10dp"
+            android:layout_below="@id/title"
+            android:layout_marginLeft="30dp"
             android:text="予定はいつまでですか？"
             android:textSize="25sp"/>
 
@@ -49,7 +49,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -57,94 +56,81 @@
             android:layout_centerVertical="true">
 
             <LinearLayout
-                android:id="@+id/month_day"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:orientation="horizontal">
+                android:layout_centerVertical="true"
+                android:orientation="vertical">
 
-                <TextView
+                <LinearLayout
+                    android:id="@+id/month_day"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginRight="4dp"
-                    android:text="開始:"
-                    android:textSize="16sp"/>
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:orientation="horizontal">
 
-                <NumberPicker
-                    android:id="@+id/finish_month_num_pick"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    <NumberPicker
+                        android:id="@+id/finish_month_num_pick"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginRight="4dp"
-                    android:text="月"
-                    android:textSize="16sp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
+                        android:text="月"
+                        android:textSize="25sp"/>
 
-                <NumberPicker
-                    android:id="@+id/finish_day_num_pick"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    <NumberPicker
+                        android:id="@+id/finish_day_num_pick"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginRight="4dp"
-                    android:text="日"
-                    android:textSize="16sp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
+                        android:text="日"
+                        android:textSize="25sp"/>
+                </LinearLayout>
 
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/finish_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/month_day"
-                android:layout_centerHorizontal="true"
-                android:orientation="horizontal">
-
-                <TextView
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginRight="10dp"
-                    android:text="終了:"
-                    android:textSize="16sp"/>
+                    android:layout_below="@+id/month_day"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:orientation="horizontal">
 
-                <NumberPicker
-                    android:id="@+id/finish_hour_edit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    <NumberPicker
+                        android:id="@+id/finish_hour_num_pick"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginRight="4dp"
-                    android:text="時"
-                    android:textSize="16sp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
+                        android:text="時"
+                        android:textSize="25sp"/>
 
-                <NumberPicker
-                    android:id="@+id/finish_minute_edit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    <NumberPicker
+                        android:id="@+id/finish_minute_num_pick"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginRight="4dp"
-                    android:text="分"
-                    android:textSize="16sp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
+                        android:text="分"
+                        android:textSize="25sp"/>
+                </LinearLayout>
             </LinearLayout>
 
             <Button
@@ -161,5 +147,4 @@
 
         </RelativeLayout>
     </RelativeLayout>
-
 </LinearLayout>

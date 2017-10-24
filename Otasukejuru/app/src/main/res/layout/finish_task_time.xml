@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -21,26 +21,26 @@
     </Toolbar>
 
     <RelativeLayout
+        android:id="@+id/explanRelative"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar_back">
 
         <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:padding="10dp"
-            android:text="タスクの期限"
+            android:layout_margin="7dp"
+            android:text="予定終了時間"
             android:textColor="@color/colorPrimary"
             android:textSize="30sp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/title"
-            android:layout_centerHorizontal="true"
-            android:padding="10dp"
-            android:text="期限はいつまでですか？"
+            android:layout_below="@id/title"
+            android:layout_marginLeft="30dp"
+            android:text="予定はいつまでですか？"
             android:textSize="25sp"/>
 
     </RelativeLayout>
@@ -48,11 +48,15 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_below="@id/explanRelative">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true">
 
             <LinearLayout
                 android:id="@+id/month_day"
@@ -71,11 +75,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_marginLeft="4dp"
                     android:layout_marginRight="4dp"
                     android:text="月"
-                    android:textSize="16sp"
-                    android:layout_gravity="center"/>
+                    android:textSize="16sp"/>
 
                 <NumberPicker
                     android:id="@+id/finish_day_num_pick"
@@ -85,18 +89,18 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_marginLeft="4dp"
                     android:layout_marginRight="4dp"
                     android:text="日"
-                    android:textSize="16sp"
-                    android:layout_gravity="center"/>
+                    android:textSize="16sp"/>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="170dp"
-                android:layout_centerHorizontal="true"
                 android:layout_below="@+id/month_day"
+                android:layout_centerHorizontal="true"
                 android:orientation="horizontal">
 
                 <NumberPicker
@@ -107,11 +111,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_marginLeft="4dp"
                     android:layout_marginRight="4dp"
                     android:text="時"
-                    android:textSize="16sp"
-                    android:layout_gravity="center"/>
+                    android:textSize="16sp"/>
 
 
                 <NumberPicker
@@ -122,38 +126,38 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_marginLeft="4dp"
                     android:layout_marginRight="4dp"
                     android:text="分"
-                    android:textSize="16sp"
-                    android:layout_gravity="center"/>
+                    android:textSize="16sp"/>
             </LinearLayout>
+        </LinearLayout>
 
 
-            <Button
-                android:id="@+id/no_limit"
-                style="?android:attr/borderlessButtonStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentBottom="true"
-                android:background="@color/back"
-                android:text="期限なし"
-                android:textColor="@color/colorPrimary"
-                android:textSize="20sp"/>
+        <Button
+            android:id="@+id/no_limit"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:background="@color/back"
+            android:text="期限なし"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20sp"/>
 
-            <Button
-                android:id="@+id/button_next"
-                style="?android:attr/borderlessButtonStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentBottom="true"
-                android:background="@color/back"
-                android:text="次へ"
-                android:textColor="@color/colorPrimary"
-                android:textSize="20sp"/>
+        <Button
+            android:id="@+id/button_next"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:background="@color/back"
+            android:text="次へ"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20sp"/>
 
-        </RelativeLayout>
     </RelativeLayout>
-</LinearLayout>
+</RelativeLayout>

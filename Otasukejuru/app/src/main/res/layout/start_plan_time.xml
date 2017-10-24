@@ -30,8 +30,7 @@
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:padding="10dp"
+            android:layout_margin="7dp"
             android:text="予定開始時間"
             android:textColor="@color/colorPrimary"
             android:textSize="30sp"/>
@@ -39,9 +38,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/title"
-            android:layout_centerHorizontal="true"
-            android:padding="10dp"
+            android:layout_below="@id/title"
+            android:layout_marginLeft="30dp"
             android:text="予定はいつからですか？"
             android:textSize="25sp"/>
 
@@ -58,75 +56,82 @@
             android:layout_centerVertical="true">
 
             <LinearLayout
-                android:id="@+id/month_day"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:gravity="center"
-                android:orientation="horizontal">
+                android:layout_centerVertical="true"
+                android:orientation="vertical">
 
-                <NumberPicker
-                    android:id="@+id/start_month_num_pick"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-                <TextView
+                <LinearLayout
+                    android:id="@+id/month_day"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginRight="4dp"
-                    android:text="月"
-                    android:textSize="25sp"/>
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:orientation="horizontal">
 
-                <NumberPicker
-                    android:id="@+id/start_day_num_pick"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    <NumberPicker
+                        android:id="@+id/start_month_num_pick"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
 
-                <TextView
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
+                        android:text="月"
+                        android:textSize="25sp"/>
+
+                    <NumberPicker
+                        android:id="@+id/start_day_num_pick"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
+                        android:text="日"
+                        android:textSize="25sp"/>
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginRight="4dp"
-                    android:text="日"
-                    android:textSize="25sp"/>
+                    android:layout_below="@+id/month_day"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <NumberPicker
+                        android:id="@+id/start_hour_num_pick"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
+                        android:text="時"
+                        android:textSize="25sp"/>
+
+                    <NumberPicker
+                        android:id="@+id/start_minute_num_pick"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
+                        android:text="分"
+                        android:textSize="25sp"/>
+                </LinearLayout>
             </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/month_day"
-                android:layout_centerHorizontal="true"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <NumberPicker
-                    android:id="@+id/start_hour_num_pick"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginRight="4dp"
-                    android:text="時"
-                    android:textSize="25sp"/>
-
-                <NumberPicker
-                    android:id="@+id/start_minute_num_pick"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginRight="4dp"
-                    android:text="分"
-                    android:textSize="25sp"/>
-            </LinearLayout>
-
 
             <Button
                 android:id="@+id/button_next"
