@@ -33,7 +33,8 @@
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="7dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="30dp"
                 android:text="予定の繰り返し"
                 android:textColor="@color/colorPrimary"
                 android:textSize="30sp"/>
@@ -42,7 +43,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/title"
-                android:layout_marginLeft="30dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="10dp"
                 android:text="この予定を繰り返しスケジュールに入れますか？"
                 android:textSize="25sp"/>
 
