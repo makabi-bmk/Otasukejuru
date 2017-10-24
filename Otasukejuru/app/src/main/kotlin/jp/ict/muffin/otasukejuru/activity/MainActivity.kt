@@ -1,5 +1,6 @@
 package jp.ict.muffin.otasukejuru.activity
 
+import android.graphics.Color
 import android.graphics.Point
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -53,6 +54,7 @@ class MainActivity : AppCompatActivity() {
         
         tabs.setupWithViewPager(mViewPager)
         
+        tabs.setTabTextColors(Color.parseColor("#FBFBF0"), Color.parseColor("#66B7EC"))
         fab.setOnClickListener {
             startActivity<TaskAdditionActivity>()
         }
