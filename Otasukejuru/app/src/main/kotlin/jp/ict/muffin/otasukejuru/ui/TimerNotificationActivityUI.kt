@@ -44,13 +44,14 @@ class TimerNotificationActivityUI(private val time: Long) :
                     alignParentTop()
                 }
                 
-                textView("終了何分前に\n通知しますか？") {
+                textView("終了何分前に通知しますか？") {
                     id = R.id.titleNotification
-                    textSize = 30f
+                    textSize = 25f
                 }.lparams {
                     below(R.id.titleInterval)
-                    centerHorizontally()
-                    topMargin = dip(30)
+                    topMargin = dip(10)
+                    leftMargin = dip(50)
+                    rightMargin = dip(50)
                 }
                 
                 relativeLayout {
@@ -87,7 +88,7 @@ class TimerNotificationActivityUI(private val time: Long) :
                         startActivity<TimerActivity>("time" to time)
                     }
                 }.lparams {
-//                    marginEnd = dip(30)
+                    //                    marginEnd = dip(30)
 //                    bottomMargin = dip(20)
                     margin = 30
                     alignParentBottom()
