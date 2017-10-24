@@ -23,9 +23,9 @@ import java.util.*
 
 
 class ToDoListFragment : Fragment() {
-
+    
     private var mTimer: Timer? = null
-
+    
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View =
             ToDoListFragmentUI().createView(AnkoContext.create(ctx, this))
@@ -35,7 +35,7 @@ class ToDoListFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         setCardView()
     }
-
+    
     override fun onResume() {
         super.onResume()
         val mHandler = Handler()
@@ -48,13 +48,13 @@ class ToDoListFragment : Fragment() {
             }
         }, 5000, 5000)
     }
-
+    
     override fun onStop() {
         super.onStop()
         mTimer?.cancel()
         mTimer = null
     }
-
+    
     fun setCardView() {
         (0..6).forEach {
             when (it) {
@@ -67,20 +67,20 @@ class ToDoListFragment : Fragment() {
                 else -> lowPriorityCardLinear2
             }?.removeAllViews()
         }
-
+        
         var highPriorityNum = 0
         var middlePriorityNum = 0
         var lowPriorityNum = 0
         val calendar = Calendar.getInstance()
         val today = (calendar.get(Calendar.MONTH) + 1) * 100 + calendar.get(Calendar.DAY_OF_MONTH)
-
+        
         val showTaskNum = GlobalValue.displayWidth / 90
         GlobalValue.taskInfoArrayList.forEach {
             val diffDays = diffDayNum(today, it.limitDate, calendar.get(Calendar.YEAR))
-
+            
             val inflater: LayoutInflater = context.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
             val linearLayout: LinearLayout = inflater.inflate(R.layout.task_card_view, null) as LinearLayout
-
+            
             linearLayout.apply {
                 dateTextView.apply {
                     text = diffDays.toString()
@@ -125,29 +125,25 @@ class ToDoListFragment : Fragment() {
             }.addView(linearLayout, 0)
         }
     }
-
+    
     private fun createDialog() {
-        val listDialog = arrayOfNulls<String>(3)
-        listDialog[0] = "開始"
-        listDialog[1] = "変更"
-        listDialog[2] = "完了"
-        listDialog[3] = "削除"
-
+        val listDialog = arrayOf("開始", "変更", "完了", "削除")
+        
         val dialog = AlertDialog.Builder(context)
         dialog.setItems(listDialog, { _, i ->
             toast(when (i) {
                 0 -> "Start"
                 1 -> "Change"
-                2 -> "Compleat"
+                2 -> "Complete"
                 else -> "Delete"
             })
-
+            
         })
         dialog.create().show()
     }
-
+    
     private fun diffDayNum(beforeDate: Int, afterDate: Int, year: Int): Int {
-
+        
         val totalDays = if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0) {
             intArrayOf(0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334)
         } else {

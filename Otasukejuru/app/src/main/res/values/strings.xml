@@ -3,7 +3,7 @@
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
 
-    <string name="main_tab1">カレンダー</string>
+    <string name="main_tab1">スケジュール</string>
     <string name="main_tab2">ToDoリスト</string>
     <string name="main_tab3">タイマー</string>
 

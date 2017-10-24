@@ -12,7 +12,7 @@ import org.json.JSONArray
 import java.io.IOException
 
 
-class GetInformation : AsyncTask<Unit, Unit, Unit>(){
+class GetInformation : AsyncTask<Unit, Unit, Unit>() {
     override fun doInBackground(vararg params: Unit?) {
         getInfo()
     }
@@ -44,28 +44,28 @@ class GetInformation : AsyncTask<Unit, Unit, Unit>(){
         val response = run("${GlobalValue.SERVER_URL}/get/todo_list")
         val moshi = Moshi.Builder().build()
         val adapter = moshi.adapter(TaskInfo::class.java)
-    
-    
+        
+        
         val jsonArray = JSONArray(response)
         (0 until jsonArray.length()).forEach { i ->
             val taskJSON = jsonArray.getJSONObject(i).toString()
             adapter.fromJson(taskJSON)?.let { GlobalValue.taskInfoArrayList.add(it) }
-    
+            
         }
-    
+        
     }
     
     private fun getCalendarInfo() {
         val response = run("${GlobalValue.SERVER_URL}/get/calendar")
-    
+        
         val moshi = Moshi.Builder().build()
         val adapter = moshi.adapter(ScheduleInfo::class.java)
-    
+        
         val jsonArray = JSONArray(response)
         (0 until jsonArray.length()).forEach { i ->
             val taskJSON = jsonArray.getJSONObject(i).toString()
             adapter.fromJson(taskJSON)?.let { GlobalValue.scheduleInfoArrayList.add(it) }
-        
+            
         }
     }
 }

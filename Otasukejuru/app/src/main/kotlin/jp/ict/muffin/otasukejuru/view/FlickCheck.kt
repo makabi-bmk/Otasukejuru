@@ -25,7 +25,7 @@ internal abstract class FlickCheck(flickView: View?, adjustX: Float, adjustY: Fl
         
         this.adjustX = adjustX
         this.adjustY = adjustY
-    
+        
         flickView?.setOnTouchListener { v, event ->
             when (event.action) {
                 MotionEvent.ACTION_DOWN -> {

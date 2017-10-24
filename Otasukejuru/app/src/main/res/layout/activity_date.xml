@@ -213,6 +213,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="10dp"
                     android:text="6"/>
+
                 <ImageView
                     android:id="@+id/mostPriorityLine"
                     android:layout_width="match_parent"

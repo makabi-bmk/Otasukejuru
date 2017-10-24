@@ -50,7 +50,7 @@ class ToDoListFragmentUI() : AnkoComponent<ToDoListFragment> {
                         alignParentStart()
                         below(R.id.mostPriorityLine)
                     }
-    
+                    
                     //high
                     textView(context.getString(R.string.highPriority)) {
                         id = R.id.highPriorityTextView
@@ -62,7 +62,7 @@ class ToDoListFragmentUI() : AnkoComponent<ToDoListFragment> {
                         topMargin = dip(20)
                         below(R.id.mostPriorityCardLinear)
                     }
-    
+                    
                     imageView {
                         id = R.id.highPriorityLine
                         backgroundColor = ContextCompat.getColor(context, R.color.highPriority)
@@ -73,7 +73,7 @@ class ToDoListFragmentUI() : AnkoComponent<ToDoListFragment> {
                         below(R.id.highPriorityTextView)
                         contentDescription = ""
                     }
-    
+                    
                     linearLayout {
                         id = R.id.highPriorityCardLinear1
                         orientation = LinearLayout.HORIZONTAL
@@ -92,7 +92,7 @@ class ToDoListFragmentUI() : AnkoComponent<ToDoListFragment> {
                         alignParentStart()
                         below(R.id.highPriorityCardLinear1)
                     }
-    
+                    
                     //middle
                     textView(context.getString(R.string.middlePriority)) {
                         id = R.id.middlePriorityTextView
@@ -104,7 +104,7 @@ class ToDoListFragmentUI() : AnkoComponent<ToDoListFragment> {
                         topMargin = dip(20)
                         below(R.id.highPriorityCardLinear2)
                     }
-    
+                    
                     imageView {
                         id = R.id.middlePriorityLine
                         backgroundColor = ContextCompat.getColor(context, R.color.middlePriority)
@@ -115,7 +115,7 @@ class ToDoListFragmentUI() : AnkoComponent<ToDoListFragment> {
                         below(R.id.middlePriorityTextView)
                         contentDescription = ""
                     }
-    
+                    
                     linearLayout {
                         id = R.id.middlePriorityCardLinear1
                         orientation = LinearLayout.HORIZONTAL
@@ -134,7 +134,7 @@ class ToDoListFragmentUI() : AnkoComponent<ToDoListFragment> {
                         alignParentStart()
                         below(R.id.middlePriorityCardLinear1)
                     }
-    
+                    
                     //low
                     textView(context.getString(R.string.lowPriority)) {
                         id = R.id.lowPriorityTextView
@@ -146,7 +146,7 @@ class ToDoListFragmentUI() : AnkoComponent<ToDoListFragment> {
                         topMargin = dip(20)
                         below(R.id.middlePriorityCardLinear2)
                     }
-    
+                    
                     imageView {
                         id = R.id.lowPriorityLine
                         backgroundColor = ContextCompat.getColor(context, R.color.lowPriority)
@@ -157,7 +157,7 @@ class ToDoListFragmentUI() : AnkoComponent<ToDoListFragment> {
                         below(R.id.lowPriorityTextView)
                         contentDescription = ""
                     }
-    
+                    
                     linearLayout {
                         id = R.id.lowPriorityCardLinear1
                         orientation = LinearLayout.HORIZONTAL

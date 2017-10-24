@@ -28,11 +28,11 @@ class TimerActivityUI(private val time: Long) : AnkoComponent<TimerActivity> {
                 height = matchParent
                 width = matchParent
             }
-    
+            
             toolbar {
                 id = R.id.ankoToolbar
                 backgroundColor = ContextCompat.getColor(context, R.color.colorPrimary)
-        
+                
                 imageButton {
                     id = R.id.ankoBack
                     backgroundDrawable = ContextCompat.getDrawable(context, R.drawable.ic_arrow_back_white_48dp)
@@ -97,9 +97,9 @@ class TimerActivityUI(private val time: Long) : AnkoComponent<TimerActivity> {
         val params: ArrayList<HashMap<String, Int>> = java.util.ArrayList()
         
         val map = HashMap<String, Int>()
-    
+        
         val back = ContextCompat.getColor(context, R.color.back)
-    
+        
         map.put("color", back)
         map.put("value", 60)
         params.add(map)

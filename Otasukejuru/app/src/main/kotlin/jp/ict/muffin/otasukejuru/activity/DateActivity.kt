@@ -9,7 +9,7 @@ import org.jetbrains.anko.find
 import org.jetbrains.anko.setContentView
 
 class DateActivity : Activity() {
-
+    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         DateActivityUI().setContentView(this)

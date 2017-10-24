@@ -35,7 +35,7 @@ class TimerActivity : Activity() {
         TimerNotificationActivityUI(time).setContentView(this)
         
         find<ImageButton>(R.id.ankoBack).setOnClickListener {
-           setInterval()
+            setInterval()
         }
         
         find<Button>(R.id.nextButton).setOnClickListener {
