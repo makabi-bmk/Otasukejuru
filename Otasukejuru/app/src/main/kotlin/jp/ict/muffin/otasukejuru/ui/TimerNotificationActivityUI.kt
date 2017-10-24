@@ -5,14 +5,13 @@ import android.support.v4.content.ContextCompat
 import android.view.View
 import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.activity.TimerActivity
-import jp.ict.muffin.otasukejuru.activity.TimerNotificationActivity
 import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk25.coroutines.onClick
 
 
 class TimerNotificationActivityUI(private val time: Long) :
-        AnkoComponent<TimerNotificationActivity> {
-    override fun createView(ui: AnkoContext<TimerNotificationActivity>): View = with(ui) {
+        AnkoComponent<TimerActivity> {
+    override fun createView(ui: AnkoContext<TimerActivity>): View = with(ui) {
         
         relativeLayout {
             backgroundColor = ContextCompat.getColor(context, R.color.back)

@@ -6,20 +6,18 @@ import android.view.View
 import android.widget.NumberPicker
 import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
-import jp.ict.muffin.otasukejuru.activity.TimerIntervalActivity
-import jp.ict.muffin.otasukejuru.activity.TimerNotificationActivity
+import jp.ict.muffin.otasukejuru.activity.TimerActivity
 import org.jetbrains.anko.*
-import org.jetbrains.anko.sdk25.coroutines.onClick
 
 
-class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerIntervalActivity> {
+class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerActivity> {
     private lateinit var focusHourNumPick: NumberPicker
     private lateinit var focusMinuteNumPick: NumberPicker
     private lateinit var intervalHourNumPick: NumberPicker
     private lateinit var intervalMinuteNumPick: NumberPicker
     
     
-    override fun createView(ui: AnkoContext<TimerIntervalActivity>): View = with(ui) {
+    override fun createView(ui: AnkoContext<TimerActivity>): View = with(ui) {
         relativeLayout {
             backgroundColor = ContextCompat.getColor(context, R.color.back)
             
@@ -235,9 +233,9 @@ class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerInter
                     backgroundColor = Color.argb(0, 0, 0, 0)
                     textColor = ContextCompat.getColor(context, R.color.colorPrimary)
                     textSize = 20f
-                    onClick {
-                        startActivity<TimerNotificationActivity>("time" to time)
-                    }
+//                    onClick {
+//                        startActivity<TimerNotificationActivity>("time" to time)
+//                    }
                 }.lparams {
                     margin = 30
                     alignParentBottom()

@@ -12,7 +12,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
-import jp.ict.muffin.otasukejuru.activity.TimerIntervalActivity
+import jp.ict.muffin.otasukejuru.activity.TimerActivity
 import jp.ict.muffin.otasukejuru.fragment.TimerSetTimeFragment
 import jp.ict.muffin.otasukejuru.view.CircleGraphView
 import org.jetbrains.anko.*
@@ -105,7 +105,7 @@ class TimerSetTimeFragmentUI : AnkoComponent<TimerSetTimeFragment> {
             
             drawCircle(context, time)
             Handler(Looper.getMainLooper()).postDelayed({
-                context.startActivity<TimerIntervalActivity>("time" to time)
+                context.startActivity<TimerActivity>("time" to time)
             }, 2 * 1000)
         }
     }
