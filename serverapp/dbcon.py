@@ -179,10 +179,33 @@ def get_todo_list():
 
 
 def get_calendar():
+    s = []
+    e = []
+    f = []
+    t = []
+    for i in schedule_col.find():
+        i["_id"] = ObjectId(i["_id"])
+        i["start_date"] = str(i["start_date"])
+        i["end_date"] = str(i["end_date"])
+        s.append(i)
+    for i in every_col.find():
+        i["_id"] = ObjectId(i["_id"])
+        i["start_date"] = str(i["start_date"])
+        i["end_date"] = str(i["end_date"])
+        e.append(i)
+    for i in task_col.find({"friend": True}):
+        i["_id"] = ObjectId(i["_id"])
+        i["due_date"] = str(i["due_date"])
+        i["guide_time"] = str(i["guide_time"])
+        f.append(i)
+    for i in task_col.find({"friend": {"$exists": False}}):
+        i["_id"] = ObjectId(i["_id"])
+        i["due_date"] = str(i["due_date"])
+        t.append(i)
     calendar = {
-        "schedule": [i.pop("_id") for i in schedule_col.find()],
-        "every": [i.pop("_id") for i in every_col.find()],
-        "friend": [i.pop("_id") for i in task_col.find({"friend": True})],
+        "schedule": s,
+        "every": e,
+        "friend": f,
         "task": [i.pop("_id") for i in task_col.find(
             {"friend": {"$exists": False}}).sort(
                 {"priority": -1},
