@@ -175,7 +175,7 @@ def get_todo_list():
         task["guide_time"] = str(task["guide_time"])
         todo_list.append(task)
     logger.debug("{} | get_todo_list: {}".format(dt.datetime.now(), todo_list))
-    return json.dumps(todo_list)
+    return json.dumps({"todo_list": todo_list})
 
 
 def get_calendar():
@@ -197,10 +197,13 @@ def get_calendar():
         i["_id"] = ObjectId(i["_id"])
         i["due_date"] = str(i["due_date"])
         i["guide_time"] = str(i["guide_time"])
+        i["registration_date"] = str(i["registration_date"])
         f.append(i)
     for i in task_col.find({"friend": {"$exists": False}}):
         i["_id"] = ObjectId(i["_id"])
         i["due_date"] = str(i["due_date"])
+        i["guide_time"] = str(i["guide_time"])
+        i["registration_date"] = str(i["registration_date"])
         t.append(i)
     calendar = {
         "schedule": s,
