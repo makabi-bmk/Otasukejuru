@@ -88,13 +88,13 @@ class ToDoListFragment : Fragment() {
                         textColor = ContextCompat.getColor(context, R.color.mostPriority)
                     }
                 }
+                taskNameTextView.text = it.task_name
                 cardView.apply {
                     tag = it.limitDate
                     setOnClickListener {
-                        createDialog()
+                        createDialog(taskNameTextView.text.toString())
                     }
                 }
-                taskNameTextView.text = it.task_name
             }
             when (it.priority) {
                 0 -> mostPriorityCardLinear
@@ -126,20 +126,20 @@ class ToDoListFragment : Fragment() {
         }
     }
     
-    private fun createDialog() {
+    private fun createDialog(tag: String) {
         val listDialog = arrayOf("開始", "変更", "完了", "削除")
         
-        val dialog = AlertDialog.Builder(context)
-        dialog.setItems(listDialog, { _, i ->
-            toast(when (i) {
-                0 -> "Start"
-                1 -> "Change"
-                2 -> "Complete"
-                else -> "Delete"
-            })
-            
-        })
-        dialog.create().show()
+        AlertDialog.Builder(activity)
+                .setTitle(tag)
+                .setItems(listDialog) { _, which ->
+                    toast(when (which) {
+                        0 -> "Start"
+                        1 -> "Change"
+                        2 -> "Complete"
+                        else -> "Delete"
+                    })
+                }
+                .show()
     }
     
     private fun diffDayNum(beforeDate: Int, afterDate: Int, year: Int): Int {

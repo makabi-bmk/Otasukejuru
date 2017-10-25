@@ -13,7 +13,7 @@ import android.widget.RelativeLayout
 import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
 import jp.ict.muffin.otasukejuru.ui.CalendarFragmentUI
-import kotlinx.android.synthetic.main.task_card_view.*
+import kotlinx.android.synthetic.main.task_card_view.view.*
 import org.jetbrains.anko.AnkoContext
 import org.jetbrains.anko.backgroundColor
 import org.jetbrains.anko.support.v4.ctx
@@ -76,10 +76,12 @@ class ScheduleFragment : Fragment() {
                         textColor = ContextCompat.getColor(context, R.color.mostPriority)
                     }
                 }
+                taskNameTextView?.text = taskInfo.task_name
                 cardView?.apply {
                     tag = taskInfo.limitDate
+                    setOnClickListener {
+                    }
                 }
-                taskNameTextView?.text = taskInfo.task_name
             }
             find<LinearLayout>(R.id.taskLinear).addView(linearLayout, 0)
             
