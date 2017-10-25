@@ -12,12 +12,15 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
+import jp.ict.muffin.otasukejuru.`object`.TaskInfo
+import jp.ict.muffin.otasukejuru.activity.TaskAdditionActivity
+import jp.ict.muffin.otasukejuru.activity.TimeSetActivity
 import jp.ict.muffin.otasukejuru.ui.ToDoListFragmentUI
 import kotlinx.android.synthetic.main.fragment_list_todo.*
 import kotlinx.android.synthetic.main.task_card_view.view.*
 import org.jetbrains.anko.AnkoContext
 import org.jetbrains.anko.support.v4.ctx
-import org.jetbrains.anko.support.v4.toast
+import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.textColor
 import java.util.*
 
@@ -75,8 +78,8 @@ class ToDoListFragment : Fragment() {
         val today = (calendar.get(Calendar.MONTH) + 1) * 100 + calendar.get(Calendar.DAY_OF_MONTH)
         
         val showTaskNum = GlobalValue.displayWidth / 90
-        GlobalValue.taskInfoArrayList.forEach {
-            val diffDays = diffDayNum(today, it.limitDate, calendar.get(Calendar.YEAR))
+        GlobalValue.taskInfoArrayList.forEach { element ->
+            val diffDays = diffDayNum(today, element.limitDate, calendar.get(Calendar.YEAR))
             
             val inflater: LayoutInflater = context.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
             val linearLayout: LinearLayout = inflater.inflate(R.layout.task_card_view, null) as LinearLayout
@@ -84,19 +87,19 @@ class ToDoListFragment : Fragment() {
             linearLayout.apply {
                 dateTextView.apply {
                     text = diffDays.toString()
-                    if (it.priority == 0) {
+                    if (element.priority == 0) {
                         textColor = ContextCompat.getColor(context, R.color.mostPriority)
                     }
                 }
-                taskNameTextView.text = it.task_name
+                taskNameTextView.text = element.task_name
                 cardView.apply {
-                    tag = it.limitDate
+                    tag = element.limitDate
                     setOnClickListener {
-                        createDialog(taskNameTextView.text.toString())
+                        createDialog(taskNameTextView.text.toString(), element)
                     }
                 }
             }
-            when (it.priority) {
+            when (element.priority) {
                 0 -> mostPriorityCardLinear
                 1 -> {
                     highPriorityNum++
@@ -126,20 +129,33 @@ class ToDoListFragment : Fragment() {
         }
     }
     
-    private fun createDialog(tag: String) {
+    private fun createDialog(tag: String, element: TaskInfo) {
         val listDialog = arrayOf("開始", "変更", "完了", "削除")
         
         AlertDialog.Builder(activity)
                 .setTitle(tag)
                 .setItems(listDialog) { _, which ->
-                    toast(when (which) {
-                        0 -> "Start"
-                        1 -> "Change"
-                        2 -> "Complete"
-                        else -> "Delete"
-                    })
+                    when (which) {
+                        0 -> {
+                            startActivity<TimeSetActivity>()
+                        }
+                        
+                        1 -> {
+                            startActivity<TaskAdditionActivity>("init" to true)
+                        }
+                        
+                        else -> {
+                            deleteTask(element)
+                        }
+                        
+                    }
                 }
                 .show()
+    }
+    
+    private fun deleteTask(element: TaskInfo) {
+        GlobalValue.taskInfoArrayList.remove(element)
+        setCardView()
     }
     
     private fun diffDayNum(beforeDate: Int, afterDate: Int, year: Int): Int {

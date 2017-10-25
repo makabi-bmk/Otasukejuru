@@ -46,7 +46,12 @@ class TaskAdditionActivity : Activity() {
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        selectAddType()
+        
+        if (intent.getBooleanExtra("init", false)) {
+            inputTaskName()
+        } else {
+            selectAddType()
+        }
     }
     
     private fun selectAddType() {
