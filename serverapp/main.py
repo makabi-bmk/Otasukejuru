@@ -125,9 +125,11 @@ def delete_task():
                      'content_type: '
                      '{}'.format(request.content_type))
         return 'failed'
-    task_name = request.json['task_name']
-    due_date = change_timezone(request.json['due_date'])
-    dbcon.delete_task(task_name, due_date)
+    # task_name = request.json['task_name']
+    # due_date = change_timezone(request.json['due_date'])
+    # dbcon.delete_task(task_name, due_date)
+    object_id = request.json['_id']
+    dbcon.delete_every(object_id)
     return 'succeeded'
 
 
@@ -137,9 +139,11 @@ def delete_schedule():
         logger.debug('err invalid content_type. url: /delete/schedule, '
                      'content_type: {}'.format(request.content_type))
         return 'failed'
-    schedule_name = request.json['schedule_name']
-    start_date = change_timezone(request.json['start_date'])
-    dbcon.delete_schedule(schedule_name, start_date)
+    # schedule_name = request.json['schedule_name']
+    # start_date = change_timezone(request.json['start_date'])
+    # dbcon.delete_schedule(schedule_name, start_date)
+    object_id = request.json['_id']
+    dbcon.delete_every(object_id)
     return 'succeeded'
 
 
@@ -149,9 +153,10 @@ def delete_every():
         logger.debug('err invalid content_type. url: /delete/every, '
                      'content_type: {}'.format(request.content_type))
         return 'failed'
-    schedule_name = request.json['every_name']
-    start_date = change_timezone(request.json['start_date'])
-    dbcon.delete_every(schedule_name, start_date)
+    # chedule_name = request.json['every_name']
+    # start_date = change_timezone(request.json['start_date'])
+    object_id = request.json['_id']
+    dbcon.delete_every(object_id)
     return 'succeeded'
 
 

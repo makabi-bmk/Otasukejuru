@@ -132,16 +132,16 @@ def add_every(name: str, start_time: dt.datetime, end_time: dt.datetime,
     every_col.insert_one(post)
 
 
-def delete_task(task_name: str, start_date: dt.datetime):
-    task_col.remove({"task_name": task_name, "start_time": start_date})
+def delete_task(object_id):
+    task_col.remove({"_id": ObjectId(object_id)})
 
 
-def delete_schedule(schedule_name: str, start_date: dt.datetime):
-    task_col.remove({"schedule_name": schedule_name, "start_time": start_date})
+def delete_schedule(object_id):
+    schedule_col.remove({"_id": ObjectId(object_id)})
 
 
-def delete_every(every_name: str, start_date: dt.datetime):
-    task_col.remove({"every_name": every_name, "start_time": start_date})
+def delete_every(object_id):
+    every_col.remove({"_id": ObjectId(object_id)})
 
 
 def update_task(object_id: str, update_items: dict, friend_flag=False):
