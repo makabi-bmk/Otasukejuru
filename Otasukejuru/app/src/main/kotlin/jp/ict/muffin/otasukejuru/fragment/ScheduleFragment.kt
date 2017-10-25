@@ -30,9 +30,10 @@ class ScheduleFragment : Fragment() {
                               savedInstanceState: Bundle?): View =
             CalendarFragmentUI().createView(AnkoContext.create(ctx, this))
     
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         setCardView()
+        
     }
     
     override fun onResume() {

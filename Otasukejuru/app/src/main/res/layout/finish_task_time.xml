@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="10dp"
-            android:text="予定終了時間"
+            android:text="タスクの期限"
             android:textColor="@color/colorPrimary"
             android:textSize="30sp"/>
 
@@ -43,7 +43,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginRight="50dp"
             android:layout_marginLeft="50dp"
-            android:text="予定はいつまでですか？"
+            android:text="期限はいつまでですか？"
             android:textSize="25sp"/>
 
     </RelativeLayout>
