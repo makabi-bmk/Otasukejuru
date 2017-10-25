@@ -109,12 +109,12 @@ def add_every():
         logger.debug('err invalid content_type. url: /add/every, '
                      'content_type: {}'.format(request.content_type))
         return 'failed'
-    schedule_name = request.json['every_name']
+    every_name = request.json['every_name']
     start_date = change_timezone(request.json['start_date'])
     end_date = change_timezone(request.json['end_date'])
     notice = request.json['notice']
     repeat_type = request.json['repeat_type']
-    dbcon.add_every(schedule_name, start_date, end_date, notice, repeat_type)
+    dbcon.add_every(every_name, start_date, end_date, notice, repeat_type)
     return 'succeeded'
 
 
