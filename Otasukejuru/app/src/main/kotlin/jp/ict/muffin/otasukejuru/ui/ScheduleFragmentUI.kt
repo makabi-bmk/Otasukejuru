@@ -9,7 +9,7 @@ import jp.ict.muffin.otasukejuru.fragment.ScheduleFragment
 import org.jetbrains.anko.*
 import java.util.*
 
-class CalendarFragmentUI : AnkoComponent<ScheduleFragment> {
+class ScheduleFragmentUI : AnkoComponent<ScheduleFragment> {
     override fun createView(ui: AnkoContext<ScheduleFragment>): View = with(ui) {
         
         relativeLayout {

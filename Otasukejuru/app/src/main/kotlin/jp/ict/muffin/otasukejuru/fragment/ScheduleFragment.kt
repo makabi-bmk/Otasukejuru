@@ -12,7 +12,7 @@ import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
-import jp.ict.muffin.otasukejuru.ui.CalendarFragmentUI
+import jp.ict.muffin.otasukejuru.ui.ScheduleFragmentUI
 import kotlinx.android.synthetic.main.task_card_view.view.*
 import org.jetbrains.anko.AnkoContext
 import org.jetbrains.anko.backgroundColor
@@ -28,7 +28,7 @@ class ScheduleFragment : Fragment() {
     
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View =
-            CalendarFragmentUI().createView(AnkoContext.create(ctx, this))
+            ScheduleFragmentUI().createView(AnkoContext.create(ctx, this))
     
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -85,14 +85,14 @@ class ScheduleFragment : Fragment() {
                     }
                 }
             }
-            find<LinearLayout>(R.id.taskLinear).addView(linearLayout, 0)
+            find<LinearLayout>(R.id.taskLinear).addView(linearLayout, it)
             
             
             val line = LinearLayout(context)
             val lParam = RelativeLayout.LayoutParams(0, 0)
             lParam.apply {
                 width = 3
-                height = dip(diffDays * 200)
+                height = diffDays * dip(150) + dip(it - 1)
                 leftMargin = dip(80 + 45 + 90 * it)
                 topMargin = dip(25)
             }
