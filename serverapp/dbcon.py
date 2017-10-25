@@ -3,6 +3,7 @@ from pytz import timezone
 from logging import getLogger, StreamHandler, DEBUG
 from pymongo import MongoClient
 import json
+from bson import ObjectId
 
 # from serverapp.defineclass import Task, Schedule, Every
 
@@ -17,6 +18,7 @@ client = MongoClient('localhost', 27017)
 db = client['muffin']
 every_col = db['every']
 schedule_col = db['schedule']
+friend_col = db['friend']
 task_col = db['task']
 
 res_list = []
@@ -142,6 +144,28 @@ def delete_every(every_name: str, start_date: dt.datetime):
     task_col.remove({"every_name": every_name, "start_time": start_date})
 
 
+def update_task(object_id: str, update_items: dict, friend_flag=False):
+    object_id = ObjectId(object_id)
+    if friend_flag:
+        update_items['friend'] = True
+    task_col.update({"_id": object_id}, {'$set': {update_items}}, upsert=True)
+
+
+def update_schedule(object_id: str, update_items: dict, friend_flag=False):
+    object_id = ObjectId(object_id)
+    if friend_flag:
+        update_items['friend'] = True
+    schedule_col.update({"_id": object_id}, {"$set": {update_items}},
+                        upsert=True)
+
+
+def update_every(object_id: str, update_items: dict, friend_flag=False):
+    object_id = ObjectId(object_id)
+    if friend_flag:
+        update_items['friend'] = True
+    every_col.update({"_id": object_id}, {'$set': {update_items}}, upsert=True)
+
+
 def get_todo_list():
     todo_list = []
     for task in task_col.find():
@@ -152,6 +176,22 @@ def get_todo_list():
         todo_list.append(task)
     logger.debug("{} | get_todo_list: {}".format(dt.datetime.now(), todo_list))
     return json.dumps(todo_list)
+
+
+def get_calendar():
+    calendar = {
+        "schedule": [i.pop("_id") for i in schedule_col.find()],
+        "every": [i.pop("_id") for i in every_col.find()],
+        "friend": [i.pop("_id") for i in task_col.find({"friend": True})],
+        "task": [i.pop("_id") for i in task_col.find(
+            {"friend": {"$exists": False}}).sort(
+                {"priority": -1},
+                {"progress": 1},
+                {"due_date": 1}
+            )
+        ]
+    }
+    return json.dumps(calendar)
 
 
 if __name__ == '__main__':

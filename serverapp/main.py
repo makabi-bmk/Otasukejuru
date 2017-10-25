@@ -1,6 +1,8 @@
-from flask import request, Flask
+from flask import request, Flask, send_from_directory
+from werkzeug.utils import secure_filename
 from logging import getLogger, StreamHandler, DEBUG
 import datetime as dt
+import os
 import pytz
 # from serverapp import dbcon
 # from serverapp import strtime
@@ -15,6 +17,33 @@ logger.addHandler(handler)
 logger.propagate = False
 
 app = Flask(__name__)
+
+UPLOAD_FOLDER = './uploads'
+ALLOWED_EXTENSIONS = ['png', 'jpeg', 'jpg', 'txt', 'gif']
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['SECRET_KEY'] = os.urandom(24)
+
+friend_flag = False
+
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
+
+
+@app.route('/send', methods=['POST'])
+def send():
+    file = request.files['file']
+    if file and allowed_file(file.filename):
+        filename = secure_filename(file.filename)
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        return 'succeed'
+    else:
+        return 'failed'
+
+
+@app.route('/uploads/<filename>')
+def uploads(filename=None):
+    return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
 
 def change_timezone(date: str, timezone='Asia/Tokyo') -> dt.datetime:
@@ -126,58 +155,209 @@ def delete_every():
     return 'succeeded'
 
 
-# TODO: keyチェックをして
 @app.route('/update/task', methods=['POST'])
 def update_task():
     if request.content_type != 'application/json':
         logger.debug('err invalid content_type. url: /update/task, '
                      'content_type: {}'.format(request.content_type))
         return 'failed'
-    task_name = request.json['task_name']
-    due_date = change_timezone(request.json['due_date'])
-    task_type = request.json['task_type']
-    guide_time = strtime.str_to_time(request.json['guide_time'])
-    progress = request.json['progress']
-    priority = request.json['priority']
-    # dbcon.update_task(task_name, due_date, task_type, guide_time, progress,
+    data = request.json
+    if 'object_id' not in data:
+        return 'not succeeded task update'
+    update_items = {}
+    if 'task_name' in data:
+        update_items['task_name'] = data['task_name']
+    if 'due_date' in data:
+        update_items['due_date'] = data['due_date']
+    if 'task_type' in data:
+        update_items['task_type'] = data['task_type']
+    if 'guide_time' in data:
+        update_items['task_type'] = data['task_type']
+    if 'progress' in data:
+        update_items['progress'] = data['progress']
+    if 'priority' in data:
+        update_items['priority'] = data['priority']
+    dbcon.update_task(data['object_id'], update_items)
+    # task_name = data['task_name'] if 'task_name' in data else None
+    # due_date = change_timezone(data['due_date']) if 'due_date' in data else None
+    # task_type = data['task_type'] if 'task_type' in data else None
+    # guide_time = strtime.str_to_time(data['guide_time']) if 'guide_time' in \
+    #                 data else None
+    # progress = data['progress'] if 'progress' in data else None
+    # priority = data['priority'] if 'priority' in data else None
+    # dbcon.update_task(object_id, task_name, due_date, task_type, guide_time,
+    # progress,
     # priority)
     return 'succeeded'
 
 
-# TODO: keyチェックをして
 @app.route('/update/schedule', methods=['POST'])
 def update_schedule():
     if request.content_type != 'application/json':
         logger.debug('err invalid content_type. url: /update/schedule, '
                      'content_type: {}'.format(request.content_type))
         return 'failed'
-    schedule_name = request.json['schedule_name']
-    start_date = change_timezone(request.json['start_date'])
-    end_date = change_timezone(request.json['end_date'])
-    notice = request.json['notice']
+    data = request.json
+    if 'object_id' not in data:
+        return 'not succeeded schedule data'
+    update_items = {}
+    if 'schedule_name' in data:
+        update_items['schedule_name'] = data['schedule_name']
+    if 'start_date' in data:
+        update_items['start_date'] = data['start_date']
+    if 'end_date' in data:
+        update_items['end_date'] = data['end_date']
+    dbcon.update_schedule(data['object_id'], update_items)
+    # schedule_name = data['schedule_name'] if 'schedule_name' in data else None
+    # start_date = change_timezone(data['start_date']) if 'start_date' in data \
+    #                 else None
+    # end_date = change_timezone(data['end_date']) if 'end_date' in data else None
+    # notice = data['notice'] if 'notice' in data else None
     # dbcon.update_schedule(schedule_name, start_date, end_date, notice)
     return 'succeeded'
 
 
-# TODO: keyチェックをして
 @app.route('/update/every', methods=['POST'])
 def update_every():
     if request.content_type != 'application/json':
         logger.debug('err invalid content_type. url: /update/every, '
                      'content_type: {}'.format(request.content_type))
         return 'failed'
-    schedule_name = request.json['every_name']
-    start_date = change_timezone(request.json['start_date'])
-    end_date = change_timezone(request.json['end_date'])
-    notice = request.json['notice']
-    repeat_type = request.json['repeat_type']
+    data = request.json
+    if 'object_id' not in data:
+        return 'not succeeded every update'
+    update_items = {}
+    if 'every_name' in data:
+        update_items['every_name'] = data['every_name']
+    if 'start_date' in data:
+        update_items['start_date'] = data['start_date']
+    if 'end_date' in data:
+        update_items['end_date'] = data['end_date']
+    dbcon.update_every(data['object_id'], update_items)
+    # schedule_name = data['every_name'] if 'every_name' in data else None
+    # start_date = change_timezone(data['start_date']) if 'start_date' in data \
+    #                 else None
+    # end_date = change_timezone(data['end_date']) if 'end_date' in data else None
+    # notice = data['notice'] if 'notice' in data else None
+    # repeat_type = data['repeat_type'] if 'repeat_type' in data else None
     # dbcon.update_every(schedule_name, start_date, end_date, notice, repeat_type)
     return 'succeeded'
 
 
 @app.route('/get/todo_list', methods=['GET'])
 def get_todo_list():
+    global friend_flag
+    data = dbcon.get_todo_list()
+    if friend_flag:
+        data.append({"friend": friend_flag})
+        friend_flag = False
+    else:
+        data.append({"friend": friend_flag})
+    return data
+
+
+@app.route('/friend/get/todo_list', methods=['GET'])
+def friend_get_todo_list():
     return dbcon.get_todo_list()
+
+
+@app.route('/friend/update/task', methods=['POST'])
+def friend_update_task():
+    global friend_flag
+    if request.content_type != 'application/json':
+        logger.debug('err invalid content_type. url: /update/task, '
+                     'content_type: {}'.format(request.content_type))
+        return 'failed'
+    data = request.json
+    if 'object_id' not in data:
+        return 'not succeeded task update'
+    update_items = {}
+    if 'task_name' in data:
+        update_items['task_name'] = data['task_name']
+    if 'due_date' in data:
+        update_items['due_date'] = data['due_date']
+    if 'task_type' in data:
+        update_items['task_type'] = data['task_type']
+    if 'guide_time' in data:
+        update_items['task_type'] = data['task_type']
+    if 'progress' in data:
+        update_items['progress'] = data['progress']
+    if 'priority' in data:
+        update_items['priority'] = data['priority']
+    dbcon.update_task(data['object_id'], update_items)
+    # task_name = data['task_name'] if 'task_name' in data else None
+    # due_date = change_timezone(data['due_date']) if 'due_date' in data else None
+    # task_type = data['task_type'] if 'task_type' in data else None
+    # guide_time = strtime.str_to_time(data['guide_time']) if 'guide_time' in \
+    #                 data else None
+    # progress = data['progress'] if 'progress' in data else None
+    # priority = data['priority'] if 'priority' in data else None
+    # dbcon.update_task(object_id, task_name, due_date, task_type, guide_time,
+    # progress,
+    # priority)
+    friend_flag = True
+    return 'succeeded'
+
+
+@app.route('/friend/update/schedule', methods=['POST'])
+def friend_update_schedule():
+    if request.content_type != 'application/json':
+        logger.debug('err invalid content_type. url: /update/schedule, '
+                     'content_type: {}'.format(request.content_type))
+        return 'failed'
+    data = request.json
+    if 'object_id' not in data:
+        return 'not succeeded schedule data'
+    update_items = {}
+    if 'schedule_name' in data:
+        update_items['schedule_name'] = data['schedule_name']
+    if 'start_date' in data:
+        update_items['start_date'] = data['start_date']
+    if 'end_date' in data:
+        update_items['end_date'] = data['end_date']
+    dbcon.update_schedule(data['object_id'], update_items)
+    # schedule_name = data['schedule_name'] if 'schedule_name' in data else None
+    # start_date = change_timezone(data['start_date']) if 'start_date' in data \
+    #                 else None
+    # end_date = change_timezone(data['end_date']) if 'end_date' in data else None
+    # notice = data['notice'] if 'notice' in data else None
+    # dbcon.update_schedule(schedule_name, start_date, end_date, notice)
+    friend_flag = True
+    return 'succeeded'
+
+
+@app.route('/friend/update/every', methods=['POST'])
+def friend_update_every():
+    global friend_flag
+    if request.content_type != 'application/json':
+        logger.debug('err invalid content_type. url: /update/every, '
+                     'content_type: {}'.format(request.content_type))
+        return 'failed'
+    data = request.json
+    if 'object_id' not in data:
+        return 'not succeeded every update'
+    update_items = {}
+    if 'every_name' in data:
+        update_items['every_name'] = data['every_name']
+    if 'start_date' in data:
+        update_items['start_date'] = data['start_date']
+    if 'end_date' in data:
+        update_items['end_date'] = data['end_date']
+    dbcon.update_every(data['object_id'], update_items)
+    # schedule_name = data['every_name'] if 'every_name' in data else None
+    # start_date = change_timezone(data['start_date']) if 'start_date' in data \
+    #                 else None
+    # end_date = change_timezone(data['end_date']) if 'end_date' in data else None
+    # notice = data['notice'] if 'notice' in data else None
+    # repeat_type = data['repeat_type'] if 'repeat_type' in data else None
+    # dbcon.update_every(schedule_name, start_date, end_date, notice, repeat_type)
+    friend_flag = True
+    return 'succeeded'
+
+
+@app.route('/get/calendar')
+def get_calendar():
+    return dbcon.get_calendar()
 
 
 if __name__ == '__main__':
