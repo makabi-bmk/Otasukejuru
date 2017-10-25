@@ -17,7 +17,7 @@ class CircleGraphView(context: Context, private var params: ArrayList<HashMap<St
     private val drawTime: Long = if (isInit) {
         1L
     } else {
-        (params[0]["value"] ?: 0) * 60 * 100L
+        (params[1]["value"] ?: 0) * 60 * 100L
     }
     
     override fun onDraw(c: Canvas) {
@@ -34,7 +34,7 @@ class CircleGraphView(context: Context, private var params: ArrayList<HashMap<St
         (0 until length).forEach {
             val value = params[it]["value"]?.toFloat() ?: 0f
             endAngle = startAngle + 360 * (value / max)
-            if (endAngle > endAngleTmp) {
+            if (endAngleTmp < endAngle) {
                 endAngle = endAngleTmp
             }
             this.createPieSlice(c, params[it]["color"] ?: 0, startAngle, endAngle, x, y, radius)

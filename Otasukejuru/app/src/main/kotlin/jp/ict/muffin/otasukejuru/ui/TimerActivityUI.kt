@@ -32,20 +32,11 @@ class TimerActivityUI(private val time: Long) : AnkoComponent<TimerActivity> {
             toolbar {
                 id = R.id.ankoToolbar
                 backgroundColor = ContextCompat.getColor(context, R.color.colorPrimary)
-                
-                imageButton {
-                    id = R.id.ankoBack
-                    backgroundDrawable = ContextCompat.getDrawable(context,
-                            R.drawable.ic_arrow_back_white_48dp)
-                }.lparams {
-                    width = wrapContent
-                    height = wrapContent
-                }
             }.lparams {
                 width = matchParent
                 height = wrapContent
             }
-            
+
             circle = frameLayout {
                 id = R.id.circleFrame
             }.lparams {
@@ -115,6 +106,9 @@ class TimerActivityUI(private val time: Long) : AnkoComponent<TimerActivity> {
     }
     
     private fun drawCircle(context: Context, circle: FrameLayout, time: Long) {
+        if (time == 0L) {
+            return
+        }
         val drawTime: Long = if (time % 60 == 0L) {
             60L
         } else {
@@ -126,7 +120,7 @@ class TimerActivityUI(private val time: Long) : AnkoComponent<TimerActivity> {
             val params: ArrayList<HashMap<String, Int>> = java.util.ArrayList()
             val backColor = ContextCompat.getColor(context, R.color.back)
             val redColor = ContextCompat.getColor(context, R.color.mostPriority)
-            val intervalColor = ContextCompat.getColor(context, R.color.colorPrimaryDark)
+            val intervalColor = ContextCompat.getColor(context, R.color.colorPrimary)
             
             val colors: ArrayList<Int> = arrayListOf(backColor)
             val drawCircleTime: ArrayList<Long> = arrayListOf(60 - drawTime)
@@ -177,6 +171,9 @@ class TimerActivityUI(private val time: Long) : AnkoComponent<TimerActivity> {
     }
     
     private fun startTimer(context: Context, totalTime: Long) {
+        if (totalTime == 0L) {
+            return
+        }
         val drawTime: Long = if (totalTime % 60 == 0L) {
             60L
         } else {
