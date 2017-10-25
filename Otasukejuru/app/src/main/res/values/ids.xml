@@ -24,4 +24,5 @@
     <item name="taskLinear" type="id"/>
     <item name="remainDay" type="id"/>
     <item name="taskRelative" type="id"/>
+    <item name="setTimeEdit" type="id"/>
 </resources>

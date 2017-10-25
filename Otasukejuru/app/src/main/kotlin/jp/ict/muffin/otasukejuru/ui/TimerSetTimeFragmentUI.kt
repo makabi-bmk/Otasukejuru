@@ -1,6 +1,7 @@
 package jp.ict.muffin.otasukejuru.ui
 
 import android.content.Context
+import android.graphics.Color
 import android.os.Handler
 import android.os.Looper
 import android.support.v4.content.ContextCompat
@@ -8,7 +9,6 @@ import android.text.InputType
 import android.view.View
 import android.widget.EditText
 import android.widget.FrameLayout
-import android.widget.LinearLayout
 import android.widget.TextView
 import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
@@ -59,23 +59,27 @@ class TimerSetTimeFragmentUI : AnkoComponent<TimerSetTimeFragment> {
                 }
             }
             
-            linearLayout {
-                orientation = LinearLayout.VERTICAL
+            relativeLayout {
                 
                 editTime = editText {
                     inputType = InputType.TYPE_CLASS_NUMBER
+                    id = R.id.setTimeEdit
                 }.lparams {
                     height = wrapContent
                     width = matchParent
                 }
                 
-                button("start") {
+                button("次へ") {
+                    textColor = ContextCompat.getColor(context, R.color.colorPrimary)
+                    backgroundColor = Color.argb(0, 0, 0, 0)
                     onClick {
                         startButtonClickListener(getContext())
                     }
                 }.lparams {
-                    width = matchParent
+                    below(editTime)
+                    width = wrapContent
                     height = wrapContent
+                    centerHorizontally()
                 }
                 
                 
