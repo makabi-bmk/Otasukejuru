@@ -33,7 +33,8 @@ class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerActiv
                 
                 imageButton {
                     id = R.id.ankoBack
-                    backgroundDrawable = ContextCompat.getDrawable(context, R.drawable.ic_arrow_back_white_48dp)
+                    backgroundDrawable = ContextCompat.getDrawable(context,
+                            R.drawable.ic_arrow_back_white_48dp)
                 }.lparams {
                     width = wrapContent
                     height = wrapContent

@@ -18,7 +18,7 @@ class CalendarFragmentUI : AnkoComponent<ScheduleFragment> {
                 orientation = LinearLayout.HORIZONTAL
             }.lparams {
                 width = matchParent
-                height = dip(90)
+                height = wrapContent
                 alignParentTop()
                 leftMargin = dip(80)
             }
@@ -89,7 +89,7 @@ class CalendarFragmentUI : AnkoComponent<ScheduleFragment> {
                 width = matchParent
                 height = matchParent
                 backgroundColor = ContextCompat.getColor(context, R.color.back)
-                below(R.id.taskLinear)
+                topMargin = dip(90)
             }
         }
     }
