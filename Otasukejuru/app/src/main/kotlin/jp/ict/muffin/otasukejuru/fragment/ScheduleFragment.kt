@@ -66,8 +66,10 @@ class ScheduleFragment : Fragment() {
             val taskInfo = GlobalValue.taskInfoArrayList[it]
             val diffDays = diffDayNum(today, taskInfo.limitDate, calendar.get(Calendar.YEAR))
             
-            val inflater: LayoutInflater = context.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
-            val linearLayout: LinearLayout = inflater.inflate(R.layout.task_card_view, null) as LinearLayout
+            val inflater: LayoutInflater =
+                    context.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
+            val linearLayout: LinearLayout =
+                    inflater.inflate(R.layout.task_card_view, null) as LinearLayout
             
             linearLayout.apply {
                 dateTextView?.apply {
