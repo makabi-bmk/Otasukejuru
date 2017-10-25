@@ -35,7 +35,8 @@ class TimerActivityUI(private val time: Long) : AnkoComponent<TimerActivity> {
                 
                 imageButton {
                     id = R.id.ankoBack
-                    backgroundDrawable = ContextCompat.getDrawable(context, R.drawable.ic_arrow_back_white_48dp)
+                    backgroundDrawable = ContextCompat.getDrawable(context,
+                            R.drawable.ic_arrow_back_white_48dp)
                 }.lparams {
                     width = wrapContent
                     height = wrapContent
@@ -121,19 +122,17 @@ class TimerActivityUI(private val time: Long) : AnkoComponent<TimerActivity> {
         }
         
         val init = arrayListOf(true, false)
-        (0 until 2).forEach { i ->
+        (0 until 2).forEach {
             val params: ArrayList<HashMap<String, Int>> = java.util.ArrayList()
             val backColor = ContextCompat.getColor(context, R.color.back)
             val redColor = ContextCompat.getColor(context, R.color.mostPriority)
+            val intervalColor = ContextCompat.getColor(context, R.color.colorPrimaryDark)
             
             val colors: ArrayList<Int> = arrayListOf(backColor)
             val drawCircleTime: ArrayList<Long> = arrayListOf(60 - drawTime)
-            if (i == 0) {
-                
+            if (it == 0) {
                 val focusTime = GlobalValue.focusTimeG
                 val intervalTime = GlobalValue.intervalTimeG
-                
-                val intervalColor = ContextCompat.getColor(context, R.color.colorPrimaryDark)
                 
                 var tmpTime = 0L
                 while (true) {
@@ -164,14 +163,14 @@ class TimerActivityUI(private val time: Long) : AnkoComponent<TimerActivity> {
                 colors.add(backColor)
             }
             
-            (0 until colors.size).forEach { j ->
+            (0 until colors.size).forEach { i ->
                 val mapSI = HashMap<String, Int>()
-                mapSI.put("color", colors[j])
-                mapSI.put("value", drawCircleTime[j].toInt())
+                mapSI.put("color", colors[i])
+                mapSI.put("value", drawCircleTime[i].toInt())
                 params.add(mapSI)
             }
             
-            val circleGraphView = CircleGraphView(context, params, init[i])
+            val circleGraphView = CircleGraphView(context, params, init[it])
             circle.addView(circleGraphView)
             circleGraphView.startAnimation()
         }
