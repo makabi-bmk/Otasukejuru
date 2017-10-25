@@ -60,7 +60,7 @@ class ScheduleFragment : Fragment() {
         val today = (calendar.get(Calendar.MONTH) + 1) * 100 + calendar.get(Calendar.DAY_OF_MONTH)
         
         GlobalValue.scheduleInfoArrayList.forEach {
-        
+            val showScheduleDate = today
         }
     
     }
