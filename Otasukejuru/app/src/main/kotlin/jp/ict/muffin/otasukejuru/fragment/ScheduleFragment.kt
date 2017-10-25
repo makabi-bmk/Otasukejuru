@@ -55,6 +55,16 @@ class ScheduleFragment : Fragment() {
         mTimer = null
     }
     
+    private fun setSchedule() {
+        val calendar = Calendar.getInstance()
+        val today = (calendar.get(Calendar.MONTH) + 1) * 100 + calendar.get(Calendar.DAY_OF_MONTH)
+        
+        GlobalValue.scheduleInfoArrayList.forEach {
+            
+        }
+    
+    }
+    
     private fun setCardView() {
         val calendar = Calendar.getInstance()
         val today = (calendar.get(Calendar.MONTH) + 1) * 100 + calendar.get(Calendar.DAY_OF_MONTH)
@@ -100,7 +110,7 @@ class ScheduleFragment : Fragment() {
                 layoutParams = lParam
                 backgroundColor = ContextCompat.getColor(context, R.color.mostPriority)
             }
-            find<RelativeLayout>(R.id.taskRelative).addView(line, 0)
+            find<RelativeLayout>(R.id.taskRelative).addView(line)
         }
     }
     
