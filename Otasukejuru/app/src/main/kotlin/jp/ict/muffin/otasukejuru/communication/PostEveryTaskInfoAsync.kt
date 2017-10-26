@@ -9,7 +9,7 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody
 
-class PostEveryTaskInfoAsync() : AsyncTask<EveryInfo, Void, Unit>() {
+class PostEveryTaskInfoAsync : AsyncTask<EveryInfo, Void, Unit>() {
     private val mediaType = MediaType.parse("application/json; charset=utf-8")
     var client = OkHttpClient()
     
@@ -18,13 +18,18 @@ class PostEveryTaskInfoAsync() : AsyncTask<EveryInfo, Void, Unit>() {
     }
     
     private fun post(url: String, json: String): String? {
-        val body = RequestBody.create(mediaType, json)
-        val request = Request.Builder()
-                .url(url)
-                .post(body)
-                .build()
-        val response = client.newCall(request).execute()
-        return response.body()?.string()
+        try {
+            val body = RequestBody.create(mediaType, json)
+            val request = Request.Builder()
+                    .url(url)
+                    .post(body)
+                    .build()
+            val response = client.newCall(request).execute()
+            return response.body()?.string()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        return null
     }
     
     private fun convertToJson(everyInfo: EveryInfo): String {

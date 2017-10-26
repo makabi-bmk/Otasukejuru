@@ -9,6 +9,8 @@ import jp.ict.muffin.otasukejuru.`object`.EveryInfo
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
 import jp.ict.muffin.otasukejuru.`object`.ScheduleInfo
 import jp.ict.muffin.otasukejuru.`object`.TaskInfo
+import jp.ict.muffin.otasukejuru.communication.PostScheduleTaskInfoAsync
+import jp.ict.muffin.otasukejuru.communication.PostTaskInfoAsync
 import kotlinx.android.synthetic.main.set_plan_notification_time.*
 import kotlinx.android.synthetic.main.set_plan_repeat.*
 import kotlinx.android.synthetic.main.set_task_repeat.*
@@ -436,8 +438,8 @@ class TaskAdditionActivity : Activity() {
         }
         GlobalValue.scheduleInfoArrayList.add(0, scheduleInformation)
         //TODO:Remove comment out when Communication
-//        val postScheduleInfo = PostScheduleTaskInfoAsync()
-//        postScheduleInfo.execute(scheduleInformation)
+        val postScheduleInfo = PostScheduleTaskInfoAsync()
+        postScheduleInfo.execute(scheduleInformation)
         
     }
     
@@ -466,7 +468,7 @@ class TaskAdditionActivity : Activity() {
         Log.d("task", taskInformation.task_type)
         GlobalValue.taskInfoArrayList.add(0, taskInformation)
         //TODO:Remove comment out when Communication
-//        val postTaskInfo = PostTaskInfoAsync()
-//        postTaskInfo.execute(taskInformation)
+        val postTaskInfo = PostTaskInfoAsync()
+        postTaskInfo.execute(taskInformation)
     }
 }
