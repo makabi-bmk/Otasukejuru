@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +14,7 @@ import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
+import jp.ict.muffin.otasukejuru.other.SpltDate
 import jp.ict.muffin.otasukejuru.ui.ScheduleFragmentUI
 import kotlinx.android.synthetic.main.task_card_view.view.*
 import org.jetbrains.anko.AnkoContext
@@ -64,13 +66,14 @@ class ScheduleFragment : Fragment() {
         
         GlobalValue.scheduleInfoArrayList.forEach {
             val showScheduleDate = today + 7
-            val diffDays = diffDayNum(today, it.startDate, calendar.get(Calendar.YEAR))
-            if (it.startDate in today..showScheduleDate) {
+            val diffDays = diffDayNum(today, SpltDate().getDate(it.start_time), calendar.get
+            (Calendar.YEAR))
+            if (SpltDate().getDate(it.start_time) in today..showScheduleDate) {
                 val line = LinearLayout(context)
                 val lParam = RelativeLayout.LayoutParams(0, 0)
                 lParam.apply {
                     width = matchParent
-                    height = dip((it.endDate - it.startDate) * 150)
+                    height = dip((SpltDate().getDate(it.end_time) - SpltDate().getDate(it.start_time)) * 150)
                     leftMargin = dip(120)
                     rightMargin = dip(60)
                     topMargin = dip(25 + diffDays * 150)
@@ -85,16 +88,21 @@ class ScheduleFragment : Fragment() {
         
     }
     
+    
+    
     private fun setCardView() {
         val calendar = Calendar.getInstance()
         val today = (calendar.get(Calendar.MONTH) + 1) * 100 + calendar.get(Calendar.DAY_OF_MONTH)
         val showTaskNum = (GlobalValue.displayWidth - 50) / 90 - 1
         
         val forNum = minOf(showTaskNum, GlobalValue.taskInfoArrayList.size)
+        Log.d("task", GlobalValue.taskInfoArrayList.toString())
         find<LinearLayout>(R.id.taskLinear).removeAllViews()
         (0 until forNum).forEach {
             val taskInfo = GlobalValue.taskInfoArrayList[it]
-            val diffDays = diffDayNum(today, taskInfo.limitDate, calendar.get(Calendar.YEAR))
+            
+            val diffDays = diffDayNum(today, SpltDate().getDate(taskInfo.due_date), calendar.get
+            (Calendar.YEAR))
             
             val inflater: LayoutInflater =
                     context.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
@@ -110,13 +118,12 @@ class ScheduleFragment : Fragment() {
                 }
                 taskNameTextView.text = taskInfo.task_name
                 cardView.apply {
-                    tag = taskInfo.limitDate
+                    tag = SpltDate().getDate(taskInfo.due_date)
                     setOnClickListener {
                     }
                 }
             }
             find<LinearLayout>(R.id.taskLinear).addView(linearLayout, it)
-            
             
             val line = LinearLayout(context)
             val lParam = RelativeLayout.LayoutParams(0, 0)

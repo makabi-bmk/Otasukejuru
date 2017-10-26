@@ -433,8 +433,8 @@ class TaskAdditionActivity : Activity() {
             schedule_name = taskTitleName
             start_time = "$startYear-$startMonth-$startDay $startHour:$startMinute:00"
             end_time = "$finishYear-$finishMonth-$finishDay $finishHour:$finishMinute:00"
-            startDate = startMonth * 100 + startDay
-            endDate = finishMonth * 100 + finishDay
+//            startDate = startMonth * 100 + startDay
+//            endDate = finishMonth * 100 + finishDay
         }
         GlobalValue.scheduleInfoArrayList.add(0, scheduleInformation)
         //TODO:Remove comment out when Communication
@@ -447,7 +447,6 @@ class TaskAdditionActivity : Activity() {
         val taskInformation = TaskInfo()
         taskInformation.apply {
             task_name = taskTitleName
-            limitDate = dateLimit
             task_type = if (isMust) {
                 "1"
             } else {

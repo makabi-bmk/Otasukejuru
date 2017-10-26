@@ -15,6 +15,7 @@ import jp.ict.muffin.otasukejuru.`object`.GlobalValue
 import jp.ict.muffin.otasukejuru.`object`.TaskInfo
 import jp.ict.muffin.otasukejuru.activity.TaskAdditionActivity
 import jp.ict.muffin.otasukejuru.activity.TimeSetActivity
+import jp.ict.muffin.otasukejuru.other.SpltDate
 import jp.ict.muffin.otasukejuru.ui.ToDoListFragmentUI
 import kotlinx.android.synthetic.main.fragment_list_todo.*
 import kotlinx.android.synthetic.main.task_card_view.view.*
@@ -79,7 +80,9 @@ class ToDoListFragment : Fragment() {
         
         val showTaskNum = GlobalValue.displayWidth / 90
         GlobalValue.taskInfoArrayList.forEach { element ->
-            val diffDays = diffDayNum(today, element.limitDate, calendar.get(Calendar.YEAR))
+            val diffDays = diffDayNum(today, SpltDate().getDate(element.due_date), calendar.get
+            (Calendar
+                    .YEAR))
             
             val inflater: LayoutInflater = context.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
             val linearLayout: LinearLayout = inflater.inflate(R.layout.task_card_view, null) as LinearLayout
@@ -93,7 +96,7 @@ class ToDoListFragment : Fragment() {
                 }
                 taskNameTextView.text = element.task_name
                 cardView.apply {
-                    tag = element.limitDate
+                    tag = SpltDate().getDate(element.due_date)
                     setOnClickListener {
                         createDialog(taskNameTextView.text.toString(), element)
                     }
