@@ -429,8 +429,10 @@ class TaskAdditionActivity : Activity() {
         val scheduleInformation = ScheduleInfo()
         scheduleInformation.apply {
             schedule_name = taskTitleName
-            start_date = startMonth * 100 + startDay
-            end_date = finishMonth * 100 + finishDay
+            start_date = "$startYear-$startMonth-$startDay $startHour:$startMinute:00"
+            end_date = "$finishYear-$finishMonth-$finishDay $finishHour:$finishMinute:00"
+            startDate = startHour * 100 + startMinute
+            endDate = finishHour * 100 + finishMinute
         }
         GlobalValue.scheduleInfoArrayList.add(0, scheduleInformation)
         //TODO:Remove comment out when Communication
@@ -458,7 +460,7 @@ class TaskAdditionActivity : Activity() {
                 "0"
             }
             due_date = "$finishYear-$finishMonth-$finishDay $finishHour:$finishMinute:00"
-            guide_time = finishHour * 100 + finishMinute
+            guide_time = "$finishHour:$finishMinute:00"
             priority = 0
         }
         Log.d("task", taskInformation.task_type)

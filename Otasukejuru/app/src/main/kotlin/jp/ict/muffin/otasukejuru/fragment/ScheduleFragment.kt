@@ -63,13 +63,13 @@ class ScheduleFragment : Fragment() {
         
         GlobalValue.scheduleInfoArrayList.forEach {
             val showScheduleDate = today + 7
-            val diffDays = diffDayNum(today, it.start_date, calendar.get(Calendar.YEAR))
-            if (it.start_date in today..showScheduleDate) {
+            val diffDays = diffDayNum(today, it.startDate, calendar.get(Calendar.YEAR))
+                if (it.startDate in today..showScheduleDate) {
                 val line = LinearLayout(context)
                 val lParam = RelativeLayout.LayoutParams(0, 0)
                 lParam.apply {
                     width = matchParent
-                    height = dip((it.end_date - it.start_date) * 150)
+                    height = dip((it.endDate - it.startDate) * 150)
                     leftMargin = dip(120)
                     rightMargin = dip(60)
                     topMargin = dip(25 + diffDays * 150)
@@ -103,14 +103,14 @@ class ScheduleFragment : Fragment() {
                     inflater.inflate(R.layout.task_card_view, null) as LinearLayout
             
             linearLayout.apply {
-                dateTextView?.apply {
+                dateTextView.apply {
                     text = diffDays.toString()
                     if (taskInfo.priority == 0) {
                         textColor = ContextCompat.getColor(context, R.color.mostPriority)
                     }
                 }
-                taskNameTextView?.text = taskInfo.task_name
-                cardView?.apply {
+                taskNameTextView.text = taskInfo.task_name
+                cardView.apply {
                     tag = taskInfo.limitDate
                     setOnClickListener {
                     }
