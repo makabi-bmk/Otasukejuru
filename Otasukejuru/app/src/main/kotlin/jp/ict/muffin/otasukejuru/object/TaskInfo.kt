@@ -9,5 +9,6 @@ data class TaskInfo(
         var progress: Int = 0,
         var priority: Int = 0,
         var friend: Boolean = false,
-        @Transient var limitDate: Int = 0
+        @Transient var limitDate: Int = 0,
+        @Transient var limitTime: Int = 0
 )
