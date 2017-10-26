@@ -1,6 +1,7 @@
 package jp.ict.muffin.otasukejuru.fragment
 
 import android.content.Context.LAYOUT_INFLATER_SERVICE
+import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.support.v4.app.Fragment
@@ -76,7 +77,7 @@ class ScheduleFragment : Fragment() {
                 }
                 line.apply {
                     layoutParams = lParam
-                    backgroundColor = ContextCompat.getColor(context, R.color.lowPriority)
+                    backgroundColor = Color.argb(50, 112, 173, 71)
                 }
                 find<RelativeLayout>(R.id.taskRelative).addView(line)
             }
