@@ -47,6 +47,7 @@ class ScheduleFragment : Fragment() {
         mTimer?.schedule(object : TimerTask() {
             override fun run() {
                 mHandler.post {
+                    find<RelativeLayout>(R.id.refreshRelative).removeAllViews()
                     setSchedule()
                     setCardView()
                 }
@@ -82,7 +83,7 @@ class ScheduleFragment : Fragment() {
                     layoutParams = lParam
                     backgroundColor = Color.argb(50, 112, 173, 71)
                 }
-                find<RelativeLayout>(R.id.taskRelative).addView(line)
+                find<RelativeLayout>(R.id.refreshRelative).addView(line)
             }
         }
         
@@ -137,7 +138,7 @@ class ScheduleFragment : Fragment() {
                 layoutParams = lParam
                 backgroundColor = ContextCompat.getColor(context, R.color.mostPriority)
             }
-            find<RelativeLayout>(R.id.taskRelative).addView(line)
+            find<RelativeLayout>(R.id.refreshRelative).addView(line)
         }
     }
     

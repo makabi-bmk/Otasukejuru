@@ -25,4 +25,5 @@
     <item name="remainDay" type="id"/>
     <item name="taskRelative" type="id"/>
     <item name="setTimeEdit" type="id"/>
+    <item name="refreshRelative" type="id"/>
 </resources>

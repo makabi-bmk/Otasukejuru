@@ -27,14 +27,6 @@ class ScheduleFragmentUI : AnkoComponent<ScheduleFragment> {
                 var today = (calendar.get(Calendar.MONTH) + 1) * 100 + calendar.get(Calendar.DAY_OF_MONTH)
                 relativeLayout {
                     id = R.id.taskRelative
-//                    imageView {
-//                        backgroundColor = ContextCompat.getColor(context, R.color.mostPriority)
-//                    }.lparams {
-//                        width = 3
-//                        height = 100
-//                        leftMargin = 100
-//                        topMargin = 20
-//                    }
                     (0 until 28).forEach {
                         relativeLayout {
                             textView(when (it % 4) {
@@ -81,6 +73,13 @@ class ScheduleFragmentUI : AnkoComponent<ScheduleFragment> {
                             else -> 0
                         }
                     }
+                    relativeLayout {
+                        id = R.id.refreshRelative
+                    }.lparams {
+                        width = matchParent
+                        height = matchParent
+                    }
+                    
                 }.lparams {
                     width = matchParent
                     height = matchParent
