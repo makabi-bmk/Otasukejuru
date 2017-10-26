@@ -64,7 +64,7 @@ class ScheduleFragment : Fragment() {
         GlobalValue.scheduleInfoArrayList.forEach {
             val showScheduleDate = today + 7
             val diffDays = diffDayNum(today, it.startDate, calendar.get(Calendar.YEAR))
-                if (it.startDate in today..showScheduleDate) {
+            if (it.startDate in today..showScheduleDate) {
                 val line = LinearLayout(context)
                 val lParam = RelativeLayout.LayoutParams(0, 0)
                 lParam.apply {
@@ -76,14 +76,12 @@ class ScheduleFragment : Fragment() {
                 }
                 line.apply {
                     layoutParams = lParam
-                    backgroundColor = ContextCompat.getColor(context, R.color.mostPriority)
+                    backgroundColor = ContextCompat.getColor(context, R.color.lowPriority)
                 }
                 find<RelativeLayout>(R.id.taskRelative).addView(line)
-            
-            
             }
         }
-    
+        
     }
     
     private fun setCardView() {

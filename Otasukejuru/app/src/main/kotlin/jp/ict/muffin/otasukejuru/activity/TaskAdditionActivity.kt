@@ -282,7 +282,7 @@ class TaskAdditionActivity : Activity() {
         }
         
         find<Button>(R.id.button_next).setOnClickListener { setTaskRepeat() }
-        
+
 //        val noLimit = find<Button>(R.id.no_limit)
 //        noLimit.setOnClickListener {
 //            startMonth = -1
@@ -413,11 +413,10 @@ class TaskAdditionActivity : Activity() {
             end_date = "$finishYear-$finishMonth-$finishDay $finishHour:$finishMinute:00"
             notice = notificationTime
             repeat_type = when (taskRepeat) {
-                getString(R.string.today) -> 0
-                getString(R.string.everyday) -> 1
-                getString(R.string.everyWeek) -> 2
-                getString(R.string.everyMonth) -> 3
-                getString(R.string.everyYear) -> 4
+                getString(R.string.everyday) -> 0
+                getString(R.string.everyWeek) -> 1
+                getString(R.string.everyMonth) -> 2
+                getString(R.string.everyYear) -> 3
                 else -> -1
             }
             
@@ -434,8 +433,8 @@ class TaskAdditionActivity : Activity() {
             schedule_name = taskTitleName
             start_date = "$startYear-$startMonth-$startDay $startHour:$startMinute:00"
             end_date = "$finishYear-$finishMonth-$finishDay $finishHour:$finishMinute:00"
-            startDate = startHour * 100 + startMinute
-            endDate = finishHour * 100 + finishMinute
+            startDate = startMonth * 100 + startDay
+            endDate = finishMonth * 100 + finishDay
         }
         GlobalValue.scheduleInfoArrayList.add(0, scheduleInformation)
         //TODO:Remove comment out when Communication

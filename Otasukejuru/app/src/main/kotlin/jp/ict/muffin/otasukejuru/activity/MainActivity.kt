@@ -12,6 +12,7 @@ import android.view.Menu
 import android.view.MenuItem
 import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
+import jp.ict.muffin.otasukejuru.communication.GetInformation
 import jp.ict.muffin.otasukejuru.fragment.ScheduleFragment
 import jp.ict.muffin.otasukejuru.fragment.TimerSetTimeFragment
 import jp.ict.muffin.otasukejuru.fragment.ToDoListFragment
@@ -68,8 +69,8 @@ class MainActivity : AppCompatActivity() {
             displayWidth = point.x
         }
         //TODO:Remove comment out when Communication
-//        val getInfo = GetInformation()
-//        getInfo.execute()
+        val getInfo = GetInformation()
+        getInfo.execute()
         
     }
     

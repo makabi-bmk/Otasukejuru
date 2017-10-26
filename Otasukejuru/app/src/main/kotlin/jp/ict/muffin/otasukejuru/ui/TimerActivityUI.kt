@@ -36,7 +36,7 @@ class TimerActivityUI(private val time: Long) : AnkoComponent<TimerActivity> {
                 width = matchParent
                 height = wrapContent
             }
-
+            
             circle = frameLayout {
                 id = R.id.circleFrame
             }.lparams {
