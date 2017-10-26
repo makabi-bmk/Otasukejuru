@@ -16,11 +16,11 @@ import jp.ict.muffin.otasukejuru.ui.ScheduleFragmentUI
 import kotlinx.android.synthetic.main.task_card_view.view.*
 import org.jetbrains.anko.AnkoContext
 import org.jetbrains.anko.backgroundColor
+import org.jetbrains.anko.matchParent
 import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.dip
 import org.jetbrains.anko.support.v4.find
 import org.jetbrains.anko.textColor
-import org.jetbrains.anko.wrapContent
 import java.util.*
 
 
@@ -68,9 +68,10 @@ class ScheduleFragment : Fragment() {
                 val line = LinearLayout(context)
                 val lParam = RelativeLayout.LayoutParams(0, 0)
                 lParam.apply {
-                    width = wrapContent
-                    height = dip((it.end_date - it.start_date) * 10)
-                    leftMargin = dip(80 + 45)
+                    width = matchParent
+                    height = dip((it.end_date - it.start_date) * 150)
+                    leftMargin = dip(120)
+                    rightMargin = dip(60)
                     topMargin = dip(25 + diffDays * 150)
                 }
                 line.apply {
