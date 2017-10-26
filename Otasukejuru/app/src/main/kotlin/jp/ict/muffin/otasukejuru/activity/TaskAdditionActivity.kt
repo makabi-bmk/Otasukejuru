@@ -9,6 +9,7 @@ import jp.ict.muffin.otasukejuru.`object`.EveryInfo
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
 import jp.ict.muffin.otasukejuru.`object`.ScheduleInfo
 import jp.ict.muffin.otasukejuru.`object`.TaskInfo
+import jp.ict.muffin.otasukejuru.communication.PostEveryTaskInfoAsync
 import jp.ict.muffin.otasukejuru.communication.PostScheduleTaskInfoAsync
 import jp.ict.muffin.otasukejuru.communication.PostTaskInfoAsync
 import kotlinx.android.synthetic.main.set_plan_notification_time.*
@@ -282,11 +283,11 @@ class TaskAdditionActivity : Activity() {
         
         find<Button>(R.id.button_next).setOnClickListener { setTaskRepeat() }
         
-        val noLimit = find<Button>(R.id.no_limit)
-        noLimit.setOnClickListener {
-            startMonth = -1
-            setTaskRepeat()
-        }
+//        val noLimit = find<Button>(R.id.no_limit)
+//        noLimit.setOnClickListener {
+//            startMonth = -1
+//            setTaskRepeat()
+//        }
         finishYear = calendar.get(Calendar.YEAR)
         
         find<ImageButton>(R.id.button_back).setOnClickListener { inputTaskName() }
@@ -422,8 +423,8 @@ class TaskAdditionActivity : Activity() {
             
         }
         //TODO:Remove comment out when Communication
-//        val postEveryInfo = PostEveryTaskInfoAsync()
-//        postEveryInfo.execute(everyInformation)
+        val postEveryInfo = PostEveryTaskInfoAsync()
+        postEveryInfo.execute(everyInformation)
         
     }
     

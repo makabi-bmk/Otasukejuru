@@ -138,17 +138,17 @@
         </LinearLayout>
 
 
-        <Button
-            android:id="@+id/no_limit"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:background="@color/back"
-            android:text="期限なし"
-            android:textColor="@color/colorPrimary"
-            android:textSize="20sp"/>
+        <!--<Button-->
+            <!--android:id="@+id/no_limit"-->
+            <!--style="?android:attr/borderlessButtonStyle"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--android:layout_alignParentLeft="true"-->
+            <!--android:background="@color/back"-->
+            <!--android:text="期限なし"-->
+            <!--android:textColor="@color/colorPrimary"-->
+            <!--android:textSize="20sp"/>-->
 
         <Button
             android:id="@+id/button_next"
