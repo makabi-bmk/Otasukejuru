@@ -1,7 +1,7 @@
 package jp.ict.muffin.otasukejuru.other
 
 
-class SpltDate {
+class SplitDate {
     fun getDate(time: String): Int {
         if (time == "") {
             return 0

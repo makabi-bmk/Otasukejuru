@@ -14,7 +14,7 @@ import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
-import jp.ict.muffin.otasukejuru.other.SpltDate
+import jp.ict.muffin.otasukejuru.other.SplitDate
 import jp.ict.muffin.otasukejuru.ui.ScheduleFragmentUI
 import kotlinx.android.synthetic.main.task_card_view.view.*
 import org.jetbrains.anko.AnkoContext
@@ -67,14 +67,14 @@ class ScheduleFragment : Fragment() {
         
         GlobalValue.scheduleInfoArrayList.forEach {
             val showScheduleDate = today + 7
-            val diffDays = diffDayNum(today, SpltDate().getDate(it.start_time), calendar.get
+            val diffDays = diffDayNum(today, SplitDate().getDate(it.start_time), calendar.get
             (Calendar.YEAR))
-            if (SpltDate().getDate(it.start_time) in today..showScheduleDate) {
-                val line = LinearLayout(context)
+            if (SplitDate().getDate(it.start_time) in today..showScheduleDate) {
+                val line = RelativeLayout(context)
                 val lParam = RelativeLayout.LayoutParams(0, 0)
                 lParam.apply {
                     width = matchParent
-                    height = dip((SpltDate().getDate(it.end_time) - SpltDate().getDate(it.start_time)) * 150)
+                    height = dip((SplitDate().getDate(it.end_time) - SplitDate().getDate(it.start_time)) * 150)
                     leftMargin = dip(120)
                     rightMargin = dip(60)
                     topMargin = dip(25 + diffDays * 150)
@@ -102,7 +102,7 @@ class ScheduleFragment : Fragment() {
         (0 until forNum).forEach {
             val taskInfo = GlobalValue.taskInfoArrayList[it]
             
-            val diffDays = diffDayNum(today, SpltDate().getDate(taskInfo.due_date), calendar.get
+            val diffDays = diffDayNum(today, SplitDate().getDate(taskInfo.due_date), calendar.get
             (Calendar.YEAR))
             
             val inflater: LayoutInflater =
@@ -119,7 +119,7 @@ class ScheduleFragment : Fragment() {
                 }
                 taskNameTextView.text = taskInfo.task_name
                 cardView.apply {
-                    tag = SpltDate().getDate(taskInfo.due_date)
+                    tag = SplitDate().getDate(taskInfo.due_date)
                     setOnClickListener {
                     }
                 }
