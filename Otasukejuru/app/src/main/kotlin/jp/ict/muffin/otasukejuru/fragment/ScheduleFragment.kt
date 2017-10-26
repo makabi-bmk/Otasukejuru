@@ -20,6 +20,7 @@ import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.dip
 import org.jetbrains.anko.support.v4.find
 import org.jetbrains.anko.textColor
+import org.jetbrains.anko.wrapContent
 import java.util.*
 
 
@@ -43,6 +44,7 @@ class ScheduleFragment : Fragment() {
         mTimer?.schedule(object : TimerTask() {
             override fun run() {
                 mHandler.post {
+                    setSchedule()
                     setCardView()
                 }
             }
@@ -60,7 +62,25 @@ class ScheduleFragment : Fragment() {
         val today = (calendar.get(Calendar.MONTH) + 1) * 100 + calendar.get(Calendar.DAY_OF_MONTH)
         
         GlobalValue.scheduleInfoArrayList.forEach {
-            val showScheduleDate = today
+            val showScheduleDate = today + 7
+            val diffDays = diffDayNum(today, it.start_date, calendar.get(Calendar.YEAR))
+            if (it.start_date in today..showScheduleDate) {
+                val line = LinearLayout(context)
+                val lParam = RelativeLayout.LayoutParams(0, 0)
+                lParam.apply {
+                    width = wrapContent
+                    height = dip((it.end_date - it.start_date) * 10)
+                    leftMargin = dip(80 + 45)
+                    topMargin = dip(25 + diffDays * 150)
+                }
+                line.apply {
+                    layoutParams = lParam
+                    backgroundColor = ContextCompat.getColor(context, R.color.mostPriority)
+                }
+                find<RelativeLayout>(R.id.taskRelative).addView(line)
+            
+            
+            }
         }
     
     }
