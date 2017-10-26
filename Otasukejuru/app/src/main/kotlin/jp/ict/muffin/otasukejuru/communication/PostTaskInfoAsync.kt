@@ -1,6 +1,7 @@
 package jp.ict.muffin.otasukejuru.communication
 
 import android.os.AsyncTask
+import android.util.Log
 import com.squareup.moshi.Moshi
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
 import jp.ict.muffin.otasukejuru.`object`.TaskInfo
@@ -12,7 +13,7 @@ import okhttp3.RequestBody
 
 class PostTaskInfoAsync : AsyncTask<TaskInfo, Void, Unit>() {
     private val mediaType = MediaType.parse("application/json; charset=utf-8")
-    var client = OkHttpClient()
+    private val client = OkHttpClient()
     
     override fun doInBackground(vararg params: TaskInfo) {
         post("${GlobalValue.SERVER_URL}/add/task", convertToJson(params[0]))
@@ -36,6 +37,8 @@ class PostTaskInfoAsync : AsyncTask<TaskInfo, Void, Unit>() {
     private fun convertToJson(taskInfo: TaskInfo): String {
         val moshi = Moshi.Builder().build()
         val adapter = moshi.adapter(TaskInfo::class.java)
+        
+        Log.d("postTask", adapter.toJson(taskInfo))
         
         return adapter.toJson(taskInfo)
     }
