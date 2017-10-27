@@ -69,8 +69,8 @@ class ScheduleFragment : Fragment() {
             (Calendar.YEAR))
             if (SplitDate().getDate(it.start_time) in today..showScheduleDate) {
                 val line = RelativeLayout(context)
-                val lParam = RelativeLayout.LayoutParams(0, 0)
-                lParam.apply {
+                val rParam = RelativeLayout.LayoutParams(0, 0)
+                rParam.apply {
                     width = matchParent
                     height = dip((SplitDate().getDate(it.end_time) - SplitDate().getDate(it.start_time)) * 150)
                     leftMargin = dip(120)
@@ -78,17 +78,17 @@ class ScheduleFragment : Fragment() {
                     topMargin = dip(25 + diffDays * 150)
                 }
                 line.apply {
-                    layoutParams = lParam
+                    layoutParams = rParam
                     backgroundColor = Color.argb(50, 112, 173, 71)
                 }
                 val scheduleNameText = TextView(context)
-                val hoge = RelativeLayout.LayoutParams(wrapContent, wrapContent)
-                hoge.apply {
+                val tPalam = RelativeLayout.LayoutParams(wrapContent, wrapContent)
+                tPalam.apply {
                     addRule(RelativeLayout.CENTER_HORIZONTAL)
                     addRule(RelativeLayout.CENTER_VERTICAL)
                 }
                 scheduleNameText.apply {
-                    layoutParams = hoge
+                    layoutParams = tPalam
                     text = it.schedule_name
                 }
                 line.addView(scheduleNameText)
