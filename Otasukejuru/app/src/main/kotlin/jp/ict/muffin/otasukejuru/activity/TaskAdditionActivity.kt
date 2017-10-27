@@ -34,7 +34,7 @@ class TaskAdditionActivity : Activity() {
     private var finishDay: Int = 0
     private var finishHour: Int = 0
     private var finishMinute: Int = 0
-    private var taskRepeat: String = ""
+    private var taskRepeat: Int = 0
     private var dateLimit: Int = 0
     private var timeLimit: Int = 0
     
@@ -44,6 +44,7 @@ class TaskAdditionActivity : Activity() {
     private var isMust: Boolean = false
     private var isShould: Boolean = false
     private var isWant: Boolean = false
+    private var guideTime: Int = 0
     
     private var calendar = Calendar.getInstance()
     
@@ -184,11 +185,11 @@ class TaskAdditionActivity : Activity() {
         
         find<Button>(R.id.button_next).setOnClickListener {
             val num = plan_repeat_radio_group.checkedRadioButtonId
-            
-            taskRepeat = if (num != -1) {
-                find<RadioButton>(num).text.toString()
+    
+            taskRepeat = if (find<RadioButton>(num).text.toString() == "今回だけ") {
+                0
             } else {
-                "選択されていない"
+                1
             }
             setPlanNotificationTime()
         }
@@ -214,8 +215,7 @@ class TaskAdditionActivity : Activity() {
                     finishMinute + "分" + "\n繰り返し:" + taskRepeat + "\n何分前に通知するか:" +
                     notificationTime)
             
-            setScheduleInformation()
-            if (taskRepeat == "今日だけ") {
+            if (taskRepeat == 0) {
                 setScheduleInformation()
             } else {
                 setEveryInformation()
@@ -283,11 +283,6 @@ class TaskAdditionActivity : Activity() {
         
         find<Button>(R.id.button_next).setOnClickListener { setTaskRepeat() }
 
-//        val noLimit = find<Button>(R.id.no_limit)
-//        noLimit.setOnClickListener {
-//            startMonth = -1
-//            setTaskRepeat()
-//        }
         finishYear = calendar.get(Calendar.YEAR)
         
         find<ImageButton>(R.id.button_back).setOnClickListener { inputTaskName() }
@@ -301,10 +296,10 @@ class TaskAdditionActivity : Activity() {
         
         find<Button>(R.id.button_next).setOnClickListener {
             val num = task_repeat_radio_group.checkedRadioButtonId
-            taskRepeat = if (num != -1) {
-                find<RadioButton>(num).text.toString()
+            taskRepeat = if (find<RadioButton>(num).text.toString() == "今日だけ") {
+                0
             } else {
-                "選択されてない"
+                1
             }
             setMust()
         }
@@ -372,15 +367,14 @@ class TaskAdditionActivity : Activity() {
         
         val finishHourEdit = find<EditText>(R.id.finish_hour_edit)
         finishHourEdit.setText("0")
-        finishHour = 0
         
         val finishMinuteEdit = find<EditText>(R.id.finish_minute_edit)
         finishMinuteEdit.setText("5")
-        finishMinute = 5
-        
+    
+        guideTime = 5
         find<Button>(R.id.button_next).setOnClickListener {
-            finishHour = Integer.parseInt(finishHourEdit.text.toString())
-            finishMinute = Integer.parseInt(finishMinuteEdit.text.toString())
+            guideTime = Integer.parseInt(finishHourEdit.text.toString()) * 100 +
+                    Integer.parseInt(finishMinuteEdit.text.toString())
             
             if (startMonth == -1) {
                 dateLimit = -1
@@ -394,7 +388,7 @@ class TaskAdditionActivity : Activity() {
                     "\nisMust:" + isMust + "\nisShould:" + isShould + "\nisWant to:" +
                     isWant + "\n終了目安:" + finishHour + "時間" + finishMinute + "分")
             
-            if (taskRepeat == "今日だけ") {
+            if (taskRepeat == 0) {
                 setTaskInformation()
             } else {
                 setEveryInformation()
@@ -412,13 +406,7 @@ class TaskAdditionActivity : Activity() {
             start_time = "$startYear-$startMonth-$startDay $startHour:$startMinute:00"
             end_time = "$finishYear-$finishMonth-$finishDay $finishHour:$finishMinute:00"
             notice = notificationTime
-            repeat_type = when (taskRepeat) {
-                getString(R.string.everyday) -> 0
-                getString(R.string.everyWeek) -> 1
-                getString(R.string.everyMonth) -> 2
-                getString(R.string.everyYear) -> 3
-                else -> -1
-            }
+            repeat_type = taskRepeat
             
         }
         //TODO:Remove comment out when Communication
@@ -464,7 +452,7 @@ class TaskAdditionActivity : Activity() {
             guide_time = "$finishHour:$finishMinute:00"
             priority = 0
         }
-        Log.d("task", taskInformation.task_type)
+        Log.d("task", taskInformation.due_date)
         GlobalValue.taskInfoArrayList.add(0, taskInformation)
         //TODO:Remove comment out when Communication
         val postTaskInfo = PostTaskInfoAsync()

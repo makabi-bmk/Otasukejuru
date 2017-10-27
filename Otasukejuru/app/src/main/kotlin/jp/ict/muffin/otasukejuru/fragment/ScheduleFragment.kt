@@ -34,6 +34,7 @@ class ScheduleFragment : Fragment() {
     
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setSchedule()
         setCardView()
         
     }
@@ -63,8 +64,10 @@ class ScheduleFragment : Fragment() {
         val calendar = Calendar.getInstance()
         val today = (calendar.get(Calendar.MONTH) + 1) * 100 + calendar.get(Calendar.DAY_OF_MONTH)
         
+        find<RelativeLayout>(R.id.refreshRelative).removeAllViews()
         GlobalValue.scheduleInfoArrayList.forEach {
             val showScheduleDate = today + 7
+            
             val diffDays = diffDayNum(today, SplitDate().getDate(it.start_time), calendar.get
             (Calendar.YEAR))
             if (SplitDate().getDate(it.start_time) in today..showScheduleDate) {
@@ -72,7 +75,8 @@ class ScheduleFragment : Fragment() {
                 val rParam = RelativeLayout.LayoutParams(0, 0)
                 rParam.apply {
                     width = matchParent
-                    height = dip((SplitDate().getDate(it.end_time) - SplitDate().getDate(it.start_time)) * 150)
+                    height = (SplitDate().getDate(it.end_time) - SplitDate().getDate(it
+                            .start_time)) * dip(150)
                     leftMargin = dip(120)
                     rightMargin = dip(60)
                     topMargin = dip(25 + diffDays * 150)
@@ -82,13 +86,13 @@ class ScheduleFragment : Fragment() {
                     backgroundColor = Color.argb(50, 112, 173, 71)
                 }
                 val scheduleNameText = TextView(context)
-                val tPalam = RelativeLayout.LayoutParams(wrapContent, wrapContent)
-                tPalam.apply {
+                val tParam = RelativeLayout.LayoutParams(wrapContent, wrapContent)
+                tParam.apply {
                     addRule(RelativeLayout.CENTER_HORIZONTAL)
                     addRule(RelativeLayout.CENTER_VERTICAL)
                 }
                 scheduleNameText.apply {
-                    layoutParams = tPalam
+                    layoutParams = tParam
                     text = it.schedule_name
                 }
                 line.addView(scheduleNameText)
@@ -109,9 +113,13 @@ class ScheduleFragment : Fragment() {
         find<LinearLayout>(R.id.taskLinear).removeAllViews()
         (0 until forNum).forEach {
             val taskInfo = GlobalValue.taskInfoArrayList[it]
+            val hoge = SplitDate().getTime(taskInfo.due_date) / 100 * 60 +
+                    SplitDate().getTime(taskInfo.due_date) % 100
+            Log.d("date", taskInfo.due_date)
             
             val diffDays = diffDayNum(today, SplitDate().getDate(taskInfo.due_date), calendar.get
             (Calendar.YEAR))
+//            val diffTimes = diffTime()
             
             val inflater: LayoutInflater =
                     context.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
@@ -138,9 +146,10 @@ class ScheduleFragment : Fragment() {
             val lParam = RelativeLayout.LayoutParams(0, 0)
             lParam.apply {
                 width = 3
-                height = diffDays * dip(150) + dip(it - 1)
+                height = diffDays * dip(200) + hoge * dip( 0.13f) + dip(25)
+                Log.d("time", hoge.toString())
                 leftMargin = dip(80 + 45 + 90 * it)
-                topMargin = dip(25)
+//                topMargin = dip(25)
             }
             line.apply {
                 layoutParams = lParam
@@ -148,6 +157,14 @@ class ScheduleFragment : Fragment() {
             }
             find<RelativeLayout>(R.id.refreshRelative).addView(line)
         }
+    }
+    
+    private fun diffTime(beforeTime: Int, afterTime: Int, diffDay: Int): Int {
+        val before = beforeTime / 100 * 60 + beforeTime % 100
+        val after = afterTime / 100 * 60 + afterTime % 100
+        val diff = after - before
+        return diff / 60 * 100 + diff % 60
+        
     }
     
     private fun diffDayNum(beforeDate: Int, afterDate: Int, year: Int): Int {

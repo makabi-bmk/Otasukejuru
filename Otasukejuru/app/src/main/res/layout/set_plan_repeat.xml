@@ -64,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:checked="true"
-                android:text="今日だけ"
+                android:text="今回だけ"
                 android:textSize="25sp"/>
 
             <RadioButton
