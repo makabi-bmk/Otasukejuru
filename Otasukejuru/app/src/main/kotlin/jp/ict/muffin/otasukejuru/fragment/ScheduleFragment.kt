@@ -99,7 +99,6 @@ class ScheduleFragment : Fragment() {
     }
     
     
-    
     private fun setCardView() {
         val calendar = Calendar.getInstance()
         val today = (calendar.get(Calendar.MONTH) + 1) * 100 + calendar.get(Calendar.DAY_OF_MONTH)
