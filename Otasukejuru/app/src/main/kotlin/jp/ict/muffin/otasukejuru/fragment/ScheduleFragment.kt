@@ -106,20 +106,17 @@ class ScheduleFragment : Fragment() {
     private fun setCardView() {
         val calendar = Calendar.getInstance()
         val today = (calendar.get(Calendar.MONTH) + 1) * 100 + calendar.get(Calendar.DAY_OF_MONTH)
-        val showTaskNum = (GlobalValue.displayWidth - 50) / 90 - 1
+        val showTaskNum = (GlobalValue.displayWidth - 50) / 90 - 3
         
         val forNum = minOf(showTaskNum, GlobalValue.taskInfoArrayList.size)
-        Log.d("task", GlobalValue.taskInfoArrayList.toString())
         find<LinearLayout>(R.id.taskLinear).removeAllViews()
         (0 until forNum).forEach {
             val taskInfo = GlobalValue.taskInfoArrayList[it]
             val hoge = SplitDate().getTime(taskInfo.due_date) / 100 * 60 +
                     SplitDate().getTime(taskInfo.due_date) % 100
-            Log.d("date", taskInfo.due_date)
             
             val diffDays = diffDayNum(today, SplitDate().getDate(taskInfo.due_date), calendar.get
             (Calendar.YEAR))
-//            val diffTimes = diffTime()
             
             val inflater: LayoutInflater =
                     context.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
