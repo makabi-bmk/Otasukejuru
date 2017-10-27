@@ -26,7 +26,7 @@ import org.jetbrains.anko.textColor
 import java.util.*
 
 
-class ToDoListFragment : Fragment() {
+class TaskListFragment : Fragment() {
     
     private var mTimer: Timer? = null
     

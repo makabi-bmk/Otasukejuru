@@ -143,7 +143,7 @@ class ScheduleFragment : Fragment() {
             val lParam = RelativeLayout.LayoutParams(0, 0)
             lParam.apply {
                 width = 3
-                height = diffDays * dip(200) + hoge * dip( 0.13f) + dip(25)
+                height = diffDays * dip(200) + hoge * dip(0.13f) + dip(25)
                 Log.d("time", hoge.toString())
                 leftMargin = dip(80 + 45 + 90 * it)
 //                topMargin = dip(25)

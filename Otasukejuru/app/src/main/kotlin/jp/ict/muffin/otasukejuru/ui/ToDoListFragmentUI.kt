@@ -4,12 +4,12 @@ import android.support.v4.content.ContextCompat
 import android.view.View
 import android.widget.LinearLayout
 import jp.ict.muffin.otasukejuru.R
-import jp.ict.muffin.otasukejuru.fragment.ToDoListFragment
+import jp.ict.muffin.otasukejuru.fragment.TaskListFragment
 import org.jetbrains.anko.*
 
 
-class ToDoListFragmentUI() : AnkoComponent<ToDoListFragment> {
-    override fun createView(ui: AnkoContext<ToDoListFragment>): View = with(ui) {
+class ToDoListFragmentUI() : AnkoComponent<TaskListFragment> {
+    override fun createView(ui: AnkoContext<TaskListFragment>): View = with(ui) {
         
         relativeLayout {
             lparams {

@@ -15,7 +15,7 @@ import jp.ict.muffin.otasukejuru.`object`.GlobalValue
 import jp.ict.muffin.otasukejuru.communication.GetInformation
 import jp.ict.muffin.otasukejuru.fragment.ScheduleFragment
 import jp.ict.muffin.otasukejuru.fragment.TimerSetTimeFragment
-import jp.ict.muffin.otasukejuru.fragment.ToDoListFragment
+import jp.ict.muffin.otasukejuru.fragment.TaskListFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.find
 import org.jetbrains.anko.startActivity
@@ -102,7 +102,7 @@ class MainActivity : AppCompatActivity() {
         // getItem is called to instantiate the fragment for the given page.
         override fun getItem(position: Int): Fragment? = when (position) {
             0 -> ScheduleFragment()
-            1 -> ToDoListFragment()
+            1 -> TaskListFragment()
             2 -> TimerSetTimeFragment()
             else -> null
         }
