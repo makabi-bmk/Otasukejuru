@@ -105,7 +105,8 @@ class ScheduleFragment : Fragment() {
     
     private fun setCardView() {
         val calendar = Calendar.getInstance()
-        val today = (calendar.get(Calendar.MONTH) + 1) * 100 + calendar.get(Calendar.DAY_OF_MONTH)
+        val today = (calendar.get(Calendar.MONTH) + 1) * 100 +
+                calendar.get(Calendar.DAY_OF_MONTH)
         val showTaskNum = (GlobalValue.displayWidth - 50) / 90 - 3
         
         val forNum = minOf(showTaskNum, GlobalValue.taskInfoArrayList.size)
@@ -115,44 +116,50 @@ class ScheduleFragment : Fragment() {
             val hoge = Utils().getTime(taskInfo.due_date) / 100 * 60 +
                     Utils().getTime(taskInfo.due_date) % 100
             
-            val diffDays = Utils().diffDayNum(today, Utils().getDate(taskInfo.due_date), calendar.get
-            (Calendar.YEAR))
+            val diffDays = Utils().diffDayNum(today, Utils().getDate(taskInfo.due_date),
+                    calendar.get(Calendar.YEAR))
             
-            val inflater: LayoutInflater =
-                    context.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
-            val linearLayout: LinearLayout =
-                    inflater.inflate(R.layout.task_card_view, null) as LinearLayout
-            
-            linearLayout.apply {
-                dateTextView.apply {
-                    text = diffDays.toString()
-                    if (taskInfo.priority == 0) {
-                        textColor = ContextCompat.getColor(context, R.color.mostPriority)
+            if (-1 < diffDays) {
+                
+                val inflater: LayoutInflater =
+                        context.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
+                val linearLayout: LinearLayout =
+                        inflater.inflate(R.layout.task_card_view,
+                                null) as LinearLayout
+                
+                linearLayout.apply {
+                    dateTextView.apply {
+                        text = diffDays.toString()
+                        if (taskInfo.priority == 0) {
+                            textColor = ContextCompat.getColor(context,
+                                    R.color.mostPriority)
+                        }
+                    }
+                    taskNameTextView.text = taskInfo.task_name
+                    cardView.apply {
+                        tag = Utils().getDate(taskInfo.due_date)
+                        setOnClickListener {
+                        }
                     }
                 }
-                taskNameTextView.text = taskInfo.task_name
-                cardView.apply {
-                    tag = Utils().getDate(taskInfo.due_date)
-                    setOnClickListener {
-                    }
-                }
-            }
-            find<LinearLayout>(R.id.taskLinear).addView(linearLayout, it)
-            
-            val line = LinearLayout(context)
-            val lParam = RelativeLayout.LayoutParams(0, 0)
-            lParam.apply {
-                width = 3
-                height = diffDays * dip(200) + hoge * dip(0.13f) + dip(25)
-                Log.d("time", hoge.toString())
-                leftMargin = dip(80 + 45 + 90 * it)
+                find<LinearLayout>(R.id.taskLinear).addView(linearLayout, it)
+                
+                val line = LinearLayout(context)
+                val lParam = RelativeLayout.LayoutParams(0, 0)
+                lParam.apply {
+                    width = 3
+                    height = diffDays * dip(200) + hoge *
+                            dip(0.13f) + dip(25)
+                    Log.d("time", hoge.toString())
+                    leftMargin = dip(80 + 45 + 90 * it)
 //                topMargin = dip(25)
+                }
+                line.apply {
+                    layoutParams = lParam
+                    backgroundColor = ContextCompat.getColor(context, R.color.mostPriority)
+                }
+                find<RelativeLayout>(R.id.refreshRelative).addView(line)
             }
-            line.apply {
-                layoutParams = lParam
-                backgroundColor = ContextCompat.getColor(context, R.color.mostPriority)
-            }
-            find<RelativeLayout>(R.id.refreshRelative).addView(line)
         }
     }
 }
