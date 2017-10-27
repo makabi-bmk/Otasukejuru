@@ -15,7 +15,7 @@ import android.widget.TextView
 import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
 import jp.ict.muffin.otasukejuru.activity.DateActivity
-import jp.ict.muffin.otasukejuru.other.SplitDate
+import jp.ict.muffin.otasukejuru.other.Utils
 import jp.ict.muffin.otasukejuru.view.FlickCheck
 import kotlinx.android.synthetic.main.fragment_calendar.*
 import org.jetbrains.anko.backgroundColor
@@ -65,8 +65,8 @@ class CalendarFragment : Fragment() {
         (0 until totalScheduleSize).forEach {
             val thisMonth = month + 1
             val schedule = GlobalValue.scheduleInfoArrayList[it]
-            val scheduleDay = SplitDate().getDate(schedule.start_time) % 100
-            if (thisMonth == SplitDate().getDate(schedule.start_time) / 100) {
+            val scheduleDay = Utils().getDate(schedule.start_time) % 100
+            if (thisMonth == Utils().getDate(schedule.start_time) / 100) {
                 dateViews[scheduleDay - 1]?.find<TextView>(when (scheduleNum[scheduleDay]++) {
                     0 -> R.id.schedule_view1
                     1 -> R.id.schedule_view2

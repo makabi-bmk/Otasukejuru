@@ -15,7 +15,7 @@ import jp.ict.muffin.otasukejuru.`object`.GlobalValue
 import jp.ict.muffin.otasukejuru.`object`.TaskInfo
 import jp.ict.muffin.otasukejuru.activity.TaskAdditionActivity
 import jp.ict.muffin.otasukejuru.activity.TimeSetActivity
-import jp.ict.muffin.otasukejuru.other.SplitDate
+import jp.ict.muffin.otasukejuru.other.Utils
 import jp.ict.muffin.otasukejuru.ui.ToDoListFragmentUI
 import kotlinx.android.synthetic.main.fragment_list_todo.*
 import kotlinx.android.synthetic.main.task_card_view.view.*
@@ -80,9 +80,8 @@ class ToDoListFragment : Fragment() {
         
         val showTaskNum = GlobalValue.displayWidth / 90 - 1
         GlobalValue.taskInfoArrayList.forEach { element ->
-            val diffDays = diffDayNum(today, SplitDate().getDate(element.due_date), calendar.get
-            (Calendar
-                    .YEAR))
+            val diffDays = Utils().diffDayNum(today, Utils().getDate(element.due_date),
+                    calendar.get(Calendar.YEAR))
             
             val inflater: LayoutInflater = context.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
             val linearLayout: LinearLayout = inflater.inflate(R.layout.task_card_view, null) as LinearLayout
@@ -96,7 +95,7 @@ class ToDoListFragment : Fragment() {
                 }
                 taskNameTextView.text = element.task_name
                 cardView.apply {
-                    tag = SplitDate().getDate(element.due_date)
+                    tag = Utils().getDate(element.due_date)
                     setOnClickListener {
                         createDialog(taskNameTextView.text.toString(), element)
                     }
@@ -161,18 +160,4 @@ class ToDoListFragment : Fragment() {
         setCardView()
     }
     
-    private fun diffDayNum(beforeDate: Int, afterDate: Int, year: Int): Int {
-        
-        val totalDays = if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0) {
-            intArrayOf(0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334)
-        } else {
-            intArrayOf(0, 31, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335)
-        }
-        
-        val beforeDay: Int = beforeDate % 100
-        val beforeMonth: Int = beforeDate / 100
-        val afterDay: Int = afterDate % 100
-        val afterMonth: Int = afterDate / 100
-        return (totalDays[afterMonth] + afterDay - (totalDays[beforeMonth] + beforeDay))
-    }
 }

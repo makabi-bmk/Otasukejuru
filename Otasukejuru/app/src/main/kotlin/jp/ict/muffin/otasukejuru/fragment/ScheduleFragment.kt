@@ -15,7 +15,7 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
-import jp.ict.muffin.otasukejuru.other.SplitDate
+import jp.ict.muffin.otasukejuru.other.Utils
 import jp.ict.muffin.otasukejuru.ui.ScheduleFragmentUI
 import kotlinx.android.synthetic.main.task_card_view.view.*
 import org.jetbrains.anko.*
@@ -68,14 +68,14 @@ class ScheduleFragment : Fragment() {
         GlobalValue.scheduleInfoArrayList.forEach {
             val showScheduleDate = today + 7
             
-            val diffDays = diffDayNum(today, SplitDate().getDate(it.start_time), calendar.get
+            val diffDays = Utils().diffDayNum(today, Utils().getDate(it.start_time), calendar.get
             (Calendar.YEAR))
-            if (SplitDate().getDate(it.start_time) in today..showScheduleDate) {
+            if (Utils().getDate(it.start_time) in today..showScheduleDate) {
                 val line = RelativeLayout(context)
                 val rParam = RelativeLayout.LayoutParams(0, 0)
                 rParam.apply {
                     width = matchParent
-                    height = (SplitDate().getDate(it.end_time) - SplitDate().getDate(it
+                    height = (Utils().getDate(it.end_time) - Utils().getDate(it
                             .start_time)) * dip(150)
                     leftMargin = dip(120)
                     rightMargin = dip(60)
@@ -112,10 +112,10 @@ class ScheduleFragment : Fragment() {
         find<LinearLayout>(R.id.taskLinear).removeAllViews()
         (0 until forNum).forEach {
             val taskInfo = GlobalValue.taskInfoArrayList[it]
-            val hoge = SplitDate().getTime(taskInfo.due_date) / 100 * 60 +
-                    SplitDate().getTime(taskInfo.due_date) % 100
+            val hoge = Utils().getTime(taskInfo.due_date) / 100 * 60 +
+                    Utils().getTime(taskInfo.due_date) % 100
             
-            val diffDays = diffDayNum(today, SplitDate().getDate(taskInfo.due_date), calendar.get
+            val diffDays = Utils().diffDayNum(today, Utils().getDate(taskInfo.due_date), calendar.get
             (Calendar.YEAR))
             
             val inflater: LayoutInflater =
@@ -132,7 +132,7 @@ class ScheduleFragment : Fragment() {
                 }
                 taskNameTextView.text = taskInfo.task_name
                 cardView.apply {
-                    tag = SplitDate().getDate(taskInfo.due_date)
+                    tag = Utils().getDate(taskInfo.due_date)
                     setOnClickListener {
                     }
                 }
@@ -154,28 +154,5 @@ class ScheduleFragment : Fragment() {
             }
             find<RelativeLayout>(R.id.refreshRelative).addView(line)
         }
-    }
-    
-    private fun diffTime(beforeTime: Int, afterTime: Int, diffDay: Int): Int {
-        val before = beforeTime / 100 * 60 + beforeTime % 100
-        val after = afterTime / 100 * 60 + afterTime % 100
-        val diff = after - before
-        return diff / 60 * 100 + diff % 60
-        
-    }
-    
-    private fun diffDayNum(beforeDate: Int, afterDate: Int, year: Int): Int {
-        
-        val totalDays = if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0) {
-            intArrayOf(0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334)
-        } else {
-            intArrayOf(0, 31, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335)
-        }
-        
-        val beforeDay: Int = beforeDate % 100
-        val beforeMonth: Int = beforeDate / 100
-        val afterDay: Int = afterDate % 100
-        val afterMonth: Int = afterDate / 100
-        return (totalDays[afterMonth] + afterDay - (totalDays[beforeMonth] + beforeDay))
     }
 }
