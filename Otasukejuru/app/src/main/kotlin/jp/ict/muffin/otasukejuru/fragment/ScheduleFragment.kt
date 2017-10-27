@@ -12,18 +12,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
+import android.widget.TextView
 import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
 import jp.ict.muffin.otasukejuru.other.SplitDate
 import jp.ict.muffin.otasukejuru.ui.ScheduleFragmentUI
 import kotlinx.android.synthetic.main.task_card_view.view.*
-import org.jetbrains.anko.AnkoContext
-import org.jetbrains.anko.backgroundColor
-import org.jetbrains.anko.matchParent
+import org.jetbrains.anko.*
 import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.dip
 import org.jetbrains.anko.support.v4.find
-import org.jetbrains.anko.textColor
 import java.util.*
 
 
@@ -83,6 +81,17 @@ class ScheduleFragment : Fragment() {
                     layoutParams = lParam
                     backgroundColor = Color.argb(50, 112, 173, 71)
                 }
+                val scheduleNameText = TextView(context)
+                val hoge = RelativeLayout.LayoutParams(wrapContent, wrapContent)
+                hoge.apply {
+                    addRule(RelativeLayout.CENTER_HORIZONTAL)
+                    addRule(RelativeLayout.CENTER_VERTICAL)
+                }
+                scheduleNameText.apply {
+                    layoutParams = hoge
+                    text = it.schedule_name
+                }
+                line.addView(scheduleNameText)
                 find<RelativeLayout>(R.id.refreshRelative).addView(line)
             }
         }
