@@ -1,5 +1,8 @@
 package jp.ict.muffin.otasukejuru.other
 
+import java.text.SimpleDateFormat
+import java.util.*
+
 
 class Utils {
     fun getDate(time: String): Int {
@@ -43,5 +46,11 @@ class Utils {
         val diff = after - before
         return diff / 60 * 100 + diff % 60
         
+    }
+    
+    fun getNowDate(): String {
+        val df = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+        val date = Date(System.currentTimeMillis())
+        return df.format(date)
     }
 }

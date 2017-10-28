@@ -76,7 +76,7 @@ class TaskListFragment : Fragment() {
         var middlePriorityNum = 0
         var lowPriorityNum = 0
         val calendar = Calendar.getInstance()
-        val today = (calendar.get(Calendar.MONTH) + 1) * 100 + calendar.get(Calendar.DAY_OF_MONTH)
+        var today = (calendar.get(Calendar.MONTH) + 1) * 100 + calendar.get(Calendar.DAY_OF_MONTH)
         
         val showTaskNum = GlobalValue.displayWidth / 90 - 1
         GlobalValue.taskInfoArrayList.forEach { element ->
@@ -89,7 +89,7 @@ class TaskListFragment : Fragment() {
             linearLayout.apply {
                 dateTextView.apply {
                     text = diffDays.toString()
-                    if (element.priority == 0) {
+                    if (element.priority == 0 && (diffDays == 1 || diffDays == 0)) {
                         textColor = ContextCompat.getColor(context, R.color.mostPriority)
                     }
                 }
@@ -101,7 +101,9 @@ class TaskListFragment : Fragment() {
                     }
                 }
             }
+            
             when (element.priority) {
+//            when (Utils().diffDayNum(today, Utils().getDate(element.due_date), 2017)) {
                 0 -> mostPriorityCardLinear
                 1 -> {
                     highPriorityNum++

@@ -36,7 +36,47 @@ class ScheduleFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setSchedule()
         setCardView()
+        drawNowLine()
+    }
+    
+    private fun drawNowLine() {
+        val nowDate = Utils().getNowDate()
+        val nowTime = Utils().getTime(nowDate)
         
+        val nowMinute = nowTime / 100 * 60 + nowTime % 100
+        val line = RelativeLayout(context)
+        val nowText = TextView(context)
+        val rParam = RelativeLayout.LayoutParams(0, 0)
+        rParam.apply {
+            width = matchParent
+            height = 2
+            leftMargin = dip(40)
+            rightMargin = dip(20)
+            topMargin = dip(25) + (0.18f * nowMinute).toInt()
+        }
+        line.apply {
+            layoutParams = rParam
+            backgroundColor = Color.GRAY
+        }
+    
+        val tParam = RelativeLayout.LayoutParams(0, 0)
+        tParam.apply {
+            width = wrapContent
+            height = wrapContent
+            leftMargin = dip(10)
+            topMargin = dip(15) + (0.18f * nowMinute).toInt()
+        }
+        nowText.apply {
+            text = "現在"
+            layoutParams = tParam
+        }
+        
+        
+        
+        find<RelativeLayout>(R.id.refreshRelative).apply {
+            addView(line)
+            addView(nowText)
+        }
     }
     
     override fun onResume() {
@@ -49,6 +89,7 @@ class ScheduleFragment : Fragment() {
                     find<RelativeLayout>(R.id.refreshRelative).removeAllViews()
                     setSchedule()
                     setCardView()
+                    drawNowLine()
                 }
             }
         }, 5000, 5000)
@@ -71,7 +112,7 @@ class ScheduleFragment : Fragment() {
             val diffDays = Utils().diffDayNum(today, Utils().getDate(it.start_time), calendar.get
             (Calendar.YEAR))
             if (Utils().getDate(it.start_time) in today..showScheduleDate) {
-                val line = RelativeLayout(context)
+                val schedule = RelativeLayout(context)
                 val rParam = RelativeLayout.LayoutParams(0, 0)
                 val endMinute = Utils().getTime(it.end_time) / 100 * 60 +
                         Utils().getTime(it.end_time) % 100
@@ -85,9 +126,9 @@ class ScheduleFragment : Fragment() {
                     leftMargin = dip(120)
                     rightMargin = dip(60)
                     topMargin = dip(25) + diffDays * dip(200) +
-                            dip(0.18f) * startMinute
+                            (0.18f * startMinute).toInt()
                 }
-                line.apply {
+                schedule.apply {
                     layoutParams = rParam
                     backgroundColor = Color.argb(100, 112, 173, 71)
                 }
@@ -101,8 +142,8 @@ class ScheduleFragment : Fragment() {
                     layoutParams = tParam
                     text = it.schedule_name
                 }
-                line.addView(scheduleNameText)
-                find<RelativeLayout>(R.id.refreshRelative).addView(line)
+                schedule.addView(scheduleNameText)
+                find<RelativeLayout>(R.id.refreshRelative).addView(schedule, 0)
             }
         }
         
@@ -114,6 +155,7 @@ class ScheduleFragment : Fragment() {
         val today = (calendar.get(Calendar.MONTH) + 1) * 100 +
                 calendar.get(Calendar.DAY_OF_MONTH)
         val showTaskNum = (GlobalValue.displayWidth - 50) / 90 - 3
+        
         
         val forNum = minOf(showTaskNum, GlobalValue.taskInfoArrayList.size)
         find<LinearLayout>(R.id.taskLinear).removeAllViews()
@@ -136,7 +178,7 @@ class ScheduleFragment : Fragment() {
                 linearLayout.apply {
                     dateTextView.apply {
                         text = diffDays.toString()
-                        if (taskInfo.priority == 0) {
+                        if (taskInfo.priority == 0 && (diffDays == 1 || diffDays == 0)) {
                             textColor = ContextCompat.getColor(context,
                                     R.color.mostPriority)
                         }
@@ -148,16 +190,16 @@ class ScheduleFragment : Fragment() {
                         }
                     }
                 }
-                find<LinearLayout>(R.id.taskLinear).addView(linearLayout, it)
+                find<LinearLayout>(R.id.taskLinear).addView(linearLayout, 0)
                 
                 val line = LinearLayout(context)
                 val lParam = RelativeLayout.LayoutParams(0, 0)
                 lParam.apply {
                     width = 3
                     height = diffDays * dip(200) + hoge *
-                            dip(0.13f) + dip(25)
+                            0.13f.toInt() + dip(25)
                     Log.d("time", hoge.toString())
-                    leftMargin = dip(80 + 45 + 90 * it)
+                    leftMargin = dip(80 + 45 + 90 * (GlobalValue.taskInfoArrayList.size - 1 - it))
 //                topMargin = dip(25)
                 }
                 line.apply {
