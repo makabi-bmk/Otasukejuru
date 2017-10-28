@@ -100,6 +100,9 @@ class TaskListFragment : Fragment() {
                         createDialog(taskNameTextView.text.toString(), element)
                     }
                 }
+                val rParam = LinearLayout.LayoutParams(0, (element.progress * 0.7).toInt())
+                taskProgress.layoutParams = rParam
+                
             }
             
             when (element.priority) {
