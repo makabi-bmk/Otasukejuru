@@ -68,18 +68,18 @@ class ScheduleFragment : Fragment() {
         GlobalValue.scheduleInfoArrayList.forEach {
             val showScheduleDate = today + 7
             
-            val diffDays = Utils().diffDayNum(today, Utils().getDate(it.start_date), calendar.get
+            val diffDays = Utils().diffDayNum(today, Utils().getDate(it.start_time), calendar.get
             (Calendar.YEAR))
-            if (Utils().getDate(it.start_date) in today..showScheduleDate) {
+            if (Utils().getDate(it.start_time) in today..showScheduleDate) {
                 val line = RelativeLayout(context)
                 val rParam = RelativeLayout.LayoutParams(0, 0)
-                val endMinute = Utils().getTime(it.end_date) / 100 * 60 +
-                        Utils().getTime(it.end_date) % 100
-                val startMinute = Utils().getTime(it.start_date) / 100 * 60 +
-                        Utils().getTime(it.start_date) % 100
+                val endMinute = Utils().getTime(it.end_time) / 100 * 60 +
+                        Utils().getTime(it.end_time) % 100
+                val startMinute = Utils().getTime(it.start_time) / 100 * 60 +
+                        Utils().getTime(it.start_time) % 100
                 rParam.apply {
                     width = matchParent
-                    height = ((Utils().getDate(it.end_date) - Utils().getDate(it.start_date)) *
+                    height = ((Utils().getDate(it.end_time) - Utils().getDate(it.start_time)) *
                             dip(150) + endMinute * dip(0.18f))
                     Log.d("height", endMinute.toString())
                     leftMargin = dip(120)

@@ -419,8 +419,8 @@ class TaskAdditionActivity : Activity() {
         val scheduleInformation = ScheduleInfo()
         scheduleInformation.apply {
             schedule_name = taskTitleName
-            start_date = "$startYear-$startMonth-$startDay $startHour:$startMinute:00"
-            end_date = "$finishYear-$finishMonth-$finishDay $finishHour:$finishMinute:00"
+            start_time = "$startYear-$startMonth-$startDay $startHour:$startMinute:00"
+            end_time = "$finishYear-$finishMonth-$finishDay $finishHour:$finishMinute:00"
 //            startDate = startMonth * 100 + startDay
 //            endDate = finishMonth * 100 + finishDay
         }
