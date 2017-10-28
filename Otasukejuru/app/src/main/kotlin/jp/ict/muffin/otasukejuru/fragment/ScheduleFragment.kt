@@ -58,7 +58,7 @@ class ScheduleFragment : Fragment() {
             layoutParams = rParam
             backgroundColor = Color.GRAY
         }
-    
+        
         val tParam = RelativeLayout.LayoutParams(0, 0)
         tParam.apply {
             width = wrapContent
@@ -121,7 +121,7 @@ class ScheduleFragment : Fragment() {
                 rParam.apply {
                     width = matchParent
                     height = ((Utils().getDate(it.end_time) - Utils().getDate(it.start_time)) *
-                            dip(150) + endMinute * dip(0.18f))
+                            dip(150) + endMinute * 0.18f).toInt()
                     Log.d("height", endMinute.toString())
                     leftMargin = dip(120)
                     rightMargin = dip(60)
