@@ -2,6 +2,7 @@ package jp.ict.muffin.otasukejuru.`object`
 
 
 data class TaskInfo(
+        var _id: String = "",
         var task_name: String = "",
         var due_date: String = "",
         var task_type: String = "",
