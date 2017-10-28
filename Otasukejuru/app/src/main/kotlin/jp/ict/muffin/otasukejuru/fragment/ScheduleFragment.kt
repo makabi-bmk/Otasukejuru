@@ -52,7 +52,7 @@ class ScheduleFragment : Fragment() {
             height = 2
             leftMargin = dip(40)
             rightMargin = dip(20)
-            topMargin = dip(25) + (0.18f * nowMinute).toInt()
+            topMargin = (0.17f * nowMinute).toInt()
         }
         line.apply {
             layoutParams = rParam
@@ -64,7 +64,7 @@ class ScheduleFragment : Fragment() {
             width = wrapContent
             height = wrapContent
             leftMargin = dip(10)
-            topMargin = dip(15) + (0.18f * nowMinute).toInt()
+            topMargin = (0.17f * nowMinute).toInt() - dip(10)
         }
         nowText.apply {
             text = "現在"
