@@ -29,6 +29,27 @@ class TimerSetTimeFragmentUI : AnkoComponent<TimerSetTimeFragment> {
                 height = matchParent
                 width = matchParent
             }
+    
+            textView("タイマー") {
+                id = R.id.titleInterval
+                textColor = ContextCompat.getColor(context, R.color.colorPrimary)
+                textSize = 30f
+            }.lparams {
+                topMargin = dip(10)
+                leftMargin = dip(30)
+                alignParentStart()
+                alignParentTop()
+            }
+    
+            textView("タイマーを何分間セットしますか？") {
+                id = R.id.titleNotification
+                textSize = 25f
+            }.lparams {
+                below(R.id.titleInterval)
+                topMargin = dip(10)
+                leftMargin = dip(50)
+                rightMargin = dip(50)
+            }
             
             relativeLayout {
                 

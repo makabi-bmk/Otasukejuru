@@ -7,7 +7,6 @@ import android.widget.ImageButton
 import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.ui.TimerActivityUI
 import jp.ict.muffin.otasukejuru.ui.TimerIntervalActivityUI
-import jp.ict.muffin.otasukejuru.ui.TimerNotificationActivityUI
 import org.jetbrains.anko.find
 import org.jetbrains.anko.setContentView
 
@@ -27,22 +26,23 @@ class TimerActivity : Activity() {
         }
         
         find<Button>(R.id.nextButton).setOnClickListener {
-            setNotificationTime()
+//            setNotificationTime()
+            startTimer()
         }
     }
     
-    private fun setNotificationTime() {
-        TimerNotificationActivityUI(time).setContentView(this)
-        
-        find<ImageButton>(R.id.ankoBack).setOnClickListener {
-            setInterval()
-        }
-        
-        find<Button>(R.id.nextButton).setOnClickListener {
-            startTimer()
-        }
-        
-    }
+//    private fun setNotificationTime() {
+//        TimerNotificationActivityUI(time).setContentView(this)
+//
+//        find<ImageButton>(R.id.ankoBack).setOnClickListener {
+//            setInterval()
+//        }
+//
+//        find<Button>(R.id.nextButton).setOnClickListener {
+//            startTimer()
+//        }
+//
+//    }
     
     private fun startTimer() {
         TimerActivityUI(time).setContentView(this)

@@ -48,6 +48,7 @@ class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerActiv
                     id = R.id.titleInterval
                     textColor = ContextCompat.getColor(context, R.color.colorPrimary)
                     textSize = 30f
+                    requestFocus()
                 }.lparams {
                     topMargin = dip(10)
                     leftMargin = dip(30)
@@ -138,7 +139,7 @@ class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerActiv
                         rightOf(R.id.hourTextView)
                     }
                     
-                    textView("分") {
+                    textView("分間") {
                         id = R.id.minuteTextView
                     }.lparams {
                         rightOf(R.id.focusMinuteNumPick)
@@ -231,7 +232,7 @@ class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerActiv
                         height = dip(100)
                         rightOf(R.id.hourTextView)
                     }
-                    textView("分") {
+                    textView("分間") {
                         id = R.id.minuteTextView
                     }.lparams {
                         rightOf(R.id.intervalMinuteNumPick)
