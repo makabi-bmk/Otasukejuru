@@ -84,7 +84,7 @@ class ScheduleFragment : Fragment() {
                     Log.d("height", endMinute.toString())
                     leftMargin = dip(120)
                     rightMargin = dip(60)
-                    topMargin = dip(25) + diffDays * dip(2000) +
+                    topMargin = dip(25) + diffDays * dip(200) +
                             dip(0.18f) * startMinute
                 }
                 line.apply {

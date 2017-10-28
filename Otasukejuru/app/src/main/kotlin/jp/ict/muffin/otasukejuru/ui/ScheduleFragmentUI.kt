@@ -69,7 +69,7 @@ class ScheduleFragmentUI : AnkoComponent<ScheduleFragment> {
                         }
                         today += when {
                             it % 4 == 0 -> 1
-                            today == 30 -> 70
+                            today == 1031 -> 70
                             else -> 0
                         }
                     }
