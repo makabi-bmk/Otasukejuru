@@ -21,6 +21,7 @@ class TimerActivityUI(private val time: Long) : AnkoComponent<TimerActivity> {
     private lateinit var circleMini: FrameLayout
     private lateinit var circle: FrameLayout
     private lateinit var remainingHourText: TextView
+    private var countClick = 0
     
     override fun createView(ui: AnkoContext<TimerActivity>): View = with(ui) {
         relativeLayout {
@@ -75,7 +76,13 @@ class TimerActivityUI(private val time: Long) : AnkoComponent<TimerActivity> {
                 textSize = 30f
                 backgroundColor = Color.argb(0, 0, 0, 0)
                 onClick {
-                    startButtonClickListener(getContext())
+                    countClick++
+                    text = if (countClick % 2 == 0) {
+                        "一時停止"
+                    } else {
+                        "再開"
+                    }
+                    startTimerInit(getContext())
                 }
             }.lparams {
                 below(R.id.circleFrame)
@@ -84,24 +91,12 @@ class TimerActivityUI(private val time: Long) : AnkoComponent<TimerActivity> {
                 centerHorizontally()
             }
 
-//            button("start") {
-//                onClick {
-//                    if (!isPushStartButton) {
-            startButtonClickListener(context)
-//                        isPushStartButton = true
-//
-//                    }
-//                }
-//            }.lparams {
-//                width = matchParent
-//                height = wrapContent
-//                below(R.id.circleFrame)
-//            }
+            startTimerInit(context)
         }
     }
     
     
-    private fun startButtonClickListener(context: Context) {
+    private fun startTimerInit(context: Context) {
         val params: ArrayList<HashMap<String, Int>> = java.util.ArrayList()
         
         val map = HashMap<String, Int>()
