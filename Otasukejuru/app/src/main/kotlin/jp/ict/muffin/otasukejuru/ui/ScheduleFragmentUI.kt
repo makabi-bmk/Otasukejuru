@@ -29,12 +29,13 @@ class ScheduleFragmentUI : AnkoComponent<ScheduleFragment> {
                     id = R.id.taskRelative
                     (0 until 28).forEach {
                         relativeLayout {
-                            textView(when (it % 4) {
+                            val showText: String = when (it % 4) {
                                 1 -> "朝"
                                 2 -> "昼"
                                 3 -> "夜"
                                 else -> "${today / 100}月${today % 100}日"
-                            }) {
+                            }
+                            textView(showText) {
                                 id = R.id.hourText
                             }.lparams {
                                 width = wrapContent
@@ -69,7 +70,7 @@ class ScheduleFragmentUI : AnkoComponent<ScheduleFragment> {
                         }
                         today += when {
                             it % 4 == 0 -> 1
-                            today == 1031 -> 70
+                            today == 1032 -> 69
                             else -> 0
                         }
                     }
