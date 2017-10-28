@@ -1,25 +1,18 @@
 package jp.ict.muffin.otasukejuru.ui
 
-import android.content.Context
 import android.graphics.Color
 import android.support.v4.content.ContextCompat
 import android.text.InputType
 import android.view.View
 import android.widget.EditText
-import android.widget.FrameLayout
-import android.widget.TextView
 import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.activity.TimerActivity
 import jp.ict.muffin.otasukejuru.fragment.TimerSetTimeFragment
-import jp.ict.muffin.otasukejuru.view.CircleGraphView
 import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk25.coroutines.onClick
 
 class TimerSetTimeFragmentUI : AnkoComponent<TimerSetTimeFragment> {
-    private lateinit var circleMini: FrameLayout
-    private lateinit var circle: FrameLayout
     private lateinit var editTime: EditText
-    private lateinit var remainingHourText: TextView
     
     override fun createView(ui: AnkoContext<TimerSetTimeFragment>): View = with(ui) {
         relativeLayout {
@@ -29,7 +22,7 @@ class TimerSetTimeFragmentUI : AnkoComponent<TimerSetTimeFragment> {
                 height = matchParent
                 width = matchParent
             }
-    
+            
             textView("タイマー") {
                 id = R.id.titleInterval
                 textColor = ContextCompat.getColor(context, R.color.colorPrimary)
@@ -40,7 +33,7 @@ class TimerSetTimeFragmentUI : AnkoComponent<TimerSetTimeFragment> {
                 alignParentStart()
                 alignParentTop()
             }
-    
+            
             textView("タイマーを何分間セットしますか？") {
                 id = R.id.titleNotification
                 textSize = 25f
@@ -58,7 +51,15 @@ class TimerSetTimeFragmentUI : AnkoComponent<TimerSetTimeFragment> {
                     id = R.id.setTimeEdit
                 }.lparams {
                     height = wrapContent
-                    width = matchParent
+                    width = dip(200)
+                    centerHorizontally()
+                }
+                textView("分間") {
+                    textSize = 20f
+                }.lparams {
+                    width = wrapContent
+                    height = wrapContent
+                    rightOf(editTime)
                 }
                 
                 button("次へ") {
@@ -93,29 +94,4 @@ class TimerSetTimeFragmentUI : AnkoComponent<TimerSetTimeFragment> {
         }
     }
     
-    private fun drawCircle(context: Context, time: Long) {
-        val drawTime: Long = if (time % 60 == 0L) {
-            60L
-        } else {
-            time % 60L
-        }
-        
-        val backColor = ContextCompat.getColor(context, R.color.back)
-        val redColor = ContextCompat.getColor(context, R.color.mostPriority)
-        
-        val params: ArrayList<HashMap<String, Int>> = java.util.ArrayList()
-        val colors = arrayListOf(backColor, redColor)
-        val drawCircleTime = arrayListOf(60 - drawTime, drawTime)
-        (0 until 2).forEach {
-            val mapSI = HashMap<String, Int>()
-            mapSI.put("color", colors[it])
-            mapSI.put("value", drawCircleTime[it].toInt())
-            params.add(mapSI)
-        }
-        
-        val circleGraphView = CircleGraphView(context, params, true)
-        circle.addView(circleGraphView)
-        circleGraphView.startAnimation()
-        remainingHourText.text = ((time - 1) / 60).toString()
-    }
 }
