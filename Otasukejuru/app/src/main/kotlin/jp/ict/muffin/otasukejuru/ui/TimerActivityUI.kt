@@ -1,6 +1,7 @@
 package jp.ict.muffin.otasukejuru.ui
 
 import android.content.Context
+import android.graphics.Color
 import android.os.Handler
 import android.os.Looper
 import android.support.v4.content.ContextCompat
@@ -68,19 +69,34 @@ class TimerActivityUI(private val time: Long) : AnkoComponent<TimerActivity> {
                 }
             }
             
-            button("start") {
+            
+            button("一時停止") {
+                textColor = ContextCompat.getColor(context, R.color.colorPrimary)
+                textSize = 30f
+                backgroundColor = Color.argb(0, 0, 0, 0)
                 onClick {
-                    if (!isPushStartButton) {
-                        startButtonClickListener(getContext())
-                        isPushStartButton = true
-                        
-                    }
+                    startButtonClickListener(getContext())
                 }
             }.lparams {
-                width = matchParent
-                height = wrapContent
                 below(R.id.circleFrame)
+                width = wrapContent
+                height = wrapContent
+                centerHorizontally()
             }
+
+//            button("start") {
+//                onClick {
+//                    if (!isPushStartButton) {
+            startButtonClickListener(context)
+//                        isPushStartButton = true
+//
+//                    }
+//                }
+//            }.lparams {
+//                width = matchParent
+//                height = wrapContent
+//                below(R.id.circleFrame)
+//            }
         }
     }
     

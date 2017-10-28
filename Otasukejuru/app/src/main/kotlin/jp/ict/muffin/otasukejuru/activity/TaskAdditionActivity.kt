@@ -405,7 +405,7 @@ class TaskAdditionActivity : Activity() {
             every_name = taskTitleName
             start_time = "$startYear-$startMonth-$startDay $startHour:$startMinute:00"
             end_time = "$finishYear-$finishMonth-$finishDay $finishHour:$finishMinute:00"
-            notice = notificationTime
+//            notice = notificationTime
             repeat_type = taskRepeat
             
         }
