@@ -10,12 +10,12 @@ import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk25.coroutines.onClick
 
 
-class InputProgressActivityUI : AnkoComponent<InputProgressActivity> {
+class InputProgressActivityUI(private val index: Int) : AnkoComponent<InputProgressActivity> {
     override fun createView(ui: AnkoContext<InputProgressActivity>): View = with(ui) {
         relativeLayout {
             val progressBar = progressBar {
                 id = R.id.inputProgressBar
-                progress = GlobalValue.taskInfoArrayList[0].progress
+                progress = GlobalValue.taskInfoArrayList[index].progress
             }.lparams {
                 width = wrapContent
                 height = wrapContent
@@ -29,7 +29,7 @@ class InputProgressActivityUI : AnkoComponent<InputProgressActivity> {
                 textColor = ContextCompat.getColor(context, R.color.colorPrimary)
                 textSize = 20f
                 onClick {
-                    GlobalValue.taskInfoArrayList[0].progress = progressBar.progress
+                    GlobalValue.taskInfoArrayList[index].progress = progressBar.progress
                 }
             }.lparams {
                 margin = 30

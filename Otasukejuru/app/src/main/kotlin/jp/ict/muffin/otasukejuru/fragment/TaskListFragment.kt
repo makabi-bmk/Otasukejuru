@@ -13,6 +13,7 @@ import android.widget.LinearLayout
 import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
 import jp.ict.muffin.otasukejuru.`object`.TaskInfo
+import jp.ict.muffin.otasukejuru.activity.InputProgressActivity
 import jp.ict.muffin.otasukejuru.activity.TaskAdditionActivity
 import jp.ict.muffin.otasukejuru.activity.TimeSetActivity
 import jp.ict.muffin.otasukejuru.other.Utils
@@ -20,6 +21,7 @@ import jp.ict.muffin.otasukejuru.ui.ToDoListFragmentUI
 import kotlinx.android.synthetic.main.fragment_list_todo.*
 import kotlinx.android.synthetic.main.task_card_view.view.*
 import org.jetbrains.anko.AnkoContext
+import org.jetbrains.anko.collections.forEachWithIndex
 import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.textColor
@@ -79,7 +81,7 @@ class TaskListFragment : Fragment() {
         var today = (calendar.get(Calendar.MONTH) + 1) * 100 + calendar.get(Calendar.DAY_OF_MONTH)
         
         val showTaskNum = GlobalValue.displayWidth / 90 - 1
-        GlobalValue.taskInfoArrayList.forEach { element ->
+        GlobalValue.taskInfoArrayList.forEachWithIndex { index, element ->
             val diffDays = Utils().diffDayNum(today, Utils().getDate(element.due_date),
                     calendar.get(Calendar.YEAR))
             
@@ -97,7 +99,7 @@ class TaskListFragment : Fragment() {
                 cardView.apply {
                     tag = Utils().getDate(element.due_date)
                     setOnClickListener {
-                        createDialog(taskNameTextView.text.toString(), element)
+                        createDialog(taskNameTextView.text.toString(), element, index)
                     }
                 }
                 val rParam = LinearLayout.LayoutParams(0, (element.progress * 0.7).toInt())
@@ -136,8 +138,8 @@ class TaskListFragment : Fragment() {
         }
     }
     
-    private fun createDialog(tag: String, element: TaskInfo) {
-        val listDialog = arrayOf("開始", "変更", "完了", "削除")
+    private fun createDialog(tag: String, element: TaskInfo, index: Int) {
+        val listDialog = arrayOf("開始", "変更", "完了", "削除", "進捗")
         
         AlertDialog.Builder(activity)
                 .setTitle(tag)
@@ -149,6 +151,10 @@ class TaskListFragment : Fragment() {
                         
                         1 -> {
                             startActivity<TaskAdditionActivity>("init" to true)
+                        }
+                        
+                        4 -> {
+                            startActivity<InputProgressActivity>("index" to index)
                         }
                         
                         else -> {
