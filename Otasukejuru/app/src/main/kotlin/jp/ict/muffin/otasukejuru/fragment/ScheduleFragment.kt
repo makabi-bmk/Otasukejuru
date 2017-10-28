@@ -68,22 +68,28 @@ class ScheduleFragment : Fragment() {
         GlobalValue.scheduleInfoArrayList.forEach {
             val showScheduleDate = today + 7
             
-            val diffDays = Utils().diffDayNum(today, Utils().getDate(it.start_time), calendar.get
+            val diffDays = Utils().diffDayNum(today, Utils().getDate(it.start_date), calendar.get
             (Calendar.YEAR))
-            if (Utils().getDate(it.start_time) in today..showScheduleDate) {
+            if (Utils().getDate(it.start_date) in today..showScheduleDate) {
                 val line = RelativeLayout(context)
                 val rParam = RelativeLayout.LayoutParams(0, 0)
+                val endMinute = Utils().getTime(it.end_date) / 100 * 60 +
+                        Utils().getTime(it.end_date) % 100
+                val startMinute = Utils().getTime(it.start_date) / 100 * 60 +
+                        Utils().getTime(it.start_date) % 100
                 rParam.apply {
                     width = matchParent
-                    height = (Utils().getDate(it.end_time) - Utils().getDate(it
-                            .start_time)) * dip(150)
+                    height = ((Utils().getDate(it.end_date) - Utils().getDate(it.start_date)) *
+                            dip(150) + endMinute * dip(0.18f))
+                    Log.d("height", endMinute.toString())
                     leftMargin = dip(120)
                     rightMargin = dip(60)
-                    topMargin = dip(25 + diffDays * 150)
+                    topMargin = dip(25) + diffDays * dip(2000) +
+                            dip(0.18f) * startMinute
                 }
                 line.apply {
                     layoutParams = rParam
-                    backgroundColor = Color.argb(50, 112, 173, 71)
+                    backgroundColor = Color.argb(100, 112, 173, 71)
                 }
                 val scheduleNameText = TextView(context)
                 val tParam = RelativeLayout.LayoutParams(wrapContent, wrapContent)

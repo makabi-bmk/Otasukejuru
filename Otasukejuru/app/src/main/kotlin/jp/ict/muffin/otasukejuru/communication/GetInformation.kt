@@ -98,6 +98,7 @@ class GetInformation : AsyncTask<Unit, Unit, Unit>() {
                     }
                 }
             }
+            Log.d(key, jsonArray.toString())
 //            adapter.fromJson(json)?.let { GlobalValue.scheduleInfoArrayList.add(it) }
         
         }
