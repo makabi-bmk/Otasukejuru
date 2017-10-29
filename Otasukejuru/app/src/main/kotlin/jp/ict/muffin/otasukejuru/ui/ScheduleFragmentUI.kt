@@ -66,7 +66,7 @@ class ScheduleFragmentUI : AnkoComponent<ScheduleFragment> {
                         }.lparams {
                             width = matchParent
                             height = dip(50)
-                            topMargin = it * 50
+                            topMargin = dip(it * 50)
                         }
                         today += when {
                             it % 4 == 0 -> 1
