@@ -53,9 +53,9 @@ class ScheduleFragmentUI : AnkoComponent<ScheduleFragment> {
                             }.lparams {
                                 width = matchParent
                                 height = dip(if (it % 4 == 0) {
-                                    2
+                                    3
                                 } else {
-                                    1
+                                    2
                                 })
                                 leftMargin = dip(80)
                                 rightMargin = dip(20)

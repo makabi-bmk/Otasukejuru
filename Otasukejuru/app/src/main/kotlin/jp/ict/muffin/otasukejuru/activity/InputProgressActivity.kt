@@ -6,6 +6,7 @@ import android.widget.Button
 import android.widget.SeekBar
 import android.widget.TextView
 import jp.ict.muffin.otasukejuru.R
+import jp.ict.muffin.otasukejuru.`object`.GlobalValue
 import jp.ict.muffin.otasukejuru.ui.InputProgressActivityUI
 import org.jetbrains.anko.find
 import org.jetbrains.anko.sdk25.coroutines.onClick
@@ -13,10 +14,11 @@ import org.jetbrains.anko.setContentView
 
 
 class InputProgressActivity : AppCompatActivity() {
+    private var index: Int = 0
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val index = intent.getIntExtra("index", 0)
+        index = intent.getIntExtra("index", 0)
         InputProgressActivityUI(index).setContentView(this)
     }
     
@@ -29,6 +31,7 @@ class InputProgressActivity : AppCompatActivity() {
             override fun onProgressChanged(seekBar: SeekBar,
                                            progress: Int, fromUser: Boolean) {
                 find<TextView>(R.id.progressTextView).text = seekBar.progress.toString()
+                GlobalValue.taskInfoArrayList[index].progress = progress
             }
             
             //ツマミがタッチされた時に呼ばれる

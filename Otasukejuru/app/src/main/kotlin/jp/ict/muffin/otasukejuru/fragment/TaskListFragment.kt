@@ -43,7 +43,6 @@ class TaskListFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View =
             ToDoListFragmentUI().createView(AnkoContext.create(ctx, this))
-//            inflater.inflate(R.layout.fragment_list_todo, container, false)
     
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -112,6 +111,7 @@ class TaskListFragment : Fragment() {
                     }
                 }
                 val rParam = LinearLayout.LayoutParams(0, (element.progress * 0.7).toInt())
+                Log.d("progress", element.progress.toString())
                 taskProgress.layoutParams = rParam
                 
             }

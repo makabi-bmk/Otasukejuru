@@ -50,7 +50,7 @@ class ScheduleFragment : Fragment() {
         val rParam = RelativeLayout.LayoutParams(0, 0)
         rParam.apply {
             width = matchParent
-            height = 2
+            height = 3
             leftMargin = dip(40)
             rightMargin = dip(20)
             topMargin = dip(0.16f * nowMinute)
@@ -165,7 +165,7 @@ class ScheduleFragment : Fragment() {
         val calendar = Calendar.getInstance()
         val today = (calendar.get(Calendar.MONTH) + 1) * 100 +
                 calendar.get(Calendar.DAY_OF_MONTH)
-        val showTaskNum = (GlobalValue.displayWidth - 50) / 90 - 3
+        val showTaskNum = (GlobalValue.displayWidth - 50) / 90 - 2
         
         
         val forNum = minOf(showTaskNum, GlobalValue.taskInfoArrayList.size)
@@ -178,7 +178,7 @@ class ScheduleFragment : Fragment() {
             val diffDays = Utils().diffDayNum(today, Utils().getDate(taskInfo.due_date),
                     calendar.get(Calendar.YEAR))
             
-            if (-1 < diffDays) {
+            if (-1 < diffDays && diffDays < 8) {
                 
                 val inflater: LayoutInflater =
                         context.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
