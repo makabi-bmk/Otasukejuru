@@ -32,7 +32,7 @@ class ScheduleFragmentUI : AnkoComponent<ScheduleFragment> {
                             val showText: String = when (it % 4) {
                                 1 -> "朝"
                                 2 -> "昼"
-                                3 -> "夜"
+                                3 -> "夕"
                                 else -> "${today / 100}月${today % 100}日"
                             }
                             textView(showText) {

@@ -137,7 +137,7 @@ class ScheduleFragment : Fragment() {
                     Log.d("height",diffDays.toString())
                     leftMargin = dip(120)
                     rightMargin = dip(60)
-                    topMargin = dip(0.15f * (diffDays * 1440 + startMinute))
+                    topMargin = dip(0.15f * (diffDays * 1440 + startMinute)) + dip(10)
                 }
                 schedule.apply {
                     layoutParams = rParam
