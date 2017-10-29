@@ -200,6 +200,7 @@ class ScheduleFragment : Fragment() {
                         setOnClickListener {
                         }
                     }
+                    find<RelativeLayout>(R.id.taskProgress).scaleY = 0f
                 }
                 find<LinearLayout>(R.id.taskLinear).addView(linearLayout, it)
                 

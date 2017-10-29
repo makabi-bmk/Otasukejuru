@@ -12,8 +12,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
 import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import com.squareup.moshi.Moshi
 import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
@@ -30,12 +30,12 @@ import okhttp3.Request
 import okhttp3.RequestBody
 import org.jetbrains.anko.AnkoContext
 import org.jetbrains.anko.collections.forEachWithIndex
+import org.jetbrains.anko.dip
+import org.jetbrains.anko.find
 import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.textColor
 import java.util.*
-
-
 
 
 class TaskListFragment : Fragment() {
@@ -112,9 +112,11 @@ class TaskListFragment : Fragment() {
                         createDialog(taskNameTextView.text.toString(), element, index)
                     }
                 }
-                val rParam = FrameLayout.LayoutParams(0, (element.progress * 0.7).toInt())
-                taskProgress.layoutParams = rParam
-                Log.d("height", taskProgress.height.toString())
+                find<RelativeLayout>(R.id.taskProgress).scaleY = dip(element.progress * 0.7f).toFloat()
+//                val rParam = RelativeLayout.LayoutParams(0, 0)
+//                rParam.height = (element.progress * 0.7).toInt()
+//                taskProgress.layoutParams = rParam
+//                Log.d("height", taskProgress.height.toString())
 //                Log.d("height", (element.progress).toString())
                 
             }
@@ -157,13 +159,13 @@ class TaskListFragment : Fragment() {
     private fun createDialog(tag: String, element: TaskInfo, index: Int) {
         val listDialog = arrayOf("開始", "変更", "完了", "削除", "進捗")
         
-        AlertDialog.Builder(activity)
+        AlertDialog.Builder(context)
                 .setTitle(tag)
                 .setItems(listDialog) { _, which ->
                     when (which) {
                         0 -> {
 //                            startActivity<TimeSetActivity>()
-                            AlertDialog.Builder(activity)
+                            AlertDialog.Builder(context)
                                     .setTitle(element.task_name)
                                     .setMessage(getString(R.string.attentionMassage))
                                     .setPositiveButton("OK") { dialog, which ->
