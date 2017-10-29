@@ -12,6 +12,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.LinearLayout
 import com.squareup.moshi.Moshi
 import jp.ict.muffin.otasukejuru.R
@@ -19,7 +20,6 @@ import jp.ict.muffin.otasukejuru.`object`.GlobalValue
 import jp.ict.muffin.otasukejuru.`object`.TaskInfo
 import jp.ict.muffin.otasukejuru.activity.InputProgressActivity
 import jp.ict.muffin.otasukejuru.activity.TaskAdditionActivity
-import jp.ict.muffin.otasukejuru.activity.TimeSetActivity
 import jp.ict.muffin.otasukejuru.other.Utils
 import jp.ict.muffin.otasukejuru.ui.ToDoListFragmentUI
 import kotlinx.android.synthetic.main.fragment_list_todo.*
@@ -34,6 +34,8 @@ import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.textColor
 import java.util.*
+
+
 
 
 class TaskListFragment : Fragment() {
@@ -110,9 +112,10 @@ class TaskListFragment : Fragment() {
                         createDialog(taskNameTextView.text.toString(), element, index)
                     }
                 }
-                val rParam = LinearLayout.LayoutParams(0, (element.progress * 0.7).toInt())
-                Log.d("progress", element.progress.toString())
+                val rParam = FrameLayout.LayoutParams(0, (element.progress * 0.7).toInt())
                 taskProgress.layoutParams = rParam
+                Log.d("height", taskProgress.height.toString())
+//                Log.d("height", (element.progress).toString())
                 
             }
             
@@ -159,7 +162,15 @@ class TaskListFragment : Fragment() {
                 .setItems(listDialog) { _, which ->
                     when (which) {
                         0 -> {
-                            startActivity<TimeSetActivity>()
+//                            startActivity<TimeSetActivity>()
+                            AlertDialog.Builder(activity)
+                                    .setTitle(element.task_name)
+                                    .setMessage(getString(R.string.attentionMassage))
+                                    .setPositiveButton("OK") { dialog, which ->
+                                        // OK button pressed
+                                    }
+                                    .setNegativeButton("Cancel", null)
+                                    .show()
                         }
                         
                         1 -> {

@@ -56,6 +56,7 @@ class InputProgressActivityUI(private val index: Int) : AnkoComponent<InputProgr
                 textSize = 20f
                 onClick {
                     GlobalValue.taskInfoArrayList[index].progress = seekBar.progress
+                    Log.d("progress", seekBar.progress.toString())
                     postProgress()
                 }
             }.lparams {

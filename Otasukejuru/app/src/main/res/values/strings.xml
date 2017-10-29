@@ -23,4 +23,6 @@
     <string name="everyWeek">毎週</string>
     <string name="everyMonth">毎月</string>
     <string name="everyYear">毎年</string>
+
+    <string name="attentionMassage">変更リクエストが届いています。\n変更を受け入れますか？\n優先度が変わる可能性があります。</string>
 </resources>
