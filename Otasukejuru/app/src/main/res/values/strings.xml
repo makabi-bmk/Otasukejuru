@@ -4,7 +4,7 @@
     <string name="section_format">Hello World from section: %1$d</string>
 
     <string name="main_tab1">スケジュール</string>
-    <string name="main_tab2">タスクリスト</string>
+    <string name="main_tab2">やることリスト</string>
     <string name="main_tab3">タイマー</string>
 
     <string name="initTime">00:00.000</string>

@@ -112,7 +112,7 @@ class TaskListFragment : Fragment() {
                         createDialog(taskNameTextView.text.toString(), element, index)
                     }
                 }
-                find<RelativeLayout>(R.id.taskProgress).scaleY = dip(element.progress * 0.7f).toFloat()
+                find<RelativeLayout>(R.id.taskProgress).scaleY = dip(element.progress * 1.4f).toFloat()
 //                val rParam = RelativeLayout.LayoutParams(0, 0)
 //                rParam.height = (element.progress * 0.7).toInt()
 //                taskProgress.layoutParams = rParam

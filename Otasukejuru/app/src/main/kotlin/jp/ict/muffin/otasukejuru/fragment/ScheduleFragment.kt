@@ -53,7 +53,7 @@ class ScheduleFragment : Fragment() {
             height = 3
             leftMargin = dip(40)
             rightMargin = dip(20)
-            topMargin = dip(0.16f * nowMinute)
+            topMargin = dip(0.16f * nowMinute) - dip(70)
         }
         line.apply {
             layoutParams = rParam
@@ -65,7 +65,7 @@ class ScheduleFragment : Fragment() {
             width = wrapContent
             height = wrapContent
             leftMargin = dip(10)
-            topMargin = dip(0.16f * nowMinute) - dip(10)
+            topMargin = dip(0.16f * nowMinute) - dip(10) - dip(70)
         }
         nowText.apply {
             text = "現在"
@@ -200,7 +200,7 @@ class ScheduleFragment : Fragment() {
                         setOnClickListener {
                         }
                     }
-                    find<RelativeLayout>(R.id.taskProgress).scaleY = 0f
+                    find<RelativeLayout>(R.id.taskProgress).scaleY = dip(taskInfo.progress * 1.4f).toFloat()
                 }
                 find<LinearLayout>(R.id.taskLinear).addView(linearLayout, it)
                 
