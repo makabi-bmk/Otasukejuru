@@ -11,7 +11,7 @@ import okhttp3.RequestBody
 
 class PostEveryTaskInfoAsync : AsyncTask<EveryInfo, Void, Unit>() {
     private val mediaType = MediaType.parse("application/json; charset=utf-8")
-    var client = OkHttpClient()
+    private var client = OkHttpClient()
     
     override fun doInBackground(vararg params: EveryInfo) {
         post("${GlobalValue.SERVER_URL}/add/every", convertToJson(params[0]))

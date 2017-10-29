@@ -26,11 +26,11 @@ class TimerActivity : Activity() {
         }
         
         find<Button>(R.id.nextButton).setOnClickListener {
-//            setNotificationTime()
+            //            setNotificationTime()
             startTimer()
         }
     }
-    
+
 //    private fun setNotificationTime() {
 //        TimerNotificationActivityUI(time).setContentView(this)
 //

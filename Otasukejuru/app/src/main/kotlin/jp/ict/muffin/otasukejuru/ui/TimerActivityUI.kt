@@ -90,7 +90,7 @@ class TimerActivityUI(private val time: Long) : AnkoComponent<TimerActivity> {
                 height = wrapContent
                 centerHorizontally()
             }
-
+            
             startTimerInit(context)
         }
     }

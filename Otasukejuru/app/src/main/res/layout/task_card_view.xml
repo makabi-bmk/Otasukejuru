@@ -61,6 +61,7 @@
 
         </RelativeLayout>
     </android.support.v7.widget.CardView>
+
     <RelativeLayout
         android:id="@+id/taskProgress"
         android:layout_width="match_parent"
