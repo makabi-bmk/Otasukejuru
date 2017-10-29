@@ -121,12 +121,12 @@ class ScheduleFragment : Fragment() {
                 rParam.apply {
                     width = matchParent
                     height = ((Utils().getDate(it.end_time) - Utils().getDate(it.start_time)) *
-                            dip(150) + endMinute * 0.18f).toInt()
+                            dip(150) + endMinute * 0.13f).toInt()
                     Log.d("height", endMinute.toString())
                     leftMargin = dip(120)
                     rightMargin = dip(60)
                     topMargin = dip(25) + diffDays * dip(200) +
-                            (0.18f * startMinute).toInt()
+                            (0.14f * startMinute).toInt()
                 }
                 schedule.apply {
                     layoutParams = rParam

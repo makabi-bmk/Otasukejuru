@@ -211,7 +211,7 @@ class TaskAdditionActivity : Activity() {
             
             Log.d("plan", "タイトル名:" + taskTitleName + "\n予定開始の日付:" + startMonth + "月" +
                     startDay + "日" + startHour + "時" + startMinute + "分" + "\n予定終了の時間:" +
-                    finishMonth + "月" + finishMonth + "似り" + finishHour + "時" +
+                    finishMonth + "月" + finishDay + "日" + finishHour + "時" +
                     finishMinute + "分" + "\n繰り返し:" + taskRepeat + "\n何分前に通知するか:" +
                     notificationTime)
             
