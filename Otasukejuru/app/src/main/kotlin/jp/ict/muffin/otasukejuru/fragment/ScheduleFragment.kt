@@ -201,16 +201,16 @@ class ScheduleFragment : Fragment() {
                         }
                     }
                 }
-                find<LinearLayout>(R.id.taskLinear).addView(linearLayout, 0)
+                find<LinearLayout>(R.id.taskLinear).addView(linearLayout, it)
                 
                 val line = LinearLayout(context)
                 val lParam = RelativeLayout.LayoutParams(0, 0)
                 lParam.apply {
                     width = 3
-                    height = diffDays * dip(200) + hoge *
-                            0.13f.toInt() + dip(25)
+                    height = diffDays * dip(200) + (hoge *
+                            0.13f).toInt() + dip(50)//dip(25)
                     Log.d("time", hoge.toString())
-                    leftMargin = dip(80 + 45 + 90 * (GlobalValue.taskInfoArrayList.size - 1 - it))
+                    leftMargin = dip(80 + 45 + 90 * it)
 //                topMargin = dip(25)
                 }
                 line.apply {

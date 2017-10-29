@@ -74,11 +74,12 @@ class TaskListFragment : Fragment() {
             }?.removeAllViews()
         }
         
+        var mostPriority = 0
         var highPriorityNum = 0
         var middlePriorityNum = 0
         var lowPriorityNum = 0
         val calendar = Calendar.getInstance()
-        var today = (calendar.get(Calendar.MONTH) + 1) * 100 + calendar.get(Calendar.DAY_OF_MONTH)
+        val today = (calendar.get(Calendar.MONTH) + 1) * 100 + calendar.get(Calendar.DAY_OF_MONTH)
         
         val showTaskNum = GlobalValue.displayWidth / 90 - 1
         GlobalValue.taskInfoArrayList.forEachWithIndex { index, element ->
@@ -107,11 +108,15 @@ class TaskListFragment : Fragment() {
                 
             }
             
+            var position: Int = 0
             when (element.priority) {
 //            when (Utils().diffDayNum(today, Utils().getDate(element.due_date), 2017)) {
-                0 -> mostPriorityCardLinear
+                0 -> {
+                    position = mostPriority++ % showTaskNum
+                    mostPriorityCardLinear
+                }
                 1 -> {
-                    highPriorityNum++
+                    position = highPriorityNum++ % showTaskNum
                     if (highPriorityNum <= showTaskNum) {
                         highPriorityCardLinear1
                     } else {
@@ -119,7 +124,7 @@ class TaskListFragment : Fragment() {
                     }
                 }
                 2 -> {
-                    middlePriorityNum++
+                    position = middlePriorityNum++ % showTaskNum
                     if (middlePriorityNum <= showTaskNum) {
                         middlePriorityCardLinear1
                     } else {
@@ -127,14 +132,14 @@ class TaskListFragment : Fragment() {
                     }
                 }
                 else -> {
-                    lowPriorityNum++
+                    position = lowPriorityNum++ % showTaskNum
                     if (lowPriorityNum <= showTaskNum) {
                         lowPriorityCardLinear1
                     } else {
                         lowPriorityCardLinear2
                     }
                 }
-            }.addView(linearLayout, 0)
+            }.addView(linearLayout, position)
         }
     }
     
@@ -168,6 +173,7 @@ class TaskListFragment : Fragment() {
     
     private fun deleteTask(element: TaskInfo) {
         GlobalValue.taskInfoArrayList.remove(element)
+        
         setCardView()
     }
     

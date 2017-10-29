@@ -70,11 +70,11 @@ class InputProgressActivityUI(private val index: Int) : AnkoComponent<InputProgr
     private val mediaType = MediaType.parse("application/json; charset=utf-8")
     private val client = OkHttpClient()
     
-    fun postProgress(vararg params: TaskInfo) {
+    private fun postProgress(vararg params: TaskInfo) {
         val task = @SuppressLint("StaticFieldLeak")
         object : AsyncTask<Unit, Unit, Unit>() {
             override fun doInBackground(vararg params: Unit?) {
-                post("${GlobalValue.SERVER_URL}/add/task",
+                post("${GlobalValue.SERVER_URL}/update/task",
                         convertToJson(GlobalValue.taskInfoArrayList[index]))
             }
             
