@@ -45,7 +45,7 @@ class InputProgressActivity : AppCompatActivity() {
         
         find<Button>(R.id.finishButton).onClick {
             val update = UpdateTaskInfoAsync()
-            update.execute()
+            update.execute(GlobalValue.taskInfoArrayList[index])
             finish()
         }
     }

@@ -12,6 +12,7 @@ import jp.ict.muffin.otasukejuru.`object`.TaskInfo
 import jp.ict.muffin.otasukejuru.communication.PostEveryTaskInfoAsync
 import jp.ict.muffin.otasukejuru.communication.PostScheduleTaskInfoAsync
 import jp.ict.muffin.otasukejuru.communication.PostTaskInfoAsync
+import jp.ict.muffin.otasukejuru.communication.UpdateTaskInfoAsync
 import kotlinx.android.synthetic.main.set_plan_notification_time.*
 import kotlinx.android.synthetic.main.set_plan_repeat.*
 import kotlinx.android.synthetic.main.set_task_repeat.*
@@ -19,7 +20,7 @@ import org.jetbrains.anko.find
 import java.util.*
 
 
-class TaskAdditionActivity : Activity() {
+class TaskAdditionActivity(private val isAdd: Boolean, private val index: Int = -1) : Activity() {
     
     //common
     private var isPlan: Boolean = false
@@ -388,6 +389,11 @@ class TaskAdditionActivity : Activity() {
                     "\n繰り返し:" + taskRepeat +
                     "\nisMust:" + isMust + "\nisShould:" + isShould + "\nisWant to:" +
                     isWant + "\n終了目安:" + finishHour + "時間" + finishMinute + "分")
+            
+            if (!isAdd) {
+                val update = UpdateTaskInfoAsync()
+                update.execute(GlobalValue.taskInfoArrayList[index])
+            }
             
             if (taskRepeat == 0) {
                 setTaskInformation()
