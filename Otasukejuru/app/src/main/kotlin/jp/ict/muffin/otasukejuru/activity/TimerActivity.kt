@@ -29,6 +29,7 @@ class TimerActivity : Activity() {
             //            setNotificationTime()
             startTimer()
         }
+        
     }
 
 //    private fun setNotificationTime() {

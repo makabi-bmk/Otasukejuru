@@ -15,6 +15,7 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
+import jp.ict.muffin.otasukejuru.communication.GetInformation
 import jp.ict.muffin.otasukejuru.other.Utils
 import jp.ict.muffin.otasukejuru.ui.ScheduleFragmentUI
 import kotlinx.android.synthetic.main.task_card_view.view.*
@@ -86,6 +87,7 @@ class ScheduleFragment : Fragment() {
         mTimer?.schedule(object : TimerTask() {
             override fun run() {
                 mHandler.post {
+//                    getInfo()
                     find<RelativeLayout>(R.id.refreshRelative).removeAllViews()
                     setSchedule()
                     setCardView()
@@ -93,6 +95,11 @@ class ScheduleFragment : Fragment() {
                 }
             }
         }, 5000, 5000)
+    }
+    
+    private fun getInfo() {
+        val getInformation = GetInformation()
+        getInformation.execute()
     }
     
     override fun onPause() {

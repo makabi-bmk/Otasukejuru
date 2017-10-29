@@ -14,8 +14,8 @@ import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
 import jp.ict.muffin.otasukejuru.communication.GetInformation
 import jp.ict.muffin.otasukejuru.fragment.ScheduleFragment
-import jp.ict.muffin.otasukejuru.fragment.TimerSetTimeFragment
 import jp.ict.muffin.otasukejuru.fragment.TaskListFragment
+import jp.ict.muffin.otasukejuru.fragment.TimerSetTimeFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.find
 import org.jetbrains.anko.startActivity
@@ -23,6 +23,7 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
     private lateinit var mViewPager: ViewPager
+    private var mTimer: Timer? = null
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -73,6 +74,27 @@ class MainActivity : AppCompatActivity() {
         getInfo.execute()
         
     }
+    
+//    override fun onResume() {
+//        super.onResume()
+//        val mHandler = Handler()
+//        mTimer = Timer()
+//        mTimer?.schedule(object : TimerTask() {
+//            override fun run() {
+//                mHandler.post {
+//                    val getInformation = GetInformation()
+//                    getInformation.execute()
+//                }
+//            }
+//        }, 5000, 5000)
+//    }
+//
+//    override fun onPause() {
+//        super.onPause()
+//        mTimer?.cancel()
+//        mTimer = null
+//    }
+    
     
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
