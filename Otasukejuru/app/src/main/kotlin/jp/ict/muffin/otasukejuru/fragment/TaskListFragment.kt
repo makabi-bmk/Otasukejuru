@@ -168,7 +168,7 @@ class TaskListFragment : Fragment() {
                             AlertDialog.Builder(context)
                                     .setTitle(element.task_name)
                                     .setMessage(getString(R.string.attentionMassage))
-                                    .setPositiveButton("OK") { dialog, which ->
+                                    .setPositiveButton("OK") { _, _ ->
                                         // OK button pressed
                                     }
                                     .setNegativeButton("Cancel", null)
@@ -186,8 +186,8 @@ class TaskListFragment : Fragment() {
                         else -> {
                             AlertDialog.Builder(context).apply {
                                 setTitle(element.task_name)
-                                setMessage(getString(R.string.attentionMassage))
-                                setPositiveButton("OK") { dialog, which ->
+                                setMessage(getString(R.string.deleteMassage))
+                                setPositiveButton("OK") { _, _ ->
                                     // OK button pressed
                                     deleteTask(element, index)
                                 }
