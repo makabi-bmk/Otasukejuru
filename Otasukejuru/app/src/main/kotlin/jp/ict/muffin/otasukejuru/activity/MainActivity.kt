@@ -74,7 +74,7 @@ class MainActivity : AppCompatActivity() {
         getInfo.execute()
         
     }
-    
+
 //    override fun onResume() {
 //        super.onResume()
 //        val mHandler = Handler()

@@ -21,8 +21,6 @@ import jp.ict.muffin.otasukejuru.other.Utils
 import jp.ict.muffin.otasukejuru.ui.TaskListFragmentUI
 import kotlinx.android.synthetic.main.fragment_list_todo.*
 import kotlinx.android.synthetic.main.task_card_view.view.*
-import okhttp3.MediaType
-import okhttp3.OkHttpClient
 import org.jetbrains.anko.AnkoContext
 import org.jetbrains.anko.collections.forEachWithIndex
 import org.jetbrains.anko.dip
@@ -108,17 +106,11 @@ class TaskListFragment : Fragment() {
                     }
                 }
                 find<RelativeLayout>(R.id.taskProgress).scaleY = dip(element.progress * 1.4f).toFloat()
-//                val rParam = RelativeLayout.LayoutParams(0, 0)
-//                rParam.height = (element.progress * 0.7).toInt()
-//                taskProgress.layoutParams = rParam
-//                Log.d("height", taskProgress.height.toString())
-//                Log.d("height", (element.progress).toString())
                 
             }
             
             val position: Int
             when (element.priority) {
-//            when (Utils().diffDayNum(today, Utils().getDate(element.due_date), 2017)) {
                 0 -> {
                     position = mostPriority++ % showTaskNum
                     mostPriorityCardLinear
@@ -211,14 +203,6 @@ class TaskListFragment : Fragment() {
                 }
                 .show()
     }
-
-//    private fun deleteTask(element: TaskInfo, index: Int) {
-//        deleteTaskPost(index = index)
-//        setCardView()
-//    }
-    
-    private val mediaType = MediaType.parse("application/json; charset=utf-8")
-    private val client = OkHttpClient()
     
     private fun deleteTask(element: TaskInfo, index: Int) {
         val deleteTaskAsync = DeleteTaskInfoAsync()
