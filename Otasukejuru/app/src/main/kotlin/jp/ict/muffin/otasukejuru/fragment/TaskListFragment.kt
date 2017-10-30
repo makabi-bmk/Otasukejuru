@@ -184,7 +184,16 @@ class TaskListFragment : Fragment() {
                         }
                         
                         else -> {
-                            deleteTask(element, index)
+                            AlertDialog.Builder(context).apply {
+                                setTitle(element.task_name)
+                                setMessage(getString(R.string.attentionMassage))
+                                setPositiveButton("OK") { dialog, which ->
+                                    // OK button pressed
+                                    deleteTask(element, index)
+                                }
+                                setNegativeButton("Cancel", null)
+                                show()
+                            }
                         }
                         
                     }

@@ -20,7 +20,7 @@ import org.jetbrains.anko.find
 import java.util.*
 
 
-class TaskAdditionActivity(private val isAdd: Boolean, private val index: Int = -1) : Activity() {
+class TaskAdditionActivity : Activity() {
     
     //common
     private var isPlan: Boolean = false
@@ -49,8 +49,14 @@ class TaskAdditionActivity(private val isAdd: Boolean, private val index: Int = 
     
     private var calendar = Calendar.getInstance()
     
+    private var isAdd: Boolean = true
+    private var index: Int = -1
+    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        
+        isAdd = intent.getBooleanExtra("add", true)
+        index = intent.getIntExtra("index", -1)
         
         if (intent.getBooleanExtra("init", false)) {
             inputTaskName()
