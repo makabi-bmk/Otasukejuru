@@ -13,6 +13,7 @@ import jp.ict.muffin.otasukejuru.communication.PostEveryTaskInfoAsync
 import jp.ict.muffin.otasukejuru.communication.PostScheduleTaskInfoAsync
 import jp.ict.muffin.otasukejuru.communication.PostTaskInfoAsync
 import jp.ict.muffin.otasukejuru.communication.UpdateTaskInfoAsync
+import jp.ict.muffin.otasukejuru.other.Utils
 import kotlinx.android.synthetic.main.set_plan_notification_time.*
 import kotlinx.android.synthetic.main.set_plan_repeat.*
 import kotlinx.android.synthetic.main.set_task_repeat.*
@@ -51,6 +52,7 @@ class TaskAdditionActivity : Activity() {
     
     private var isAdd: Boolean = true
     private var index: Int = -1
+    private lateinit var beforeTaskInfo: TaskInfo
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,6 +63,7 @@ class TaskAdditionActivity : Activity() {
         if (isAdd) {
             selectAddType()
         } else {
+            beforeTaskInfo = GlobalValue.taskInfoArrayList[index]
             inputTaskName()
         }
     }
@@ -241,6 +244,11 @@ class TaskAdditionActivity : Activity() {
         
         val inputTaskNameEdit = find<EditText>(R.id.input_task_name_edit)
         
+        if (!isAdd) {
+            inputTaskNameEdit.setText(beforeTaskInfo.task_name)
+            
+        }
+        
         find<Button>(R.id.button_next).setOnClickListener {
             taskTitleName = inputTaskNameEdit.text.toString()
             if (taskTitleName == "") taskTitleName = "無題"
@@ -248,7 +256,13 @@ class TaskAdditionActivity : Activity() {
             finishTaskTime()
         }
         
-        find<ImageButton>(R.id.button_back).setOnClickListener { selectAddType() }
+        find<ImageButton>(R.id.button_back).setOnClickListener {
+            if (isAdd) {
+                selectAddType()
+            } else {
+                finish()
+            }
+        }
     }
     
     private fun finishTaskTime() {
@@ -263,28 +277,45 @@ class TaskAdditionActivity : Activity() {
         find<NumberPicker>(R.id.finish_month_num_pick).apply {
             maxValue = 12
             minValue = 1
-            value = finishMonth
+            
+            value = if (isAdd) {
+                finishMonth
+            } else {
+                Utils().getDate(beforeTaskInfo.due_date) / 100
+            }
             setOnValueChangedListener { _, _, newVal -> finishMonth = newVal }
         }
         
         find<NumberPicker>(R.id.finish_day_num_pick).apply {
             maxValue = 31
             minValue = 1
-            value = finishDay
+            value = if (isAdd) {
+                finishDay
+            } else {
+                Utils().getDate(beforeTaskInfo.due_date) % 100
+            }
             setOnValueChangedListener { _, _, newVal -> finishDay = newVal }
         }
         
         find<NumberPicker>(R.id.finish_hour_edit).apply {
             maxValue = 23
             minValue = 0
-            value = finishHour
+            value = if (isAdd) {
+                finishHour
+            } else {
+                Utils().getTime(beforeTaskInfo.due_date) / 100
+            }
             setOnValueChangedListener { _, _, newVal -> finishHour = newVal }
         }
         
         find<NumberPicker>(R.id.finish_minute_edit).apply {
             maxValue = 59
             minValue = 0
-            value = finishMinute
+            value = if (isAdd) {
+                finishMinute
+            } else {
+                Utils().getTime(beforeTaskInfo.due_date) % 100
+            }
             setOnValueChangedListener { _, _, newVal -> finishMinute = newVal }
         }
         
@@ -357,29 +388,42 @@ class TaskAdditionActivity : Activity() {
         
         find<Button>(R.id.no_want).setOnClickListener {
             isWant = false
-            setTaskNotificationTime()
+            setTaskGuideTime()
         }
         
         find<Button>(R.id.yes_want).setOnClickListener {
             isWant = true
-            setTaskNotificationTime()
+            setTaskGuideTime()
         }
         
         find<ImageButton>(R.id.button_back).setOnClickListener { setShould() }
         
     }
     
-    private fun setTaskNotificationTime() {
+    private fun setTaskGuideTime() {
         setContentView(R.layout.set_task_notification_time)
         setActionBar(find(R.id.toolbar_back))
         
         val finishHourEdit = find<EditText>(R.id.finish_hour_edit)
-        finishHourEdit.setText("0")
+        finishHourEdit.setText(if (isAdd) {
+            "0"
+        } else {
+            (Utils().getTime(beforeTaskInfo.guide_time) / 100).toString()
+        })
         
         val finishMinuteEdit = find<EditText>(R.id.finish_minute_edit)
-        finishMinuteEdit.setText("5")
+        finishMinuteEdit.setText(if (isAdd) {
+            "5"
+        } else {
+            (Utils().getTime(beforeTaskInfo.guide_time) % 100).toString()
+        })
         
-        guideTime = 5
+        guideTime = if (isAdd) {
+            5
+            
+        } else {
+            Utils().getTime(beforeTaskInfo.guide_time)
+        }
         find<Button>(R.id.button_next).setOnClickListener {
             guideTime = Integer.parseInt(finishHourEdit.text.toString()) * 100 +
                     Integer.parseInt(finishMinuteEdit.text.toString())
@@ -461,7 +505,7 @@ class TaskAdditionActivity : Activity() {
                 "0"
             }
             due_date = "$finishYear-$finishMonth-$finishDay $finishHour:$finishMinute:00"
-            guide_time = "$finishHour:$finishMinute:00"
+            guide_time = "${guideTime / 100}:${guideTime % 100}:00"
             priority = 0
         }
         Log.d("task", taskInformation.due_date)

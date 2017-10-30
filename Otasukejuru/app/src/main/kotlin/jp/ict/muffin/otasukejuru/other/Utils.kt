@@ -20,7 +20,7 @@ class Utils {
             return 0
         }
         val binaryTime = time.split(" ")
-        val date = binaryTime[1].split(":")
+        val date = binaryTime[binaryTime.size - 1].split(":")
         
         return Integer.parseInt(date[0]) * 100 + Integer.parseInt(date[1])
     }
