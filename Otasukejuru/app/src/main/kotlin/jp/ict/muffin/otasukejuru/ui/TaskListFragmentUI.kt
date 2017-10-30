@@ -8,7 +8,7 @@ import jp.ict.muffin.otasukejuru.fragment.TaskListFragment
 import org.jetbrains.anko.*
 
 
-class ToDoListFragmentUI : AnkoComponent<TaskListFragment> {
+class TaskListFragmentUI : AnkoComponent<TaskListFragment> {
     override fun createView(ui: AnkoContext<TaskListFragment>): View = with(ui) {
         
         relativeLayout {

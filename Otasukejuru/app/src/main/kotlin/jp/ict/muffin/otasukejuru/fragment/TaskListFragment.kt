@@ -21,7 +21,7 @@ import jp.ict.muffin.otasukejuru.`object`.TaskInfo
 import jp.ict.muffin.otasukejuru.activity.InputProgressActivity
 import jp.ict.muffin.otasukejuru.activity.TaskAdditionActivity
 import jp.ict.muffin.otasukejuru.other.Utils
-import jp.ict.muffin.otasukejuru.ui.ToDoListFragmentUI
+import jp.ict.muffin.otasukejuru.ui.TaskListFragmentUI
 import kotlinx.android.synthetic.main.fragment_list_todo.*
 import kotlinx.android.synthetic.main.task_card_view.view.*
 import okhttp3.MediaType
@@ -44,7 +44,7 @@ class TaskListFragment : Fragment() {
     
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View =
-            ToDoListFragmentUI().createView(AnkoContext.create(ctx, this))
+            TaskListFragmentUI().createView(AnkoContext.create(ctx, this))
     
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
