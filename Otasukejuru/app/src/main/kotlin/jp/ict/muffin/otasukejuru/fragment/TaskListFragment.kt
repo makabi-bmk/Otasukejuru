@@ -176,7 +176,7 @@ class TaskListFragment : Fragment() {
                         }
                         
                         1 -> {
-                            startActivity<TaskAdditionActivity>("init" to true)
+                            startActivity<TaskAdditionActivity>("add" to false, "index" to index)
                         }
                         
                         4 -> {

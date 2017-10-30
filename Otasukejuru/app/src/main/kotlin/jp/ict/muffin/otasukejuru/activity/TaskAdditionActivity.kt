@@ -58,10 +58,10 @@ class TaskAdditionActivity : Activity() {
         isAdd = intent.getBooleanExtra("add", true)
         index = intent.getIntExtra("index", -1)
         
-        if (intent.getBooleanExtra("init", false)) {
-            inputTaskName()
-        } else {
+        if (isAdd) {
             selectAddType()
+        } else {
+            inputTaskName()
         }
     }
     
