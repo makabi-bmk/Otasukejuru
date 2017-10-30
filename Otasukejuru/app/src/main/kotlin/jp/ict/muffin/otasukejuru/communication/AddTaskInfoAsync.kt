@@ -1,20 +1,22 @@
 package jp.ict.muffin.otasukejuru.communication
 
 import android.os.AsyncTask
+import android.util.Log
 import com.squareup.moshi.Moshi
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
-import jp.ict.muffin.otasukejuru.`object`.ScheduleInfo
+import jp.ict.muffin.otasukejuru.`object`.TaskInfo
 import okhttp3.MediaType
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody
 
-class PostScheduleTaskInfoAsync : AsyncTask<ScheduleInfo, Void, Unit>() {
+
+class AddTaskInfoAsync : AsyncTask<TaskInfo, Void, Unit>() {
     private val mediaType = MediaType.parse("application/json; charset=utf-8")
-    var client = OkHttpClient()
+    private val client = OkHttpClient()
     
-    override fun doInBackground(vararg params: ScheduleInfo) {
-        post("${GlobalValue.SERVER_URL}/add/schedule", convertToJson(params[0]))
+    override fun doInBackground(vararg params: TaskInfo) {
+        post("${GlobalValue.SERVER_URL}/add/task", convertToJson(params[0]))
     }
     
     private fun post(url: String, json: String): String? {
@@ -29,14 +31,15 @@ class PostScheduleTaskInfoAsync : AsyncTask<ScheduleInfo, Void, Unit>() {
         } catch (e: Exception) {
             e.printStackTrace()
         }
-        
         return null
     }
     
-    private fun convertToJson(scheduleInfo: ScheduleInfo): String {
+    private fun convertToJson(taskInfo: TaskInfo): String {
         val moshi = Moshi.Builder().build()
-        val adapter = moshi.adapter(ScheduleInfo::class.java)
+        val adapter = moshi.adapter(TaskInfo::class.java)
         
-        return adapter.toJson(scheduleInfo)
+        Log.d("postTask", adapter.toJson(taskInfo))
+        
+        return adapter.toJson(taskInfo)
     }
 }

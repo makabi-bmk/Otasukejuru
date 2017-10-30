@@ -9,9 +9,9 @@ import jp.ict.muffin.otasukejuru.`object`.EveryInfo
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
 import jp.ict.muffin.otasukejuru.`object`.ScheduleInfo
 import jp.ict.muffin.otasukejuru.`object`.TaskInfo
-import jp.ict.muffin.otasukejuru.communication.PostEveryTaskInfoAsync
-import jp.ict.muffin.otasukejuru.communication.PostScheduleTaskInfoAsync
-import jp.ict.muffin.otasukejuru.communication.PostTaskInfoAsync
+import jp.ict.muffin.otasukejuru.communication.AddEveryTaskInfoAsync
+import jp.ict.muffin.otasukejuru.communication.AddScheduleTaskInfoAsync
+import jp.ict.muffin.otasukejuru.communication.AddTaskInfoAsync
 import jp.ict.muffin.otasukejuru.communication.UpdateTaskInfoAsync
 import jp.ict.muffin.otasukejuru.other.Utils
 import kotlinx.android.synthetic.main.set_plan_notification_time.*
@@ -466,7 +466,7 @@ class TaskAdditionActivity : Activity() {
             
         }
         //TODO:Remove comment out when Communication
-        val postEveryInfo = PostEveryTaskInfoAsync()
+        val postEveryInfo = AddEveryTaskInfoAsync()
         postEveryInfo.execute(everyInformation)
         
     }
@@ -482,7 +482,7 @@ class TaskAdditionActivity : Activity() {
         }
         GlobalValue.scheduleInfoArrayList.add(0, scheduleInformation)
         //TODO:Remove comment out when Communication
-        val postScheduleInfo = PostScheduleTaskInfoAsync()
+        val postScheduleInfo = AddScheduleTaskInfoAsync()
         postScheduleInfo.execute(scheduleInformation)
         
     }
@@ -511,7 +511,7 @@ class TaskAdditionActivity : Activity() {
         Log.d("task", taskInformation.due_date)
         GlobalValue.taskInfoArrayList.add(0, taskInformation)
         //TODO:Remove comment out when Communication
-        val postTaskInfo = PostTaskInfoAsync()
+        val postTaskInfo = AddTaskInfoAsync()
         postTaskInfo.execute(taskInformation)
     }
 }
