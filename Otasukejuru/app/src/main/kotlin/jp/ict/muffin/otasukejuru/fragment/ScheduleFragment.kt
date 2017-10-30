@@ -170,6 +170,7 @@ class ScheduleFragment : Fragment() {
         
         val forNum = minOf(showTaskNum, GlobalValue.taskInfoArrayList.size)
         find<LinearLayout>(R.id.taskLinear).removeAllViews()
+        var taskCount = 0
         (0 until forNum).forEach {
             val taskInfo = GlobalValue.taskInfoArrayList[it]
             val hoge = Utils().getTime(taskInfo.due_date) / 100 * 60 +
@@ -202,7 +203,7 @@ class ScheduleFragment : Fragment() {
                     }
                     find<RelativeLayout>(R.id.taskProgress).scaleY = dip(taskInfo.progress * 1.4f).toFloat()
                 }
-                find<LinearLayout>(R.id.taskLinear).addView(linearLayout, it)
+                find<LinearLayout>(R.id.taskLinear).addView(linearLayout, taskCount++)
                 
                 val line = LinearLayout(context)
                 val lParam = RelativeLayout.LayoutParams(0, 0)
@@ -211,7 +212,7 @@ class ScheduleFragment : Fragment() {
                     height = diffDays * dip(200) + (hoge *
                             0.13f).toInt() + dip(50)//dip(25)
                     Log.d("time", hoge.toString())
-                    leftMargin = dip(80 + 45 + 90 * it)
+                    leftMargin = dip(80 + 45 + 90 * taskCount)
 //                topMargin = dip(25)
                 }
                 line.apply {
