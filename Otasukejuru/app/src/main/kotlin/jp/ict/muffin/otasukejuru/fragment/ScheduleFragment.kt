@@ -94,7 +94,7 @@ class ScheduleFragment : Fragment() {
             }
         }, 5000, 5000)
     }
-
+    
     override fun onPause() {
         super.onPause()
         mTimer?.cancel()

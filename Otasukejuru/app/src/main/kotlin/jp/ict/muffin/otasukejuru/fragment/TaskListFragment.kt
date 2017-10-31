@@ -152,7 +152,7 @@ class TaskListFragment : Fragment() {
             setItems(listDialog) { _, which ->
                 when (which) {
                     0 -> {
-                            startActivity<TimeSetActivity>("taskIndex" to index)
+                        startActivity<TimeSetActivity>("taskIndex" to index)
 //                        AlertDialog.Builder(context).apply {
 //                            setTitle(element.task_name)
 //                            setMessage(getString(R.string.attentionMassage))
