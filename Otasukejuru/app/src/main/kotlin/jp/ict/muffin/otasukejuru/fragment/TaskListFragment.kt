@@ -153,15 +153,15 @@ class TaskListFragment : Fragment() {
                 when (which) {
                     0 -> {
                             startActivity<TimeSetActivity>("taskIndex" to index)
-                        AlertDialog.Builder(context).apply {
-                            setTitle(element.task_name)
-                            setMessage(getString(R.string.attentionMassage))
-                            setPositiveButton("OK") { _, _ ->
-                                // OK button pressed
-                            }
-                            setNegativeButton("Cancel", null)
-                            show()
-                        }
+//                        AlertDialog.Builder(context).apply {
+//                            setTitle(element.task_name)
+//                            setMessage(getString(R.string.attentionMassage))
+//                            setPositiveButton("OK") { _, _ ->
+//                                 OK button pressed
+//                            }
+//                            setNegativeButton("Cancel", null)
+//                            show()
+//                        }
                     }
                     
                     1 -> {
