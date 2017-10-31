@@ -146,62 +146,63 @@ class TaskListFragment : Fragment() {
     private fun createDialog(tag: String, element: TaskInfo, index: Int) {
         val listDialog = arrayOf("開始", "変更", "完了", "削除", "進捗")
         
-        AlertDialog.Builder(context)
-                .setTitle(tag)
-                .setItems(listDialog) { _, which ->
-                    when (which) {
-                        0 -> {
+        AlertDialog.Builder(context).apply {
+            setTitle(tag)
+            setItems(listDialog) { _, which ->
+                when (which) {
+                    0 -> {
 //                            startActivity<TimeSetActivity>()
-                            AlertDialog.Builder(context).apply {
-                                setTitle(element.task_name)
-                                setMessage(getString(R.string.attentionMassage))
-                                setPositiveButton("OK") { _, _ ->
-                                    // OK button pressed
-                                }
-                                setNegativeButton("Cancel", null)
-                                show()
+                        AlertDialog.Builder(context).apply {
+                            setTitle(element.task_name)
+                            setMessage(getString(R.string.attentionMassage))
+                            setPositiveButton("OK") { _, _ ->
+                                // OK button pressed
                             }
+                            setNegativeButton("Cancel", null)
+                            show()
                         }
-                        
-                        1 -> {
-                            startActivity<TaskAdditionActivity>("add" to false, "index" to index)
-                        }
-                        
-                        2 -> {
-                            AlertDialog.Builder(context).apply {
-                                setTitle(element.task_name)
-                                setMessage(getString(R.string.complicatedMassage))
-                                setPositiveButton("Yes") { _, _ ->
-                                    deleteTask(element, index)
-                                }
-                                setNegativeButton("No", null)
-                                show()
-                            }
-                        }
-                        
-                        3 -> {
-                            AlertDialog.Builder(context).apply {
-                                setTitle(element.task_name)
-                                setMessage(getString(R.string.deleteMassage))
-                                setPositiveButton("OK") { _, _ ->
-                                    deleteTask(element, index)
-                                }
-                                setNegativeButton("Cancel", null)
-                                show()
-                            }
-                        }
-                        
-                        4 -> {
-                            startActivity<InputProgressActivity>("index" to index)
-                        }
-                        
-                        else -> {
-                        
-                        }
-                        
                     }
+                    
+                    1 -> {
+                        startActivity<TaskAdditionActivity>("add" to false, "index" to index)
+                    }
+                    
+                    2 -> {
+                        AlertDialog.Builder(context).apply {
+                            setTitle(element.task_name)
+                            setMessage(getString(R.string.complicatedMassage))
+                            setPositiveButton("Yes") { _, _ ->
+                                deleteTask(element, index)
+                            }
+                            setNegativeButton("No", null)
+                            show()
+                        }
+                    }
+                    
+                    3 -> {
+                        AlertDialog.Builder(context).apply {
+                            setTitle(element.task_name)
+                            setMessage(getString(R.string.deleteMassage))
+                            setPositiveButton("OK") { _, _ ->
+                                deleteTask(element, index)
+                            }
+                            setNegativeButton("Cancel", null)
+                            show()
+                        }
+                    }
+                    
+                    4 -> {
+                        startActivity<InputProgressActivity>("index" to index)
+                    }
+                    
+                    else -> {
+                    
+                    }
+                    
                 }
-                .show()
+            }
+            show()
+        }
     }
     
     private fun deleteTask(element: TaskInfo, index: Int) {
