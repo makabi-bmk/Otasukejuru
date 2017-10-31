@@ -11,7 +11,6 @@ import jp.ict.muffin.otasukejuru.`object`.ScheduleInfo
 import jp.ict.muffin.otasukejuru.`object`.TaskInfo
 import jp.ict.muffin.otasukejuru.communication.AddEveryTaskInfoAsync
 import jp.ict.muffin.otasukejuru.communication.AddScheduleTaskInfoAsync
-import jp.ict.muffin.otasukejuru.communication.AddTaskInfoAsync
 import jp.ict.muffin.otasukejuru.communication.UpdateTaskInfoAsync
 import jp.ict.muffin.otasukejuru.other.Utils
 import kotlinx.android.synthetic.main.set_plan_notification_time.*
@@ -510,8 +509,6 @@ class TaskAdditionActivity : Activity() {
         }
         Log.d("task", taskInformation.due_date)
         GlobalValue.taskInfoArrayList.add(0, taskInformation)
-        //TODO:Remove comment out when Communication
-        val postTaskInfo = AddTaskInfoAsync()
-        postTaskInfo.execute(taskInformation)
+        
     }
 }
