@@ -81,8 +81,12 @@ class GetInformation : AsyncTask<Unit, Unit, Unit>() {
             e.printStackTrace()
             null
         }
-        val keys = arrayListOf("schedule", "every", "friend", "task")
+        val keys = arrayListOf("schedule", "every", "friend")
         
+        GlobalValue.apply {
+            scheduleInfoArrayList.clear()
+            everyInfoArrayList.clear()
+        }
         keys.forEach { key ->
             val jsonArray = jsonObject?.getJSONArray(key)
             if (jsonArray != null) {

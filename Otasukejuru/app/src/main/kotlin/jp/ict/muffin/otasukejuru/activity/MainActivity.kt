@@ -3,6 +3,7 @@ package jp.ict.muffin.otasukejuru.activity
 import android.graphics.Color
 import android.graphics.Point
 import android.os.Bundle
+import android.os.Handler
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
@@ -23,6 +24,7 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
     private lateinit var mViewPager: ViewPager
+    private var mTimer: Timer? = null
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -73,28 +75,28 @@ class MainActivity : AppCompatActivity() {
         getInfo.execute()
         
     }
+    
+    override fun onResume() {
+        super.onResume()
+        val mHandler = Handler()
+        mTimer = Timer()
+        mTimer?.schedule(object : TimerTask() {
+            override fun run() {
+                mHandler.post {
+                    val getInformation = GetInformation()
+                    getInformation.execute()
+                }
+            }
+        }, 5000, 5000)
+    }
 
-//    override fun onResume() {
-//        super.onResume()
-//        val mHandler = Handler()
-//        mTimer = Timer()
-//        mTimer?.schedule(object : TimerTask() {
-//            override fun run() {
-//                mHandler.post {
-//                    val getInformation = GetInformation()
-//                    getInformation.execute()
-//                }
-//            }
-//        }, 5000, 5000)
-//    }
-//
-//    override fun onPause() {
-//        super.onPause()
-//        mTimer?.cancel()
-//        mTimer = null
-//    }
-    
-    
+    override fun onPause() {
+        super.onPause()
+        mTimer?.cancel()
+        mTimer = null
+    }
+
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_main, menu)
