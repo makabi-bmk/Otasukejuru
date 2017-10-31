@@ -10,6 +10,8 @@ class TimeSetActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         
-        TimeSetActivityUI().setContentView(this)
+        val index = intent.getIntExtra("taskIndex", -1)
+        
+        TimeSetActivityUI(index).setContentView(this)
     }
 }

@@ -19,7 +19,7 @@ import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk25.coroutines.onClick
 
 
-class TimeSetActivityUI : AnkoComponent<TimeSetActivity> {
+class TimeSetActivityUI(index: Int = -1) : AnkoComponent<TimeSetActivity> {
     private lateinit var circleMini: FrameLayout
     private lateinit var circle: FrameLayout
     private lateinit var editTime: EditText
@@ -142,6 +142,4 @@ class TimeSetActivityUI : AnkoComponent<TimeSetActivity> {
         circleGraphView.startAnimation()
         remainingHourText.text = ((time - 1) / 60).toString()
     }
-    
-    
 }
