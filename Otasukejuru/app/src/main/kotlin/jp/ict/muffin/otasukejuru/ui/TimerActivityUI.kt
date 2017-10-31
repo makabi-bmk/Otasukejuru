@@ -196,6 +196,10 @@ class TimerActivityUI(private val time: Long) : AnkoComponent<TimerActivity> {
             Handler(Looper.getMainLooper()).postDelayed({
                 startTimer(context, totalTime - drawTime)
             }, drawTime * 60 * 1000)
+        } else {
+            
+//            startActivity<InputProgressActivity>("index". taskIndex)
+            
         }
     }
     

@@ -16,6 +16,7 @@ import jp.ict.muffin.otasukejuru.`object`.GlobalValue
 import jp.ict.muffin.otasukejuru.`object`.TaskInfo
 import jp.ict.muffin.otasukejuru.activity.InputProgressActivity
 import jp.ict.muffin.otasukejuru.activity.TaskAdditionActivity
+import jp.ict.muffin.otasukejuru.activity.TimeSetActivity
 import jp.ict.muffin.otasukejuru.communication.DeleteTaskInfoAsync
 import jp.ict.muffin.otasukejuru.other.Utils
 import jp.ict.muffin.otasukejuru.ui.TaskListFragmentUI
@@ -151,7 +152,7 @@ class TaskListFragment : Fragment() {
             setItems(listDialog) { _, which ->
                 when (which) {
                     0 -> {
-//                            startActivity<TimeSetActivity>("taskIndex" to index)
+                            startActivity<TimeSetActivity>("taskIndex" to index)
                         AlertDialog.Builder(context).apply {
                             setTitle(element.task_name)
                             setMessage(getString(R.string.attentionMassage))
