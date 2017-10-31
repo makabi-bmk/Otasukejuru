@@ -12,7 +12,7 @@ import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk25.coroutines.onClick
 
 
-class TimeSetActivityUI(index: Int = -1) : AnkoComponent<TimeSetActivity> {
+class TimeSetActivityUI(private val index: Int = -1) : AnkoComponent<TimeSetActivity> {
     private lateinit var editTime: EditText
     
     override fun createView(ui: AnkoContext<TimeSetActivity>): View = with(ui) {
@@ -91,7 +91,7 @@ class TimeSetActivityUI(index: Int = -1) : AnkoComponent<TimeSetActivity> {
                             text.clear()
                             editTime.clearFocus()
                         }
-                        startActivity<TimerActivity>("time" to time)
+                        startActivity<TimerActivity>("time" to time, "index" to index)
                     }
                 }.lparams {
                     below(editTime)

@@ -23,7 +23,6 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
     private lateinit var mViewPager: ViewPager
-    private var mTimer: Timer? = null
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

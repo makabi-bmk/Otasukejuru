@@ -10,13 +10,14 @@ import android.widget.FrameLayout
 import android.widget.TextView
 import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
+import jp.ict.muffin.otasukejuru.activity.InputProgressActivity
 import jp.ict.muffin.otasukejuru.activity.TimerActivity
 import jp.ict.muffin.otasukejuru.view.CircleGraphView
 import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk25.coroutines.onClick
 
-
-class TimerActivityUI(private val time: Long) : AnkoComponent<TimerActivity> {
+class TimerActivityUI(private val time: Long, private val index: Int = -1) :
+        AnkoComponent<TimerActivity> {
     private var isPushStartButton = false
     private lateinit var circleMini: FrameLayout
     private lateinit var circle: FrameLayout
@@ -111,7 +112,7 @@ class TimerActivityUI(private val time: Long) : AnkoComponent<TimerActivity> {
         circleMini.addView(circleGraphView)
         circleGraphView.startAnimation()
         
-        startTimer(context, time)
+        startTimer(context, time, index)
         
         isPushStartButton = true
     }
@@ -181,7 +182,7 @@ class TimerActivityUI(private val time: Long) : AnkoComponent<TimerActivity> {
         }
     }
     
-    private fun startTimer(context: Context, totalTime: Long) {
+    private fun startTimer(context: Context, totalTime: Long, index: Int = -1) {
         if (totalTime == 0L) {
             return
         }
@@ -196,10 +197,8 @@ class TimerActivityUI(private val time: Long) : AnkoComponent<TimerActivity> {
             Handler(Looper.getMainLooper()).postDelayed({
                 startTimer(context, totalTime - drawTime)
             }, drawTime * 60 * 1000)
-        } else {
-            
-//            startActivity<InputProgressActivity>("index". taskIndex)
-            
+        } else if (index != -1) {
+            context.startActivity<InputProgressActivity>("index" to index)
         }
     }
     

@@ -12,9 +12,11 @@ import org.jetbrains.anko.setContentView
 
 class TimerActivity : Activity() {
     private var time: Long = 0
+    private var index: Int = -1
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         time = intent.getLongExtra("time", 0L)
+        index = intent.getIntExtra("index", -1)
         
         setInterval()
     }
