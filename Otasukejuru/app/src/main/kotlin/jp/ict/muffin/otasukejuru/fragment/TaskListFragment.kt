@@ -103,7 +103,7 @@ class TaskListFragment : Fragment() {
                 cardView.apply {
                     tag = Utils().getDate(element.due_date)
                     setOnClickListener {
-                        createDialog(taskNameTextView.text.toString(), element, index)
+                        createDialog(element, index)
                     }
                 }
                 find<RelativeLayout>(R.id.taskProgress).scaleY = dip(element.progress * 1.4f).toFloat()
@@ -144,11 +144,11 @@ class TaskListFragment : Fragment() {
         }
     }
     
-    private fun createDialog(tag: String, element: TaskInfo, index: Int) {
+    private fun createDialog(element: TaskInfo, index: Int) {
         val listDialog = arrayOf("開始", "変更", "完了", "削除", "進捗")
         
         AlertDialog.Builder(context).apply {
-            setTitle(tag)
+            setTitle(element.task_name)
             setItems(listDialog) { _, which ->
                 when (which) {
                     0 -> {

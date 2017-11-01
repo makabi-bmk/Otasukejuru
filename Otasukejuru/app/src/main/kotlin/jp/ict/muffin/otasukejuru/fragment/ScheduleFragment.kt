@@ -1,5 +1,6 @@
 package jp.ict.muffin.otasukejuru.fragment
 
+import android.app.AlertDialog
 import android.content.Context.LAYOUT_INFLATER_SERVICE
 import android.graphics.Color
 import android.os.Bundle
@@ -15,13 +16,16 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
+import jp.ict.muffin.otasukejuru.`object`.TaskInfo
+import jp.ict.muffin.otasukejuru.activity.InputProgressActivity
+import jp.ict.muffin.otasukejuru.activity.TaskAdditionActivity
+import jp.ict.muffin.otasukejuru.activity.TimeSetActivity
+import jp.ict.muffin.otasukejuru.communication.DeleteTaskInfoAsync
 import jp.ict.muffin.otasukejuru.other.Utils
 import jp.ict.muffin.otasukejuru.ui.ScheduleFragmentUI
 import kotlinx.android.synthetic.main.task_card_view.view.*
 import org.jetbrains.anko.*
-import org.jetbrains.anko.support.v4.ctx
-import org.jetbrains.anko.support.v4.dip
-import org.jetbrains.anko.support.v4.find
+import org.jetbrains.anko.support.v4.*
 import java.util.*
 
 
@@ -162,8 +166,8 @@ class ScheduleFragment : Fragment() {
         val forNum = minOf(showTaskNum, GlobalValue.taskInfoArrayList.size)
         find<LinearLayout>(R.id.taskLinear).removeAllViews()
         var taskCount = 0
-        (0 until forNum).forEach {
-            val taskInfo = GlobalValue.taskInfoArrayList[it]
+        (0 until forNum).forEach { index ->
+            val taskInfo = GlobalValue.taskInfoArrayList[index]
             val hoge = Utils().getTime(taskInfo.due_date) / 100 * 60 +
                     Utils().getTime(taskInfo.due_date) % 100
             
@@ -190,6 +194,7 @@ class ScheduleFragment : Fragment() {
                     cardView.apply {
                         tag = Utils().getDate(taskInfo.due_date)
                         setOnClickListener {
+                            createDialog(taskInfo, index)
                         }
                     }
                     find<RelativeLayout>(R.id.taskProgress).scaleY = dip(taskInfo.progress * 1.4f).toFloat()
@@ -202,17 +207,86 @@ class ScheduleFragment : Fragment() {
                     width = 5
                     height = diffDays * dip(200) + (hoge *
                             0.13f).toInt() + dip(50)//dip(25)
-                    Log.d("time", hoge.toString())
                     leftMargin = dip(80 + 45 + 90 * taskCount)
-//                topMargin = dip(25)
                 }
                 line.apply {
                     layoutParams = lParam
                     backgroundColor = ContextCompat.getColor(context, R.color.mostPriority)
+                    setOnClickListener {
+                        toast("hoge")
+                    }
                 }
                 find<RelativeLayout>(R.id.refreshRelative).addView(line)
                 taskCount++
             }
         }
+    }
+    
+    private fun createDialog(element: TaskInfo, index: Int) {
+        val listDialog = arrayOf("開始", "変更", "完了", "削除", "進捗")
+        
+        AlertDialog.Builder(context).apply {
+            setTitle(element.task_name)
+            setItems(listDialog) { _, which ->
+                when (which) {
+                    0 -> {
+                        startActivity<TimeSetActivity>("taskIndex" to index)
+//                        AlertDialog.Builder(context).apply {
+//                            setTitle(element.task_name)
+//                            setMessage(getString(R.string.attentionMassage))
+//                            setPositiveButton("OK") { _, _ ->
+//                                 OK button pressed
+//                            }
+//                            setNegativeButton("Cancel", null)
+//                            show()
+//                        }
+                    }
+                    
+                    1 -> {
+                        startActivity<TaskAdditionActivity>("add" to false, "index" to index)
+                    }
+                    
+                    2 -> {
+                        AlertDialog.Builder(context).apply {
+                            setTitle(element.task_name)
+                            setMessage(getString(R.string.complicatedMassage))
+                            setPositiveButton("Yes") { _, _ ->
+                                deleteTask(element, index)
+                            }
+                            setNegativeButton("No", null)
+                            show()
+                        }
+                    }
+                    
+                    3 -> {
+                        AlertDialog.Builder(context).apply {
+                            setTitle(element.task_name)
+                            setMessage(getString(R.string.deleteMassage))
+                            setPositiveButton("OK") { _, _ ->
+                                deleteTask(element, index)
+                            }
+                            setNegativeButton("Cancel", null)
+                            show()
+                        }
+                    }
+                    
+                    4 -> {
+                        startActivity<InputProgressActivity>("index" to index)
+                    }
+                    
+                    else -> {
+                    
+                    }
+                    
+                }
+            }
+            show()
+        }
+    }
+    
+    private fun deleteTask(element: TaskInfo, index: Int) {
+        val deleteTaskAsync = DeleteTaskInfoAsync()
+        deleteTaskAsync.execute(GlobalValue.taskInfoArrayList[index])
+        GlobalValue.taskInfoArrayList.remove(element)
     }
 }
