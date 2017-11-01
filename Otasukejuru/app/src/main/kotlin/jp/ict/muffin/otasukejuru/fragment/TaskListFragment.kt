@@ -15,7 +15,7 @@ import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
 import jp.ict.muffin.otasukejuru.`object`.TaskInfo
 import jp.ict.muffin.otasukejuru.activity.InputProgressActivity
-import jp.ict.muffin.otasukejuru.activity.TaskAdditionActivity
+import jp.ict.muffin.otasukejuru.activity.AdditionActivity
 import jp.ict.muffin.otasukejuru.activity.TimeSetActivity
 import jp.ict.muffin.otasukejuru.communication.DeleteTaskInfoAsync
 import jp.ict.muffin.otasukejuru.other.Utils
@@ -165,7 +165,7 @@ class TaskListFragment : Fragment() {
                     }
                     
                     1 -> {
-                        startActivity<TaskAdditionActivity>("add" to false, "index" to index)
+                        startActivity<AdditionActivity>("add" to false, "index" to index)
                     }
                     
                     2 -> {

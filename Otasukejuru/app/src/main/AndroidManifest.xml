@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.TaskAdditionActivity"
+            android:name=".activity.AdditionActivity"
             android:label="">
         </activity>
         <activity

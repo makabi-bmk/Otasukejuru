@@ -17,8 +17,9 @@ import android.widget.TextView
 import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
 import jp.ict.muffin.otasukejuru.activity.InputProgressActivity
-import jp.ict.muffin.otasukejuru.activity.TaskAdditionActivity
+import jp.ict.muffin.otasukejuru.activity.AdditionActivity
 import jp.ict.muffin.otasukejuru.activity.TimeSetActivity
+import jp.ict.muffin.otasukejuru.communication.DeleteScheduleInfoAsync
 import jp.ict.muffin.otasukejuru.communication.DeleteTaskInfoAsync
 import jp.ict.muffin.otasukejuru.other.Utils
 import jp.ict.muffin.otasukejuru.ui.ScheduleFragmentUI
@@ -250,7 +251,13 @@ class ScheduleFragment : Fragment() {
                     }
                     
                     1 -> {
-                        startActivity<TaskAdditionActivity>("add" to false, "index" to index)
+                        if (isTask) {
+                            startActivity<AdditionActivity>("add" to false, "index" to index)
+                        } else {
+                            
+                            startActivity<>()
+                            
+                        }
                     }
                     
                     2 -> {
@@ -258,7 +265,7 @@ class ScheduleFragment : Fragment() {
                             setTitle(title)
                             setMessage(getString(R.string.complicatedMassage))
                             setPositiveButton("Yes") { _, _ ->
-                                deleteTask(isTask, index)
+                                deleteElement(isTask, index)
                             }
                             setNegativeButton("No", null)
                             show()
@@ -270,7 +277,7 @@ class ScheduleFragment : Fragment() {
                             setTitle(title)
                             setMessage(getString(R.string.deleteMassage))
                             setPositiveButton("OK") { _, _ ->
-                                deleteTask(isTask, index)
+                                deleteElement(isTask, index)
                             }
                             setNegativeButton("Cancel", null)
                             show()
@@ -291,16 +298,15 @@ class ScheduleFragment : Fragment() {
         }
     }
     
-    private fun deleteTask(isTask: Boolean, index: Int) {
+    private fun deleteElement(isTask: Boolean, index: Int) {
         if (isTask) {
             val deleteTaskAsync = DeleteTaskInfoAsync()
             deleteTaskAsync.execute(GlobalValue.taskInfoArrayList[index])
             GlobalValue.taskInfoArrayList.removeAt(index)
         } else {
-            val deleteTaskAsync = DeleteTaskInfoAsync()
-            deleteTaskAsync.execute(GlobalValue.taskInfoArrayList[index])
+            val deleteScheduleInfoAsync = DeleteScheduleInfoAsync()
+            deleteScheduleInfoAsync.execute(GlobalValue.scheduleInfoArrayList[index])
             GlobalValue.scheduleInfoArrayList.removeAt(index)
-    
         }
     }
 }

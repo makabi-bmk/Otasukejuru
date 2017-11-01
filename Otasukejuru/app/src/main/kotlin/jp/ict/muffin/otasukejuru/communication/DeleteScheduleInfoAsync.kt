@@ -3,17 +3,17 @@ package jp.ict.muffin.otasukejuru.communication
 import android.os.AsyncTask
 import com.squareup.moshi.Moshi
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
-import jp.ict.muffin.otasukejuru.`object`.TaskInfo
+import jp.ict.muffin.otasukejuru.`object`.ScheduleInfo
 import okhttp3.MediaType
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody
 
-class DeleteScheduleInfoAsync : AsyncTask<TaskInfo, Void, Unit>() {
+class DeleteScheduleInfoAsync : AsyncTask<ScheduleInfo, Void, Unit>() {
     private val mediaType = MediaType.parse("application/json; charset=utf-8")
     private var client = OkHttpClient()
     
-    override fun doInBackground(vararg params: TaskInfo) {
+    override fun doInBackground(vararg params: ScheduleInfo) {
         post("${GlobalValue.SERVER_URL}/delete/schedule", convertToJson(params[0]))
     }
     
@@ -32,10 +32,10 @@ class DeleteScheduleInfoAsync : AsyncTask<TaskInfo, Void, Unit>() {
         return null
     }
     
-    private fun convertToJson(taskInfo: TaskInfo): String {
+    private fun convertToJson(scheduleInfo: ScheduleInfo): String {
         val moshi = Moshi.Builder().build()
-        val adapter = moshi.adapter(TaskInfo::class.java)
+        val adapter = moshi.adapter(ScheduleInfo::class.java)
         
-        return adapter.toJson(taskInfo)
+        return adapter.toJson(scheduleInfo)
     }
 }

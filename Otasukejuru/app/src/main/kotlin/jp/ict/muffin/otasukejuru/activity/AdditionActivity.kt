@@ -20,7 +20,7 @@ import org.jetbrains.anko.find
 import java.util.*
 
 
-class TaskAdditionActivity : Activity() {
+class AdditionActivity : Activity() {
     
     //common
     private var isPlan: Boolean = false
