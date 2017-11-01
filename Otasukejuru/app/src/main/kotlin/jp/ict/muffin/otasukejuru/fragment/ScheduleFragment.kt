@@ -16,7 +16,6 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
-import jp.ict.muffin.otasukejuru.`object`.TaskInfo
 import jp.ict.muffin.otasukejuru.activity.InputProgressActivity
 import jp.ict.muffin.otasukejuru.activity.TaskAdditionActivity
 import jp.ict.muffin.otasukejuru.activity.TimeSetActivity
@@ -137,6 +136,9 @@ class ScheduleFragment : Fragment() {
                 schedule.apply {
                     layoutParams = rParam
                     backgroundColor = Color.argb(100, 112, 173, 71)
+                    setOnClickListener {
+                    
+                    }
                 }
                 val scheduleNameText = TextView(context)
                 val tParam = RelativeLayout.LayoutParams(wrapContent, wrapContent)
@@ -194,7 +196,7 @@ class ScheduleFragment : Fragment() {
                     cardView.apply {
                         tag = Utils().getDate(taskInfo.due_date)
                         setOnClickListener {
-                            createDialog(taskInfo, index)
+                            createDialog(index, true)
                         }
                     }
                     find<RelativeLayout>(R.id.taskProgress).scaleY = dip(taskInfo.progress * 1.4f).toFloat()
@@ -222,11 +224,16 @@ class ScheduleFragment : Fragment() {
         }
     }
     
-    private fun createDialog(element: TaskInfo, index: Int) {
+    private fun createDialog(index: Int, isTask: Boolean) {
         val listDialog = arrayOf("開始", "変更", "完了", "削除", "進捗")
+        val title = if (isTask) {
+            GlobalValue.taskInfoArrayList[index].task_name
+        } else {
+            GlobalValue.scheduleInfoArrayList[index].schedule_name
+        }
         
         AlertDialog.Builder(context).apply {
-            setTitle(element.task_name)
+            setTitle(title)
             setItems(listDialog) { _, which ->
                 when (which) {
                     0 -> {
@@ -248,10 +255,10 @@ class ScheduleFragment : Fragment() {
                     
                     2 -> {
                         AlertDialog.Builder(context).apply {
-                            setTitle(element.task_name)
+                            setTitle(title)
                             setMessage(getString(R.string.complicatedMassage))
                             setPositiveButton("Yes") { _, _ ->
-                                deleteTask(element, index)
+                                deleteTask(isTask, index)
                             }
                             setNegativeButton("No", null)
                             show()
@@ -260,10 +267,10 @@ class ScheduleFragment : Fragment() {
                     
                     3 -> {
                         AlertDialog.Builder(context).apply {
-                            setTitle(element.task_name)
+                            setTitle(title)
                             setMessage(getString(R.string.deleteMassage))
                             setPositiveButton("OK") { _, _ ->
-                                deleteTask(element, index)
+                                deleteTask(isTask, index)
                             }
                             setNegativeButton("Cancel", null)
                             show()
@@ -284,9 +291,16 @@ class ScheduleFragment : Fragment() {
         }
     }
     
-    private fun deleteTask(element: TaskInfo, index: Int) {
-        val deleteTaskAsync = DeleteTaskInfoAsync()
-        deleteTaskAsync.execute(GlobalValue.taskInfoArrayList[index])
-        GlobalValue.taskInfoArrayList.remove(element)
+    private fun deleteTask(isTask: Boolean, index: Int) {
+        if (isTask) {
+            val deleteTaskAsync = DeleteTaskInfoAsync()
+            deleteTaskAsync.execute(GlobalValue.taskInfoArrayList[index])
+            GlobalValue.taskInfoArrayList.removeAt(index)
+        } else {
+            val deleteTaskAsync = DeleteTaskInfoAsync()
+            deleteTaskAsync.execute(GlobalValue.taskInfoArrayList[index])
+            GlobalValue.scheduleInfoArrayList.removeAt(index)
+    
+        }
     }
 }
