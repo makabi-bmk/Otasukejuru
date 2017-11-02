@@ -1,5 +1,6 @@
 package jp.ict.muffin.otasukejuru_peer.activity
 
+import android.graphics.Color
 import android.graphics.Point
 import android.os.Bundle
 import android.os.Handler
@@ -52,8 +53,10 @@ class MainActivity : AppCompatActivity() {
         mViewPager = find(R.id.view_pager)
         mViewPager.adapter = mSectionsPagerAdapter
         
-        tabs.setupWithViewPager(mViewPager)
-        
+        tabs.apply {
+            setupWithViewPager(mViewPager)
+            setTabTextColors(Color.parseColor("#FBFBF0"), Color.parseColor("#66B7EC"))
+        }
         val display = windowManager.defaultDisplay
         val point = Point()
         display.getSize(point)
