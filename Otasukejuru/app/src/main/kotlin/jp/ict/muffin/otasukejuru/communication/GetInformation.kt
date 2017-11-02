@@ -74,6 +74,7 @@ class GetInformation : AsyncTask<Unit, Unit, Unit>() {
         val moshi = Moshi.Builder().build()
         val scheduleAdapter = moshi.adapter(ScheduleInfo::class.java)
         val everyAdapter = moshi.adapter(EveryInfo::class.java)
+        val friendAdapter = moshi.adapter(TaskInfo::class.java)
         
         val jsonObject = try {
             JSONObject(response)
@@ -86,6 +87,7 @@ class GetInformation : AsyncTask<Unit, Unit, Unit>() {
         GlobalValue.apply {
             scheduleInfoArrayList.clear()
             everyInfoArrayList.clear()
+            friendTaskInfoArrayList.clear()
         }
         keys.forEach { key ->
             val jsonArray = jsonObject?.getJSONArray(key)
@@ -97,6 +99,11 @@ class GetInformation : AsyncTask<Unit, Unit, Unit>() {
                                 ?.let { GlobalValue.scheduleInfoArrayList.add(it) }
                         "every" -> everyAdapter.fromJson(json)
                                 ?.let { GlobalValue.everyInfoArrayList.add(it) }
+                        "friend" -> {
+                            
+                            friendAdapter.fromJson(json)
+                                    ?.let { GlobalValue.friendTaskInfoArrayList.add(it) }
+                        }
                         else -> {
                         }
                     }
