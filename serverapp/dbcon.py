@@ -91,7 +91,7 @@ def update_task(object_id: str, update_items: dict, friend_flag=False):
     object_id = ObjectId(object_id)
     if friend_flag:
         update_items['friend'] = True
-    print(update_items)
+    # print(update_items)
     task_col.update({"_id": object_id}, {'$set': update_items}, upsert=True)
 
 
@@ -153,7 +153,7 @@ def get_todo_list():
     todo_list = []
     now = dt.datetime.now()
     task_count = len(list(task_col.find()))
-    print(task_count)
+    # print(task_count)
     for i, task in enumerate(sorted(task_col.find(), key=lambda x: -(100 - x["progress"]) / (x["due_date"] - now).total_seconds() / 3600 + 1)):
         task["_id"] = str(task["_id"])
         task["registration_date"] = str(task["registration_date"])
@@ -161,10 +161,10 @@ def get_todo_list():
         task["guide_time"] = str(task["guide_time"])
 
         task["priority"] = set_priority(i)
-        print(i, task["priority"])
+        # print(i, task["priority"])
 
         todo_list.append(task)
-    logger.debug("{} | get_todo_list: {}".format(dt.datetime.now(), todo_list))
+    # logger.debug("{} | get_todo_list: {}".format(dt.datetime.now(), todo_list))
     return {"todo_list": todo_list}
 
 

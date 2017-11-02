@@ -40,9 +40,9 @@ def hello_world():
 
 @app.route('/test_form', methods=['POST'])
 def test_form():
-    print(request.content_type)
+    logger.debug(request.content_type)
     for key, value in request.json.items():
-        print("{}: {}".format(key, value))
+        logger.debug("{}: {}".format(key, value))
     return 'ok'
 
 
@@ -135,7 +135,7 @@ def update_task():
         return 'failed'
     data = request.json
     if '_id' not in data:
-        print("none object_id")
+        logger.debug("none object_id")
         return 'not succeeded task update'
     update_items = {}
     if 'task_name' in data:
@@ -150,7 +150,7 @@ def update_task():
         update_items['progress'] = data['progress']
     if 'priority' in data:
         update_items['priority'] = data['priority']
-    print(update_items)
+    # logger.debug(update_items)
     dbcon.update_task(data['_id'], update_items)
     return 'succeeded'
 
