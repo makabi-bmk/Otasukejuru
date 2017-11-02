@@ -63,9 +63,9 @@ def add_schedule(schedule_name: str, start_time: dt.datetime,
         }
         schedule_col.insert(post)
         new_schedule_list()
-        return True
+        return json.dumps(True)
     else:
-        return False
+        return json.dumps(False)
 
 
 def add_every(name: str, start_time: dt.datetime, end_time: dt.datetime,
@@ -181,10 +181,17 @@ def get_calendar():
     global schedule_list
     global every_list
     global task_list
+    if schedule_list == []:
+        new_schedule_list()
+    if every_list == []:
+        new_every_list()
+    if task_list == []:
+        new_every_list()
     calendar = {
         "schedule": schedule_list,
         "every": every_list,
-        "task": task_list
+        "task": task_list,
+        "friend": []
     }
     return json.dumps(calendar)
 
