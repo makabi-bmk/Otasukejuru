@@ -378,7 +378,19 @@ class AdditionActivity : Activity() {
         ChangePriorityActivityUI().createView(AnkoContext.create(ctx, this))
         setActionBar(find(R.id.ankoToolbar))
         
+        find<Button>(R.id.nextButton).setOnClickListener {
+            val num = find<RadioGroup>(R.id.changePriorityRadioGroup).checkedRadioButtonId
+            taskRepeat = when (find<RadioButton>(num).text.toString()) {
+                getString(R.string.mostPriority) -> 0
+                getString(R.string.highPriority) -> 1
+                getString(R.string.middlePriority) -> 2
+                getString(R.string.lowPriority) -> 3
+                else -> 4
+            }
+            setTaskGuideTime()
+        }
         
+        find<ImageButton>(R.id.button_back).setOnClickListener { setTaskRepeat() }
     }
     
     private fun setTaskGuideTime() {
