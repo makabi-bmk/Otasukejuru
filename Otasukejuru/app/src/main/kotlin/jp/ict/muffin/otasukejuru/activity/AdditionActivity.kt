@@ -9,9 +9,7 @@ import jp.ict.muffin.otasukejuru.`object`.EveryInfo
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
 import jp.ict.muffin.otasukejuru.`object`.ScheduleInfo
 import jp.ict.muffin.otasukejuru.`object`.TaskInfo
-import jp.ict.muffin.otasukejuru.communication.AddEveryTaskInfoAsync
-import jp.ict.muffin.otasukejuru.communication.AddScheduleTaskInfoAsync
-import jp.ict.muffin.otasukejuru.communication.UpdateTaskInfoAsync
+import jp.ict.muffin.otasukejuru.communication.*
 import jp.ict.muffin.otasukejuru.other.Utils
 import kotlinx.android.synthetic.main.set_plan_notification_time.*
 import kotlinx.android.synthetic.main.set_plan_repeat.*
@@ -254,10 +252,15 @@ class AdditionActivity : Activity() {
                     finishMinute + "分" + "\n繰り返し:" + taskRepeat + "\n何分前に通知するか:" +
                     notificationTime)
             
-            if (taskRepeat == 0) {
-                setScheduleInformation()
+            if (isAdd) {
+                if (taskRepeat == 0) {
+                    setScheduleInformation()
+                } else {
+                    setEveryInformation()
+                }
             } else {
-                setEveryInformation()
+            
+            
             }
             
             finish()
@@ -441,7 +444,6 @@ class AdditionActivity : Activity() {
         
         guideTime = if (isAdd) {
             5
-            
         } else {
             Utils().getTime(beforeTaskInfo.guide_time)
         }
@@ -460,11 +462,6 @@ class AdditionActivity : Activity() {
                     "\n繰り返し:" + taskRepeat +
                     "\nisMust:" + isMust + "\nisShould:" + isShould + "\nisWant to:" +
                     isWant + "\n終了目安:" + finishHour + "時間" + finishMinute + "分")
-            
-            if (!isAdd) {
-                val update = UpdateTaskInfoAsync()
-                update.execute(GlobalValue.taskInfoArrayList[index])
-            }
             
             if (taskRepeat == 0) {
                 setTaskInformation()
@@ -487,8 +484,15 @@ class AdditionActivity : Activity() {
             
         }
         //TODO:Remove comment out when Communication
-        val postEveryInfo = AddEveryTaskInfoAsync()
-        postEveryInfo.execute(everyInformation)
+        if (isAdd) {
+            GlobalValue.everyInfoArrayList.add(0, everyInformation)
+            val postEveryInfo = AddEveryTaskInfoAsync()
+            postEveryInfo.execute(everyInformation)
+        } else {
+            GlobalValue.everyInfoArrayList[index] = everyInformation
+            val update = UpdateEveryInfoAsync()
+            update.execute(GlobalValue.everyInfoArrayList[index])
+        }
         
     }
     
@@ -501,10 +505,19 @@ class AdditionActivity : Activity() {
 //            startDate = startMonth * 100 + startDay
 //            endDate = finishMonth * 100 + finishDay
         }
-        GlobalValue.scheduleInfoArrayList.add(0, scheduleInformation)
-        //TODO:Remove comment out when Communication
-        val postScheduleInfo = AddScheduleTaskInfoAsync()
-        postScheduleInfo.execute(scheduleInformation)
+//        GlobalValue.scheduleInfoArrayList.add(0, scheduleInformation)
+//        TODO:Remove comment out when Communication
+//        val postScheduleInfo = AddScheduleTaskInfoAsync()
+//        postScheduleInfo.execute(scheduleInformation)
+        if (isAdd) {
+            GlobalValue.scheduleInfoArrayList.add(0, scheduleInformation)
+            val postScheduleInfo = AddScheduleTaskInfoAsync()
+            postScheduleInfo.execute(scheduleInformation)
+        } else {
+            GlobalValue.scheduleInfoArrayList[index] = scheduleInformation
+            val update = UpdateScheduleInfoAsync()
+            update.execute(GlobalValue.scheduleInfoArrayList[index])
+        }
         
     }
     
@@ -530,7 +543,15 @@ class AdditionActivity : Activity() {
             priority = 0
         }
         Log.d("task", taskInformation.due_date)
-        GlobalValue.taskInfoArrayList.add(0, taskInformation)
+        if (isAdd) {
+            GlobalValue.taskInfoArrayList.add(0, taskInformation)
+            val postTaskInfo = AddTaskInfoAsync()
+            postTaskInfo.execute(taskInformation)
+        } else {
+            GlobalValue.taskInfoArrayList[index] = taskInformation
+            val update = UpdateTaskInfoAsync()
+            update.execute(GlobalValue.taskInfoArrayList[index])
+        }
         
     }
 }
