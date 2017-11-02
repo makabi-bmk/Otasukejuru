@@ -251,7 +251,7 @@ class ScheduleFragment : Fragment() {
                     }
                     
                     1 -> {
-                        startActivity<AdditionActivity>("index" to index, "add" to true,
+                        startActivity<AdditionActivity>("index" to index, "add" to false,
                                 if (isTask) {
                                     "task" to true
                                 } else {

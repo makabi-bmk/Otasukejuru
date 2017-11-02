@@ -23,8 +23,8 @@ import java.util.*
 class AdditionActivity : Activity() {
     
     //common
-    private var isPlan: Boolean = false
-    private var taskTitleName: String = ""
+    private var isSchedule: Boolean = false
+    private var titleName: String = ""
     private var startYear: Int = 0
     private var startMonth: Int = 0
     private var startDay: Int = 0
@@ -52,6 +52,7 @@ class AdditionActivity : Activity() {
     private var isAdd: Boolean = true
     private var index: Int = -1
     private lateinit var beforeTaskInfo: TaskInfo
+    private lateinit var beforeScheduleInfo: ScheduleInfo
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,8 +63,13 @@ class AdditionActivity : Activity() {
         if (isAdd) {
             selectAddType()
         } else {
-            beforeTaskInfo = GlobalValue.taskInfoArrayList[index]
-            inputTaskName()
+            if (intent.getBooleanExtra("task", false)) {
+                beforeTaskInfo = GlobalValue.taskInfoArrayList[index]
+                inputTaskName()
+            } else if (intent.getBooleanExtra("schedule", false)) {
+                beforeScheduleInfo = GlobalValue.scheduleInfoArrayList[index]
+                inputScheduleName()
+            }
         }
     }
     
@@ -73,29 +79,32 @@ class AdditionActivity : Activity() {
         setActionBar(find(R.id.toolbar_back))
         
         find<Button>(R.id.button_plan).setOnClickListener {
-            isPlan = true
-            inputPlanName()
+            isSchedule = true
+            inputScheduleName()
         }
         
         find<Button>(R.id.button_task).setOnClickListener {
-            isPlan = false
+            isSchedule = false
             inputTaskName()
         }
         
         find<ImageButton>(R.id.button_back).setOnClickListener { finish() }
     }
     
-    private fun inputPlanName() {
+    private fun inputScheduleName() {
         setContentView(R.layout.input_plan_name)
         setActionBar(find(R.id.toolbar_back))
         
         val inputNameEdit = find<EditText>(R.id.plan_name)
+        if (!isAdd) {
+            inputNameEdit.setText(beforeScheduleInfo.schedule_name)
+        }
         
         find<Button>(R.id.button_next).setOnClickListener {
-            taskTitleName = inputNameEdit.text.toString()
-            if (taskTitleName == "") taskTitleName = "無題"
+            titleName = inputNameEdit.text.toString()
+            if (titleName == "") titleName = "無題"
             
-            startPlanTime()
+            startScheduleTime()
         }
         
         find<ImageButton>(R.id.button_back).setOnClickListener { selectAddType() }
@@ -103,15 +112,22 @@ class AdditionActivity : Activity() {
     }
     
     //TODO:CHANGE XML
-    private fun startPlanTime() {
+    private fun startScheduleTime() {
         setContentView(R.layout.start_plan_time)
         setActionBar(find(R.id.toolbar_back))
         
-        startMonth = calendar.get(Calendar.MONTH) + 1
-        startDay = calendar.get(Calendar.DAY_OF_MONTH)
-        startHour = calendar.get(Calendar.HOUR_OF_DAY)
-        startMinute = calendar.get(Calendar.MINUTE)
-        
+        if (isAdd) {
+            startMonth = calendar.get(Calendar.MONTH) + 1
+            startDay = calendar.get(Calendar.DAY_OF_MONTH)
+            startHour = calendar.get(Calendar.HOUR_OF_DAY)
+            startMinute = calendar.get(Calendar.MINUTE)
+        } else {
+            val startTime = beforeScheduleInfo.start_time
+            startMonth = Utils().getDate(startTime) / 100
+            startDay = Utils().getDate(startTime) % 100
+            startHour = Utils().getTime(startTime) / 100
+            startMinute = Utils().getTime(startTime) % 100
+        }
         find<NumberPicker>(R.id.start_month_num_pick).apply {
             maxValue = 12
             minValue = 1
@@ -142,20 +158,28 @@ class AdditionActivity : Activity() {
         }
         startYear = calendar.get(Calendar.YEAR)
         
-        find<Button>(R.id.button_next).setOnClickListener { finishPlanTime() }
-        find<ImageButton>(R.id.button_back).setOnClickListener { inputPlanName() }
+        find<Button>(R.id.button_next).setOnClickListener { finishScheduleTime() }
+        find<ImageButton>(R.id.button_back).setOnClickListener { inputScheduleName() }
         
     }
     
-    private fun finishPlanTime() {
+    private fun finishScheduleTime() {
         setContentView(R.layout.finish_plan_time)
         setActionBar(find(R.id.toolbar_back))
         
-        finishMonth = startMonth
-        finishDay = startDay
-        finishHour = startHour
-        finishMinute = startMinute
-        
+        if (isAdd) {
+            finishMonth = startMonth
+            finishDay = startDay
+            finishHour = startHour
+            finishMinute = startMinute
+        } else {
+            val finishTime = beforeScheduleInfo.end_time
+            finishMonth = Utils().getDate(finishTime) / 100
+            finishDay = Utils().getDate(finishTime) % 100
+            finishHour = Utils().getTime(finishTime) / 100
+            finishMinute = Utils().getTime(finishTime) % 100
+            
+        }
         find<NumberPicker>(R.id.finish_month_num_pick).apply {
             maxValue = 12
             minValue = 1
@@ -182,12 +206,12 @@ class AdditionActivity : Activity() {
         }
         finishYear = calendar.get(Calendar.YEAR)
         
-        find<Button>(R.id.button_next).setOnClickListener { setPlanRepeat() }
-        find<ImageButton>(R.id.button_back).setOnClickListener { startPlanTime() }
+        find<Button>(R.id.button_next).setOnClickListener { setScheduleRepeat() }
+        find<ImageButton>(R.id.button_back).setOnClickListener { startScheduleTime() }
         
     }
     
-    private fun setPlanRepeat() {
+    private fun setScheduleRepeat() {
         setContentView(R.layout.set_plan_repeat)
         setActionBar(find(R.id.toolbar_back))
         
@@ -200,14 +224,14 @@ class AdditionActivity : Activity() {
             } else {
                 1
             }
-            setPlanNotificationTime()
+            setScheduleNotificationTime()
         }
         
-        find<ImageButton>(R.id.button_back).setOnClickListener { finishPlanTime() }
+        find<ImageButton>(R.id.button_back).setOnClickListener { finishScheduleTime() }
         
     }
     
-    private fun setPlanNotificationTime() {
+    private fun setScheduleNotificationTime() {
         setContentView(R.layout.set_plan_notification_time)
         setActionBar(find(R.id.toolbar_back))
         
@@ -218,7 +242,7 @@ class AdditionActivity : Activity() {
             val str: String = set_notification_time_edit.text.toString()
             notificationTime = Integer.parseInt(str)
             
-            Log.d("plan", "タイトル名:" + taskTitleName + "\n予定開始の日付:" + startMonth + "月" +
+            Log.d("plan", "タイトル名:" + titleName + "\n予定開始の日付:" + startMonth + "月" +
                     startDay + "日" + startHour + "時" + startMinute + "分" + "\n予定終了の時間:" +
                     finishMonth + "月" + finishDay + "日" + finishHour + "時" +
                     finishMinute + "分" + "\n繰り返し:" + taskRepeat + "\n何分前に通知するか:" +
@@ -233,7 +257,7 @@ class AdditionActivity : Activity() {
             finish()
         }
         
-        find<ImageButton>(R.id.button_back).setOnClickListener { setPlanRepeat() }
+        find<ImageButton>(R.id.button_back).setOnClickListener { setScheduleRepeat() }
         
     }
     
@@ -249,8 +273,8 @@ class AdditionActivity : Activity() {
         }
         
         find<Button>(R.id.button_next).setOnClickListener {
-            taskTitleName = inputTaskNameEdit.text.toString()
-            if (taskTitleName == "") taskTitleName = "無題"
+            titleName = inputTaskNameEdit.text.toString()
+            if (titleName == "") titleName = "無題"
             
             finishTaskTime()
         }
@@ -268,53 +292,45 @@ class AdditionActivity : Activity() {
         setContentView(R.layout.finish_task_time)
         setActionBar(find(R.id.toolbar_back))
         
-        finishMonth = calendar.get(Calendar.MONTH) + 1
-        finishDay = calendar.get(Calendar.DAY_OF_MONTH)
-        finishHour = calendar.get(Calendar.HOUR_OF_DAY)
-        finishMinute = calendar.get(Calendar.MINUTE)
+        if (isAdd) {
+            finishMonth = calendar.get(Calendar.MONTH) + 1
+            finishDay = calendar.get(Calendar.DAY_OF_MONTH)
+            finishHour = calendar.get(Calendar.HOUR_OF_DAY)
+            finishMinute = calendar.get(Calendar.MINUTE)
+        } else {
+            val dueDate = beforeTaskInfo.due_date
+            finishMonth = Utils().getDate(dueDate) / 100
+            finishDay = Utils().getDate(dueDate) % 100
+            finishHour = Utils().getTime(dueDate) / 100
+            finishMinute = Utils().getTime(dueDate) / 100
+        }
         
         find<NumberPicker>(R.id.finish_month_num_pick).apply {
             maxValue = 12
             minValue = 1
             
-            value = if (isAdd) {
-                finishMonth
-            } else {
-                Utils().getDate(beforeTaskInfo.due_date) / 100
-            }
+            value = finishMonth
             setOnValueChangedListener { _, _, newVal -> finishMonth = newVal }
         }
         
         find<NumberPicker>(R.id.finish_day_num_pick).apply {
             maxValue = 31
             minValue = 1
-            value = if (isAdd) {
-                finishDay
-            } else {
-                Utils().getDate(beforeTaskInfo.due_date) % 100
-            }
+            value = finishDay
             setOnValueChangedListener { _, _, newVal -> finishDay = newVal }
         }
         
         find<NumberPicker>(R.id.finish_hour_edit).apply {
             maxValue = 23
             minValue = 0
-            value = if (isAdd) {
-                finishHour
-            } else {
-                Utils().getTime(beforeTaskInfo.due_date) / 100
-            }
+            value = finishHour
             setOnValueChangedListener { _, _, newVal -> finishHour = newVal }
         }
         
         find<NumberPicker>(R.id.finish_minute_edit).apply {
             maxValue = 59
             minValue = 0
-            value = if (isAdd) {
-                finishMinute
-            } else {
-                Utils().getTime(beforeTaskInfo.due_date) % 100
-            }
+            value = finishMinute
             setOnValueChangedListener { _, _, newVal -> finishMinute = newVal }
         }
         
@@ -434,7 +450,7 @@ class AdditionActivity : Activity() {
                 timeLimit = startHour * 100 + startDay
             }
             
-            Log.d("task", "タイトル名:" + taskTitleName + "\n期限の開始:" + dateLimit +
+            Log.d("task", "タイトル名:" + titleName + "\n期限の開始:" + dateLimit +
                     "\n繰り返し:" + taskRepeat +
                     "\nisMust:" + isMust + "\nisShould:" + isShould + "\nisWant to:" +
                     isWant + "\n終了目安:" + finishHour + "時間" + finishMinute + "分")
@@ -458,7 +474,7 @@ class AdditionActivity : Activity() {
     private fun setEveryInformation() {
         val everyInformation = EveryInfo()
         everyInformation.apply {
-            every_name = taskTitleName
+            every_name = titleName
             start_time = "$startYear-$startMonth-$startDay $startHour:$startMinute:00"
             end_time = "$finishYear-$finishMonth-$finishDay $finishHour:$finishMinute:00"
             repeat_type = taskRepeat
@@ -473,7 +489,7 @@ class AdditionActivity : Activity() {
     private fun setScheduleInformation() {
         val scheduleInformation = ScheduleInfo()
         scheduleInformation.apply {
-            schedule_name = taskTitleName
+            schedule_name = titleName
             start_time = "$startYear-$startMonth-$startDay $startHour:$startMinute:00"
             end_time = "$finishYear-$finishMonth-$finishDay $finishHour:$finishMinute:00"
 //            startDate = startMonth * 100 + startDay
@@ -489,7 +505,7 @@ class AdditionActivity : Activity() {
     private fun setTaskInformation() {
         val taskInformation = TaskInfo()
         taskInformation.apply {
-            task_name = taskTitleName
+            task_name = titleName
             task_type = if (isMust) {
                 "1"
             } else {
