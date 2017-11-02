@@ -23,6 +23,9 @@ task_col = db['task']
 task_count = 0
 
 res_list = []
+task_list = []
+schedule_list = []
+every_list = []
 
 
 def add_task(task_name: str, due_date: dt.datetime, task_type: int,
@@ -38,6 +41,7 @@ def add_task(task_name: str, due_date: dt.datetime, task_type: int,
         "friend": False
     }
     task_col.insert_one(post)
+    new_task_list()
 
 
 def add_schedule(schedule_name: str, start_time: dt.datetime,
@@ -58,6 +62,7 @@ def add_schedule(schedule_name: str, start_time: dt.datetime,
             "end_time": end_time,
         }
         schedule_col.insert(post)
+        new_schedule_list()
         return True
     else:
         return False
@@ -73,6 +78,7 @@ def add_every(name: str, start_time: dt.datetime, end_time: dt.datetime,
         "repeat_type": repeat_type,
     }
     every_col.insert_one(post)
+    new_every_list()
 
 
 def delete_task(object_id):
@@ -93,6 +99,7 @@ def update_task(object_id: str, update_items: dict, friend_flag=False):
         update_items['friend'] = True
     # print(update_items)
     task_col.update({"_id": object_id}, {'$set': update_items}, upsert=True)
+    new_task_list()
 
 
 def update_schedule(object_id: str, update_items: dict, friend_flag=False):
@@ -114,6 +121,7 @@ def update_schedule(object_id: str, update_items: dict, friend_flag=False):
     if flg:
         schedule_col.update({"_id": object_id}, {"$set": update_items},
                             upsert=True)
+        new_schedule_list()
         return True
     else:
         return False
@@ -124,6 +132,7 @@ def update_every(object_id: str, update_items: dict, friend_flag=False):
     if friend_flag:
         update_items['friend'] = True
     every_col.update({"_id": object_id}, {'$set': update_items}, upsert=True)
+    new_every_list()
 
 
 def set_priority(n_banme):
@@ -169,39 +178,54 @@ def get_todo_list():
 
 
 def get_calendar():
-    s = []
-    e = []
-    f = []
-    t = []
+    global schedule_list
+    global every_list
+    global task_list
+    calendar = {
+        "schedule": schedule_list,
+        "every": every_list,
+        "task": task_list
+    }
+    return json.dumps(calendar)
+
+
+def new_task_list():
+    global task_count
+    global task_list
+    task_list = []
+    now = dt.datetime.now()
+    task_count = len(list(task_col.find()))
+    # print(task_count)
+    for i, task in enumerate(sorted(task_col.find(), key=lambda x: -(100 - x["progress"]) / (x["due_date"] - now).total_seconds() / 3600 + 1)):
+        task["_id"] = str(task["_id"])
+        task["registration_date"] = str(task["registration_date"])
+        task["due_date"] = str(task["due_date"])
+        task["guide_time"] = str(task["guide_time"])
+
+        task["priority"] = set_priority(i)
+        # print(i, task["priority"])
+
+        task_list.append(task)
+
+
+def new_schedule_list():
+    global schedule_list
+    schedule_list = []
     for i in schedule_col.find():
         i["_id"] = str(i["_id"])
         i["start_time"] = str(i["start_time"])
         i["end_time"] = str(i["end_time"])
-        s.append(i)
+        schedule_list.append(i)
+
+
+def new_every_list():
+    global every_list
+    every_list = []
     for i in every_col.find():
         i["_id"] = str(i["_id"])
         i["start_time"] = str(i["start_time"])
         i["end_time"] = str(i["end_time"])
-        e.append(i)
-    for i in task_col.find({"friend": True}):
-        i["_id"] = str(i["_id"])
-        i["due_date"] = str(i["due_date"])
-        i["guide_time"] = str(i["guide_time"])
-        i["registration_date"] = str(i["registration_date"])
-        f.append(i)
-    for i in task_col.find({"friend": {"$exists": False}}):
-        i["_id"] = str(i["_id"])
-        i["due_date"] = str(i["due_date"])
-        i["guide_time"] = str(i["guide_time"])
-        i["registration_date"] = str(i["registration_date"])
-        t.append(i)
-    calendar = {
-        "schedule": s,
-        "every": e,
-        "friend": f,
-        "task": sorted(t, key=lambda x: (-x["priority"], x["progress"]))
-    }
-    return json.dumps(calendar)
+        every_list.append(i)
 
 
 if __name__ == '__main__':
