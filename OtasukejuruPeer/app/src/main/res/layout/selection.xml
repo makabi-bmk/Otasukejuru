@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/back"
+    android:orientation="vertical">
+
+    <Toolbar
+        android:id="@+id/toolbar_back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="0dp"
+        android:background="?android:colorPrimary"
+        android:minHeight="?android:actionBarSize"
+        android:padding="0dp">
+
+        <ImageButton
+            android:id="@+id/button_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="0dp"
+            android:background="@drawable/ic_arrow_back_white_48dp"
+            android:padding="0dp"/>
+    </Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="何を追加しますか?"
+            android:textSize="30dp"/>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button_plan"
+                android:layout_width="145dp"
+                android:layout_height="145dp"
+                android:layout_margin="15dp"
+                android:background="@color/colorPrimary"
+                android:text="予定"
+                android:textColor="#000"
+                android:textSize="30dp"/>
+
+            <Button
+                android:id="@+id/button_task"
+                android:layout_width="145dp"
+                android:layout_height="145dp"
+                android:layout_margin="15dp"
+                android:background="@color/colorPrimary"
+                android:text="タスク"
+                android:textColor="#000"
+                android:textSize="30dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

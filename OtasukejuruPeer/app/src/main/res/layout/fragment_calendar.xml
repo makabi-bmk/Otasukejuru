@@ -1,0 +1,502 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FBFBF0"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/back_month"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_gravity="start"
+            android:layout_marginStart="25dp"
+            android:background="@drawable/ic_navigate_before"/>
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10sp"
+            android:layout_marginRight="10sp"
+            android:gravity="center"
+            android:textSize="30sp"/>
+
+        <Button
+            android:id="@+id/next_month"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_gravity="end"
+            android:layout_marginEnd="25dp"
+            android:background="@drawable/ic_navigate_next"/>
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/border"
+            android:gravity="center"
+            android:text="日"
+            android:textColor="@color/sundayColor"
+            android:textSize="20sp"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/border"
+            android:gravity="center"
+            android:text="月"
+            android:textSize="20sp"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/border"
+            android:gravity="center"
+            android:text="火"
+            android:textSize="20sp"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/border"
+            android:gravity="center"
+            android:text="水"
+            android:textSize="20sp"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/border"
+            android:gravity="center"
+            android:text="木"
+            android:textSize="20sp"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/border"
+            android:gravity="center"
+            android:text="金"
+            android:textSize="20sp"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/border"
+            android:gravity="center"
+            android:text="土"
+            android:textColor="@color/saturdayColor"
+            android:textSize="20sp"/>
+    </LinearLayout>
+
+    <TableLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/table_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/border">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <jp.ict.muffin.otasukejuru_peer.view.CustomCell
+                android:id="@+id/date0"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/border">
+            </jp.ict.muffin.otasukejuru_peer.view.CustomCell>
+
+            <jp.ict.muffin.otasukejuru_peer.view.CustomCell
+                android:id="@+id/date1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/border">
+            </jp.ict.muffin.otasukejuru_peer.view.CustomCell>
+
+            <jp.ict.muffin.otasukejuru_peer.view.CustomCell
+                android:id="@+id/date2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/border">
+            </jp.ict.muffin.otasukejuru_peer.view.CustomCell>
+
+            <jp.ict.muffin.otasukejuru_peer.view.CustomCell
+                android:id="@+id/date3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/border">
+            </jp.ict.muffin.otasukejuru_peer.view.CustomCell>
+
+            <jp.ict.muffin.otasukejuru_peer.view.CustomCell
+                android:id="@+id/date4"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/border">
+            </jp.ict.muffin.otasukejuru_peer.view.CustomCell>
+
+            <jp.ict.muffin.otasukejuru_peer.view.CustomCell
+                android:id="@+id/date5"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/border">
+            </jp.ict.muffin.otasukejuru_peer.view.CustomCell>
+
+            <jp.ict.muffin.otasukejuru_peer.view.CustomCell
+                android:id="@+id/date6"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/border">
+            </jp.ict.muffin.otasukejuru_peer.view.CustomCell>
+
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <jp.ict.muffin.otasukejuru_peer.view.CustomCell
+                android:id="@+id/date7"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/border">
+            </jp.ict.muffin.otasukejuru_peer.view.CustomCell>
+
+            <jp.ict.muffin.otasukejuru_peer.view.CustomCell
+                android:id="@+id/date8"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/border">
+            </jp.ict.muffin.otasukejuru_peer.view.CustomCell>
+
+            <jp.ict.muffin.otasukejuru_peer.view.CustomCell
+                android:id="@+id/date9"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/border">
+            </jp.ict.muffin.otasukejuru_peer.view.CustomCell>
+
+            <jp.ict.muffin.otasukejuru_peer.view.CustomCell
+                android:id="@+id/date10"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/border">
+            </jp.ict.muffin.otasukejuru_peer.view.CustomCell>
+
+            <jp.ict.muffin.otasukejuru_peer.view.CustomCell
+                android:id="@+id/date11"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/border">
+            </jp.ict.muffin.otasukejuru_peer.view.CustomCell>
+
+            <jp.ict.muffin.otasukejuru_peer.view.CustomCell
+                android:id="@+id/date12"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/border">
+            </jp.ict.muffin.otasukejuru_peer.view.CustomCell>
+
+            <jp.ict.muffin.otasukejuru_peer.view.CustomCell
+                android:id="@+id/date13"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/border">
+            </jp.ict.muffin.otasukejuru_peer.view.CustomCell>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <jp.ict.muffin.otasukejuru_peer.view.CustomCell
+                android:id="@+id/date14"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/border">
+            </jp.ict.muffin.otasukejuru_peer.view.CustomCell>
+
+            <jp.ict.muffin.otasukejuru_peer.view.CustomCell
+                android:id="@+id/date15"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/border">
+            </jp.ict.muffin.otasukejuru_peer.view.CustomCell>
+
+            <jp.ict.muffin.otasukejuru_peer.view.CustomCell
+                android:id="@+id/date16"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/border">
+            </jp.ict.muffin.otasukejuru_peer.view.CustomCell>
+
+            <jp.ict.muffin.otasukejuru_peer.view.CustomCell
+                android:id="@+id/date17"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/border">
+            </jp.ict.muffin.otasukejuru_peer.view.CustomCell>
+
+            <jp.ict.muffin.otasukejuru_peer.view.CustomCell
+                android:id="@+id/date18"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/border">
+            </jp.ict.muffin.otasukejuru_peer.view.CustomCell>
+
+            <jp.ict.muffin.otasukejuru_peer.view.CustomCell
+                android:id="@+id/date19"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/border">
+            </jp.ict.muffin.otasukejuru_peer.view.CustomCell>
+
+            <jp.ict.muffin.otasukejuru_peer.view.CustomCell
+                android:id="@+id/date20"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/border">
+            </jp.ict.muffin.otasukejuru_peer.view.CustomCell>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <jp.ict.muffin.otasukejuru_peer.view.CustomCell
+                android:id="@+id/date21"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/border">
+            </jp.ict.muffin.otasukejuru_peer.view.CustomCell>
+
+            <jp.ict.muffin.otasukejuru_peer.view.CustomCell
+                android:id="@+id/date22"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/border">
+            </jp.ict.muffin.otasukejuru_peer.view.CustomCell>
+
+            <jp.ict.muffin.otasukejuru_peer.view.CustomCell
+                android:id="@+id/date23"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/border">
+            </jp.ict.muffin.otasukejuru_peer.view.CustomCell>
+
+            <jp.ict.muffin.otasukejuru_peer.view.CustomCell
+                android:id="@+id/date24"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/border">
+            </jp.ict.muffin.otasukejuru_peer.view.CustomCell>
+
+            <jp.ict.muffin.otasukejuru_peer.view.CustomCell
+                android:id="@+id/date25"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/border">
+            </jp.ict.muffin.otasukejuru_peer.view.CustomCell>
+
+            <jp.ict.muffin.otasukejuru_peer.view.CustomCell
+                android:id="@+id/date26"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/border">
+            </jp.ict.muffin.otasukejuru_peer.view.CustomCell>
+
+            <jp.ict.muffin.otasukejuru_peer.view.CustomCell
+                android:id="@+id/date27"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/border">
+            </jp.ict.muffin.otasukejuru_peer.view.CustomCell>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <jp.ict.muffin.otasukejuru_peer.view.CustomCell
+                android:id="@+id/date28"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/border">
+            </jp.ict.muffin.otasukejuru_peer.view.CustomCell>
+
+            <jp.ict.muffin.otasukejuru_peer.view.CustomCell
+                android:id="@+id/date29"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/border">
+            </jp.ict.muffin.otasukejuru_peer.view.CustomCell>
+
+            <jp.ict.muffin.otasukejuru_peer.view.CustomCell
+                android:id="@+id/date30"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/border">
+            </jp.ict.muffin.otasukejuru_peer.view.CustomCell>
+
+            <jp.ict.muffin.otasukejuru_peer.view.CustomCell
+                android:id="@+id/date31"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/border">
+            </jp.ict.muffin.otasukejuru_peer.view.CustomCell>
+
+            <jp.ict.muffin.otasukejuru_peer.view.CustomCell
+                android:id="@+id/date32"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/border">
+            </jp.ict.muffin.otasukejuru_peer.view.CustomCell>
+
+            <jp.ict.muffin.otasukejuru_peer.view.CustomCell
+                android:id="@+id/date33"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/border">
+            </jp.ict.muffin.otasukejuru_peer.view.CustomCell>
+
+            <jp.ict.muffin.otasukejuru_peer.view.CustomCell
+                android:id="@+id/date34"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/border">
+            </jp.ict.muffin.otasukejuru_peer.view.CustomCell>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <jp.ict.muffin.otasukejuru_peer.view.CustomCell
+                android:id="@+id/date35"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/border">
+            </jp.ict.muffin.otasukejuru_peer.view.CustomCell>
+
+            <jp.ict.muffin.otasukejuru_peer.view.CustomCell
+                android:id="@+id/date36"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/border">
+            </jp.ict.muffin.otasukejuru_peer.view.CustomCell>
+
+            <jp.ict.muffin.otasukejuru_peer.view.CustomCell
+                android:id="@+id/date37"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/border">
+            </jp.ict.muffin.otasukejuru_peer.view.CustomCell>
+
+            <jp.ict.muffin.otasukejuru_peer.view.CustomCell
+                android:id="@+id/date38"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/border">
+            </jp.ict.muffin.otasukejuru_peer.view.CustomCell>
+
+            <jp.ict.muffin.otasukejuru_peer.view.CustomCell
+                android:id="@+id/date39"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/border">
+            </jp.ict.muffin.otasukejuru_peer.view.CustomCell>
+
+            <jp.ict.muffin.otasukejuru_peer.view.CustomCell
+                android:id="@+id/date40"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/border">
+            </jp.ict.muffin.otasukejuru_peer.view.CustomCell>
+
+            <jp.ict.muffin.otasukejuru_peer.view.CustomCell
+                android:id="@+id/date41"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/border">
+            </jp.ict.muffin.otasukejuru_peer.view.CustomCell>
+        </TableRow>
+
+    </TableLayout>
+
+
+</LinearLayout>
