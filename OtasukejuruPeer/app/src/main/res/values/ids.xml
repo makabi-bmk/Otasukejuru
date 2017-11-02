@@ -29,4 +29,9 @@
     <item name="inputProgressSeek" type="id"/>
     <item name="progressTextView" type="id"/>
     <item name="finishButton" type="id"/>
+    <item name="changePriorityRadioGroup" type="id"/>
+    <item name="radioPriority1" type="id"/>
+    <item name="radioPriority2" type="id"/>
+    <item name="radioPriority3" type="id"/>
+    <item name="radioPriority4" type="id"/>
 </resources>
