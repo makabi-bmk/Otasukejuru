@@ -23,7 +23,6 @@ import org.jetbrains.anko.startActivity
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var mViewPager: ViewPager
     private var mTimer: Timer? = null
     
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,8 +50,8 @@ class MainActivity : AppCompatActivity() {
         /*
       The {@link ViewPager} that will host the section contents.
      */
-        
-        mViewPager = find(R.id.view_pager)
+    
+        val mViewPager: ViewPager = find(R.id.view_pager)
         mViewPager.adapter = mSectionsPagerAdapter
         
         tabs.apply {
