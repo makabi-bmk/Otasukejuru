@@ -42,70 +42,12 @@ def add_task(task_name: str, due_date: dt.datetime, task_type: int,
 
 def add_schedule(schedule_name: str, start_date: dt.datetime,
                  end_date: dt.datetime) -> None:
-    res = check_days(start_date, end_date)
-    # 複数スケジュールだった場合、分割
-    # もう分割しなくていい
-    # if res["result"]:
-    #     for i, day in enumerate(res["days"]):
-    #         # 連日スケジュールの初日だけ通知
-    #         print("add_schedule: now day", i)
-    #         if i == 0:
-    #             post = {
-    #                 "schedule_name": schedule_name,
-    #                 "start_time": day[0],
-    #                 "end_time": day[1],
-    #                 "notice": notice
-    #             }
-    #         else:
-    #             post = {
-    #                 "schedule_name": schedule_name,
-    #                 "start_time": day[0],
-    #                 "end_time": day[1],
-    #             }
-    #         print(post)
-    #         schedule_col.insert_one(post)
-    # else:
     post = {
         "schedule_name": schedule_name,
         "start_time": start_date,
         "end_time": end_date,
     }
     schedule_col.insert_one(post)
-
-
-def make_zero_time(date: dt.datetime) -> dt.datetime:
-    return date - dt.timedelta(hours=date.hour, minutes=date.minute,
-                               seconds=date.second)
-
-
-def make_last_time(date: dt.datetime) -> dt.datetime:
-    return date + dt.timedelta(hours=23 - date.hour, minutes=59 - date.minute,
-                               seconds=59 - date.second)
-
-
-def add_day(date: dt.datetime, dist: int) -> dt.datetime:
-    return date + dt.timedelta(days=dist)
-
-
-def check_days(start_time: dt.datetime, end_time: dt.datetime):
-    if start_time.day != end_time.day:
-        res = {
-            "result": True,
-            "days": []
-        }
-        zero_time = make_zero_time(start_time)
-        last_time = make_last_time(start_time)
-        res['days'].append([start_time, last_time])
-        for i in range(end_time.day - start_time.day - 1):
-            res['days'].append([add_day(zero_time, i + 1),
-                                add_day(last_time, i + 1)])
-        res['days'].append([make_zero_time(end_time), end_time])
-    else:
-        res = {
-            "result": False,
-            "day": [start_time, end_time]
-        }
-    return res
 
 
 def add_every(name: str, start_time: dt.datetime, end_time: dt.datetime,
