@@ -16,6 +16,7 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
+import jp.ict.muffin.otasukejuru.activity.AddSubTaskActivity
 import jp.ict.muffin.otasukejuru.activity.AdditionActivity
 import jp.ict.muffin.otasukejuru.activity.InputProgressActivity
 import jp.ict.muffin.otasukejuru.activity.TimeSetActivity
@@ -28,6 +29,8 @@ import org.jetbrains.anko.*
 import org.jetbrains.anko.collections.forEachWithIndex
 import org.jetbrains.anko.support.v4.*
 import java.util.*
+
+
 
 
 class ScheduleFragment : Fragment() {
@@ -219,6 +222,14 @@ class ScheduleFragment : Fragment() {
                     backgroundColor = ContextCompat.getColor(context, R.color.mostPriority)
                     setOnClickListener {
                         toast("hoge")
+                        AlertDialog.Builder(activity)
+                                .setTitle(taskInfo.task_name)
+                                .setMessage("サブタスクを追加しますか？")
+                                .setPositiveButton("YES") { dialog, which ->
+                                    startActivity<AddSubTaskActivity>()
+                                }
+                                .setNegativeButton("NO", null)
+                                .show()
                     }
                 }
                 find<RelativeLayout>(R.id.refreshRelative).addView(line)
