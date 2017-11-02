@@ -216,15 +216,18 @@ def friend_get_todo_list():
 
 @app.route('/friend/update/task', methods=['POST'])
 def friend_update_task():
-    global friend_flag
+    # global friend_flag
+    global friend_tassk
     if request.content_type != 'application/json; charset=utf-8':
         logger.debug('err invalid content_type. url: /update/task, '
                      'content_type: {}'.format(request.content_type))
         return 'failed'
     data = request.json
+    update_items = {}
     if 'object_id' not in data:
         return 'not succeeded task update'
-    update_items = {}
+    else:
+        update_items['object_id'] = data['object_id']
     if 'task_name' in data:
         update_items['task_name'] = data['task_name']
     if 'due_date' in data:
@@ -237,8 +240,9 @@ def friend_update_task():
         update_items['progress'] = data['progress']
     if 'priority' in data:
         update_items['priority'] = data['priority']
-    dbcon.update_task(data['object_id'], update_items)
-    friend_flag = True
+    # dbcon.update_task(data['object_id'], update_items)
+    # friend_flag = True
+    friend_task.append(update_items)
     return 'succeeded'
 
 
@@ -251,15 +255,17 @@ def friend_update_schedule():
                      'content_type: {}'.format(request.content_type))
         return 'failed'
     data = request.json
+    update_items = {}
     if 'object_id' not in data:
         return 'not succeeded schedule data'
-    update_items = {}
+    else:
+        update_items['object_id'] = data['object_id']
     if 'schedule_name' in data:
         update_items['schedule_name'] = data['schedule_name']
     if 'start_date' in data:
-        update_items['start_date'] = data['start_date']
+        update_items['start_time'] = data['start_time']
     if 'end_date' in data:
-        update_items['end_date'] = data['end_date']
+        update_items['end_time'] = data['end_time']
     # dbcon.update_schedule(data['object_id'], update_items)
     # friend_flag = True
     friend_schedule.append(update_items)
@@ -294,14 +300,23 @@ def friend_add_task():
         logger.debug('err invalid content_type. url: /add/task, content_type: '
                      '{}'.format(request.content_type))
         return 'failed'
+    global friend_task
     task_name = request.json['task_name']
     due_date = str_to_datetime(request.json['due_date'])
     task_type = request.json['task_type']
     guide_time = strtime.str_to_time(request.json['guide_time'])
     progress = request.json['progress']
     priority = request.json['priority']
-    dbcon.add_task(task_name, due_date, task_type, guide_time,
-                   progress, priority)
+    friend_task.append({
+        "task_name": task_name,
+        "due_date": due_date,
+        "task_type": task_type,
+        "guide_time": guide_time,
+        "progress": progress,
+        "priority": priority
+    })
+    # dbcon.add_task(task_name, due_date, task_type, guide_time,
+    #                progress, priority)
     return 'succeeded'
 
 
@@ -313,12 +328,12 @@ def friend_add_schedule():
         return 'failed'
     global friend_schedule
     schedule_name = request.json['schedule_name']
-    start_date = str_to_datetime(request.json['start_time'])
-    end_date = str_to_datetime(request.json['end_time'])
+    start_time = request.json['start_time']
+    end_time = request.json['end_time']
     friend_schedule.append({
         "schedule_name": schedule_name,
-        "start_date": start_date,
-        "end_date": end_date
+        "start_time": start_time,
+        "end_time": end_time
     })
 
 
