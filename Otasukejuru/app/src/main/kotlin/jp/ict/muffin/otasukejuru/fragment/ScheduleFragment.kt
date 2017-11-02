@@ -295,6 +295,7 @@ class ScheduleFragment : Fragment() {
     }
     
     private fun createDialog(index: Int, isTask: Boolean) {
+        Log.d("select", GlobalValue.taskInfoArrayList[index].toString())
         val listDialog = if (isTask) {
             arrayOf("開始", "変更", "完了", "削除", "進捗")
         } else {

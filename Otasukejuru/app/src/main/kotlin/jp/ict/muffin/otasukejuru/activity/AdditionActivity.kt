@@ -489,6 +489,7 @@ class AdditionActivity : Activity() {
             val postEveryInfo = AddEveryTaskInfoAsync()
             postEveryInfo.execute(everyInformation)
         } else {
+            everyInformation._id = GlobalValue.everyInfoArrayList[index]._id
             GlobalValue.everyInfoArrayList[index] = everyInformation
             val update = UpdateEveryInfoAsync()
             update.execute(GlobalValue.everyInfoArrayList[index])
@@ -514,6 +515,7 @@ class AdditionActivity : Activity() {
             val postScheduleInfo = AddScheduleTaskInfoAsync()
             postScheduleInfo.execute(scheduleInformation)
         } else {
+            scheduleInformation._id = GlobalValue.scheduleInfoArrayList[index]._id
             GlobalValue.scheduleInfoArrayList[index] = scheduleInformation
             val update = UpdateScheduleInfoAsync()
             update.execute(GlobalValue.scheduleInfoArrayList[index])
@@ -548,6 +550,7 @@ class AdditionActivity : Activity() {
             val postTaskInfo = AddTaskInfoAsync()
             postTaskInfo.execute(taskInformation)
         } else {
+            taskInformation._id = GlobalValue.taskInfoArrayList[index]._id
             GlobalValue.taskInfoArrayList[index] = taskInformation
             val update = UpdateTaskInfoAsync()
             update.execute(GlobalValue.taskInfoArrayList[index])
