@@ -91,7 +91,7 @@ class ChangePriorityActivityUI : AnkoComponent<AdditionActivity> {
                     centerHorizontally()
                     centerVertically()
                 }
-    
+                
                 button("次へ") {
                     id = R.id.nextButton
                     backgroundColor = Color.argb(0, 0, 0, 0)

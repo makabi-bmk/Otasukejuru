@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
         /*
       The {@link ViewPager} that will host the section contents.
      */
-    
+        
         val mViewPager: ViewPager = find(R.id.view_pager)
         mViewPager.adapter = mSectionsPagerAdapter
         

@@ -369,9 +369,7 @@ class AdditionActivity : Activity() {
             Log.d("Repeat", taskRepeat.toString())
             changePriority()
         }
-        
         find<ImageButton>(R.id.button_back).setOnClickListener { finishTaskTime() }
-        
     }
     
     private fun changePriority() {
