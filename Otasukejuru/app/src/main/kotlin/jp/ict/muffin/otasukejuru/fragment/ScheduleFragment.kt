@@ -25,6 +25,7 @@ import jp.ict.muffin.otasukejuru.other.Utils
 import jp.ict.muffin.otasukejuru.ui.ScheduleFragmentUI
 import kotlinx.android.synthetic.main.task_card_view.view.*
 import org.jetbrains.anko.*
+import org.jetbrains.anko.collections.forEachWithIndex
 import org.jetbrains.anko.support.v4.*
 import java.util.*
 
@@ -108,7 +109,7 @@ class ScheduleFragment : Fragment() {
         val today = (calendar.get(Calendar.MONTH) + 1) * 100 + calendar.get(Calendar.DAY_OF_MONTH)
         
         find<RelativeLayout>(R.id.refreshRelative).removeAllViews()
-        GlobalValue.scheduleInfoArrayList.forEach {
+        GlobalValue.scheduleInfoArrayList.forEachWithIndex { index, it ->
             val showScheduleDate = today + 7
             
             val diffDays = Utils().diffDayNum(today, Utils().getDate(it.start_time), calendar.get
@@ -138,7 +139,8 @@ class ScheduleFragment : Fragment() {
                     layoutParams = rParam
                     backgroundColor = Color.argb(100, 112, 173, 71)
                     setOnClickListener {
-                    
+                        createDialog(index, false)
+                        
                     }
                 }
                 val scheduleNameText = TextView(context)
@@ -226,7 +228,12 @@ class ScheduleFragment : Fragment() {
     }
     
     private fun createDialog(index: Int, isTask: Boolean) {
-        val listDialog = arrayOf("開始", "変更", "完了", "削除", "進捗")
+        val listDialog = if (isTask) {
+            arrayOf("開始", "変更", "完了", "削除", "進捗")
+        } else {
+            arrayOf("変更", "削除")
+            
+        }
         val title = if (isTask) {
             GlobalValue.taskInfoArrayList[index].task_name
         } else {
@@ -238,25 +245,29 @@ class ScheduleFragment : Fragment() {
             setItems(listDialog) { _, which ->
                 when (which) {
                     0 -> {
-                        startActivity<TimeSetActivity>("taskIndex" to index)
-//                        AlertDialog.Builder(context).apply {
-//                            setTitle(element.task_name)
-//                            setMessage(getString(R.string.attentionMassage))
-//                            setPositiveButton("OK") { _, _ ->
-//                                 OK button pressed
-//                            }
-//                            setNegativeButton("Cancel", null)
-//                            show()
-//                        }
+                        if (isTask) {
+                            startActivity<TimeSetActivity>("taskIndex" to index)
+                        } else {
+                            startActivity<AdditionActivity>("index" to index,
+                                    "add" to false, "schedule" to true)
+                        }
                     }
                     
                     1 -> {
-                        startActivity<AdditionActivity>("index" to index, "add" to false,
-                                if (isTask) {
-                                    "task" to true
-                                } else {
-                                    "scheduel" to true
-                                })
+                        if (isTask) {
+                            startActivity<AdditionActivity>("index" to index,
+                                    "add" to false, "task" to true)
+                        } else {
+                            AlertDialog.Builder(context).apply {
+                                setTitle(title)
+                                setMessage(getString(R.string.deleteMassage))
+                                setPositiveButton("OK") { _, _ ->
+                                    deleteElement(isTask, index)
+                                }
+                                setNegativeButton("Cancel", null)
+                                show()
+                            }
+                        }
                     }
                     
                     2 -> {
