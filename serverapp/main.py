@@ -1,5 +1,4 @@
-from flask import request, Flask, send_from_directory
-from werkzeug.utils import secure_filename
+from flask import request, Flask
 from logging import getLogger, StreamHandler, DEBUG
 import datetime as dt
 import os
@@ -18,32 +17,7 @@ logger.propagate = False
 
 app = Flask(__name__)
 
-UPLOAD_FOLDER = './uploads'
-ALLOWED_EXTENSIONS = ['png', 'jpeg', 'jpg', 'txt', 'gif']
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-app.config['SECRET_KEY'] = os.urandom(24)
-
 friend_flag = False
-
-
-def allowed_file(filename):
-    return '.' in filename and filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
-
-
-@app.route('/send', methods=['POST'])
-def send():
-    file = request.files['file']
-    if file and allowed_file(file.filename):
-        filename = secure_filename(file.filename)
-        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        return 'succeed'
-    else:
-        return 'failed'
-
-
-@app.route('/uploads/<filename>')
-def uploads(filename=None):
-    return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
 
 def change_timezone(date: str, timezone='Asia/Tokyo') -> dt.datetime:
