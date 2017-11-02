@@ -20,13 +20,13 @@ app = Flask(__name__)
 friend_flag = False
 
 
-def change_timezone(date: str, timezone='Asia/Tokyo') -> dt.datetime:
+def str_to_datetime(date: str, timezone='Asia/Tokyo') -> dt.datetime:
     if isinstance(date, str):
         return strtime.str_to_datetime(date)
     elif isinstance(date, dt.datetime):
         return date
     else:
-        logger.debug("change_timezone: arg is not dt.datetime instance")
+        logger.debug("str_to_datetime: arg is not dt.datetime instance")
         return None
 
 
@@ -50,7 +50,7 @@ def add_task():
                      '{}'.format(request.content_type))
         return 'failed'
     task_name = request.json['task_name']
-    due_date = change_timezone(request.json['due_date'])
+    due_date = str_to_datetime(request.json['due_date'])
     task_type = request.json['task_type']
     guide_time = strtime.str_to_time(request.json['guide_time'])
     progress = request.json['progress']
@@ -67,8 +67,8 @@ def add_schedule():
                      'content_type: {}'.format(request.content_type))
         return 'failed'
     schedule_name = request.json['schedule_name']
-    start_date = change_timezone(request.json['start_time'])
-    end_date = change_timezone(request.json['end_time'])
+    start_date = str_to_datetime(request.json['start_time'])
+    end_date = str_to_datetime(request.json['end_time'])
     dbcon.add_schedule(schedule_name, start_date, end_date)
     return 'succeeded'
 
@@ -80,8 +80,8 @@ def add_every():
                      'content_type: {}'.format(request.content_type))
         return 'failed'
     every_name = request.json['every_name']
-    start_date = change_timezone(request.json['start_time'])
-    end_date = change_timezone(request.json['end_time'])
+    start_date = str_to_datetime(request.json['start_time'])
+    end_date = str_to_datetime(request.json['end_time'])
     notice = request.json['notice']
     repeat_type = request.json['repeat_type']
     dbcon.add_every(every_name, start_date, end_date, notice, repeat_type)
