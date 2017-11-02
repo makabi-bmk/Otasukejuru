@@ -176,10 +176,4 @@ def get_calendar():
 
 
 if __name__ == '__main__':
-    a = dt.datetime.now()
-    r = check_days(a, a + dt.timedelta(days=1))
-    print(r)
-    a = dt.datetime.now()
-    r = check_days(a, a + dt.timedelta(days=0))
-    print(r)
-
+    pass
