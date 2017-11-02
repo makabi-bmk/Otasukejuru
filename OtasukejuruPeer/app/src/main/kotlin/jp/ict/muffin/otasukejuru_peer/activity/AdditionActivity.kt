@@ -11,9 +11,12 @@ import jp.ict.muffin.otasukejuru_peer.`object`.ScheduleInfo
 import jp.ict.muffin.otasukejuru_peer.`object`.TaskInfo
 import jp.ict.muffin.otasukejuru_peer.communication.*
 import jp.ict.muffin.otasukejuru_peer.other.Utils
+import jp.ict.muffin.otasukejuru_peer.ui.ChangePriorityActivityUI
 import kotlinx.android.synthetic.main.set_plan_notification_time.*
 import kotlinx.android.synthetic.main.set_plan_repeat.*
 import kotlinx.android.synthetic.main.set_task_repeat.*
+import org.jetbrains.anko.AnkoContext
+import org.jetbrains.anko.ctx
 import org.jetbrains.anko.find
 import java.util.*
 
@@ -364,63 +367,17 @@ class AdditionActivity : Activity() {
                 1
             }
             Log.d("Repeat", taskRepeat.toString())
-            setMust()
+            changePriority()
         }
         
         find<ImageButton>(R.id.button_back).setOnClickListener { finishTaskTime() }
         
     }
     
-    private fun setMust() {
-        setContentView(R.layout.set_must)
-        setActionBar(find(R.id.toolbar_back))
+    private fun changePriority() {
+        ChangePriorityActivityUI().createView(AnkoContext.create(ctx, this))
+        setActionBar(find(R.id.ankoToolbar))
         
-        find<Button>(R.id.no_must).setOnClickListener {
-            isMust = false
-            setShould()
-        }
-        
-        find<Button>(R.id.yes_must).setOnClickListener {
-            isMust = true
-            setShould()
-        }
-        
-        find<ImageButton>(R.id.button_back).setOnClickListener { setTaskRepeat() }
-    }
-    
-    private fun setShould() {
-        setContentView(R.layout.set_should)
-        setActionBar(find(R.id.toolbar_back))
-        
-        find<Button>(R.id.no_should).setOnClickListener {
-            isShould = false
-            setWantTo()
-        }
-        
-        find<Button>(R.id.yes_should).setOnClickListener {
-            isShould = true
-            setWantTo()
-        }
-        
-        find<ImageView>(R.id.button_back).setOnClickListener { setMust() }
-        
-    }
-    
-    private fun setWantTo() {
-        setContentView(R.layout.set_want)
-        setActionBar(find(R.id.toolbar_back))
-        
-        find<Button>(R.id.no_want).setOnClickListener {
-            isWant = false
-            setTaskGuideTime()
-        }
-        
-        find<Button>(R.id.yes_want).setOnClickListener {
-            isWant = true
-            setTaskGuideTime()
-        }
-        
-        find<ImageButton>(R.id.button_back).setOnClickListener { setShould() }
         
     }
     
@@ -471,7 +428,7 @@ class AdditionActivity : Activity() {
             finish()
         }
         
-        find<ImageButton>(R.id.button_back).setOnClickListener { setWantTo() }
+        find<ImageButton>(R.id.button_back).setOnClickListener { changePriority() }
     }
     
     private fun setEveryInformation() {
