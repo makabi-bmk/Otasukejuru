@@ -93,6 +93,7 @@ class ScheduleFragment : Fragment() {
             override fun run() {
                 mHandler.post {
                     find<RelativeLayout>(R.id.refreshRelative).removeAllViews()
+                    setEvery()
                     setSchedule()
                     setCardView()
                     drawNowLine()
@@ -105,6 +106,61 @@ class ScheduleFragment : Fragment() {
         super.onPause()
         mTimer?.cancel()
         mTimer = null
+    }
+    
+    private fun setEvery() {
+        val calendar = Calendar.getInstance()
+        val today = (calendar.get(Calendar.MONTH) + 1) * 100 + calendar.get(Calendar.DAY_OF_MONTH)
+        
+        find<RelativeLayout>(R.id.refreshRelative).removeAllViews()
+        GlobalValue.everyInfoArrayList.forEachWithIndex { index, it ->
+            val showScheduleDate = today + 7
+            
+            val diffDays = Utils().diffDayNum(today, Utils().getDate(it.start_time), calendar.get
+            (Calendar.YEAR))
+            if (Utils().getDate(it.start_time) in today..showScheduleDate) {
+                val schedule = RelativeLayout(context)
+                val rParam = RelativeLayout.LayoutParams(0, 0)
+                val endMinute = Utils().getTime(it.end_time) / 100 * 60 +
+                        Utils().getTime(it.end_time) % 100
+                val startMinute = Utils().getTime(it.start_time) / 100 * 60 +
+                        Utils().getTime(it.start_time) % 100
+                val startDate = Utils().getDate(it.start_time)
+                val endDate = Utils().getDate(it.end_time)
+                rParam.apply {
+                    width = matchParent
+                    height = dip((Utils().diffDayNum(startDate, endDate,
+                            calendar.get(Calendar.YEAR)) * 1440 - startMinute + endMinute) * 0.15f)
+//                        ((endDate - startDate) *
+//                                1440 + endMinute * 0.16f).toInt()
+                    Log.d("height", diffDays.toString())
+                    leftMargin = dip(120)
+                    rightMargin = dip(60)
+                    topMargin = dip(0.15f * (diffDays * 1440 + startMinute)) + dip(10)
+                }
+                schedule.apply {
+                    layoutParams = rParam
+                    backgroundColor = Color.argb(100, 112, 173, 71)
+                    setOnClickListener {
+                        createDialog(index, false)
+                        
+                    }
+                }
+                val scheduleNameText = TextView(context)
+                val tParam = RelativeLayout.LayoutParams(wrapContent, wrapContent)
+                tParam.apply {
+                    addRule(RelativeLayout.CENTER_HORIZONTAL)
+                    addRule(RelativeLayout.CENTER_VERTICAL)
+                }
+                scheduleNameText.apply {
+                    layoutParams = tParam
+                    text = it.every_name
+                }
+                schedule.addView(scheduleNameText)
+                find<RelativeLayout>(R.id.refreshRelative).addView(schedule, 0)
+            }
+        }
+        
     }
     
     private fun setSchedule() {
