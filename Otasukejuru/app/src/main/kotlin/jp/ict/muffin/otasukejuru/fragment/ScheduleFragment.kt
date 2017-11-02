@@ -16,8 +16,8 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
-import jp.ict.muffin.otasukejuru.activity.InputProgressActivity
 import jp.ict.muffin.otasukejuru.activity.AdditionActivity
+import jp.ict.muffin.otasukejuru.activity.InputProgressActivity
 import jp.ict.muffin.otasukejuru.activity.TimeSetActivity
 import jp.ict.muffin.otasukejuru.communication.DeleteScheduleInfoAsync
 import jp.ict.muffin.otasukejuru.communication.DeleteTaskInfoAsync
@@ -251,13 +251,12 @@ class ScheduleFragment : Fragment() {
                     }
                     
                     1 -> {
-                        if (isTask) {
-                            startActivity<AdditionActivity>("add" to false, "index" to index)
-                        } else {
-                            
-                            startActivity<>()
-                            
-                        }
+                        startActivity<AdditionActivity>("index" to index, "add" to true,
+                                if (isTask) {
+                                    "task" to true
+                                } else {
+                                    "scheduel" to true
+                                })
                     }
                     
                     2 -> {
