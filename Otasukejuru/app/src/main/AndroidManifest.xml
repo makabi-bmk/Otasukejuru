@@ -30,10 +30,6 @@
             android:name=".activity.TimerActivity"
             android:label="">
         </activity>
-        <activity android:name=".activity.TimerIntervalActivity">
-        </activity>
-        <activity android:name=".activity.TimerNotificationActivity">
-        </activity>
         <activity
             android:name=".activity.DateActivity"
             android:label=""
