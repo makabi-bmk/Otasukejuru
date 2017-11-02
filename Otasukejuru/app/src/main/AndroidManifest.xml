@@ -39,7 +39,7 @@
         </activity>
         <activity android:name=".activity.InputProgressActivity">
         </activity>
-        <activity android:name=".AddSubTaskActivity">
+        <activity android:name=".activity.AddSubTaskActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
