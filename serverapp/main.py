@@ -4,7 +4,6 @@ from logging import getLogger, StreamHandler, DEBUG
 import datetime as dt
 import os
 import json
-import pytz
 # from serverapp import dbcon
 # from serverapp import strtime
 import dbcon
@@ -49,10 +48,9 @@ def uploads(filename=None):
 
 def change_timezone(date: str, timezone='Asia/Tokyo') -> dt.datetime:
     if isinstance(date, str):
-        return strtime.str_to_datetime(date)# .replace(
-            # tzinfo=pytz.timezone(timezone))
+        return strtime.str_to_datetime(date)
     elif isinstance(date, dt.datetime):
-        return date# .replace(tzinfo=pytz.timezone(timezone))
+        return date
     else:
         logger.debug("change_timezone: arg is not dt.datetime instance")
         return None
@@ -65,26 +63,21 @@ def hello_world():
 
 @app.route('/test_form', methods=['POST'])
 def test_form():
-    # print(request.form['data'])
     print(request.content_type)
     for key, value in request.json.items():
         print("{}: {}".format(key, value))
     return 'ok'
 
 
-# DBはMongoDBでいいのかな
 @app.route('/add/task', methods=['POST'])
 def add_task():
-    # print(request.content_type)
     if request.content_type != 'application/json; charset=utf-8':
         logger.debug('err invalid content_type. url: /add/task, content_type: '
                      '{}'.format(request.content_type))
         return 'failed'
     task_name = request.json['task_name']
-    # print("due_date", request.json['due_date'])
     due_date = change_timezone(request.json['due_date'])
     task_type = request.json['task_type']
-    # print('guide_time', request.json['guide_time'])
     guide_time = strtime.str_to_time(request.json['guide_time'])
     progress = request.json['progress']
     priority = request.json['priority']
@@ -102,7 +95,6 @@ def add_schedule():
     schedule_name = request.json['schedule_name']
     start_date = change_timezone(request.json['start_time'])
     end_date = change_timezone(request.json['end_time'])
-    # notice = request.json['notice']
     dbcon.add_schedule(schedule_name, start_date, end_date)
     return 'succeeded'
 
@@ -129,9 +121,6 @@ def delete_task():
                      'content_type: '
                      '{}'.format(request.content_type))
         return 'failed'
-    # task_name = request.json['task_name']
-    # due_date = change_timezone(request.json['due_date'])
-    # dbcon.delete_task(task_name, due_date)
     object_id = request.json['_id']
     dbcon.delete_task(object_id)
     return 'succeeded'
@@ -143,9 +132,6 @@ def delete_schedule():
         logger.debug('err invalid content_type. url: /delete/schedule, '
                      'content_type: {}'.format(request.content_type))
         return 'failed'
-    # schedule_name = request.json['schedule_name']
-    # start_date = change_timezone(request.json['start_date'])
-    # dbcon.delete_schedule(schedule_name, start_date)
     object_id = request.json['_id']
     dbcon.delete_schedule(object_id)
     return 'succeeded'
@@ -157,8 +143,6 @@ def delete_every():
         logger.debug('err invalid content_type. url: /delete/every, '
                      'content_type: {}'.format(request.content_type))
         return 'failed'
-    # chedule_name = request.json['every_name']
-    # start_date = change_timezone(request.json['start_date'])
     object_id = request.json['_id']
     dbcon.delete_every(object_id)
     return 'succeeded'
@@ -189,16 +173,6 @@ def update_task():
         update_items['priority'] = data['priority']
     print(update_items)
     dbcon.update_task(data['_id'], update_items)
-    # task_name = data['task_name'] if 'task_name' in data else None
-    # due_date = change_timezone(data['due_date']) if 'due_date' in data else None
-    # task_type = data['task_type'] if 'task_type' in data else None
-    # guide_time = strtime.str_to_time(data['guide_time']) if 'guide_time' in \
-    #                 data else None
-    # progress = data['progress'] if 'progress' in data else None
-    # priority = data['priority'] if 'priority' in data else None
-    # dbcon.update_task(object_id, task_name, due_date, task_type, guide_time,
-    # progress,
-    # priority)
     return 'succeeded'
 
 
@@ -219,12 +193,6 @@ def update_schedule():
     if 'end_date' in data:
         update_items['end_date'] = strtime.str_to_datetime(data['end_date'])
     dbcon.update_schedule(data['_id'], update_items)
-    # schedule_name = data['schedule_name'] if 'schedule_name' in data else None
-    # start_date = change_timezone(data['start_date']) if 'start_date' in data \
-    #                 else None
-    # end_date = change_timezone(data['end_date']) if 'end_date' in data else None
-    # notice = data['notice'] if 'notice' in data else None
-    # dbcon.update_schedule(schedule_name, start_date, end_date, notice)
     return 'succeeded'
 
 
@@ -245,13 +213,6 @@ def update_every():
     if 'end_date' in data:
         update_items['end_date'] = strtime.str_to_datetime(data['end_date'])
     dbcon.update_every(data['_id'], update_items)
-    # schedule_name = data['every_name'] if 'every_name' in data else None
-    # start_date = change_timezone(data['start_date']) if 'start_date' in data \
-    #                 else None
-    # end_date = change_timezone(data['end_date']) if 'end_date' in data else None
-    # notice = data['notice'] if 'notice' in data else None
-    # repeat_type = data['repeat_type'] if 'repeat_type' in data else None
-    # dbcon.update_every(schedule_name, start_date, end_date, notice, repeat_type)
     return 'succeeded'
 
 
@@ -296,22 +257,13 @@ def friend_update_task():
     if 'priority' in data:
         update_items['priority'] = data['priority']
     dbcon.update_task(data['object_id'], update_items)
-    # task_name = data['task_name'] if 'task_name' in data else None
-    # due_date = change_timezone(data['due_date']) if 'due_date' in data else None
-    # task_type = data['task_type'] if 'task_type' in data else None
-    # guide_time = strtime.str_to_time(data['guide_time']) if 'guide_time' in \
-    #                 data else None
-    # progress = data['progress'] if 'progress' in data else None
-    # priority = data['priority'] if 'priority' in data else None
-    # dbcon.update_task(object_id, task_name, due_date, task_type, guide_time,
-    # progress,
-    # priority)
     friend_flag = True
     return 'succeeded'
 
 
 @app.route('/friend/update/schedule', methods=['POST'])
 def friend_update_schedule():
+    global friend_flag
     if request.content_type != 'application/json; charset=utf-8':
         logger.debug('err invalid content_type. url: /update/schedule, '
                      'content_type: {}'.format(request.content_type))
@@ -327,12 +279,6 @@ def friend_update_schedule():
     if 'end_date' in data:
         update_items['end_date'] = data['end_date']
     dbcon.update_schedule(data['object_id'], update_items)
-    # schedule_name = data['schedule_name'] if 'schedule_name' in data else None
-    # start_date = change_timezone(data['start_date']) if 'start_date' in data \
-    #                 else None
-    # end_date = change_timezone(data['end_date']) if 'end_date' in data else None
-    # notice = data['notice'] if 'notice' in data else None
-    # dbcon.update_schedule(schedule_name, start_date, end_date, notice)
     friend_flag = True
     return 'succeeded'
 
@@ -355,13 +301,6 @@ def friend_update_every():
     if 'end_date' in data:
         update_items['end_date'] = data['end_date']
     dbcon.update_every(data['object_id'], update_items)
-    # schedule_name = data['every_name'] if 'every_name' in data else None
-    # start_date = change_timezone(data['start_date']) if 'start_date' in data \
-    #                 else None
-    # end_date = change_timezone(data['end_date']) if 'end_date' in data else None
-    # notice = data['notice'] if 'notice' in data else None
-    # repeat_type = data['repeat_type'] if 'repeat_type' in data else None
-    # dbcon.update_every(schedule_name, start_date, end_date, notice, repeat_type)
     friend_flag = True
     return 'succeeded'
 

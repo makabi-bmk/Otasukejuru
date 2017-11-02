@@ -25,17 +25,6 @@ task_count = 0
 res_list = []
 
 
-# def get_schedule_list():
-#     for data in schedule_col:
-#         del (data["_id"])
-#         res_list.append(data)
-#     for data in every_col:
-#         del (data["_id"])
-#         res_list.append(data)
-#     res_list.sort(key=lambda x, y: x["start_time"] < y["end_time"])
-#     # TODO: 優先度順にタスクを詰めていく
-
-
 def add_task(task_name: str, due_date: dt.datetime, task_type: int,
              guide_time: dt.datetime, progress: int, priority: int) -> None:
     post = {
@@ -47,9 +36,7 @@ def add_task(task_name: str, due_date: dt.datetime, task_type: int,
         "progress": progress,
         "priority": priority,
         "friend": False
-        # "run_time": 0
     }
-    # print(post)
     task_col.insert_one(post)
 
 
@@ -82,7 +69,6 @@ def add_schedule(schedule_name: str, start_date: dt.datetime,
         "schedule_name": schedule_name,
         "start_time": start_date,
         "end_time": end_date,
-        # "notice": notice
     }
     schedule_col.insert_one(post)
 
@@ -102,7 +88,6 @@ def add_day(date: dt.datetime, dist: int) -> dt.datetime:
 
 
 def check_days(start_time: dt.datetime, end_time: dt.datetime):
-    # print("check_days: s_time.day {}, e_time.day {}".format(start_time.day, end_time.day))
     if start_time.day != end_time.day:
         res = {
             "result": True,
@@ -132,7 +117,6 @@ def add_every(name: str, start_time: dt.datetime, end_time: dt.datetime,
         "notice": notice,
         "repeat_type": repeat_type,
     }
-    # print(post)
     every_col.insert_one(post)
 
 
@@ -245,11 +229,6 @@ def get_calendar():
         "every": e,
         "friend": f,
         "task": sorted(t, key=lambda x: (-x["priority"], x["progress"]))
-                # {"priority": -1},
-                # {"progress": 1},
-                # {"due_date": 1}
-            # )
-        # ]
     }
     return json.dumps(calendar)
 
