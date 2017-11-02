@@ -193,7 +193,7 @@ def get_todo_list():
         # print(i, task["priority"])
 
         todo_list.append(task)
-    logger.debug("{} | get_todo_list: {}".format(dt.datetime.now(), todo_list))
+    # logger.debug("{} | get_todo_list: {}".format(dt.datetime.now(), todo_list))
     return {"todo_list": todo_list}
 
 
