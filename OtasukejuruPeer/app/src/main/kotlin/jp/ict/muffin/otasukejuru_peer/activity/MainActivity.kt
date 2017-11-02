@@ -1,6 +1,5 @@
 package jp.ict.muffin.otasukejuru_peer.activity
 
-import android.graphics.Color
 import android.graphics.Point
 import android.os.Bundle
 import android.os.Handler
@@ -16,10 +15,8 @@ import jp.ict.muffin.otasukejuru_peer.`object`.GlobalValue
 import jp.ict.muffin.otasukejuru_peer.communication.GetInformation
 import jp.ict.muffin.otasukejuru_peer.fragment.ScheduleFragment
 import jp.ict.muffin.otasukejuru_peer.fragment.TaskListFragment
-import jp.ict.muffin.otasukejuru_peer.fragment.TimerSetTimeFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.find
-import org.jetbrains.anko.startActivity
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -56,11 +53,6 @@ class MainActivity : AppCompatActivity() {
         mViewPager.adapter = mSectionsPagerAdapter
         
         tabs.setupWithViewPager(mViewPager)
-        
-        tabs.setTabTextColors(Color.parseColor("#FBFBF0"), Color.parseColor("#66B7EC"))
-        fab.setOnClickListener {
-            startActivity<AdditionActivity>()
-        }
         
         val display = windowManager.defaultDisplay
         val point = Point()
@@ -126,17 +118,15 @@ class MainActivity : AppCompatActivity() {
         override fun getItem(position: Int): Fragment? = when (position) {
             0 -> ScheduleFragment()
             1 -> TaskListFragment()
-            2 -> TimerSetTimeFragment()
             else -> null
         }
         
         // Show 3 total pages.
-        override fun getCount(): Int = 3
+        override fun getCount(): Int = 2
         
         override fun getPageTitle(position: Int): CharSequence? = when (position) {
             0 -> getString(R.string.main_tab1)
             1 -> getString(R.string.main_tab2)
-            2 -> getString(R.string.main_tab3)
             else -> null
         }
     }

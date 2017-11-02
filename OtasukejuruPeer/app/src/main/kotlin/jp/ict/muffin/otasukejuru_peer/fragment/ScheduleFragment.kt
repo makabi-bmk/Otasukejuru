@@ -17,10 +17,6 @@ import android.widget.TextView
 import jp.ict.muffin.otasukejuru_peer.R
 import jp.ict.muffin.otasukejuru_peer.`object`.GlobalValue
 import jp.ict.muffin.otasukejuru_peer.activity.AdditionActivity
-import jp.ict.muffin.otasukejuru_peer.activity.InputProgressActivity
-import jp.ict.muffin.otasukejuru_peer.activity.TimeSetActivity
-import jp.ict.muffin.otasukejuru_peer.communication.DeleteScheduleInfoAsync
-import jp.ict.muffin.otasukejuru_peer.communication.DeleteTaskInfoAsync
 import jp.ict.muffin.otasukejuru_peer.other.Utils
 import jp.ict.muffin.otasukejuru_peer.ui.ScheduleFragmentUI
 import kotlinx.android.synthetic.main.task_card_view.view.*
@@ -226,7 +222,7 @@ class ScheduleFragment : Fragment() {
     }
     
     private fun createDialog(index: Int, isTask: Boolean) {
-        val listDialog = arrayOf("開始", "変更", "完了", "削除", "進捗")
+        val listDialog = arrayOf("変更")
         val title = if (isTask) {
             GlobalValue.taskInfoArrayList[index].task_name
         } else {
@@ -237,19 +233,6 @@ class ScheduleFragment : Fragment() {
             setTitle(title)
             setItems(listDialog) { _, which ->
                 when (which) {
-                    0 -> {
-                        startActivity<TimeSetActivity>("taskIndex" to index)
-//                        AlertDialog.Builder(context).apply {
-//                            setTitle(element.task_name)
-//                            setMessage(getString(R.string.attentionMassage))
-//                            setPositiveButton("OK") { _, _ ->
-//                                 OK button pressed
-//                            }
-//                            setNegativeButton("Cancel", null)
-//                            show()
-//                        }
-                    }
-                    
                     1 -> {
                         startActivity<AdditionActivity>("index" to index, "add" to false,
                                 if (isTask) {
@@ -258,54 +241,10 @@ class ScheduleFragment : Fragment() {
                                     "scheduel" to true
                                 })
                     }
-                    
-                    2 -> {
-                        AlertDialog.Builder(context).apply {
-                            setTitle(title)
-                            setMessage(getString(R.string.complicatedMassage))
-                            setPositiveButton("Yes") { _, _ ->
-                                deleteElement(isTask, index)
-                            }
-                            setNegativeButton("No", null)
-                            show()
-                        }
-                    }
-                    
-                    3 -> {
-                        AlertDialog.Builder(context).apply {
-                            setTitle(title)
-                            setMessage(getString(R.string.deleteMassage))
-                            setPositiveButton("OK") { _, _ ->
-                                deleteElement(isTask, index)
-                            }
-                            setNegativeButton("Cancel", null)
-                            show()
-                        }
-                    }
-                    
-                    4 -> {
-                        startActivity<InputProgressActivity>("index" to index)
-                    }
-                    
-                    else -> {
-                    
-                    }
-                    
                 }
             }
             show()
         }
     }
     
-    private fun deleteElement(isTask: Boolean, index: Int) {
-        if (isTask) {
-            val deleteTaskAsync = DeleteTaskInfoAsync()
-            deleteTaskAsync.execute(GlobalValue.taskInfoArrayList[index])
-            GlobalValue.taskInfoArrayList.removeAt(index)
-        } else {
-            val deleteScheduleInfoAsync = DeleteScheduleInfoAsync()
-            deleteScheduleInfoAsync.execute(GlobalValue.scheduleInfoArrayList[index])
-            GlobalValue.scheduleInfoArrayList.removeAt(index)
-        }
-    }
 }

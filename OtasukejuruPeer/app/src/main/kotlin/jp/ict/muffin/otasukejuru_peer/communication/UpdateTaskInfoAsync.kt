@@ -14,7 +14,7 @@ class UpdateTaskInfoAsync : AsyncTask<TaskInfo, Void, Unit>() {
     private var client = OkHttpClient()
     
     override fun doInBackground(vararg params: TaskInfo) {
-        post("${GlobalValue.SERVER_URL}/update/task", convertToJson(params[0]))
+        post("${GlobalValue.SERVER_URL}/friend/update/task", convertToJson(params[0]))
     }
     
     private fun post(url: String, json: String): String? {

@@ -14,7 +14,7 @@ class UpdateEveryInfoAsync : AsyncTask<EveryInfo, Void, Unit>() {
     private var client = OkHttpClient()
     
     override fun doInBackground(vararg params: EveryInfo) {
-        post("${GlobalValue.SERVER_URL}/update/schedule", convertToJson(params[0]))
+        post("${GlobalValue.SERVER_URL}/friend/update/schedule", convertToJson(params[0]))
     }
     
     private fun post(url: String, json: String): String? {

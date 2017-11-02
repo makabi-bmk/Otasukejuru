@@ -14,9 +14,8 @@ import android.widget.RelativeLayout
 import jp.ict.muffin.otasukejuru_peer.R
 import jp.ict.muffin.otasukejuru_peer.`object`.GlobalValue
 import jp.ict.muffin.otasukejuru_peer.`object`.TaskInfo
-import jp.ict.muffin.otasukejuru_peer.activity.InputProgressActivity
 import jp.ict.muffin.otasukejuru_peer.activity.AdditionActivity
-import jp.ict.muffin.otasukejuru_peer.activity.TimeSetActivity
+import jp.ict.muffin.otasukejuru_peer.activity.InputProgressActivity
 import jp.ict.muffin.otasukejuru_peer.communication.DeleteTaskInfoAsync
 import jp.ict.muffin.otasukejuru_peer.other.Utils
 import jp.ict.muffin.otasukejuru_peer.ui.TaskListFragmentUI
@@ -152,7 +151,6 @@ class TaskListFragment : Fragment() {
             setItems(listDialog) { _, which ->
                 when (which) {
                     0 -> {
-                        startActivity<TimeSetActivity>("taskIndex" to index)
 //                        AlertDialog.Builder(context).apply {
 //                            setTitle(element.task_name)
 //                            setMessage(getString(R.string.attentionMassage))
