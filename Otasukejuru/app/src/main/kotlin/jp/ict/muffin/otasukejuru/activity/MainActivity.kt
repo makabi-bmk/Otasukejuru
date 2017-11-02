@@ -55,9 +55,10 @@ class MainActivity : AppCompatActivity() {
         mViewPager = find(R.id.view_pager)
         mViewPager.adapter = mSectionsPagerAdapter
         
-        tabs.setupWithViewPager(mViewPager)
-        
-        tabs.setTabTextColors(Color.parseColor("#FBFBF0"), Color.parseColor("#66B7EC"))
+        tabs.apply {
+            setupWithViewPager(mViewPager)
+            setTabTextColors(Color.parseColor("#FBFBF0"), Color.parseColor("#66B7EC"))
+        }
         fab.setOnClickListener {
             startActivity<AdditionActivity>()
         }
