@@ -107,7 +107,13 @@ class AdditionActivity : Activity() {
             startScheduleTime()
         }
         
-        find<ImageButton>(R.id.button_back).setOnClickListener { selectAddType() }
+        find<ImageButton>(R.id.button_back).setOnClickListener {
+            if (isAdd) {
+                selectAddType()
+            } else {
+                finish()
+            }
+        }
         
     }
     
