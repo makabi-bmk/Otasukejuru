@@ -40,14 +40,27 @@ def add_task(task_name: str, due_date: dt.datetime, task_type: int,
     task_col.insert_one(post)
 
 
-def add_schedule(schedule_name: str, start_date: dt.datetime,
-                 end_date: dt.datetime) -> None:
-    post = {
-        "schedule_name": schedule_name,
-        "start_time": start_date,
-        "end_time": end_date,
-    }
-    schedule_col.insert_one(post)
+def add_schedule(schedule_name: str, start_time: dt.datetime,
+                 end_time: dt.datetime) -> bool:
+    flg = True
+    for i in schedule_col.find():
+        if start_time <= i["start_time"] <= end_time:
+            flg = False
+        if start_time <= i["end_time"] <= end_time:
+            flg = False
+        if i["start_time"] <= start_time <= i["end_time"]:
+            flg = False
+
+    if flg:
+        post = {
+            "schedule_name": schedule_name,
+            "start_time": start_time,
+            "end_time": end_time,
+        }
+        schedule_col.insert(post)
+        return True
+    else:
+        return False
 
 
 def add_every(name: str, start_time: dt.datetime, end_time: dt.datetime,
@@ -86,8 +99,24 @@ def update_schedule(object_id: str, update_items: dict, friend_flag=False):
     object_id = ObjectId(object_id)
     if friend_flag:
         update_items['friend'] = True
-    schedule_col.update({"_id": object_id}, {"$set": update_items},
-                        upsert=True)
+
+    flg = True
+    for i in schedule_col.find({"_id": {"$ne": object_id}}):
+        if update_items["start_time"] <= i["start_time"] <= update_items[
+            "end_time"]:
+            flg = False
+        if update_items["start_time"] <= i["end_time"] <= update_items[
+            "end_time"]:
+            flg = False
+        if i["start_time"] <= update_items["start_time"] <= i["end_time"]:
+            flg = False
+
+    if flg:
+        schedule_col.update({"_id": object_id}, {"$set": update_items},
+                            upsert=True)
+        return True
+    else:
+        return False
 
 
 def update_every(object_id: str, update_items: dict, friend_flag=False):

@@ -18,6 +18,9 @@ logger.propagate = False
 app = Flask(__name__)
 
 friend_flag = False
+friend_task = []
+friend_schedule = []
+friend_every = []
 
 
 def str_to_datetime(date: str, timezone='Asia/Tokyo') -> dt.datetime:
@@ -69,8 +72,10 @@ def add_schedule():
     schedule_name = request.json['schedule_name']
     start_date = str_to_datetime(request.json['start_time'])
     end_date = str_to_datetime(request.json['end_time'])
-    dbcon.add_schedule(schedule_name, start_date, end_date)
-    return 'succeeded'
+    if dbcon.add_schedule(schedule_name, start_date, end_date):
+        return True
+    else:
+        return False
 
 
 @app.route('/add/every', methods=['POST'])
@@ -166,8 +171,10 @@ def update_schedule():
         update_items['start_date'] = strtime.str_to_datetime(data['start_date'])
     if 'end_date' in data:
         update_items['end_date'] = strtime.str_to_datetime(data['end_date'])
-    dbcon.update_schedule(data['_id'], update_items)
-    return 'succeeded'
+    if dbcon.update_schedule(data['_id'], update_items):
+        return True
+    else:
+        return False
 
 
 @app.route('/update/every', methods=['POST'])
@@ -237,7 +244,8 @@ def friend_update_task():
 
 @app.route('/friend/update/schedule', methods=['POST'])
 def friend_update_schedule():
-    global friend_flag
+    # global friend_flag
+    global friend_schedule
     if request.content_type != 'application/json; charset=utf-8':
         logger.debug('err invalid content_type. url: /update/schedule, '
                      'content_type: {}'.format(request.content_type))
@@ -252,8 +260,9 @@ def friend_update_schedule():
         update_items['start_date'] = data['start_date']
     if 'end_date' in data:
         update_items['end_date'] = data['end_date']
-    dbcon.update_schedule(data['object_id'], update_items)
-    friend_flag = True
+    # dbcon.update_schedule(data['object_id'], update_items)
+    # friend_flag = True
+    friend_schedule.append(update_items)
     return 'succeeded'
 
 
@@ -277,6 +286,71 @@ def friend_update_every():
     dbcon.update_every(data['object_id'], update_items)
     friend_flag = True
     return 'succeeded'
+
+
+@app.route('/friend/add/task', methods=['POST'])
+def friend_add_task():
+    if request.content_type != 'application/json; charset=utf-8':
+        logger.debug('err invalid content_type. url: /add/task, content_type: '
+                     '{}'.format(request.content_type))
+        return 'failed'
+    task_name = request.json['task_name']
+    due_date = str_to_datetime(request.json['due_date'])
+    task_type = request.json['task_type']
+    guide_time = strtime.str_to_time(request.json['guide_time'])
+    progress = request.json['progress']
+    priority = request.json['priority']
+    dbcon.add_task(task_name, due_date, task_type, guide_time,
+                   progress, priority)
+    return 'succeeded'
+
+
+@app.route('/friend/add/schedule', methods=['POST'])
+def friend_add_schedule():
+    if request.content_type != 'application/json; charset=utf-8':
+        logger.debug('err invalid content_type. url: /add/schedule, '
+                     'content_type: {}'.format(request.content_type))
+        return 'failed'
+    global friend_schedule
+    schedule_name = request.json['schedule_name']
+    start_date = str_to_datetime(request.json['start_time'])
+    end_date = str_to_datetime(request.json['end_time'])
+    friend_schedule.append({
+        "schedule_name": schedule_name,
+        "start_date": start_date,
+        "end_date": end_date
+    })
+
+
+@app.route('/friend/add/every', methods=['POST'])
+def friend_add_every():
+    if request.content_type != 'application/json; charset=utf-8':
+        logger.debug('err invalid content_type. url: /add/every, '
+                     'content_type: {}'.format(request.content_type))
+        return 'failed'
+    every_name = request.json['every_name']
+    start_date = str_to_datetime(request.json['start_time'])
+    end_date = str_to_datetime(request.json['end_time'])
+    notice = request.json['notice']
+    repeat_type = request.json['repeat_type']
+    dbcon.add_every(every_name, start_date, end_date, notice, repeat_type)
+    return 'succeeded'
+
+
+@app.route('/get/friend', methods=['GET'])
+def friend_check():
+    global friend_task
+    global friend_schedule
+    global friend_every
+    data = {
+        "task": friend_task,
+        "schedule": friend_schedule,
+        "every": friend_every
+    }
+    friend_task = []
+    friend_schedule = []
+    friend_every = []
+    return json.dumps(data)
 
 
 @app.route('/get/calendar')
