@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/back"
+    android:orientation="vertical">
+
+    <Toolbar
+        android:id="@+id/toolbar_back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:colorPrimary"
+        android:minHeight="?android:actionBarSize">
+
+        <ImageButton
+            android:id="@+id/button_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_arrow_back_white_48dp"/>
+    </Toolbar>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar_back">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:text="優先度変更"
+            android:textColor="@color/colorPrimary"
+            android:textSize="30sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/title"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginTop="10dp"
+            android:text="優先度を決めてください"
+            android:textSize="25sp"/>
+    </RelativeLayout>
+
+
+    <RadioGroup
+        android:id="@+id/change_priority_radio_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true">
+
+        <RadioButton
+            android:id="@+id/radio_priority1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:checked="true"
+            android:text="最優先"
+            android:textSize="25sp"/>
+
+        <RadioButton
+            android:id="@+id/radio_priority2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="高優先"
+            android:textSize="25sp"/>
+
+        <RadioButton
+            android:id="@+id/radio_priority3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="中優先"
+            android:textSize="25sp"/>
+
+        <RadioButton
+            android:id="@+id/radio_priority4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="低優先"
+            android:textSize="25sp"/>
+
+    </RadioGroup>
+
+
+    <Button
+        android:id="@+id/button_next"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:background="#FBFBF0"
+        android:text="変更"
+        android:textColor="@color/colorPrimary"
+        android:textSize="20sp"/>
+
+</RelativeLayout>

@@ -12,9 +12,6 @@ import jp.ict.muffin.otasukejuru_peer.communication.UpdateEveryInfoAsync
 import jp.ict.muffin.otasukejuru_peer.communication.UpdateScheduleInfoAsync
 import jp.ict.muffin.otasukejuru_peer.communication.UpdateTaskInfoAsync
 import jp.ict.muffin.otasukejuru_peer.other.Utils
-import jp.ict.muffin.otasukejuru_peer.ui.ChangePriorityActivityUI
-import org.jetbrains.anko.AnkoContext
-import org.jetbrains.anko.ctx
 import org.jetbrains.anko.find
 import java.util.*
 
@@ -34,8 +31,6 @@ class AdditionActivity : Activity() {
     private var finishDay: Int = 0
     private var finishHour: Int = 0
     private var finishMinute: Int = 0
-    private var dateLimit: Int = 0
-    private var timeLimit: Int = 0
     
     private var calendar = Calendar.getInstance()
     
@@ -54,7 +49,8 @@ class AdditionActivity : Activity() {
         index = intent.getIntExtra("index", -1)
         
         isSchedule = intent.getBooleanExtra("schedule", false)
-        if (intent.getBooleanExtra("task", false)) {
+        isTask = intent.getBooleanExtra("task", false)
+        if (isTask) {
             beforeTaskInfo = GlobalValue.taskInfoArrayList[index]
             inputTaskName()
         } else if (isSchedule) {
@@ -257,11 +253,13 @@ class AdditionActivity : Activity() {
     }
     
     private fun changePriority() {
-        ChangePriorityActivityUI().createView(AnkoContext.create(ctx, this))
-        setActionBar(find(R.id.ankoToolbar))
+        setContentView(R.layout.change_priority_activity)
+        setActionBar(find(R.id.toolbar_back))
+//        ChangePriorityActivityUI().createView(AnkoContext.create(ctx, this))
+//        setActionBar(find(R.id.ankoToolbar))
         
-        find<Button>(R.id.nextButton).setOnClickListener {
-            val num = find<RadioGroup>(R.id.changePriorityRadioGroup).checkedRadioButtonId
+        find<Button>(R.id.button_next).setOnClickListener {
+            val num = find<RadioGroup>(R.id.change_priority_radio_group).checkedRadioButtonId
             taskPriority = when (find<RadioButton>(num).text.toString()) {
                 getString(R.string.mostPriority) -> 0
                 getString(R.string.highPriority) -> 1
@@ -269,16 +267,15 @@ class AdditionActivity : Activity() {
                 getString(R.string.lowPriority) -> 3
                 else -> 4
             }
+    
+            if (isTask) {
+                setTaskInformation()
+            } else {
+                setEveryInformation()
+            }
+            finish()
         }
-        
-        if (isTask) {
-            setTaskInformation()
-        } else {
-            setEveryInformation()
-        }
-        finish()
-        
-        find<ImageButton>(R.id.button_back).setOnClickListener { changePriority() }
+        find<ImageButton>(R.id.button_back).setOnClickListener { finishTaskTime() }
     }
     
     private fun setEveryInformation() {
@@ -304,7 +301,6 @@ class AdditionActivity : Activity() {
         GlobalValue.scheduleInfoArrayList[index] = scheduleInformation
         val update = UpdateScheduleInfoAsync()
         update.execute(GlobalValue.scheduleInfoArrayList[index])
-        
     }
     
     private fun setTaskInformation() {
