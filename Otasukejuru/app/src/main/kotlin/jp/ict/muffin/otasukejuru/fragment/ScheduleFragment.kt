@@ -26,10 +26,7 @@ import jp.ict.muffin.otasukejuru.ui.ScheduleFragmentUI
 import kotlinx.android.synthetic.main.task_card_view.view.*
 import org.jetbrains.anko.*
 import org.jetbrains.anko.collections.forEachWithIndex
-import org.jetbrains.anko.support.v4.ctx
-import org.jetbrains.anko.support.v4.dip
-import org.jetbrains.anko.support.v4.find
-import org.jetbrains.anko.support.v4.startActivity
+import org.jetbrains.anko.support.v4.*
 import java.util.*
 
 
@@ -94,7 +91,7 @@ class ScheduleFragment : Fragment() {
                 mHandler.post {
                     find<RelativeLayout>(R.id.refreshRelative).removeAllViews()
                     setEvery()
-                    setSubTask()
+//                    setSubTask()
                     setSchedule()
                     setCardView()
                     drawNowLine()
@@ -107,31 +104,6 @@ class ScheduleFragment : Fragment() {
         super.onPause()
         mTimer?.cancel()
         mTimer = null
-    }
-    
-    private fun setSubTask() {
-        
-        GlobalValue.taskInfoArrayList.forEach {
-            it.subTaskArrayList.forEach { element ->
-                val nowTime = Utils().getTime(element.date)
-                val nowMinute = nowTime / 100 * 60 + nowTime % 100
-                
-                val line = RelativeLayout(context)
-                val rParam = RelativeLayout.LayoutParams(0, 0)
-                rParam.apply {
-                    width = dip(10)
-                    height = dip(10)
-                    leftMargin = dip(80 + 45 + 90 * 0)
-                    topMargin = dip(0.1556f * nowMinute) + dip(25)// - dip(70)
-                }
-                line.apply {
-                    layoutParams = rParam
-                    backgroundColor = Color.RED
-                }
-                find<RelativeLayout>(R.id.refreshRelative).addView(line)
-            }
-        }
-        
     }
     
     private fun setEvery() {
@@ -318,14 +290,24 @@ class ScheduleFragment : Fragment() {
                     val subTaskSquare = RelativeLayout(context)
                     val rParam = RelativeLayout.LayoutParams(0, 0)
                     rParam.apply {
-                        width = dip(10)
-                        height = dip(10)
-                        leftMargin = dip(80 + 45 + 90 * taskCount) - dip(10)
-                        topMargin = dip(0.1556f * nowMinute) + dip(15)// - dip(70)
+                        width = dip(15)
+                        height = dip(15)
+                        leftMargin = dip(80 + 45 + 90 * taskCount) - dip(7)
+                        topMargin = Utils().diffDayNum(today, Utils().getDate(element.date), calendar.get(Calendar.YEAR)) * dip(200) +
+                                dip(0.13f * nowMinute)// + dip(50)// - dip(70)
                     }
                     subTaskSquare.apply {
                         layoutParams = rParam
                         backgroundColor = Color.RED
+                        setOnClickListener {
+//                            AlertDialog.Builder(activity).apply {
+//                                setTitle(element.name)
+//                                setMessage("message")
+//                                setPositiveButton("OK", null)
+//                                show()
+//                            }
+                            longToast(element.name)
+                        }
                     }
                     find<RelativeLayout>(R.id.refreshRelative).addView(subTaskSquare)
                 }
