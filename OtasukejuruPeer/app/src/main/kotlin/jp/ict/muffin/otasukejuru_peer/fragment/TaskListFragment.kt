@@ -20,7 +20,6 @@ import kotlinx.android.synthetic.main.fragment_list_todo.*
 import kotlinx.android.synthetic.main.task_card_view.view.*
 import org.jetbrains.anko.AnkoContext
 import org.jetbrains.anko.collections.forEachWithIndex
-import org.jetbrains.anko.dip
 import org.jetbrains.anko.find
 import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.startActivity
@@ -112,7 +111,7 @@ class TaskListFragment : Fragment() {
                         }
                     }
                 }
-                find<RelativeLayout>(R.id.taskProgress).scaleY = dip(element.progress * 1.4f).toFloat()
+                find<RelativeLayout>(R.id.taskProgress).scaleY = element.progress * 1.2f
                 
             }
             
