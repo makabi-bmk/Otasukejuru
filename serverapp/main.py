@@ -345,12 +345,20 @@ def friend_add_every():
         logger.debug('err invalid content_type. url: /add/every, '
                      'content_type: {}'.format(request.content_type))
         return 'failed'
+    global friend_every
     every_name = request.json['every_name']
-    start_date = str_to_datetime(request.json['start_time'])
-    end_date = str_to_datetime(request.json['end_time'])
+    start_time = str_to_datetime(request.json['start_time'])
+    end_time = str_to_datetime(request.json['end_time'])
     notice = request.json['notice']
     repeat_type = request.json['repeat_type']
-    dbcon.add_every(every_name, start_date, end_date, notice, repeat_type)
+    # dbcon.add_every(every_name, start_date, end_date, notice, repeat_type)
+    friend_every.append({
+        "every_name": every_name,
+        "start_time": start_time,
+        "end_time": end_time,
+        "notice": notice,
+        "repeat_type": repeat_type
+    })
     return 'succeeded'
 
 
