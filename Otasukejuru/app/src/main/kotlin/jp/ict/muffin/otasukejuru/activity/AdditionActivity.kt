@@ -65,7 +65,7 @@ class AdditionActivity : Activity() {
             selectAddType()
         } else {
             when {
-                intent.getBooleanExtra("task", false) -> {
+                isSub || intent.getBooleanExtra("task", false) -> {
                     beforeTaskInfo = GlobalValue.taskInfoArrayList[index]
                     inputTaskName()
                 }
@@ -73,7 +73,6 @@ class AdditionActivity : Activity() {
                     beforeScheduleInfo = GlobalValue.scheduleInfoArrayList[index]
                     inputScheduleName()
                 }
-                isSub -> inputTaskName()
             }
         }
     }
@@ -605,7 +604,8 @@ class AdditionActivity : Activity() {
             date = "$finishYear-$finishMonth-$finishDay $finishHour:$finishMinute:00"
         }
         
-        GlobalValue.subTaskInfoArrayList.add(subTaskInfo)
+        GlobalValue.taskInfoArrayList[index].subTaskArrayList.add(subTaskInfo)
+//        GlobalValue.subTaskInfoArrayList.add(subTaskInfo)
         
         //TODO:Add send function to server
         

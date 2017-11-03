@@ -111,23 +111,25 @@ class ScheduleFragment : Fragment() {
     
     private fun setSubTask() {
         
-        GlobalValue.subTaskInfoArrayList.forEach { elemnt ->
-            val nowTime = Utils().getTime(elemnt.date)
-            val nowMinute = nowTime / 100 * 60 + nowTime % 100
-            
-            val line = RelativeLayout(context)
-            val rParam = RelativeLayout.LayoutParams(0, 0)
-            rParam.apply {
-                width = dip(10)
-                height = dip(10)
-                leftMargin = dip(80 + 45 + 90 * 0)
-                topMargin = dip(0.1556f * nowMinute) + dip(25)// - dip(70)
+        GlobalValue.taskInfoArrayList.forEach {
+            it.subTaskArrayList.forEach { element ->
+                val nowTime = Utils().getTime(element.date)
+                val nowMinute = nowTime / 100 * 60 + nowTime % 100
+                
+                val line = RelativeLayout(context)
+                val rParam = RelativeLayout.LayoutParams(0, 0)
+                rParam.apply {
+                    width = dip(10)
+                    height = dip(10)
+                    leftMargin = dip(80 + 45 + 90 * 0)
+                    topMargin = dip(0.1556f * nowMinute) + dip(25)// - dip(70)
+                }
+                line.apply {
+                    layoutParams = rParam
+                    backgroundColor = Color.RED
+                }
+                find<RelativeLayout>(R.id.refreshRelative).addView(line)
             }
-            line.apply {
-                layoutParams = rParam
-                backgroundColor = Color.RED
-            }
-            find<RelativeLayout>(R.id.refreshRelative).addView(line)
         }
         
     }
@@ -309,6 +311,24 @@ class ScheduleFragment : Fragment() {
                     }
                 }
                 find<RelativeLayout>(R.id.refreshRelative).addView(line)
+                taskInfo.subTaskArrayList.forEach { element ->
+                    val nowTime = Utils().getTime(element.date)
+                    val nowMinute = nowTime / 100 * 60 + nowTime % 100
+                    
+                    val subTaskSquare = RelativeLayout(context)
+                    val rParam = RelativeLayout.LayoutParams(0, 0)
+                    rParam.apply {
+                        width = dip(10)
+                        height = dip(10)
+                        leftMargin = dip(80 + 45 + 90 * taskCount) - dip(10)
+                        topMargin = dip(0.1556f * nowMinute) + dip(15)// - dip(70)
+                    }
+                    subTaskSquare.apply {
+                        layoutParams = rParam
+                        backgroundColor = Color.RED
+                    }
+                    find<RelativeLayout>(R.id.refreshRelative).addView(subTaskSquare)
+                }
                 taskCount++
             }
         }
