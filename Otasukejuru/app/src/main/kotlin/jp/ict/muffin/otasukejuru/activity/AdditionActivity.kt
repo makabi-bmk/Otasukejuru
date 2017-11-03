@@ -247,28 +247,32 @@ class AdditionActivity : Activity() {
         set_notification_time_edit.setText("5")
         notificationTime = 5
         
-        find<Button>(R.id.button_finish).setOnClickListener {
-            val str: String = set_notification_time_edit.text.toString()
-            notificationTime = Integer.parseInt(str)
-            
-            Log.d("plan", "タイトル名:" + titleName + "\n予定開始の日付:" + startMonth + "月" +
-                    startDay + "日" + startHour + "時" + startMinute + "分" + "\n予定終了の時間:" +
-                    finishMonth + "月" + finishDay + "日" + finishHour + "時" +
-                    finishMinute + "分" + "\n繰り返し:" + taskRepeat + "\n何分前に通知するか:" +
-                    notificationTime)
-            
-            if (isAdd) {
-                if (taskRepeat == 0) {
-                    setScheduleInformation()
-                } else {
-                    setEveryInformation()
-                }
-            } else {
-            
-            
+        find<Button>(R.id.button_finish).apply {
+            if (!isAdd) {
+                text = "変更"
             }
+            setOnClickListener {
+                val str: String = set_notification_time_edit.text.toString()
+                notificationTime = Integer.parseInt(str)
+        
+                Log.d("plan", "タイトル名:" + titleName + "\n予定開始の日付:" + startMonth + "月" +
+                        startDay + "日" + startHour + "時" + startMinute + "分" + "\n予定終了の時間:" +
+                        finishMonth + "月" + finishDay + "日" + finishHour + "時" +
+                        finishMinute + "分" + "\n繰り返し:" + taskRepeat + "\n何分前に通知するか:" +
+                        notificationTime)
+        
+                if (isAdd) {
+                    if (taskRepeat == 0) {
+                        setScheduleInformation()
+                    } else {
+                        setEveryInformation()
+                    }
+                } else {
             
-            finish()
+                }
+        
+                finish()
+            }
         }
         
         find<ImageButton>(R.id.button_back).setOnClickListener { setScheduleRepeat() }
@@ -467,28 +471,33 @@ class AdditionActivity : Activity() {
         } else {
             Utils().getTime(beforeTaskInfo.guide_time)
         }
-        find<Button>(R.id.button_next).setOnClickListener {
-            guideTime = Integer.parseInt(finishHourEdit.text.toString()) * 100 +
-                    Integer.parseInt(finishMinuteEdit.text.toString())
-            
-            if (startMonth == -1) {
-                dateLimit = -1
-            } else {
-                dateLimit = (finishMonth - startMonth) * 100 + finishDay - startDay
-                timeLimit = startHour * 100 + startDay
+        find<Button>(R.id.button_next).apply {
+            if (!isAdd) {
+                text = "変更"
             }
-            
-            Log.d("task", "タイトル名:" + titleName + "\n期限の開始:" + dateLimit +
-                    "\n繰り返し:" + taskRepeat +
-                    "\nisMust:" + isMust + "\nisShould:" + isShould + "\nisWant to:" +
-                    isWant + "\n終了目安:" + finishHour + "時間" + finishMinute + "分")
-            
-            if (taskRepeat == 0) {
-                setTaskInformation()
-            } else {
-                setEveryInformation()
+            setOnClickListener {
+                guideTime = Integer.parseInt(finishHourEdit.text.toString()) * 100 +
+                        Integer.parseInt(finishMinuteEdit.text.toString())
+        
+                if (startMonth == -1) {
+                    dateLimit = -1
+                } else {
+                    dateLimit = (finishMonth - startMonth) * 100 + finishDay - startDay
+                    timeLimit = startHour * 100 + startDay
+                }
+        
+                Log.d("task", "タイトル名:" + titleName + "\n期限の開始:" + dateLimit +
+                        "\n繰り返し:" + taskRepeat +
+                        "\nisMust:" + isMust + "\nisShould:" + isShould + "\nisWant to:" +
+                        isWant + "\n終了目安:" + finishHour + "時間" + finishMinute + "分")
+        
+                if (taskRepeat == 0) {
+                    setTaskInformation()
+                } else {
+                    setEveryInformation()
+                }
+                finish()
             }
-            finish()
         }
         
         find<ImageButton>(R.id.button_back).setOnClickListener { setWantTo() }
