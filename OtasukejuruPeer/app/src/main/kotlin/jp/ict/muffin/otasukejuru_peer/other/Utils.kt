@@ -40,14 +40,6 @@ class Utils {
         return (totalDays[afterMonth] + afterDay - (totalDays[beforeMonth] + beforeDay))
     }
     
-    private fun diffTime(beforeTime: Int, afterTime: Int, diffDay: Int): Int {
-        val before = beforeTime / 100 * 60 + beforeTime % 100
-        val after = afterTime / 100 * 60 + afterTime % 100
-        val diff = after - before
-        return diff / 60 * 100 + diff % 60
-        
-    }
-    
     fun getNowDate(): String {
         val df = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
         val date = Date(System.currentTimeMillis())

@@ -3,8 +3,9 @@
       xmlns:tools="http://schemas.android.com/tools"
       tools:context="jp.ict.muffin.otasukejuru_peer.activity.MainActivity">
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/app_icon"
+        android:icon="@drawable/app_icon"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never"/>
+        app:showAsAction="ifRoom"
+        android:title="No item" />
 </menu>
