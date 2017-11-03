@@ -299,7 +299,7 @@ class ScheduleFragment : Fragment() {
                         AlertDialog.Builder(activity).apply {
                             setTitle(taskInfo.task_name)
                             setMessage("サブタスクを追加しますか？")
-                            setPositiveButton("YES") { dialog, which ->
+                            setPositiveButton("YES") { _, _ ->
                                 startActivity<AdditionActivity>("sub" to true,
                                         "index" to index)
                             }

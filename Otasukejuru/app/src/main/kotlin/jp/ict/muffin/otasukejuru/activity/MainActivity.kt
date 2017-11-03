@@ -107,7 +107,7 @@ class MainActivity : AppCompatActivity() {
     // automatically handle clicks on the Home/Up button, so long
     // as you specify a parent activity in AndroidManifest.xml.
     override fun onOptionsItemSelected(item: MenuItem): Boolean =
-            if (item.itemId == R.id.action_settings) {
+            if (item.itemId == R.id.move_to_top) {
                 true
             } else {
                 super.onOptionsItemSelected(item)
