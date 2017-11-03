@@ -16,7 +16,6 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
-import jp.ict.muffin.otasukejuru.activity.AddSubTaskActivity
 import jp.ict.muffin.otasukejuru.activity.AdditionActivity
 import jp.ict.muffin.otasukejuru.activity.InputProgressActivity
 import jp.ict.muffin.otasukejuru.activity.TimeSetActivity
@@ -29,8 +28,6 @@ import org.jetbrains.anko.*
 import org.jetbrains.anko.collections.forEachWithIndex
 import org.jetbrains.anko.support.v4.*
 import java.util.*
-
-
 
 
 class ScheduleFragment : Fragment() {
@@ -282,7 +279,8 @@ class ScheduleFragment : Fragment() {
                                 .setTitle(taskInfo.task_name)
                                 .setMessage("サブタスクを追加しますか？")
                                 .setPositiveButton("YES") { dialog, which ->
-                                    startActivity<AddSubTaskActivity>()
+                                    startActivity<AdditionActivity>("isSub" to true,
+                                            "index" to index)
                                 }
                                 .setNegativeButton("NO", null)
                                 .show()
@@ -295,7 +293,6 @@ class ScheduleFragment : Fragment() {
     }
     
     private fun createDialog(index: Int, isTask: Boolean) {
-        Log.d("select", GlobalValue.taskInfoArrayList[index].toString())
         val listDialog = if (isTask) {
             arrayOf("開始", "変更", "完了", "削除", "進捗")
         } else {

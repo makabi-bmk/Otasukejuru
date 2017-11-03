@@ -11,6 +11,7 @@ import jp.ict.muffin.otasukejuru.`object`.ScheduleInfo
 import jp.ict.muffin.otasukejuru.`object`.TaskInfo
 import jp.ict.muffin.otasukejuru.communication.*
 import jp.ict.muffin.otasukejuru.other.Utils
+import kotlinx.android.synthetic.main.input_task_name.*
 import kotlinx.android.synthetic.main.set_plan_notification_time.*
 import kotlinx.android.synthetic.main.set_plan_repeat.*
 import kotlinx.android.synthetic.main.set_task_repeat.*
@@ -48,6 +49,7 @@ class AdditionActivity : Activity() {
     private var calendar = Calendar.getInstance()
     
     private var isAdd: Boolean = true
+    private var isSub: Boolean = false
     private var index: Int = -1
     private lateinit var beforeTaskInfo: TaskInfo
     private lateinit var beforeScheduleInfo: ScheduleInfo
@@ -56,6 +58,7 @@ class AdditionActivity : Activity() {
         super.onCreate(savedInstanceState)
         
         isAdd = intent.getBooleanExtra("add", true)
+        isSub = intent.getBooleanExtra("sub", false)
         index = intent.getIntExtra("index", -1)
         
         if (isAdd) {
@@ -67,6 +70,8 @@ class AdditionActivity : Activity() {
             } else if (intent.getBooleanExtra("schedule", false)) {
                 beforeScheduleInfo = GlobalValue.scheduleInfoArrayList[index]
                 inputScheduleName()
+            } else if (isSub) {
+                inputTaskName()
             }
         }
     }
@@ -278,7 +283,11 @@ class AdditionActivity : Activity() {
         
         if (!isAdd) {
             inputTaskNameEdit.setText(beforeTaskInfo.task_name)
-            
+        }
+        
+        if (isSub) {
+            title = "サブタスク名"
+            question_text.text = "サブタスク名はなんですか"
         }
         
         find<Button>(R.id.button_next).setOnClickListener {
@@ -301,7 +310,7 @@ class AdditionActivity : Activity() {
         setContentView(R.layout.finish_task_time)
         setActionBar(find(R.id.toolbar_back))
         
-        if (isAdd) {
+        if (isAdd || isSub) {
             finishMonth = calendar.get(Calendar.MONTH) + 1
             finishDay = calendar.get(Calendar.DAY_OF_MONTH)
             finishHour = calendar.get(Calendar.HOUR_OF_DAY)
@@ -343,7 +352,18 @@ class AdditionActivity : Activity() {
             setOnValueChangedListener { _, _, newVal -> finishMinute = newVal }
         }
         
-        find<Button>(R.id.button_next).setOnClickListener { setTaskRepeat() }
+        if (isSub) {
+            find<Button>(R.id.button_next).apply {
+                text = "追加"
+                setOnClickListener {
+                    setSubTask()
+                }
+            }
+        } else {
+            find<Button>(R.id.button_next).setOnClickListener {
+                setTaskRepeat()
+            }
+        }
         
         finishYear = calendar.get(Calendar.YEAR)
         
@@ -555,6 +575,12 @@ class AdditionActivity : Activity() {
             val update = UpdateTaskInfoAsync()
             update.execute(GlobalValue.taskInfoArrayList[index])
         }
+    }
+    
+    private fun setSubTask() {
+        
+        
+        finish()
         
     }
 }
