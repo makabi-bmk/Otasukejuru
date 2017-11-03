@@ -73,9 +73,9 @@ def add_schedule():
     start_date = str_to_datetime(request.json['start_time'])
     end_date = str_to_datetime(request.json['end_time'])
     if dbcon.add_schedule(schedule_name, start_date, end_date):
-        return True
+        return json.dumps(True)
     else:
-        return False
+        return json.dumps(False)
 
 
 @app.route('/add/every', methods=['POST'])
@@ -134,6 +134,8 @@ def update_task():
                      'content_type: {}'.format(request.content_type))
         return 'failed'
     data = request.json
+    logger.debug("/update/task : {} ***".format(data['_id']))
+    logger.debug("/update/task : {} ***".format(data['task_name']))
     if '_id' not in data:
         logger.debug("none object_id")
         return 'not succeeded task update'
