@@ -284,7 +284,7 @@ class ScheduleFragment : Fragment() {
                 }
                 find<RelativeLayout>(R.id.refreshRelative).addView(line)
                 taskInfo.subTaskArrayList.forEach { element ->
-                    val nowTime = Utils().getTime(element.date)
+                    val nowTime = Utils().getTime(element.time)
                     val nowMinute = nowTime / 100 * 60 + nowTime % 100
                     
                     val subTaskSquare = RelativeLayout(context)
@@ -293,7 +293,7 @@ class ScheduleFragment : Fragment() {
                         width = dip(15)
                         height = dip(15)
                         leftMargin = dip(80 + 45 + 90 * taskCount) - dip(7)
-                        topMargin = Utils().diffDayNum(today, Utils().getDate(element.date), calendar.get(Calendar.YEAR)) * dip(200) +
+                        topMargin = Utils().diffDayNum(today, Utils().getDate(element.time), calendar.get(Calendar.YEAR)) * dip(200) +
                                 dip(0.13f * nowMinute)// + dip(50)// - dip(70)
                     }
                     subTaskSquare.apply {
@@ -301,12 +301,12 @@ class ScheduleFragment : Fragment() {
                         backgroundColor = Color.RED
                         setOnClickListener {
 //                            AlertDialog.Builder(activity).apply {
-//                                setTitle(element.name)
+//                                setTitle(element.sub_task_name)
 //                                setMessage("message")
 //                                setPositiveButton("OK", null)
 //                                show()
 //                            }
-                            longToast(element.name)
+                            longToast(element.sub_task_name)
                         }
                     }
                     find<RelativeLayout>(R.id.refreshRelative).addView(subTaskSquare)

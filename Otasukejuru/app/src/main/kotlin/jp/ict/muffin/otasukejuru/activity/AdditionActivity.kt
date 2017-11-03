@@ -601,8 +601,8 @@ class AdditionActivity : Activity() {
         
         subTaskInfo.apply {
             _id = beforeTaskInfo._id
-            name = titleName
-            date = "$finishYear-$finishMonth-$finishDay $finishHour:$finishMinute:00"
+            sub_task_name = titleName
+            time = "$finishYear-$finishMonth-$finishDay $finishHour:$finishMinute:00"
         }
         
         GlobalValue.taskInfoArrayList[index].subTaskArrayList.add(subTaskInfo)
