@@ -26,7 +26,10 @@ import jp.ict.muffin.otasukejuru.ui.ScheduleFragmentUI
 import kotlinx.android.synthetic.main.task_card_view.view.*
 import org.jetbrains.anko.*
 import org.jetbrains.anko.collections.forEachWithIndex
-import org.jetbrains.anko.support.v4.*
+import org.jetbrains.anko.support.v4.ctx
+import org.jetbrains.anko.support.v4.dip
+import org.jetbrains.anko.support.v4.find
+import org.jetbrains.anko.support.v4.startActivity
 import java.util.*
 
 
@@ -274,16 +277,16 @@ class ScheduleFragment : Fragment() {
                     layoutParams = lParam
                     backgroundColor = ContextCompat.getColor(context, R.color.mostPriority)
                     setOnClickListener {
-                        toast("hoge")
-                        AlertDialog.Builder(activity)
-                                .setTitle(taskInfo.task_name)
-                                .setMessage("サブタスクを追加しますか？")
-                                .setPositiveButton("YES") { dialog, which ->
-                                    startActivity<AdditionActivity>("isSub" to true,
-                                            "index" to index)
-                                }
-                                .setNegativeButton("NO", null)
-                                .show()
+                        AlertDialog.Builder(activity).apply {
+                            setTitle(taskInfo.task_name)
+                            setMessage("サブタスクを追加しますか？")
+                            setPositiveButton("YES") { dialog, which ->
+                                startActivity<AdditionActivity>("sub" to true,
+                                        "index" to index)
+                            }
+                            setNegativeButton("NO", null)
+                            show()
+                        }
                     }
                 }
                 find<RelativeLayout>(R.id.refreshRelative).addView(line)

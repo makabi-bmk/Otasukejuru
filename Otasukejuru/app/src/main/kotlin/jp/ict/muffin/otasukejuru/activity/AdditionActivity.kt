@@ -61,17 +61,22 @@ class AdditionActivity : Activity() {
         isSub = intent.getBooleanExtra("sub", false)
         index = intent.getIntExtra("index", -1)
         
+        if (isSub) {
+            isAdd = false
+        }
         if (isAdd) {
             selectAddType()
         } else {
-            if (intent.getBooleanExtra("task", false)) {
-                beforeTaskInfo = GlobalValue.taskInfoArrayList[index]
-                inputTaskName()
-            } else if (intent.getBooleanExtra("schedule", false)) {
-                beforeScheduleInfo = GlobalValue.scheduleInfoArrayList[index]
-                inputScheduleName()
-            } else if (isSub) {
-                inputTaskName()
+            when {
+                intent.getBooleanExtra("task", false) -> {
+                    beforeTaskInfo = GlobalValue.taskInfoArrayList[index]
+                    inputTaskName()
+                }
+                intent.getBooleanExtra("schedule", false) -> {
+                    beforeScheduleInfo = GlobalValue.scheduleInfoArrayList[index]
+                    inputScheduleName()
+                }
+                isSub -> inputTaskName()
             }
         }
     }
@@ -285,13 +290,14 @@ class AdditionActivity : Activity() {
         
         val inputTaskNameEdit = find<EditText>(R.id.input_task_name_edit)
         
-        if (!isAdd) {
+        if (!isAdd && !isSub) {
             inputTaskNameEdit.setText(beforeTaskInfo.task_name)
         }
         
         if (isSub) {
-            title = "サブタスク名"
+            find<TextView>(R.id.title).text = "サブタスク名"
             question_text.text = "サブタスク名はなんですか"
+            inputTaskNameEdit.hint = "サブタスク名"
         }
         
         find<Button>(R.id.button_next).setOnClickListener {
@@ -327,6 +333,12 @@ class AdditionActivity : Activity() {
             finishMinute = Utils().getTime(dueDate) / 100
         }
         
+        if (isSub) {
+            find<TextView>(R.id.title).text = "サブタスクの時間"
+            find<TextView>(R.id.question_text).text = "サブタスクをいつに入れますか"
+            
+        
+        }
         find<NumberPicker>(R.id.finish_month_num_pick).apply {
             maxValue = 12
             minValue = 1
