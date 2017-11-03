@@ -14,8 +14,8 @@ import android.widget.RelativeLayout
 import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
 import jp.ict.muffin.otasukejuru.`object`.TaskInfo
-import jp.ict.muffin.otasukejuru.activity.InputProgressActivity
 import jp.ict.muffin.otasukejuru.activity.AdditionActivity
+import jp.ict.muffin.otasukejuru.activity.InputProgressActivity
 import jp.ict.muffin.otasukejuru.activity.TimeSetActivity
 import jp.ict.muffin.otasukejuru.communication.DeleteTaskInfoAsync
 import jp.ict.muffin.otasukejuru.other.Utils
@@ -153,15 +153,6 @@ class TaskListFragment : Fragment() {
                 when (which) {
                     0 -> {
                         startActivity<TimeSetActivity>("taskIndex" to index)
-//                        AlertDialog.Builder(context).apply {
-//                            setTitle(element.task_name)
-//                            setMessage(getString(R.string.attentionMassage))
-//                            setPositiveButton("OK") { _, _ ->
-//                                 OK button pressed
-//                            }
-//                            setNegativeButton("Cancel", null)
-//                            show()
-//                        }
                     }
                     
                     1 -> {

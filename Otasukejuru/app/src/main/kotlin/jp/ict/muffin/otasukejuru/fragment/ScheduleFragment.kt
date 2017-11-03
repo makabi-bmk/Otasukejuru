@@ -155,8 +155,6 @@ class ScheduleFragment : Fragment() {
                     width = matchParent
                     height = dip((Utils().diffDayNum(startDate, endDate,
                             calendar.get(Calendar.YEAR)) * 1440 - startMinute + endMinute) * 0.15f)
-//                        ((endDate - startDate) *
-//                                1440 + endMinute * 0.16f).toInt()
                     Log.d("height", diffDays.toString())
                     leftMargin = dip(120)
                     rightMargin = dip(60)
@@ -211,8 +209,6 @@ class ScheduleFragment : Fragment() {
                     width = matchParent
                     height = dip((Utils().diffDayNum(startDate, endDate,
                             calendar.get(Calendar.YEAR)) * 1440 - startMinute + endMinute) * 0.15f)
-//                        ((endDate - startDate) *
-//                                1440 + endMinute * 0.16f).toInt()
                     Log.d("height", diffDays.toString())
                     leftMargin = dip(120)
                     rightMargin = dip(60)
@@ -223,7 +219,6 @@ class ScheduleFragment : Fragment() {
                     backgroundColor = Color.argb(100, 112, 173, 71)
                     setOnClickListener {
                         createDialog(index, false)
-                        
                     }
                 }
                 val scheduleNameText = TextView(context)
@@ -285,7 +280,7 @@ class ScheduleFragment : Fragment() {
                             createDialog(index, true)
                         }
                     }
-                    find<RelativeLayout>(R.id.taskProgress).scaleY = dip(taskInfo.progress * 1.4f).toFloat()
+                    find<RelativeLayout>(R.id.taskProgress).scaleY = taskInfo.progress * 1.2f
                 }
                 find<LinearLayout>(R.id.taskLinear).addView(linearLayout, taskCount)
                 
