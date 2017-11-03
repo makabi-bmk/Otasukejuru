@@ -20,6 +20,7 @@
     <item name="todayTaskText" type="id"/>
     <item name="hourText" type="id"/>
     <item name="ankoToolbar" type="id"/>
+    <item name="anko_toolbar" type="id"/>
     <item name="ankoBack" type="id"/>
     <item name="taskLinear" type="id"/>
     <item name="remainDay" type="id"/>

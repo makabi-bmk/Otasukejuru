@@ -123,8 +123,6 @@ class ScheduleFragment : Fragment() {
                     width = matchParent
                     height = dip((Utils().diffDayNum(startDate, endDate,
                             calendar.get(Calendar.YEAR)) * 1440 - startMinute + endMinute) * 0.15f)
-//                        ((endDate - startDate) *
-//                                1440 + endMinute * 0.16f).toInt()
                     Log.d("height", diffDays.toString())
                     leftMargin = dip(120)
                     rightMargin = dip(60)

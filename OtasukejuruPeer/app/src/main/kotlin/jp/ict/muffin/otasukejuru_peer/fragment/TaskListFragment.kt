@@ -13,10 +13,7 @@ import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import jp.ict.muffin.otasukejuru_peer.R
 import jp.ict.muffin.otasukejuru_peer.`object`.GlobalValue
-import jp.ict.muffin.otasukejuru_peer.`object`.TaskInfo
 import jp.ict.muffin.otasukejuru_peer.activity.AdditionActivity
-import jp.ict.muffin.otasukejuru_peer.activity.InputProgressActivity
-import jp.ict.muffin.otasukejuru_peer.communication.DeleteTaskInfoAsync
 import jp.ict.muffin.otasukejuru_peer.other.Utils
 import jp.ict.muffin.otasukejuru_peer.ui.TaskListFragmentUI
 import kotlinx.android.synthetic.main.fragment_list_todo.*
@@ -102,7 +99,17 @@ class TaskListFragment : Fragment() {
                 cardView.apply {
                     tag = Utils().getDate(element.due_date)
                     setOnClickListener {
-                        createDialog(element, index)
+                        AlertDialog.Builder(context).apply {
+                            setTitle(element.task_name)
+                            setMessage("変更しますか？")
+                            setPositiveButton("Yes") { _, _ ->
+                                //                                 OK button pressed
+                                startActivity<AdditionActivity>("add" to false,
+                                        "index" to index, "task" to true)
+                            }
+                            setNegativeButton("Cancel", null)
+                            show()
+                        }
                     }
                 }
                 find<RelativeLayout>(R.id.taskProgress).scaleY = dip(element.progress * 1.4f).toFloat()
@@ -141,72 +148,5 @@ class TaskListFragment : Fragment() {
                 }
             }.addView(linearLayout, position)
         }
-    }
-    
-    private fun createDialog(element: TaskInfo, index: Int) {
-        val listDialog = arrayOf("開始", "変更", "完了", "削除", "進捗")
-        
-        AlertDialog.Builder(context).apply {
-            setTitle(element.task_name)
-            setItems(listDialog) { _, which ->
-                when (which) {
-                    0 -> {
-//                        AlertDialog.Builder(context).apply {
-//                            setTitle(element.task_name)
-//                            setMessage(getString(R.string.attentionMassage))
-//                            setPositiveButton("OK") { _, _ ->
-//                                 OK button pressed
-//                            }
-//                            setNegativeButton("Cancel", null)
-//                            show()
-//                        }
-                    }
-                    
-                    1 -> {
-                        startActivity<AdditionActivity>("add" to false, "index" to index)
-                    }
-                    
-                    2 -> {
-                        AlertDialog.Builder(context).apply {
-                            setTitle(element.task_name)
-                            setMessage(getString(R.string.complicatedMassage))
-                            setPositiveButton("Yes") { _, _ ->
-                                deleteTask(element, index)
-                            }
-                            setNegativeButton("No", null)
-                            show()
-                        }
-                    }
-                    
-                    3 -> {
-                        AlertDialog.Builder(context).apply {
-                            setTitle(element.task_name)
-                            setMessage(getString(R.string.deleteMassage))
-                            setPositiveButton("OK") { _, _ ->
-                                deleteTask(element, index)
-                            }
-                            setNegativeButton("Cancel", null)
-                            show()
-                        }
-                    }
-                    
-                    4 -> {
-                        startActivity<InputProgressActivity>("index" to index)
-                    }
-                    
-                    else -> {
-                    
-                    }
-                    
-                }
-            }
-            show()
-        }
-    }
-    
-    private fun deleteTask(element: TaskInfo, index: Int) {
-        val deleteTaskAsync = DeleteTaskInfoAsync()
-        deleteTaskAsync.execute(GlobalValue.taskInfoArrayList[index])
-        GlobalValue.taskInfoArrayList.remove(element)
     }
 }

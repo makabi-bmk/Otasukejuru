@@ -9,12 +9,11 @@ import jp.ict.muffin.otasukejuru_peer.`object`.EveryInfo
 import jp.ict.muffin.otasukejuru_peer.`object`.GlobalValue
 import jp.ict.muffin.otasukejuru_peer.`object`.ScheduleInfo
 import jp.ict.muffin.otasukejuru_peer.`object`.TaskInfo
-import jp.ict.muffin.otasukejuru_peer.communication.*
+import jp.ict.muffin.otasukejuru_peer.communication.UpdateEveryInfoAsync
+import jp.ict.muffin.otasukejuru_peer.communication.UpdateScheduleInfoAsync
+import jp.ict.muffin.otasukejuru_peer.communication.UpdateTaskInfoAsync
 import jp.ict.muffin.otasukejuru_peer.other.Utils
 import jp.ict.muffin.otasukejuru_peer.ui.ChangePriorityActivityUI
-import kotlinx.android.synthetic.main.set_plan_notification_time.*
-import kotlinx.android.synthetic.main.set_plan_repeat.*
-import kotlinx.android.synthetic.main.set_task_repeat.*
 import org.jetbrains.anko.AnkoContext
 import org.jetbrains.anko.ctx
 import org.jetbrains.anko.find
@@ -36,24 +35,18 @@ class AdditionActivity : Activity() {
     private var finishDay: Int = 0
     private var finishHour: Int = 0
     private var finishMinute: Int = 0
-    private var taskRepeat: Int = 0
     private var dateLimit: Int = 0
     private var timeLimit: Int = 0
-    
-    //plan
-    private var notificationTime: Int = 0
-    //task
-    private var isMust: Boolean = false
-    private var isShould: Boolean = false
-    private var isWant: Boolean = false
-    private var guideTime: Int = 0
     
     private var calendar = Calendar.getInstance()
     
     private var isAdd: Boolean = true
+    private var isTask: Boolean = false
     private var index: Int = -1
     private lateinit var beforeTaskInfo: TaskInfo
     private lateinit var beforeScheduleInfo: ScheduleInfo
+    
+    private var taskPriority: Int = -1
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,35 +54,14 @@ class AdditionActivity : Activity() {
         isAdd = intent.getBooleanExtra("add", true)
         index = intent.getIntExtra("index", -1)
         
-        if (isAdd) {
-            selectAddType()
-        } else {
-            if (intent.getBooleanExtra("task", false)) {
-                beforeTaskInfo = GlobalValue.taskInfoArrayList[index]
-                inputTaskName()
-            } else if (intent.getBooleanExtra("schedule", false)) {
-                beforeScheduleInfo = GlobalValue.scheduleInfoArrayList[index]
-                inputScheduleName()
-            }
-        }
-    }
-    
-    private fun selectAddType() {
-        setContentView(R.layout.selection)
-        
-        setActionBar(find(R.id.toolbar_back))
-        
-        find<Button>(R.id.button_plan).setOnClickListener {
-            isSchedule = true
+        isSchedule = intent.getBooleanExtra("schedule", false)
+        if (intent.getBooleanExtra("task", false)) {
+            beforeTaskInfo = GlobalValue.taskInfoArrayList[index]
+            inputTaskName()
+        } else if (isSchedule) {
+            beforeScheduleInfo = GlobalValue.scheduleInfoArrayList[index]
             inputScheduleName()
         }
-        
-        find<Button>(R.id.button_task).setOnClickListener {
-            isSchedule = false
-            inputTaskName()
-        }
-        
-        find<ImageButton>(R.id.button_back).setOnClickListener { finish() }
     }
     
     private fun inputScheduleName() {
@@ -109,11 +81,7 @@ class AdditionActivity : Activity() {
         }
         
         find<ImageButton>(R.id.button_back).setOnClickListener {
-            if (isAdd) {
-                selectAddType()
-            } else {
-                finish()
-            }
+            finish()
         }
         
     }
@@ -213,63 +181,16 @@ class AdditionActivity : Activity() {
         }
         finishYear = calendar.get(Calendar.YEAR)
         
-        find<Button>(R.id.button_next).setOnClickListener { setScheduleRepeat() }
         find<ImageButton>(R.id.button_back).setOnClickListener { startScheduleTime() }
-        
-    }
-    
-    private fun setScheduleRepeat() {
-        setContentView(R.layout.set_plan_repeat)
-        setActionBar(find(R.id.toolbar_back))
-        
-        
-        find<Button>(R.id.button_next).setOnClickListener {
-            val num = plan_repeat_radio_group.checkedRadioButtonId
-            
-            taskRepeat = if (find<RadioButton>(num).text.toString() == "今回だけ") {
-                0
-            } else {
-                1
-            }
-            setScheduleNotificationTime()
-        }
-        
-        find<ImageButton>(R.id.button_back).setOnClickListener { finishScheduleTime() }
-        
-    }
-    
-    private fun setScheduleNotificationTime() {
-        setContentView(R.layout.set_plan_notification_time)
-        setActionBar(find(R.id.toolbar_back))
-        
-        set_notification_time_edit.setText("5")
-        notificationTime = 5
-        
         find<Button>(R.id.button_finish).setOnClickListener {
-            val str: String = set_notification_time_edit.text.toString()
-            notificationTime = Integer.parseInt(str)
-            
-            Log.d("plan", "タイトル名:" + titleName + "\n予定開始の日付:" + startMonth + "月" +
-                    startDay + "日" + startHour + "時" + startMinute + "分" + "\n予定終了の時間:" +
-                    finishMonth + "月" + finishDay + "日" + finishHour + "時" +
-                    finishMinute + "分" + "\n繰り返し:" + taskRepeat + "\n何分前に通知するか:" +
-                    notificationTime)
-            
-            if (isAdd) {
-                if (taskRepeat == 0) {
-                    setScheduleInformation()
-                } else {
-                    setEveryInformation()
-                }
+            if (isSchedule) {
+                setScheduleInformation()
             } else {
-            
-            
+                setEveryInformation()
             }
-            
             finish()
         }
         
-        find<ImageButton>(R.id.button_back).setOnClickListener { setScheduleRepeat() }
         
     }
     
@@ -292,11 +213,7 @@ class AdditionActivity : Activity() {
         }
         
         find<ImageButton>(R.id.button_back).setOnClickListener {
-            if (isAdd) {
-                selectAddType()
-            } else {
-                finish()
-            }
+            finish()
         }
     }
     
@@ -346,7 +263,7 @@ class AdditionActivity : Activity() {
             setOnValueChangedListener { _, _, newVal -> finishMinute = newVal }
         }
         
-        find<Button>(R.id.button_next).setOnClickListener { setTaskRepeat() }
+        find<Button>(R.id.button_next).setOnClickListener { changePriority() }
         
         finishYear = calendar.get(Calendar.YEAR)
         
@@ -354,70 +271,23 @@ class AdditionActivity : Activity() {
         
     }
     
-    private fun setTaskRepeat() {
-        setContentView(R.layout.set_task_repeat)
-        setActionBar(find(R.id.toolbar_back))
-        
-        
-        find<Button>(R.id.button_next).setOnClickListener {
-            val num = task_repeat_radio_group.checkedRadioButtonId
-            taskRepeat = if (find<RadioButton>(num).text.toString() == "今日だけ") {
-                0
-            } else {
-                1
-            }
-            Log.d("Repeat", taskRepeat.toString())
-            changePriority()
-        }
-        find<ImageButton>(R.id.button_back).setOnClickListener { finishTaskTime() }
-    }
-    
     private fun changePriority() {
+        Log.d("hoge", "hoge")
         ChangePriorityActivityUI().createView(AnkoContext.create(ctx, this))
         setActionBar(find(R.id.ankoToolbar))
         
         find<Button>(R.id.nextButton).setOnClickListener {
             val num = find<RadioGroup>(R.id.changePriorityRadioGroup).checkedRadioButtonId
-            taskRepeat = when (find<RadioButton>(num).text.toString()) {
+            taskPriority = when (find<RadioButton>(num).text.toString()) {
                 getString(R.string.mostPriority) -> 0
                 getString(R.string.highPriority) -> 1
                 getString(R.string.middlePriority) -> 2
                 getString(R.string.lowPriority) -> 3
                 else -> 4
             }
-            setTaskGuideTime()
         }
         
-        find<ImageButton>(R.id.button_back).setOnClickListener { setTaskRepeat() }
-    }
-    
-    private fun setTaskGuideTime() {
-        setContentView(R.layout.set_task_notification_time)
-        setActionBar(find(R.id.toolbar_back))
-        
-        val finishHourEdit = find<EditText>(R.id.finish_hour_edit)
-        finishHourEdit.setText(if (isAdd) {
-            "0"
-        } else {
-            (Utils().getTime(beforeTaskInfo.guide_time) / 100).toString()
-        })
-        
-        val finishMinuteEdit = find<EditText>(R.id.finish_minute_edit)
-        finishMinuteEdit.setText(if (isAdd) {
-            "5"
-        } else {
-            (Utils().getTime(beforeTaskInfo.guide_time) % 100).toString()
-        })
-        
-        guideTime = if (isAdd) {
-            5
-        } else {
-            Utils().getTime(beforeTaskInfo.guide_time)
-        }
         find<Button>(R.id.button_next).setOnClickListener {
-            guideTime = Integer.parseInt(finishHourEdit.text.toString()) * 100 +
-                    Integer.parseInt(finishMinuteEdit.text.toString())
-            
             if (startMonth == -1) {
                 dateLimit = -1
             } else {
@@ -425,12 +295,7 @@ class AdditionActivity : Activity() {
                 timeLimit = startHour * 100 + startDay
             }
             
-            Log.d("task", "タイトル名:" + titleName + "\n期限の開始:" + dateLimit +
-                    "\n繰り返し:" + taskRepeat +
-                    "\nisMust:" + isMust + "\nisShould:" + isShould + "\nisWant to:" +
-                    isWant + "\n終了目安:" + finishHour + "時間" + finishMinute + "分")
-            
-            if (taskRepeat == 0) {
+            if (isTask) {
                 setTaskInformation()
             } else {
                 setEveryInformation()
@@ -447,20 +312,11 @@ class AdditionActivity : Activity() {
             every_name = titleName
             start_time = "$startYear-$startMonth-$startDay $startHour:$startMinute:00"
             end_time = "$finishYear-$finishMonth-$finishDay $finishHour:$finishMinute:00"
-            repeat_type = taskRepeat
-            
         }
         //TODO:Remove comment out when Communication
-        if (isAdd) {
-            GlobalValue.everyInfoArrayList.add(0, everyInformation)
-            val postEveryInfo = AddEveryTaskInfoAsync()
-            postEveryInfo.execute(everyInformation)
-        } else {
-            GlobalValue.everyInfoArrayList[index] = everyInformation
-            val update = UpdateEveryInfoAsync()
-            update.execute(GlobalValue.everyInfoArrayList[index])
-        }
-        
+        GlobalValue.everyInfoArrayList[index] = everyInformation
+        val update = UpdateEveryInfoAsync()
+        update.execute(GlobalValue.everyInfoArrayList[index])
     }
     
     private fun setScheduleInformation() {
@@ -469,22 +325,10 @@ class AdditionActivity : Activity() {
             schedule_name = titleName
             start_time = "$startYear-$startMonth-$startDay $startHour:$startMinute:00"
             end_time = "$finishYear-$finishMonth-$finishDay $finishHour:$finishMinute:00"
-//            startDate = startMonth * 100 + startDay
-//            endDate = finishMonth * 100 + finishDay
         }
-//        GlobalValue.scheduleInfoArrayList.add(0, scheduleInformation)
-//        TODO:Remove comment out when Communication
-//        val postScheduleInfo = AddScheduleTaskInfoAsync()
-//        postScheduleInfo.execute(scheduleInformation)
-        if (isAdd) {
-            GlobalValue.scheduleInfoArrayList.add(0, scheduleInformation)
-            val postScheduleInfo = AddScheduleTaskInfoAsync()
-            postScheduleInfo.execute(scheduleInformation)
-        } else {
-            GlobalValue.scheduleInfoArrayList[index] = scheduleInformation
-            val update = UpdateScheduleInfoAsync()
-            update.execute(GlobalValue.scheduleInfoArrayList[index])
-        }
+        GlobalValue.scheduleInfoArrayList[index] = scheduleInformation
+        val update = UpdateScheduleInfoAsync()
+        update.execute(GlobalValue.scheduleInfoArrayList[index])
         
     }
     
@@ -492,33 +336,11 @@ class AdditionActivity : Activity() {
         val taskInformation = TaskInfo()
         taskInformation.apply {
             task_name = titleName
-            task_type = if (isMust) {
-                "1"
-            } else {
-                "0"
-            } + if (isShould) {
-                "1"
-            } else {
-                "0"
-            } + if (isWant) {
-                "1"
-            } else {
-                "0"
-            }
             due_date = "$finishYear-$finishMonth-$finishDay $finishHour:$finishMinute:00"
-            guide_time = "${guideTime / 100}:${guideTime % 100}:00"
             priority = 0
         }
-        Log.d("task", taskInformation.due_date)
-        if (isAdd) {
-            GlobalValue.taskInfoArrayList.add(0, taskInformation)
-            val postTaskInfo = AddTaskInfoAsync()
-            postTaskInfo.execute(taskInformation)
-        } else {
-            GlobalValue.taskInfoArrayList[index] = taskInformation
-            val update = UpdateTaskInfoAsync()
-            update.execute(GlobalValue.taskInfoArrayList[index])
-        }
-        
+        GlobalValue.taskInfoArrayList[index] = taskInformation
+        val update = UpdateTaskInfoAsync()
+        update.execute(GlobalValue.taskInfoArrayList[index])
     }
 }
