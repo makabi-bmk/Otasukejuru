@@ -297,7 +297,7 @@ class ScheduleFragment : Fragment() {
     
     private fun createDialog(index: Int, isTask: Boolean) {
         val listDialog = if (isTask) {
-            arrayOf("開始", "変更", "完了", "削除", "進捗")
+            arrayOf("開始", "変更", "完了", "削除", "サブタスクの追加", "進捗")
         } else {
             arrayOf("変更", "削除")
             
@@ -363,6 +363,11 @@ class ScheduleFragment : Fragment() {
                     }
                     
                     4 -> {
+                        startActivity<AdditionActivity>("sub" to true,
+                                "index" to index)
+                    }
+                    
+                    5 -> {
                         startActivity<InputProgressActivity>("index" to index)
                     }
                     
