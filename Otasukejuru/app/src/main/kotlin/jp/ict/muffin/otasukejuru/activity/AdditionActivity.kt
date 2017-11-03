@@ -5,10 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.*
 import jp.ict.muffin.otasukejuru.R
-import jp.ict.muffin.otasukejuru.`object`.EveryInfo
-import jp.ict.muffin.otasukejuru.`object`.GlobalValue
-import jp.ict.muffin.otasukejuru.`object`.ScheduleInfo
-import jp.ict.muffin.otasukejuru.`object`.TaskInfo
+import jp.ict.muffin.otasukejuru.`object`.*
 import jp.ict.muffin.otasukejuru.communication.*
 import jp.ict.muffin.otasukejuru.other.Utils
 import kotlinx.android.synthetic.main.input_task_name.*
@@ -259,13 +256,13 @@ class AdditionActivity : Activity() {
             setOnClickListener {
                 val str: String = set_notification_time_edit.text.toString()
                 notificationTime = Integer.parseInt(str)
-        
+                
                 Log.d("plan", "タイトル名:" + titleName + "\n予定開始の日付:" + startMonth + "月" +
                         startDay + "日" + startHour + "時" + startMinute + "分" + "\n予定終了の時間:" +
                         finishMonth + "月" + finishDay + "日" + finishHour + "時" +
                         finishMinute + "分" + "\n繰り返し:" + taskRepeat + "\n何分前に通知するか:" +
                         notificationTime)
-        
+                
                 if (isAdd) {
                     if (taskRepeat == 0) {
                         setScheduleInformation()
@@ -273,9 +270,9 @@ class AdditionActivity : Activity() {
                         setEveryInformation()
                     }
                 } else {
-            
+                
                 }
-        
+                
                 finish()
             }
         }
@@ -337,7 +334,7 @@ class AdditionActivity : Activity() {
             find<TextView>(R.id.title).text = "サブタスクの時間"
             find<TextView>(R.id.question_text).text = "サブタスクをいつに入れますか"
             
-        
+            
         }
         find<NumberPicker>(R.id.finish_month_num_pick).apply {
             maxValue = 12
@@ -490,19 +487,19 @@ class AdditionActivity : Activity() {
             setOnClickListener {
                 guideTime = Integer.parseInt(finishHourEdit.text.toString()) * 100 +
                         Integer.parseInt(finishMinuteEdit.text.toString())
-        
+                
                 if (startMonth == -1) {
                     dateLimit = -1
                 } else {
                     dateLimit = (finishMonth - startMonth) * 100 + finishDay - startDay
                     timeLimit = startHour * 100 + startDay
                 }
-        
+                
                 Log.d("task", "タイトル名:" + titleName + "\n期限の開始:" + dateLimit +
                         "\n繰り返し:" + taskRepeat +
                         "\nisMust:" + isMust + "\nisShould:" + isShould + "\nisWant to:" +
                         isWant + "\n終了目安:" + finishHour + "時間" + finishMinute + "分")
-        
+                
                 if (taskRepeat == 0) {
                     setTaskInformation()
                 } else {
@@ -599,7 +596,16 @@ class AdditionActivity : Activity() {
     }
     
     private fun setSubTask() {
+        val subTaskInfo = SubTaskInfo()
         
+        subTaskInfo.apply {
+            name = titleName
+            date = "$finishYear-$finishMonth-$finishDay $finishHour:$finishMinute:00"
+        }
+        
+        GlobalValue.subTaskInfoArrayList.add(subTaskInfo)
+        
+        //TODO:Add send function to server
         
         finish()
         
