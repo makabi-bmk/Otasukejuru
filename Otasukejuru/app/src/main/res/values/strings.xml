@@ -30,4 +30,6 @@
 
     <string name="yes">はい</string>
     <string name="no">いいえ</string>
+
+    <string name="changeMessage">友達から変更リクエストが届いてます。\n変更を受け入れますか\n優先度が変更される可能性があります。</string>
 </resources>

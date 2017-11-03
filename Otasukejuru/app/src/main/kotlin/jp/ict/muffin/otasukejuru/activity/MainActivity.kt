@@ -1,5 +1,6 @@
 package jp.ict.muffin.otasukejuru.activity
 
+import android.app.AlertDialog
 import android.graphics.Color
 import android.graphics.Point
 import android.os.Bundle
@@ -18,6 +19,7 @@ import jp.ict.muffin.otasukejuru.fragment.ScheduleFragment
 import jp.ict.muffin.otasukejuru.fragment.TaskListFragment
 import jp.ict.muffin.otasukejuru.fragment.TimerSetTimeFragment
 import kotlinx.android.synthetic.main.activity_main.*
+import org.jetbrains.anko.collections.forEachWithIndex
 import org.jetbrains.anko.find
 import org.jetbrains.anko.startActivity
 import java.util.*
@@ -85,6 +87,42 @@ class MainActivity : AppCompatActivity() {
                 mHandler.post {
                     val getInformation = GetInformation()
                     getInformation.execute()
+                    
+                    GlobalValue.friendTaskInfoArrayList.forEachWithIndex { index, element ->
+                        AlertDialog.Builder(applicationContext).apply {
+                            setTitle(element.task_name)
+                            setMessage(getString(R.string.changeMessage))
+                            setPositiveButton("Yes") { _, _ ->
+                                //ToDo:Write send function
+                            }
+                            setNegativeButton("No", null)
+                            show()
+                        }
+                    }
+    
+                    GlobalValue.friendScheduleInfoArrayList.forEachWithIndex { index, element ->
+                        AlertDialog.Builder(applicationContext).apply {
+                            setTitle(element.schedule_name)
+                            setMessage(getString(R.string.changeMessage))
+                            setPositiveButton("Yes") { _, _ ->
+                                //ToDo:Write send function
+                            }
+                            setNegativeButton("No", null)
+                            show()
+                        }
+                    }
+                    
+                    GlobalValue.friendEveryInfoArrayList.forEachWithIndex { index, element ->
+                        AlertDialog.Builder(applicationContext).apply {
+                            setTitle(element.every_name)
+                            setMessage(getString(R.string.changeMessage))
+                            setPositiveButton("Yes") { _, _ ->
+                                //ToDo:Write send function
+                            }
+                            setNegativeButton("No", null)
+                            show()
+                        }
+                    }
                 }
             }
         }, 5000, 5000)
