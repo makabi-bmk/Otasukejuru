@@ -94,6 +94,7 @@ class ScheduleFragment : Fragment() {
                 mHandler.post {
                     find<RelativeLayout>(R.id.refreshRelative).removeAllViews()
                     setEvery()
+                    setSubTask()
                     setSchedule()
                     setCardView()
                     drawNowLine()
@@ -106,6 +107,25 @@ class ScheduleFragment : Fragment() {
         super.onPause()
         mTimer?.cancel()
         mTimer = null
+    }
+    
+    private fun setSubTask() {
+        GlobalValue.subTaskInfoArrayList.forEach { elemnt ->
+            val line = RelativeLayout(context)
+            val rParam = RelativeLayout.LayoutParams(0, 0)
+            rParam.apply {
+                width = dip(10)
+                height = dip(10)
+                leftMargin = dip(80 + 45 + 90 * 0)
+                topMargin = dip(0.1556f * Utils().getTime(elemnt.date)) + dip(25)// - dip(70)
+            }
+            line.apply {
+                layoutParams = rParam
+                backgroundColor = Color.RED
+            }
+        }
+        
+        
     }
     
     private fun setEvery() {

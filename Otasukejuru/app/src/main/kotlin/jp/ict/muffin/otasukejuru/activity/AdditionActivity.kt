@@ -8,7 +8,6 @@ import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.*
 import jp.ict.muffin.otasukejuru.communication.*
 import jp.ict.muffin.otasukejuru.other.Utils
-import kotlinx.android.synthetic.main.input_task_name.*
 import kotlinx.android.synthetic.main.set_plan_notification_time.*
 import kotlinx.android.synthetic.main.set_plan_repeat.*
 import kotlinx.android.synthetic.main.set_task_repeat.*
@@ -293,7 +292,7 @@ class AdditionActivity : Activity() {
         
         if (isSub) {
             find<TextView>(R.id.title).text = "サブタスク名"
-            question_text.text = "サブタスク名はなんですか"
+            find<TextView>(R.id.question_text).text = "サブタスク名はなんですか"
             inputTaskNameEdit.hint = "サブタスク名"
         }
         
@@ -332,7 +331,7 @@ class AdditionActivity : Activity() {
         
         if (isSub) {
             find<TextView>(R.id.title).text = "サブタスクの時間"
-            find<TextView>(R.id.question_text).text = "サブタスクをいつに入れますか"
+            find<TextView>(R.id.question_text).text = "サブタスクをいつに入れますか？"
             
             
         }
