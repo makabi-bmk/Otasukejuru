@@ -49,6 +49,7 @@ class AdditionActivity : Activity() {
     private var index: Int = -1
     private lateinit var beforeTaskInfo: TaskInfo
     private lateinit var beforeScheduleInfo: ScheduleInfo
+    private var taskProgress: Int = 0
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -482,6 +483,7 @@ class AdditionActivity : Activity() {
         find<Button>(R.id.button_next).apply {
             if (!isAdd) {
                 text = "変更"
+                taskProgress = beforeTaskInfo.progress
             }
             setOnClickListener {
                 guideTime = Integer.parseInt(finishHourEdit.text.toString()) * 100 +
@@ -580,6 +582,7 @@ class AdditionActivity : Activity() {
             due_date = "$finishYear-$finishMonth-$finishDay $finishHour:$finishMinute:00"
             guide_time = "${guideTime / 100}:${guideTime % 100}:00"
             priority = 0
+            progress = taskProgress
         }
         Log.d("task", taskInformation.due_date)
         if (isAdd) {
