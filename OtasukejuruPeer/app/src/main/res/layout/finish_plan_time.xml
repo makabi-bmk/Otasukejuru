@@ -137,7 +137,7 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/button_next"
+                android:id="@+id/button_finish"
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

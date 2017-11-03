@@ -2,7 +2,6 @@ package jp.ict.muffin.otasukejuru_peer.activity
 
 import android.app.Activity
 import android.os.Bundle
-import android.util.Log
 import android.widget.*
 import jp.ict.muffin.otasukejuru_peer.R
 import jp.ict.muffin.otasukejuru_peer.`object`.EveryInfo
@@ -91,18 +90,12 @@ class AdditionActivity : Activity() {
         setContentView(R.layout.start_plan_time)
         setActionBar(find(R.id.toolbar_back))
         
-        if (isAdd) {
-            startMonth = calendar.get(Calendar.MONTH) + 1
-            startDay = calendar.get(Calendar.DAY_OF_MONTH)
-            startHour = calendar.get(Calendar.HOUR_OF_DAY)
-            startMinute = calendar.get(Calendar.MINUTE)
-        } else {
-            val startTime = beforeScheduleInfo.start_time
-            startMonth = Utils().getDate(startTime) / 100
-            startDay = Utils().getDate(startTime) % 100
-            startHour = Utils().getTime(startTime) / 100
-            startMinute = Utils().getTime(startTime) % 100
-        }
+        val startTime = beforeScheduleInfo.start_time
+        startMonth = Utils().getDate(startTime) / 100
+        startDay = Utils().getDate(startTime) % 100
+        startHour = Utils().getTime(startTime) / 100
+        startMinute = Utils().getTime(startTime) % 100
+        
         find<NumberPicker>(R.id.start_month_num_pick).apply {
             maxValue = 12
             minValue = 1
@@ -142,19 +135,11 @@ class AdditionActivity : Activity() {
         setContentView(R.layout.finish_plan_time)
         setActionBar(find(R.id.toolbar_back))
         
-        if (isAdd) {
-            finishMonth = startMonth
-            finishDay = startDay
-            finishHour = startHour
-            finishMinute = startMinute
-        } else {
             val finishTime = beforeScheduleInfo.end_time
             finishMonth = Utils().getDate(finishTime) / 100
             finishDay = Utils().getDate(finishTime) % 100
             finishHour = Utils().getTime(finishTime) / 100
             finishMinute = Utils().getTime(finishTime) % 100
-            
-        }
         find<NumberPicker>(R.id.finish_month_num_pick).apply {
             maxValue = 12
             minValue = 1
@@ -272,7 +257,6 @@ class AdditionActivity : Activity() {
     }
     
     private fun changePriority() {
-        Log.d("hoge", "hoge")
         ChangePriorityActivityUI().createView(AnkoContext.create(ctx, this))
         setActionBar(find(R.id.ankoToolbar))
         
@@ -287,21 +271,12 @@ class AdditionActivity : Activity() {
             }
         }
         
-        find<Button>(R.id.button_next).setOnClickListener {
-            if (startMonth == -1) {
-                dateLimit = -1
-            } else {
-                dateLimit = (finishMonth - startMonth) * 100 + finishDay - startDay
-                timeLimit = startHour * 100 + startDay
-            }
-            
-            if (isTask) {
-                setTaskInformation()
-            } else {
-                setEveryInformation()
-            }
-            finish()
+        if (isTask) {
+            setTaskInformation()
+        } else {
+            setEveryInformation()
         }
+        finish()
         
         find<ImageButton>(R.id.button_back).setOnClickListener { changePriority() }
     }

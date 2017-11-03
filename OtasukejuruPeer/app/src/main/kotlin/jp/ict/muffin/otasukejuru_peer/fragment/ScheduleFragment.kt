@@ -21,6 +21,7 @@ import jp.ict.muffin.otasukejuru_peer.other.Utils
 import jp.ict.muffin.otasukejuru_peer.ui.ScheduleFragmentUI
 import kotlinx.android.synthetic.main.task_card_view.view.*
 import org.jetbrains.anko.*
+import org.jetbrains.anko.collections.forEachWithIndex
 import org.jetbrains.anko.support.v4.*
 import java.util.*
 
@@ -104,21 +105,20 @@ class ScheduleFragment : Fragment() {
         val today = (calendar.get(Calendar.MONTH) + 1) * 100 + calendar.get(Calendar.DAY_OF_MONTH)
         
         find<RelativeLayout>(R.id.refreshRelative).removeAllViews()
-        GlobalValue.scheduleInfoArrayList.forEach {
+        GlobalValue.scheduleInfoArrayList.forEachWithIndex { index, element ->
             val showScheduleDate = today + 7
             
-            val diffDays = Utils().diffDayNum(today, Utils().getDate(it.start_time), calendar.get
+            val diffDays = Utils().diffDayNum(today, Utils().getDate(element.start_time), calendar.get
             (Calendar.YEAR))
-            if (Utils().getDate(it.start_time) in today..showScheduleDate) {
+            if (Utils().getDate(element.start_time) in today..showScheduleDate) {
                 val schedule = RelativeLayout(context)
                 val rParam = RelativeLayout.LayoutParams(0, 0)
-                val endMinute = Utils().getTime(it.end_time) / 100 * 60 +
-                        Utils().getTime(it.end_time) % 100
-                val startMinute = Utils().getTime(it.start_time) / 100 * 60 +
-                        Utils().getTime(it.start_time) % 100
-                val startDate = Utils().getDate(it.start_time)
-                val endDate = Utils().getDate(it.end_time)
-                Log.d("schedule", it.toString())
+                val endMinute = Utils().getTime(element.end_time) / 100 * 60 +
+                        Utils().getTime(element.end_time) % 100
+                val startMinute = Utils().getTime(element.start_time) / 100 * 60 +
+                        Utils().getTime(element.start_time) % 100
+                val startDate = Utils().getDate(element.start_time)
+                val endDate = Utils().getDate(element.end_time)
                 rParam.apply {
                     width = matchParent
                     height = dip((Utils().diffDayNum(startDate, endDate,
@@ -132,7 +132,17 @@ class ScheduleFragment : Fragment() {
                     layoutParams = rParam
                     backgroundColor = Color.argb(100, 112, 173, 71)
                     setOnClickListener {
-                    
+                        AlertDialog.Builder(context).apply {
+                            setTitle(element.schedule_name)
+                            setMessage("変更しますか？")
+                            setPositiveButton("Yes") { _, _ ->
+                                //                                 OK button pressed
+                                startActivity<AdditionActivity>("add" to false,
+                                        "index" to index, "schedule" to true)
+                            }
+                            setNegativeButton("Cancel", null)
+                            show()
+                        }
                     }
                 }
                 val scheduleNameText = TextView(context)
@@ -143,7 +153,7 @@ class ScheduleFragment : Fragment() {
                 }
                 scheduleNameText.apply {
                     layoutParams = tParam
-                    text = it.schedule_name
+                    text = element.schedule_name
                 }
                 schedule.addView(scheduleNameText)
                 find<RelativeLayout>(R.id.refreshRelative).addView(schedule, 0)
@@ -191,7 +201,17 @@ class ScheduleFragment : Fragment() {
                     cardView.apply {
                         tag = Utils().getDate(taskInfo.due_date)
                         setOnClickListener {
-                            createDialog(index, true)
+                            AlertDialog.Builder(context).apply {
+                                setTitle(GlobalValue.taskInfoArrayList[index].task_name)
+                                setMessage("変更しますか？")
+                                setPositiveButton("Yes") { _, _ ->
+                                    //                                 OK button pressed
+                                    startActivity<AdditionActivity>("add" to false,
+                                            "index" to index, "task" to true)
+                                }
+                                setNegativeButton("Cancel", null)
+                                show()
+                            }
                         }
                     }
                     find<RelativeLayout>(R.id.taskProgress).scaleY = dip(taskInfo.progress * 1.4f).toFloat()
