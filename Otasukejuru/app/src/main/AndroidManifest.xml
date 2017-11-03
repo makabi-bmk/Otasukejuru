@@ -30,11 +30,6 @@
             android:name=".activity.TimerActivity"
             android:label="">
         </activity>
-        <activity
-            android:name=".activity.DateActivity"
-            android:label=""
-            android:theme="@android:style/Theme.Light.NoTitleBar">
-        </activity>
         <activity android:name=".activity.TimeSetActivity">
         </activity>
         <activity android:name=".activity.InputProgressActivity">
