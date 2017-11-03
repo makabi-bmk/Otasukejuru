@@ -38,9 +38,9 @@ class GetInformation : AsyncTask<Unit, Unit, Unit>() {
     }
     
     private fun getInfo() {
-        
         getTaskInfo()
         getCalendarInfo()
+        getFriendInfo()
         
     }
     
@@ -48,21 +48,39 @@ class GetInformation : AsyncTask<Unit, Unit, Unit>() {
         val response = run("${GlobalValue.SERVER_URL}/get/friend")
         
         val moshi = Moshi.Builder().build()
-        val adapter = moshi.adapter(TaskInfo::class.java)
+        val taskAdapter = moshi.adapter(TaskInfo::class.java)
+        val scheduleAdapter = moshi.adapter(ScheduleInfo::class.java)
+        val everyAdapter = moshi.adapter(EveryInfo::class.java)
         
-        var taskJsonArray = JSONArray()
-        try {
-            val jsonObject = JSONObject(response)
-            taskJsonArray = jsonObject.getJSONArray("task")
+        val jsonObject = try {
+            JSONObject(response)
         } catch (e: JSONException) {
             e.printStackTrace()
+            null
         }
-        Log.d("json", taskJsonArray.toString())
-        GlobalValue.friendTaskInfoArrayList.clear()
-        (0 until taskJsonArray.length()).forEach { i ->
-            val taskJSON = taskJsonArray.getJSONObject(i).toString()
-            adapter.fromJson(taskJSON)?.let { GlobalValue.friendTaskInfoArrayList.add(it) }
-            
+        val keys = arrayListOf("task", "schedule", "every")
+        GlobalValue.apply {
+            friendTaskInfoArrayList.clear()
+            friendEveryInfoArrayList.clear()
+            friendScheduleInfoArrayList.clear()
+        }
+        keys.forEach { key ->
+            val jsonArray = jsonObject?.getJSONArray(key)
+            if (jsonArray != null) {
+                (0 until jsonArray.length()).forEach { i ->
+                    val json = jsonArray.getJSONObject(i).toString()
+                    when (key) {
+                        "task" -> taskAdapter.fromJson(json)
+                                ?.let { GlobalValue.friendTaskInfoArrayList.add(it) }
+                        "schedule" -> scheduleAdapter.fromJson(json)
+                                ?.let { GlobalValue.friendScheduleInfoArrayList.add(it) }
+                        "every" -> everyAdapter.fromJson(json)
+                                ?.let { GlobalValue.friendEveryInfoArrayList.add(it) }
+                        else -> {
+                        }
+                    }
+                }
+            }
         }
         
     }
