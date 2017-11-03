@@ -375,6 +375,21 @@ def get_calendar():
     return dbcon.get_calendar()
 
 
+@app.route('/add/sub_task', methods=['POST'])
+def add_sub_task():
+    if request.content_type != 'application/json; charset=utf-8':
+        logger.debug('err invalid content_type. url: /add/sub_task, '
+                     'content_type: {}'.format(request.content_type))
+        return 'failed'
+    object_id = request.json['_id']
+    sub_task_name = request.json['sub_task_name']
+    sub_task = {}
+    sub_task['day'] = request.json['day'] # int: 日付
+    sub_task['time'] = request.json['time'] # int: 朝0, 昼1, 夜2
+    dbcon.add_sub_task(object_id, sub_task_name, sub_task)
+    return "succeeded"
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80)
     # app.run(debug=True, port=3000)

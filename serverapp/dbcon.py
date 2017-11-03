@@ -109,11 +109,9 @@ def update_schedule(object_id: str, update_items: dict, friend_flag=False):
 
     flg = True
     for i in schedule_col.find({"_id": {"$ne": object_id}}):
-        if update_items["start_time"] <= i["start_time"] <= update_items[
-            "end_time"]:
+        if update_items["start_time"] <= i["start_time"] <= update_items["end_time"]:
             flg = False
-        if update_items["start_time"] <= i["end_time"] <= update_items[
-            "end_time"]:
+        if update_items["start_time"] <= i["end_time"] <= update_items["end_time"]:
             flg = False
         if i["start_time"] <= update_items["start_time"] <= i["end_time"]:
             flg = False
@@ -233,6 +231,12 @@ def new_every_list():
         i["start_time"] = str(i["start_time"])
         i["end_time"] = str(i["end_time"])
         every_list.append(i)
+
+
+def add_sub_task(object_id, sub_task_name, sub_task):
+    data = task_col.find_one({'_id': object_id})
+    data.update({sub_task_name: sub_task})
+    task_col.update({'_id': object_id}, {'$set': data})
 
 
 if __name__ == '__main__':
