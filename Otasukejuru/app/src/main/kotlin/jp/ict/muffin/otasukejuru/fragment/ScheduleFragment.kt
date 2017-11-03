@@ -110,21 +110,25 @@ class ScheduleFragment : Fragment() {
     }
     
     private fun setSubTask() {
+        
         GlobalValue.subTaskInfoArrayList.forEach { elemnt ->
+            val nowTime = Utils().getTime(elemnt.date)
+            val nowMinute = nowTime / 100 * 60 + nowTime % 100
+            
             val line = RelativeLayout(context)
             val rParam = RelativeLayout.LayoutParams(0, 0)
             rParam.apply {
                 width = dip(10)
                 height = dip(10)
                 leftMargin = dip(80 + 45 + 90 * 0)
-                topMargin = dip(0.1556f * Utils().getTime(elemnt.date)) + dip(25)// - dip(70)
+                topMargin = dip(0.1556f * nowMinute) + dip(25)// - dip(70)
             }
             line.apply {
                 layoutParams = rParam
                 backgroundColor = Color.RED
             }
+            find<RelativeLayout>(R.id.refreshRelative).addView(line)
         }
-        
         
     }
     
