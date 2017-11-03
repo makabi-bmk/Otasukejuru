@@ -600,6 +600,7 @@ class AdditionActivity : Activity() {
         val subTaskInfo = SubTaskInfo()
         
         subTaskInfo.apply {
+            _id = beforeTaskInfo._id
             name = titleName
             date = "$finishYear-$finishMonth-$finishDay $finishHour:$finishMinute:00"
         }
@@ -608,7 +609,8 @@ class AdditionActivity : Activity() {
 //        GlobalValue.subTaskInfoArrayList.add(subTaskInfo)
         
         //TODO:Add send function to server
-        
+        val addSubTaskAsync = AddSubTaskInfoAsync()
+        addSubTaskAsync.execute(subTaskInfo)
         finish()
         
     }
