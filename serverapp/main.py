@@ -219,7 +219,7 @@ def friend_get_todo_list():
 @app.route('/friend/update/task', methods=['POST'])
 def friend_update_task():
     # global friend_flag
-    global friend_tassk
+    global friend_task
     if request.content_type != 'application/json; charset=utf-8':
         logger.debug('err invalid content_type. url: /update/task, '
                      'content_type: {}'.format(request.content_type))
@@ -391,10 +391,7 @@ def add_sub_task():
         return 'failed'
     object_id = request.json['_id']
     sub_task_name = request.json['sub_task_name']
-    sub_task = {}
-    sub_task['day'] = request.json['day'] # int: 日付
-    sub_task['time'] = request.json['time'] # int: 朝0, 昼1, 夜2
-    dbcon.add_sub_task(object_id, sub_task_name, sub_task)
+    dbcon.add_sub_task(object_id, sub_task_name, request.json['time'])
     return "succeeded"
 
 
