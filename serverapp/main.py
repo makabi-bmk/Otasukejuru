@@ -5,6 +5,7 @@ import os
 import json
 # from serverapp import dbcon
 # from serverapp import strtime
+# server上ではimport hoge
 import dbcon
 import strtime
 
@@ -134,8 +135,6 @@ def update_task():
                      'content_type: {}'.format(request.content_type))
         return 'failed'
     data = request.json
-    logger.debug("/update/task : {} ***".format(data['_id']))
-    logger.debug("/update/task : {} ***".format(data['task_name']))
     if '_id' not in data:
         logger.debug("none object_id")
         return 'not succeeded task update'
@@ -152,7 +151,6 @@ def update_task():
         update_items['progress'] = data['progress']
     if 'priority' in data:
         update_items['priority'] = data['priority']
-    # logger.debug(update_items)
     dbcon.update_task(data['_id'], update_items)
     return 'succeeded'
 
@@ -221,7 +219,7 @@ def friend_update_task():
     # global friend_flag
     global friend_task
     if request.content_type != 'application/json; charset=utf-8':
-        logger.debug('err invalid content_type. url: /update/task, '
+        logger.debug('err invalid content_type. url: /friend/update/task, '
                      'content_type: {}'.format(request.content_type))
         return 'failed'
     data = request.json
@@ -253,7 +251,7 @@ def friend_update_schedule():
     # global friend_flag
     global friend_schedule
     if request.content_type != 'application/json; charset=utf-8':
-        logger.debug('err invalid content_type. url: /update/schedule, '
+        logger.debug('err invalid content_type. url: /friend/update/schedule, '
                      'content_type: {}'.format(request.content_type))
         return 'failed'
     data = request.json
@@ -278,7 +276,7 @@ def friend_update_schedule():
 def friend_update_every():
     global friend_flag
     if request.content_type != 'application/json; charset=utf-8':
-        logger.debug('err invalid content_type. url: /update/every, '
+        logger.debug('err invalid content_type. url: /friend/update/every, '
                      'content_type: {}'.format(request.content_type))
         return 'failed'
     data = request.json
@@ -299,7 +297,7 @@ def friend_update_every():
 @app.route('/friend/add/task', methods=['POST'])
 def friend_add_task():
     if request.content_type != 'application/json; charset=utf-8':
-        logger.debug('err invalid content_type. url: /add/task, content_type: '
+        logger.debug('err invalid content_type. url: /friend/add/task, content_type: '
                      '{}'.format(request.content_type))
         return 'failed'
     global friend_task
@@ -325,7 +323,7 @@ def friend_add_task():
 @app.route('/friend/add/schedule', methods=['POST'])
 def friend_add_schedule():
     if request.content_type != 'application/json; charset=utf-8':
-        logger.debug('err invalid content_type. url: /add/schedule, '
+        logger.debug('err invalid content_type. url: /friend/add/schedule, '
                      'content_type: {}'.format(request.content_type))
         return 'failed'
     global friend_schedule
@@ -342,7 +340,7 @@ def friend_add_schedule():
 @app.route('/friend/add/every', methods=['POST'])
 def friend_add_every():
     if request.content_type != 'application/json; charset=utf-8':
-        logger.debug('err invalid content_type. url: /add/every, '
+        logger.debug('err invalid content_type. url: /friend/add/every, '
                      'content_type: {}'.format(request.content_type))
         return 'failed'
     global friend_every
@@ -391,7 +389,6 @@ def add_sub_task():
         return 'failed'
     object_id = request.json['_id']
     sub_task_name = request.json['sub_task_name']
-    print("add_sub_task: {} {}", object_id, sub_task_name)
     dbcon.add_sub_task(object_id, sub_task_name, request.json['time'])
     return "succeeded"
 
