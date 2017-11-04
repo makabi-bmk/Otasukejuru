@@ -15,6 +15,9 @@ import android.view.MenuItem
 import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
 import jp.ict.muffin.otasukejuru.communication.GetInformation
+import jp.ict.muffin.otasukejuru.communication.UpdateEveryInfoAsync
+import jp.ict.muffin.otasukejuru.communication.UpdateScheduleInfoAsync
+import jp.ict.muffin.otasukejuru.communication.UpdateTaskInfoAsync
 import jp.ict.muffin.otasukejuru.fragment.ScheduleFragment
 import jp.ict.muffin.otasukejuru.fragment.TaskListFragment
 import jp.ict.muffin.otasukejuru.fragment.TimerSetTimeFragment
@@ -94,6 +97,8 @@ class MainActivity : AppCompatActivity() {
                             setMessage(getString(R.string.changeMessage))
                             setPositiveButton("Yes") { _, _ ->
                                 //ToDo:Write send function
+                                val updateTask = UpdateTaskInfoAsync()
+                                updateTask.execute(element)
                             }
                             setNegativeButton("No", null)
                             show()
@@ -106,6 +111,8 @@ class MainActivity : AppCompatActivity() {
                             setMessage(getString(R.string.changeMessage))
                             setPositiveButton("Yes") { _, _ ->
                                 //ToDo:Write send function
+                                val updateTask = UpdateScheduleInfoAsync()
+                                updateTask.execute(element)
                             }
                             setNegativeButton("No", null)
                             show()
@@ -118,6 +125,8 @@ class MainActivity : AppCompatActivity() {
                             setMessage(getString(R.string.changeMessage))
                             setPositiveButton("Yes") { _, _ ->
                                 //ToDo:Write send function
+                                val updateTask = UpdateEveryInfoAsync()
+                                updateTask.execute(element)
                             }
                             setNegativeButton("No", null)
                             show()
@@ -126,6 +135,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }, 5000, 5000)
+        
     }
     
     override fun onPause() {

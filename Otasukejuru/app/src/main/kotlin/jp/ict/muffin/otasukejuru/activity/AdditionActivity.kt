@@ -600,7 +600,7 @@ class AdditionActivity : Activity() {
         val subTaskInfo = SubTaskInfo()
         
         subTaskInfo.apply {
-            _id = beforeTaskInfo._id
+            _id = GlobalValue.taskInfoArrayList[index]._id
             sub_task_name = titleName
             time = "$finishYear-$finishMonth-$finishDay $finishHour:$finishMinute:00"
         }

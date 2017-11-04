@@ -220,11 +220,14 @@ class ScheduleFragment : Fragment() {
         val showTaskNum = (GlobalValue.displayWidth - 50) / 90 - 2
         
         
-        val forNum = minOf(showTaskNum, GlobalValue.taskInfoArrayList.size)
+        val forNum = if (showTaskNum < GlobalValue.taskInfoArrayList.size) {
+            showTaskNum
+        } else {
+            GlobalValue.taskInfoArrayList.size
+        }
         find<LinearLayout>(R.id.taskLinear).removeAllViews()
         var taskCount = 0
-        (0 until forNum).forEach { index ->
-            val taskInfo = GlobalValue.taskInfoArrayList[index]
+        (GlobalValue.taskInfoArrayList).forEachWithIndex { index, taskInfo ->
             val hoge = Utils().getTime(taskInfo.due_date) / 100 * 60 +
                     Utils().getTime(taskInfo.due_date) % 100
             
@@ -242,7 +245,7 @@ class ScheduleFragment : Fragment() {
                 linearLayout.apply {
                     dateTextView.apply {
                         text = diffDays.toString()
-                        if (taskInfo.priority == 0 && (diffDays == 1 || diffDays == 0)) {
+                        if (taskInfo.priority == 0 || (diffDays == 1 || diffDays == 0)) {
                             textColor = ContextCompat.getColor(context,
                                     R.color.mostPriority)
                         }
@@ -300,7 +303,7 @@ class ScheduleFragment : Fragment() {
                         layoutParams = rParam
                         backgroundColor = Color.RED
                         setOnClickListener {
-//                            AlertDialog.Builder(activity).apply {
+                            //                            AlertDialog.Builder(activity).apply {
 //                                setTitle(element.sub_task_name)
 //                                setMessage("message")
 //                                setPositiveButton("OK", null)
@@ -407,6 +410,7 @@ class ScheduleFragment : Fragment() {
             val deleteTaskAsync = DeleteTaskInfoAsync()
             deleteTaskAsync.execute(GlobalValue.taskInfoArrayList[index])
             GlobalValue.taskInfoArrayList.removeAt(index)
+            Log.d("delete", "delete")
         } else {
             val deleteScheduleInfoAsync = DeleteScheduleInfoAsync()
             deleteScheduleInfoAsync.execute(GlobalValue.scheduleInfoArrayList[index])

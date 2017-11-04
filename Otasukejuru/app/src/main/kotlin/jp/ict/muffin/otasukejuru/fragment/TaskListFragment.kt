@@ -94,7 +94,7 @@ class TaskListFragment : Fragment() {
             linearLayout.apply {
                 dateTextView.apply {
                     text = diffDays.toString()
-                    if (element.priority == 0 && (diffDays == 1 || diffDays == 0)) {
+                    if (element.priority == 0 || (diffDays == 1 || diffDays == 0)) {
                         textColor = ContextCompat.getColor(context, R.color.mostPriority)
                     }
                 }
@@ -155,7 +155,7 @@ class TaskListFragment : Fragment() {
                     }
                     
                     1 -> {
-                        startActivity<AdditionActivity>("add" to false, "index" to index)
+                        startActivity<AdditionActivity>("add" to false, "index" to index, "task" to true)
                     }
                     
                     2 -> {
@@ -199,6 +199,12 @@ class TaskListFragment : Fragment() {
     private fun deleteTask(element: TaskInfo, index: Int) {
         val deleteTaskAsync = DeleteTaskInfoAsync()
         deleteTaskAsync.execute(GlobalValue.taskInfoArrayList[index])
-        GlobalValue.taskInfoArrayList.remove(element)
+        try {
+            GlobalValue.taskInfoArrayList.remove(element)
+        } catch (e: Exception) {
+            
+            e.printStackTrace()
+            
+        }
     }
 }
