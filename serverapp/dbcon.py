@@ -163,7 +163,8 @@ def get_todo_list():
     # print(task_count)
     for i, task in enumerate(sorted(task_col.find(), key=lambda x: -(100 - x["progress"]) / (x["due_date"] - now).total_seconds() / 3600 + 1)):
         task["_id"] = str(task["_id"])
-        task["registration_date"] = str(task["registration_date"])
+        if "registration_date" in task:
+            task["registration_date"] = str(task["registration_date"])
         task["due_date"] = str(task["due_date"])
         task["guide_time"] = str(task["guide_time"])
 
@@ -203,7 +204,8 @@ def new_task_list():
     # print(task_count)
     for i, task in enumerate(sorted(task_col.find(), key=lambda x: -(100 - x["progress"]) / (x["due_date"] - now).total_seconds() / 3600 + 1)):
         task["_id"] = str(task["_id"])
-        task["registration_date"] = str(task["registration_date"])
+        if "registration_date" in task:
+            task["registration_date"] = str(task["registration_date"])
         task["due_date"] = str(task["due_date"])
         task["guide_time"] = str(task["guide_time"])
 
@@ -234,9 +236,11 @@ def new_every_list():
 
 
 def add_sub_task(object_id, sub_task_name, sub_task):
-    data = task_col.find_one({'_id': object_id})
-    data.update({sub_task_name: sub_task})
-    task_col.update({'_id': object_id}, {'$set': data})
+    data = task_col.find_one({'_id': ObjectId(object_id)})
+    data.update({"sub_task": {sub_task_name: sub_task}})
+    print("add_sub_task", data)
+    del(data['_id'])
+    task_col.update({'_id': ObjectId(object_id)}, {'$set': data}, upsert=True)
 
 
 if __name__ == '__main__':
