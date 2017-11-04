@@ -147,7 +147,7 @@ def update_task():
     if 'task_type' in data:
         update_items['task_type'] = data['task_type']
     if 'guide_time' in data:
-        update_items['task_type'] = data['task_type']
+        update_items['guide_time'] = data['guide_time']
     if 'progress' in data:
         update_items['progress'] = data['progress']
     if 'priority' in data:
@@ -391,6 +391,7 @@ def add_sub_task():
         return 'failed'
     object_id = request.json['_id']
     sub_task_name = request.json['sub_task_name']
+    print("add_sub_task: {} {}", object_id, sub_task_name)
     dbcon.add_sub_task(object_id, sub_task_name, request.json['time'])
     return "succeeded"
 
