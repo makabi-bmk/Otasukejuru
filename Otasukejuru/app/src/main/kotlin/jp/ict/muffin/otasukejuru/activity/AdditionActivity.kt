@@ -1,12 +1,17 @@
 package jp.ict.muffin.otasukejuru.activity
 
 import android.app.Activity
+import android.app.AlarmManager
+import android.app.PendingIntent
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.*
 import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.*
 import jp.ict.muffin.otasukejuru.communication.*
+import jp.ict.muffin.otasukejuru.other.AlarmReceiver
 import jp.ict.muffin.otasukejuru.other.Utils
 import kotlinx.android.synthetic.main.set_plan_notification_time.*
 import kotlinx.android.synthetic.main.set_plan_repeat.*
@@ -548,6 +553,8 @@ class AdditionActivity : Activity() {
 //        TODO:Remove comment out when Communication
 //        val postScheduleInfo = AddScheduleTaskInfoAsync()
 //        postScheduleInfo.execute(scheduleInformation)
+        
+        setScheduleNotification()
         if (isAdd) {
             GlobalValue.scheduleInfoArrayList.add(0, scheduleInformation)
             val postScheduleInfo = AddScheduleTaskInfoAsync()
@@ -559,6 +566,26 @@ class AdditionActivity : Activity() {
             update.execute(GlobalValue.scheduleInfoArrayList[index])
         }
         
+    }
+    
+    private fun setScheduleNotification() {
+        val calendar = Calendar.getInstance()
+        calendar.timeInMillis = System.currentTimeMillis()
+        calendar.apply {
+            add(Calendar.SECOND, 10)
+        }
+        scheduleNotification("10秒後に届く通知です", calendar)
+        
+    }
+    
+    private fun scheduleNotification(content: String, calendar: Calendar) {
+        val notificationIntent = Intent(this, AlarmReceiver::class.java)
+        notificationIntent.putExtra(AlarmReceiver.NOTIFICATION_ID, 1)
+        notificationIntent.putExtra(AlarmReceiver.NOTIFICATION_CONTENT, content)
+        val pendingIntent = PendingIntent.getBroadcast(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT)
+        
+        val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, pendingIntent)
     }
     
     private fun setTaskInformation() {

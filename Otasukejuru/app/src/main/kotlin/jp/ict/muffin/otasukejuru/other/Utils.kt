@@ -45,4 +45,16 @@ class Utils {
         val date = Date(System.currentTimeMillis())
         return df.format(date)
     }
+    
+    fun getDiffTime(beforeDate: String, afterDate: String): Int {
+        
+        var diffDays = diffDayNum(getDate(beforeDate), getDate(afterDate), Calendar.YEAR) - 1
+        if (diffDays < 0) {
+            diffDays = 0
+        }
+        
+        val beforeTime = getTime(beforeDate) / 100 * 60 + getTime(beforeDate) % 100 * 60
+        val afterTime = getTime(afterDate) / 100 * 60 + getTime(afterDate) % 100 * 60
+        return diffDays * 60 * 24 + afterTime + beforeTime
+    }
 }
