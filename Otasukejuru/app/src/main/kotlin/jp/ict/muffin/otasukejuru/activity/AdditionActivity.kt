@@ -554,7 +554,7 @@ class AdditionActivity : Activity() {
 //        val postScheduleInfo = AddScheduleTaskInfoAsync()
 //        postScheduleInfo.execute(scheduleInformation)
         
-        setScheduleNotification()
+        setScheduleNotification(scheduleInformation)
         if (isAdd) {
             GlobalValue.scheduleInfoArrayList.add(0, scheduleInformation)
             val postScheduleInfo = AddScheduleTaskInfoAsync()
@@ -568,13 +568,13 @@ class AdditionActivity : Activity() {
         
     }
     
-    private fun setScheduleNotification() {
+    private fun setScheduleNotification(scheduleInfo: ScheduleInfo) {
         val calendar = Calendar.getInstance()
-        calendar.timeInMillis = System.currentTimeMillis()
         calendar.apply {
-            add(Calendar.SECOND, 10)
+            timeInMillis = System.currentTimeMillis()
+            add(Calendar.SECOND, Utils().getDiffTime(Utils().getNowDate(), scheduleInfo.start_time) - notificationTime)
         }
-        scheduleNotification("10秒後に届く通知です", calendar)
+        scheduleNotification(scheduleInfo.schedule_name, calendar)
         
     }
     
