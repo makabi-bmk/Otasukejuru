@@ -63,6 +63,7 @@ class MainActivity : AppCompatActivity() {
         GlobalValue.apply {
             displayHeight = point.y
             displayWidth = point.x
+            SERVER_URL = getString(R.string.server_url)
         }
         //TODO:Remove comment out when Communication
         val getInfo = GetInformation()
