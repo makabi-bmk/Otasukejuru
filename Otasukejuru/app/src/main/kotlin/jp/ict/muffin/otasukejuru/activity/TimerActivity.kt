@@ -37,7 +37,6 @@ class TimerActivity : Activity() {
         }
         
         find<Button>(R.id.nextButton).setOnClickListener {
-            //            setNotificationTime()
             startTimer()
         }
         
@@ -53,19 +52,6 @@ class TimerActivity : Activity() {
         
     }
 
-//    private fun setNotificationTime() {
-//        TimerNotificationActivityUI(time).setContentView(this)
-//
-//        find<ImageButton>(R.id.ankoBack).setOnClickListener {
-//            setInterval()
-//        }
-//
-//        find<Button>(R.id.nextButton).setOnClickListener {
-//            startTimer()
-//        }
-//
-//    }
-    
     private fun startTimer() {
         TimerActivityUI(time).setContentView(this)
         (1..3).forEach {
@@ -74,13 +60,13 @@ class TimerActivity : Activity() {
                 timeInMillis = System.currentTimeMillis()
                 add(Calendar.SECOND, time.time.toInt() - 5)
             }
-            scheduleNotification("終了${it * 5}分前です", calendar)
+            scheduleNotification("終了${it * 5}分前です", calendar, it)
         }
     }
     
-    private fun scheduleNotification(content: String, calendar: Calendar) {
+    private fun scheduleNotification(content: String, calendar: Calendar, id: Int) {
         val notificationIntent = Intent(this, AlarmReceiver::class.java)
-        notificationIntent.putExtra(AlarmReceiver.NOTIFICATION_ID, 1)
+        notificationIntent.putExtra(AlarmReceiver.NOTIFICATION_ID, id)
         notificationIntent.putExtra(AlarmReceiver.NOTIFICATION_CONTENT, content)
         val pendingIntent = PendingIntent.getBroadcast(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT)
         

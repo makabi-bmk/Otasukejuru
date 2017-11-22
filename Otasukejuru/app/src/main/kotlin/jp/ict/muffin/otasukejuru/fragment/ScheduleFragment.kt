@@ -139,7 +139,6 @@ class ScheduleFragment : Fragment() {
                     backgroundColor = Color.argb(100, 112, 173, 71)
                     setOnClickListener {
                         createDialog(index, false)
-                        
                     }
                 }
                 val scheduleNameText = TextView(context)
