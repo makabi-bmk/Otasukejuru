@@ -29,7 +29,7 @@
             android:layout_height="match_parent">
 
             <RelativeLayout
-                android:id="@+id/explanRelative"
+                android:id="@+id/explanationRelative"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 

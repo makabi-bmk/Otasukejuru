@@ -21,7 +21,7 @@
     </Toolbar>
 
     <RelativeLayout
-        android:id="@+id/explanRelative"
+        android:id="@+id/explanationRelative"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/toolbar_back">
@@ -53,7 +53,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/explanRelative">
+        android:layout_below="@id/explanationRelative">
 
         <LinearLayout
             android:layout_width="wrap_content"
