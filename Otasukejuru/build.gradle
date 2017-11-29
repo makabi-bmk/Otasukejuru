@@ -17,6 +17,15 @@ buildscript {
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
+    tasks.withType(Test) {
+        def maxCount = gradle.startParameter.maxWorkerCount
+        maxParallelForks = (maxCount < 2) ? 1 : maxCount / 2
+        forEvery = 100
+    }
+    tasks.withType(JavaCompile) {
+        options.incremental=true
+        options.fork=true
+    }
 }
 
 allprojects {
