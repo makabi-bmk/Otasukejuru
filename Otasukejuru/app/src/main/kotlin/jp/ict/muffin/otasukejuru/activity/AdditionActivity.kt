@@ -526,7 +526,6 @@ class AdditionActivity : Activity() {
             repeat_type = taskRepeat
             
         }
-        //TODO:Remove comment out when Communication
         if (isAdd) {
             GlobalValue.everyInfoArrayList.add(0, everyInformation)
             val postEveryInfo = AddEveryTaskInfoAsync()
@@ -546,13 +545,7 @@ class AdditionActivity : Activity() {
             schedule_name = titleName
             start_time = "$startYear-$startMonth-$startDay $startHour:$startMinute:00"
             end_time = "$finishYear-$finishMonth-$finishDay $finishHour:$finishMinute:00"
-//            startDate = startMonth * 100 + startDay
-//            endDate = finishMonth * 100 + finishDay
         }
-//        GlobalValue.scheduleInfoArrayList.add(0, scheduleInformation)
-//        TODO:Remove comment out when Communication
-//        val postScheduleInfo = AddScheduleTaskInfoAsync()
-//        postScheduleInfo.execute(scheduleInformation)
         
         setScheduleNotification(scheduleInformation)
         if (isAdd) {
@@ -633,9 +626,7 @@ class AdditionActivity : Activity() {
         }
         
         GlobalValue.taskInfoArrayList[index].subTaskArrayList.add(subTaskInfo)
-//        GlobalValue.subTaskInfoArrayList.add(subTaskInfo)
         
-        //TODO:Add send function to server
         val addSubTaskAsync = AddSubTaskInfoAsync()
         addSubTaskAsync.execute(subTaskInfo)
         finish()
