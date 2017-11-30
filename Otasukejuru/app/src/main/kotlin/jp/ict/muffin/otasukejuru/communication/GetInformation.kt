@@ -59,11 +59,11 @@ class GetInformation : AsyncTask<Unit, Unit, Unit>() {
             null
         }
         val keys = arrayListOf("task", "schedule", "every")
-        GlobalValue.apply {
-            friendTaskInfoArrayList.clear()
-            friendEveryInfoArrayList.clear()
-            friendScheduleInfoArrayList.clear()
-        }
+        
+        val friendTaskInfoArray: ArrayList<TaskInfo> = arrayListOf()
+        val friendScheduleInfoArray: ArrayList<ScheduleInfo> = arrayListOf()
+        val friendEveryInfoArray: ArrayList<EveryInfo> = arrayListOf()
+        
         keys.forEach { key ->
             val jsonArray = jsonObject?.getJSONArray(key)
             if (jsonArray != null) {
@@ -71,11 +71,11 @@ class GetInformation : AsyncTask<Unit, Unit, Unit>() {
                     val json = jsonArray.getJSONObject(i).toString()
                     when (key) {
                         "task" -> taskAdapter.fromJson(json)
-                                ?.let { GlobalValue.friendTaskInfoArrayList.add(it) }
+                                ?.let { friendTaskInfoArray.add(it) }
                         "schedule" -> scheduleAdapter.fromJson(json)
-                                ?.let { GlobalValue.friendScheduleInfoArrayList.add(it) }
+                                ?.let { friendScheduleInfoArray.add(it) }
                         "every" -> everyAdapter.fromJson(json)
-                                ?.let { GlobalValue.friendEveryInfoArrayList.add(it) }
+                                ?.let { friendEveryInfoArray.add(it) }
                         else -> {
                         }
                     }
@@ -83,6 +83,11 @@ class GetInformation : AsyncTask<Unit, Unit, Unit>() {
             }
         }
         
+        GlobalValue.apply {
+            friendTaskInfoArrayList = friendTaskInfoArray
+            friendEveryInfoArrayList = friendEveryInfoArray
+            friendScheduleInfoArrayList = friendScheduleInfoArray
+        }
     }
     
     private fun getTaskInfo() {
@@ -100,13 +105,13 @@ class GetInformation : AsyncTask<Unit, Unit, Unit>() {
             e.printStackTrace()
         }
         Log.d("json", jsonArray.toString())
-        GlobalValue.taskInfoArrayList.clear()
+        
+        val taskInfoArray = arrayListOf<TaskInfo>()
         (0 until jsonArray.length()).forEach { i ->
             val taskJSON = jsonArray.getJSONObject(i).toString()
-            adapter.fromJson(taskJSON)?.let { GlobalValue.taskInfoArrayList.add(it) }
-            
+            adapter.fromJson(taskJSON)?.let { taskInfoArray.add(it) }
         }
-        
+        GlobalValue.taskInfoArrayList = taskInfoArray
     }
     
     private fun getCalendarInfo() {
@@ -124,10 +129,8 @@ class GetInformation : AsyncTask<Unit, Unit, Unit>() {
         }
         val keys = arrayListOf("schedule", "every")
         
-        GlobalValue.apply {
-            scheduleInfoArrayList.clear()
-            everyInfoArrayList.clear()
-        }
+        val scheduleInfoArray = arrayListOf<ScheduleInfo>()
+        val everyInfoArray = arrayListOf<EveryInfo>()
         keys.forEach { key ->
             val jsonArray = jsonObject?.getJSONArray(key)
             if (jsonArray != null) {
@@ -135,17 +138,18 @@ class GetInformation : AsyncTask<Unit, Unit, Unit>() {
                     val json = jsonArray.getJSONObject(i).toString()
                     when (key) {
                         "schedule" -> scheduleAdapter.fromJson(json)
-                                ?.let { GlobalValue.scheduleInfoArrayList.add(it) }
+                                ?.let { scheduleInfoArray.add(it) }
                         "every" -> everyAdapter.fromJson(json)
-                                ?.let { GlobalValue.everyInfoArrayList.add(it) }
+                                ?.let { everyInfoArray.add(it) }
                         else -> {
                         }
                     }
                 }
             }
-            Log.d(key, jsonArray.toString())
-//            adapter.fromJson(json)?.let { GlobalValue.scheduleInfoArrayList.add(it) }
-        
+        }
+        GlobalValue.apply {
+            scheduleInfoArrayList = scheduleInfoArray
+            everyInfoArrayList = everyInfoArray
         }
     }
 }
