@@ -105,7 +105,7 @@ class MainActivity : AppCompatActivity() {
                             show()
                         }
                     }
-    
+                    
                     GlobalValue.friendScheduleInfoArrayList.forEachWithIndex { index, element ->
                         AlertDialog.Builder(applicationContext).apply {
                             setTitle(element.schedule_name)

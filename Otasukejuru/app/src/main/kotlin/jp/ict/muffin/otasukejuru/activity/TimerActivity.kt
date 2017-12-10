@@ -51,7 +51,7 @@ class TimerActivity : Activity() {
         circleGraphView.startAnimation()
         
     }
-
+    
     private fun startTimer() {
         TimerActivityUI(time).setContentView(this)
         (1..3).forEach {

@@ -36,7 +36,7 @@ class AddSubTaskInfoAsync : AsyncTask<SubTaskInfo, Void, Unit>() {
     private fun convertToJson(subTaskInfo: SubTaskInfo): String {
         val moshi = Moshi.Builder().build()
         val adapter = moshi.adapter(SubTaskInfo::class.java)
-    
+        
         Log.d("postTask", adapter.toJson(subTaskInfo))
         
         return adapter.toJson(subTaskInfo)
