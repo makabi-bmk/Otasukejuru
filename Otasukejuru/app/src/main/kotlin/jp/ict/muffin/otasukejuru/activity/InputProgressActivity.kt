@@ -36,10 +36,12 @@ class InputProgressActivity : AppCompatActivity() {
             }
             
             //ツマミがタッチされた時に呼ばれる
-            override fun onStartTrackingTouch(seekBar: SeekBar) {}
+            override fun onStartTrackingTouch(seekBar: SeekBar) {
+            }
             
             //ツマミがリリースされた時に呼ばれる
-            override fun onStopTrackingTouch(seekBar: SeekBar) {}
+            override fun onStopTrackingTouch(seekBar: SeekBar) {
+            }
             
         })
         

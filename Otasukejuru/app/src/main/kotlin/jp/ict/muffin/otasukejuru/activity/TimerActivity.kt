@@ -15,6 +15,7 @@ import jp.ict.muffin.otasukejuru.other.AlarmReceiver
 import jp.ict.muffin.otasukejuru.ui.TimerActivityUI
 import jp.ict.muffin.otasukejuru.ui.TimerIntervalActivityUI
 import jp.ict.muffin.otasukejuru.view.CircleGraphView
+import org.jetbrains.anko.ctx
 import org.jetbrains.anko.find
 import org.jetbrains.anko.setContentView
 import java.util.*
@@ -42,11 +43,13 @@ class TimerActivity : Activity() {
         
         val params: ArrayList<HashMap<String, Int>> = java.util.ArrayList()
         val mapSI = HashMap<String, Int>()
-        mapSI.put("color", ContextCompat.getColor(this, R.color.mostPriority))
-        mapSI.put("value", 60)
+        mapSI.apply {
+            put("color", ContextCompat.getColor(ctx, R.color.mostPriority))
+            put("value", 60)
+        }
         params.add(mapSI)
         
-        val circleGraphView = CircleGraphView(this, params, true)
+        val circleGraphView = CircleGraphView(ctx, params, true)
         find<FrameLayout>(R.id.circleFrame).addView(circleGraphView)
         circleGraphView.startAnimation()
         

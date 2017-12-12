@@ -14,7 +14,6 @@ class TimeSetActivity : Activity() {
         super.onCreate(savedInstanceState)
         
         val index = intent.getIntExtra("taskIndex", -1)
-        
         TimeSetActivityUI(index).setContentView(this)
         
         find<ImageButton>(R.id.ankoBack).setOnClickListener {

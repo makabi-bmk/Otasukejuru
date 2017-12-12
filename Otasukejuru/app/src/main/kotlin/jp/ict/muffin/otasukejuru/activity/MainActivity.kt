@@ -22,7 +22,6 @@ import jp.ict.muffin.otasukejuru.fragment.ScheduleFragment
 import jp.ict.muffin.otasukejuru.fragment.TaskListFragment
 import jp.ict.muffin.otasukejuru.fragment.TimerSetTimeFragment
 import kotlinx.android.synthetic.main.activity_main.*
-import org.jetbrains.anko.collections.forEachWithIndex
 import org.jetbrains.anko.find
 import org.jetbrains.anko.startActivity
 import java.util.*
@@ -36,8 +35,7 @@ class MainActivity : AppCompatActivity() {
         
         
         val calendar = Calendar.getInstance()
-        toolbar.title = (calendar.get(Calendar.MONTH) + 1).toString() + "月" +
-                calendar.get(Calendar.DATE) + "日"
+        toolbar.title = "${(calendar.get(Calendar.MONTH) + 1)}月${calendar.get(Calendar.DATE)}日"
         setSupportActionBar(toolbar)
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
@@ -76,7 +74,6 @@ class MainActivity : AppCompatActivity() {
             displayWidth = point.x
             SERVER_URL = getString(R.string.server_url)
         }
-        //TODO:Remove comment out when Communication
         val getInfo = GetInformation()
         getInfo.execute()
         
@@ -92,7 +89,7 @@ class MainActivity : AppCompatActivity() {
                     val getInformation = GetInformation()
                     getInformation.execute()
                     
-                    GlobalValue.friendTaskInfoArrayList.forEachWithIndex { index, element ->
+                    GlobalValue.friendTaskInfoArrayList.forEach { element ->
                         AlertDialog.Builder(applicationContext).apply {
                             setTitle(element.task_name)
                             setMessage(getString(R.string.changeMessage))
@@ -106,7 +103,7 @@ class MainActivity : AppCompatActivity() {
                         }
                     }
                     
-                    GlobalValue.friendScheduleInfoArrayList.forEachWithIndex { index, element ->
+                    GlobalValue.friendScheduleInfoArrayList.forEach { element ->
                         AlertDialog.Builder(applicationContext).apply {
                             setTitle(element.schedule_name)
                             setMessage(getString(R.string.changeMessage))
@@ -120,7 +117,7 @@ class MainActivity : AppCompatActivity() {
                         }
                     }
                     
-                    GlobalValue.friendEveryInfoArrayList.forEachWithIndex { index, element ->
+                    GlobalValue.friendEveryInfoArrayList.forEach { element ->
                         AlertDialog.Builder(applicationContext).apply {
                             setTitle(element.every_name)
                             setMessage(getString(R.string.changeMessage))
@@ -156,10 +153,9 @@ class MainActivity : AppCompatActivity() {
     // automatically handle clicks on the Home/Up button, so long
     // as you specify a parent activity in AndroidManifest.xml.
     override fun onOptionsItemSelected(item: MenuItem): Boolean =
-            if (item.itemId == R.id.move_to_top) {
-                true
-            } else {
-                super.onOptionsItemSelected(item)
+            when (item.itemId) {
+                R.id.move_to_top -> true
+                else -> super.onOptionsItemSelected(item)
             }
     
     /**
@@ -182,11 +178,11 @@ class MainActivity : AppCompatActivity() {
         // Show 3 total pages.
         override fun getCount(): Int = 3
         
-        override fun getPageTitle(position: Int): CharSequence? = when (position) {
+        override fun getPageTitle(position: Int): CharSequence = when (position) {
             0 -> getString(R.string.main_tab1)
             1 -> getString(R.string.main_tab2)
             2 -> getString(R.string.main_tab3)
-            else -> null
+            else -> ""
         }
     }
 }
