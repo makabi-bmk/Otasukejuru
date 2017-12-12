@@ -23,7 +23,6 @@ class TimerSetTimeFragment : Fragment(), TextWatcher {
     override fun afterTextChanged(s: Editable?) {
         find<Button>(R.id.nextButton).apply {
             if (s.toString() != "") {
-                
                 textColor = ContextCompat.getColor(context, R.color.colorPrimary)
                 isEnabled = true
             } else {

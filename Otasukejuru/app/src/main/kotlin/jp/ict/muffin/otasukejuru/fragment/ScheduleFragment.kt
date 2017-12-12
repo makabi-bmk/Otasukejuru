@@ -166,8 +166,8 @@ class ScheduleFragment : Fragment() {
         GlobalValue.scheduleInfoArrayList.forEachWithIndex { index, it ->
             val showScheduleDate = today + 7
             
-            val diffDays = Utils().diffDayNum(today, Utils().getDate(it.start_time), calendar.get
-            (Calendar.YEAR))
+            val diffDays = Utils().diffDayNum(today, Utils().getDate(it.start_time),
+                    calendar.get(Calendar.YEAR))
             if (Utils().getDate(it.start_time) in today..showScheduleDate) {
                 val schedule = RelativeLayout(context)
                 val rParam = RelativeLayout.LayoutParams(0, 0)
@@ -177,12 +177,10 @@ class ScheduleFragment : Fragment() {
                         Utils().getTime(it.start_time) % 100
                 val startDate = Utils().getDate(it.start_time)
                 val endDate = Utils().getDate(it.end_time)
-                Log.d("schedule", it.toString())
                 rParam.apply {
                     width = matchParent
                     height = dip((Utils().diffDayNum(startDate, endDate,
                             calendar.get(Calendar.YEAR)) * 1440 - startMinute + endMinute) * 0.15f)
-                    Log.d("height", diffDays.toString())
                     leftMargin = dip(120)
                     rightMargin = dip(60)
                     topMargin = dip(0.15f * (diffDays * 1440 + startMinute)) + dip(10)
@@ -218,12 +216,6 @@ class ScheduleFragment : Fragment() {
                 calendar.get(Calendar.DAY_OF_MONTH)
         val showTaskNum = (GlobalValue.displayWidth - 50) / 90 - 2
         
-        
-        val forNum = if (showTaskNum < GlobalValue.taskInfoArrayList.size) {
-            showTaskNum
-        } else {
-            GlobalValue.taskInfoArrayList.size
-        }
         find<LinearLayout>(R.id.taskLinear).removeAllViews()
         var taskCount = 0
         (GlobalValue.taskInfoArrayList).forEachWithIndex { index, taskInfo ->
@@ -295,19 +287,14 @@ class ScheduleFragment : Fragment() {
                         width = dip(15)
                         height = dip(15)
                         leftMargin = dip(80 + 45 + 90 * taskCount) - dip(7)
-                        topMargin = Utils().diffDayNum(today, Utils().getDate(element.time), calendar.get(Calendar.YEAR)) * dip(200) +
+                        topMargin = Utils().diffDayNum(today, Utils().getDate(element.time),
+                                calendar.get(Calendar.YEAR)) * dip(200) +
                                 dip(0.13f * nowMinute)// + dip(50)// - dip(70)
                     }
                     subTaskSquare.apply {
                         layoutParams = rParam
                         backgroundColor = Color.RED
                         setOnClickListener {
-                            //                            AlertDialog.Builder(activity).apply {
-//                                setTitle(element.sub_task_name)
-//                                setMessage("message")
-//                                setPositiveButton("OK", null)
-//                                show()
-//                            }
                             longToast(element.sub_task_name)
                         }
                     }
@@ -323,7 +310,6 @@ class ScheduleFragment : Fragment() {
             arrayOf("開始", "変更", "完了", "削除", "サブタスクの追加", "進捗")
         } else {
             arrayOf("変更", "削除")
-            
         }
         val title = if (isTask) {
             GlobalValue.taskInfoArrayList[index].task_name
@@ -395,7 +381,6 @@ class ScheduleFragment : Fragment() {
                     }
                     
                     else -> {
-                    
                     }
                     
                 }
