@@ -5,13 +5,16 @@ import android.app.NotificationManager
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import jp.ict.muffin.otasukejuru.`object`.GlobalValue.notificationContent
+import jp.ict.muffin.otasukejuru.`object`.GlobalValue.notificationId
 
 
 class AlarmReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
-        val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        val id = intent.getIntExtra(NOTIFICATION_ID, 0)
-        val content = intent.getStringExtra(NOTIFICATION_CONTENT)
+        val notificationManager =
+                context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        val id = intent.getIntExtra(notificationId, 0)
+        val content = intent.getStringExtra(notificationContent)
         notificationManager.notify(id, buildNotification(context, content))
     }
     
@@ -22,10 +25,5 @@ class AlarmReceiver : BroadcastReceiver() {
                 .setSmallIcon(android.R.drawable.sym_def_app_icon)
         
         return builder.build()
-    }
-    
-    companion object {
-        var NOTIFICATION_ID = "notificationId"
-        var NOTIFICATION_CONTENT = "content"
     }
 }

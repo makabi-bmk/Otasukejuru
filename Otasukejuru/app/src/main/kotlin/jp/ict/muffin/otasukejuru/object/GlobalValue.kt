@@ -15,4 +15,6 @@ object GlobalValue {
     var focusTimeG: Long = 1
     var intervalTimeG: Long = 0
     val monthDays = arrayListOf(31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31)
+    var notificationId = "notificationId"
+    var notificationContent = "content"
 }

@@ -214,7 +214,6 @@ class ScheduleFragment : Fragment() {
         val calendar = Calendar.getInstance()
         val today = (calendar.get(Calendar.MONTH) + 1) * 100 +
                 calendar.get(Calendar.DAY_OF_MONTH)
-        val showTaskNum = (GlobalValue.displayWidth - 50) / 90 - 2
         
         find<LinearLayout>(R.id.taskLinear).removeAllViews()
         var taskCount = 0

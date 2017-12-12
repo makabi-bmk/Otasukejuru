@@ -70,6 +70,7 @@ class TimeSetActivityUI(private val index: Int = -1) : AnkoComponent<TimeSetActi
                     width = dip(200)
                     centerHorizontally()
                 }
+                
                 textView("分間") {
                     textSize = 20f
                 }.lparams {
@@ -80,7 +81,6 @@ class TimeSetActivityUI(private val index: Int = -1) : AnkoComponent<TimeSetActi
                 
                 button("次へ") {
                     id = R.id.nextButton
-//                    textColor = ContextCompat.getColor(context, R.color.colorPrimary)
                     backgroundColor = Color.argb(0, 0, 0, 0)
                     isEnabled = false
                     textColor = Color.argb(0, 0, 0, 0)
@@ -100,7 +100,6 @@ class TimeSetActivityUI(private val index: Int = -1) : AnkoComponent<TimeSetActi
                     centerHorizontally()
                 }
                 
-                
             }.lparams {
                 width = matchParent
                 height = wrapContent
@@ -108,7 +107,5 @@ class TimeSetActivityUI(private val index: Int = -1) : AnkoComponent<TimeSetActi
                 centerVertically()
             }
         }
-        
     }
-    
 }

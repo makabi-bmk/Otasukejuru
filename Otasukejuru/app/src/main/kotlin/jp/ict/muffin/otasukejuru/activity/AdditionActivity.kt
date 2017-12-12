@@ -10,6 +10,8 @@ import android.util.Log
 import android.widget.*
 import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.*
+import jp.ict.muffin.otasukejuru.`object`.GlobalValue.notificationContent
+import jp.ict.muffin.otasukejuru.`object`.GlobalValue.notificationId
 import jp.ict.muffin.otasukejuru.communication.*
 import jp.ict.muffin.otasukejuru.other.AlarmReceiver
 import jp.ict.muffin.otasukejuru.other.Utils
@@ -573,8 +575,8 @@ class AdditionActivity : Activity() {
     
     private fun scheduleNotification(content: String, calendar: Calendar) {
         val notificationIntent = Intent(this, AlarmReceiver::class.java)
-        notificationIntent.putExtra(AlarmReceiver.NOTIFICATION_ID, 1)
-        notificationIntent.putExtra(AlarmReceiver.NOTIFICATION_CONTENT, content)
+        notificationIntent.putExtra(notificationId, 1)
+        notificationIntent.putExtra(notificationContent, content)
         val pendingIntent = PendingIntent.getBroadcast(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT)
         
         val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager

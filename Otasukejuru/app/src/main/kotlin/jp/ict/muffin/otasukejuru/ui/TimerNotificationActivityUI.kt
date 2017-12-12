@@ -55,7 +55,6 @@ class TimerNotificationActivityUI(private val time: Long) :
                 }
                 
                 relativeLayout {
-                    
                     numberPicker {
                         id = R.id.notificationNumPick
                         minValue = 1
@@ -88,8 +87,6 @@ class TimerNotificationActivityUI(private val time: Long) :
                         startActivity<TimerActivity>("time" to time)
                     }
                 }.lparams {
-                    //                    marginEnd = dip(30)
-//                    bottomMargin = dip(20)
                     margin = 30
                     alignParentBottom()
                     alignParentRight()
@@ -98,6 +95,5 @@ class TimerNotificationActivityUI(private val time: Long) :
                 below(R.id.ankoToolbar)
             }
         }
-        
     }
 }

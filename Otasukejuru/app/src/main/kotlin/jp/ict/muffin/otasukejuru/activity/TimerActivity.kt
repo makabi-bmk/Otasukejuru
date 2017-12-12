@@ -11,6 +11,8 @@ import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.ImageButton
 import jp.ict.muffin.otasukejuru.R
+import jp.ict.muffin.otasukejuru.`object`.GlobalValue.notificationContent
+import jp.ict.muffin.otasukejuru.`object`.GlobalValue.notificationId
 import jp.ict.muffin.otasukejuru.other.AlarmReceiver
 import jp.ict.muffin.otasukejuru.ui.TimerActivityUI
 import jp.ict.muffin.otasukejuru.ui.TimerIntervalActivityUI
@@ -69,8 +71,8 @@ class TimerActivity : Activity() {
     
     private fun scheduleNotification(content: String, calendar: Calendar, id: Int) {
         val notificationIntent = Intent(this, AlarmReceiver::class.java)
-        notificationIntent.putExtra(AlarmReceiver.NOTIFICATION_ID, id)
-        notificationIntent.putExtra(AlarmReceiver.NOTIFICATION_CONTENT, content)
+        notificationIntent.putExtra(notificationId, id)
+        notificationIntent.putExtra(notificationContent, content)
         val pendingIntent = PendingIntent.getBroadcast(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT)
         
         val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager

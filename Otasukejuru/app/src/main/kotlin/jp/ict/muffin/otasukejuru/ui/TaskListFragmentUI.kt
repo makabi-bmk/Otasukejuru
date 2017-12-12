@@ -16,8 +16,8 @@ class TaskListFragmentUI : AnkoComponent<TaskListFragment> {
                 width = matchParent
                 height = matchParent
             }
+            
             scrollView {
-                
                 relativeLayout {
                     textView(context.getString(R.string.mostPriority)) {
                         id = R.id.mostPriorityTextView
@@ -83,6 +83,7 @@ class TaskListFragmentUI : AnkoComponent<TaskListFragment> {
                         alignParentStart()
                         below(R.id.highPriorityLine)
                     }
+                    
                     linearLayout {
                         id = R.id.highPriorityCardLinear2
                         orientation = LinearLayout.HORIZONTAL
@@ -125,6 +126,7 @@ class TaskListFragmentUI : AnkoComponent<TaskListFragment> {
                         alignParentStart()
                         below(R.id.middlePriorityLine)
                     }
+                    
                     linearLayout {
                         id = R.id.middlePriorityCardLinear2
                         orientation = LinearLayout.HORIZONTAL
@@ -167,6 +169,7 @@ class TaskListFragmentUI : AnkoComponent<TaskListFragment> {
                         alignParentStart()
                         below(R.id.lowPriorityLine)
                     }
+                    
                     linearLayout {
                         id = R.id.lowPriorityCardLinear2
                         orientation = LinearLayout.HORIZONTAL
@@ -181,10 +184,6 @@ class TaskListFragmentUI : AnkoComponent<TaskListFragment> {
                 width = matchParent
                 height = matchParent
             }
-            
         }
-        
     }
-    
-    
 }

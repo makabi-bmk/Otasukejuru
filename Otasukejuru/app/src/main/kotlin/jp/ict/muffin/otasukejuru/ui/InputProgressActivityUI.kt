@@ -2,7 +2,6 @@ package jp.ict.muffin.otasukejuru.ui
 
 import android.graphics.Color
 import android.support.v4.content.ContextCompat
-import android.util.Log
 import android.view.View
 import android.widget.SeekBar
 import jp.ict.muffin.otasukejuru.R
@@ -49,7 +48,6 @@ class InputProgressActivityUI(private val index: Int) : AnkoComponent<InputProgr
                 textSize = 20f
                 onClick {
                     GlobalValue.taskInfoArrayList[index].progress = seekBar.progress
-                    Log.d("progress", seekBar.progress.toString())
                     val update = UpdateTaskInfoAsync()
                     update.execute(GlobalValue.taskInfoArrayList[index])
                 }

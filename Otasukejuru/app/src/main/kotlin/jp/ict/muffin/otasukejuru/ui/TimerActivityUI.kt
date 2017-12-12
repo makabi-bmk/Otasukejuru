@@ -58,6 +58,7 @@ class TimerActivityUI(private val time: Long, private val index: Int = -1) :
                 topMargin = GlobalValue.displayWidth / 3 + 15
                 leftMargin = GlobalValue.displayWidth / 3 + 15
                 below(R.id.ankoToolbar)
+                
                 remainingHourText = textView {
                     text = ""
                     textSize = 40F
@@ -99,21 +100,19 @@ class TimerActivityUI(private val time: Long, private val index: Int = -1) :
     
     private fun startTimerInit(context: Context) {
         val params: ArrayList<HashMap<String, Int>> = java.util.ArrayList()
-        
         val map = HashMap<String, Int>()
-        
         val back = ContextCompat.getColor(context, R.color.back)
         
-        map.put("color", back)
-        map.put("value", 60)
+        map.apply {
+            put("color", back)
+            put("value", 60)
+        }
         params.add(map)
-        val circleGraphView = CircleGraphView(context,
-                params, true)
+        val circleGraphView = CircleGraphView(context, params, true)
         circleMini.addView(circleGraphView)
         circleGraphView.startAnimation()
         
         startTimer(context, time, index)
-        
         isPushStartButton = true
     }
     
@@ -121,6 +120,7 @@ class TimerActivityUI(private val time: Long, private val index: Int = -1) :
         if (time == 0L) {
             return
         }
+        
         val drawTime: Long = if (time % 60 == 0L) {
             60L
         } else {
@@ -186,11 +186,13 @@ class TimerActivityUI(private val time: Long, private val index: Int = -1) :
         if (totalTime == 0L) {
             return
         }
+        
         val drawTime: Long = if (totalTime % 60 == 0L) {
             60L
         } else {
             totalTime % 60L
         }
+        
         remainingHourText.text = ((totalTime - 1) / 60).toString()
         drawCircle(context, circle, drawTime)
         if (totalTime - drawTime != 0L) {
@@ -201,5 +203,4 @@ class TimerActivityUI(private val time: Long, private val index: Int = -1) :
             context.startActivity<InputProgressActivity>("index" to index)
         }
     }
-    
 }

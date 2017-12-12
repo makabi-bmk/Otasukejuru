@@ -1,5 +1,6 @@
 package jp.ict.muffin.otasukejuru.other
 
+import android.annotation.SuppressLint
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -26,7 +27,6 @@ class Utils {
     }
     
     fun diffDayNum(beforeDate: Int, afterDate: Int, year: Int): Int {
-        
         val totalDays = if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0) {
             intArrayOf(0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334)
         } else {
@@ -40,6 +40,7 @@ class Utils {
         return (totalDays[afterMonth] + afterDay - (totalDays[beforeMonth] + beforeDay))
     }
     
+    @SuppressLint("SimpleDateFormat")
     fun getNowDate(): String {
         val df = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
         val date = Date(System.currentTimeMillis())
@@ -52,7 +53,8 @@ class Utils {
             diffDays = 0
         }
         
-        val beforeTime = (24 - getTime(beforeDate) / 100 + 1) * 60 + (60 - getTime(beforeDate) % 100) * 60
+        val beforeTime =
+                (24 - getTime(beforeDate) / 100 + 1) * 60 + (60 - getTime(beforeDate) % 100) * 60
         val afterTime = getTime(afterDate) / 100 * 60 + getTime(afterDate) % 100 * 60
         return diffDays * 60 * 24 + afterTime + beforeTime
     }

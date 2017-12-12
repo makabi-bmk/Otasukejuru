@@ -45,7 +45,6 @@ class TimerSetTimeFragmentUI : AnkoComponent<TimerSetTimeFragment> {
             }
             
             relativeLayout {
-                
                 editTime = editText {
                     inputType = InputType.TYPE_CLASS_NUMBER
                     id = R.id.setTimeEdit
@@ -54,6 +53,7 @@ class TimerSetTimeFragmentUI : AnkoComponent<TimerSetTimeFragment> {
                     width = dip(200)
                     centerHorizontally()
                 }
+                
                 textView("分間") {
                     textSize = 20f
                 }.lparams {
@@ -64,7 +64,6 @@ class TimerSetTimeFragmentUI : AnkoComponent<TimerSetTimeFragment> {
                 
                 button("次へ") {
                     id = R.id.nextButton
-//                    textColor = ContextCompat.getColor(context, R.color.colorPrimary)
                     backgroundColor = Color.argb(0, 0, 0, 0)
                     isEnabled = false
                     textColor = Color.argb(0, 0, 0, 0)
@@ -84,7 +83,6 @@ class TimerSetTimeFragmentUI : AnkoComponent<TimerSetTimeFragment> {
                     centerHorizontally()
                 }
                 
-                
             }.lparams {
                 width = matchParent
                 height = wrapContent
@@ -93,5 +91,4 @@ class TimerSetTimeFragmentUI : AnkoComponent<TimerSetTimeFragment> {
             }
         }
     }
-    
 }
