@@ -4,7 +4,10 @@ import android.annotation.SuppressLint
 import android.content.Context
 import com.squareup.moshi.Moshi
 import jp.ict.muffin.otasukejuru.R
+import jp.ict.muffin.otasukejuru.`object`.EveryInfo
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
+import jp.ict.muffin.otasukejuru.`object`.ScheduleInfo
+import jp.ict.muffin.otasukejuru.`object`.TaskInfo
 import org.json.JSONArray
 import java.text.SimpleDateFormat
 import java.util.*
@@ -78,16 +81,44 @@ class Utils {
         return prefs.getString(key, "") // 第２引数はkeyが存在しない時に返す初期値
     }
     
-    private fun parseData(memberList: String) {
+    private fun parseData(scheduleList: String = "", taskList: String = "", everyList: String = "") {
         val moshi = Moshi.Builder().build()
-        val dataAdapter = moshi.adapter(MemberData::class.java)
-        
-        val jsonArray = JSONArray(memberList)
-        val tmpMemberDataArray: ArrayList<MemberData> = arrayListOf()
-        (0 until jsonArray.length()).forEach { i ->
-            val dataJSON = jsonArray.getJSONObject(i).toString()
-            dataAdapter.fromJson(dataJSON)?.let { tmpMemberDataArray.add(it) }
+        when ("") {
+            scheduleList -> {
+                val dataAdapter = moshi.adapter(ScheduleInfo::class.java)
+                
+                val jsonArray = JSONArray(scheduleList)
+                val tmpScheduleArrayList: ArrayList<ScheduleInfo> = arrayListOf()
+                (0 until jsonArray.length()).forEach { i ->
+                    val dataJSON = jsonArray.getJSONObject(i).toString()
+                    dataAdapter.fromJson(dataJSON)?.let { tmpScheduleArrayList.add(it) }
+                }
+                GlobalValue.scheduleInfoArrayList = tmpScheduleArrayList
+            }
+            
+            taskList -> {
+                val dataAdapter = moshi.adapter(TaskInfo::class.java)
+                
+                val jsonArray = JSONArray(taskList)
+                val tmpTaskArrayList: ArrayList<TaskInfo> = arrayListOf()
+                (0 until jsonArray.length()).forEach { i ->
+                    val dataJSON = jsonArray.getJSONObject(i).toString()
+                    dataAdapter.fromJson(dataJSON)?.let { tmpTaskArrayList.add(it) }
+                }
+                GlobalValue.taskInfoArrayList = tmpTaskArrayList
+            }
+            
+            everyList -> {
+                val dataAdapter = moshi.adapter(EveryInfo::class.java)
+                
+                val jsonArray = JSONArray(everyList)
+                val tmpEveryArrayList: ArrayList<EveryInfo> = arrayListOf()
+                (0 until jsonArray.length()).forEach { i ->
+                    val dataJSON = jsonArray.getJSONObject(i).toString()
+                    dataAdapter.fromJson(dataJSON)?.let { tmpEveryArrayList.add(it) }
+                }
+                GlobalValue.everyInfoArrayList = tmpEveryArrayList
+            }
         }
-        GlobalValue.rollCallMemberArrayList = tmpMemberDataArray
     }
 }
