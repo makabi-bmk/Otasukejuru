@@ -1,10 +1,8 @@
 package jp.ict.muffin.otasukejuru.activity
 
-import android.app.AlertDialog
 import android.graphics.Color
 import android.graphics.Point
 import android.os.Bundle
-import android.os.Handler
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
@@ -14,10 +12,6 @@ import android.view.Menu
 import android.view.MenuItem
 import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
-import jp.ict.muffin.otasukejuru.communication.GetInformation
-import jp.ict.muffin.otasukejuru.communication.UpdateEveryInfoAsync
-import jp.ict.muffin.otasukejuru.communication.UpdateScheduleInfoAsync
-import jp.ict.muffin.otasukejuru.communication.UpdateTaskInfoAsync
 import jp.ict.muffin.otasukejuru.fragment.ScheduleFragment
 import jp.ict.muffin.otasukejuru.fragment.TaskListFragment
 import jp.ict.muffin.otasukejuru.fragment.TimerSetTimeFragment
@@ -27,8 +21,6 @@ import org.jetbrains.anko.startActivity
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
-    private var mTimer: Timer? = null
-    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -61,6 +53,7 @@ class MainActivity : AppCompatActivity() {
             setupWithViewPager(mViewPager)
             setTabTextColors(Color.parseColor("#FBFBF0"), Color.parseColor("#66B7EC"))
         }
+        
         fab.setOnClickListener {
             startActivity<AdditionActivity>()
         }
@@ -74,74 +67,7 @@ class MainActivity : AppCompatActivity() {
             displayWidth = point.x
             SERVER_URL = getString(R.string.server_url)
         }
-        val getInfo = GetInformation()
-        getInfo.execute()
-        
     }
-    
-    override fun onResume() {
-        super.onResume()
-        val mHandler = Handler()
-        mTimer = Timer()
-        mTimer?.schedule(object : TimerTask() {
-            override fun run() {
-                mHandler.post {
-                    val getInformation = GetInformation()
-                    getInformation.execute()
-                    
-                    GlobalValue.friendTaskInfoArrayList.forEach { element ->
-                        AlertDialog.Builder(applicationContext).apply {
-                            setTitle(element.task_name)
-                            setMessage(getString(R.string.changeMessage))
-                            setPositiveButton("Yes") { _, _ ->
-                                //ToDo:Write send function
-                                val updateTask = UpdateTaskInfoAsync()
-                                updateTask.execute(element)
-                            }
-                            setNegativeButton("No", null)
-                            show()
-                        }
-                    }
-                    
-                    GlobalValue.friendScheduleInfoArrayList.forEach { element ->
-                        AlertDialog.Builder(applicationContext).apply {
-                            setTitle(element.schedule_name)
-                            setMessage(getString(R.string.changeMessage))
-                            setPositiveButton("Yes") { _, _ ->
-                                //ToDo:Write send function
-                                val updateTask = UpdateScheduleInfoAsync()
-                                updateTask.execute(element)
-                            }
-                            setNegativeButton("No", null)
-                            show()
-                        }
-                    }
-                    
-                    GlobalValue.friendEveryInfoArrayList.forEach { element ->
-                        AlertDialog.Builder(applicationContext).apply {
-                            setTitle(element.every_name)
-                            setMessage(getString(R.string.changeMessage))
-                            setPositiveButton("Yes") { _, _ ->
-                                //ToDo:Write send function
-                                val updateTask = UpdateEveryInfoAsync()
-                                updateTask.execute(element)
-                            }
-                            setNegativeButton("No", null)
-                            show()
-                        }
-                    }
-                }
-            }
-        }, 5000, 5000)
-        
-    }
-    
-    override fun onPause() {
-        super.onPause()
-        mTimer?.cancel()
-        mTimer = null
-    }
-    
     
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
