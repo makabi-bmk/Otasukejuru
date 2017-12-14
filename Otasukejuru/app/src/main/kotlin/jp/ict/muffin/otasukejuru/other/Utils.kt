@@ -1,6 +1,11 @@
 package jp.ict.muffin.otasukejuru.other
 
 import android.annotation.SuppressLint
+import android.content.Context
+import com.squareup.moshi.Moshi
+import jp.ict.muffin.otasukejuru.R
+import jp.ict.muffin.otasukejuru.`object`.GlobalValue
+import org.json.JSONArray
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -57,5 +62,32 @@ class Utils {
                 (24 - getTime(beforeDate) / 100 + 1) * 60 + (60 - getTime(beforeDate) % 100) * 60
         val afterTime = getTime(afterDate) / 100 * 60 + getTime(afterDate) % 100 * 60
         return diffDays * 60 * 24 + afterTime + beforeTime
+    }
+    
+    // 設定値 String を保存（Context は Activity や Application や Service）
+    private fun saveString(ctx: Context, key: String, value: String) {
+        val prefs = ctx.getSharedPreferences(ctx.getString(R.string.app_name), Context.MODE_PRIVATE)
+        val editor = prefs.edit()
+        editor.putString(key, value)
+        editor.apply()
+    }
+    
+    // 設定値 String を取得（Context は Activity や Application や Service）
+    private fun loadString(ctx: Context, key: String): String {
+        val prefs = ctx.getSharedPreferences(ctx.getString(R.string.app_name), Context.MODE_PRIVATE)
+        return prefs.getString(key, "") // 第２引数はkeyが存在しない時に返す初期値
+    }
+    
+    private fun parseData(memberList: String) {
+        val moshi = Moshi.Builder().build()
+        val dataAdapter = moshi.adapter(MemberData::class.java)
+        
+        val jsonArray = JSONArray(memberList)
+        val tmpMemberDataArray: ArrayList<MemberData> = arrayListOf()
+        (0 until jsonArray.length()).forEach { i ->
+            val dataJSON = jsonArray.getJSONObject(i).toString()
+            dataAdapter.fromJson(dataJSON)?.let { tmpMemberDataArray.add(it) }
+        }
+        GlobalValue.rollCallMemberArrayList = tmpMemberDataArray
     }
 }
