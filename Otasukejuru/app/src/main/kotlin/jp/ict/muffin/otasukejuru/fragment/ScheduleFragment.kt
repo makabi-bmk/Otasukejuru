@@ -19,8 +19,6 @@ import jp.ict.muffin.otasukejuru.`object`.GlobalValue
 import jp.ict.muffin.otasukejuru.activity.AdditionActivity
 import jp.ict.muffin.otasukejuru.activity.InputProgressActivity
 import jp.ict.muffin.otasukejuru.activity.TimeSetActivity
-import jp.ict.muffin.otasukejuru.communication.DeleteScheduleInfoAsync
-import jp.ict.muffin.otasukejuru.communication.DeleteTaskInfoAsync
 import jp.ict.muffin.otasukejuru.other.Utils
 import jp.ict.muffin.otasukejuru.ui.ScheduleFragmentUI
 import kotlinx.android.synthetic.main.task_card_view.view.*
@@ -390,13 +388,11 @@ class ScheduleFragment : Fragment() {
     
     private fun deleteElement(isTask: Boolean, index: Int) {
         if (isTask) {
-            val deleteTaskAsync = DeleteTaskInfoAsync()
-            deleteTaskAsync.execute(GlobalValue.taskInfoArrayList[index])
+            //TODO:delete data
             GlobalValue.taskInfoArrayList.removeAt(index)
             Log.d("delete", "delete")
         } else {
-            val deleteScheduleInfoAsync = DeleteScheduleInfoAsync()
-            deleteScheduleInfoAsync.execute(GlobalValue.scheduleInfoArrayList[index])
+            //TODO:delete data
             GlobalValue.scheduleInfoArrayList.removeAt(index)
         }
     }

@@ -12,7 +12,6 @@ import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.*
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue.notificationContent
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue.notificationId
-import jp.ict.muffin.otasukejuru.communication.*
 import jp.ict.muffin.otasukejuru.other.AlarmReceiver
 import jp.ict.muffin.otasukejuru.other.Utils
 import kotlinx.android.synthetic.main.set_plan_notification_time.*
@@ -530,13 +529,11 @@ class AdditionActivity : Activity() {
         }
         if (isAdd) {
             GlobalValue.everyInfoArrayList.add(0, everyInformation)
-            val postEveryInfo = AddEveryTaskInfoAsync()
-            postEveryInfo.execute(everyInformation)
+            //TODO:save date
         } else {
             everyInformation._id = GlobalValue.everyInfoArrayList[index]._id
             GlobalValue.everyInfoArrayList[index] = everyInformation
-            val update = UpdateEveryInfoAsync()
-            update.execute(GlobalValue.everyInfoArrayList[index])
+            //TODO:save date
         }
         
     }
@@ -552,13 +549,11 @@ class AdditionActivity : Activity() {
         setScheduleNotification(scheduleInformation)
         if (isAdd) {
             GlobalValue.scheduleInfoArrayList.add(0, scheduleInformation)
-            val postScheduleInfo = AddScheduleTaskInfoAsync()
-            postScheduleInfo.execute(scheduleInformation)
+            //TODO:save date
         } else {
             scheduleInformation._id = GlobalValue.scheduleInfoArrayList[index]._id
             GlobalValue.scheduleInfoArrayList[index] = scheduleInformation
-            val update = UpdateScheduleInfoAsync()
-            update.execute(GlobalValue.scheduleInfoArrayList[index])
+            //TODO:save date
         }
         
     }
@@ -608,13 +603,11 @@ class AdditionActivity : Activity() {
         Log.d("task", taskInformation.due_date)
         if (isAdd) {
             GlobalValue.taskInfoArrayList.add(0, taskInformation)
-            val postTaskInfo = AddTaskInfoAsync()
-            postTaskInfo.execute(taskInformation)
+            //TODO:save date
         } else {
             taskInformation._id = GlobalValue.taskInfoArrayList[index]._id
             GlobalValue.taskInfoArrayList[index] = taskInformation
-            val update = UpdateTaskInfoAsync()
-            update.execute(GlobalValue.taskInfoArrayList[index])
+            //TODO:save date
         }
     }
     
@@ -629,8 +622,7 @@ class AdditionActivity : Activity() {
         
         GlobalValue.taskInfoArrayList[index].subTaskArrayList.add(subTaskInfo)
         
-        val addSubTaskAsync = AddSubTaskInfoAsync()
-        addSubTaskAsync.execute(subTaskInfo)
+        //TODO:save date
         finish()
         
     }

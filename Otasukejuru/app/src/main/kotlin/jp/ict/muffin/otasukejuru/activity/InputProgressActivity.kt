@@ -7,7 +7,6 @@ import android.widget.SeekBar
 import android.widget.TextView
 import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
-import jp.ict.muffin.otasukejuru.communication.UpdateTaskInfoAsync
 import jp.ict.muffin.otasukejuru.ui.InputProgressActivityUI
 import org.jetbrains.anko.find
 import org.jetbrains.anko.sdk25.coroutines.onClick
@@ -46,8 +45,7 @@ class InputProgressActivity : AppCompatActivity() {
         })
         
         find<Button>(R.id.finishButton).onClick {
-            val update = UpdateTaskInfoAsync()
-            update.execute(GlobalValue.taskInfoArrayList[index])
+            //TODO:save data
             finish()
         }
     }
