@@ -37,12 +37,12 @@ class ScheduleFragment : Fragment() {
                               savedInstanceState: Bundle?): View =
             ScheduleFragmentUI().createView(AnkoContext.create(ctx, this))
     
-//    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
-//        super.onViewCreated(view, savedInstanceState)
-//        setSchedule()
-//        setCardView()
-//        drawNowLine()
-//    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setSchedule()
+        setCardView()
+        drawNowLine()
+    }
     
     private fun drawNowLine() {
         val nowDate = Utils().getNowDate()
