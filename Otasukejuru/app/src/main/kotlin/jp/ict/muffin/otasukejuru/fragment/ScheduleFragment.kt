@@ -1,6 +1,7 @@
 package jp.ict.muffin.otasukejuru.fragment
 
 import android.app.AlertDialog
+import android.app.ProgressDialog.show
 import android.content.Context.LAYOUT_INFLATER_SERVICE
 import android.graphics.Color
 import android.os.Bundle
@@ -24,6 +25,7 @@ import jp.ict.muffin.otasukejuru.ui.ScheduleFragmentUI
 import kotlinx.android.synthetic.main.task_card_view.view.*
 import org.jetbrains.anko.*
 import org.jetbrains.anko.collections.forEachWithIndex
+import org.jetbrains.anko.internals.AnkoInternals.addView
 import org.jetbrains.anko.support.v4.*
 import java.util.*
 
@@ -35,12 +37,12 @@ class ScheduleFragment : Fragment() {
                               savedInstanceState: Bundle?): View =
             ScheduleFragmentUI().createView(AnkoContext.create(ctx, this))
     
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        setSchedule()
-        setCardView()
-        drawNowLine()
-    }
+//    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+//        super.onViewCreated(view, savedInstanceState)
+//        setSchedule()
+//        setCardView()
+//        drawNowLine()
+//    }
     
     private fun drawNowLine() {
         val nowDate = Utils().getNowDate()
@@ -225,7 +227,7 @@ class ScheduleFragment : Fragment() {
             if (-1 < diffDays && diffDays < 8) {
                 
                 val inflater: LayoutInflater =
-                        context.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
+                        ctx.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
                 val linearLayout: LinearLayout =
                         inflater.inflate(R.layout.task_card_view,
                                 null) as LinearLayout
