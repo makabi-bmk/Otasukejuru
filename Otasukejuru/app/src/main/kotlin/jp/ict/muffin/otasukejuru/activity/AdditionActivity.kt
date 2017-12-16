@@ -17,6 +17,7 @@ import jp.ict.muffin.otasukejuru.other.Utils
 import kotlinx.android.synthetic.main.set_plan_notification_time.*
 import kotlinx.android.synthetic.main.set_plan_repeat.*
 import kotlinx.android.synthetic.main.set_task_repeat.*
+import org.jetbrains.anko.ctx
 import org.jetbrains.anko.find
 import java.util.*
 
@@ -127,7 +128,6 @@ class AdditionActivity : Activity() {
         
     }
     
-    //TODO:CHANGE XML
     private fun startScheduleTime() {
         setContentView(R.layout.start_plan_time)
         setActionBar(find(R.id.toolbar_back))
@@ -144,6 +144,7 @@ class AdditionActivity : Activity() {
             startHour = Utils().getTime(startTime) / 100
             startMinute = Utils().getTime(startTime) % 100
         }
+        
         find<NumberPicker>(R.id.start_month_num_pick).apply {
             maxValue = 12
             minValue = 1
@@ -165,13 +166,13 @@ class AdditionActivity : Activity() {
             setOnValueChangedListener { _, _, newVal -> startHour = newVal }
         }
         
-        
         find<NumberPicker>(R.id.start_minute_num_pick).apply {
             maxValue = 59
             minValue = 0
             value = startMinute
             setOnValueChangedListener { _, _, newVal -> startMinute = newVal }
         }
+        
         startYear = calendar.get(Calendar.YEAR)
         
         find<Button>(R.id.button_next).setOnClickListener { finishScheduleTime() }
@@ -196,30 +197,35 @@ class AdditionActivity : Activity() {
             finishMinute = Utils().getTime(finishTime) % 100
             
         }
+        
         find<NumberPicker>(R.id.finish_month_num_pick).apply {
             maxValue = 12
             minValue = 1
             value = finishMonth
             setOnValueChangedListener { _, _, newVal -> finishMonth = newVal }
         }
+        
         find<NumberPicker>(R.id.finish_day_num_pick).apply {
             maxValue = 31
             minValue = 1
             value = finishDay
             setOnValueChangedListener { _, _, newVal -> finishDay = newVal }
         }
+        
         find<NumberPicker>(R.id.finish_hour_num_pick).apply {
             maxValue = 23
             minValue = 0
             value = finishHour
             setOnValueChangedListener { _, _, newVal -> finishHour = newVal }
         }
+        
         find<NumberPicker>(R.id.finish_minute_num_pick).apply {
             maxValue = 59
             minValue = 0
             value = finishMinute
             setOnValueChangedListener { _, _, newVal -> finishMinute = newVal }
         }
+        
         finishYear = calendar.get(Calendar.YEAR)
         
         find<Button>(R.id.button_next).setOnClickListener { setScheduleRepeat() }
@@ -275,7 +281,6 @@ class AdditionActivity : Activity() {
                         setEveryInformation()
                     }
                 } else {
-                
                 }
                 
                 finish()
@@ -529,13 +534,11 @@ class AdditionActivity : Activity() {
         }
         if (isAdd) {
             GlobalValue.everyInfoArrayList.add(0, everyInformation)
-            //TODO:save date
         } else {
             everyInformation._id = GlobalValue.everyInfoArrayList[index]._id
             GlobalValue.everyInfoArrayList[index] = everyInformation
-            //TODO:save date
         }
-        
+        Utils().saveString(ctx, getString(R.string.EveryInfoKey), GlobalValue.everyInfoArrayList.toString())
     }
     
     private fun setScheduleInformation() {
@@ -549,13 +552,11 @@ class AdditionActivity : Activity() {
         setScheduleNotification(scheduleInformation)
         if (isAdd) {
             GlobalValue.scheduleInfoArrayList.add(0, scheduleInformation)
-            //TODO:save date
         } else {
             scheduleInformation._id = GlobalValue.scheduleInfoArrayList[index]._id
             GlobalValue.scheduleInfoArrayList[index] = scheduleInformation
-            //TODO:save date
         }
-        
+        Utils().saveString(ctx, getString(R.string.ScheduleInfoKey), GlobalValue.scheduleInfoArrayList.toString())
     }
     
     private fun setScheduleNotification(scheduleInfo: ScheduleInfo) {
@@ -603,12 +604,11 @@ class AdditionActivity : Activity() {
         Log.d("task", taskInformation.due_date)
         if (isAdd) {
             GlobalValue.taskInfoArrayList.add(0, taskInformation)
-            //TODO:save date
         } else {
             taskInformation._id = GlobalValue.taskInfoArrayList[index]._id
             GlobalValue.taskInfoArrayList[index] = taskInformation
-            //TODO:save date
         }
+        Utils().saveString(ctx, getString(R.string.TaskInfoKey), GlobalValue.taskInfoArrayList.toString())
     }
     
     private fun setSubTask() {
@@ -621,8 +621,7 @@ class AdditionActivity : Activity() {
         }
         
         GlobalValue.taskInfoArrayList[index].subTaskArrayList.add(subTaskInfo)
-        
-        //TODO:save date
+        Utils().saveString(ctx, getString(R.string.TaskInfoKey), GlobalValue.taskInfoArrayList.toString())
         finish()
         
     }
