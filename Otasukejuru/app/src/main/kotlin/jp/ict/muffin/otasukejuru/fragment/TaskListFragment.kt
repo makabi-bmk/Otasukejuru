@@ -1,7 +1,6 @@
 package jp.ict.muffin.otasukejuru.fragment
 
 import android.app.AlertDialog
-import android.app.ProgressDialog.show
 import android.content.Context.LAYOUT_INFLATER_SERVICE
 import android.os.Bundle
 import android.os.Handler
@@ -163,7 +162,7 @@ class TaskListFragment : Fragment() {
                             setTitle(element.task_name)
                             setMessage(getString(R.string.complicatedMassage))
                             setPositiveButton("Yes") { _, _ ->
-                                deleteTask(element, index)
+                                deleteTask(element)
                             }
                             setNegativeButton("No", null)
                             show()
@@ -175,7 +174,7 @@ class TaskListFragment : Fragment() {
                             setTitle(element.task_name)
                             setMessage(getString(R.string.deleteMassage))
                             setPositiveButton("OK") { _, _ ->
-                                deleteTask(element, index)
+                                deleteTask(element)
                             }
                             setNegativeButton("Cancel", null)
                             show()
@@ -196,14 +195,12 @@ class TaskListFragment : Fragment() {
         }
     }
     
-    private fun deleteTask(element: TaskInfo, index: Int) {
-        //TODO:delete data
+    private fun deleteTask(element: TaskInfo) {
         try {
             GlobalValue.taskInfoArrayList.remove(element)
         } catch (e: Exception) {
-            
             e.printStackTrace()
-            
         }
+        Utils().saveString(ctx, getString(R.string.TaskInfoKey), GlobalValue.taskInfoArrayList.toString())
     }
 }
