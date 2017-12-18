@@ -81,13 +81,13 @@ class Utils {
         return prefs.getString(key, "") // 第２引数はkeyが存在しない時に返す初期値
     }
     
-    private fun parseData(scheduleList: String = "", taskList: String = "", everyList: String = "") {
+    private fun parseData(ctx: Context, jsonDataString: String = "", parseKey: String = "") {
         val moshi = Moshi.Builder().build()
-        when ("") {
-            scheduleList -> {
+        when (parseKey) {
+              ctx.getString(R.string.ScheduleInfoKey)-> {
                 val dataAdapter = moshi.adapter(ScheduleInfo::class.java)
                 
-                val jsonArray = JSONArray(scheduleList)
+                val jsonArray = JSONArray(jsonDataString)
                 val tmpScheduleArrayList: ArrayList<ScheduleInfo> = arrayListOf()
                 (0 until jsonArray.length()).forEach { i ->
                     val dataJSON = jsonArray.getJSONObject(i).toString()
@@ -96,10 +96,10 @@ class Utils {
                 GlobalValue.scheduleInfoArrayList = tmpScheduleArrayList
             }
             
-            taskList -> {
+            ctx.getString(R.string.TaskInfoKey) -> {
                 val dataAdapter = moshi.adapter(TaskInfo::class.java)
                 
-                val jsonArray = JSONArray(taskList)
+                val jsonArray = JSONArray(jsonDataString)
                 val tmpTaskArrayList: ArrayList<TaskInfo> = arrayListOf()
                 (0 until jsonArray.length()).forEach { i ->
                     val dataJSON = jsonArray.getJSONObject(i).toString()
@@ -108,10 +108,10 @@ class Utils {
                 GlobalValue.taskInfoArrayList = tmpTaskArrayList
             }
             
-            everyList -> {
+            ctx.getString(R.string.EveryInfoKey) -> {
                 val dataAdapter = moshi.adapter(EveryInfo::class.java)
                 
-                val jsonArray = JSONArray(everyList)
+                val jsonArray = JSONArray(jsonDataString)
                 val tmpEveryArrayList: ArrayList<EveryInfo> = arrayListOf()
                 (0 until jsonArray.length()).forEach { i ->
                     val dataJSON = jsonArray.getJSONObject(i).toString()
