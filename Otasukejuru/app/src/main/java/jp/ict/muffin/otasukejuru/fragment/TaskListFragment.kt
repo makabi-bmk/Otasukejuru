@@ -1,5 +1,6 @@
 package jp.ict.muffin.otasukejuru.fragment
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context.LAYOUT_INFLATER_SERVICE
 import android.os.Bundle
@@ -62,6 +63,7 @@ class TaskListFragment : Fragment() {
         mTimer = null
     }
     
+    @SuppressLint("InflateParams")
     fun setCardView() {
         (0..6).forEach {
             when (it) {
@@ -75,7 +77,7 @@ class TaskListFragment : Fragment() {
             }?.removeAllViews()
         }
         
-        var mostPriority = 0
+        var mostPriorityNum = 0
         var highPriorityNum = 0
         var middlePriorityNum = 0
         var lowPriorityNum = 0
@@ -111,7 +113,7 @@ class TaskListFragment : Fragment() {
             val position: Int
             when (element.priority) {
                 0 -> {
-                    position = mostPriority++ % showTaskNum
+                    position = mostPriorityNum++ % showTaskNum
                     mostPriorityCardLinear
                 }
                 1 -> {
