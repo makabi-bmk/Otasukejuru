@@ -68,6 +68,8 @@ class MainActivity : AppCompatActivity() {
             displayWidth = point.x
             SERVER_URL = getString(R.string.server_url)
             Utils().parseData(applicationContext, Utils().loadString(applicationContext, getString(R.string.TaskInfoKey)), getString(R.string.TaskInfoKey))
+            Utils().parseData(applicationContext, Utils().loadString(applicationContext, getString(R.string.ScheduleInfoKey)), getString(R.string.ScheduleInfoKey))
+            Utils().parseData(applicationContext, Utils().loadString(applicationContext, getString(R.string.EveryInfoKey)), getString(R.string.EveryInfoKey))
         }
     }
     
