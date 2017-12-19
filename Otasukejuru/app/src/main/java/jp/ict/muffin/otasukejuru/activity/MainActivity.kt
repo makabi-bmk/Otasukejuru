@@ -15,6 +15,7 @@ import jp.ict.muffin.otasukejuru.`object`.GlobalValue
 import jp.ict.muffin.otasukejuru.fragment.ScheduleFragment
 import jp.ict.muffin.otasukejuru.fragment.TaskListFragment
 import jp.ict.muffin.otasukejuru.fragment.TimerSetTimeFragment
+import jp.ict.muffin.otasukejuru.other.Utils
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.find
 import org.jetbrains.anko.startActivity
@@ -66,6 +67,7 @@ class MainActivity : AppCompatActivity() {
             displayHeight = point.y
             displayWidth = point.x
             SERVER_URL = getString(R.string.server_url)
+            Utils().parseData(applicationContext, Utils().loadString(applicationContext, getString(R.string.TaskInfoKey)), getString(R.string.TaskInfoKey))
         }
     }
     

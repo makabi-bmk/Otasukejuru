@@ -81,7 +81,7 @@ class Utils {
         return prefs.getString(key, "") // 第２引数はkeyが存在しない時に返す初期値
     }
     
-    private fun parseData(ctx: Context, jsonDataString: String = "", parseKey: String = "") {
+    fun parseData(ctx: Context, jsonDataString: String = "", parseKey: String = "") {
         val moshi = Moshi.Builder().build()
         when (parseKey) {
             ctx.getString(R.string.ScheduleInfoKey) -> {
