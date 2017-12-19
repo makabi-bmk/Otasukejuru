@@ -1,7 +1,6 @@
 package jp.ict.muffin.otasukejuru.fragment
 
 import android.app.AlertDialog
-import android.app.ProgressDialog.show
 import android.content.Context.LAYOUT_INFLATER_SERVICE
 import android.graphics.Color
 import android.os.Bundle
@@ -25,7 +24,6 @@ import jp.ict.muffin.otasukejuru.ui.ScheduleFragmentUI
 import kotlinx.android.synthetic.main.task_card_view.view.*
 import org.jetbrains.anko.*
 import org.jetbrains.anko.collections.forEachWithIndex
-import org.jetbrains.anko.internals.AnkoInternals.addView
 import org.jetbrains.anko.support.v4.*
 import java.util.*
 
