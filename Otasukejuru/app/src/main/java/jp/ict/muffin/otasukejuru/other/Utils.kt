@@ -84,7 +84,7 @@ class Utils {
     private fun parseData(ctx: Context, jsonDataString: String = "", parseKey: String = "") {
         val moshi = Moshi.Builder().build()
         when (parseKey) {
-              ctx.getString(R.string.ScheduleInfoKey)-> {
+            ctx.getString(R.string.ScheduleInfoKey) -> {
                 val dataAdapter = moshi.adapter(ScheduleInfo::class.java)
                 
                 val jsonArray = JSONArray(jsonDataString)
