@@ -26,7 +26,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         
-        
         val calendar = Calendar.getInstance()
         toolbar.title = "${(calendar.get(Calendar.MONTH) + 1)}月${calendar.get(Calendar.DATE)}日"
         setSupportActionBar(toolbar)
@@ -67,10 +66,15 @@ class MainActivity : AppCompatActivity() {
             displayHeight = point.y
             displayWidth = point.x
             SERVER_URL = getString(R.string.server_url)
-            Utils().parseData(applicationContext, Utils().loadString(applicationContext, getString(R.string.TaskInfoKey)), getString(R.string.TaskInfoKey))
-            Utils().parseData(applicationContext, Utils().loadString(applicationContext, getString(R.string.ScheduleInfoKey)), getString(R.string.ScheduleInfoKey))
-            Utils().parseData(applicationContext, Utils().loadString(applicationContext, getString(R.string.EveryInfoKey)), getString(R.string.EveryInfoKey))
         }
+        
+        loadInfoList()
+    }
+    
+    fun loadInfoList() {
+        Utils().parseData(applicationContext, Utils().loadString(applicationContext, getString(R.string.TaskInfoKey)), getString(R.string.TaskInfoKey))
+        Utils().parseData(applicationContext, Utils().loadString(applicationContext, getString(R.string.ScheduleInfoKey)), getString(R.string.ScheduleInfoKey))
+        Utils().parseData(applicationContext, Utils().loadString(applicationContext, getString(R.string.EveryInfoKey)), getString(R.string.EveryInfoKey))
     }
     
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -82,11 +86,10 @@ class MainActivity : AppCompatActivity() {
     // Handle action bar item clicks here. The action bar will
     // automatically handle clicks on the Home/Up button, so long
     // as you specify a parent activity in AndroidManifest.xml.
-    override fun onOptionsItemSelected(item: MenuItem): Boolean =
-            when (item.itemId) {
-                R.id.move_to_top -> true
-                else -> super.onOptionsItemSelected(item)
-            }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {
+        R.id.move_to_top -> true
+        else -> super.onOptionsItemSelected(item)
+    }
     
     /**
      * A [FragmentPagerAdapter] that returns a fragment corresponding to
