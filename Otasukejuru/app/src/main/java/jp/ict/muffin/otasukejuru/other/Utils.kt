@@ -130,7 +130,8 @@ class Utils {
             it.priority =
                     taskPriority / 100 * 15 + taskPriority % 10 / 10 * 5 + taskPriority % 100 * 10 + it.progress % 50 + (10 - diffDays) * 6
         }
-        //TODO:sortして
+        tmpTaskInfoArray.sortByDescending { it.priority }
+        GlobalValue.taskInfoArrayList = tmpTaskInfoArray
     }
     
     private fun getDiffDays(afterDate: String): Int {
