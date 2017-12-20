@@ -123,7 +123,11 @@ class Utils {
     }
     
     fun setPriority() {
-        val tmpTaskInfoArray = GlobalValue.taskInfoArrayList
+        val tmpTaskInfoArray = arrayListOf<TaskInfo>()
+        GlobalValue.taskInfoArrayList.forEach {
+            tmpTaskInfoArray.add(it)
+        }
+        
         tmpTaskInfoArray.forEach {
             val diffDays = getDiffDays(it.due_date)
             val taskPriority = it.priority
@@ -131,6 +135,7 @@ class Utils {
                     taskPriority / 100 * 15 + taskPriority % 10 / 10 * 5 + taskPriority % 100 * 10 + it.progress % 50 + (10 - diffDays) * 6
         }
         tmpTaskInfoArray.sortByDescending { it.priority }
+        //TODO:Decide priority
         GlobalValue.taskInfoArrayList = tmpTaskInfoArray
     }
     
