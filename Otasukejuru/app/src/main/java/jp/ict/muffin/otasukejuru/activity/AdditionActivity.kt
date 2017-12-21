@@ -538,7 +538,7 @@ class AdditionActivity : Activity() {
             everyInformation._id = GlobalValue.everyInfoArrayList[index]._id
             GlobalValue.everyInfoArrayList[index] = everyInformation
         }
-        Utils().saveString(ctx, getString(R.string.EveryInfoKey), GlobalValue.everyInfoArrayList.toString())
+        Utils().saveEveryInfoList(ctx)
     }
     
     private fun setScheduleInformation() {
@@ -556,7 +556,7 @@ class AdditionActivity : Activity() {
             scheduleInformation._id = GlobalValue.scheduleInfoArrayList[index]._id
             GlobalValue.scheduleInfoArrayList[index] = scheduleInformation
         }
-        Utils().saveString(ctx, getString(R.string.ScheduleInfoKey), GlobalValue.scheduleInfoArrayList.toString())
+        Utils().saveScheduleInfoList(ctx)
     }
     
     private fun setScheduleNotification(scheduleInfo: ScheduleInfo) {
@@ -608,7 +608,7 @@ class AdditionActivity : Activity() {
             taskInformation._id = GlobalValue.taskInfoArrayList[index]._id
             GlobalValue.taskInfoArrayList[index] = taskInformation
         }
-        Utils().saveString(ctx, getString(R.string.TaskInfoKey), GlobalValue.taskInfoArrayList.toString())
+        Utils().saveTaskInfoList(ctx)
     }
     
     private fun setSubTask() {
@@ -621,7 +621,7 @@ class AdditionActivity : Activity() {
         }
         
         GlobalValue.taskInfoArrayList[index].subTaskArrayList.add(subTaskInfo)
-        Utils().saveString(ctx, getString(R.string.TaskInfoKey), GlobalValue.taskInfoArrayList.toString())
+        Utils().saveTaskInfoList(ctx)
         finish()
         
     }
