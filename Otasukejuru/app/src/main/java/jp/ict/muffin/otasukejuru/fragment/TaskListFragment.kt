@@ -89,8 +89,10 @@ class TaskListFragment : Fragment() {
             val diffDays = Utils().diffDayNum(today, Utils().getDate(element.due_date),
                     calendar.get(Calendar.YEAR))
             
-            val inflater: LayoutInflater = ctx.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
-            val linearLayout: LinearLayout = inflater.inflate(R.layout.task_card_view, null) as LinearLayout
+            val inflater: LayoutInflater =
+                    ctx.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
+            val linearLayout: LinearLayout =
+                    inflater.inflate(R.layout.task_card_view, null) as LinearLayout
             
             linearLayout.apply {
                 dateTextView.apply {
@@ -116,6 +118,7 @@ class TaskListFragment : Fragment() {
                     position = mostPriorityNum++ % showTaskNum
                     mostPriorityCardLinear
                 }
+                
                 1 -> {
                     position = highPriorityNum++ % showTaskNum
                     if (highPriorityNum <= showTaskNum) {
@@ -124,6 +127,7 @@ class TaskListFragment : Fragment() {
                         highPriorityCardLinear2
                     }
                 }
+                
                 2 -> {
                     position = middlePriorityNum++ % showTaskNum
                     if (middlePriorityNum <= showTaskNum) {
@@ -132,6 +136,7 @@ class TaskListFragment : Fragment() {
                         middlePriorityCardLinear2
                     }
                 }
+                
                 else -> {
                     position = lowPriorityNum++ % showTaskNum
                     if (lowPriorityNum <= showTaskNum) {
@@ -156,7 +161,8 @@ class TaskListFragment : Fragment() {
                     }
                     
                     1 -> {
-                        startActivity<AdditionActivity>("add" to false, "index" to index, "task" to true)
+                        startActivity<AdditionActivity>("add" to false,
+                                "index" to index, "task" to true)
                     }
                     
                     2 -> {
@@ -190,7 +196,6 @@ class TaskListFragment : Fragment() {
                     else -> {
                     
                     }
-                    
                 }
             }
             show()
@@ -203,6 +208,7 @@ class TaskListFragment : Fragment() {
         } catch (e: Exception) {
             e.printStackTrace()
         }
-        Utils().saveString(ctx, getString(R.string.TaskInfoKey), GlobalValue.taskInfoArrayList.toString())
+        Utils().saveString(ctx, getString(R.string.TaskInfoKey),
+                GlobalValue.taskInfoArrayList.toString())
     }
 }
