@@ -208,7 +208,6 @@ class TaskListFragment : Fragment() {
         } catch (e: Exception) {
             e.printStackTrace()
         }
-        Utils().saveString(ctx, getString(R.string.TaskInfoKey),
-                GlobalValue.taskInfoArrayList.toString())
+        Utils().saveTaskInfoList(ctx)
     }
 }

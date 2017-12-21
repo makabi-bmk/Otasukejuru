@@ -45,8 +45,7 @@ class InputProgressActivity : AppCompatActivity() {
         })
         
         find<Button>(R.id.finishButton).onClick {
-            Utils().saveString(this@InputProgressActivity, getString(R.string.TaskInfoKey),
-                    GlobalValue.taskInfoArrayList.toString())
+            Utils().saveTaskInfoList(this@InputProgressActivity)
             finish()
         }
     }
