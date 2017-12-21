@@ -67,6 +67,21 @@ class Utils {
         return diffDays * 60 * 24 + afterTime + beforeTime
     }
     
+    fun saveTaskInfoList(ctx: Context) {
+        saveString(ctx, ctx.getString(R.string.TaskInfoKey),
+                GlobalValue.taskInfoArrayList.toString())
+    }
+    
+    fun saveScheduleInfoList(ctx: Context) {
+        saveString(ctx, ctx.getString(R.string.ScheduleInfoKey),
+                GlobalValue.scheduleInfoArrayList.toString())
+    }
+    
+    fun saveEveryInfoList(ctx: Context) {
+        saveString(ctx, ctx.getString(R.string.EveryInfoKey),
+                GlobalValue.everyInfoArrayList.toString())
+    }
+    
     // 設定値 String を保存（Context は Activity や Application や Service）
     fun saveString(ctx: Context, key: String, value: String) {
         val prefs = ctx.getSharedPreferences(ctx.getString(R.string.app_name), Context.MODE_PRIVATE)
@@ -137,7 +152,7 @@ class Utils {
         }
         tmpTaskInfoArray.sortByDescending { it.priority }
         tmpTaskInfoArray.forEach {
-            it.priority = when(it.priority) {
+            it.priority = when (it.priority) {
                 in 0..25 -> 3
                 in 26..50 -> 2
                 in 51..75 -> 1
