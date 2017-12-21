@@ -407,10 +407,12 @@ class ScheduleFragment : Fragment() {
     private fun deleteElement(isTask: Boolean, index: Int) {
         if (isTask) {
             GlobalValue.taskInfoArrayList.removeAt(index)
-            Utils().saveString(ctx, getString(R.string.TaskInfoKey), GlobalValue.taskInfoArrayList.toString())
+            Utils().saveString(ctx, getString(R.string.TaskInfoKey),
+                    GlobalValue.taskInfoArrayList.toString())
         } else {
             GlobalValue.scheduleInfoArrayList.removeAt(index)
-            Utils().saveString(ctx, getString(R.string.ScheduleInfoKey), GlobalValue.scheduleInfoArrayList.toString())
+            Utils().saveString(ctx, getString(R.string.ScheduleInfoKey),
+                    GlobalValue.scheduleInfoArrayList.toString())
         }
     }
 }

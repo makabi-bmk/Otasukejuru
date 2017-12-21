@@ -7,6 +7,7 @@ import android.widget.SeekBar
 import android.widget.TextView
 import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
+import jp.ict.muffin.otasukejuru.other.Utils
 import jp.ict.muffin.otasukejuru.ui.InputProgressActivityUI
 import org.jetbrains.anko.find
 import org.jetbrains.anko.sdk25.coroutines.onClick
@@ -41,11 +42,11 @@ class InputProgressActivity : AppCompatActivity() {
             //ツマミがリリースされた時に呼ばれる
             override fun onStopTrackingTouch(seekBar: SeekBar) {
             }
-            
         })
         
         find<Button>(R.id.finishButton).onClick {
-            //TODO:save data
+            Utils().saveString(this@InputProgressActivity, getString(R.string.TaskInfoKey),
+                    GlobalValue.taskInfoArrayList.toString())
             finish()
         }
     }
