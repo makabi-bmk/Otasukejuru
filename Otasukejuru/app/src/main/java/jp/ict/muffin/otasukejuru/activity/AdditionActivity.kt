@@ -398,7 +398,6 @@ class AdditionActivity : Activity() {
         setContentView(R.layout.set_task_repeat)
         setActionBar(find(R.id.toolbar_back))
         
-        
         find<Button>(R.id.button_next).setOnClickListener {
             val num = task_repeat_radio_group.checkedRadioButtonId
             taskRepeat = if (find<RadioButton>(num).text.toString() == "今日だけ") {
