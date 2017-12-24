@@ -7,7 +7,7 @@ android {
     buildToolsVersion '27.0.1'
     defaultConfig {
         applicationId "jp.ict.muffin.otasukejuru"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"

@@ -2,6 +2,7 @@ package jp.ict.muffin.otasukejuru.other
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.util.Log
 import com.squareup.moshi.Moshi
 import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.EveryInfo
@@ -45,7 +46,7 @@ class Utils {
         val beforeMonth: Int = beforeDate / 100
         val afterDay: Int = afterDate % 100
         val afterMonth: Int = afterDate / 100
-        return (totalDays[afterMonth] + afterDay - (totalDays[beforeMonth] + beforeDay))
+        return (totalDays[afterMonth - 1] + afterDay - (totalDays[beforeMonth - 1] + beforeDay))
     }
     
     @SuppressLint("SimpleDateFormat")
@@ -68,18 +69,20 @@ class Utils {
     }
     
     fun saveTaskInfoList(ctx: Context) {
+        Log.d("saveJSON", (GlobalValue.taskInfoArrayList).toString())
+        Log.d("saveJSON", JSONArray(GlobalValue.taskInfoArrayList).toString())
         saveString(ctx, ctx.getString(R.string.TaskInfoKey),
-                GlobalValue.taskInfoArrayList.toString())
+                JSONArray(GlobalValue.taskInfoArrayList).toString())
     }
     
     fun saveScheduleInfoList(ctx: Context) {
         saveString(ctx, ctx.getString(R.string.ScheduleInfoKey),
-                GlobalValue.scheduleInfoArrayList.toString())
+                JSONArray(GlobalValue.scheduleInfoArrayList).toString())
     }
     
     fun saveEveryInfoList(ctx: Context) {
         saveString(ctx, ctx.getString(R.string.EveryInfoKey),
-                GlobalValue.everyInfoArrayList.toString())
+                JSONArray(GlobalValue.everyInfoArrayList).toString())
     }
     
     // 設定値 String を保存（Context は Activity や Application や Service）
@@ -98,6 +101,10 @@ class Utils {
     
     fun parseData(ctx: Context, jsonDataString: String = "", parseKey: String = "") {
         val moshi = Moshi.Builder().build()
+        if (jsonDataString == "") {
+            return
+        }
+        
         when (parseKey) {
             ctx.getString(R.string.ScheduleInfoKey) -> {
                 val dataAdapter = moshi.adapter(ScheduleInfo::class.java)
