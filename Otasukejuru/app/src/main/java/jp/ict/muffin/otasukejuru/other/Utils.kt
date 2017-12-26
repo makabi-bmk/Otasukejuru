@@ -71,6 +71,8 @@ class Utils {
     }
     
     fun saveTaskInfoList(ctx: Context) {
+        setPriority()
+        
         val gson = GsonBuilder().create()
         val taskInfoJSONArray = gson.toJsonTree(GlobalValue.taskInfoArrayList).asJsonArray
         saveString(ctx, ctx.getString(R.string.TaskInfoKey),
