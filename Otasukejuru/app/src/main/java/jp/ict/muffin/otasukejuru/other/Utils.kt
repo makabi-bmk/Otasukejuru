@@ -2,7 +2,7 @@ package jp.ict.muffin.otasukejuru.other
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.util.Log
+import com.google.gson.GsonBuilder
 import com.squareup.moshi.Moshi
 import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.EveryInfo
@@ -12,6 +12,8 @@ import jp.ict.muffin.otasukejuru.`object`.TaskInfo
 import org.json.JSONArray
 import java.text.SimpleDateFormat
 import java.util.*
+
+
 
 
 class Utils {
@@ -69,20 +71,24 @@ class Utils {
     }
     
     fun saveTaskInfoList(ctx: Context) {
-        Log.d("saveJSON", (GlobalValue.taskInfoArrayList).toString())
-        Log.d("saveJSON", JSONArray(GlobalValue.taskInfoArrayList).toString())
+        val gson = GsonBuilder().create()
+        val taskInfoJSONArray = gson.toJsonTree(GlobalValue.taskInfoArrayList).asJsonArray
         saveString(ctx, ctx.getString(R.string.TaskInfoKey),
-                JSONArray(GlobalValue.taskInfoArrayList).toString())
+                taskInfoJSONArray.toString())
     }
     
     fun saveScheduleInfoList(ctx: Context) {
+        val gson = GsonBuilder().create()
+        val scheduleInfoJSONArray = gson.toJsonTree(GlobalValue.scheduleInfoArrayList).asJsonArray
         saveString(ctx, ctx.getString(R.string.ScheduleInfoKey),
-                JSONArray(GlobalValue.scheduleInfoArrayList).toString())
+                scheduleInfoJSONArray.toString())
     }
     
     fun saveEveryInfoList(ctx: Context) {
+        val gson = GsonBuilder().create()
+        val everyInfoJSONArray = gson.toJsonTree(GlobalValue.everyInfoArrayList).asJsonArray
         saveString(ctx, ctx.getString(R.string.EveryInfoKey),
-                JSONArray(GlobalValue.everyInfoArrayList).toString())
+                everyInfoJSONArray.toString())
     }
     
     // 設定値 String を保存（Context は Activity や Application や Service）
