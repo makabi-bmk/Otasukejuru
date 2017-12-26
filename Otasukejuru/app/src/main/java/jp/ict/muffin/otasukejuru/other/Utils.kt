@@ -157,7 +157,7 @@ class Utils {
         }
     }
     
-    fun setPriority() {
+    private fun setPriority() {
         val tmpTaskInfoArray = arrayListOf<TaskInfo>()
         GlobalValue.taskInfoArrayList.forEach {
             tmpTaskInfoArray.add(it)
