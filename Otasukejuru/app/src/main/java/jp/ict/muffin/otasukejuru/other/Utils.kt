@@ -2,8 +2,8 @@ package jp.ict.muffin.otasukejuru.other
 
 import android.annotation.SuppressLint
 import android.content.Context
-import com.google.gson.GsonBuilder
 import com.squareup.moshi.Moshi
+import com.squareup.moshi.Types
 import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.EveryInfo
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
@@ -12,8 +12,7 @@ import jp.ict.muffin.otasukejuru.`object`.TaskInfo
 import org.json.JSONArray
 import java.text.SimpleDateFormat
 import java.util.*
-
-
+import kotlin.collections.ArrayList
 
 
 class Utils {
@@ -73,24 +72,30 @@ class Utils {
     fun saveTaskInfoList(ctx: Context) {
         setPriority()
         
-        val gson = GsonBuilder().create()
-        val taskInfoJSONArray = gson.toJsonTree(GlobalValue.taskInfoArrayList).asJsonArray
+        val moshi = Moshi.Builder().build()
+        val taskArrayParameterizedType = Types.newParameterizedType(ArrayList::class.java, TaskInfo::class.java)
+        val adapter = moshi.adapter<ArrayList<TaskInfo>>(taskArrayParameterizedType)
+        
         saveString(ctx, ctx.getString(R.string.TaskInfoKey),
-                taskInfoJSONArray.toString())
+                adapter.toJson(GlobalValue.taskInfoArrayList).toString())
     }
     
     fun saveScheduleInfoList(ctx: Context) {
-        val gson = GsonBuilder().create()
-        val scheduleInfoJSONArray = gson.toJsonTree(GlobalValue.scheduleInfoArrayList).asJsonArray
+        val moshi = Moshi.Builder().build()
+        val taskArrayParameterizedType = Types.newParameterizedType(ArrayList::class.java, ScheduleInfo::class.java)
+        val adapter = moshi.adapter<ArrayList<ScheduleInfo>>(taskArrayParameterizedType)
+        
         saveString(ctx, ctx.getString(R.string.ScheduleInfoKey),
-                scheduleInfoJSONArray.toString())
+                adapter.toJson(GlobalValue.scheduleInfoArrayList).toString())
     }
     
     fun saveEveryInfoList(ctx: Context) {
-        val gson = GsonBuilder().create()
-        val everyInfoJSONArray = gson.toJsonTree(GlobalValue.everyInfoArrayList).asJsonArray
+        val moshi = Moshi.Builder().build()
+        val taskArrayParameterizedType = Types.newParameterizedType(ArrayList::class.java, EveryInfo::class.java)
+        val adapter = moshi.adapter<ArrayList<EveryInfo>>(taskArrayParameterizedType)
+        
         saveString(ctx, ctx.getString(R.string.EveryInfoKey),
-                everyInfoJSONArray.toString())
+                adapter.toJson(GlobalValue.everyInfoArrayList).toString())
     }
     
     // 設定値 String を保存（Context は Activity や Application や Service）
