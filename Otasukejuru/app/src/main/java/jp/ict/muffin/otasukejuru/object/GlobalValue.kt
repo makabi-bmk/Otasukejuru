@@ -7,6 +7,9 @@ object GlobalValue {
     var taskInfoArrayList: ArrayList<TaskInfo> = ArrayList()
     var scheduleInfoArrayList: ArrayList<ScheduleInfo> = ArrayList()
     var everyInfoArrayList: ArrayList<EveryInfo> = ArrayList()
+    var friendTaskInfoArrayList: ArrayList<TaskInfo> = ArrayList()
+    var friendScheduleInfoArrayList: ArrayList<ScheduleInfo> = ArrayList()
+    var friendEveryInfoArrayList: ArrayList<EveryInfo> = ArrayList()
     var subTaskInfoArrayList: java.util.ArrayList<SubTaskInfo> = ArrayList()
     var SERVER_URL: String = ""
     var focusTimeG: Long = 1
