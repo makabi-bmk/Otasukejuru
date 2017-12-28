@@ -535,14 +535,12 @@ class AdditionActivity : Activity() {
         if (isAdd) {
             GlobalValue.everyInfoArrayList.add(0, everyInformation)
             
-            val postEveryInfo = AddEveryTaskInfoAsync()
-            postEveryInfo.execute(everyInformation)
+            AddEveryTaskInfoAsync().execute(everyInformation)
         } else {
             everyInformation._id = GlobalValue.everyInfoArrayList[index]._id
             GlobalValue.everyInfoArrayList[index] = everyInformation
             
-            val updateEveryInfo = UpdateEveryInfoAsync()
-            updateEveryInfo.execute(everyInformation)
+            UpdateEveryInfoAsync().execute(everyInformation)
         }
         Utils().saveEveryInfoList(ctx)
     }
@@ -559,14 +557,12 @@ class AdditionActivity : Activity() {
         if (isAdd) {
             GlobalValue.scheduleInfoArrayList.add(0, scheduleInformation)
             
-            val postScheduleInfo = AddScheduleTaskInfoAsync()
-            postScheduleInfo.execute(scheduleInformation)
+            AddScheduleTaskInfoAsync().execute(scheduleInformation)
         } else {
             scheduleInformation._id = GlobalValue.scheduleInfoArrayList[index]._id
             GlobalValue.scheduleInfoArrayList[index] = scheduleInformation
             
-            val updateScheduleInfo = UpdateScheduleInfoAsync()
-            updateScheduleInfo.execute(scheduleInformation)
+            UpdateScheduleInfoAsync().execute(scheduleInformation)
         }
         Utils().saveScheduleInfoList(ctx)
     }
@@ -617,15 +613,13 @@ class AdditionActivity : Activity() {
         if (isAdd) {
             GlobalValue.taskInfoArrayList.add(0, taskInformation)
             
-            val postTaskInfo = AddTaskInfoAsync()
-            postTaskInfo.execute(taskInformation)
-
+            AddTaskInfoAsync().execute(taskInformation)
+            
         } else {
             taskInformation._id = GlobalValue.taskInfoArrayList[index]._id
             GlobalValue.taskInfoArrayList[index] = taskInformation
             
-            val updateTaskInfo = UpdateTaskInfoAsync()
-            updateTaskInfo.execute(taskInformation)
+            UpdateTaskInfoAsync().execute(taskInformation)
         }
         
         Utils().saveTaskInfoList(ctx)
@@ -640,8 +634,7 @@ class AdditionActivity : Activity() {
             time = "$finishYear-$finishMonth-$finishDay $finishHour:$finishMinute:00"
         }
         
-        val update = UpdateTaskInfoAsync()
-        update.execute(GlobalValue.taskInfoArrayList[index])
+        UpdateTaskInfoAsync().execute(GlobalValue.taskInfoArrayList[index])
         
         GlobalValue.taskInfoArrayList[index].subTaskArrayList.add(subTaskInfo)
         Utils().saveTaskInfoList(ctx)

@@ -12,6 +12,7 @@ import android.view.Menu
 import android.view.MenuItem
 import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
+import jp.ict.muffin.otasukejuru.communication.GetInformation
 import jp.ict.muffin.otasukejuru.fragment.ScheduleFragment
 import jp.ict.muffin.otasukejuru.fragment.TaskListFragment
 import jp.ict.muffin.otasukejuru.fragment.TimerSetTimeFragment
@@ -69,6 +70,7 @@ class MainActivity : AppCompatActivity() {
         }
         
         loadInfoList()
+        GetInformation().execute()
     }
     
     private fun loadInfoList() {
