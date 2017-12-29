@@ -18,6 +18,7 @@ import jp.ict.muffin.otasukejuru.`object`.TaskInfo
 import jp.ict.muffin.otasukejuru.activity.AdditionActivity
 import jp.ict.muffin.otasukejuru.activity.InputProgressActivity
 import jp.ict.muffin.otasukejuru.activity.TimeSetActivity
+import jp.ict.muffin.otasukejuru.communication.DeleteTaskInfoAsync
 import jp.ict.muffin.otasukejuru.other.Utils
 import jp.ict.muffin.otasukejuru.ui.TaskListFragmentUI
 import kotlinx.android.synthetic.main.fragment_list_todo.*
@@ -203,6 +204,8 @@ class TaskListFragment : Fragment() {
     }
     
     private fun deleteTask(element: TaskInfo) {
+        DeleteTaskInfoAsync().execute(element)
+        
         try {
             GlobalValue.taskInfoArrayList.remove(element)
         } catch (e: Exception) {
