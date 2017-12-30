@@ -120,37 +120,37 @@ class Utils {
         
         when (parseKey) {
             ctx.getString(R.string.ScheduleInfoKey) -> {
-                val dataAdapter = moshi.adapter(ScheduleInfo::class.java)
+                val scheduleInfoAdapter = moshi.adapter(ScheduleInfo::class.java)
                 
                 val jsonArray = JSONArray(jsonDataString)
                 val tmpScheduleArrayList: ArrayList<ScheduleInfo> = arrayListOf()
                 (0 until jsonArray.length()).forEach { i ->
                     val dataJSON = jsonArray.getJSONObject(i).toString()
-                    dataAdapter.fromJson(dataJSON)?.let { tmpScheduleArrayList.add(it) }
+                    scheduleInfoAdapter.fromJson(dataJSON)?.let { tmpScheduleArrayList.add(it) }
                 }
                 GlobalValue.scheduleInfoArrayList = tmpScheduleArrayList
             }
             
             ctx.getString(R.string.TaskInfoKey) -> {
-                val dataAdapter = moshi.adapter(TaskInfo::class.java)
+                val taskInfoAdapter = moshi.adapter(TaskInfo::class.java)
                 
                 val jsonArray = JSONArray(jsonDataString)
                 val tmpTaskArrayList: ArrayList<TaskInfo> = arrayListOf()
                 (0 until jsonArray.length()).forEach { i ->
                     val dataJSON = jsonArray.getJSONObject(i).toString()
-                    dataAdapter.fromJson(dataJSON)?.let { tmpTaskArrayList.add(it) }
+                    taskInfoAdapter.fromJson(dataJSON)?.let { tmpTaskArrayList.add(it) }
                 }
                 GlobalValue.taskInfoArrayList = tmpTaskArrayList
             }
             
             ctx.getString(R.string.EveryInfoKey) -> {
-                val dataAdapter = moshi.adapter(EveryInfo::class.java)
+                val everyInfoAdapter = moshi.adapter(EveryInfo::class.java)
                 
                 val jsonArray = JSONArray(jsonDataString)
                 val tmpEveryArrayList: ArrayList<EveryInfo> = arrayListOf()
                 (0 until jsonArray.length()).forEach { i ->
                     val dataJSON = jsonArray.getJSONObject(i).toString()
-                    dataAdapter.fromJson(dataJSON)?.let { tmpEveryArrayList.add(it) }
+                    everyInfoAdapter.fromJson(dataJSON)?.let { tmpEveryArrayList.add(it) }
                 }
                 GlobalValue.everyInfoArrayList = tmpEveryArrayList
             }
@@ -158,33 +158,36 @@ class Utils {
     }
     
     private fun setPriority() {
-        val tmpTaskInfoArray = arrayListOf<TaskInfo>()
+        val sortedTaskInfoArray = arrayListOf<TaskInfo>()
         GlobalValue.taskInfoArrayList.forEach {
-            tmpTaskInfoArray.add(it)
+            sortedTaskInfoArray.add(it)
         }
         
-        tmpTaskInfoArray.forEach {
-            val diffDays = getDiffDays(it.due_date)
-            val taskPriority = it.priority
-            it.priority =
-                    taskPriority / 100 * 15 + taskPriority % 10 / 10 * 5 +
-                            taskPriority % 100 * 10 + it.progress % 50 + (10 - diffDays) * 6
-        }
-        tmpTaskInfoArray.sortByDescending { it.priority }
-        tmpTaskInfoArray.forEach {
-            it.priority = when (it.priority) {
-                in 0..25 -> 3
-                in 26..50 -> 2
-                in 51..75 -> 1
-                else -> 0
+        sortedTaskInfoArray.apply {
+            forEach {
+                val diffDays = getDiffDays(it.due_date)
+                val taskPriority = it.priority
+                it.priority =
+                        taskPriority / 100 * 15 + taskPriority % 10 / 10 * 5 +
+                                taskPriority % 100 * 10 + it.progress % 50 + (10 - diffDays) * 6
+            }
+            sortByDescending { it.priority }
+            forEach {
+                it.priority = when (it.priority) {
+                    in 0..25 -> 3
+                    in 26..50 -> 2
+                    in 51..75 -> 1
+                    else -> 0
+                }
             }
         }
-        GlobalValue.taskInfoArrayList = tmpTaskInfoArray
+        GlobalValue.taskInfoArrayList = sortedTaskInfoArray
     }
     
     private fun getDiffDays(afterDate: String): Int {
         val calendar = Calendar.getInstance()
-        val today = (calendar.get(Calendar.MONTH) + 1) * 100 + calendar.get(Calendar.DAY_OF_MONTH)
+        val today = (calendar.get(Calendar.MONTH) + 1) * 100 +
+                calendar.get(Calendar.DAY_OF_MONTH)
         return Utils().diffDayNum(today, Utils().getDate(afterDate),
                 calendar.get(Calendar.YEAR))
     }
