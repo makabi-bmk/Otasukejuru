@@ -73,7 +73,8 @@ class Utils {
         setPriority()
         
         val moshi = Moshi.Builder().build()
-        val taskArrayParameterizedType = Types.newParameterizedType(ArrayList::class.java, TaskInfo::class.java)
+        val taskArrayParameterizedType =
+                Types.newParameterizedType(ArrayList::class.java, TaskInfo::class.java)
         val adapter = moshi.adapter<ArrayList<TaskInfo>>(taskArrayParameterizedType)
         
         saveString(ctx, ctx.getString(R.string.TaskInfoKey),
@@ -82,7 +83,8 @@ class Utils {
     
     fun saveScheduleInfoList(ctx: Context) {
         val moshi = Moshi.Builder().build()
-        val taskArrayParameterizedType = Types.newParameterizedType(ArrayList::class.java, ScheduleInfo::class.java)
+        val taskArrayParameterizedType =
+                Types.newParameterizedType(ArrayList::class.java, ScheduleInfo::class.java)
         val adapter = moshi.adapter<ArrayList<ScheduleInfo>>(taskArrayParameterizedType)
         
         saveString(ctx, ctx.getString(R.string.ScheduleInfoKey),
@@ -91,7 +93,8 @@ class Utils {
     
     fun saveEveryInfoList(ctx: Context) {
         val moshi = Moshi.Builder().build()
-        val taskArrayParameterizedType = Types.newParameterizedType(ArrayList::class.java, EveryInfo::class.java)
+        val taskArrayParameterizedType =
+                Types.newParameterizedType(ArrayList::class.java, EveryInfo::class.java)
         val adapter = moshi.adapter<ArrayList<EveryInfo>>(taskArrayParameterizedType)
         
         saveString(ctx, ctx.getString(R.string.EveryInfoKey),
