@@ -30,6 +30,7 @@ import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.textColor
 import java.util.*
+import org.jetbrains.anko.*
 
 
 class TaskListFragment : Fragment() {
@@ -109,7 +110,7 @@ class TaskListFragment : Fragment() {
                         createDialog(element, index)
                     }
                 }
-                find<RelativeLayout>(R.id.taskProgress).scaleY = element.progress * 1.2f
+                find<RelativeLayout>(R.id.taskProgress).scaleY = element.progress / 100f * dip(70)
                 
             }
             

@@ -260,7 +260,7 @@ class ScheduleFragment : Fragment() {
                             createDialog(index, true)
                         }
                     }
-                    find<RelativeLayout>(R.id.taskProgress).scaleY = taskInfo.progress * 1.2f
+                    find<RelativeLayout>(R.id.taskProgress).scaleY = taskInfo.progress / 100f * dip(70)
                 }
                 
                 find<LinearLayout>(R.id.taskLinear).addView(linearLayout, taskCount)
