@@ -47,9 +47,6 @@ dependencies {
     compile "org.jetbrains.anko:anko-sdk15-coroutines:$anko_version"
     compile "org.jetbrains.anko:anko-appcompat-v7-coroutines:$anko_version"
     compile "org.jetbrains.anko:anko-design-coroutines:$anko_version"
-    compile 'com.google.code.gson:gson:2.8.2'
-    compile 'se.ansman.kotshi:api:0.3.0-beta3'
-    kapt 'se.ansman.kotshi:compiler:0.3.0-beta3'
     testCompile 'junit:junit:4.12'
     compile files('libs/moshi-1.5.0.jar')
 }
