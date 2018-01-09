@@ -105,7 +105,7 @@ class ScheduleFragment : Fragment() {
         mTimer?.cancel()
         mTimer = null
     }
-    
+
     private fun setEvery() {
         val calendar = Calendar.getInstance()
         val today = (calendar.get(Calendar.MONTH) + 1) * 100 + calendar.get(Calendar.DAY_OF_MONTH)
