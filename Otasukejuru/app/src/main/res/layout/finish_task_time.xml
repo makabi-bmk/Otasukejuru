@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/back"
@@ -17,7 +18,9 @@
             android:id="@+id/button_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/ic_arrow_back_white_48dp"/>
+            android:background="@drawable/ic_arrow_back_white_48dp"
+            android:contentDescription="backButton"
+            tools:ignore="ContentDescription"/>
     </Toolbar>
 
     <RelativeLayout
@@ -41,9 +44,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/title"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="50dp"
             android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginTop="10dp"
             android:text="期限はいつまでですか？"
             android:textSize="25sp"/>
 
@@ -58,15 +61,14 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true">
+            android:orientation="vertical">
 
             <LinearLayout
                 android:id="@+id/month_day"
                 android:layout_width="wrap_content"
                 android:layout_height="170dp"
-                android:layout_centerHorizontal="true"
                 android:gravity="center"
                 android:orientation="horizontal">
 
@@ -103,8 +105,6 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="170dp"
-                android:layout_below="@+id/month_day"
-                android:layout_centerHorizontal="true"
                 android:orientation="horizontal">
 
                 <NumberPicker
@@ -137,19 +137,6 @@
                     android:textSize="16sp"/>
             </LinearLayout>
         </LinearLayout>
-
-
-        <!--<Button-->
-        <!--android:id="@+id/no_limit"-->
-        <!--style="?android:attr/borderlessButtonStyle"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_alignParentBottom="true"-->
-        <!--android:layout_alignParentLeft="true"-->
-        <!--android:background="@color/back"-->
-        <!--android:text="期限なし"-->
-        <!--android:textColor="@color/colorPrimary"-->
-        <!--android:textSize="20sp"/>-->
 
         <Button
             android:id="@+id/button_next"

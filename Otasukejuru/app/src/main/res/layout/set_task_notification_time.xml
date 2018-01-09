@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/back"
@@ -17,7 +18,8 @@
             android:id="@+id/button_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/ic_arrow_back_white_48dp"/>
+            android:background="@drawable/ic_arrow_back_white_48dp"
+            android:contentDescription="backButton"/>
     </Toolbar>
 
     <RelativeLayout
@@ -32,8 +34,8 @@
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
                 android:text="タスク終了の目安時間"
                 android:textColor="@color/colorPrimary"
                 android:textSize="30sp"/>
@@ -42,9 +44,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/title"
-                android:layout_marginTop="10dp"
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
+                android:layout_marginTop="10dp"
                 android:text="タスクが終了する目安は何時間ですか？"
                 android:textSize="25sp"/>
 
@@ -64,7 +66,8 @@
                 android:inputType="number"
                 android:maxLines="1"
                 android:textSize="25sp"
-                android:theme="@style/EditTextColorControl"/>
+                android:theme="@style/EditTextColorControl"
+                tools:ignore="LabelFor"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -79,7 +82,8 @@
                 android:inputType="number"
                 android:maxLines="1"
                 android:textSize="25sp"
-                android:theme="@style/EditTextColorControl"/>
+                android:theme="@style/EditTextColorControl"
+                tools:ignore="LabelFor"/>
 
             <TextView
                 android:layout_width="wrap_content"

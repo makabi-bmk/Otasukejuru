@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:ignore="UselessParent">
 
         <RelativeLayout
             android:id="@+id/tmpRelativeLayout"
@@ -34,7 +36,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/mostPriorityTextView"
                 android:background="@color/mostPriority"
-                android:contentDescription=""/>
+                android:contentDescription="mostPriorityLine"/>
 
             <LinearLayout
                 android:id="@+id/mostPriorityCardLinear"
@@ -63,7 +65,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/highPriorityTextView"
                 android:background="@color/highPriority"
-                android:contentDescription=""/>
+                android:contentDescription="highPriorityLine"/>
 
             <LinearLayout
                 android:id="@+id/highPriorityCardLinear1"
@@ -100,7 +102,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/middlePriorityTextView"
                 android:background="@color/middlePriority"
-                android:contentDescription=""/>
+                android:contentDescription="middlePriorityLine"/>
 
             <LinearLayout
                 android:id="@+id/middlePriorityCardLinear1"
@@ -137,7 +139,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/lowPriorityTextView"
                 android:background="@color/lowPriority"
-                android:contentDescription=""/>
+                android:contentDescription="lowPriorityLine"/>
 
             <LinearLayout
                 android:id="@+id/lowPriorityCardLinear1"

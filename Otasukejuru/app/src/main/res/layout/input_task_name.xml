@@ -17,7 +17,8 @@
             android:id="@+id/button_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/ic_arrow_back_white_48dp"/>
+            android:background="@drawable/ic_arrow_back_white_48dp"
+            android:contentDescription="backButton"/>
     </Toolbar>
 
     <RelativeLayout

@@ -21,7 +21,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="0dp"
             android:background="@drawable/ic_arrow_back_white_48dp"
-            android:padding="0dp"/>
+            android:padding="0dp"
+            android:contentDescription="backButton"/>
     </Toolbar>
 
     <LinearLayout
@@ -35,7 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="何を追加しますか?"
-            android:textSize="30dp"/>
+            android:textSize="30sp"/>
 
 
         <LinearLayout
@@ -52,7 +53,7 @@
                 android:background="@color/colorPrimary"
                 android:text="予定"
                 android:textColor="#000"
-                android:textSize="30dp"/>
+                android:textSize="30sp"/>
 
             <Button
                 android:id="@+id/button_task"
@@ -62,7 +63,7 @@
                 android:background="@color/colorPrimary"
                 android:text="タスク"
                 android:textColor="#000"
-                android:textSize="30dp"/>
+                android:textSize="30sp"/>
 
         </LinearLayout>
 

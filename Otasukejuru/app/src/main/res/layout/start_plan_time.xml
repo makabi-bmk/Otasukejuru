@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/back"
@@ -19,7 +20,8 @@
             android:id="@+id/button_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/ic_arrow_back_white_48dp"/>
+            android:background="@drawable/ic_arrow_back_white_48dp"
+            android:contentDescription="backButton"/>
     </Toolbar>
 
     <RelativeLayout
@@ -30,8 +32,8 @@
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
             android:text="予定開始時間"
             android:textColor="@color/colorPrimary"
             android:textSize="30sp"/>
@@ -40,8 +42,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/title"
-            android:layout_marginTop="10dp"
             android:layout_marginLeft="50dp"
+            android:layout_marginTop="10dp"
             android:text="予定はいつからですか？"
             android:textSize="25sp"/>
 
@@ -55,7 +57,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true">
+            android:layout_centerVertical="true"
+            tools:ignore="UselessParent">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -68,7 +71,6 @@
                     android:id="@+id/month_day"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
                     android:gravity="center"
                     android:orientation="horizontal">
 
@@ -102,8 +104,6 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/month_day"
-                    android:layout_centerHorizontal="true"
                     android:gravity="center"
                     android:orientation="horizontal">
 
