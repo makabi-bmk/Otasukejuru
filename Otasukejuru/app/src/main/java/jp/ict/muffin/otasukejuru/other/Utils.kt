@@ -103,17 +103,16 @@ class Utils {
     
     // 設定値 String を保存（Context は Activity や Application や Service）
     private fun saveString(ctx: Context, key: String, value: String) {
-        val prefs = ctx.getSharedPreferences(ctx.getString(R.string.app_name), Context.MODE_PRIVATE)
-        val editor = prefs.edit()
-        editor.putString(key, value)
-        editor.apply()
+        ctx.getSharedPreferences(ctx.getString(R.string.app_name), Context.MODE_PRIVATE).edit().apply {
+            putString(key, value)
+        }.apply()
     }
     
     // 設定値 String を取得（Context は Activity や Application や Service）
-    fun loadString(ctx: Context, key: String): String {
-        val prefs = ctx.getSharedPreferences(ctx.getString(R.string.app_name), Context.MODE_PRIVATE)
-        return prefs.getString(key, "") // 第２引数はkeyが存在しない時に返す初期値
-    }
+    fun loadString(ctx: Context, key: String): String =
+            ctx.getSharedPreferences(ctx.getString(R.string.app_name),
+                    Context.MODE_PRIVATE).getString(key, "") // 第２引数はkeyが存在しない時に返す初期値
+    
     
     fun parseData(ctx: Context, jsonDataString: String = "", parseKey: String = "") {
         val moshi = Moshi.Builder().build()

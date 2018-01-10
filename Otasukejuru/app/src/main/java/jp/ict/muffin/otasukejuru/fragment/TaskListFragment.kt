@@ -25,12 +25,12 @@ import kotlinx.android.synthetic.main.fragment_list_todo.*
 import kotlinx.android.synthetic.main.task_card_view.view.*
 import org.jetbrains.anko.AnkoContext
 import org.jetbrains.anko.collections.forEachWithIndex
+import org.jetbrains.anko.dip
 import org.jetbrains.anko.find
 import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.textColor
 import java.util.*
-import org.jetbrains.anko.*
 
 
 class TaskListFragment : Fragment() {
@@ -196,12 +196,10 @@ class TaskListFragment : Fragment() {
                     }
                     
                     else -> {
-                    
                     }
                 }
             }
-            show()
-        }
+        }.show()
     }
     
     private fun deleteTask(element: TaskInfo) {

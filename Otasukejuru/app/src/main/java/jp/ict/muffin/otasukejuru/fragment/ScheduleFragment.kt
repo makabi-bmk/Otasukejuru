@@ -119,7 +119,6 @@ class ScheduleFragment : Fragment() {
             
             if (Utils().getDate(it.start_time) in today..showScheduleDate) {
                 val schedule = RelativeLayout(context)
-                val rParam = RelativeLayout.LayoutParams(0, 0)
                 val endMinute = Utils().getTime(it.end_time) / 100 * 60 +
                         Utils().getTime(it.end_time) % 100
                 val startMinute = Utils().getTime(it.start_time) / 100 * 60 +
@@ -127,18 +126,17 @@ class ScheduleFragment : Fragment() {
                 val startDate = Utils().getDate(it.start_time)
                 val endDate = Utils().getDate(it.end_time)
                 
-                rParam.apply {
-                    width = matchParent
-                    height = dip((Utils().diffDayNum(startDate, endDate,
-                            calendar.get(Calendar.YEAR)) * 1440 - startMinute + endMinute) * 0.15f)
-                    Log.d("height", diffDays.toString())
-                    leftMargin = dip(120)
-                    rightMargin = dip(60)
-                    topMargin = dip(0.15f * (diffDays * 1440 + startMinute)) + dip(10)
-                }
-                
                 schedule.apply {
-                    layoutParams = rParam
+                    layoutParams = RelativeLayout.LayoutParams(0, 0).apply {
+                        width = matchParent
+                        height = dip((Utils().diffDayNum(startDate, endDate,
+                                calendar.get(Calendar.YEAR)) * 1440 - startMinute + endMinute) * 0.15f)
+                        Log.d("height", diffDays.toString())
+                        leftMargin = dip(120)
+                        rightMargin = dip(60)
+                        topMargin = dip(0.15f * (diffDays * 1440 + startMinute)) + dip(10)
+                        
+                    }
                     backgroundColor = Color.argb(100, 112, 173, 71)
                     setOnClickListener {
                         createDialog(index, false)
@@ -146,15 +144,12 @@ class ScheduleFragment : Fragment() {
                 }
                 
                 val scheduleNameText = TextView(context)
-                val tParam = RelativeLayout.LayoutParams(wrapContent, wrapContent)
-                
-                tParam.apply {
-                    addRule(RelativeLayout.CENTER_HORIZONTAL)
-                    addRule(RelativeLayout.CENTER_VERTICAL)
-                }
                 
                 scheduleNameText.apply {
-                    layoutParams = tParam
+                    layoutParams = RelativeLayout.LayoutParams(wrapContent, wrapContent).apply {
+                        addRule(RelativeLayout.CENTER_HORIZONTAL)
+                        addRule(RelativeLayout.CENTER_VERTICAL)
+                    }
                     text = it.every_name
                 }
                 
@@ -177,7 +172,6 @@ class ScheduleFragment : Fragment() {
             
             if (Utils().getDate(it.start_time) in today..showScheduleDate) {
                 val schedule = RelativeLayout(context)
-                val rParam = RelativeLayout.LayoutParams(0, 0)
                 val endMinute = Utils().getTime(it.end_time) / 100 * 60 +
                         Utils().getTime(it.end_time) % 100
                 val startMinute = Utils().getTime(it.start_time) / 100 * 60 +
@@ -185,17 +179,15 @@ class ScheduleFragment : Fragment() {
                 val startDate = Utils().getDate(it.start_time)
                 val endDate = Utils().getDate(it.end_time)
                 
-                rParam.apply {
-                    width = matchParent
-                    height = dip((Utils().diffDayNum(startDate, endDate,
-                            calendar.get(Calendar.YEAR)) * 1440 - startMinute + endMinute) * 0.15f)
-                    leftMargin = dip(120)
-                    rightMargin = dip(60)
-                    topMargin = dip(0.15f * (diffDays * 1440 + startMinute)) + dip(10)
-                }
-                
                 schedule.apply {
-                    layoutParams = rParam
+                    layoutParams = RelativeLayout.LayoutParams(0, 0).apply {
+                        width = matchParent
+                        height = dip((Utils().diffDayNum(startDate, endDate,
+                                calendar.get(Calendar.YEAR)) * 1440 - startMinute + endMinute) * 0.15f)
+                        leftMargin = dip(120)
+                        rightMargin = dip(60)
+                        topMargin = dip(0.15f * (diffDays * 1440 + startMinute)) + dip(10)
+                    }
                     backgroundColor = Color.argb(100, 112, 173, 71)
                     setOnClickListener {
                         createDialog(index, false)
@@ -203,15 +195,12 @@ class ScheduleFragment : Fragment() {
                 }
                 
                 val scheduleNameText = TextView(context)
-                val tParam = RelativeLayout.LayoutParams(wrapContent, wrapContent)
-                
-                tParam.apply {
-                    addRule(RelativeLayout.CENTER_HORIZONTAL)
-                    addRule(RelativeLayout.CENTER_VERTICAL)
-                }
                 
                 scheduleNameText.apply {
-                    layoutParams = tParam
+                    layoutParams = RelativeLayout.LayoutParams(wrapContent, wrapContent).apply {
+                        addRule(RelativeLayout.CENTER_HORIZONTAL)
+                        addRule(RelativeLayout.CENTER_VERTICAL)
+                    }
                     text = it.schedule_name
                 }
                 
@@ -230,7 +219,7 @@ class ScheduleFragment : Fragment() {
         var taskCount = 0
         
         (GlobalValue.taskInfoArrayList).forEachWithIndex { index, taskInfo ->
-            val hoge = Utils().getTime(taskInfo.due_date) / 100 * 60 +
+            val diffTimeMin = Utils().getTime(taskInfo.due_date) / 100 * 60 +
                     Utils().getTime(taskInfo.due_date) % 100
             
             val diffDays = Utils().diffDayNum(today, Utils().getDate(taskInfo.due_date),
@@ -260,7 +249,8 @@ class ScheduleFragment : Fragment() {
                             createDialog(index, true)
                         }
                     }
-                    find<RelativeLayout>(R.id.taskProgress).scaleY = taskInfo.progress / 100f * dip(70)
+                    find<RelativeLayout>(R.id.taskProgress).scaleY =
+                            taskInfo.progress / 100f * dip(70)
                 }
                 
                 find<LinearLayout>(R.id.taskLinear).addView(linearLayout, taskCount)
@@ -270,7 +260,7 @@ class ScheduleFragment : Fragment() {
                 
                 lParam.apply {
                     width = 5
-                    height = diffDays * dip(200) + (hoge *
+                    height = diffDays * dip(200) + (diffTimeMin *
                             0.13f).toInt() + dip(50)//dip(25)
                     leftMargin = dip(80 + 45 + 90 * taskCount)
                 }

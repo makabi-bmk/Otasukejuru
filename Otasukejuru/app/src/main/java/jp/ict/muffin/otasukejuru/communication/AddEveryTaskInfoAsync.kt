@@ -20,10 +20,10 @@ class AddEveryTaskInfoAsync : AsyncTask<EveryInfo, Void, Unit>() {
     private fun post(url: String, json: String): String? {
         try {
             val body = RequestBody.create(mediaType, json)
-            val request = Request.Builder()
-                    .url(url)
-                    .post(body)
-                    .build()
+            val request = Request.Builder().apply {
+                url(url)
+                post(body)
+            }.build()
             val response = client.newCall(request).execute()
             return response.body()?.string()
         } catch (e: Exception) {
@@ -34,8 +34,7 @@ class AddEveryTaskInfoAsync : AsyncTask<EveryInfo, Void, Unit>() {
     
     private fun convertToJson(everyInfo: EveryInfo): String {
         val moshi = Moshi.Builder().build()
-        val adapter = moshi.adapter(EveryInfo::class.java)
-        
-        return adapter.toJson(everyInfo)
+        val moshiEveryAdapter = moshi.adapter(EveryInfo::class.java)
+        return moshiEveryAdapter.toJson(everyInfo)
     }
 }

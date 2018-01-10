@@ -96,15 +96,12 @@ class GetInformation : AsyncTask<Unit, Unit, Unit>() {
         val moshi = Moshi.Builder().build()
         val adapter = moshi.adapter(TaskInfo::class.java)
         
-        Log.d("Response", response)
         var jsonArray = JSONArray()
         try {
-            val jsonObject = JSONObject(response)
-            jsonArray = jsonObject.getJSONArray("todo_list")
+            jsonArray = JSONObject(response).getJSONArray("todo_list")
         } catch (e: JSONException) {
             e.printStackTrace()
         }
-        Log.d("json", jsonArray.toString())
         
         val taskInfoArray = arrayListOf<TaskInfo>()
         (0 until jsonArray.length()).forEach { i ->

@@ -1,5 +1,7 @@
 package jp.ict.muffin.otasukejuru.`object`
 
+import okhttp3.MediaType
+
 
 object GlobalValue {
     var displayWidth: Int = 0
@@ -15,4 +17,5 @@ object GlobalValue {
     var intervalTimeG: Long = 0
     var notificationId = "notificationId"
     var notificationContent = "content"
+    val mediaType = MediaType.parse("application/json; charset=utf-8")
 }

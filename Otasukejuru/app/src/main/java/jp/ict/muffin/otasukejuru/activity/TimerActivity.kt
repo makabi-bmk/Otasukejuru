@@ -21,6 +21,7 @@ import org.jetbrains.anko.ctx
 import org.jetbrains.anko.find
 import org.jetbrains.anko.setContentView
 import java.util.*
+import kotlin.collections.HashMap
 
 class TimerActivity : Activity() {
     private var time: Long = 0
@@ -43,13 +44,10 @@ class TimerActivity : Activity() {
             startTimer()
         }
         
-        val params: ArrayList<HashMap<String, Int>> = java.util.ArrayList()
-        val mapSI = HashMap<String, Int>()
-        mapSI.apply {
+        val params: ArrayList<HashMap<String, Int>> = arrayListOf(HashMap<String, Int>().apply {
             put("color", ContextCompat.getColor(ctx, R.color.mostPriority))
             put("value", 60)
-        }
-        params.add(mapSI)
+        })
         
         val circleGraphView = CircleGraphView(ctx, params, true)
         find<FrameLayout>(R.id.circleFrame).addView(circleGraphView)
@@ -71,11 +69,14 @@ class TimerActivity : Activity() {
     
     private fun scheduleNotification(content: String, calendar: Calendar, id: Int) {
         val notificationIntent = Intent(this, AlarmReceiver::class.java)
-        notificationIntent.putExtra(notificationId, id)
-        notificationIntent.putExtra(notificationContent, content)
-        val pendingIntent = PendingIntent.getBroadcast(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT)
+        notificationIntent.apply {
+            putExtra(notificationId, id)
+            putExtra(notificationContent, content)
+        }
+        val pendingIntent = PendingIntent.getBroadcast(this, 0,
+                notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT)
         
-        val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, pendingIntent)
+        (getSystemService(Context.ALARM_SERVICE) as AlarmManager)
+                .setExact(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, pendingIntent)
     }
 }
