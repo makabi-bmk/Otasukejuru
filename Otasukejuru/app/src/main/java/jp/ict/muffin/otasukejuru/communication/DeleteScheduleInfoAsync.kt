@@ -33,8 +33,8 @@ class DeleteScheduleInfoAsync : AsyncTask<ScheduleInfo, Void, Unit>() {
     
     private fun convertToJson(scheduleInfo: ScheduleInfo): String {
         val moshi = Moshi.Builder().build()
-        val moshiScheduleAdapter = moshi.adapter(ScheduleInfo::class.java)
+        val scheduleMoshiAdapter = moshi.adapter(ScheduleInfo::class.java)
         
-        return moshiScheduleAdapter.toJson(scheduleInfo)
+        return scheduleMoshiAdapter.toJson(scheduleInfo)
     }
 }

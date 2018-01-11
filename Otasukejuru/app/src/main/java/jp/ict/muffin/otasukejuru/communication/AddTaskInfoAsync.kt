@@ -33,8 +33,8 @@ class AddTaskInfoAsync : AsyncTask<TaskInfo, Void, Unit>() {
     
     private fun convertToJson(taskInfo: TaskInfo): String {
         val moshi = Moshi.Builder().build()
-        val moshiTaskAdapter = moshi.adapter(TaskInfo::class.java)
+        val taskMoshiAdapter = moshi.adapter(TaskInfo::class.java)
         
-        return moshiTaskAdapter.toJson(taskInfo)
+        return taskMoshiAdapter.toJson(taskInfo)
     }
 }

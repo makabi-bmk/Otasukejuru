@@ -33,8 +33,8 @@ class UpdateEveryInfoAsync : AsyncTask<EveryInfo, Void, Unit>() {
     
     private fun convertToJson(everyInfo: EveryInfo): String {
         val moshi = Moshi.Builder().build()
-        val moshiEveryAdapter = moshi.adapter(EveryInfo::class.java)
+        val everyMoshiAdapter = moshi.adapter(EveryInfo::class.java)
         
-        return moshiEveryAdapter.toJson(everyInfo)
+        return everyMoshiAdapter.toJson(everyInfo)
     }
 }
