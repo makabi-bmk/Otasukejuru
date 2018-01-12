@@ -1,5 +1,6 @@
 package jp.ict.muffin.otasukejuru.view
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
@@ -10,6 +11,7 @@ import android.view.View
 import java.util.*
 
 
+@SuppressLint("ViewConstructor")
 class CircleGraphView(context: Context, private var params: ArrayList<HashMap<String, Int>>,
                       isInit: Boolean) : View(context) {
     internal var endAngleTmp = -90f
@@ -37,23 +39,27 @@ class CircleGraphView(context: Context, private var params: ArrayList<HashMap<St
             if (endAngleTmp < endAngle) {
                 endAngle = endAngleTmp
             }
-            this.createPieSlice(c, params[it]["color"] ?: 0, startAngle, endAngle, x, y, radius)
+            createPieSlice(c, params[it]["color"] ?: 0, startAngle, endAngle, x, y, radius)
             startAngle = endAngle
         }
     }
     
-    private fun createPieSlice(c: Canvas, color: Int, start_angle: Float, end_angle: Float,
+    private fun createPieSlice(c: Canvas, colorParams: Int, start_angle: Float, end_angle: Float,
                                x: Float, y: Float, r: Float) {
-        var paint = Paint()
-        paint.isAntiAlias = false
-        paint.color = color
+        val paint = Paint()
+        paint.apply {
+            isAntiAlias = false
+            color = colorParams
+        }
         val oval1 = RectF(x - r, y - r, x + r, y + r)
         c.drawArc(oval1, start_angle, end_angle - start_angle, true, paint)
         
         //外枠
-        paint = Paint()
-        paint.color = Color.argb(0, 0, 0, 0)
-        paint.style = Paint.Style.STROKE
+        val strokePaint = Paint()
+        strokePaint.apply {
+            color = Color.argb(0, 0, 0, 0)
+            style = Paint.Style.STROKE
+        }
         c.drawArc(oval1, start_angle, end_angle - start_angle, true, paint)
         
     }
