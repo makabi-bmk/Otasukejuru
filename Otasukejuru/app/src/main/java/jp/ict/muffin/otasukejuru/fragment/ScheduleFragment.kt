@@ -51,29 +51,22 @@ class ScheduleFragment : Fragment() {
         val nowMinute = nowTime / 100 * 60 + nowTime % 100
         val line = RelativeLayout(context)
         val nowText = TextView(context)
-        val rParam = RelativeLayout.LayoutParams(0, 0)
-        rParam.apply {
-            width = matchParent
-            height = 3
-            leftMargin = dip(40)
-            rightMargin = dip(20)
-            topMargin = dip(0.1556f * nowMinute)// + dip(25)// - dip(70)
-        }
         line.apply {
-            layoutParams = rParam
+            layoutParams = RelativeLayout.LayoutParams(matchParent, 3).apply {
+                leftMargin = dip(40)
+                rightMargin = dip(20)
+                topMargin = dip(0.1556f * nowMinute)// + dip(25)// - dip(70)
+                
+            }
             backgroundColor = Color.GRAY
         }
         
-        val tParam = RelativeLayout.LayoutParams(0, 0)
-        tParam.apply {
-            width = wrapContent
-            height = wrapContent
-            leftMargin = dip(10)
-            topMargin = dip(0.1556f * nowMinute) - dip(10)// + dip(25) //- dip(70)
-        }
         nowText.apply {
             text = "現在"
-            layoutParams = tParam
+            layoutParams = RelativeLayout.LayoutParams(wrapContent, wrapContent).apply {
+                leftMargin = dip(10)
+                topMargin = dip(0.1556f * nowMinute) - dip(10)// + dip(25) //- dip(70)
+            }
         }
         
         find<RelativeLayout>(R.id.refreshRelative).apply {
