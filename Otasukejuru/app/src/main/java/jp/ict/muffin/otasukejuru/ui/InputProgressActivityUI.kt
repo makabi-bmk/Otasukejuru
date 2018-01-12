@@ -12,11 +12,12 @@ import org.jetbrains.anko.sdk25.coroutines.onClick
 
 
 class InputProgressActivityUI(private val index: Int) : AnkoComponent<InputProgressActivity> {
-    private lateinit var seekBar: SeekBar
+    private lateinit var progressSeekBar: SeekBar
+    
     override fun createView(ui: AnkoContext<InputProgressActivity>): View = with(ui) {
         relativeLayout {
             relativeLayout {
-                seekBar = seekBar {
+                progressSeekBar = seekBar {
                     id = R.id.inputProgressSeek
                     progress = GlobalValue.taskInfoArrayList[index].progress
                 }.lparams {
@@ -27,10 +28,10 @@ class InputProgressActivityUI(private val index: Int) : AnkoComponent<InputProgr
                 
                 textView(GlobalValue.taskInfoArrayList[index].progress.toString()) {
                     id = R.id.progressTextView
-                    text = seekBar.progress.toString()
+                    text = progressSeekBar.progress.toString()
                     textSize = 20f
                 }.lparams {
-                    below(seekBar)
+                    below(progressSeekBar)
                     centerHorizontally()
                 }
             }.lparams {
@@ -46,7 +47,7 @@ class InputProgressActivityUI(private val index: Int) : AnkoComponent<InputProgr
                 textColor = ContextCompat.getColor(context, R.color.colorPrimary)
                 textSize = 20f
                 onClick {
-                    GlobalValue.taskInfoArrayList[index].progress = seekBar.progress
+                    GlobalValue.taskInfoArrayList[index].progress = progressSeekBar.progress
                     //TODO:delete data
                 }
             }.lparams {

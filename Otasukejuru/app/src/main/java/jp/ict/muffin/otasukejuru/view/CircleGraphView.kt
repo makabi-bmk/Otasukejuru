@@ -13,7 +13,7 @@ import java.util.*
 class CircleGraphView(context: Context, private var params: ArrayList<HashMap<String, Int>>,
                       isInit: Boolean) : View(context) {
     internal var endAngleTmp = -90f
-    internal lateinit var timer: Timer
+    internal val timer: Timer by lazy { Timer() }
     private val drawTime: Long = if (isInit) {
         1L
     } else {
@@ -73,7 +73,6 @@ class CircleGraphView(context: Context, private var params: ArrayList<HashMap<St
             }
         }
         
-        timer = Timer()
         //アニメーションのスピード調整できるようにしたいところ
         timer.schedule(task, 0, drawTime + 1)
     }

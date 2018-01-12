@@ -10,8 +10,8 @@ import org.jetbrains.anko.*
 import java.util.*
 
 class ScheduleFragmentUI : AnkoComponent<ScheduleFragment> {
+    
     override fun createView(ui: AnkoContext<ScheduleFragment>): View = with(ui) {
-        
         relativeLayout {
             linearLayout {
                 id = R.id.taskLinear

@@ -11,8 +11,8 @@ import org.jetbrains.anko.sdk25.coroutines.onClick
 
 class TimerNotificationActivityUI(private val time: Long) :
         AnkoComponent<TimerActivity> {
+    
     override fun createView(ui: AnkoContext<TimerActivity>): View = with(ui) {
-        
         relativeLayout {
             backgroundColor = ContextCompat.getColor(context, R.color.back)
             

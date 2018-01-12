@@ -55,8 +55,8 @@ class AdditionActivity : Activity() {
     private var isAdd: Boolean = true
     private var isSub: Boolean = false
     private var index: Int = -1
-    private lateinit var beforeTaskInfo: TaskInfo
-    private lateinit var beforeScheduleInfo: ScheduleInfo
+    private val beforeTaskInfo: TaskInfo by lazy { TaskInfo() }
+    private val beforeScheduleInfo: ScheduleInfo by lazy { ScheduleInfo() }
     private var taskProgress: Int = 0
     
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -74,11 +74,9 @@ class AdditionActivity : Activity() {
         } else {
             when {
                 isSub || intent.getBooleanExtra("task", false) -> {
-                    beforeTaskInfo = GlobalValue.taskInfoArrayList[index]
                     inputTaskName()
                 }
                 intent.getBooleanExtra("schedule", false) -> {
-                    beforeScheduleInfo = GlobalValue.scheduleInfoArrayList[index]
                     inputScheduleName()
                 }
             }

@@ -10,7 +10,7 @@ import okhttp3.RequestBody
 
 
 class UpdateEveryInfoAsync : AsyncTask<EveryInfo, Void, Unit>() {
-    private var client = OkHttpClient()
+    private val client = OkHttpClient()
     
     override fun doInBackground(vararg params: EveryInfo) {
         post("${GlobalValue.SERVER_URL}/update/schedule", convertToJson(params[0]))

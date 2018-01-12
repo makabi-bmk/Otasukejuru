@@ -9,8 +9,8 @@ import org.jetbrains.anko.*
 
 
 class TaskListFragmentUI : AnkoComponent<TaskListFragment> {
+    
     override fun createView(ui: AnkoContext<TaskListFragment>): View = with(ui) {
-        
         relativeLayout {
             lparams {
                 width = matchParent

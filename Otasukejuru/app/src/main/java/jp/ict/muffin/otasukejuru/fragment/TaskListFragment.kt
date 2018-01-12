@@ -34,7 +34,6 @@ import java.util.*
 
 
 class TaskListFragment : Fragment() {
-    
     private var mTimer: Timer? = null
     
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
