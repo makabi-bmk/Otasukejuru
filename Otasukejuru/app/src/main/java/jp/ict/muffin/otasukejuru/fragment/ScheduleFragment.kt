@@ -112,7 +112,7 @@ class ScheduleFragment : Fragment() {
                     calendar.get(Calendar.YEAR))
             
             if (Utils().getDate(it.start_time) in today..showScheduleDate) {
-                val schedule = RelativeLayout(context)
+                val scheduleRelative = RelativeLayout(context)
                 val endMinute = Utils().getTime(it.end_time) / 100 * 60 +
                         Utils().getTime(it.end_time) % 100
                 val startMinute = Utils().getTime(it.start_time) / 100 * 60 +
@@ -120,7 +120,7 @@ class ScheduleFragment : Fragment() {
                 val startDate = Utils().getDate(it.start_time)
                 val endDate = Utils().getDate(it.end_time)
                 
-                schedule.apply {
+                scheduleRelative.apply {
                     layoutParams = RelativeLayout.LayoutParams(0, 0).apply {
                         width = matchParent
                         height = dip((Utils().diffDayNum(startDate, endDate,
@@ -147,8 +147,8 @@ class ScheduleFragment : Fragment() {
                     text = it.every_name
                 }
                 
-                schedule.addView(scheduleNameText)
-                find<RelativeLayout>(R.id.refreshRelative).addView(schedule, 0)
+                scheduleRelative.addView(scheduleNameText)
+                find<RelativeLayout>(R.id.refreshRelative).addView(scheduleRelative, 0)
             }
         }
     }
