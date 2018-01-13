@@ -1,5 +1,6 @@
 package jp.ict.muffin.otasukejuru.fragment
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context.LAYOUT_INFLATER_SERVICE
 import android.graphics.Color
@@ -203,6 +204,7 @@ class ScheduleFragment : Fragment() {
         }
     }
     
+    @SuppressLint("InflateParams")
     private fun setCardView() {
         val calendar = Calendar.getInstance()
         val today = (calendar.get(Calendar.MONTH) + 1) * 100 +
