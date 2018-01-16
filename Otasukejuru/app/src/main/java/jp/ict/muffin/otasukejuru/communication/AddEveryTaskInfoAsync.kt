@@ -8,7 +8,7 @@ import jp.ict.muffin.otasukejuru.`object`.GlobalValue
 class AddEveryTaskInfoAsync : AsyncTask<EveryInfo, Void, Unit>() {
     
     override fun doInBackground(vararg params: EveryInfo) {
-        AddInfo().post("${GlobalValue.SERVER_URL}/add/every", convertToJson(params[0]))
+        PostInfo().post("${GlobalValue.SERVER_URL}/add/every", convertToJson(params[0]))
     }
     
     private fun convertToJson(everyInfo: EveryInfo): String {

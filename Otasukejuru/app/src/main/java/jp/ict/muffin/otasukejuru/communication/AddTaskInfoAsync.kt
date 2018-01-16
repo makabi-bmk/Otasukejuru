@@ -9,7 +9,7 @@ import jp.ict.muffin.otasukejuru.`object`.TaskInfo
 class AddTaskInfoAsync : AsyncTask<TaskInfo, Void, Unit>() {
     
     override fun doInBackground(vararg params: TaskInfo) {
-        AddInfo().post("${GlobalValue.SERVER_URL}/add/task", convertToJson(params[0]))
+        PostInfo().post("${GlobalValue.SERVER_URL}/add/task", convertToJson(params[0]))
     }
     
     private fun convertToJson(taskInfo: TaskInfo): String {
