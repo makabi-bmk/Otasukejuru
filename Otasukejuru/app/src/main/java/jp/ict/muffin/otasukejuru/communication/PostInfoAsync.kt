@@ -1,6 +1,5 @@
 package jp.ict.muffin.otasukejuru.communication
 
-import android.os.AsyncTask
 import android.util.Log
 import com.github.kittinunf.fuel.httpPost
 import com.github.kittinunf.result.Result
@@ -11,10 +10,7 @@ import jp.ict.muffin.otasukejuru.`object`.SubTaskInfo
 import jp.ict.muffin.otasukejuru.`object`.TaskInfo
 
 
-open class PostInfo : AsyncTask<Any, Void, Unit>(){
-    override fun doInBackground(vararg p0: Any?) {
-         //TODO:overrideして
-    }
+open class PostInfoAsync {
     
     fun post(url: String, jsonString: String) {
         url.httpPost().body(jsonString).response { _, response, result ->

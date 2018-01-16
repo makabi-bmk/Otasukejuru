@@ -533,12 +533,12 @@ class AdditionActivity : Activity() {
         if (isAdd) {
             GlobalValue.everyInfoArrayList.add(0, everyInformation)
             
-            AddEveryTaskInfoAsync().execute(everyInformation)
+            AddEveryTaskInfoAsyncAsync().sendEveryInfo(everyInformation)
         } else {
             everyInformation._id = GlobalValue.everyInfoArrayList[index]._id
             GlobalValue.everyInfoArrayList[index] = everyInformation
             
-            UpdateEveryInfoAsync().execute(everyInformation)
+            UpdateEveryInfoAsyncAsync().updateEveryInfo(everyInformation)
         }
         Utils().saveEveryInfoList(ctx)
     }
@@ -555,12 +555,12 @@ class AdditionActivity : Activity() {
         if (isAdd) {
             GlobalValue.scheduleInfoArrayList.add(0, scheduleInformation)
             
-            AddScheduleTaskInfoAsync().execute(scheduleInformation)
+            AddScheduleTaskInfoAsyncAsync().sendScheduleInfo(scheduleInformation)
         } else {
             scheduleInformation._id = GlobalValue.scheduleInfoArrayList[index]._id
             GlobalValue.scheduleInfoArrayList[index] = scheduleInformation
             
-            UpdateScheduleInfoAsync().execute(scheduleInformation)
+            UpdateScheduleInfoAsyncAsync().updateScheduleInfo(scheduleInformation)
         }
         Utils().saveScheduleInfoList(ctx)
     }
@@ -611,13 +611,13 @@ class AdditionActivity : Activity() {
         if (isAdd) {
             GlobalValue.taskInfoArrayList.add(0, taskInformation)
             
-            AddTaskInfoAsync().execute(taskInformation)
+            AddTaskInfoAsyncAsync().sendTaskInfo(taskInformation)
             
         } else {
             taskInformation._id = GlobalValue.taskInfoArrayList[index]._id
             GlobalValue.taskInfoArrayList[index] = taskInformation
             
-            UpdateTaskInfoAsync().execute(taskInformation)
+            UpdateTaskInfoAsyncAsync().updateTaskInfo(taskInformation)
         }
         
         Utils().saveTaskInfoList(ctx)
@@ -632,7 +632,7 @@ class AdditionActivity : Activity() {
             time = "$finishYear-$finishMonth-$finishDay $finishHour:$finishMinute:00"
         }
         
-        UpdateTaskInfoAsync().execute(GlobalValue.taskInfoArrayList[index])
+        UpdateTaskInfoAsyncAsync().updateTaskInfo(GlobalValue.taskInfoArrayList[index])
         
         GlobalValue.taskInfoArrayList[index].subTaskArrayList.add(subTaskInfo)
         Utils().saveTaskInfoList(ctx)
