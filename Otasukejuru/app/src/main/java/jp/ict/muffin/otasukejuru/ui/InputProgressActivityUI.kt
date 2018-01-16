@@ -7,7 +7,7 @@ import android.widget.SeekBar
 import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
 import jp.ict.muffin.otasukejuru.activity.InputProgressActivity
-import jp.ict.muffin.otasukejuru.communication.UpdateTaskInfoAsyncAsync
+import jp.ict.muffin.otasukejuru.communication.UpdateTaskInfo
 import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk25.coroutines.onClick
 
@@ -49,7 +49,7 @@ class InputProgressActivityUI(private val index: Int) : AnkoComponent<InputProgr
                 textSize = 20f
                 onClick {
                     GlobalValue.taskInfoArrayList[index].progress = progressSeekBar.progress
-                    UpdateTaskInfoAsyncAsync().updateTaskInfo(GlobalValue.taskInfoArrayList[index])
+                    UpdateTaskInfo().updateTaskInfo(GlobalValue.taskInfoArrayList[index])
                 }
             }.lparams {
                 margin = 30
