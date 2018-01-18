@@ -73,8 +73,6 @@ class GetInformation : AsyncTask<Unit, Unit, Unit>() {
                         val scheduleArrayMoshiAdapter = moshi.adapter<ArrayList<ScheduleInfo>>(scheduleArrayParameterizedType)
                         GlobalValue.friendScheduleInfoArrayList = scheduleArrayMoshiAdapter.fromJson(jsonArray.toString())
                                 ?: GlobalValue.friendScheduleInfoArrayList
-                        
-                        
                     }
                     "every" -> {
                         val everyArrayParameterizedType =
