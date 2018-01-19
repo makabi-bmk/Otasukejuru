@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.os.Handler
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -125,7 +124,6 @@ class ScheduleFragment : Fragment() {
                         width = matchParent
                         height = dip((Utils().diffDayNum(startDate, endDate,
                                 calendar.get(Calendar.YEAR)) * 1440 - startMinute + endMinute) * 0.15f)
-                        Log.d("height", diffDays.toString())
                         leftMargin = dip(120)
                         rightMargin = dip(60)
                         topMargin = dip(0.15f * (diffDays * 1440 + startMinute)) + dip(10)

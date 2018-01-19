@@ -108,9 +108,6 @@ class GetInformation : AsyncTask<Unit, Unit, Unit>() {
     private fun getCalendarInfo() {
         val response = run("${GlobalValue.SERVER_URL}/get/calendar")
         
-        val scheduleMoshiAdapter = moshi.adapter(ScheduleInfo::class.java)
-        val everyMoshiAdapter = moshi.adapter(EveryInfo::class.java)
-        
         val jsonObject = try {
             JSONObject(response)
         } catch (e: JSONException) {
@@ -124,15 +121,22 @@ class GetInformation : AsyncTask<Unit, Unit, Unit>() {
         keys.forEach { key ->
             val jsonArray = jsonObject?.getJSONArray(key)
             if (jsonArray != null) {
-                (0 until jsonArray.length()).forEach { i ->
-                    val json = jsonArray.getJSONObject(i).toString()
-                    when (key) {
-                        "schedule" -> scheduleMoshiAdapter.fromJson(json)
-                                ?.let { scheduleInfoArray.add(it) }
-                        "every" -> everyMoshiAdapter.fromJson(json)
-                                ?.let { everyInfoArray.add(it) }
-                        else -> {
-                        }
+                when (key) {
+                    "schedule" -> {
+                        val scheduleArrayParameterizedType =
+                                Types.newParameterizedType(ArrayList::class.java, ScheduleInfo::class.java)
+                        val scheduleArrayMoshiAdapter = moshi.adapter<ArrayList<ScheduleInfo>>(scheduleArrayParameterizedType)
+                        GlobalValue.friendScheduleInfoArrayList = scheduleArrayMoshiAdapter.fromJson(jsonArray.toString())
+                                ?: GlobalValue.friendScheduleInfoArrayList
+                    }
+                    "every" -> {
+                        val everyArrayParameterizedType =
+                                Types.newParameterizedType(ArrayList::class.java, EveryInfo::class.java)
+                        val taskArrayMoshiAdapter = moshi.adapter<ArrayList<EveryInfo>>(everyArrayParameterizedType)
+                        GlobalValue.friendEveryInfoArrayList = taskArrayMoshiAdapter.fromJson(jsonArray.toString())
+                                ?: GlobalValue.friendEveryInfoArrayList
+                    }
+                    else -> {
                     }
                 }
             }
