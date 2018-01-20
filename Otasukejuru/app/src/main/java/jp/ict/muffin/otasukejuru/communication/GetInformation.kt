@@ -1,15 +1,15 @@
 package jp.ict.muffin.otasukejuru.communication
 
 import android.os.AsyncTask
+import android.util.Log
+import com.github.kittinunf.fuel.httpGet
+import com.github.kittinunf.result.Result
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
 import jp.ict.muffin.otasukejuru.`object`.EveryInfo
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
 import jp.ict.muffin.otasukejuru.`object`.ScheduleInfo
 import jp.ict.muffin.otasukejuru.`object`.TaskInfo
-import okhttp3.OkHttpClient
-import okhttp3.Request
-import okhttp3.Response
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
@@ -17,24 +17,26 @@ import org.json.JSONObject
 
 class GetInformation : AsyncTask<Unit, Unit, Unit>() {
     private val moshi = Moshi.Builder().build()
-    private val client = OkHttpClient()
     
     override fun doInBackground(vararg params: Unit?) {
         getInfo()
     }
     
     private fun run(url: String): String {
-        val request = Request.Builder()
-                .url(url)
-                .build()
+        var responseString = ""
         
-        var response: Response? = null
-        try {
-            response = client.newCall(request).execute()
-        } catch (e: Exception) {
-            e.printStackTrace()
+        url.httpGet().responseString { _, response, result ->
+            when (result) {
+                is Result.Success -> {
+                    Log.d("非同期処理の結果:", String(response.data))
+                    responseString = response.data.toString()
+                }
+                is Result.Failure -> {
+                    Log.d("Fuel", "通信に失敗しました。")
+                }
+            }
         }
-        return response?.body()?.string().toString()
+        return responseString
     }
     
     private fun getInfo() {
