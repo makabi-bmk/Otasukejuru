@@ -100,7 +100,6 @@ class MainActivity : AppCompatActivity() {
     private inner class SectionsPagerAdapter internal constructor(fm: FragmentManager) :
             FragmentPagerAdapter(fm) {
         
-        //TODO : Show screen what was chosen.
         // Return a PlaceholderFragment (defined as a static inner class below).
         // getItem is called to instantiate the fragment for the given page.
         override fun getItem(position: Int): Fragment? = when (position) {
