@@ -44,9 +44,9 @@ class TimerActivity : Activity() {
             startTimer()
         }
         
-        val params: ArrayList<HashMap<String, Int>> = arrayListOf(HashMap<String, Int>().apply {
-            put("color", ContextCompat.getColor(ctx, R.color.mostPriority))
-            put("value", 60)
+        val params: ArrayList<HashMap<String, Int>> = arrayListOf(HashMap<String, Int>().also {
+            it["color"] = ContextCompat.getColor(ctx, R.color.mostPriority)
+            it["value"] = 60
         })
         
         val circleGraphView = CircleGraphView(ctx, params, true)
@@ -59,9 +59,9 @@ class TimerActivity : Activity() {
         TimerActivityUI(time).setContentView(this)
         (1..3).forEach {
             val calendar = Calendar.getInstance()
-            calendar.apply {
-                timeInMillis = System.currentTimeMillis()
-                add(Calendar.SECOND, time.time.toInt() - 5)
+            calendar.also {
+                it.timeInMillis = System.currentTimeMillis()
+                it.add(Calendar.SECOND, it.time.time.toInt() - 5)
             }
             scheduleNotification("終了${it * 5}分前です", calendar, it)
         }
@@ -69,9 +69,9 @@ class TimerActivity : Activity() {
     
     private fun scheduleNotification(content: String, calendar: Calendar, id: Int) {
         val notificationIntent = Intent(this, AlarmReceiver::class.java)
-        notificationIntent.apply {
-            putExtra(notificationId, id)
-            putExtra(notificationContent, content)
+        notificationIntent.also {
+            it.putExtra(notificationId, id)
+            it.putExtra(notificationContent, content)
         }
         val pendingIntent = PendingIntent.getBroadcast(this, 0,
                 notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT)

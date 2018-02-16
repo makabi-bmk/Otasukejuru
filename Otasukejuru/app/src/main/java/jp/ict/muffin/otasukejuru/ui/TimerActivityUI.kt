@@ -103,9 +103,9 @@ class TimerActivityUI(private val time: Long, private val index: Int = -1) :
         val map = HashMap<String, Int>()
         val back = ContextCompat.getColor(context, R.color.back)
         
-        map.apply {
-            put("color", back)
-            put("value", 60)
+        map.also {
+            it["color"] = back
+            it["value"] = 60
         }
         params.add(map)
         val circleGraphView = CircleGraphView(context, params, true)
@@ -171,8 +171,8 @@ class TimerActivityUI(private val time: Long, private val index: Int = -1) :
             
             (0 until colors.size).forEach { i ->
                 val mapSI = HashMap<String, Int>()
-                mapSI.put("color", colors[i])
-                mapSI.put("value", drawCircleTime[i].toInt())
+                mapSI["color"] = colors[i]
+                mapSI["value"] = drawCircleTime[i].toInt()
                 params.add(mapSI)
             }
             

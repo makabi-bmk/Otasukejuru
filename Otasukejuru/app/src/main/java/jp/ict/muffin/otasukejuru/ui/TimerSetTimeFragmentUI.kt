@@ -70,9 +70,9 @@ class TimerSetTimeFragmentUI : AnkoComponent<TimerSetTimeFragment> {
                     textSize = 20f
                     onClick {
                         val time = editTime.text.toString().toLong()
-                        editTime.apply {
-                            text.clear()
-                            editTime.clearFocus()
+                        editTime.also {
+                            it.text.clear()
+                            it.clearFocus()
                         }
                         startActivity<TimerActivity>("time" to time)
                     }

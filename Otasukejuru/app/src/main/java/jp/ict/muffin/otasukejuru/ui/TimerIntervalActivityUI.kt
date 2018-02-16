@@ -282,9 +282,9 @@ class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerActiv
     }
     
     private fun drawCircle(context: Context) {
-        GlobalValue.apply {
-            focusTimeG = focusTime.toLong()
-            intervalTimeG = intervalTime.toLong()
+        GlobalValue.also {
+            it.focusTimeG = focusTime.toLong()
+            it.intervalTimeG = intervalTime.toLong()
         }
         
         val intervalColor = ContextCompat.getColor(context, R.color.colorPrimaryDark)
@@ -321,8 +321,8 @@ class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerActiv
         
         (0 until colors.size).forEach {
             val mapSI = HashMap<String, Int>()
-            mapSI.put("color", colors[it])
-            mapSI.put("value", drawCircleTime[it])
+            mapSI["color"] = colors[it]
+            mapSI["value"] = drawCircleTime[it]
             params.add(mapSI)
         }
         

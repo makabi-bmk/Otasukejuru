@@ -144,32 +144,32 @@ class AdditionActivity : Activity() {
             startMinute = Utils().getTime(startTime) % 100
         }
         
-        find<NumberPicker>(R.id.start_month_num_pick).apply {
-            maxValue = 12
-            minValue = 1
-            value = startMonth
-            setOnValueChangedListener { _, _, newVal -> startMonth = newVal }
+        find<NumberPicker>(R.id.start_month_num_pick).also {
+            it.maxValue = 12
+            it.minValue = 1
+            it.value = startMonth
+            it.setOnValueChangedListener { _, _, newVal -> startMonth = newVal }
         }
         
-        find<NumberPicker>(R.id.start_day_num_pick).apply {
-            maxValue = 31
-            minValue = 1
-            value = startDay
-            setOnValueChangedListener { _, _, newVal -> startDay = newVal }
+        find<NumberPicker>(R.id.start_day_num_pick).also {
+            it.maxValue = 31
+            it.minValue = 1
+            it.value = startDay
+            it.setOnValueChangedListener { _, _, newVal -> startDay = newVal }
         }
         
-        find<NumberPicker>(R.id.start_hour_num_pick).apply {
-            maxValue = 23
-            minValue = 0
-            value = startHour
-            setOnValueChangedListener { _, _, newVal -> startHour = newVal }
+        find<NumberPicker>(R.id.start_hour_num_pick).also {
+            it.maxValue = 23
+            it.minValue = 0
+            it.value = startHour
+            it.setOnValueChangedListener { _, _, newVal -> startHour = newVal }
         }
         
-        find<NumberPicker>(R.id.start_minute_num_pick).apply {
-            maxValue = 59
-            minValue = 0
-            value = startMinute
-            setOnValueChangedListener { _, _, newVal -> startMinute = newVal }
+        find<NumberPicker>(R.id.start_minute_num_pick).also {
+            it.maxValue = 59
+            it.minValue = 0
+            it.value = startMinute
+            it.setOnValueChangedListener { _, _, newVal -> startMinute = newVal }
         }
         
         startYear = calendar.get(Calendar.YEAR)
@@ -197,32 +197,32 @@ class AdditionActivity : Activity() {
             
         }
         
-        find<NumberPicker>(R.id.finish_month_num_pick).apply {
-            maxValue = 12
-            minValue = 1
-            value = finishMonth
-            setOnValueChangedListener { _, _, newVal -> finishMonth = newVal }
+        find<NumberPicker>(R.id.finish_month_num_pick).also {
+            it.maxValue = 12
+            it.minValue = 1
+            it.value = finishMonth
+            it.setOnValueChangedListener { _, _, newVal -> finishMonth = newVal }
         }
         
-        find<NumberPicker>(R.id.finish_day_num_pick).apply {
-            maxValue = 31
-            minValue = 1
-            value = finishDay
-            setOnValueChangedListener { _, _, newVal -> finishDay = newVal }
+        find<NumberPicker>(R.id.finish_day_num_pick).also {
+            it.maxValue = 31
+            it.minValue = 1
+            it.value = finishDay
+            it.setOnValueChangedListener { _, _, newVal -> finishDay = newVal }
         }
         
-        find<NumberPicker>(R.id.finish_hour_num_pick).apply {
-            maxValue = 23
-            minValue = 0
-            value = finishHour
-            setOnValueChangedListener { _, _, newVal -> finishHour = newVal }
+        find<NumberPicker>(R.id.finish_hour_num_pick).also {
+            it.maxValue = 23
+            it.minValue = 0
+            it.value = finishHour
+            it.setOnValueChangedListener { _, _, newVal -> finishHour = newVal }
         }
         
-        find<NumberPicker>(R.id.finish_minute_num_pick).apply {
-            maxValue = 59
-            minValue = 0
-            value = finishMinute
-            setOnValueChangedListener { _, _, newVal -> finishMinute = newVal }
+        find<NumberPicker>(R.id.finish_minute_num_pick).also {
+            it.maxValue = 59
+            it.minValue = 0
+            it.value = finishMinute
+            it.setOnValueChangedListener { _, _, newVal -> finishMinute = newVal }
         }
         
         finishYear = calendar.get(Calendar.YEAR)
@@ -259,11 +259,11 @@ class AdditionActivity : Activity() {
         set_notification_time_edit.setText("5")
         notificationTime = 5
         
-        find<Button>(R.id.button_finish).apply {
+        find<Button>(R.id.button_finish).also {
             if (!isAdd) {
-                text = "変更"
+                it.text = "変更"
             }
-            setOnClickListener {
+            it.setOnClickListener {
                 val str: String = set_notification_time_edit.text.toString()
                 notificationTime = Integer.parseInt(str)
                 
@@ -345,39 +345,38 @@ class AdditionActivity : Activity() {
             
             
         }
-        find<NumberPicker>(R.id.finish_month_num_pick).apply {
-            maxValue = 12
-            minValue = 1
-            
-            value = finishMonth
-            setOnValueChangedListener { _, _, newVal -> finishMonth = newVal }
+        find<NumberPicker>(R.id.finish_month_num_pick).also {
+            it.maxValue = 12
+            it.minValue = 1
+            it.value = finishMonth
+            it.setOnValueChangedListener { _, _, newVal -> finishMonth = newVal }
         }
         
-        find<NumberPicker>(R.id.finish_day_num_pick).apply {
-            maxValue = 31
-            minValue = 1
-            value = finishDay
-            setOnValueChangedListener { _, _, newVal -> finishDay = newVal }
+        find<NumberPicker>(R.id.finish_day_num_pick).also {
+            it.maxValue = 31
+            it.minValue = 1
+            it.value = finishDay
+            it.setOnValueChangedListener { _, _, newVal -> finishDay = newVal }
         }
         
-        find<NumberPicker>(R.id.finish_hour_edit).apply {
-            maxValue = 23
-            minValue = 0
-            value = finishHour
-            setOnValueChangedListener { _, _, newVal -> finishHour = newVal }
+        find<NumberPicker>(R.id.finish_hour_edit).also {
+            it.maxValue = 23
+            it.minValue = 0
+            it.value = finishHour
+            it.setOnValueChangedListener { _, _, newVal -> finishHour = newVal }
         }
         
-        find<NumberPicker>(R.id.finish_minute_edit).apply {
-            maxValue = 59
-            minValue = 0
-            value = finishMinute
-            setOnValueChangedListener { _, _, newVal -> finishMinute = newVal }
+        find<NumberPicker>(R.id.finish_minute_edit).also {
+            it.maxValue = 59
+            it.minValue = 0
+            it.value = finishMinute
+            it.setOnValueChangedListener { _, _, newVal -> finishMinute = newVal }
         }
         
         if (isSub) {
-            find<Button>(R.id.button_next).apply {
-                text = "追加"
-                setOnClickListener {
+            find<Button>(R.id.button_next).also {
+                it.text = "追加"
+                it.setOnClickListener {
                     setSubTask()
                 }
             }
@@ -488,12 +487,12 @@ class AdditionActivity : Activity() {
         } else {
             Utils().getTime(beforeTaskInfo.guide_time)
         }
-        find<Button>(R.id.button_next).apply {
+        find<Button>(R.id.button_next).also {
             if (!isAdd) {
-                text = "変更"
+                it.text = "変更"
                 taskProgress = beforeTaskInfo.progress
             }
-            setOnClickListener {
+            it.setOnClickListener {
                 guideTime = Integer.parseInt(finishHourEdit.text.toString()) * 100 +
                         Integer.parseInt(finishMinuteEdit.text.toString())
                 
@@ -523,11 +522,11 @@ class AdditionActivity : Activity() {
     
     private fun setEveryInformation() {
         val everyInformation = EveryInfo()
-        everyInformation.apply {
-            every_name = titleName
-            start_time = "$startYear-$startMonth-$startDay $startHour:$startMinute:00"
-            end_time = "$finishYear-$finishMonth-$finishDay $finishHour:$finishMinute:00"
-            repeat_type = taskRepeat
+        everyInformation.also {
+            it.every_name = titleName
+            it.start_time = "$startYear-$startMonth-$startDay $startHour:$startMinute:00"
+            it.end_time = "$finishYear-$finishMonth-$finishDay $finishHour:$finishMinute:00"
+            it.repeat_type = taskRepeat
             
         }
         if (isAdd) {
@@ -545,10 +544,10 @@ class AdditionActivity : Activity() {
     
     private fun setScheduleInformation() {
         val scheduleInformation = ScheduleInfo()
-        scheduleInformation.apply {
-            schedule_name = titleName
-            start_time = "$startYear-$startMonth-$startDay $startHour:$startMinute:00"
-            end_time = "$finishYear-$finishMonth-$finishDay $finishHour:$finishMinute:00"
+        scheduleInformation.also {
+            it.schedule_name = titleName
+            it.start_time = "$startYear-$startMonth-$startDay $startHour:$startMinute:00"
+            it.end_time = "$finishYear-$finishMonth-$finishDay $finishHour:$finishMinute:00"
         }
         
         setScheduleNotification(scheduleInformation)
@@ -567,9 +566,9 @@ class AdditionActivity : Activity() {
     
     private fun setScheduleNotification(scheduleInfo: ScheduleInfo) {
         val calendar = Calendar.getInstance()
-        calendar.apply {
-            timeInMillis = System.currentTimeMillis()
-            add(Calendar.SECOND, Utils().getDiffTime(Utils().getNowDate(), scheduleInfo.start_time) - notificationTime)
+        calendar.also {
+            it.timeInMillis = System.currentTimeMillis()
+            it.add(Calendar.SECOND, Utils().getDiffTime(Utils().getNowDate(), scheduleInfo.start_time) - notificationTime)
         }
         scheduleNotification(scheduleInfo.schedule_name, calendar)
         
@@ -587,9 +586,9 @@ class AdditionActivity : Activity() {
     
     private fun setTaskInformation() {
         val taskInformation = TaskInfo()
-        taskInformation.apply {
-            task_name = titleName
-            task_type = if (isMust) {
+        taskInformation.also {
+            it.task_name = titleName
+            it.task_type = if (isMust) {
                 "1"
             } else {
                 "0"
@@ -602,10 +601,10 @@ class AdditionActivity : Activity() {
             } else {
                 "0"
             }
-            due_date = "$finishYear-$finishMonth-$finishDay $finishHour:$finishMinute:00"
-            guide_time = "${guideTime / 100}:${guideTime % 100}:00"
-            priority = 0
-            progress = taskProgress
+            it.due_date = "$finishYear-$finishMonth-$finishDay $finishHour:$finishMinute:00"
+            it.guide_time = "${guideTime / 100}:${guideTime % 100}:00"
+            it.priority = 0
+            it.progress = taskProgress
         }
         
         if (isAdd) {
@@ -626,10 +625,10 @@ class AdditionActivity : Activity() {
     private fun setSubTask() {
         val subTaskInfo = SubTaskInfo()
         
-        subTaskInfo.apply {
-            _id = GlobalValue.taskInfoArrayList[index]._id
-            sub_task_name = titleName
-            time = "$finishYear-$finishMonth-$finishDay $finishHour:$finishMinute:00"
+        subTaskInfo.also {
+            it._id = GlobalValue.taskInfoArrayList[index]._id
+            it.sub_task_name = titleName
+            it.time = "$finishYear-$finishMonth-$finishDay $finishHour:$finishMinute:00"
         }
         
         UpdateTaskInfo().updateTaskInfo(GlobalValue.taskInfoArrayList[index])

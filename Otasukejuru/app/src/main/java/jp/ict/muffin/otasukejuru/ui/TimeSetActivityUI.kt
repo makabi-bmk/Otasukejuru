@@ -87,9 +87,9 @@ class TimeSetActivityUI(private val index: Int = -1) : AnkoComponent<TimeSetActi
                     textSize = 20f
                     onClick {
                         val time = editTime.text.toString().toLong()
-                        editTime.apply {
-                            text.clear()
-                            editTime.clearFocus()
+                        editTime.also {
+                            it.text.clear()
+                            it.clearFocus()
                         }
                         startActivity<TimerActivity>("time" to time, "index" to index)
                     }

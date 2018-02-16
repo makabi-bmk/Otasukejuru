@@ -50,9 +50,9 @@ class MainActivity : AppCompatActivity() {
         val mViewPager: ViewPager = find(R.id.view_pager)
         mViewPager.adapter = mSectionsPagerAdapter
         
-        tabs.apply {
-            setupWithViewPager(mViewPager)
-            setTabTextColors(Color.parseColor("#FBFBF0"), Color.parseColor("#66B7EC"))
+        tabs.also {
+            it.setupWithViewPager(mViewPager)
+            it.setTabTextColors(Color.parseColor("#FBFBF0"), Color.parseColor("#66B7EC"))
         }
         
         fab.setOnClickListener {
@@ -63,10 +63,10 @@ class MainActivity : AppCompatActivity() {
         val point = Point()
         display.getSize(point)
         
-        GlobalValue.apply {
-            displayHeight = point.y
-            displayWidth = point.x
-            SERVER_URL = getString(R.string.server_url)
+        GlobalValue.also {
+            it.displayHeight = point.y
+            it.displayWidth = point.x
+            it.SERVER_URL = getString(R.string.server_url)
         }
         
         loadInfoList()

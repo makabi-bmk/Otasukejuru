@@ -103,8 +103,8 @@ class Utils {
     
     // 設定値 String を保存（Context は Activity や Application や Service）
     private fun saveString(ctx: Context, key: String, value: String) {
-        ctx.getSharedPreferences(ctx.getString(R.string.app_name), Context.MODE_PRIVATE).edit().apply {
-            putString(key, value)
+        ctx.getSharedPreferences(ctx.getString(R.string.app_name), Context.MODE_PRIVATE).edit().also {
+            it.putString(key, value)
         }.apply()
     }
     
@@ -165,16 +165,16 @@ class Utils {
             sortedTaskInfoArray.add(it)
         }
         
-        sortedTaskInfoArray.apply {
-            forEach {
+        sortedTaskInfoArray.also {
+            it.forEach {
                 val diffDays = getDiffDays(it.due_date)
                 val taskPriority = it.priority
                 it.priority =
                         taskPriority / 100 * 15 + taskPriority % 10 / 10 * 5 +
-                                taskPriority % 100 * 10 + it.progress % 50 + (10 - diffDays) * 6
+                        taskPriority % 100 * 10 + it.progress % 50 + (10 - diffDays) * 6
             }
-            sortByDescending { it.priority }
-            forEach {
+            it.sortByDescending { it.priority }
+            it.forEach {
                 it.priority = when (it.priority) {
                     in 0..25 -> 3
                     in 26..50 -> 2

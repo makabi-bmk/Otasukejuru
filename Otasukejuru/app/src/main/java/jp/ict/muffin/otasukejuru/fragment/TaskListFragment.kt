@@ -86,8 +86,8 @@ class TaskListFragment : Fragment() {
         val today = (calendar.get(Calendar.MONTH) + 1) * 100 + calendar.get(Calendar.DAY_OF_MONTH)
         
         val showTaskNum = GlobalValue.displayWidth / 90 - 1
-        GlobalValue.taskInfoArrayList.forEachWithIndex { index, element ->
-            val diffDays = Utils().diffDayNum(today, Utils().getDate(element.due_date),
+        GlobalValue.taskInfoArrayList.forEachWithIndex { index, taskInfo ->
+            val diffDays = Utils().diffDayNum(today, Utils().getDate(taskInfo.due_date),
                     calendar.get(Calendar.YEAR))
             
             val inflater: LayoutInflater =
@@ -95,26 +95,26 @@ class TaskListFragment : Fragment() {
             val linearLayout: LinearLayout =
                     inflater.inflate(R.layout.task_card_view, null) as LinearLayout
             
-            linearLayout.apply {
-                dateTextView.apply {
-                    text = diffDays.toString()
-                    if (element.priority == 0 || (diffDays == 1 || diffDays == 0)) {
-                        textColor = ContextCompat.getColor(context, R.color.mostPriority)
+            linearLayout.also {
+                it.dateTextView.also {
+                    it.text = diffDays.toString()
+                    if (taskInfo.priority == 0 || (diffDays == 1 || diffDays == 0)) {
+                        context?.let { ctx -> it.textColor = ContextCompat.getColor(ctx, R.color.mostPriority) }
                     }
                 }
-                taskNameTextView.text = element.task_name
-                cardView.apply {
-                    tag = Utils().getDate(element.due_date)
-                    setOnClickListener {
-                        createDialog(element, index)
+                it.taskNameTextView.text = taskInfo.task_name
+                it.cardView.also {
+                    it.tag = Utils().getDate(taskInfo.due_date)
+                    it.setOnClickListener {
+                        createDialog(taskInfo, index)
                     }
                 }
-                find<RelativeLayout>(R.id.taskProgress).scaleY = element.progress / 100f * dip(70)
+                it.find<RelativeLayout>(R.id.taskProgress).scaleY = taskInfo.progress / 100f * it.dip(70)
                 
             }
             
             val position: Int
-            when (element.priority) {
+            when (taskInfo.priority) {
                 0 -> {
                     position = mostPriorityNum++ % showTaskNum
                     mostPriorityCardLinear
@@ -153,9 +153,9 @@ class TaskListFragment : Fragment() {
     private fun createDialog(element: TaskInfo, index: Int) {
         val listDialog = arrayOf("開始", "変更", "完了", "削除", "進捗")
         
-        AlertDialog.Builder(context).apply {
-            setTitle(element.task_name)
-            setItems(listDialog) { _, which ->
+        AlertDialog.Builder(context).also {
+            it.setTitle(element.task_name)
+            it.setItems(listDialog) { _, which ->
                 when (which) {
                     0 -> {
                         startActivity<TimeSetActivity>("taskIndex" to index)
@@ -167,26 +167,26 @@ class TaskListFragment : Fragment() {
                     }
                     
                     2 -> {
-                        AlertDialog.Builder(context).apply {
-                            setTitle(element.task_name)
-                            setMessage(getString(R.string.complicatedMassage))
-                            setPositiveButton("Yes") { _, _ ->
+                        AlertDialog.Builder(context).also {
+                            it.setTitle(element.task_name)
+                            it.setMessage(getString(R.string.complicatedMassage))
+                            it.setPositiveButton("Yes") { _, _ ->
                                 deleteTask(element)
                             }
-                            setNegativeButton("No", null)
-                            show()
+                            it.setNegativeButton("No", null)
+                            it.show()
                         }
                     }
                     
                     3 -> {
-                        AlertDialog.Builder(context).apply {
-                            setTitle(element.task_name)
-                            setMessage(getString(R.string.deleteMassage))
-                            setPositiveButton("OK") { _, _ ->
+                        AlertDialog.Builder(context).also {
+                            it.setTitle(element.task_name)
+                            it.setMessage(getString(R.string.deleteMassage))
+                            it.setPositiveButton("OK") { _, _ ->
                                 deleteTask(element)
                             }
-                            setNegativeButton("Cancel", null)
-                            show()
+                            it.setNegativeButton("Cancel", null)
+                            it.show()
                         }
                     }
                     

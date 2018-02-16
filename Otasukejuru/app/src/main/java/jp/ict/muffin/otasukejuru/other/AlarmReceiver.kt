@@ -20,10 +20,10 @@ class AlarmReceiver : BroadcastReceiver() {
     
     private fun buildNotification(context: Context, content: String): Notification {
         val builder = Notification.Builder(context)
-        builder.apply {
-            setContentTitle("Notification!!")
-            setContentText(content)
-            setSmallIcon(android.R.drawable.sym_def_app_icon)
+        builder.also {
+            it.setContentTitle("Notification!!")
+            it.setContentText(content)
+            it.setSmallIcon(android.R.drawable.sym_def_app_icon)
         }
         return builder.build()
     }

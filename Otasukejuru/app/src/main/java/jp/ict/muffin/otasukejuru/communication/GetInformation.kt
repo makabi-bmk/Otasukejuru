@@ -118,9 +118,9 @@ class GetInformation : AsyncTask<Unit, Unit, Unit>() {
                 }
             }
         }
-        GlobalValue.apply {
-            scheduleInfoArrayList = scheduleInfoArray
-            everyInfoArrayList = everyInfoArray
+        GlobalValue.also {
+            it.scheduleInfoArrayList = scheduleInfoArray
+            it.everyInfoArrayList = everyInfoArray
         }
     }
     
@@ -132,11 +132,11 @@ class GetInformation : AsyncTask<Unit, Unit, Unit>() {
         if (isFriend) {
             GlobalValue.friendTaskInfoArrayList =
                     taskArrayMoshiAdapter.fromJson(jsonArrayString)
-                            ?: GlobalValue.friendTaskInfoArrayList
+                    ?: GlobalValue.friendTaskInfoArrayList
         } else {
             GlobalValue.taskInfoArrayList =
                     taskArrayMoshiAdapter.fromJson(jsonArrayString)
-                            ?: GlobalValue.taskInfoArrayList
+                    ?: GlobalValue.taskInfoArrayList
         }
     }
     
@@ -148,11 +148,11 @@ class GetInformation : AsyncTask<Unit, Unit, Unit>() {
         if (isFriend) {
             GlobalValue.friendScheduleInfoArrayList =
                     scheduleArrayMoshiAdapter.fromJson(jsonArrayString)
-                            ?: GlobalValue.friendScheduleInfoArrayList
+                    ?: GlobalValue.friendScheduleInfoArrayList
         } else {
             GlobalValue.scheduleInfoArrayList =
                     scheduleArrayMoshiAdapter.fromJson(jsonArrayString)
-                            ?: GlobalValue.scheduleInfoArrayList
+                    ?: GlobalValue.scheduleInfoArrayList
         }
     }
     
@@ -164,11 +164,11 @@ class GetInformation : AsyncTask<Unit, Unit, Unit>() {
         if (isFriend) {
             GlobalValue.friendEveryInfoArrayList =
                     everyArrayMoshiAdapter.fromJson(jsonArrayString)
-                            ?: GlobalValue.friendEveryInfoArrayList
+                    ?: GlobalValue.friendEveryInfoArrayList
         } else {
             GlobalValue.everyInfoArrayList =
                     everyArrayMoshiAdapter.fromJson(jsonArrayString)
-                            ?: GlobalValue.everyInfoArrayList
+                    ?: GlobalValue.everyInfoArrayList
         }
     }
     

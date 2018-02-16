@@ -21,13 +21,13 @@ import org.jetbrains.anko.textColor
 
 class TimerSetTimeFragment : Fragment(), TextWatcher {
     override fun afterTextChanged(s: Editable?) {
-        find<Button>(R.id.nextButton).apply {
+        find<Button>(R.id.nextButton).also {
             if (s.toString() != "") {
-                textColor = ContextCompat.getColor(ctx, R.color.colorPrimary)
-                isEnabled = true
+                it.textColor = ContextCompat.getColor(ctx, R.color.colorPrimary)
+                it.isEnabled = true
             } else {
-                textColor = Color.argb(0, 0, 0, 0)
-                isEnabled = false
+                it.textColor = Color.argb(0, 0, 0, 0)
+                it.isEnabled = false
             }
         }
     }
