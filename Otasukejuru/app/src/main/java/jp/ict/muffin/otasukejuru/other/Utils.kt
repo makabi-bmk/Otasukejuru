@@ -83,9 +83,9 @@ class Utils {
     
     fun saveScheduleInfoList(ctx: Context) {
         val moshi = Moshi.Builder().build()
-        val taskArrayParameterizedType =
+        val scheduleArrayParameterizedType =
                 Types.newParameterizedType(ArrayList::class.java, ScheduleInfo::class.java)
-        val adapter = moshi.adapter<ArrayList<ScheduleInfo>>(taskArrayParameterizedType)
+        val adapter = moshi.adapter<ArrayList<ScheduleInfo>>(scheduleArrayParameterizedType)
         
         saveString(ctx, ctx.getString(R.string.ScheduleInfoKey),
                 adapter.toJson(GlobalValue.scheduleInfoArrayList).toString())
@@ -93,9 +93,9 @@ class Utils {
     
     fun saveEveryInfoList(ctx: Context) {
         val moshi = Moshi.Builder().build()
-        val taskArrayParameterizedType =
+        val everyArrayParameterizedType =
                 Types.newParameterizedType(ArrayList::class.java, EveryInfo::class.java)
-        val adapter = moshi.adapter<ArrayList<EveryInfo>>(taskArrayParameterizedType)
+        val adapter = moshi.adapter<ArrayList<EveryInfo>>(everyArrayParameterizedType)
         
         saveString(ctx, ctx.getString(R.string.EveryInfoKey),
                 adapter.toJson(GlobalValue.everyInfoArrayList).toString())
