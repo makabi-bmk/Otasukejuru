@@ -12,7 +12,6 @@ import jp.ict.muffin.otasukejuru.`object`.TaskInfo
 import org.json.JSONArray
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
 
 
 class Utils {
@@ -74,7 +73,7 @@ class Utils {
         
         val moshi = Moshi.Builder().build()
         val taskArrayParameterizedType =
-                Types.newParameterizedType(ArrayList::class.java, TaskInfo::class.java)
+                Types.newParameterizedType(List::class.java, TaskInfo::class.java)
         val adapter = moshi.adapter<ArrayList<TaskInfo>>(taskArrayParameterizedType)
         
         saveString(ctx, ctx.getString(R.string.TaskInfoKey),
@@ -84,7 +83,7 @@ class Utils {
     fun saveScheduleInfoList(ctx: Context) {
         val moshi = Moshi.Builder().build()
         val scheduleArrayParameterizedType =
-                Types.newParameterizedType(ArrayList::class.java, ScheduleInfo::class.java)
+                Types.newParameterizedType(List::class.java, ScheduleInfo::class.java)
         val adapter = moshi.adapter<ArrayList<ScheduleInfo>>(scheduleArrayParameterizedType)
         
         saveString(ctx, ctx.getString(R.string.ScheduleInfoKey),
@@ -94,7 +93,7 @@ class Utils {
     fun saveEveryInfoList(ctx: Context) {
         val moshi = Moshi.Builder().build()
         val everyArrayParameterizedType =
-                Types.newParameterizedType(ArrayList::class.java, EveryInfo::class.java)
+                Types.newParameterizedType(List::class.java, EveryInfo::class.java)
         val adapter = moshi.adapter<ArrayList<EveryInfo>>(everyArrayParameterizedType)
         
         saveString(ctx, ctx.getString(R.string.EveryInfoKey),
