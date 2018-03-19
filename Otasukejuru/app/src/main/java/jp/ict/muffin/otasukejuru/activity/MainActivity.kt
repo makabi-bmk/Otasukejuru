@@ -74,9 +74,11 @@ class MainActivity : AppCompatActivity() {
     }
     
     private fun loadInfoList() {
-        Utils().parseData(applicationContext, Utils().loadString(applicationContext, getString(R.string.TaskInfoKey)), getString(R.string.TaskInfoKey))
-        Utils().parseData(applicationContext, Utils().loadString(applicationContext, getString(R.string.ScheduleInfoKey)), getString(R.string.ScheduleInfoKey))
-        Utils().parseData(applicationContext, Utils().loadString(applicationContext, getString(R.string.EveryInfoKey)), getString(R.string.EveryInfoKey))
+        Utils().apply {
+            parseData(applicationContext, loadString(applicationContext, getString(R.string.TaskInfoKey)), getString(R.string.TaskInfoKey))
+            parseData(applicationContext, loadString(applicationContext, getString(R.string.ScheduleInfoKey)), getString(R.string.ScheduleInfoKey))
+            parseData(applicationContext, loadString(applicationContext, getString(R.string.EveryInfoKey)), getString(R.string.EveryInfoKey))
+        }
     }
     
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
