@@ -23,6 +23,9 @@ android {
     dexOptions {
         preDexLibraries = !project.hasProperty("ci")
     }
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {
