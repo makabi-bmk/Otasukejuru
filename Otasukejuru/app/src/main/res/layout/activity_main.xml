@@ -2,6 +2,13 @@
 
 <layout>
 
+    <data>
+
+        <variable
+            name="onClick"
+            type="android.view.View.OnClickListener"/>
+
+    </data>
 
     <android.support.design.widget.CoordinatorLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -51,6 +58,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end|bottom"
             android:layout_margin="@dimen/fab_margin"
+            android:onClick="@{onClick}"
             app:srcCompat="@drawable/ic_add_white_48dp"/>
 
     </android.support.design.widget.CoordinatorLayout>
