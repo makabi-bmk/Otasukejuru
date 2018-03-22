@@ -63,7 +63,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-
         GlobalValue.SERVER_URL = getString(R.string.server_url)
 
         loadInfoList()
