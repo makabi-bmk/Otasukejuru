@@ -8,14 +8,13 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody
 
-
 class UpdateScheduleInfoAsync : AsyncTask<ScheduleInfo, Void, Unit>() {
     private val client = OkHttpClient()
-    
+
     override fun doInBackground(vararg params: ScheduleInfo) {
         post("${GlobalValue.SERVER_URL}/update/schedule", convertToJson(params[0]))
     }
-    
+
     private fun post(url: String, json: String): String? {
         try {
             val body = RequestBody.create(GlobalValue.mediaType, json)
@@ -30,11 +29,11 @@ class UpdateScheduleInfoAsync : AsyncTask<ScheduleInfo, Void, Unit>() {
         }
         return null
     }
-    
+
     private fun convertToJson(scheduleInfo: ScheduleInfo): String {
         val moshi = Moshi.Builder().build()
         val scheduleMoshiAdapter = moshi.adapter(ScheduleInfo::class.java)
-        
+
         return scheduleMoshiAdapter.toJson(scheduleInfo)
     }
 }

@@ -32,19 +32,21 @@ import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.textColor
 import java.util.*
 
-
 class TaskListFragment : Fragment() {
     private var mTimer: Timer? = null
-    
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View =
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View =
             TaskListFragmentUI().createView(AnkoContext.create(ctx, this))
-    
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setCardView()
     }
-    
+
     override fun onResume() {
         super.onResume()
         val mHandler = Handler()
@@ -57,13 +59,13 @@ class TaskListFragment : Fragment() {
             }
         }, 5000, 5000)
     }
-    
+
     override fun onStop() {
         super.onStop()
         mTimer?.cancel()
         mTimer = null
     }
-    
+
     @SuppressLint("InflateParams")
     fun setCardView() {
         (0..6).forEach {
@@ -77,24 +79,24 @@ class TaskListFragment : Fragment() {
                 else -> lowPriorityCardLinear2
             }?.removeAllViews()
         }
-        
+
         var mostPriorityNum = 0
         var highPriorityNum = 0
         var middlePriorityNum = 0
         var lowPriorityNum = 0
         val calendar = Calendar.getInstance()
         val today = (calendar.get(Calendar.MONTH) + 1) * 100 + calendar.get(Calendar.DAY_OF_MONTH)
-        
+
         val showTaskNum = GlobalValue.displayWidth / 90 - 1
         GlobalValue.taskInfoArrayList.forEachWithIndex { index, element ->
             val diffDays = Utils().diffDayNum(today, Utils().getDate(element.due_date),
                     calendar.get(Calendar.YEAR))
-            
+
             val inflater: LayoutInflater =
                     ctx.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
             val linearLayout: LinearLayout =
                     inflater.inflate(R.layout.task_card_view, null) as LinearLayout
-            
+
             linearLayout.apply {
                 dateTextView.apply {
                     text = diffDays.toString()
@@ -110,16 +112,15 @@ class TaskListFragment : Fragment() {
                     }
                 }
                 find<RelativeLayout>(R.id.taskProgress).scaleY = element.progress / 100f * dip(70)
-                
             }
-            
+
             val position: Int
             when (element.priority) {
                 0 -> {
                     position = mostPriorityNum++ % showTaskNum
                     mostPriorityCardLinear
                 }
-                
+
                 1 -> {
                     position = highPriorityNum++ % showTaskNum
                     if (highPriorityNum <= showTaskNum) {
@@ -128,7 +129,7 @@ class TaskListFragment : Fragment() {
                         highPriorityCardLinear2
                     }
                 }
-                
+
                 2 -> {
                     position = middlePriorityNum++ % showTaskNum
                     if (middlePriorityNum <= showTaskNum) {
@@ -137,7 +138,7 @@ class TaskListFragment : Fragment() {
                         middlePriorityCardLinear2
                     }
                 }
-                
+
                 else -> {
                     position = lowPriorityNum++ % showTaskNum
                     if (lowPriorityNum <= showTaskNum) {
@@ -149,10 +150,10 @@ class TaskListFragment : Fragment() {
             }.addView(linearLayout, position)
         }
     }
-    
+
     private fun createDialog(element: TaskInfo, index: Int) {
         val listDialog = arrayOf("開始", "変更", "完了", "削除", "進捗")
-        
+
         AlertDialog.Builder(context).apply {
             setTitle(element.task_name)
             setItems(listDialog) { _, which ->
@@ -160,12 +161,12 @@ class TaskListFragment : Fragment() {
                     0 -> {
                         startActivity<TimeSetActivity>("taskIndex" to index)
                     }
-                    
+
                     1 -> {
                         startActivity<AdditionActivity>("add" to false,
                                 "index" to index, "task" to true)
                     }
-                    
+
                     2 -> {
                         AlertDialog.Builder(context).apply {
                             setTitle(element.task_name)
@@ -177,7 +178,7 @@ class TaskListFragment : Fragment() {
                             show()
                         }
                     }
-                    
+
                     3 -> {
                         AlertDialog.Builder(context).apply {
                             setTitle(element.task_name)
@@ -189,21 +190,21 @@ class TaskListFragment : Fragment() {
                             show()
                         }
                     }
-                    
+
                     4 -> {
                         startActivity<InputProgressActivity>("index" to index)
                     }
-                    
+
                     else -> {
                     }
                 }
             }
         }.show()
     }
-    
+
     private fun deleteTask(element: TaskInfo) {
         DeleteTaskInfoAsync().execute(element)
-        
+
         try {
             GlobalValue.taskInfoArrayList.remove(element)
         } catch (e: Exception) {

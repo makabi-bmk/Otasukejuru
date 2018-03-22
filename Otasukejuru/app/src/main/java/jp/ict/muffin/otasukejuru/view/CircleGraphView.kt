@@ -10,10 +10,12 @@ import android.os.Handler
 import android.view.View
 import java.util.*
 
-
 @SuppressLint("ViewConstructor")
-class CircleGraphView(context: Context, private var params: ArrayList<HashMap<String, Int>>,
-                      isInit: Boolean) : View(context) {
+class CircleGraphView(
+    context: Context,
+    private var params: ArrayList<HashMap<String, Int>>,
+    isInit: Boolean
+) : View(context) {
     internal var endAngleTmp = -90f
     internal val timer: Timer by lazy { Timer() }
     private val drawTime: Long = if (isInit) {
@@ -21,7 +23,7 @@ class CircleGraphView(context: Context, private var params: ArrayList<HashMap<St
     } else {
         (params[1]["value"] ?: 0) * 60 * 100L
     }
-    
+
     override fun onDraw(c: Canvas) {
         val width = c.width
         val length = params.size
@@ -43,9 +45,16 @@ class CircleGraphView(context: Context, private var params: ArrayList<HashMap<St
             startAngle = endAngle
         }
     }
-    
-    private fun createPieSlice(c: Canvas, colorParams: Int, start_angle: Float, end_angle: Float,
-                               x: Float, y: Float, r: Float) {
+
+    private fun createPieSlice(
+        c: Canvas,
+        colorParams: Int,
+        start_angle: Float,
+        end_angle: Float,
+        x: Float,
+        y: Float,
+        r: Float
+    ) {
         val paint = Paint()
         paint.apply {
             isAntiAlias = false
@@ -53,7 +62,7 @@ class CircleGraphView(context: Context, private var params: ArrayList<HashMap<St
         }
         val oval1 = RectF(x - r, y - r, x + r, y + r)
         c.drawArc(oval1, start_angle, end_angle - start_angle, true, paint)
-        
+
         //外枠
         val strokePaint = Paint()
         strokePaint.apply {
@@ -61,9 +70,8 @@ class CircleGraphView(context: Context, private var params: ArrayList<HashMap<St
             style = Paint.Style.STROKE
         }
         c.drawArc(oval1, start_angle, end_angle - start_angle, true, paint)
-        
     }
-    
+
     fun startAnimation() {
         endAngleTmp = -90f
         val handler = Handler()
@@ -78,7 +86,7 @@ class CircleGraphView(context: Context, private var params: ArrayList<HashMap<St
                 handler.post { invalidate() }
             }
         }
-        
+
         //アニメーションのスピード調整できるようにしたいところ
         timer.schedule(task, 0, drawTime + 1)
     }

@@ -10,7 +10,7 @@ import org.jetbrains.anko.*
 import java.util.*
 
 class ScheduleFragmentUI : AnkoComponent<ScheduleFragment> {
-    
+
     override fun createView(ui: AnkoContext<ScheduleFragment>): View = with(ui) {
         relativeLayout {
             linearLayout {
@@ -47,7 +47,7 @@ class ScheduleFragmentUI : AnkoComponent<ScheduleFragment> {
                                     else -> 60
                                 })
                             }
-                            
+
                             imageView {
                                 backgroundColor = Color.GRAY
                             }.lparams {
@@ -61,7 +61,6 @@ class ScheduleFragmentUI : AnkoComponent<ScheduleFragment> {
                                 rightMargin = dip(20)
                                 centerVertically()
                                 alignParentEnd()
-                                
                             }
                         }.lparams {
                             width = matchParent
@@ -80,7 +79,6 @@ class ScheduleFragmentUI : AnkoComponent<ScheduleFragment> {
                         width = matchParent
                         height = matchParent
                     }
-                    
                 }.lparams {
                     width = matchParent
                     height = matchParent
@@ -93,5 +91,4 @@ class ScheduleFragmentUI : AnkoComponent<ScheduleFragment> {
             }
         }
     }
-    
 }

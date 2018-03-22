@@ -8,7 +8,6 @@ import android.content.Intent
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue.notificationContent
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue.notificationId
 
-
 class AlarmReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         val notificationManager =
@@ -17,7 +16,7 @@ class AlarmReceiver : BroadcastReceiver() {
         val content = intent.getStringExtra(notificationContent)
         notificationManager.notify(id, buildNotification(context, content))
     }
-    
+
     private fun buildNotification(context: Context, content: String): Notification {
         val builder = Notification.Builder(context)
         builder.apply {

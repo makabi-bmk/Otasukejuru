@@ -13,21 +13,19 @@ import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 
-
 class GetInformation : AsyncTask<Unit, Unit, Unit>() {
     private val moshi = Moshi.Builder().build()
     private val client = OkHttpClient()
-    
+
     override fun doInBackground(vararg params: Unit?) {
         getInfo()
     }
-    
-    
+
     private fun run(url: String): String {
         val request = Request.Builder()
                 .url(url)
                 .build()
-        
+
         var response: Response? = null
         try {
             response = client.newCall(request).execute()
@@ -36,21 +34,20 @@ class GetInformation : AsyncTask<Unit, Unit, Unit>() {
         }
         return response?.body()?.string().toString()
     }
-    
+
     private fun getInfo() {
         getTaskInfo()
         getCalendarInfo()
         getFriendInfo()
-        
     }
-    
+
     private fun getFriendInfo() {
         val response = run("${GlobalValue.SERVER_URL}/get/friend")
-        
+
         val taskMoshiAdapter = moshi.adapter(TaskInfo::class.java)
         val scheduleMoshiAdapter = moshi.adapter(ScheduleInfo::class.java)
         val everyMoshiAdapter = moshi.adapter(EveryInfo::class.java)
-        
+
         val jsonObject = try {
             JSONObject(response)
         } catch (e: JSONException) {
@@ -58,11 +55,11 @@ class GetInformation : AsyncTask<Unit, Unit, Unit>() {
             null
         }
         val keys = arrayListOf("task", "schedule", "every")
-        
+
         val friendTaskInfoArray: ArrayList<TaskInfo> = arrayListOf()
         val friendScheduleInfoArray: ArrayList<ScheduleInfo> = arrayListOf()
         val friendEveryInfoArray: ArrayList<EveryInfo> = arrayListOf()
-        
+
         keys.forEach { key ->
             val jsonArray = jsonObject?.getJSONArray(key)
             if (jsonArray != null) {
@@ -81,26 +78,26 @@ class GetInformation : AsyncTask<Unit, Unit, Unit>() {
                 }
             }
         }
-        
+
         GlobalValue.apply {
             friendTaskInfoArrayList = friendTaskInfoArray
             friendEveryInfoArrayList = friendEveryInfoArray
             friendScheduleInfoArrayList = friendScheduleInfoArray
         }
     }
-    
+
     private fun getTaskInfo() {
         val response = run("${GlobalValue.SERVER_URL}/get/todo_list")
-        
+
         val taskMoshiAdapter = moshi.adapter(TaskInfo::class.java)
-        
+
         var jsonArray = JSONArray()
         try {
             jsonArray = JSONObject(response).getJSONArray("todo_list")
         } catch (e: JSONException) {
             e.printStackTrace()
         }
-        
+
         val taskInfoArray = arrayListOf<TaskInfo>()
         (0 until jsonArray.length()).forEach { i ->
             val taskJSON = jsonArray.getJSONObject(i).toString()
@@ -108,13 +105,13 @@ class GetInformation : AsyncTask<Unit, Unit, Unit>() {
         }
         GlobalValue.taskInfoArrayList = taskInfoArray
     }
-    
+
     private fun getCalendarInfo() {
         val response = run("${GlobalValue.SERVER_URL}/get/calendar")
-        
+
         val scheduleMoshiAdapter = moshi.adapter(ScheduleInfo::class.java)
         val everyMoshiAdapter = moshi.adapter(EveryInfo::class.java)
-        
+
         val jsonObject = try {
             JSONObject(response)
         } catch (e: JSONException) {
@@ -122,7 +119,7 @@ class GetInformation : AsyncTask<Unit, Unit, Unit>() {
             null
         }
         val keys = arrayListOf("schedule", "every")
-        
+
         val scheduleInfoArray = arrayListOf<ScheduleInfo>()
         val everyInfoArray = arrayListOf<EveryInfo>()
         keys.forEach { key ->

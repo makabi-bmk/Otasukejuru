@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding: ActivityMainBinding =
                 DataBindingUtil.setContentView(this, R.layout.activity_main)
-        
+
         val calendar = Calendar.getInstance()
         setSupportActionBar(toolbar)
         // Create the adapter that will return a fragment for each of the three
@@ -43,41 +43,41 @@ class MainActivity : AppCompatActivity() {
       {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
         val mSectionsPagerAdapter = SectionsPagerAdapter(supportFragmentManager)
-        
+
         // Set up the ViewPager with the sections adapter.
         /*
       The {@link ViewPager} that will host the section contents.
      */
-        
+
         val mViewPager: ViewPager = find(R.id.view_pager)
         mViewPager.adapter = mSectionsPagerAdapter
-        
+
         tabs.apply {
             setupWithViewPager(mViewPager)
             setTabTextColors(Color.parseColor("#FBFBF0"), Color.parseColor("#66B7EC"))
         }
-        
+
         binding.apply {
             this.title = "${(calendar.get(Calendar.MONTH) + 1)}月${calendar.get(Calendar.DATE)}日"
             setOnClick {
                 startActivity<AdditionActivity>()
             }
         }
-        
+
         val display = windowManager.defaultDisplay
         val point = Point()
         display.getSize(point)
-        
+
         GlobalValue.apply {
             displayHeight = point.y
             displayWidth = point.x
             SERVER_URL = getString(R.string.server_url)
         }
-        
+
         loadInfoList()
         GetInformation().execute()
     }
-    
+
     private fun loadInfoList() {
         Utils().apply {
             parseData(applicationContext, loadString(applicationContext, getString(R.string.TaskInfoKey)), getString(R.string.TaskInfoKey))
@@ -85,13 +85,13 @@ class MainActivity : AppCompatActivity() {
             parseData(applicationContext, loadString(applicationContext, getString(R.string.EveryInfoKey)), getString(R.string.EveryInfoKey))
         }
     }
-    
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_main, menu)
         return true
     }
-    
+
     // Handle action bar item clicks here. The action bar will
     // automatically handle clicks on the Home/Up button, so long
     // as you specify a parent activity in AndroidManifest.xml.
@@ -99,14 +99,14 @@ class MainActivity : AppCompatActivity() {
         R.id.move_to_top -> true
         else -> super.onOptionsItemSelected(item)
     }
-    
+
     /**
      * A [FragmentPagerAdapter] that returns a fragment corresponding to
      * one of the sections/tabs/pages.
      */
     private inner class SectionsPagerAdapter internal constructor(fm: FragmentManager) :
             FragmentPagerAdapter(fm) {
-        
+
         //TODO : Show screen what was chosen.
         // Return a PlaceholderFragment (defined as a static inner class below).
         // getItem is called to instantiate the fragment for the given page.
@@ -116,10 +116,10 @@ class MainActivity : AppCompatActivity() {
             2 -> TimerSetTimeFragment()
             else -> null
         }
-        
+
         // Show 3 total pages.
         override fun getCount(): Int = 3
-        
+
         override fun getPageTitle(position: Int): CharSequence = when (position) {
             0 -> getString(R.string.main_tab1)
             1 -> getString(R.string.main_tab2)

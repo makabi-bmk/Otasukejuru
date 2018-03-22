@@ -11,10 +11,9 @@ import jp.ict.muffin.otasukejuru.communication.UpdateTaskInfoAsync
 import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk25.coroutines.onClick
 
-
 class InputProgressActivityUI(private val index: Int) : AnkoComponent<InputProgressActivity> {
     private lateinit var progressSeekBar: SeekBar
-    
+
     override fun createView(ui: AnkoContext<InputProgressActivity>): View = with(ui) {
         relativeLayout {
             relativeLayout {
@@ -26,7 +25,7 @@ class InputProgressActivityUI(private val index: Int) : AnkoComponent<InputProgr
                     height = wrapContent
                     margin = dip(100)
                 }
-                
+
                 textView(GlobalValue.taskInfoArrayList[index].progress.toString()) {
                     id = R.id.progressTextView
                     text = progressSeekBar.progress.toString()
@@ -41,7 +40,7 @@ class InputProgressActivityUI(private val index: Int) : AnkoComponent<InputProgr
                 centerVertically()
                 centerHorizontally()
             }
-            
+
             button("確定") {
                 id = R.id.finishButton
                 backgroundColor = Color.argb(0, 0, 0, 0)

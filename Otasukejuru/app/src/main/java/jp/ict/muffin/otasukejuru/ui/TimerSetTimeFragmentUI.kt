@@ -13,16 +13,16 @@ import org.jetbrains.anko.sdk25.coroutines.onClick
 
 class TimerSetTimeFragmentUI : AnkoComponent<TimerSetTimeFragment> {
     private lateinit var editTime: EditText
-    
+
     override fun createView(ui: AnkoContext<TimerSetTimeFragment>): View = with(ui) {
         relativeLayout {
             backgroundColor = ContextCompat.getColor(context, R.color.back)
-            
+
             lparams {
                 height = matchParent
                 width = matchParent
             }
-            
+
             textView("タイマー") {
                 id = R.id.titleInterval
                 textColor = ContextCompat.getColor(context, R.color.colorPrimary)
@@ -33,7 +33,7 @@ class TimerSetTimeFragmentUI : AnkoComponent<TimerSetTimeFragment> {
                 alignParentStart()
                 alignParentTop()
             }
-            
+
             textView("タイマーを何分間セットしますか？") {
                 id = R.id.titleNotification
                 textSize = 25f
@@ -43,7 +43,7 @@ class TimerSetTimeFragmentUI : AnkoComponent<TimerSetTimeFragment> {
                 leftMargin = dip(50)
                 rightMargin = dip(50)
             }
-            
+
             relativeLayout {
                 editTime = editText {
                     inputType = InputType.TYPE_CLASS_NUMBER
@@ -53,7 +53,7 @@ class TimerSetTimeFragmentUI : AnkoComponent<TimerSetTimeFragment> {
                     width = dip(200)
                     centerHorizontally()
                 }
-                
+
                 textView("分間") {
                     textSize = 20f
                 }.lparams {
@@ -61,7 +61,7 @@ class TimerSetTimeFragmentUI : AnkoComponent<TimerSetTimeFragment> {
                     height = wrapContent
                     rightOf(editTime)
                 }
-                
+
                 button("次へ") {
                     id = R.id.nextButton
                     backgroundColor = Color.argb(0, 0, 0, 0)
@@ -82,7 +82,6 @@ class TimerSetTimeFragmentUI : AnkoComponent<TimerSetTimeFragment> {
                     height = wrapContent
                     centerHorizontally()
                 }
-                
             }.lparams {
                 width = matchParent
                 height = wrapContent

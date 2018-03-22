@@ -2,7 +2,6 @@ package jp.ict.muffin.otasukejuru.`object`
 
 import okhttp3.MediaType
 
-
 object GlobalValue {
     var displayWidth: Int = 0
     var displayHeight: Int = 0

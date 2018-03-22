@@ -8,18 +8,17 @@ import jp.ict.muffin.otasukejuru.activity.TimerActivity
 import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk25.coroutines.onClick
 
-
 class TimerNotificationActivityUI(private val time: Long) :
         AnkoComponent<TimerActivity> {
-    
+
     override fun createView(ui: AnkoContext<TimerActivity>): View = with(ui) {
         relativeLayout {
             backgroundColor = ContextCompat.getColor(context, R.color.back)
-            
+
             toolbar {
                 id = R.id.ankoToolbar
                 backgroundColor = ContextCompat.getColor(context, R.color.colorPrimary)
-                
+
                 imageButton {
                     id = R.id.ankoBack
                     backgroundDrawable = ContextCompat.getDrawable(context, R.drawable.ic_arrow_back_white_48dp)
@@ -31,7 +30,7 @@ class TimerNotificationActivityUI(private val time: Long) :
                 width = matchParent
                 height = wrapContent
             }
-            
+
             relativeLayout {
                 textView("終了前の通知") {
                     id = R.id.titleInterval
@@ -43,7 +42,7 @@ class TimerNotificationActivityUI(private val time: Long) :
                     alignParentStart()
                     alignParentTop()
                 }
-                
+
                 textView("終了何分前に通知しますか？") {
                     id = R.id.titleNotification
                     textSize = 25f
@@ -53,7 +52,7 @@ class TimerNotificationActivityUI(private val time: Long) :
                     leftMargin = dip(50)
                     rightMargin = dip(50)
                 }
-                
+
                 relativeLayout {
                     numberPicker {
                         id = R.id.notificationNumPick
@@ -64,7 +63,7 @@ class TimerNotificationActivityUI(private val time: Long) :
                         centerVertically()
                         alignParentStart()
                     }
-                    
+
                     textView("分前") {
                         id = R.id.notificationText
                         textSize = 30f
@@ -72,12 +71,11 @@ class TimerNotificationActivityUI(private val time: Long) :
                         centerVertically()
                         rightOf(R.id.notificationNumPick)
                     }
-                    
                 }.lparams {
                     centerHorizontally()
                     centerVertically()
                 }
-                
+
                 button("次へ") {
                     id = R.id.nextButton
                     backgroundColor = Color.argb(0, 0, 0, 0)

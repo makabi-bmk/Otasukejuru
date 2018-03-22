@@ -8,14 +8,13 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody
 
-
 class UpdateTaskInfoAsync : AsyncTask<TaskInfo, Void, Unit>() {
     private val client = OkHttpClient()
-    
+
     override fun doInBackground(vararg params: TaskInfo) {
         post("${GlobalValue.SERVER_URL}/update/task", convertToJson(params[0]))
     }
-    
+
     private fun post(url: String, json: String): String? {
         try {
             val body = RequestBody.create(GlobalValue.mediaType, json)
@@ -30,11 +29,11 @@ class UpdateTaskInfoAsync : AsyncTask<TaskInfo, Void, Unit>() {
         }
         return null
     }
-    
+
     private fun convertToJson(taskInfo: TaskInfo): String {
         val moshi = Moshi.Builder().build()
         val taskMoshiAdapter = moshi.adapter(TaskInfo::class.java)
-        
+
         return taskMoshiAdapter.toJson(taskInfo)
     }
 }

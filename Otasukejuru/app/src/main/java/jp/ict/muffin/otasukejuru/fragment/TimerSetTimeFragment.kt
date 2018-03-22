@@ -18,7 +18,6 @@ import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.find
 import org.jetbrains.anko.textColor
 
-
 class TimerSetTimeFragment : Fragment(), TextWatcher {
     override fun afterTextChanged(s: Editable?) {
         find<Button>(R.id.nextButton).apply {
@@ -31,20 +30,23 @@ class TimerSetTimeFragment : Fragment(), TextWatcher {
             }
         }
     }
-    
+
     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
     }
-    
+
     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
     }
-    
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? =
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? =
             TimerSetTimeFragmentUI().createView(AnkoContext.create(ctx, this))
-    
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        
+
         find<TextView>(R.id.setTimeEdit).addTextChangedListener(this)
     }
 }

@@ -11,23 +11,22 @@ import jp.ict.muffin.otasukejuru.activity.TimerActivity
 import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk25.coroutines.onClick
 
-
 class TimeSetActivityUI(private val index: Int = -1) : AnkoComponent<TimeSetActivity> {
     private lateinit var editTime: EditText
-    
+
     override fun createView(ui: AnkoContext<TimeSetActivity>): View = with(ui) {
         relativeLayout {
             backgroundColor = ContextCompat.getColor(context, R.color.back)
-            
+
             lparams {
                 height = matchParent
                 width = matchParent
             }
-            
+
             toolbar {
                 id = R.id.ankoToolbar
                 backgroundColor = ContextCompat.getColor(context, R.color.colorPrimary)
-                
+
                 imageButton {
                     id = R.id.ankoBack
                     backgroundDrawable = ContextCompat.getDrawable(context, R.drawable.ic_arrow_back_white_48dp)
@@ -39,7 +38,7 @@ class TimeSetActivityUI(private val index: Int = -1) : AnkoComponent<TimeSetActi
                 width = matchParent
                 height = wrapContent
             }
-            
+
             textView("タイマー") {
                 id = R.id.titleInterval
                 textColor = ContextCompat.getColor(context, R.color.colorPrimary)
@@ -49,7 +48,7 @@ class TimeSetActivityUI(private val index: Int = -1) : AnkoComponent<TimeSetActi
                 topMargin = dip(10)
                 leftMargin = dip(30)
             }
-            
+
             textView("タイマーを何分間セットしますか？") {
                 id = R.id.titleNotification
                 textSize = 25f
@@ -59,9 +58,9 @@ class TimeSetActivityUI(private val index: Int = -1) : AnkoComponent<TimeSetActi
                 leftMargin = dip(50)
                 rightMargin = dip(50)
             }
-            
+
             relativeLayout {
-                
+
                 editTime = editText {
                     inputType = InputType.TYPE_CLASS_NUMBER
                     id = R.id.setTimeEdit
@@ -70,7 +69,7 @@ class TimeSetActivityUI(private val index: Int = -1) : AnkoComponent<TimeSetActi
                     width = dip(200)
                     centerHorizontally()
                 }
-                
+
                 textView("分間") {
                     textSize = 20f
                 }.lparams {
@@ -78,7 +77,7 @@ class TimeSetActivityUI(private val index: Int = -1) : AnkoComponent<TimeSetActi
                     height = wrapContent
                     rightOf(editTime)
                 }
-                
+
                 button("次へ") {
                     id = R.id.nextButton
                     backgroundColor = Color.argb(0, 0, 0, 0)
@@ -99,7 +98,6 @@ class TimeSetActivityUI(private val index: Int = -1) : AnkoComponent<TimeSetActi
                     height = wrapContent
                     centerHorizontally()
                 }
-                
             }.lparams {
                 width = matchParent
                 height = wrapContent
