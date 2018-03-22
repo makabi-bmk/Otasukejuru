@@ -31,7 +31,6 @@ class MainActivity : AppCompatActivity() {
                 DataBindingUtil.setContentView(this, R.layout.activity_main)
         
         val calendar = Calendar.getInstance()
-        toolbar.title = "${(calendar.get(Calendar.MONTH) + 1)}月${calendar.get(Calendar.DATE)}日"
         setSupportActionBar(toolbar)
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
@@ -59,6 +58,7 @@ class MainActivity : AppCompatActivity() {
         }
         
         binding.apply {
+            this.title = "${(calendar.get(Calendar.MONTH) + 1)}月${calendar.get(Calendar.DATE)}日"
             setOnClick {
                 startActivity<AdditionActivity>()
             }
