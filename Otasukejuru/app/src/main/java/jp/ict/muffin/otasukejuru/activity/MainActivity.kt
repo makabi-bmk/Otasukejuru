@@ -1,5 +1,6 @@
 package jp.ict.muffin.otasukejuru.activity
 
+import android.databinding.DataBindingUtil
 import android.graphics.Color
 import android.graphics.Point
 import android.os.Bundle
@@ -13,6 +14,7 @@ import android.view.MenuItem
 import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
 import jp.ict.muffin.otasukejuru.communication.GetInformation
+import jp.ict.muffin.otasukejuru.databinding.ActivityMainBinding
 import jp.ict.muffin.otasukejuru.fragment.ScheduleFragment
 import jp.ict.muffin.otasukejuru.fragment.TaskListFragment
 import jp.ict.muffin.otasukejuru.fragment.TimerSetTimeFragment
@@ -25,7 +27,8 @@ import java.util.*
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        val binding: ActivityMainBinding =
+                DataBindingUtil.setContentView(this, R.layout.activity_main)
         
         val calendar = Calendar.getInstance()
         toolbar.title = "${(calendar.get(Calendar.MONTH) + 1)}月${calendar.get(Calendar.DATE)}日"
@@ -55,7 +58,7 @@ class MainActivity : AppCompatActivity() {
             setTabTextColors(Color.parseColor("#FBFBF0"), Color.parseColor("#66B7EC"))
         }
         
-        fab.setOnClickListener {
+        binding.setOnClick {
             startActivity<AdditionActivity>()
         }
         
