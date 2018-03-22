@@ -58,8 +58,10 @@ class MainActivity : AppCompatActivity() {
             setTabTextColors(Color.parseColor("#FBFBF0"), Color.parseColor("#66B7EC"))
         }
         
-        binding.setOnClick {
-            startActivity<AdditionActivity>()
+        binding.apply {
+            setOnClick {
+                startActivity<AdditionActivity>()
+            }
         }
         
         val display = windowManager.defaultDisplay
