@@ -4,7 +4,6 @@ import okhttp3.MediaType
 
 object GlobalValue {
     var displayWidth: Int = 0
-    var displayHeight: Int = 0
     var taskInfoArrayList = ArrayList<TaskInfo>()
     var scheduleInfoArrayList = ArrayList<ScheduleInfo>()
     var everyInfoArrayList = ArrayList<EveryInfo>()
