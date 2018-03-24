@@ -2,6 +2,7 @@ package jp.ict.muffin.otasukejuru.activity
 
 import android.databinding.DataBindingUtil
 import android.graphics.Color
+import android.graphics.Point
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
@@ -63,8 +64,14 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        GlobalValue.SERVER_URL = getString(R.string.server_url)
-
+        val display = windowManager.defaultDisplay
+        val point = Point()
+        display.getSize(point)
+        
+        GlobalValue.also {
+            it.displayWidth = point.x
+            it.SERVER_URL = getString(R.string.server_url)
+        }
         loadInfoList()
         GetInformation().execute()
     }
