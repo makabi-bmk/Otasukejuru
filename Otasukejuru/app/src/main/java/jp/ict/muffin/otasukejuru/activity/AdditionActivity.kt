@@ -5,6 +5,7 @@ import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.util.Log
 import android.widget.*
@@ -13,6 +14,7 @@ import jp.ict.muffin.otasukejuru.`object`.*
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue.notificationContent
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue.notificationId
 import jp.ict.muffin.otasukejuru.communication.*
+import jp.ict.muffin.otasukejuru.databinding.ActivitySelectionBinding
 import jp.ict.muffin.otasukejuru.other.AlarmReceiver
 import jp.ict.muffin.otasukejuru.other.Utils
 import kotlinx.android.synthetic.main.set_plan_notification_time.*
@@ -83,21 +85,23 @@ class AdditionActivity : Activity() {
     }
 
     private fun selectAddType() {
-        setContentView(R.layout.selection)
-
+        val binding: ActivitySelectionBinding =
+                DataBindingUtil.setContentView(this, R.layout.activity_selection)
         setActionBar(find(R.id.toolbar_back))
 
-        find<Button>(R.id.button_plan).setOnClickListener {
-            isSchedule = true
-            inputScheduleName()
+        binding.apply {
+            setTaskOnClick {
+                isSchedule = false
+                inputTaskName()
+            }
+            setScheduleOnClick {
+                isSchedule = true
+                inputScheduleName()
+            }
+            setBackOnClick {
+                finish()
+            }
         }
-
-        find<Button>(R.id.button_task).setOnClickListener {
-            isSchedule = false
-            inputTaskName()
-        }
-
-        find<ImageButton>(R.id.button_back).setOnClickListener { finish() }
     }
 
     private fun inputScheduleName() {
