@@ -17,9 +17,9 @@ import jp.ict.muffin.otasukejuru.communication.*
 import jp.ict.muffin.otasukejuru.databinding.ActivitySelectionBinding
 import jp.ict.muffin.otasukejuru.other.AlarmReceiver
 import jp.ict.muffin.otasukejuru.other.Utils
-import kotlinx.android.synthetic.main.set_plan_notification_time.*
-import kotlinx.android.synthetic.main.set_plan_repeat.*
-import kotlinx.android.synthetic.main.set_task_repeat.*
+import kotlinx.android.synthetic.main.activity_set_plan_notification_time.*
+import kotlinx.android.synthetic.main.activity_set_plan_repeat.*
+import kotlinx.android.synthetic.main.activity_set_task_repeat.*
 import org.jetbrains.anko.ctx
 import org.jetbrains.anko.find
 import java.util.*
@@ -105,7 +105,7 @@ class AdditionActivity : Activity() {
     }
 
     private fun inputScheduleName() {
-        setContentView(R.layout.input_plan_name)
+        setContentView(R.layout.activity_input_plan_name)
         setActionBar(find(R.id.toolbar_back))
 
         val inputNameEdit = find<EditText>(R.id.plan_name)
@@ -115,7 +115,7 @@ class AdditionActivity : Activity() {
 
         find<Button>(R.id.button_next).setOnClickListener {
             titleName = inputNameEdit.text.toString()
-            if (titleName == "") titleName = "無題"
+            if (titleName == "") titleName = getString(R.string.no_title)
 
             startScheduleTime()
         }
@@ -130,7 +130,7 @@ class AdditionActivity : Activity() {
     }
 
     private fun startScheduleTime() {
-        setContentView(R.layout.start_plan_time)
+        setContentView(R.layout.activity_start_plan_time)
         setActionBar(find(R.id.toolbar_back))
 
         if (isAdd) {
@@ -181,7 +181,7 @@ class AdditionActivity : Activity() {
     }
 
     private fun finishScheduleTime() {
-        setContentView(R.layout.finish_plan_time)
+        setContentView(R.layout.activity_finish_plan_time)
         setActionBar(find(R.id.toolbar_back))
 
         if (isAdd) {
@@ -232,7 +232,7 @@ class AdditionActivity : Activity() {
     }
 
     private fun setScheduleRepeat() {
-        setContentView(R.layout.set_plan_repeat)
+        setContentView(R.layout.activity_set_plan_repeat)
         setActionBar(find(R.id.toolbar_back))
 
         find<Button>(R.id.button_next).setOnClickListener {
@@ -250,7 +250,7 @@ class AdditionActivity : Activity() {
     }
 
     private fun setScheduleNotificationTime() {
-        setContentView(R.layout.set_plan_notification_time)
+        setContentView(R.layout.activity_set_plan_notification_time)
         setActionBar(find(R.id.toolbar_back))
 
         set_notification_time_edit.setText("5")
@@ -287,7 +287,7 @@ class AdditionActivity : Activity() {
     }
 
     private fun inputTaskName() {
-        setContentView(R.layout.input_task_name)
+        setContentView(R.layout.activity_input_task_name)
         setActionBar(find(R.id.toolbar_back))
 
         val inputTaskNameEdit = find<EditText>(R.id.input_task_name_edit)
@@ -319,7 +319,7 @@ class AdditionActivity : Activity() {
     }
 
     private fun finishTaskTime() {
-        setContentView(R.layout.finish_task_time)
+        setContentView(R.layout.activity_finish_task_time)
         setActionBar(find(R.id.toolbar_back))
 
         if (isAdd || isSub) {
@@ -387,7 +387,7 @@ class AdditionActivity : Activity() {
     }
 
     private fun setTaskRepeat() {
-        setContentView(R.layout.set_task_repeat)
+        setContentView(R.layout.activity_set_task_repeat)
         setActionBar(find(R.id.toolbar_back))
 
         find<Button>(R.id.button_next).setOnClickListener {
@@ -405,7 +405,7 @@ class AdditionActivity : Activity() {
     }
 
     private fun setMust() {
-        setContentView(R.layout.set_must)
+        setContentView(R.layout.activity_set_must)
         setActionBar(find(R.id.toolbar_back))
 
         find<Button>(R.id.no_must).setOnClickListener {
@@ -422,7 +422,7 @@ class AdditionActivity : Activity() {
     }
 
     private fun setShould() {
-        setContentView(R.layout.set_should)
+        setContentView(R.layout.activity_set_should)
         setActionBar(find(R.id.toolbar_back))
 
         find<Button>(R.id.no_should).setOnClickListener {
@@ -439,7 +439,7 @@ class AdditionActivity : Activity() {
     }
 
     private fun setWantTo() {
-        setContentView(R.layout.set_want)
+        setContentView(R.layout.activity_set_want)
         setActionBar(find(R.id.toolbar_back))
 
         find<Button>(R.id.no_want).setOnClickListener {
@@ -456,7 +456,7 @@ class AdditionActivity : Activity() {
     }
 
     private fun setTaskGuideTime() {
-        setContentView(R.layout.set_task_notification_time)
+        setContentView(R.layout.activity_set_task_notification_time)
         setActionBar(find(R.id.toolbar_back))
 
         val finishHourEdit = find<EditText>(R.id.finish_hour_edit)
