@@ -364,7 +364,7 @@ class ScheduleFragment : Fragment() {
                         } else {
                             AlertDialog.Builder(context).apply {
                                 setTitle(title)
-                                setMessage(getString(R.string.deleteMassage))
+                                setMessage(getString(R.string.delete_massage))
                                 setPositiveButton("OK") { _, _ ->
                                     deleteElement(isTask, index)
                                 }
@@ -377,7 +377,7 @@ class ScheduleFragment : Fragment() {
                     2 -> {
                         AlertDialog.Builder(context).apply {
                             setTitle(title)
-                            setMessage(getString(R.string.complicatedMassage))
+                            setMessage(getString(R.string.complicated_massage))
                             setPositiveButton("Yes") { _, _ ->
                                 deleteElement(isTask, index)
                             }
@@ -389,7 +389,7 @@ class ScheduleFragment : Fragment() {
                     3 -> {
                         AlertDialog.Builder(context).apply {
                             setTitle(title)
-                            setMessage(getString(R.string.deleteMassage))
+                            setMessage(getString(R.string.delete_massage))
                             setPositiveButton("OK") { _, _ ->
                                 deleteElement(isTask, index)
                             }

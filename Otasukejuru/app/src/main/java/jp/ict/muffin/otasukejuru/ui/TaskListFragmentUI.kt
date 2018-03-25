@@ -18,7 +18,7 @@ class TaskListFragmentUI : AnkoComponent<TaskListFragment> {
 
             scrollView {
                 relativeLayout {
-                    textView(context.getString(R.string.mostPriority)) {
+                    textView(context.getString(R.string.most_priority)) {
                         id = R.id.mostPriorityTextView
                         textSize = 20f
                     }.lparams {
@@ -51,7 +51,7 @@ class TaskListFragmentUI : AnkoComponent<TaskListFragment> {
                     }
 
                     //high
-                    textView(context.getString(R.string.highPriority)) {
+                    textView(context.getString(R.string.high_priority)) {
                         id = R.id.highPriorityTextView
                         textSize = 20f
                     }.lparams {
@@ -94,7 +94,7 @@ class TaskListFragmentUI : AnkoComponent<TaskListFragment> {
                     }
 
                     //middle
-                    textView(context.getString(R.string.middlePriority)) {
+                    textView(context.getString(R.string.middle_priority)) {
                         id = R.id.middlePriorityTextView
                         textSize = 20f
                     }.lparams {
@@ -137,7 +137,7 @@ class TaskListFragmentUI : AnkoComponent<TaskListFragment> {
                     }
 
                     //low
-                    textView(context.getString(R.string.lowPriority)) {
+                    textView(context.getString(R.string.low_priority)) {
                         id = R.id.lowPriorityTextView
                         textSize = 20f
                     }.lparams {

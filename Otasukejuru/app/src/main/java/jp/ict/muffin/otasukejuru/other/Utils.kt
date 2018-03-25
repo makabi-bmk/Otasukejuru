@@ -75,7 +75,7 @@ class Utils {
                 Types.newParameterizedType(List::class.java, TaskInfo::class.java)
         val adapter = moshi.adapter<ArrayList<TaskInfo>>(taskArrayParameterizedType)
 
-        saveString(ctx, ctx.getString(R.string.TaskInfoKey),
+        saveString(ctx, ctx.getString(R.string.task_info_key),
                 adapter.toJson(GlobalValue.taskInfoArrayList).toString())
     }
 
@@ -85,7 +85,7 @@ class Utils {
                 Types.newParameterizedType(List::class.java, ScheduleInfo::class.java)
         val adapter = moshi.adapter<ArrayList<ScheduleInfo>>(scheduleArrayParameterizedType)
 
-        saveString(ctx, ctx.getString(R.string.ScheduleInfoKey),
+        saveString(ctx, ctx.getString(R.string.schedule_info_key),
                 adapter.toJson(GlobalValue.scheduleInfoArrayList).toString())
     }
 
@@ -95,7 +95,7 @@ class Utils {
                 Types.newParameterizedType(List::class.java, EveryInfo::class.java)
         val adapter = moshi.adapter<ArrayList<EveryInfo>>(everyArrayParameterizedType)
 
-        saveString(ctx, ctx.getString(R.string.EveryInfoKey),
+        saveString(ctx, ctx.getString(R.string.every_info_key),
                 adapter.toJson(GlobalValue.everyInfoArrayList).toString())
     }
 
@@ -118,7 +118,7 @@ class Utils {
         }
 
         when (parseKey) {
-            ctx.getString(R.string.ScheduleInfoKey) -> {
+            ctx.getString(R.string.schedule_info_key) -> {
                 val scheduleInfoAdapter = moshi.adapter(ScheduleInfo::class.java)
 
                 val jsonArray = JSONArray(jsonDataString)
@@ -130,7 +130,7 @@ class Utils {
                 GlobalValue.scheduleInfoArrayList = tmpScheduleArrayList
             }
 
-            ctx.getString(R.string.TaskInfoKey) -> {
+            ctx.getString(R.string.task_info_key) -> {
                 val taskInfoAdapter = moshi.adapter(TaskInfo::class.java)
 
                 val jsonArray = JSONArray(jsonDataString)
@@ -142,7 +142,7 @@ class Utils {
                 GlobalValue.taskInfoArrayList = tmpTaskArrayList
             }
 
-            ctx.getString(R.string.EveryInfoKey) -> {
+            ctx.getString(R.string.every_info_key) -> {
                 val everyInfoAdapter = moshi.adapter(EveryInfo::class.java)
 
                 val jsonArray = JSONArray(jsonDataString)

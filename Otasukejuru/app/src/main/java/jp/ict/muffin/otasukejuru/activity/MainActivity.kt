@@ -78,9 +78,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun loadInfoList() {
         Utils().apply {
-            parseData(applicationContext, loadString(applicationContext, getString(R.string.TaskInfoKey)), getString(R.string.TaskInfoKey))
-            parseData(applicationContext, loadString(applicationContext, getString(R.string.ScheduleInfoKey)), getString(R.string.ScheduleInfoKey))
-            parseData(applicationContext, loadString(applicationContext, getString(R.string.EveryInfoKey)), getString(R.string.EveryInfoKey))
+            parseData(applicationContext, loadString(applicationContext, getString(R.string.task_info_key)), getString(R.string.task_info_key))
+            parseData(applicationContext, loadString(applicationContext, getString(R.string.schedule_info_key)), getString(R.string.schedule_info_key))
+            parseData(applicationContext, loadString(applicationContext, getString(R.string.every_info_key)), getString(R.string.every_info_key))
         }
     }
 

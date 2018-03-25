@@ -181,7 +181,7 @@ class TaskListFragment : Fragment() {
                     2 -> {
                         AlertDialog.Builder(context).apply {
                             setTitle(element.task_name)
-                            setMessage(getString(R.string.complicatedMassage))
+                            setMessage(getString(R.string.complicated_massage))
                             setPositiveButton("Yes") { _, _ ->
                                 deleteTask(element)
                             }
@@ -193,7 +193,7 @@ class TaskListFragment : Fragment() {
                     3 -> {
                         AlertDialog.Builder(context).apply {
                             setTitle(element.task_name)
-                            setMessage(getString(R.string.deleteMassage))
+                            setMessage(getString(R.string.delete_massage))
                             setPositiveButton("OK") { _, _ ->
                                 deleteTask(element)
                             }
