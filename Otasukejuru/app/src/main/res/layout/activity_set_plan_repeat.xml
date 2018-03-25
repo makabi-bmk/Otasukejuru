@@ -1,120 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/back"
-    android:orientation="vertical">
+<layout>
 
-    <Toolbar
-        android:id="@+id/toolbar_back"
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?android:colorPrimary"
-        android:minHeight="?android:actionBarSize">
+        android:layout_height="match_parent"
+        android:background="@color/back"
+        android:orientation="vertical">
 
-        <ImageButton
-            android:id="@+id/button_back"
-            android:layout_width="wrap_content"
+        <Toolbar
+            android:id="@+id/toolbar_back"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/ic_arrow_back_white_48dp"
-            android:contentDescription="backButton"/>
+            android:background="?android:colorPrimary"
+            android:minHeight="?android:actionBarSize">
 
-    </Toolbar>
+            <ImageButton
+                android:id="@+id/button_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_arrow_back_white_48dp"
+                android:contentDescription="backButton"/>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        </Toolbar>
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/title"
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="30dp"
+                    android:text="予定の繰り返し"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="30sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/title"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="50dp"
+                    android:layout_marginTop="10dp"
+                    android:text="この予定を繰り返しスケジュールに入れますか？"
+                    android:textSize="25sp"/>
+
+            </RelativeLayout>
+
+            <RadioGroup
+                android:id="@+id/plan_repeat_radio_group"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="30dp"
-                android:text="予定の繰り返し"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true">
+
+                <RadioButton
+                    android:id="@+id/radio_plan1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:checked="true"
+                    android:text="今回だけ"
+                    android:textSize="25sp"/>
+
+                <RadioButton
+                    android:id="@+id/radio_plan2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:text="毎日"
+                    android:textSize="25sp"/>
+
+                <RadioButton
+                    android:id="@+id/radio_plan3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:text="毎週"
+                    android:textSize="25sp"/>
+
+                <RadioButton
+                    android:id="@+id/radio_plan4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:text="毎月"
+                    android:textSize="25sp"/>
+
+                <RadioButton
+                    android:id="@+id/radio_plan5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:text="毎年"
+                    android:textSize="25sp"/>
+            </RadioGroup>
+
+
+            <Button
+                android:id="@+id/button_next"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:background="#FBFBF0"
+                android:text="次へ"
                 android:textColor="@color/colorPrimary"
-                android:textSize="30sp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/title"
-                android:layout_marginLeft="50dp"
-                android:layout_marginRight="50dp"
-                android:layout_marginTop="10dp"
-                android:text="この予定を繰り返しスケジュールに入れますか？"
-                android:textSize="25sp"/>
+                android:textSize="20sp"/>
 
         </RelativeLayout>
 
-        <RadioGroup
-            android:id="@+id/plan_repeat_radio_group"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true">
 
-            <RadioButton
-                android:id="@+id/radio_plan1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:checked="true"
-                android:text="今回だけ"
-                android:textSize="25sp"/>
-
-            <RadioButton
-                android:id="@+id/radio_plan2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:text="毎日"
-                android:textSize="25sp"/>
-
-            <RadioButton
-                android:id="@+id/radio_plan3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:text="毎週"
-                android:textSize="25sp"/>
-
-            <RadioButton
-                android:id="@+id/radio_plan4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:text="毎月"
-                android:textSize="25sp"/>
-
-            <RadioButton
-                android:id="@+id/radio_plan5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:text="毎年"
-                android:textSize="25sp"/>
-        </RadioGroup>
-
-
-        <Button
-            android:id="@+id/button_next"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:background="#FBFBF0"
-            android:text="次へ"
-            android:textColor="@color/colorPrimary"
-            android:textSize="20sp"/>
-
-    </RelativeLayout>
-
-
-</LinearLayout>
+    </LinearLayout>
+</layout>

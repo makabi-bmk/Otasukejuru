@@ -1,109 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/back"
-    android:orientation="vertical">
+<layout>
 
-    <Toolbar
-        android:id="@+id/toolbar_back"
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?android:colorPrimary"
-        android:minHeight="?android:actionBarSize">
+        android:layout_height="match_parent"
+        android:background="@color/back"
+        android:orientation="vertical">
 
-        <ImageButton
-            android:id="@+id/button_back"
-            android:layout_width="wrap_content"
+        <Toolbar
+            android:id="@+id/toolbar_back"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/ic_arrow_back_white_48dp"
-            android:contentDescription="backButton"/>
-    </Toolbar>
+            android:background="?android:colorPrimary"
+            android:minHeight="?android:actionBarSize">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+            <ImageButton
+                android:id="@+id/button_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_arrow_back_white_48dp"
+                android:contentDescription="backButton"/>
+        </Toolbar>
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/title"
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="10dp"
+                    android:text="タスク終了の目安時間"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="30sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/title"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="50dp"
+                    android:layout_marginTop="10dp"
+                    android:text="タスクが終了する目安は何時間ですか？"
+                    android:textSize="25sp"/>
+
+            </RelativeLayout>
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="10dp"
-                android:text="タスク終了の目安時間"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/finish_hour_edit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:textSize="25sp"
+                    android:theme="@style/EditTextColorControl"
+                    tools:ignore="LabelFor"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="時間"
+                    android:textSize="25sp"/>
+
+                <EditText
+                    android:id="@+id/finish_minute_edit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:textSize="25sp"
+                    android:theme="@style/EditTextColorControl"
+                    tools:ignore="LabelFor"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="分"
+                    android:textSize="25sp"/>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/button_next"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:background="#FBFBF0"
+                android:text="追加"
                 android:textColor="@color/colorPrimary"
-                android:textSize="30sp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/title"
-                android:layout_marginLeft="50dp"
-                android:layout_marginRight="50dp"
-                android:layout_marginTop="10dp"
-                android:text="タスクが終了する目安は何時間ですか？"
-                android:textSize="25sp"/>
+                android:textSize="20sp"/>
 
         </RelativeLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:orientation="horizontal">
-
-            <EditText
-                android:id="@+id/finish_hour_edit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="number"
-                android:maxLines="1"
-                android:textSize="25sp"
-                android:theme="@style/EditTextColorControl"
-                tools:ignore="LabelFor"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="時間"
-                android:textSize="25sp"/>
-
-            <EditText
-                android:id="@+id/finish_minute_edit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="number"
-                android:maxLines="1"
-                android:textSize="25sp"
-                android:theme="@style/EditTextColorControl"
-                tools:ignore="LabelFor"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="分"
-                android:textSize="25sp"/>
-
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/button_next"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:background="#FBFBF0"
-            android:text="追加"
-            android:textColor="@color/colorPrimary"
-            android:textSize="20sp"/>
-
-    </RelativeLayout>
-</LinearLayout>
+    </LinearLayout>
+</layout>

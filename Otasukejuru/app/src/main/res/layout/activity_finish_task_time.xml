@@ -1,154 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/back"
-    android:orientation="vertical">
-
-    <Toolbar
-        android:id="@+id/toolbar_back"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?android:colorPrimary"
-        android:minHeight="?android:actionBarSize">
-
-        <ImageButton
-            android:id="@+id/button_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/ic_arrow_back_white_48dp"
-            android:contentDescription="backButton"
-            tools:ignore="ContentDescription"/>
-    </Toolbar>
+<layout>
 
     <RelativeLayout
-        android:id="@+id/explanationRelative"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/toolbar_back">
-
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="10dp"
-            android:text="タスクの期限"
-            android:textColor="@color/colorPrimary"
-            android:textSize="30sp"/>
-
-        <TextView
-            android:id="@+id/question_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/title"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
-            android:layout_marginTop="10dp"
-            android:text="期限はいつまでですか？"
-            android:textSize="25sp"/>
-
-    </RelativeLayout>
-
-
-    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/explanationRelative">
+        android:background="@color/back"
+        android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
+        <Toolbar
+            android:id="@+id/toolbar_back"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:orientation="vertical">
+            android:background="?android:colorPrimary"
+            android:minHeight="?android:actionBarSize">
+
+            <ImageButton
+                android:id="@+id/button_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_arrow_back_white_48dp"
+                android:contentDescription="backButton"
+                tools:ignore="ContentDescription"/>
+        </Toolbar>
+
+        <RelativeLayout
+            android:id="@+id/explanationRelative"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/toolbar_back">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
+                android:text="タスクの期限"
+                android:textColor="@color/colorPrimary"
+                android:textSize="30sp"/>
+
+            <TextView
+                android:id="@+id/question_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/title"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="10dp"
+                android:text="期限はいつまでですか？"
+                android:textSize="25sp"/>
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/explanationRelative">
 
             <LinearLayout
-                android:id="@+id/month_day"
                 android:layout_width="wrap_content"
-                android:layout_height="170dp"
-                android:gravity="center"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:orientation="vertical">
 
-
-                <NumberPicker
-                    android:id="@+id/finish_month_num_pick"
+                <LinearLayout
+                    android:id="@+id/month_day"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="170dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginRight="4dp"
-                    android:text="月"
-                    android:textSize="16sp"/>
 
-                <NumberPicker
-                    android:id="@+id/finish_day_num_pick"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    <NumberPicker
+                        android:id="@+id/finish_month_num_pick"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
 
-                <TextView
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
+                        android:text="月"
+                        android:textSize="16sp"/>
+
+                    <NumberPicker
+                        android:id="@+id/finish_day_num_pick"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
+                        android:text="日"
+                        android:textSize="16sp"/>
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginRight="4dp"
-                    android:text="日"
-                    android:textSize="16sp"/>
+                    android:layout_height="170dp"
+                    android:orientation="horizontal">
+
+                    <NumberPicker
+                        android:id="@+id/finish_hour_edit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
+                        android:text="時"
+                        android:textSize="16sp"/>
+
+
+                    <NumberPicker
+                        android:id="@+id/finish_minute_edit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
+                        android:text="分"
+                        android:textSize="16sp"/>
+                </LinearLayout>
             </LinearLayout>
 
-            <LinearLayout
+            <Button
+                android:id="@+id/button_next"
+                style="?android:attr/borderlessButtonStyle"
                 android:layout_width="wrap_content"
-                android:layout_height="170dp"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:background="@color/back"
+                android:text="次へ"
+                android:textColor="@color/colorPrimary"
+                android:textSize="20sp"/>
 
-                <NumberPicker
-                    android:id="@+id/finish_hour_edit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginRight="4dp"
-                    android:text="時"
-                    android:textSize="16sp"/>
-
-
-                <NumberPicker
-                    android:id="@+id/finish_minute_edit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginRight="4dp"
-                    android:text="分"
-                    android:textSize="16sp"/>
-            </LinearLayout>
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/button_next"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:background="@color/back"
-            android:text="次へ"
-            android:textColor="@color/colorPrimary"
-            android:textSize="20sp"/>
-
+        </RelativeLayout>
     </RelativeLayout>
-</RelativeLayout>
+</layout>

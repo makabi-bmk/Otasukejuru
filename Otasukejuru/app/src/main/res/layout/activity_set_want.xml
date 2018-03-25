@@ -1,84 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/back"
-    android:orientation="vertical">
+<layout>
 
-    <Toolbar
-        android:id="@+id/toolbar_back"
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?android:colorPrimary"
-        android:minHeight="?android:actionBarSize">
+        android:layout_height="match_parent"
+        android:background="@color/back"
+        android:orientation="vertical">
 
-        <ImageButton
-            android:id="@+id/button_back"
-            android:layout_width="wrap_content"
+        <Toolbar
+            android:id="@+id/toolbar_back"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/ic_arrow_back_white_48dp"
-            android:contentDescription="backButton"/>
-    </Toolbar>
+            android:background="?android:colorPrimary"
+            android:minHeight="?android:actionBarSize">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+            <ImageButton
+                android:id="@+id/button_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_arrow_back_white_48dp"
+                android:contentDescription="backButton"/>
+        </Toolbar>
 
         <RelativeLayout
-            android:id="@+id/explanationRelative"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/title"
+            <RelativeLayout
+                android:id="@+id/explanationRelative"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="10dp"
+                    android:text="タスクの優先度"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="30sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/title"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="50dp"
+                    android:layout_marginTop="10dp"
+                    android:text="やりたい(want to)タスクですか？"
+                    android:textSize="25sp"/>
+            </RelativeLayout>
+
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="10dp"
-                android:text="タスクの優先度"
-                android:textColor="@color/colorPrimary"
-                android:textSize="30sp"/>
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/title"
-                android:layout_marginLeft="50dp"
-                android:layout_marginRight="50dp"
-                android:layout_marginTop="10dp"
-                android:text="やりたい(want to)タスクですか？"
-                android:textSize="25sp"/>
+                <Button
+                    android:id="@+id/no_want"
+                    android:layout_width="145dp"
+                    android:layout_height="145dp"
+                    android:layout_margin="15dp"
+                    android:background="@color/colorPrimary"
+                    android:text="いいえ"
+                    android:textColor="#000"
+                    android:textSize="30sp"/>
+
+                <Button
+                    android:id="@+id/yes_want"
+                    android:layout_width="145dp"
+                    android:layout_height="145dp"
+                    android:layout_margin="15dp"
+                    android:background="@color/colorPrimary"
+                    android:text="はい"
+                    android:textColor="#000"
+                    android:textSize="30sp"/>
+
+            </LinearLayout>
         </RelativeLayout>
-
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/no_want"
-                android:layout_width="145dp"
-                android:layout_height="145dp"
-                android:layout_margin="15dp"
-                android:background="@color/colorPrimary"
-                android:text="いいえ"
-                android:textColor="#000"
-                android:textSize="30sp"/>
-
-            <Button
-                android:id="@+id/yes_want"
-                android:layout_width="145dp"
-                android:layout_height="145dp"
-                android:layout_margin="15dp"
-                android:background="@color/colorPrimary"
-                android:text="はい"
-                android:textColor="#000"
-                android:textSize="30sp"/>
-
-        </LinearLayout>
-    </RelativeLayout>
-</LinearLayout>
+    </LinearLayout>
+</layout>

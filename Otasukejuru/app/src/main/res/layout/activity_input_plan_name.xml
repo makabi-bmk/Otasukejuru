@@ -1,84 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/back"
-    android:orientation="vertical">
+<layout>
 
-    <Toolbar
-        android:id="@+id/toolbar_back"
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?android:colorPrimary"
-        android:minHeight="?android:actionBarSize"
-        >
+        android:layout_height="match_parent"
+        android:background="@color/back"
+        android:orientation="vertical">
 
-        <ImageButton
-            android:id="@+id/button_back"
-            android:layout_width="wrap_content"
+        <Toolbar
+            android:id="@+id/toolbar_back"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/ic_arrow_back_white_48dp"
-            android:contentDescription="backButton"/>
-    </Toolbar>
+            android:background="?android:colorPrimary"
+            android:minHeight="?android:actionBarSize"
+            >
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="30dp"
-            android:text="予定名"
-            android:textColor="@color/colorPrimary"
-            android:textSize="30sp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/title"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
-            android:text="予定名はなんですか？"
-            android:textSize="25sp"/>
+            <ImageButton
+                android:id="@+id/button_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_arrow_back_white_48dp"
+                android:contentDescription="backButton"/>
+        </Toolbar>
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="bottom">
+            android:layout_height="match_parent">
 
-            <Button
-                android:id="@+id/button_next"
-                style="?android:attr/borderlessButtonStyle"
+
+            <TextView
+                android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentEnd="true"
-                android:background="#FBFBF0"
-                android:text="次へ"
-                android:textColor="@color/colorPrimary"
-                android:textSize="20sp"/>
-
-            <EditText
-                android:id="@+id/plan_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
+                android:layout_marginTop="10dp"
                 android:layout_marginLeft="30dp"
-                android:layout_marginRight="20dp"
-                android:hint="予定名"
-                android:inputType="text"
-                android:maxLines="1"
-                android:theme="@style/EditTextColorControl"/>
+                android:text="予定名"
+                android:textColor="@color/colorPrimary"
+                android:textSize="30sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/title"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:text="予定名はなんですか？"
+                android:textSize="25sp"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="bottom">
+
+                <Button
+                    android:id="@+id/button_next"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentEnd="true"
+                    android:background="#FBFBF0"
+                    android:text="次へ"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="20sp"/>
+
+                <EditText
+                    android:id="@+id/plan_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="20dp"
+                    android:hint="予定名"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:theme="@style/EditTextColorControl"/>
+
+            </RelativeLayout>
 
         </RelativeLayout>
 
-    </RelativeLayout>
-
-</LinearLayout>
+    </LinearLayout>
+</layout>
