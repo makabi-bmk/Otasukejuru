@@ -64,3 +64,9 @@ kotlin {
         coroutines "enable"
     }
 }
+ktlint {
+    version = "0.20.0"
+    android = true
+    reporter = "checkstyle"
+    ignoreFailures = true
+}
