@@ -14,7 +14,7 @@ import jp.ict.muffin.otasukejuru.`object`.*
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue.notificationContent
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue.notificationId
 import jp.ict.muffin.otasukejuru.communication.*
-import jp.ict.muffin.otasukejuru.databinding.ActivityInputPlanNameBinding
+import jp.ict.muffin.otasukejuru.databinding.ActivityInputScheduleNameBinding
 import jp.ict.muffin.otasukejuru.databinding.ActivitySelectionBinding
 import jp.ict.muffin.otasukejuru.other.AlarmReceiver
 import jp.ict.muffin.otasukejuru.other.Utils
@@ -106,7 +106,7 @@ class AdditionActivity : Activity() {
     }
 
     private fun inputScheduleName() {
-        val binding: ActivityInputPlanNameBinding =
+        val binding: ActivityInputScheduleNameBinding =
                 DataBindingUtil.setContentView(this, R.layout.activity_input_schedule_name)
         setActionBar(find(R.id.toolbar_back))
 
