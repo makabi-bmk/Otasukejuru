@@ -13,8 +13,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?android:colorPrimary"
-            android:minHeight="?android:actionBarSize"
-            >
+            android:minHeight="?android:actionBarSize">
 
             <ImageButton
                 android:id="@+id/button_back"
@@ -35,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="30dp"
-                android:text="予定名"
+                android:text="@string/schedule_title"
                 android:textColor="@color/colorPrimary"
                 android:textSize="30sp"/>
 
@@ -46,7 +45,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
-                android:text="予定名はなんですか？"
+                android:text="@string/schedule_body"
                 android:textSize="25sp"/>
 
             <RelativeLayout
@@ -62,7 +61,7 @@
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentEnd="true"
                     android:background="#FBFBF0"
-                    android:text="次へ"
+                    android:text="@string/next"
                     android:textColor="@color/colorPrimary"
                     android:textSize="20sp"/>
 
@@ -74,7 +73,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="30dp"
                     android:layout_marginRight="20dp"
-                    android:hint="予定名"
+                    android:hint="@string/schedule_title"
                     android:inputType="text"
                     android:maxLines="1"
                     android:theme="@style/EditTextColorControl"/>
