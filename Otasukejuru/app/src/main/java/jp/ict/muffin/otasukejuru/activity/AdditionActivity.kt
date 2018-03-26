@@ -44,7 +44,7 @@ class AdditionActivity : Activity() {
     private var dateLimit: Int = 0
     private var timeLimit: Int = 0
 
-    //plan
+    //schedule
     private var notificationTime: Int = 0
     //task
     private var isMust: Boolean = false
@@ -107,7 +107,7 @@ class AdditionActivity : Activity() {
 
     private fun inputScheduleName() {
         val binding: ActivityInputPlanNameBinding =
-                DataBindingUtil.setContentView(this, R.layout.activity_input_plan_name)
+                DataBindingUtil.setContentView(this, R.layout.activity_input_schedule_name)
         setActionBar(find(R.id.toolbar_back))
 
         binding.apply {
@@ -271,7 +271,7 @@ class AdditionActivity : Activity() {
                 val str: String = set_notification_time_edit.text.toString()
                 notificationTime = Integer.parseInt(str)
 
-                Log.d("plan", "タイトル名:" + titleName + "\n予定開始の日付:" + startMonth + "月" +
+                Log.d("schedule", "タイトル名:" + titleName + "\n予定開始の日付:" + startMonth + "月" +
                         startDay + "日" + startHour + "時" + startMinute + "分" + "\n予定終了の時間:" +
                         finishMonth + "月" + finishDay + "日" + finishHour + "時" +
                         finishMinute + "分" + "\n繰り返し:" + taskRepeat + "\n何分前に通知するか:" +
