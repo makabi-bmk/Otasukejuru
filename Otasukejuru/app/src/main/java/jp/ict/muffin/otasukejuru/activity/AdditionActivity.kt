@@ -14,6 +14,7 @@ import jp.ict.muffin.otasukejuru.`object`.*
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue.notificationContent
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue.notificationId
 import jp.ict.muffin.otasukejuru.communication.*
+import jp.ict.muffin.otasukejuru.databinding.ActivityInputPlanNameBinding
 import jp.ict.muffin.otasukejuru.databinding.ActivitySelectionBinding
 import jp.ict.muffin.otasukejuru.other.AlarmReceiver
 import jp.ict.muffin.otasukejuru.other.Utils
@@ -105,26 +106,32 @@ class AdditionActivity : Activity() {
     }
 
     private fun inputScheduleName() {
-        setContentView(R.layout.activity_input_plan_name)
+        val binding: ActivityInputPlanNameBinding =
+                DataBindingUtil.setContentView(this, R.layout.activity_input_plan_name)
         setActionBar(find(R.id.toolbar_back))
 
-        val inputNameEdit = find<EditText>(R.id.plan_name)
-        if (!isAdd) {
-            inputNameEdit.setText(beforeScheduleInfo.schedule_name)
-        }
-
-        find<Button>(R.id.button_next).setOnClickListener {
-            titleName = inputNameEdit.text.toString()
-            if (titleName == "") titleName = getString(R.string.no_title)
-
-            startScheduleTime()
-        }
-
-        find<ImageButton>(R.id.button_back).setOnClickListener {
-            if (isAdd) {
-                selectAddType()
+        binding.apply {
+            defaultText = if (isAdd) {
+                ""
             } else {
-                finish()
+                beforeScheduleInfo.schedule_name
+            }
+
+            setNextOnClick {
+                titleName = this.planName.text.toString()
+                if (titleName == "") {
+                    titleName = getString(R.string.no_title)
+                }
+
+                startScheduleTime()
+            }
+
+            setBackOnClick {
+                if (isAdd) {
+                    selectAddType()
+                } else {
+                    finish()
+                }
             }
         }
     }
