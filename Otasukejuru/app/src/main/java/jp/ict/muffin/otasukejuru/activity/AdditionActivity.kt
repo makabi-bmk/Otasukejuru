@@ -176,7 +176,7 @@ class AdditionActivity : Activity() {
                 it.minValue = 0
                 it.value = startMinute
             }
-            
+
             setNextOnClick {
                 startYear = calendar.get(Calendar.YEAR)
                 startMonth = startMonthNumPick.value
