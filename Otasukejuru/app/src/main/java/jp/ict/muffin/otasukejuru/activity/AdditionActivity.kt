@@ -16,6 +16,7 @@ import jp.ict.muffin.otasukejuru.`object`.GlobalValue.notificationId
 import jp.ict.muffin.otasukejuru.communication.*
 import jp.ict.muffin.otasukejuru.databinding.ActivityInputScheduleNameBinding
 import jp.ict.muffin.otasukejuru.databinding.ActivitySelectionBinding
+import jp.ict.muffin.otasukejuru.databinding.ActivityStartPlanTimeBinding
 import jp.ict.muffin.otasukejuru.other.AlarmReceiver
 import jp.ict.muffin.otasukejuru.other.Utils
 import kotlinx.android.synthetic.main.activity_set_plan_notification_time.*
@@ -137,7 +138,8 @@ class AdditionActivity : Activity() {
     }
 
     private fun startScheduleTime() {
-        setContentView(R.layout.activity_start_plan_time)
+        val binding: ActivityStartPlanTimeBinding =
+                DataBindingUtil.setContentView(this, R.layout.activity_start_plan_time)
         setActionBar(find(R.id.toolbar_back))
 
         if (isAdd) {
@@ -153,38 +155,41 @@ class AdditionActivity : Activity() {
             startMinute = Utils().getTime(startTime) % 100
         }
 
-        find<NumberPicker>(R.id.start_month_num_pick).apply {
-            maxValue = 12
-            minValue = 1
-            value = startMonth
-            setOnValueChangedListener { _, _, newVal -> startMonth = newVal }
+        binding.apply {
+            startMonthNumPick.also {
+                it.maxValue = 12
+                it.minValue = 1
+                it.value = startMonth
+            }
+            startDayNumPick.also {
+                it.maxValue = 31
+                it.minValue = 1
+                it.value = startDay
+            }
+            startHourNumPick.also {
+                it.maxValue = 23
+                it.minValue = 0
+                it.value = startHour
+            }
+            startMinuteNumPick.also {
+                it.maxValue = 59
+                it.minValue = 0
+                it.value = startMinute
+            }
+            
+            setNextOnClick {
+                startYear = calendar.get(Calendar.YEAR)
+                startMonth = startMonthNumPick.value
+                startDay = startDayNumPick.value
+                startHour = startHourNumPick.value
+                startMinute = startMinuteNumPick.value
+                
+                finishScheduleTime()
+            }
+            setBackOnClick {
+                inputScheduleName()
+            }
         }
-
-        find<NumberPicker>(R.id.start_day_num_pick).apply {
-            maxValue = 31
-            minValue = 1
-            value = startDay
-            setOnValueChangedListener { _, _, newVal -> startDay = newVal }
-        }
-
-        find<NumberPicker>(R.id.start_hour_num_pick).apply {
-            maxValue = 23
-            minValue = 0
-            value = startHour
-            setOnValueChangedListener { _, _, newVal -> startHour = newVal }
-        }
-
-        find<NumberPicker>(R.id.start_minute_num_pick).apply {
-            maxValue = 59
-            minValue = 0
-            value = startMinute
-            setOnValueChangedListener { _, _, newVal -> startMinute = newVal }
-        }
-
-        startYear = calendar.get(Calendar.YEAR)
-
-        find<Button>(R.id.button_next).setOnClickListener { finishScheduleTime() }
-        find<ImageButton>(R.id.button_back).setOnClickListener { inputScheduleName() }
     }
 
     private fun finishScheduleTime() {
