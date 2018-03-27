@@ -16,11 +16,11 @@ import jp.ict.muffin.otasukejuru.`object`.GlobalValue.notificationId
 import jp.ict.muffin.otasukejuru.communication.*
 import jp.ict.muffin.otasukejuru.databinding.ActivityInputScheduleNameBinding
 import jp.ict.muffin.otasukejuru.databinding.ActivitySelectionBinding
-import jp.ict.muffin.otasukejuru.databinding.ActivityStartPlanTimeBinding
+import jp.ict.muffin.otasukejuru.databinding.ActivityStartScheduleTimeBinding
 import jp.ict.muffin.otasukejuru.other.AlarmReceiver
 import jp.ict.muffin.otasukejuru.other.Utils
-import kotlinx.android.synthetic.main.activity_set_plan_notification_time.*
-import kotlinx.android.synthetic.main.activity_set_plan_repeat.*
+import kotlinx.android.synthetic.main.activity_set_schedule_notification_time.*
+import kotlinx.android.synthetic.main.activity_set_schedule_repeat.*
 import kotlinx.android.synthetic.main.activity_set_task_repeat.*
 import org.jetbrains.anko.ctx
 import org.jetbrains.anko.find
@@ -138,8 +138,8 @@ class AdditionActivity : Activity() {
     }
 
     private fun startScheduleTime() {
-        val binding: ActivityStartPlanTimeBinding =
-                DataBindingUtil.setContentView(this, R.layout.activity_start_plan_time)
+        val binding: ActivityStartScheduleTimeBinding =
+                DataBindingUtil.setContentView(this, R.layout.activity_start_schedule_time)
         setActionBar(find(R.id.toolbar_back))
 
         if (isAdd) {
@@ -244,7 +244,7 @@ class AdditionActivity : Activity() {
     }
 
     private fun setScheduleRepeat() {
-        setContentView(R.layout.activity_set_plan_repeat)
+        setContentView(R.layout.activity_set_schedule_repeat)
         setActionBar(find(R.id.toolbar_back))
 
         find<Button>(R.id.button_next).setOnClickListener {
@@ -262,7 +262,7 @@ class AdditionActivity : Activity() {
     }
 
     private fun setScheduleNotificationTime() {
-        setContentView(R.layout.activity_set_plan_notification_time)
+        setContentView(R.layout.activity_set_schedule_notification_time)
         setActionBar(find(R.id.toolbar_back))
 
         set_notification_time_edit.setText("5")
