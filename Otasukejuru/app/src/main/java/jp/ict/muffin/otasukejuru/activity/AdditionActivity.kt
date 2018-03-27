@@ -14,6 +14,7 @@ import jp.ict.muffin.otasukejuru.`object`.*
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue.notificationContent
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue.notificationId
 import jp.ict.muffin.otasukejuru.communication.*
+import jp.ict.muffin.otasukejuru.databinding.ActivityFinishScheduleTimeBinding
 import jp.ict.muffin.otasukejuru.databinding.ActivityInputScheduleNameBinding
 import jp.ict.muffin.otasukejuru.databinding.ActivitySelectionBinding
 import jp.ict.muffin.otasukejuru.databinding.ActivityStartScheduleTimeBinding
@@ -193,7 +194,8 @@ class AdditionActivity : Activity() {
     }
 
     private fun finishScheduleTime() {
-        setContentView(R.layout.activity_finish_plan_time)
+        val binding: ActivityFinishScheduleTimeBinding =
+                DataBindingUtil.setContentView(this, R.layout.activity_finish_schedule_time)
         setActionBar(find(R.id.toolbar_back))
 
         if (isAdd) {
@@ -237,10 +239,41 @@ class AdditionActivity : Activity() {
             setOnValueChangedListener { _, _, newVal -> finishMinute = newVal }
         }
 
-        finishYear = calendar.get(Calendar.YEAR)
+        binding.apply {
+            finishMonthNumPick.also {
+                it.maxValue = 12
+                it.minValue = 1
+                it.value = startMonth
+            }
+            finishDayNumPick.also {
+                it.maxValue = 31
+                it.minValue = 1
+                it.value = startDay
+            }
+            finishHourNumPick.also {
+                it.maxValue = 23
+                it.minValue = 0
+                it.value = startHour
+            }
+            finishMinuteNumPick.also {
+                it.maxValue = 59
+                it.minValue = 0
+                it.value = startMinute
+            }
 
-        find<Button>(R.id.button_next).setOnClickListener { setScheduleRepeat() }
-        find<ImageButton>(R.id.button_back).setOnClickListener { startScheduleTime() }
+            setNextOnClick {
+                finishYear = calendar.get(Calendar.YEAR)
+                finishMonth = finishMonthNumPick.value
+                finishDay = finishDayNumPick.value
+                finishHour = finishHourNumPick.value
+                finishMinute = finishMinuteNumPick.value
+
+                setScheduleRepeat()
+            }
+            setBackOnClick {
+                startScheduleTime()
+            }
+        }
     }
 
     private fun setScheduleRepeat() {
