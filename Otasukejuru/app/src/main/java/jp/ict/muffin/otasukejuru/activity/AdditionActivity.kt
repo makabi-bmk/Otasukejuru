@@ -273,7 +273,6 @@ class AdditionActivity : Activity() {
     }
 
     private fun setScheduleRepeat() {
-        setContentView(R.layout.activity_set_schedule_repeat)
         setActionBar(find(R.id.toolbar_back))
         val binding: ActivitySetScheduleRepeatBinding =
                 DataBindingUtil.setContentView(this, R.layout.activity_set_schedule_repeat)
