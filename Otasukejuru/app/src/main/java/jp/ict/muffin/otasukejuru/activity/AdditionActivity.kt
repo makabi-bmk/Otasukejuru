@@ -14,14 +14,10 @@ import jp.ict.muffin.otasukejuru.`object`.*
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue.notificationContent
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue.notificationId
 import jp.ict.muffin.otasukejuru.communication.*
-import jp.ict.muffin.otasukejuru.databinding.ActivityFinishScheduleTimeBinding
-import jp.ict.muffin.otasukejuru.databinding.ActivityInputScheduleNameBinding
-import jp.ict.muffin.otasukejuru.databinding.ActivitySelectionBinding
-import jp.ict.muffin.otasukejuru.databinding.ActivityStartScheduleTimeBinding
+import jp.ict.muffin.otasukejuru.databinding.*
 import jp.ict.muffin.otasukejuru.other.AlarmReceiver
 import jp.ict.muffin.otasukejuru.other.Utils
 import kotlinx.android.synthetic.main.activity_set_schedule_notification_time.*
-import kotlinx.android.synthetic.main.activity_set_schedule_repeat.*
 import kotlinx.android.synthetic.main.activity_set_task_repeat.*
 import org.jetbrains.anko.ctx
 import org.jetbrains.anko.find
@@ -279,19 +275,24 @@ class AdditionActivity : Activity() {
     private fun setScheduleRepeat() {
         setContentView(R.layout.activity_set_schedule_repeat)
         setActionBar(find(R.id.toolbar_back))
+        val binding: ActivitySetScheduleRepeatBinding =
+                DataBindingUtil.setContentView(this, R.layout.activity_set_schedule_repeat)
 
-        find<Button>(R.id.button_next).setOnClickListener {
-            val num = plan_repeat_radio_group.checkedRadioButtonId
-
-            taskRepeat = if (find<RadioButton>(num).text.toString() == "今回だけ") {
-                0
-            } else {
-                1
+        binding.apply {
+            setNextOnClick {
+                val num = planRepeatRadioGroup.checkedRadioButtonId
+    
+                taskRepeat = if (find<RadioButton>(num).text.toString() == "今回だけ") {
+                    0
+                } else {
+                    1
+                }
+                setScheduleNotificationTime()
             }
-            setScheduleNotificationTime()
+            setBackOnClick {
+               finishScheduleTime()
+            }
         }
-
-        find<ImageButton>(R.id.button_back).setOnClickListener { finishScheduleTime() }
     }
 
     private fun setScheduleNotificationTime() {

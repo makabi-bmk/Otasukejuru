@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
 
+    <data>
+
+        <variable
+            name="nextOnClick"
+            type="android.view.View.OnClickListener"/>
+
+        <variable
+            name="backOnClick"
+            type="android.view.View.OnClickListener"/>
+
+    </data>
+
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -20,7 +32,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/ic_arrow_back_white_48dp"
-                android:contentDescription="backButton"/>
+                android:contentDescription="backButton"
+                android:onClick="@{backOnClick}"/>
 
         </Toolbar>
 
@@ -112,7 +125,8 @@
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
                 android:background="#FBFBF0"
-                android:text="次へ"
+                android:onClick="@{nextOnClick}"
+                android:text="@string/next"
                 android:textColor="@color/colorPrimary"
                 android:textSize="20sp"/>
 
