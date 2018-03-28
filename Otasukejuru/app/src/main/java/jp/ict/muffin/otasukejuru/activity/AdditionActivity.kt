@@ -280,9 +280,9 @@ class AdditionActivity : Activity() {
 
         binding.apply {
             setNextOnClick {
-                val num = planRepeatRadioGroup.checkedRadioButtonId
-    
-                taskRepeat = if (find<RadioButton>(num).text.toString() == "今回だけ") {
+                val checkedId = planRepeatRadioGroup.checkedRadioButtonId
+
+                taskRepeat = if (find<RadioButton>(checkedId).text.toString() == "今回だけ") {
                     0
                 } else {
                     1
@@ -290,7 +290,7 @@ class AdditionActivity : Activity() {
                 setScheduleNotificationTime()
             }
             setBackOnClick {
-               finishScheduleTime()
+                finishScheduleTime()
             }
         }
     }
