@@ -17,7 +17,6 @@ import jp.ict.muffin.otasukejuru.communication.*
 import jp.ict.muffin.otasukejuru.databinding.*
 import jp.ict.muffin.otasukejuru.other.AlarmReceiver
 import jp.ict.muffin.otasukejuru.other.Utils
-import kotlinx.android.synthetic.main.activity_set_schedule_notification_time.*
 import kotlinx.android.synthetic.main.activity_set_task_repeat.*
 import org.jetbrains.anko.ctx
 import org.jetbrains.anko.find
@@ -295,19 +294,26 @@ class AdditionActivity : Activity() {
     }
 
     private fun setScheduleNotificationTime() {
-        setContentView(R.layout.activity_set_schedule_notification_time)
         setActionBar(find(R.id.toolbar_back))
 
-        set_notification_time_edit.setText("5")
+        val binding: ActivitySetScheduleNotificationTimeBinding =
+                DataBindingUtil.setContentView(
+                        this,
+                        R.layout.activity_set_schedule_notification_time
+                )
+    
         notificationTime = 5
+        binding.apply {
+            this.notificationTime = this@AdditionActivity.notificationTime.toString()
 
-        find<Button>(R.id.button_finish).apply {
-            if (!isAdd) {
-                text = "変更"
+            buttonText = if (isAdd) {
+                getString(R.string.add)
+            } else {
+                getString(R.string.change)
             }
-            setOnClickListener {
-                val str: String = set_notification_time_edit.text.toString()
-                notificationTime = Integer.parseInt(str)
+            setFinishOnClick {
+                this@AdditionActivity.notificationTime =
+                        Integer.parseInt(this.setNotificationTimeEdit.toString())
 
                 Log.d("schedule", "タイトル名:" + titleName + "\n予定開始の日付:" + startMonth + "月" +
                         startDay + "日" + startHour + "時" + startMinute + "分" + "\n予定終了の時間:" +
@@ -321,10 +327,17 @@ class AdditionActivity : Activity() {
                     } else {
                         setEveryInformation()
                     }
-                } else {
                 }
 
                 finish()
+            }
+            setBackOnClick {
+                setScheduleRepeat()
+            }
+        }
+
+        find<Button>(R.id.button_finish).apply {
+            setOnClickListener {
             }
         }
 
