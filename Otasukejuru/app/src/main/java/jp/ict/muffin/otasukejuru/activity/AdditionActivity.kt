@@ -335,13 +335,6 @@ class AdditionActivity : Activity() {
                 setScheduleRepeat()
             }
         }
-
-        find<Button>(R.id.button_finish).apply {
-            setOnClickListener {
-            }
-        }
-
-        find<ImageButton>(R.id.button_back).setOnClickListener { setScheduleRepeat() }
     }
 
     private fun inputTaskName() {
