@@ -8,7 +8,10 @@ import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.util.Log
-import android.widget.*
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageButton
+import android.widget.RadioButton
 import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.*
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue.notificationContent
@@ -470,20 +473,24 @@ class AdditionActivity : Activity() {
     }
 
     private fun setShould() {
-        setContentView(R.layout.activity_set_should)
         setActionBar(find(R.id.toolbar_back))
 
-        find<Button>(R.id.no_should).setOnClickListener {
-            isShould = false
-            setWantTo()
-        }
+        val binding: ActivitySetShouldBinding =
+                DataBindingUtil.setContentView(this, R.layout.activity_set_should)
 
-        find<Button>(R.id.yes_should).setOnClickListener {
-            isShould = true
-            setWantTo()
+        binding.apply {
+            setYesOnClick {
+                isShould = true
+                setWantTo()
+            }
+            setNoOnClick {
+                isShould = false
+                setWantTo()
+            }
+            setBackOnClick {
+                setMust()
+            }
         }
-
-        find<ImageView>(R.id.button_back).setOnClickListener { setMust() }
     }
 
     private fun setWantTo() {
