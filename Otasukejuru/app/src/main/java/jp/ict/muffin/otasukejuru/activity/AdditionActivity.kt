@@ -340,31 +340,40 @@ class AdditionActivity : Activity() {
     private fun inputTaskName() {
         setContentView(R.layout.activity_input_task_name)
         setActionBar(find(R.id.toolbar_back))
+        
+        val binding: ActivityInputTaskNameBinding =
+                DataBindingUtil.setContentView(this, R.layout.activity_input_task_name)
 
-        val inputTaskNameEdit = find<EditText>(R.id.input_task_name_edit)
+        binding.apply {
 
-        if (!isAdd && !isSub) {
-            inputTaskNameEdit.setText(beforeTaskInfo.task_name)
-        }
+            if (!isAdd && !isSub) {
+                taskName = beforeTaskInfo.task_name
+            }
 
-        if (isSub) {
-            find<TextView>(R.id.title).text = "サブタスク名"
-            find<TextView>(R.id.question_text).text = "サブタスク名はなんですか"
-            inputTaskNameEdit.hint = "サブタスク名"
-        }
-
-        find<Button>(R.id.button_next).setOnClickListener {
-            titleName = inputTaskNameEdit.text.toString()
-            if (titleName == "") titleName = "無題"
-
-            finishTaskTime()
-        }
-
-        find<ImageButton>(R.id.button_back).setOnClickListener {
-            if (isAdd) {
-                selectAddType()
+            if (isSub) {
+                title = "サブタスク名"
+                body = "サブタスク名はなんですか"
+                hint = "サブタスク名"
             } else {
-                finish()
+                title = "タスク名"
+                body = "タスク名は何ですか？"
+                hint = "タスク名"
+            }
+
+            setNextOnClick {
+                titleName = this.inputTaskNameEdit.text.toString()
+                if (titleName == "") {
+                    titleName = getString(R.string.no_title)
+                }
+                finishTaskTime()
+            }
+
+            setBackOnClick {
+                if (isAdd) {
+                    selectAddType()
+                } else {
+                    finish()
+                }
             }
         }
     }
