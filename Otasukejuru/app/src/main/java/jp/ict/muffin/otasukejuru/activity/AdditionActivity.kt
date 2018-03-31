@@ -385,6 +385,7 @@ class AdditionActivity : Activity() {
         val binding: ActivityFinishTaskTimeBinding =
                 DataBindingUtil.setContentView(this, R.layout.activity_finish_task_time)
 
+        finishYear = calendar.get(Calendar.YEAR)
         if (isAdd || isSub) {
             calendar.apply {
                 finishMonth = get(Calendar.MONTH) + 1
@@ -397,6 +398,7 @@ class AdditionActivity : Activity() {
             Utils().apply {
                 val date = getDate(dueDate)
                 val time = getTime(dueDate)
+
                 finishMonth = date / 100
                 finishDay = date % 100
                 finishHour = time / 100
@@ -404,55 +406,52 @@ class AdditionActivity : Activity() {
             }
         }
 
-        if (isSub) {
-            find<TextView>(R.id.title).text = "サブタスクの時間"
-            find<TextView>(R.id.question_text).text = "サブタスクをいつに入れますか？"
-        }
-        find<NumberPicker>(R.id.finish_month_num_pick).apply {
-            maxValue = 12
-            minValue = 1
+        binding.apply {
+            if (isSub) {
+                title = "サブタスクの時間"
+                body = "サブタスクをいつに入れますか？"
+                buttonText = getString(R.string.add)
+            } else {
+                title = "タスクの期限"
+                body = "期限はいつまでですか？"
+                buttonText = getString(R.string.next)
+            }
 
-            value = finishMonth
-            setOnValueChangedListener { _, _, newVal -> finishMonth = newVal }
-        }
+            finishMonthNumPick.also {
+                it.maxValue = 12
+                it.minValue = 1
+                it.value = finishMonth
+            }
 
-        find<NumberPicker>(R.id.finish_day_num_pick).apply {
-            maxValue = 31
-            minValue = 1
-            value = finishDay
-            setOnValueChangedListener { _, _, newVal -> finishDay = newVal }
-        }
+            finishDayNumPick.also {
+                it.maxValue = 31
+                it.minValue = 1
+                it.value = finishDay
+            }
 
-        find<NumberPicker>(R.id.finish_hour_edit).apply {
-            maxValue = 23
-            minValue = 0
-            value = finishHour
-            setOnValueChangedListener { _, _, newVal -> finishHour = newVal }
-        }
+            finishHourEdit.also {
+                it.maxValue = 23
+                it.minValue = 0
+                it.value = finishHour
+            }
 
-        find<NumberPicker>(R.id.finish_minute_edit).apply {
-            maxValue = 59
-            minValue = 0
-            value = finishMinute
-            setOnValueChangedListener { _, _, newVal -> finishMinute = newVal }
-        }
+            finishMinuteEdit.also {
+                it.maxValue = 59
+                it.minValue = 0
+                it.value = finishMinute
+            }
 
-        if (isSub) {
-            find<Button>(R.id.button_next).apply {
-                text = "追加"
-                setOnClickListener {
+            setNextOnClick {
+                if (isSub) {
                     setSubTask()
+                } else {
+                    setTaskRepeat()
                 }
             }
-        } else {
-            find<Button>(R.id.button_next).setOnClickListener {
-                setTaskRepeat()
+            setBackOnClick {
+                inputTaskName()
             }
         }
-
-        finishYear = calendar.get(Calendar.YEAR)
-
-        find<ImageButton>(R.id.button_back).setOnClickListener { inputTaskName() }
     }
 
     private fun setTaskRepeat() {
