@@ -395,10 +395,12 @@ class AdditionActivity : Activity() {
         } else {
             val dueDate = beforeTaskInfo.due_date
             Utils().apply {
-                finishMonth = getDate(dueDate) / 100
-                finishDay = getDate(dueDate) % 100
-                finishHour = getTime(dueDate) / 100
-                finishMinute = getTime(dueDate) / 100
+                val date = getDate(dueDate)
+                val time = getTime(dueDate)
+                finishMonth = date / 100
+                finishDay = date % 100
+                finishHour = time / 100
+                finishMinute = time / 100
             }
         }
 
