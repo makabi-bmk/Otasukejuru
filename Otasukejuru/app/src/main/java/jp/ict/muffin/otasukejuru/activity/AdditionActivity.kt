@@ -449,20 +449,24 @@ class AdditionActivity : Activity() {
     }
 
     private fun setMust() {
-        setContentView(R.layout.activity_set_must)
         setActionBar(find(R.id.toolbar_back))
 
-        find<Button>(R.id.no_must).setOnClickListener {
-            isMust = false
-            setShould()
+        val binding: ActivitySetMustBinding =
+                DataBindingUtil.setContentView(this, R.layout.activity_set_must)
+        
+        binding.apply {
+            setYesOnClick {
+                isMust = true
+                setShould()
+            }
+            setNoOnClick {
+                isMust = false
+                setShould()
+            }
+            setBackOnClick {
+                setTaskRepeat()
+            }
         }
-
-        find<Button>(R.id.yes_must).setOnClickListener {
-            isMust = true
-            setShould()
-        }
-
-        find<ImageButton>(R.id.button_back).setOnClickListener { setTaskRepeat() }
     }
 
     private fun setShould() {
