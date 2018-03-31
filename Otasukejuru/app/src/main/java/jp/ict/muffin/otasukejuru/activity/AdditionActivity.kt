@@ -494,20 +494,24 @@ class AdditionActivity : Activity() {
     }
 
     private fun setWantTo() {
-        setContentView(R.layout.activity_set_want)
         setActionBar(find(R.id.toolbar_back))
 
-        find<Button>(R.id.no_want).setOnClickListener {
-            isWant = false
-            setTaskGuideTime()
+        val binding: ActivitySetWantBinding =
+                DataBindingUtil.setContentView(this, R.layout.activity_set_want)
+        
+        binding.apply {
+            setYesOnClick {
+                isWant = true
+                setTaskGuideTime()
+            }
+            setNoOnClick {
+                isWant = false
+                setTaskGuideTime()
+            }
+            setBackOnClick {
+                setShould()
+            }
         }
-
-        find<Button>(R.id.yes_want).setOnClickListener {
-            isWant = true
-            setTaskGuideTime()
-        }
-
-        find<ImageButton>(R.id.button_back).setOnClickListener { setShould() }
     }
 
     private fun setTaskGuideTime() {

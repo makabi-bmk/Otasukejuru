@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
 
+    <data>
+
+        <variable
+            name="yesOnClick"
+            type="android.view.View.OnClickListener"/>
+
+        <variable
+            name="noOnClick"
+            type="android.view.View.OnClickListener"/>
+
+        <variable
+            name="backOnClick"
+            type="android.view.View.OnClickListener"/>
+
+    </data>
+
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -20,6 +36,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/ic_arrow_back_white_48dp"
+                android:onClick="@{backOnClick}"
                 android:contentDescription="backButton"/>
         </Toolbar>
 
@@ -67,6 +84,7 @@
                     android:layout_height="145dp"
                     android:layout_margin="15dp"
                     android:background="@color/colorPrimary"
+                    android:onClick="@{noOnClick}"
                     android:text="いいえ"
                     android:textColor="#000"
                     android:textSize="30sp"/>
@@ -77,6 +95,7 @@
                     android:layout_height="145dp"
                     android:layout_margin="15dp"
                     android:background="@color/colorPrimary"
+                    android:onClick="@{yesOnClick}"
                     android:text="はい"
                     android:textColor="#000"
                     android:textSize="30sp"/>
