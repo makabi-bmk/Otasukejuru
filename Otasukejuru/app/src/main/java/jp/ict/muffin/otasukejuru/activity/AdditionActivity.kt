@@ -381,18 +381,25 @@ class AdditionActivity : Activity() {
     private fun finishTaskTime() {
         setContentView(R.layout.activity_finish_task_time)
         setActionBar(find(R.id.toolbar_back))
+        
+        val binding: ActivityFinishTaskTimeBinding =
+                DataBindingUtil.setContentView(this, R.layout.activity_finish_task_time)
 
         if (isAdd || isSub) {
-            finishMonth = calendar.get(Calendar.MONTH) + 1
-            finishDay = calendar.get(Calendar.DAY_OF_MONTH)
-            finishHour = calendar.get(Calendar.HOUR_OF_DAY)
-            finishMinute = calendar.get(Calendar.MINUTE)
+            calendar.apply {
+                finishMonth = get(Calendar.MONTH) + 1
+                finishDay = get(Calendar.DAY_OF_MONTH)
+                finishHour = get(Calendar.HOUR_OF_DAY)
+                finishMinute = get(Calendar.MINUTE)
+            }
         } else {
             val dueDate = beforeTaskInfo.due_date
-            finishMonth = Utils().getDate(dueDate) / 100
-            finishDay = Utils().getDate(dueDate) % 100
-            finishHour = Utils().getTime(dueDate) / 100
-            finishMinute = Utils().getTime(dueDate) / 100
+            Utils().apply {
+                finishMonth = getDate(dueDate) / 100
+                finishDay = getDate(dueDate) % 100
+                finishHour = getTime(dueDate) / 100
+                finishMinute = getTime(dueDate) / 100
+            }
         }
 
         if (isSub) {
