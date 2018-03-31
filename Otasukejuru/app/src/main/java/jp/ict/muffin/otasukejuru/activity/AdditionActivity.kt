@@ -17,7 +17,6 @@ import jp.ict.muffin.otasukejuru.communication.*
 import jp.ict.muffin.otasukejuru.databinding.*
 import jp.ict.muffin.otasukejuru.other.AlarmReceiver
 import jp.ict.muffin.otasukejuru.other.Utils
-import kotlinx.android.synthetic.main.activity_set_task_repeat.*
 import org.jetbrains.anko.ctx
 import org.jetbrains.anko.find
 import java.util.*
@@ -427,21 +426,26 @@ class AdditionActivity : Activity() {
     }
 
     private fun setTaskRepeat() {
-        setContentView(R.layout.activity_set_task_repeat)
         setActionBar(find(R.id.toolbar_back))
 
-        find<Button>(R.id.button_next).setOnClickListener {
-            val num = task_repeat_radio_group.checkedRadioButtonId
-            taskRepeat = if (find<RadioButton>(num).text.toString() == "今日だけ") {
-                0
-            } else {
-                1
-            }
-            Log.d("Repeat", taskRepeat.toString())
-            setMust()
-        }
+        val binding: ActivitySetTaskRepeatBinding =
+                DataBindingUtil.setContentView(this, R.layout.activity_set_task_repeat)
 
-        find<ImageButton>(R.id.button_back).setOnClickListener { finishTaskTime() }
+        binding.apply {
+            setNextOnClick {
+                val checkedId = taskRepeatRadioGroup.checkedRadioButtonId
+
+                taskRepeat = if (find<RadioButton>(checkedId).text.toString() == "今回だけ") {
+                    0
+                } else {
+                    1
+                }
+                setMust()
+            }
+            setBackOnClick {
+                finishTaskTime()
+            }
+        }
     }
 
     private fun setMust() {
