@@ -246,9 +246,9 @@ class AdditionActivity : Activity() {
     }
 
     private fun setScheduleRepeat() {
-        setActionBar(find(R.id.toolbar_back))
         val binding: ActivitySetScheduleRepeatBinding =
                 DataBindingUtil.setContentView(this, R.layout.activity_set_schedule_repeat)
+        setActionBar(find(R.id.toolbar_back))
 
         binding.apply {
             setNextOnClick {
@@ -268,14 +268,13 @@ class AdditionActivity : Activity() {
     }
 
     private fun setScheduleNotificationTime() {
-        setActionBar(find(R.id.toolbar_back))
-
         val binding: ActivitySetScheduleNotificationTimeBinding =
                 DataBindingUtil.setContentView(
                         this,
                         R.layout.activity_set_schedule_notification_time
                 )
-    
+        setActionBar(find(R.id.toolbar_back))
+
         notificationTime = 5
         binding.apply {
             this.notificationTime = this@AdditionActivity.notificationTime.toString()
@@ -312,11 +311,9 @@ class AdditionActivity : Activity() {
     }
 
     private fun inputTaskName() {
-        setContentView(R.layout.activity_input_task_name)
-        setActionBar(find(R.id.toolbar_back))
-        
         val binding: ActivityInputTaskNameBinding =
                 DataBindingUtil.setContentView(this, R.layout.activity_input_task_name)
+        setActionBar(find(R.id.toolbar_back))
 
         binding.apply {
 
@@ -353,11 +350,9 @@ class AdditionActivity : Activity() {
     }
 
     private fun finishTaskTime() {
-        setContentView(R.layout.activity_finish_task_time)
-        setActionBar(find(R.id.toolbar_back))
-        
         val binding: ActivityFinishTaskTimeBinding =
                 DataBindingUtil.setContentView(this, R.layout.activity_finish_task_time)
+        setActionBar(find(R.id.toolbar_back))
 
         finishYear = calendar.get(Calendar.YEAR)
         if (isAdd || isSub) {
@@ -429,10 +424,9 @@ class AdditionActivity : Activity() {
     }
 
     private fun setTaskRepeat() {
-        setActionBar(find(R.id.toolbar_back))
-
         val binding: ActivitySetTaskRepeatBinding =
                 DataBindingUtil.setContentView(this, R.layout.activity_set_task_repeat)
+        setActionBar(find(R.id.toolbar_back))
 
         binding.apply {
             setNextOnClick {
@@ -452,10 +446,9 @@ class AdditionActivity : Activity() {
     }
 
     private fun setMust() {
-        setActionBar(find(R.id.toolbar_back))
-
         val binding: ActivitySetMustBinding =
                 DataBindingUtil.setContentView(this, R.layout.activity_set_must)
+        setActionBar(find(R.id.toolbar_back))
         
         binding.apply {
             setYesOnClick {
@@ -473,10 +466,9 @@ class AdditionActivity : Activity() {
     }
 
     private fun setShould() {
-        setActionBar(find(R.id.toolbar_back))
-
         val binding: ActivitySetShouldBinding =
                 DataBindingUtil.setContentView(this, R.layout.activity_set_should)
+        setActionBar(find(R.id.toolbar_back))
 
         binding.apply {
             setYesOnClick {
@@ -494,11 +486,10 @@ class AdditionActivity : Activity() {
     }
 
     private fun setWantTo() {
-        setActionBar(find(R.id.toolbar_back))
-
         val binding: ActivitySetWantBinding =
                 DataBindingUtil.setContentView(this, R.layout.activity_set_want)
-        
+        setActionBar(find(R.id.toolbar_back))
+
         binding.apply {
             setYesOnClick {
                 isWant = true
