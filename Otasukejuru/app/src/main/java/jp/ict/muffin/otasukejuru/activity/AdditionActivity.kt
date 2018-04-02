@@ -515,20 +515,20 @@ class AdditionActivity : Activity() {
             } else {
                 (Utils().getTime(beforeTaskInfo.guide_time) / 100).toString()
             }
-            
+
             this.defaultFinishMinute = if (isAdd) {
                 "5"
             } else {
                 (Utils().getTime(beforeTaskInfo.guide_time) % 100).toString()
             }
-            
+
             buttonText = if (isAdd) {
                 getString(R.string.add)
             } else {
                 taskProgress = beforeTaskInfo.progress
                 getString(R.string.change)
             }
-            
+
             setNextOnClick {
                 guideTime = Integer.parseInt(finishHourEdit.text.toString()) * 100 +
                         Integer.parseInt(finishMinuteEdit.text.toString())
@@ -538,12 +538,12 @@ class AdditionActivity : Activity() {
                     dateLimit = (finishMonth - startMonth) * 100 + finishDay - startDay
                     timeLimit = startHour * 100 + startDay
                 }
-    
+
                 Log.d("task", "タイトル名:" + titleName + "\n期限の開始:" + dateLimit +
                         "\n繰り返し:" + taskRepeat +
                         "\nisMust:" + isMust + "\nisShould:" + isShould + "\nisWant to:" +
                         isWant + "\n終了目安:" + finishHour + "時間" + finishMinute + "分")
-    
+
                 if (taskRepeat == 0) {
                     setTaskInformation()
                 } else {
