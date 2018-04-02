@@ -503,11 +503,9 @@ class AdditionActivity : Activity() {
     }
 
     private fun setTaskGuideTime() {
-        setContentView(R.layout.activity_set_task_notification_time)
-        setActionBar(find(R.id.toolbar_back))
-        
         val binding: ActivitySetTaskNotificationTimeBinding =
                 DataBindingUtil.setContentView(this, R.layout.activity_set_task_notification_time)
+        setActionBar(find(R.id.toolbar_back))
 
         binding.apply {
             this.defaultFinishHour = if (isAdd) {
@@ -572,7 +570,7 @@ class AdditionActivity : Activity() {
             repeat_type = taskRepeat
         }
         if (isAdd) {
-            GlobalValue.everyInfoArrayList.add(0, everyInformation)
+            GlobalValue.everyInfoArrayList.add(everyInformation)
 
             AddEveryTaskInfoAsync().execute(everyInformation)
         } else {
@@ -594,7 +592,7 @@ class AdditionActivity : Activity() {
 
         setScheduleNotification(scheduleInformation)
         if (isAdd) {
-            GlobalValue.scheduleInfoArrayList.add(0, scheduleInformation)
+            GlobalValue.scheduleInfoArrayList.add(scheduleInformation)
 
             AddScheduleTaskInfoAsync().execute(scheduleInformation)
         } else {
@@ -649,7 +647,7 @@ class AdditionActivity : Activity() {
         }
 
         if (isAdd) {
-            GlobalValue.taskInfoArrayList.add(0, taskInformation)
+            GlobalValue.taskInfoArrayList.add(taskInformation)
 
             AddTaskInfoAsync().execute(taskInformation)
         } else {
