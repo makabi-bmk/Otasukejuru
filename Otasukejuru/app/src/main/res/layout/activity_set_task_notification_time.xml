@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
 
+    <data>
+
+        <variable
+            name="defaultFinishHour"
+            type="String"/>
+
+        <variable
+            name="defaultFinishMinute"
+            type="String"/>
+
+        <variable
+            name="buttonText"
+            type="String"/>
+
+        <variable
+            name="nextOnClick"
+            type="android.view.View.OnClickListener"/>
+
+        <variable
+            name="backOnClick"
+            type="android.view.View.OnClickListener"/>
+
+    </data>
+
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"

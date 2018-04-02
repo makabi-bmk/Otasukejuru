@@ -8,9 +8,6 @@ import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageButton
 import android.widget.RadioButton
 import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.*
@@ -508,47 +505,45 @@ class AdditionActivity : Activity() {
     private fun setTaskGuideTime() {
         setContentView(R.layout.activity_set_task_notification_time)
         setActionBar(find(R.id.toolbar_back))
+        
+        val binding: ActivitySetTaskNotificationTimeBinding =
+                DataBindingUtil.setContentView(this, R.layout.activity_set_task_notification_time)
 
-        val finishHourEdit = find<EditText>(R.id.finish_hour_edit)
-        finishHourEdit.setText(if (isAdd) {
-            "0"
-        } else {
-            (Utils().getTime(beforeTaskInfo.guide_time) / 100).toString()
-        })
-
-        val finishMinuteEdit = find<EditText>(R.id.finish_minute_edit)
-        finishMinuteEdit.setText(if (isAdd) {
-            "5"
-        } else {
-            (Utils().getTime(beforeTaskInfo.guide_time) % 100).toString()
-        })
-
-        guideTime = if (isAdd) {
-            5
-        } else {
-            Utils().getTime(beforeTaskInfo.guide_time)
-        }
-        find<Button>(R.id.button_next).apply {
-            if (!isAdd) {
-                text = "変更"
-                taskProgress = beforeTaskInfo.progress
+        binding.apply {
+            this.defaultFinishHour = if (isAdd) {
+                "0"
+            } else {
+                (Utils().getTime(beforeTaskInfo.guide_time) / 100).toString()
             }
-            setOnClickListener {
+            
+            this.defaultFinishMinute = if (isAdd) {
+                "5"
+            } else {
+                (Utils().getTime(beforeTaskInfo.guide_time) % 100).toString()
+            }
+            
+            buttonText = if (isAdd) {
+                getString(R.string.add)
+            } else {
+                taskProgress = beforeTaskInfo.progress
+                getString(R.string.change)
+            }
+            
+            setNextOnClick {
                 guideTime = Integer.parseInt(finishHourEdit.text.toString()) * 100 +
                         Integer.parseInt(finishMinuteEdit.text.toString())
-
                 if (startMonth == -1) {
                     dateLimit = -1
                 } else {
                     dateLimit = (finishMonth - startMonth) * 100 + finishDay - startDay
                     timeLimit = startHour * 100 + startDay
                 }
-
+    
                 Log.d("task", "タイトル名:" + titleName + "\n期限の開始:" + dateLimit +
                         "\n繰り返し:" + taskRepeat +
                         "\nisMust:" + isMust + "\nisShould:" + isShould + "\nisWant to:" +
                         isWant + "\n終了目安:" + finishHour + "時間" + finishMinute + "分")
-
+    
                 if (taskRepeat == 0) {
                     setTaskInformation()
                 } else {
@@ -556,9 +551,16 @@ class AdditionActivity : Activity() {
                 }
                 finish()
             }
+            setBackOnClick {
+                setWantTo()
+            }
         }
 
-        find<ImageButton>(R.id.button_back).setOnClickListener { setWantTo() }
+        guideTime = if (isAdd) {
+            5
+        } else {
+            Utils().getTime(beforeTaskInfo.guide_time)
+        }
     }
 
     private fun setEveryInformation() {
