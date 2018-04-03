@@ -7,7 +7,6 @@ import android.content.Context
 import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.util.Log
 import android.widget.RadioButton
 import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.*
@@ -285,12 +284,6 @@ class AdditionActivity : Activity() {
                 this@AdditionActivity.notificationTime =
                         Integer.parseInt(this.setNotificationTimeEdit.toString())
 
-                Log.d("schedule", "タイトル名:" + titleName + "\n予定開始の日付:" + startMonth + "月" +
-                        startDay + "日" + startHour + "時" + startMinute + "分" + "\n予定終了の時間:" +
-                        finishMonth + "月" + finishDay + "日" + finishHour + "時" +
-                        finishMinute + "分" + "\n繰り返し:" + taskRepeat + "\n何分前に通知するか:" +
-                        notificationTime)
-
                 if (isAdd) {
                     if (taskRepeat == 0) {
                         setScheduleInformation()
@@ -536,11 +529,6 @@ class AdditionActivity : Activity() {
                     dateLimit = (finishMonth - startMonth) * 100 + finishDay - startDay
                     timeLimit = startHour * 100 + startDay
                 }
-
-                Log.d("task", "タイトル名:" + titleName + "\n期限の開始:" + dateLimit +
-                        "\n繰り返し:" + taskRepeat +
-                        "\nisMust:" + isMust + "\nisShould:" + isShould + "\nisWant to:" +
-                        isWant + "\n終了目安:" + finishHour + "時間" + finishMinute + "分")
 
                 if (taskRepeat == 0) {
                     setTaskInformation()
