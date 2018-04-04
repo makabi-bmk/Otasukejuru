@@ -54,7 +54,11 @@ class GetInformation : AsyncTask<Unit, Unit, Unit>() {
             e.printStackTrace()
             null
         }
-        val keys = arrayListOf("task", "schedule", "every")
+        val keys = arrayListOf(
+                "task",
+                "schedule",
+                "every"
+        )
 
         val friendTaskInfoArray: ArrayList<TaskInfo> = arrayListOf()
         val friendScheduleInfoArray: ArrayList<ScheduleInfo> = arrayListOf()
@@ -118,7 +122,10 @@ class GetInformation : AsyncTask<Unit, Unit, Unit>() {
             e.printStackTrace()
             null
         }
-        val keys = arrayListOf("schedule", "every")
+        val keys = arrayListOf(
+                "schedule",
+                "every"
+        )
 
         val scheduleInfoArray = arrayListOf<ScheduleInfo>()
         val everyInfoArray = arrayListOf<EveryInfo>()
