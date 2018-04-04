@@ -16,8 +16,10 @@ import jp.ict.muffin.otasukejuru.view.CircleGraphView
 import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk25.coroutines.onClick
 
-class TimerActivityUI(private val time: Long, private val index: Int = -1) :
-        AnkoComponent<TimerActivity> {
+class TimerActivityUI(
+        private val time: Long,
+        private val index: Int = -1
+) : AnkoComponent<TimerActivity> {
     private var isPushStartButton = false
     private lateinit var circleMini: FrameLayout
     private lateinit var circle: FrameLayout
@@ -114,7 +116,11 @@ class TimerActivityUI(private val time: Long, private val index: Int = -1) :
         isPushStartButton = true
     }
 
-    private fun drawCircle(context: Context, circle: FrameLayout, time: Long) {
+    private fun drawCircle(
+            context: Context,
+            circle: FrameLayout,
+            time: Long
+    ) {
         if (time == 0L) {
             return
         }
@@ -169,8 +175,8 @@ class TimerActivityUI(private val time: Long, private val index: Int = -1) :
 
             (0 until colors.size).forEach { i ->
                 val mapSI = HashMap<String, Int>()
-                mapSI.put("color", colors[i])
-                mapSI.put("value", drawCircleTime[i].toInt())
+                mapSI["color"] = colors[i]
+                mapSI["value"] = drawCircleTime[i].toInt()
                 params.add(mapSI)
             }
 
@@ -180,7 +186,11 @@ class TimerActivityUI(private val time: Long, private val index: Int = -1) :
         }
     }
 
-    private fun startTimer(context: Context, totalTime: Long, index: Int = -1) {
+    private fun startTimer(
+            context: Context,
+            totalTime: Long,
+            index: Int = -1
+    ) {
         if (totalTime == 0L) {
             return
         }

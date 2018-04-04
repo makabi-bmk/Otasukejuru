@@ -151,7 +151,10 @@ class TaskListFragment : Fragment() {
         }
     }
     
-    private fun createDialog(element: TaskInfo, index: Int) {
+    private fun createDialog(
+            element: TaskInfo,
+            index: Int
+    ) {
         val listDialog = arrayOf(
                 getString(R.string.start),
                 getString(R.string.change),

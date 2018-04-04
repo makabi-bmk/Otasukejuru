@@ -316,8 +316,8 @@ class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerActiv
 
         (0 until colors.size).forEach {
             val mapSI = HashMap<String, Int>()
-            mapSI.put("color", colors[it])
-            mapSI.put("value", drawCircleTime[it])
+            mapSI["color"] = colors[it]
+            mapSI["value"] = drawCircleTime[it]
             params.add(mapSI)
         }
 
