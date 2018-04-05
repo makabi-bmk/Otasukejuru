@@ -312,13 +312,13 @@ class AdditionActivity : Activity() {
             }
 
             if (isSub) {
-                title = "サブタスク名"
-                body = "サブタスク名はなんですか"
-                hint = "サブタスク名"
+                title = getString(R.string.sub_task_title)
+                body = getString(R.string.sub_task_body)
+                hint = getString(R.string.sub_task_hin)
             } else {
-                title = "タスク名"
-                body = "タスク名は何ですか？"
-                hint = "タスク名"
+                title = getString(R.string.task_title)
+                body = getString(R.string.task_body)
+                hint = getString(R.string.tasj_hint)
             }
 
             setNextOnClick {
