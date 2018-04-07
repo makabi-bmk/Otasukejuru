@@ -367,12 +367,12 @@ class AdditionActivity : Activity() {
 
         binding.apply {
             if (isSub) {
-                title = "サブタスクの時間"
-                body = "サブタスクをいつに入れますか？"
+                title = getString(R.string.sub_task_time_title)
+                body = getString(R.string.sub_task_time_body)
                 buttonText = getString(R.string.add)
             } else {
-                title = "タスクの期限"
-                body = "期限はいつまでですか？"
+                title = getString(R.string.task_time_title)
+                body = getString(R.string.task_time_body)
                 buttonText = getString(R.string.next)
             }
 
