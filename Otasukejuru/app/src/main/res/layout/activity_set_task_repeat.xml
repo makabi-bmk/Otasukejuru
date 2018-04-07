@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
 
+    <data>
+
+        <variable
+            name="nextOnClick"
+            type="android.view.View.OnClickListener"/>
+
+        <variable
+            name="backOnClick"
+            type="android.view.View.OnClickListener"/>
+
+    </data>
+
     <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"

@@ -39,7 +39,10 @@ class ScheduleFragment : Fragment() {
     ): View =
             ScheduleFragmentUI().createView(AnkoContext.create(ctx, this))
     
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(
+            view: View,
+            savedInstanceState: Bundle?
+    ) {
         super.onViewCreated(view, savedInstanceState)
         setSchedule()
         setCardView()
@@ -313,7 +316,10 @@ class ScheduleFragment : Fragment() {
         }
     }
     
-    private fun createDialog(index: Int, isTask: Boolean) {
+    private fun createDialog(
+            index: Int,
+            isTask: Boolean
+    ) {
         val listDialog = if (isTask) {
             arrayOf(
                     getString(R.string.start),
@@ -419,7 +425,10 @@ class ScheduleFragment : Fragment() {
         }
     }
     
-    private fun deleteElement(isTask: Boolean, index: Int) = if (isTask) {
+    private fun deleteElement(
+            isTask: Boolean,
+            index: Int
+    ) = if (isTask) {
         DeleteTaskInfoAsync().execute(GlobalValue.taskInfoArrayList[index])
         GlobalValue.taskInfoArrayList.removeAt(index)
         Utils().saveTaskInfoList(ctx)

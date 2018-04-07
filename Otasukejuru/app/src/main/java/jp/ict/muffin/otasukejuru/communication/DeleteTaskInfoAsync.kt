@@ -15,7 +15,10 @@ class DeleteTaskInfoAsync : AsyncTask<TaskInfo, Void, Unit>() {
         post("${GlobalValue.SERVER_URL}/delete/task", convertToJson(params[0]))
     }
 
-    private fun post(url: String, json: String): String? {
+    private fun post(
+            url: String,
+            json: String
+    ): String? {
         try {
             val body = RequestBody.create(GlobalValue.mediaType, json)
             val request = Request.Builder().apply {

@@ -7,8 +7,7 @@ import android.content.Context
 import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.util.Log
-import android.widget.*
+import android.widget.RadioButton
 import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.*
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue.notificationContent
@@ -17,8 +16,6 @@ import jp.ict.muffin.otasukejuru.communication.*
 import jp.ict.muffin.otasukejuru.databinding.*
 import jp.ict.muffin.otasukejuru.other.AlarmReceiver
 import jp.ict.muffin.otasukejuru.other.Utils
-import kotlinx.android.synthetic.main.activity_set_schedule_notification_time.*
-import kotlinx.android.synthetic.main.activity_set_task_repeat.*
 import org.jetbrains.anko.ctx
 import org.jetbrains.anko.find
 import java.util.*
@@ -207,34 +204,6 @@ class AdditionActivity : Activity() {
             finishMinute = Utils().getTime(finishTime) % 100
         }
 
-        find<NumberPicker>(R.id.finish_month_num_pick).apply {
-            maxValue = 12
-            minValue = 1
-            value = finishMonth
-            setOnValueChangedListener { _, _, newVal -> finishMonth = newVal }
-        }
-
-        find<NumberPicker>(R.id.finish_day_num_pick).apply {
-            maxValue = 31
-            minValue = 1
-            value = finishDay
-            setOnValueChangedListener { _, _, newVal -> finishDay = newVal }
-        }
-
-        find<NumberPicker>(R.id.finish_hour_num_pick).apply {
-            maxValue = 23
-            minValue = 0
-            value = finishHour
-            setOnValueChangedListener { _, _, newVal -> finishHour = newVal }
-        }
-
-        find<NumberPicker>(R.id.finish_minute_num_pick).apply {
-            maxValue = 59
-            minValue = 0
-            value = finishMinute
-            setOnValueChangedListener { _, _, newVal -> finishMinute = newVal }
-        }
-
         binding.apply {
             finishMonthNumPick.also {
                 it.maxValue = 12
@@ -273,10 +242,9 @@ class AdditionActivity : Activity() {
     }
 
     private fun setScheduleRepeat() {
-        setContentView(R.layout.activity_set_schedule_repeat)
-        setActionBar(find(R.id.toolbar_back))
         val binding: ActivitySetScheduleRepeatBinding =
                 DataBindingUtil.setContentView(this, R.layout.activity_set_schedule_repeat)
+        setActionBar(find(R.id.toolbar_back))
 
         binding.apply {
             setNextOnClick {
@@ -296,25 +264,25 @@ class AdditionActivity : Activity() {
     }
 
     private fun setScheduleNotificationTime() {
-        setContentView(R.layout.activity_set_schedule_notification_time)
+        val binding: ActivitySetScheduleNotificationTimeBinding =
+                DataBindingUtil.setContentView(
+                        this,
+                        R.layout.activity_set_schedule_notification_time
+                )
         setActionBar(find(R.id.toolbar_back))
 
-        set_notification_time_edit.setText("5")
         notificationTime = 5
+        binding.apply {
+            this.notificationTime = this@AdditionActivity.notificationTime.toString()
 
-        find<Button>(R.id.button_finish).apply {
-            if (!isAdd) {
-                text = "変更"
+            buttonText = if (isAdd) {
+                getString(R.string.add)
+            } else {
+                getString(R.string.change)
             }
-            setOnClickListener {
-                val str: String = set_notification_time_edit.text.toString()
-                notificationTime = Integer.parseInt(str)
-
-                Log.d("schedule", "タイトル名:" + titleName + "\n予定開始の日付:" + startMonth + "月" +
-                        startDay + "日" + startHour + "時" + startMinute + "分" + "\n予定終了の時間:" +
-                        finishMonth + "月" + finishDay + "日" + finishHour + "時" +
-                        finishMinute + "分" + "\n繰り返し:" + taskRepeat + "\n何分前に通知するか:" +
-                        notificationTime)
+            setFinishOnClick {
+                this@AdditionActivity.notificationTime =
+                        Integer.parseInt(this.setNotificationTimeEdit.toString())
 
                 if (isAdd) {
                     if (taskRepeat == 0) {
@@ -322,228 +290,245 @@ class AdditionActivity : Activity() {
                     } else {
                         setEveryInformation()
                     }
-                } else {
                 }
 
                 finish()
             }
+            setBackOnClick {
+                setScheduleRepeat()
+            }
         }
-
-        find<ImageButton>(R.id.button_back).setOnClickListener { setScheduleRepeat() }
     }
 
     private fun inputTaskName() {
-        setContentView(R.layout.activity_input_task_name)
+        val binding: ActivityInputTaskNameBinding =
+                DataBindingUtil.setContentView(this, R.layout.activity_input_task_name)
         setActionBar(find(R.id.toolbar_back))
 
-        val inputTaskNameEdit = find<EditText>(R.id.input_task_name_edit)
+        binding.apply {
 
-        if (!isAdd && !isSub) {
-            inputTaskNameEdit.setText(beforeTaskInfo.task_name)
-        }
+            if (!isAdd && !isSub) {
+                taskName = beforeTaskInfo.task_name
+            }
 
-        if (isSub) {
-            find<TextView>(R.id.title).text = "サブタスク名"
-            find<TextView>(R.id.question_text).text = "サブタスク名はなんですか"
-            inputTaskNameEdit.hint = "サブタスク名"
-        }
-
-        find<Button>(R.id.button_next).setOnClickListener {
-            titleName = inputTaskNameEdit.text.toString()
-            if (titleName == "") titleName = "無題"
-
-            finishTaskTime()
-        }
-
-        find<ImageButton>(R.id.button_back).setOnClickListener {
-            if (isAdd) {
-                selectAddType()
+            if (isSub) {
+                title = getString(R.string.sub_task_title)
+                body = getString(R.string.sub_task_body)
+                hint = getString(R.string.sub_task_hin)
             } else {
-                finish()
+                title = getString(R.string.task_title)
+                body = getString(R.string.task_body)
+                hint = getString(R.string.tasj_hint)
+            }
+
+            setNextOnClick {
+                titleName = this.inputTaskNameEdit.text.toString()
+                if (titleName == "") {
+                    titleName = getString(R.string.no_title)
+                }
+                finishTaskTime()
+            }
+
+            setBackOnClick {
+                if (isAdd) {
+                    selectAddType()
+                } else {
+                    finish()
+                }
             }
         }
     }
 
     private fun finishTaskTime() {
-        setContentView(R.layout.activity_finish_task_time)
+        val binding: ActivityFinishTaskTimeBinding =
+                DataBindingUtil.setContentView(this, R.layout.activity_finish_task_time)
         setActionBar(find(R.id.toolbar_back))
 
+        finishYear = calendar.get(Calendar.YEAR)
         if (isAdd || isSub) {
-            finishMonth = calendar.get(Calendar.MONTH) + 1
-            finishDay = calendar.get(Calendar.DAY_OF_MONTH)
-            finishHour = calendar.get(Calendar.HOUR_OF_DAY)
-            finishMinute = calendar.get(Calendar.MINUTE)
+            calendar.apply {
+                finishMonth = get(Calendar.MONTH) + 1
+                finishDay = get(Calendar.DAY_OF_MONTH)
+                finishHour = get(Calendar.HOUR_OF_DAY)
+                finishMinute = get(Calendar.MINUTE)
+            }
         } else {
             val dueDate = beforeTaskInfo.due_date
-            finishMonth = Utils().getDate(dueDate) / 100
-            finishDay = Utils().getDate(dueDate) % 100
-            finishHour = Utils().getTime(dueDate) / 100
-            finishMinute = Utils().getTime(dueDate) / 100
+            Utils().apply {
+                val date = getDate(dueDate)
+                val time = getTime(dueDate)
+
+                finishMonth = date / 100
+                finishDay = date % 100
+                finishHour = time / 100
+                finishMinute = time / 100
+            }
         }
 
-        if (isSub) {
-            find<TextView>(R.id.title).text = "サブタスクの時間"
-            find<TextView>(R.id.question_text).text = "サブタスクをいつに入れますか？"
-        }
-        find<NumberPicker>(R.id.finish_month_num_pick).apply {
-            maxValue = 12
-            minValue = 1
+        binding.apply {
+            if (isSub) {
+                title = getString(R.string.sub_task_time_title)
+                body = getString(R.string.sub_task_time_body)
+                buttonText = getString(R.string.add)
+            } else {
+                title = getString(R.string.task_time_title)
+                body = getString(R.string.task_time_body)
+                buttonText = getString(R.string.next)
+            }
 
-            value = finishMonth
-            setOnValueChangedListener { _, _, newVal -> finishMonth = newVal }
-        }
+            finishMonthNumPick.also {
+                it.maxValue = 12
+                it.minValue = 1
+                it.value = finishMonth
+            }
 
-        find<NumberPicker>(R.id.finish_day_num_pick).apply {
-            maxValue = 31
-            minValue = 1
-            value = finishDay
-            setOnValueChangedListener { _, _, newVal -> finishDay = newVal }
-        }
+            finishDayNumPick.also {
+                it.maxValue = 31
+                it.minValue = 1
+                it.value = finishDay
+            }
 
-        find<NumberPicker>(R.id.finish_hour_edit).apply {
-            maxValue = 23
-            minValue = 0
-            value = finishHour
-            setOnValueChangedListener { _, _, newVal -> finishHour = newVal }
-        }
+            finishHourEdit.also {
+                it.maxValue = 23
+                it.minValue = 0
+                it.value = finishHour
+            }
 
-        find<NumberPicker>(R.id.finish_minute_edit).apply {
-            maxValue = 59
-            minValue = 0
-            value = finishMinute
-            setOnValueChangedListener { _, _, newVal -> finishMinute = newVal }
-        }
+            finishMinuteEdit.also {
+                it.maxValue = 59
+                it.minValue = 0
+                it.value = finishMinute
+            }
 
-        if (isSub) {
-            find<Button>(R.id.button_next).apply {
-                text = "追加"
-                setOnClickListener {
+            setNextOnClick {
+                if (isSub) {
                     setSubTask()
+                } else {
+                    setTaskRepeat()
                 }
             }
-        } else {
-            find<Button>(R.id.button_next).setOnClickListener {
-                setTaskRepeat()
+            setBackOnClick {
+                inputTaskName()
             }
         }
-
-        finishYear = calendar.get(Calendar.YEAR)
-
-        find<ImageButton>(R.id.button_back).setOnClickListener { inputTaskName() }
     }
 
     private fun setTaskRepeat() {
-        setContentView(R.layout.activity_set_task_repeat)
+        val binding: ActivitySetTaskRepeatBinding =
+                DataBindingUtil.setContentView(this, R.layout.activity_set_task_repeat)
         setActionBar(find(R.id.toolbar_back))
 
-        find<Button>(R.id.button_next).setOnClickListener {
-            val num = task_repeat_radio_group.checkedRadioButtonId
-            taskRepeat = if (find<RadioButton>(num).text.toString() == "今日だけ") {
-                0
-            } else {
-                1
-            }
-            Log.d("Repeat", taskRepeat.toString())
-            setMust()
-        }
+        binding.apply {
+            setNextOnClick {
+                val checkedId = taskRepeatRadioGroup.checkedRadioButtonId
 
-        find<ImageButton>(R.id.button_back).setOnClickListener { finishTaskTime() }
+                taskRepeat = if (find<RadioButton>(checkedId).text.toString() == "今回だけ") {
+                    0
+                } else {
+                    1
+                }
+                setMust()
+            }
+            setBackOnClick {
+                finishTaskTime()
+            }
+        }
     }
 
     private fun setMust() {
-        setContentView(R.layout.activity_set_must)
+        val binding: ActivitySetMustBinding =
+                DataBindingUtil.setContentView(this, R.layout.activity_set_must)
         setActionBar(find(R.id.toolbar_back))
-
-        find<Button>(R.id.no_must).setOnClickListener {
-            isMust = false
-            setShould()
+        
+        binding.apply {
+            setYesOnClick {
+                isMust = true
+                setShould()
+            }
+            setNoOnClick {
+                isMust = false
+                setShould()
+            }
+            setBackOnClick {
+                setTaskRepeat()
+            }
         }
-
-        find<Button>(R.id.yes_must).setOnClickListener {
-            isMust = true
-            setShould()
-        }
-
-        find<ImageButton>(R.id.button_back).setOnClickListener { setTaskRepeat() }
     }
 
     private fun setShould() {
-        setContentView(R.layout.activity_set_should)
+        val binding: ActivitySetShouldBinding =
+                DataBindingUtil.setContentView(this, R.layout.activity_set_should)
         setActionBar(find(R.id.toolbar_back))
 
-        find<Button>(R.id.no_should).setOnClickListener {
-            isShould = false
-            setWantTo()
+        binding.apply {
+            setYesOnClick {
+                isShould = true
+                setWantTo()
+            }
+            setNoOnClick {
+                isShould = false
+                setWantTo()
+            }
+            setBackOnClick {
+                setMust()
+            }
         }
-
-        find<Button>(R.id.yes_should).setOnClickListener {
-            isShould = true
-            setWantTo()
-        }
-
-        find<ImageView>(R.id.button_back).setOnClickListener { setMust() }
     }
 
     private fun setWantTo() {
-        setContentView(R.layout.activity_set_want)
+        val binding: ActivitySetWantBinding =
+                DataBindingUtil.setContentView(this, R.layout.activity_set_want)
         setActionBar(find(R.id.toolbar_back))
 
-        find<Button>(R.id.no_want).setOnClickListener {
-            isWant = false
-            setTaskGuideTime()
+        binding.apply {
+            setYesOnClick {
+                isWant = true
+                setTaskGuideTime()
+            }
+            setNoOnClick {
+                isWant = false
+                setTaskGuideTime()
+            }
+            setBackOnClick {
+                setShould()
+            }
         }
-
-        find<Button>(R.id.yes_want).setOnClickListener {
-            isWant = true
-            setTaskGuideTime()
-        }
-
-        find<ImageButton>(R.id.button_back).setOnClickListener { setShould() }
     }
 
     private fun setTaskGuideTime() {
-        setContentView(R.layout.activity_set_task_notification_time)
+        val binding: ActivitySetTaskNotificationTimeBinding =
+                DataBindingUtil.setContentView(this, R.layout.activity_set_task_notification_time)
         setActionBar(find(R.id.toolbar_back))
 
-        val finishHourEdit = find<EditText>(R.id.finish_hour_edit)
-        finishHourEdit.setText(if (isAdd) {
-            "0"
-        } else {
-            (Utils().getTime(beforeTaskInfo.guide_time) / 100).toString()
-        })
-
-        val finishMinuteEdit = find<EditText>(R.id.finish_minute_edit)
-        finishMinuteEdit.setText(if (isAdd) {
-            "5"
-        } else {
-            (Utils().getTime(beforeTaskInfo.guide_time) % 100).toString()
-        })
-
-        guideTime = if (isAdd) {
-            5
-        } else {
-            Utils().getTime(beforeTaskInfo.guide_time)
-        }
-        find<Button>(R.id.button_next).apply {
-            if (!isAdd) {
-                text = "変更"
-                taskProgress = beforeTaskInfo.progress
+        binding.apply {
+            this.defaultFinishHour = if (isAdd) {
+                "0"
+            } else {
+                (Utils().getTime(beforeTaskInfo.guide_time) / 100).toString()
             }
-            setOnClickListener {
+
+            this.defaultFinishMinute = if (isAdd) {
+                "5"
+            } else {
+                (Utils().getTime(beforeTaskInfo.guide_time) % 100).toString()
+            }
+
+            buttonText = if (isAdd) {
+                getString(R.string.add)
+            } else {
+                taskProgress = beforeTaskInfo.progress
+                getString(R.string.change)
+            }
+
+            setNextOnClick {
                 guideTime = Integer.parseInt(finishHourEdit.text.toString()) * 100 +
                         Integer.parseInt(finishMinuteEdit.text.toString())
-
                 if (startMonth == -1) {
                     dateLimit = -1
                 } else {
                     dateLimit = (finishMonth - startMonth) * 100 + finishDay - startDay
                     timeLimit = startHour * 100 + startDay
                 }
-
-                Log.d("task", "タイトル名:" + titleName + "\n期限の開始:" + dateLimit +
-                        "\n繰り返し:" + taskRepeat +
-                        "\nisMust:" + isMust + "\nisShould:" + isShould + "\nisWant to:" +
-                        isWant + "\n終了目安:" + finishHour + "時間" + finishMinute + "分")
 
                 if (taskRepeat == 0) {
                     setTaskInformation()
@@ -552,9 +537,16 @@ class AdditionActivity : Activity() {
                 }
                 finish()
             }
+            setBackOnClick {
+                setWantTo()
+            }
         }
 
-        find<ImageButton>(R.id.button_back).setOnClickListener { setWantTo() }
+        guideTime = if (isAdd) {
+            5
+        } else {
+            Utils().getTime(beforeTaskInfo.guide_time)
+        }
     }
 
     private fun setEveryInformation() {
@@ -566,7 +558,7 @@ class AdditionActivity : Activity() {
             repeat_type = taskRepeat
         }
         if (isAdd) {
-            GlobalValue.everyInfoArrayList.add(0, everyInformation)
+            GlobalValue.everyInfoArrayList.add(everyInformation)
 
             AddEveryTaskInfoAsync().execute(everyInformation)
         } else {
@@ -588,7 +580,7 @@ class AdditionActivity : Activity() {
 
         setScheduleNotification(scheduleInformation)
         if (isAdd) {
-            GlobalValue.scheduleInfoArrayList.add(0, scheduleInformation)
+            GlobalValue.scheduleInfoArrayList.add(scheduleInformation)
 
             AddScheduleTaskInfoAsync().execute(scheduleInformation)
         } else {
@@ -643,7 +635,7 @@ class AdditionActivity : Activity() {
         }
 
         if (isAdd) {
-            GlobalValue.taskInfoArrayList.add(0, taskInformation)
+            GlobalValue.taskInfoArrayList.add(taskInformation)
 
             AddTaskInfoAsync().execute(taskInformation)
         } else {

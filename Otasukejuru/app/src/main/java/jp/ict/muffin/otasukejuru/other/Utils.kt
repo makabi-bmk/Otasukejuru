@@ -34,7 +34,11 @@ class Utils {
         return Integer.parseInt(date[0]) * 100 + Integer.parseInt(date[1])
     }
 
-    fun diffDayNum(beforeDate: Int, afterDate: Int, year: Int): Int {
+    fun diffDayNum(
+            beforeDate: Int,
+            afterDate: Int,
+            year: Int
+    ): Int {
         val totalDays = if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0) {
             intArrayOf(0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334)
         } else {
@@ -55,7 +59,10 @@ class Utils {
         return df.format(date)
     }
 
-    fun getDiffTime(beforeDate: String, afterDate: String): Int {
+    fun getDiffTime(
+            beforeDate: String,
+            afterDate: String
+    ): Int {
         var diffDays = diffDayNum(getDate(beforeDate), getDate(afterDate), Calendar.YEAR) - 1
         if (diffDays < 0) {
             diffDays = 0
@@ -100,18 +107,29 @@ class Utils {
     }
 
     // 設定値 String を保存（Context は Activity や Application や Service）
-    private fun saveString(ctx: Context, key: String, value: String) {
+    private fun saveString(
+            ctx: Context,
+            key: String,
+            value: String
+    ) {
         ctx.getSharedPreferences(ctx.getString(R.string.app_name), Context.MODE_PRIVATE).edit().apply {
             putString(key, value)
         }.apply()
     }
 
     // 設定値 String を取得（Context は Activity や Application や Service）
-    fun loadString(ctx: Context, key: String): String =
+    fun loadString(
+            ctx: Context,
+            key: String
+    ): String =
             ctx.getSharedPreferences(ctx.getString(R.string.app_name),
                     Context.MODE_PRIVATE).getString(key, "") // 第２引数はkeyが存在しない時に返す初期値
 
-    fun parseData(ctx: Context, jsonDataString: String = "", parseKey: String = "") {
+    fun parseData(
+            ctx: Context,
+            jsonDataString: String = "",
+            parseKey: String = ""
+    ) {
         val moshi = Moshi.Builder().build()
         if (jsonDataString == "") {
             return
