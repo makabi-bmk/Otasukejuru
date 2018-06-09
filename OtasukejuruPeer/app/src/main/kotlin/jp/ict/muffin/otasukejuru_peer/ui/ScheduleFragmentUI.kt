@@ -1,7 +1,7 @@
 package jp.ict.muffin.otasukejuru_peer.ui
 
 import android.graphics.Color
-import android.support.v4.content.ContextCompat
+import androidx.core.content.ContextCompat
 import android.view.View
 import android.widget.LinearLayout
 import jp.ict.muffin.otasukejuru_peer.R

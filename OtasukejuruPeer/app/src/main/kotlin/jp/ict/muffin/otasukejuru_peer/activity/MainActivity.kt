@@ -4,11 +4,11 @@ import android.graphics.Color
 import android.graphics.Point
 import android.os.Bundle
 import android.os.Handler
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentPagerAdapter
-import android.support.v4.view.ViewPager
-import android.support.v7.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
+import androidx.viewpager.widget.ViewPager
+import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import jp.ict.muffin.otasukejuru_peer.R
@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
       The {@link ViewPager} that will host the section contents.
      */
         
-        val mViewPager: ViewPager = find(R.id.view_pager)
+        val mViewPager: androidx.viewpager.widget.ViewPager = find(R.id.view_pager)
         mViewPager.adapter = mSectionsPagerAdapter
         
         tabs.apply {
@@ -112,13 +112,13 @@ class MainActivity : AppCompatActivity() {
      * A [FragmentPagerAdapter] that returns a fragment corresponding to
      * one of the sections/tabs/pages.
      */
-    private inner class SectionsPagerAdapter internal constructor(fm: FragmentManager) :
-            FragmentPagerAdapter(fm) {
+    private inner class SectionsPagerAdapter internal constructor(fm: androidx.fragment.app.FragmentManager) :
+            androidx.fragment.app.FragmentPagerAdapter(fm) {
         
         //TODO : Show screen what was chosen.
         // Return a PlaceholderFragment (defined as a static inner class below).
         // getItem is called to instantiate the fragment for the given page.
-        override fun getItem(position: Int): Fragment? = when (position) {
+        override fun getItem(position: Int): androidx.fragment.app.Fragment? = when (position) {
             0 -> ScheduleFragment()
             1 -> TaskListFragment()
             else -> null

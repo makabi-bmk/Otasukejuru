@@ -4,8 +4,8 @@ import android.app.AlertDialog
 import android.content.Context.LAYOUT_INFLATER_SERVICE
 import android.os.Bundle
 import android.os.Handler
-import android.support.v4.app.Fragment
-import android.support.v4.content.ContextCompat
+import androidx.fragment.app.Fragment
+import androidx.core.content.ContextCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,7 +27,7 @@ import org.jetbrains.anko.textColor
 import java.util.*
 
 
-class TaskListFragment : Fragment() {
+class TaskListFragment : androidx.fragment.app.Fragment() {
     
     private var mTimer: Timer? = null
     

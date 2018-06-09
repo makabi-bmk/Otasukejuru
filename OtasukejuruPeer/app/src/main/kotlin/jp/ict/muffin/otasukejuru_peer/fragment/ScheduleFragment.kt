@@ -5,8 +5,8 @@ import android.content.Context.LAYOUT_INFLATER_SERVICE
 import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
-import android.support.v4.app.Fragment
-import android.support.v4.content.ContextCompat
+import androidx.fragment.app.Fragment
+import androidx.core.content.ContextCompat
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -26,7 +26,7 @@ import org.jetbrains.anko.support.v4.*
 import java.util.*
 
 
-class ScheduleFragment : Fragment() {
+class ScheduleFragment : androidx.fragment.app.Fragment() {
     private var mTimer: Timer? = null
     
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
