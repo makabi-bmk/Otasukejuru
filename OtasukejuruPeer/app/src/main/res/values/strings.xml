@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">おたすけじゅーるぴあ</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+
+    <string name="main_tab1">スケジュール</string>
+    <string name="main_tab2">やることリスト</string>
+    <string name="main_tab3">タイマー</string>
+
+    <string name="initTime">00:00.000</string>
+
+    <string name="mostPriority">最優先</string>
+    <string name="highPriority">高優先</string>
+    <string name="middlePriority">中優先</string>
+    <string name="lowPriority">低優先</string>
+
+    <string name="format_month_year">2017/09/29</string>
+
+    <string name="line">This is line.</string>
+
+    <string name="today">今日だけ</string>
+    <string name="everyday">毎日</string>
+    <string name="everyWeek">毎週</string>
+    <string name="everyMonth">毎月</string>
+    <string name="everyYear">毎年</string>
+
+    <string name="attentionMassage">変更リクエストが届いています。\n変更を受け入れますか？\n優先度が変わる可能性があります。</string>
+    <string name="deleteMassage">削除します。\nよろしいですか？</string>
+    <string name="complicatedMassage">完了しましたか？</string>
+
+    <string name="yes">はい</string>
+    <string name="no">いいえ</string>
+
+</resources>
