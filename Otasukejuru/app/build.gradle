@@ -1,8 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
-apply plugin: "org.jlleitschuh.gradle.ktlint"
 
 android {
     compileSdkVersion 27
@@ -62,10 +60,4 @@ kotlin {
     experimental {
         coroutines "enable"
     }
-}
-ktlint {
-    version = "0.20.0"
-    android = true
-    reporter = "checkstyle"
-    ignoreFailures = true
 }
