@@ -1,11 +1,11 @@
 package jp.ict.muffin.otasukejuru.ui
 
-import android.support.v4.content.ContextCompat
 import android.view.View
 import android.widget.LinearLayout
-import jp.ict.muffin.otasukejuru.R
+import androidx.core.content.ContextCompat
 import jp.ict.muffin.otasukejuru.fragment.TaskListFragment
-import org.jetbrains.anko.*
+import org.jetbrains.anko.AnkoContext
+import org.jetbrains.anko.AnkoComponent
 
 class TaskListFragmentUI : AnkoComponent<TaskListFragment> {
 
@@ -50,7 +50,7 @@ class TaskListFragmentUI : AnkoComponent<TaskListFragment> {
                         below(R.id.mostPriorityLine)
                     }
 
-                    //high
+                    // high
                     textView(context.getString(R.string.high_priority)) {
                         id = R.id.highPriorityTextView
                         textSize = 20f
@@ -93,7 +93,7 @@ class TaskListFragmentUI : AnkoComponent<TaskListFragment> {
                         below(R.id.highPriorityCardLinear1)
                     }
 
-                    //middle
+                    // middle
                     textView(context.getString(R.string.middle_priority)) {
                         id = R.id.middlePriorityTextView
                         textSize = 20f
@@ -136,7 +136,7 @@ class TaskListFragmentUI : AnkoComponent<TaskListFragment> {
                         below(R.id.middlePriorityCardLinear1)
                     }
 
-                    //low
+                    // low
                     textView(context.getString(R.string.low_priority)) {
                         id = R.id.lowPriorityTextView
                         textSize = 20f

@@ -1,15 +1,16 @@
 package jp.ict.muffin.otasukejuru.ui
 
 import android.graphics.Color
-import android.support.v4.content.ContextCompat
 import android.text.InputType
 import android.view.View
 import android.widget.EditText
-import jp.ict.muffin.otasukejuru.R
+import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.startActivity
 import jp.ict.muffin.otasukejuru.activity.TimerActivity
 import jp.ict.muffin.otasukejuru.fragment.TimerSetTimeFragment
-import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk25.coroutines.onClick
+import org.jetbrains.anko.AnkoContext
+import org.jetbrains.anko.AnkoComponent
 
 class TimerSetTimeFragmentUI : AnkoComponent<TimerSetTimeFragment> {
     private lateinit var editTime: EditText

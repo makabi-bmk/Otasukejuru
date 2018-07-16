@@ -1,13 +1,13 @@
 package jp.ict.muffin.otasukejuru.ui
 
 import android.graphics.Color
-import android.support.v4.content.ContextCompat
 import android.view.View
 import android.widget.LinearLayout
-import jp.ict.muffin.otasukejuru.R
+import androidx.core.content.ContextCompat
 import jp.ict.muffin.otasukejuru.fragment.ScheduleFragment
-import org.jetbrains.anko.*
-import java.util.*
+import org.jetbrains.anko.AnkoComponent
+import org.jetbrains.anko.AnkoContext
+import java.util.Calendar
 
 class ScheduleFragmentUI : AnkoComponent<ScheduleFragment> {
 

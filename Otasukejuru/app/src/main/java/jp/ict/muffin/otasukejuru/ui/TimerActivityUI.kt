@@ -4,17 +4,17 @@ import android.content.Context
 import android.graphics.Color
 import android.os.Handler
 import android.os.Looper
-import android.support.v4.content.ContextCompat
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.TextView
-import jp.ict.muffin.otasukejuru.R
+import androidx.core.content.ContextCompat
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
 import jp.ict.muffin.otasukejuru.activity.InputProgressActivity
 import jp.ict.muffin.otasukejuru.activity.TimerActivity
 import jp.ict.muffin.otasukejuru.view.CircleGraphView
-import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk25.coroutines.onClick
+import org.jetbrains.anko.AnkoComponent
+import org.jetbrains.anko.AnkoContext
 
 class TimerActivityUI(private val time: Long, private val index: Int = -1) :
         AnkoComponent<TimerActivity> {

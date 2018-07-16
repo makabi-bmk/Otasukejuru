@@ -5,27 +5,45 @@ import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.util.Log
-import android.widget.*
-import jp.ict.muffin.otasukejuru.R
-import jp.ict.muffin.otasukejuru.`object`.*
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageButton
+import android.widget.ImageView
+import android.widget.NumberPicker
+import android.widget.RadioButton
+import android.widget.TextView
+import androidx.databinding.DataBindingUtil
+import jp.ict.muffin.otasukejuru.`object`.EveryInfo
+import jp.ict.muffin.otasukejuru.`object`.GlobalValue
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue.notificationContent
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue.notificationId
-import jp.ict.muffin.otasukejuru.communication.*
-import jp.ict.muffin.otasukejuru.databinding.*
+import jp.ict.muffin.otasukejuru.`object`.ScheduleInfo
+import jp.ict.muffin.otasukejuru.`object`.SubTaskInfo
+import jp.ict.muffin.otasukejuru.`object`.TaskInfo
+import jp.ict.muffin.otasukejuru.communication.AddEveryTaskInfoAsync
+import jp.ict.muffin.otasukejuru.communication.AddScheduleTaskInfoAsync
+import jp.ict.muffin.otasukejuru.communication.AddTaskInfoAsync
+import jp.ict.muffin.otasukejuru.communication.UpdateEveryInfoAsync
+import jp.ict.muffin.otasukejuru.communication.UpdateScheduleInfoAsync
+import jp.ict.muffin.otasukejuru.communication.UpdateTaskInfoAsync
+import jp.ict.muffin.otasukejuru.databinding.ActivityFinishScheduleTimeBinding
+import jp.ict.muffin.otasukejuru.databinding.ActivityInputScheduleNameBinding
+import jp.ict.muffin.otasukejuru.databinding.ActivitySelectionBinding
+import jp.ict.muffin.otasukejuru.databinding.ActivitySetScheduleRepeatBinding
+import jp.ict.muffin.otasukejuru.databinding.ActivityStartScheduleTimeBinding
 import jp.ict.muffin.otasukejuru.other.AlarmReceiver
 import jp.ict.muffin.otasukejuru.other.Utils
-import kotlinx.android.synthetic.main.activity_set_schedule_notification_time.*
-import kotlinx.android.synthetic.main.activity_set_task_repeat.*
+import kotlinx.android.synthetic.main.activity_set_schedule_notification_time.set_notification_time_edit
+import kotlinx.android.synthetic.main.activity_set_task_repeat.task_repeat_radio_group
 import org.jetbrains.anko.ctx
 import org.jetbrains.anko.find
-import java.util.*
+import java.util.Calendar
 
 class AdditionActivity : Activity() {
 
-    //common
+    // common
     private var isSchedule: Boolean = false
     private var titleName: String = ""
     private var startYear: Int = 0
@@ -42,9 +60,9 @@ class AdditionActivity : Activity() {
     private var dateLimit: Int = 0
     private var timeLimit: Int = 0
 
-    //schedule
+    // schedule
     private var notificationTime: Int = 0
-    //task
+    // task
     private var isMust: Boolean = false
     private var isShould: Boolean = false
     private var isWant: Boolean = false
@@ -180,7 +198,7 @@ class AdditionActivity : Activity() {
                 startDay = startDayNumPick.value
                 startHour = startHourNumPick.value
                 startMinute = startMinuteNumPick.value
-                
+
                 finishScheduleTime()
             }
             setBackOnClick {

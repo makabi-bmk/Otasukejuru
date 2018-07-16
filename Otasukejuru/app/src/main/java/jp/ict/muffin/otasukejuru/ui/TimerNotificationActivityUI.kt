@@ -1,12 +1,13 @@
 package jp.ict.muffin.otasukejuru.ui
 
 import android.graphics.Color
-import android.support.v4.content.ContextCompat
 import android.view.View
-import jp.ict.muffin.otasukejuru.R
+import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.startActivity
 import jp.ict.muffin.otasukejuru.activity.TimerActivity
-import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk25.coroutines.onClick
+import org.jetbrains.anko.AnkoComponent
+import org.jetbrains.anko.AnkoContext
 
 class TimerNotificationActivityUI(private val time: Long) :
         AnkoComponent<TimerActivity> {

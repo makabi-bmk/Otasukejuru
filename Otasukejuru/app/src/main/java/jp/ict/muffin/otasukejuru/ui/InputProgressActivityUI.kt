@@ -1,15 +1,19 @@
 package jp.ict.muffin.otasukejuru.ui
 
 import android.graphics.Color
-import android.support.v4.content.ContextCompat
 import android.view.View
 import android.widget.SeekBar
-import jp.ict.muffin.otasukejuru.R
+import androidx.core.content.ContextCompat
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
 import jp.ict.muffin.otasukejuru.activity.InputProgressActivity
 import jp.ict.muffin.otasukejuru.communication.UpdateTaskInfoAsync
-import org.jetbrains.anko.*
+import kotlinx.android.synthetic.main.activity_selection.view.textView
 import org.jetbrains.anko.sdk25.coroutines.onClick
+import org.jetbrains.anko.AnkoComponent
+import org.jetbrains.anko.AnkoContext
+import org.jetbrains.anko.relativeLayout
+import org.jetbrains.anko.seekBar
+import org.jetbrains.anko.margin
 
 class InputProgressActivityUI(private val index: Int) : AnkoComponent<InputProgressActivity> {
     private lateinit var progressSeekBar: SeekBar

@@ -2,15 +2,15 @@ package jp.ict.muffin.otasukejuru.ui
 
 import android.content.Context
 import android.graphics.Color
-import android.support.v4.content.ContextCompat
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.NumberPicker
-import jp.ict.muffin.otasukejuru.R
+import androidx.core.content.ContextCompat
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
 import jp.ict.muffin.otasukejuru.activity.TimerActivity
 import jp.ict.muffin.otasukejuru.view.CircleGraphView
-import org.jetbrains.anko.*
+import org.jetbrains.anko.AnkoContext
+import org.jetbrains.anko.AnkoComponent
 
 class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerActivity> {
     private lateinit var focusHourNumPick: NumberPicker

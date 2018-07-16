@@ -8,7 +8,10 @@ import android.graphics.Paint
 import android.graphics.RectF
 import android.os.Handler
 import android.view.View
-import java.util.*
+import java.util.ArrayList
+import java.util.HashMap
+import java.util.Timer
+import java.util.TimerTask
 
 @SuppressLint("ViewConstructor")
 class CircleGraphView(
@@ -63,7 +66,7 @@ class CircleGraphView(
         val oval1 = RectF(x - r, y - r, x + r, y + r)
         c.drawArc(oval1, start_angle, end_angle - start_angle, true, paint)
 
-        //外枠
+        // 外枠
         val strokePaint = Paint()
         strokePaint.apply {
             color = Color.argb(0, 0, 0, 0)
@@ -87,7 +90,7 @@ class CircleGraphView(
             }
         }
 
-        //アニメーションのスピード調整できるようにしたいところ
+        // アニメーションのスピード調整できるようにしたいところ
         timer.schedule(task, 0, drawTime + 1)
     }
 }

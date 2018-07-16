@@ -6,11 +6,10 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
 import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.ImageButton
-import jp.ict.muffin.otasukejuru.R
+import androidx.core.content.ContextCompat
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue.notificationContent
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue.notificationId
 import jp.ict.muffin.otasukejuru.other.AlarmReceiver
@@ -20,7 +19,7 @@ import jp.ict.muffin.otasukejuru.view.CircleGraphView
 import org.jetbrains.anko.ctx
 import org.jetbrains.anko.find
 import org.jetbrains.anko.setContentView
-import java.util.*
+import java.util.Calendar
 import kotlin.collections.HashMap
 
 class TimerActivity : Activity() {

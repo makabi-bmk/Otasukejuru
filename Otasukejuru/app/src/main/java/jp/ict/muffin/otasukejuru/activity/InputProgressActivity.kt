@@ -1,11 +1,10 @@
 package jp.ict.muffin.otasukejuru.activity
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.widget.Button
 import android.widget.SeekBar
 import android.widget.TextView
-import jp.ict.muffin.otasukejuru.R
+import androidx.appcompat.app.AppCompatActivity
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
 import jp.ict.muffin.otasukejuru.other.Utils
 import jp.ict.muffin.otasukejuru.ui.InputProgressActivityUI
@@ -27,7 +26,7 @@ class InputProgressActivity : AppCompatActivity() {
         val seekBar = find<SeekBar>(R.id.inputProgressSeek)
 
         seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
-            //ツマミがドラッグされると呼ばれる
+            // ツマミがドラッグされると呼ばれる
             override fun onProgressChanged(
                 seekBar: SeekBar,
                 progress: Int,
@@ -37,11 +36,11 @@ class InputProgressActivity : AppCompatActivity() {
                 GlobalValue.taskInfoArrayList[index].progress = progress
             }
 
-            //ツマミがタッチされた時に呼ばれる
+            // ツマミがタッチされた時に呼ばれる
             override fun onStartTrackingTouch(seekBar: SeekBar) {
             }
 
-            //ツマミがリリースされた時に呼ばれる
+            // ツマミがリリースされた時に呼ばれる
             override fun onStopTrackingTouch(seekBar: SeekBar) {
             }
         })

@@ -1,17 +1,16 @@
 package jp.ict.muffin.otasukejuru.activity
 
-import android.databinding.DataBindingUtil
 import android.graphics.Color
 import android.graphics.Point
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentPagerAdapter
-import android.support.v4.view.ViewPager
-import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
-import jp.ict.muffin.otasukejuru.R
+import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
+import androidx.viewpager.widget.ViewPager
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
 import jp.ict.muffin.otasukejuru.communication.GetInformation
 import jp.ict.muffin.otasukejuru.databinding.ActivityMainBinding
@@ -19,10 +18,11 @@ import jp.ict.muffin.otasukejuru.fragment.ScheduleFragment
 import jp.ict.muffin.otasukejuru.fragment.TaskListFragment
 import jp.ict.muffin.otasukejuru.fragment.TimerSetTimeFragment
 import jp.ict.muffin.otasukejuru.other.Utils
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.tabs
+import kotlinx.android.synthetic.main.activity_main.toolbar
 import org.jetbrains.anko.find
 import org.jetbrains.anko.startActivity
-import java.util.*
+import java.util.Calendar
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -67,7 +67,7 @@ class MainActivity : AppCompatActivity() {
         val display = windowManager.defaultDisplay
         val point = Point()
         display.getSize(point)
-        
+
         GlobalValue.also {
             it.displayWidth = point.x
             it.SERVER_URL = getString(R.string.server_url)
@@ -105,7 +105,7 @@ class MainActivity : AppCompatActivity() {
     private inner class SectionsPagerAdapter internal constructor(fm: FragmentManager) :
             FragmentPagerAdapter(fm) {
 
-        //TODO : Show screen what was chosen.
+        // TODO : Show screen what was chosen.
         // Return a PlaceholderFragment (defined as a static inner class below).
         // getItem is called to instantiate the fragment for the given page.
         override fun getItem(position: Int): Fragment? = when (position) {
