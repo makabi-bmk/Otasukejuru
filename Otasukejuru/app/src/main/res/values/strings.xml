@@ -1,0 +1,60 @@
+<resources>
+    <string name="app_name">おたすけじゅーる</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+
+    <string name="main_tab1">スケジュール</string>
+    <string name="main_tab2">やることリスト</string>
+    <string name="main_tab3">タイマー</string>
+
+    <string name="init_time">00:00.000</string>
+
+    <string name="most_priority">最優先</string>
+    <string name="high_priority">高優先</string>
+    <string name="middle_priority">中優先</string>
+    <string name="low_priority">低優先</string>
+
+    <string name="format_month_year">2017/09/29</string>
+
+    <string name="line">This is line.</string>
+
+    <string name="today">今日だけ</string>
+    <string name="every_day">毎日</string>
+    <string name="every_week">毎週</string>
+    <string name="every_month">毎月</string>
+    <string name="every_year">毎年</string>
+
+    <string name="attention_massage">変更リクエストが届いています。\n変更を受け入れますか？\n優先度が変わる可能性があります。</string>
+    <string name="delete_massage">削除します。\nよろしいですか？</string>
+    <string name="complicated_massage">完了しましたか？</string>
+
+    <string name="yes">はい</string>
+    <string name="no">いいえ</string>
+
+    <string name="change_message">友達から変更リクエストが届いてます。\n変更を受け入れますか\n優先度が変更される可能性があります。</string>
+
+    <string name="task_info_key">taskInfoList</string>
+    <string name="schedule_info_key">scheduleInfoList</string>
+    <string name="every_info_key">everyInfoList</string>
+    <string name="start">開始</string>
+    <string name="change">変更</string>
+    <string name="complete">完了</string>
+    <string name="delete">削除</string>
+    <string name="add_sub">サブタスクの追加</string>
+    <string name="progress">進捗</string>
+    <string name="no_title">無題</string>
+    <string name="schedule_title">予定名</string>
+    <string name="schedule_body">予定名はなんですか？</string>
+    <string name="next">次へ</string>
+    <string name="add">追加</string>
+    <string name="sub_task_title">サブタスク名</string>
+    <string name="sub_task_body">サブタスク名はなんですか</string>
+    <string name="sub_task_hin">サブタスク名</string>
+    <string name="task_title">タスク名</string>
+    <string name="task_body">タスク名は何ですか？</string>
+    <string name="tasj_hint">タスク名</string>
+    <string name="sub_task_time_title">サブタスクの時間</string>
+    <string name="sub_task_time_body">サブタスクをいつに入れますか？</string>
+    <string name="task_time_title">タスクの期限</string>
+    <string name="task_time_body">期限はいつまでですか？</string>
+</resources>
