@@ -32,7 +32,6 @@ import org.jetbrains.anko.wrapContent
 import org.jetbrains.anko.dip
 import org.jetbrains.anko.backgroundColor
 import org.jetbrains.anko.startActivity
-import java.nio.file.Files.find
 import java.util.Timer
 import java.util.TimerTask
 

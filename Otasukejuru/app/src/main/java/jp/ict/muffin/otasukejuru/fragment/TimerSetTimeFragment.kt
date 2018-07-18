@@ -14,9 +14,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import jp.ict.muffin.otasukejuru.ui.TimerSetTimeFragmentUI
 import org.jetbrains.anko.AnkoContext
-import org.jetbrains.anko.support.v4.find
-import org.jetbrains.anko.textColor
-import java.nio.file.Files.find
+import org.jetbrains.anko.find
 
 class TimerSetTimeFragment : Fragment(), TextWatcher {
     override fun afterTextChanged(s: Editable?) {

@@ -28,7 +28,8 @@ import org.jetbrains.anko.below
 import org.jetbrains.anko.dip
 import org.jetbrains.anko.backgroundColor
 import org.jetbrains.anko.backgroundDrawable
-import org.jetbrains.anko.centerHorizontally
+import org.jetbrains.anko.frameLayout
+import org.jetbrains.anko.margin
 import org.jetbrains.anko.alignParentStart
 import org.jetbrains.anko.alignParentTop
 import org.jetbrains.anko.numberPicker
