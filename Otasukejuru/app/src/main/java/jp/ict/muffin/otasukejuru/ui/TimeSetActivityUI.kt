@@ -11,13 +11,34 @@ import jp.ict.muffin.otasukejuru.activity.TimerActivity
 import org.jetbrains.anko.sdk25.coroutines.onClick
 import org.jetbrains.anko.AnkoComponent
 import org.jetbrains.anko.AnkoContext
+import org.jetbrains.anko.relativeLayout
+import org.jetbrains.anko.toolbar
+import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.imageButton
+import org.jetbrains.anko.textView
+import org.jetbrains.anko.editText
+import org.jetbrains.anko.rightOf
+import org.jetbrains.anko.button
+import org.jetbrains.anko.textColor
+import org.jetbrains.anko.matchParent
+import org.jetbrains.anko.centerHorizontally
+import org.jetbrains.anko.centerVertically
+import org.jetbrains.anko.wrapContent
+import org.jetbrains.anko.below
+import org.jetbrains.anko.dip
+import org.jetbrains.anko.backgroundColor
+import org.jetbrains.anko.backgroundDrawable
+import org.jetbrains.anko.centerHorizontally
 
 class TimeSetActivityUI(private val index: Int = -1) : AnkoComponent<TimeSetActivity> {
     private lateinit var editTime: EditText
 
     override fun createView(ui: AnkoContext<TimeSetActivity>): View = with(ui) {
         relativeLayout {
-            backgroundColor = ContextCompat.getColor(context, R.color.back)
+            backgroundColor = ContextCompat.getColor(
+                    context,
+                    R.color.back
+            )
 
             lparams {
                 height = matchParent
@@ -26,11 +47,17 @@ class TimeSetActivityUI(private val index: Int = -1) : AnkoComponent<TimeSetActi
 
             toolbar {
                 id = R.id.ankoToolbar
-                backgroundColor = ContextCompat.getColor(context, R.color.colorPrimary)
+                backgroundColor = ContextCompat.getColor(
+                        context,
+                        R.color.colorPrimary
+                )
 
                 imageButton {
                     id = R.id.ankoBack
-                    backgroundDrawable = ContextCompat.getDrawable(context, R.drawable.ic_arrow_back_white_48dp)
+                    backgroundDrawable = ContextCompat.getDrawable(
+                            context,
+                            R.drawable.ic_arrow_back_white_48dp
+                    )
                 }.lparams {
                     width = wrapContent
                     height = wrapContent
@@ -42,7 +69,10 @@ class TimeSetActivityUI(private val index: Int = -1) : AnkoComponent<TimeSetActi
 
             textView("タイマー") {
                 id = R.id.titleInterval
-                textColor = ContextCompat.getColor(context, R.color.colorPrimary)
+                textColor = ContextCompat.getColor(
+                        context,
+                        R.color.colorPrimary
+                )
                 textSize = 30f
             }.lparams {
                 below(R.id.ankoToolbar)
@@ -81,9 +111,19 @@ class TimeSetActivityUI(private val index: Int = -1) : AnkoComponent<TimeSetActi
 
                 button("次へ") {
                     id = R.id.nextButton
-                    backgroundColor = Color.argb(0, 0, 0, 0)
+                    backgroundColor = Color.argb(
+                            0,
+                            0,
+                            0,
+                            0
+                    )
                     isEnabled = false
-                    textColor = Color.argb(0, 0, 0, 0)
+                    textColor = Color.argb(
+                            0,
+                            0,
+                            0,
+                            0
+                    )
                     textSize = 20f
                     onClick {
                         val time = editTime.text.toString().toLong()
@@ -91,7 +131,10 @@ class TimeSetActivityUI(private val index: Int = -1) : AnkoComponent<TimeSetActi
                             text.clear()
                             editTime.clearFocus()
                         }
-                        startActivity<TimerActivity>("time" to time, "index" to index)
+                        startActivity<TimerActivity>(
+                                "time" to time,
+                                "index" to index
+                        )
                     }
                 }.lparams {
                     below(editTime)

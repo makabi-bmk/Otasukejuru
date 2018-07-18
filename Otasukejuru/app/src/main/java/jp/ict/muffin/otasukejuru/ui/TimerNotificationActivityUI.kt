@@ -8,21 +8,53 @@ import jp.ict.muffin.otasukejuru.activity.TimerActivity
 import org.jetbrains.anko.sdk25.coroutines.onClick
 import org.jetbrains.anko.AnkoComponent
 import org.jetbrains.anko.AnkoContext
+import org.jetbrains.anko.relativeLayout
+import org.jetbrains.anko.toolbar
+import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.imageButton
+import org.jetbrains.anko.textView
+import org.jetbrains.anko.rightOf
+import org.jetbrains.anko.button
+import org.jetbrains.anko.textColor
+import org.jetbrains.anko.matchParent
+import org.jetbrains.anko.centerHorizontally
+import org.jetbrains.anko.centerVertically
+import org.jetbrains.anko.wrapContent
+import org.jetbrains.anko.below
+import org.jetbrains.anko.dip
+import org.jetbrains.anko.backgroundColor
+import org.jetbrains.anko.backgroundDrawable
+import org.jetbrains.anko.centerHorizontally
+import org.jetbrains.anko.numberPicker
+import org.jetbrains.anko.alignParentStart
+import org.jetbrains.anko.alignParentTop
+import org.jetbrains.anko.alignParentEnd
+import org.jetbrains.anko.alignParentBottom
+import org.jetbrains.anko.margin
 
 class TimerNotificationActivityUI(private val time: Long) :
         AnkoComponent<TimerActivity> {
 
     override fun createView(ui: AnkoContext<TimerActivity>): View = with(ui) {
         relativeLayout {
-            backgroundColor = ContextCompat.getColor(context, R.color.back)
+            backgroundColor = ContextCompat.getColor(
+                    context,
+                    R.color.back
+            )
 
             toolbar {
                 id = R.id.ankoToolbar
-                backgroundColor = ContextCompat.getColor(context, R.color.colorPrimary)
+                backgroundColor = ContextCompat.getColor(
+                        context,
+                        R.color.colorPrimary
+                )
 
                 imageButton {
                     id = R.id.ankoBack
-                    backgroundDrawable = ContextCompat.getDrawable(context, R.drawable.ic_arrow_back_white_48dp)
+                    backgroundDrawable = ContextCompat.getDrawable(
+                            context,
+                            R.drawable.ic_arrow_back_white_48dp
+                    )
                 }.lparams {
                     width = wrapContent
                     height = wrapContent
@@ -35,7 +67,10 @@ class TimerNotificationActivityUI(private val time: Long) :
             relativeLayout {
                 textView("終了前の通知") {
                     id = R.id.titleInterval
-                    textColor = ContextCompat.getColor(context, R.color.colorPrimary)
+                    textColor = ContextCompat.getColor(
+                            context,
+                            R.color.colorPrimary
+                    )
                     textSize = 30f
                 }.lparams {
                     topMargin = dip(10)
@@ -59,7 +94,10 @@ class TimerNotificationActivityUI(private val time: Long) :
                         id = R.id.notificationNumPick
                         minValue = 1
                         maxValue = 6
-                        setFormatter { value -> String.format("%d", value * 5) }
+                        setFormatter { value -> String.format(
+                                "%d",
+                                value * 5
+                        ) }
                     }.lparams {
                         centerVertically()
                         alignParentStart()
@@ -80,7 +118,10 @@ class TimerNotificationActivityUI(private val time: Long) :
                 button("次へ") {
                     id = R.id.nextButton
                     backgroundColor = Color.argb(0, 0, 0, 0)
-                    textColor = ContextCompat.getColor(context, R.color.colorPrimary)
+                    textColor = ContextCompat.getColor(
+                            context,
+                            R.color.colorPrimary
+                    )
                     textSize = 20f
                     onClick {
                         startActivity<TimerActivity>("time" to time)
@@ -88,7 +129,7 @@ class TimerNotificationActivityUI(private val time: Long) :
                 }.lparams {
                     margin = 30
                     alignParentBottom()
-                    alignParentRight()
+                    alignParentEnd()
                 }
             }.lparams {
                 below(R.id.ankoToolbar)

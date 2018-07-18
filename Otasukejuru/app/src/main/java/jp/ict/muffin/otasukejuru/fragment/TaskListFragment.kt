@@ -35,9 +35,9 @@ import org.jetbrains.anko.AnkoContext
 import org.jetbrains.anko.collections.forEachWithIndex
 import org.jetbrains.anko.dip
 import org.jetbrains.anko.find
-import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.textColor
+import java.util.Calendar
 import java.util.Timer
 import java.util.TimerTask
 
@@ -49,7 +49,10 @@ class TaskListFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View =
-            TaskListFragmentUI().createView(AnkoContext.create(ctx, this))
+            TaskListFragmentUI().createView(AnkoContext.create(
+                    context!!,
+                    this
+            ))
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -98,26 +101,38 @@ class TaskListFragment : Fragment() {
 
         val showTaskNum = GlobalValue.displayWidth / 90 - 1
         GlobalValue.taskInfoArrayList.forEachWithIndex { index, element ->
-            val diffDays = Utils().diffDayNum(today, Utils().getDate(element.due_date),
-                    calendar.get(Calendar.YEAR))
+            val diffDays = Utils().diffDayNum(
+                    today,
+                    Utils().getDate(element.due_date),
+                    calendar.get(Calendar.YEAR)
+            )
 
             val inflater: LayoutInflater =
-                    ctx.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
+                    context?.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
             val linearLayout: LinearLayout =
                     inflater.inflate(R.layout.task_card_view, null) as LinearLayout
 
             linearLayout.apply {
                 dateTextView.apply {
                     this.text = diffDays.toString()
-                    if (element.priority == 0 || (diffDays == 1 || diffDays == 0)) {
-                        this.textColor = ContextCompat.getColor(context, R.color.mostPriority)
+                    if (
+                            element.priority == 0 ||
+                            (diffDays == 1 || diffDays == 0)
+                    ) {
+                        this.textColor = ContextCompat.getColor(
+                                context,
+                                R.color.mostPriority
+                        )
                     }
                 }
                 taskNameTextView.text = element.task_name
                 cardView.apply {
                     this.tag = Utils().getDate(element.due_date)
                     setOnClickListener {
-                        createDialog(element, index)
+                        createDialog(
+                                element,
+                                index
+                        )
                     }
                 }
                 find<RelativeLayout>(R.id.taskProgress).scaleY = element.progress / 100f * dip(70)
@@ -160,7 +175,10 @@ class TaskListFragment : Fragment() {
         }
     }
 
-    private fun createDialog(element: TaskInfo, index: Int) {
+    private fun createDialog(
+        element: TaskInfo,
+        index: Int
+    ) {
         val listDialog = arrayOf(
                 getString(R.string.start),
                 getString(R.string.change),
@@ -194,7 +212,10 @@ class TaskListFragment : Fragment() {
                             setPositiveButton("Yes") { _, _ ->
                                 deleteTask(element)
                             }
-                            setNegativeButton("No", null)
+                            setNegativeButton(
+                                    "No",
+                                    null
+                            )
                             show()
                         }
                     }
@@ -232,6 +253,6 @@ class TaskListFragment : Fragment() {
         } catch (e: Exception) {
             e.printStackTrace()
         }
-        Utils().saveTaskInfoList(ctx)
+        Utils().saveTaskInfoList(context)
     }
 }

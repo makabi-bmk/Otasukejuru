@@ -14,6 +14,20 @@ import org.jetbrains.anko.AnkoContext
 import org.jetbrains.anko.relativeLayout
 import org.jetbrains.anko.seekBar
 import org.jetbrains.anko.margin
+import org.jetbrains.anko.relativeLayout
+import org.jetbrains.anko.textView
+import org.jetbrains.anko.button
+import org.jetbrains.anko.textColor
+import org.jetbrains.anko.matchParent
+import org.jetbrains.anko.centerHorizontally
+import org.jetbrains.anko.centerVertically
+import org.jetbrains.anko.wrapContent
+import org.jetbrains.anko.below
+import org.jetbrains.anko.dip
+import org.jetbrains.anko.backgroundColor
+import org.jetbrains.anko.alignParentBottom
+import org.jetbrains.anko.alignParentEnd
+import org.jetbrains.anko.centerHorizontally
 
 class InputProgressActivityUI(private val index: Int) : AnkoComponent<InputProgressActivity> {
     private lateinit var progressSeekBar: SeekBar
@@ -47,8 +61,16 @@ class InputProgressActivityUI(private val index: Int) : AnkoComponent<InputProgr
 
             button("確定") {
                 id = R.id.finishButton
-                backgroundColor = Color.argb(0, 0, 0, 0)
-                textColor = ContextCompat.getColor(context, R.color.colorPrimary)
+                backgroundColor = Color.argb(
+                        0,
+                        0,
+                        0,
+                        0
+                )
+                textColor = ContextCompat.getColor(
+                        context,
+                        R.color.colorPrimary
+                )
                 textSize = 20f
                 onClick {
                     GlobalValue.taskInfoArrayList[index].progress = progressSeekBar.progress
@@ -57,7 +79,7 @@ class InputProgressActivityUI(private val index: Int) : AnkoComponent<InputProgr
             }.lparams {
                 margin = 30
                 alignParentBottom()
-                alignParentRight()
+                alignParentEnd()
             }
         }
     }

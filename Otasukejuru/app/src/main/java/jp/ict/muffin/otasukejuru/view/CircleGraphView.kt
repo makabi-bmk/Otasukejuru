@@ -28,7 +28,7 @@ class CircleGraphView(
     }
 
     override fun onDraw(c: Canvas) {
-        val width = c.width
+        val width = width
         val length = params.size
         val max = (0 until length)
                 .map { params[it]["value"]?.toFloat() ?: 0f }
@@ -44,7 +44,14 @@ class CircleGraphView(
             if (endAngleTmp < endAngle) {
                 endAngle = endAngleTmp
             }
-            createPieSlice(c, params[it]["color"] ?: 0, startAngle, endAngle, x, y, radius)
+            createPieSlice(c,
+                    params[it]["color"] ?: 0,
+                    startAngle,
+                    endAngle,
+                    x,
+                    y,
+                    radius
+            )
             startAngle = endAngle
         }
     }
@@ -63,16 +70,38 @@ class CircleGraphView(
             isAntiAlias = false
             color = colorParams
         }
-        val oval1 = RectF(x - r, y - r, x + r, y + r)
-        c.drawArc(oval1, start_angle, end_angle - start_angle, true, paint)
+        val oval1 = RectF(
+                x - r,
+                y - r,
+                x + r,
+                y + r
+        )
+        c.drawArc(
+                oval1,
+                start_angle,
+                end_angle - start_angle,
+                true,
+                paint
+        )
 
         // 外枠
         val strokePaint = Paint()
         strokePaint.apply {
-            color = Color.argb(0, 0, 0, 0)
+            color = Color.argb(
+                    0,
+                    0,
+                    0,
+                    0
+            )
             style = Paint.Style.STROKE
         }
-        c.drawArc(oval1, start_angle, end_angle - start_angle, true, paint)
+        c.drawArc(
+                oval1,
+                start_angle,
+                end_angle - start_angle,
+                true,
+                paint
+        )
     }
 
     fun startAnimation() {
@@ -91,6 +120,10 @@ class CircleGraphView(
         }
 
         // アニメーションのスピード調整できるようにしたいところ
-        timer.schedule(task, 0, drawTime + 1)
+        timer.schedule(
+                task,
+                0,
+                drawTime + 1
+        )
     }
 }

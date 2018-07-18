@@ -8,16 +8,29 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody
 
-class DeleteScheduleInfoAsync : AsyncTask<ScheduleInfo, Void, Unit>() {
+class DeleteScheduleInfoAsync : AsyncTask<
+        ScheduleInfo,
+        Void,
+        Unit
+        >() {
     private val client = OkHttpClient()
 
     override fun doInBackground(vararg params: ScheduleInfo) {
-        post("${GlobalValue.SERVER_URL}/delete/schedule", convertToJson(params[0]))
+        post(
+                "${GlobalValue.SERVER_URL}/delete/schedule",
+                convertToJson(params[0])
+        )
     }
 
-    private fun post(url: String, json: String): String? {
+    private fun post(
+        url: String,
+        json: String
+    ): String? {
         try {
-            val body = RequestBody.create(GlobalValue.mediaType, json)
+            val body = RequestBody.create(
+                    GlobalValue.mediaType,
+                    json
+            )
             val request = Request.Builder().apply {
                 url(url)
                 post(body)

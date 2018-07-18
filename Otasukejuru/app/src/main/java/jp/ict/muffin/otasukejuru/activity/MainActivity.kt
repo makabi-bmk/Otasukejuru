@@ -27,8 +27,10 @@ import java.util.Calendar
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding: ActivityMainBinding =
-                DataBindingUtil.setContentView(this, R.layout.activity_main)
+        val binding: ActivityMainBinding = DataBindingUtil.setContentView(
+                this,
+                R.layout.activity_main
+        )
 
         val calendar = Calendar.getInstance()
         setSupportActionBar(toolbar)
@@ -54,7 +56,10 @@ class MainActivity : AppCompatActivity() {
 
         tabs.apply {
             setupWithViewPager(mViewPager)
-            setTabTextColors(Color.parseColor("#FBFBF0"), Color.parseColor("#66B7EC"))
+            setTabTextColors(
+                    Color.parseColor("#FBFBF0"),
+                    Color.parseColor("#66B7EC")
+            )
         }
 
         binding.apply {
@@ -78,9 +83,30 @@ class MainActivity : AppCompatActivity() {
 
     private fun loadInfoList() {
         Utils().apply {
-            parseData(applicationContext, loadString(applicationContext, getString(R.string.task_info_key)), getString(R.string.task_info_key))
-            parseData(applicationContext, loadString(applicationContext, getString(R.string.schedule_info_key)), getString(R.string.schedule_info_key))
-            parseData(applicationContext, loadString(applicationContext, getString(R.string.every_info_key)), getString(R.string.every_info_key))
+            parseData(
+                    applicationContext,
+                    loadString(
+                            applicationContext,
+                            getString(R.string.task_info_key)
+                    ),
+                    getString(R.string.task_info_key)
+            )
+            parseData(
+                    applicationContext,
+                    loadString(
+                            applicationContext,
+                            getString(R.string.schedule_info_key)
+                    ),
+                    getString(R.string.schedule_info_key)
+            )
+            parseData(
+                    applicationContext,
+                    loadString(
+                            applicationContext,
+                            getString(R.string.every_info_key)
+                    ),
+                    getString(R.string.every_info_key)
+            )
         }
     }
 

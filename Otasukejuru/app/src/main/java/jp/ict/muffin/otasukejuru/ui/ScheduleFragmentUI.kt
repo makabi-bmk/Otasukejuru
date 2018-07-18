@@ -8,6 +8,19 @@ import jp.ict.muffin.otasukejuru.fragment.ScheduleFragment
 import org.jetbrains.anko.AnkoComponent
 import org.jetbrains.anko.AnkoContext
 import java.util.Calendar
+import org.jetbrains.anko.relativeLayout
+import org.jetbrains.anko.linearLayout
+import org.jetbrains.anko.imageView
+import org.jetbrains.anko.textView
+import org.jetbrains.anko.matchParent
+import org.jetbrains.anko.centerVertically
+import org.jetbrains.anko.wrapContent
+import org.jetbrains.anko.dip
+import org.jetbrains.anko.backgroundColor
+import org.jetbrains.anko.alignParentStart
+import org.jetbrains.anko.alignParentTop
+import org.jetbrains.anko.alignParentEnd
+import org.jetbrains.anko.scrollView
 
 class ScheduleFragmentUI : AnkoComponent<ScheduleFragment> {
 
@@ -24,7 +37,8 @@ class ScheduleFragmentUI : AnkoComponent<ScheduleFragment> {
             }
             scrollView {
                 val calendar = Calendar.getInstance()
-                var today = (calendar.get(Calendar.MONTH) + 1) * 100 + calendar.get(Calendar.DAY_OF_MONTH)
+                var today = (calendar.get(Calendar.MONTH) + 1) * 100 +
+                        calendar.get(Calendar.DAY_OF_MONTH)
                 relativeLayout {
                     id = R.id.taskRelative
                     (0 until 28).forEach {
@@ -86,7 +100,10 @@ class ScheduleFragmentUI : AnkoComponent<ScheduleFragment> {
             }.lparams {
                 width = matchParent
                 height = matchParent
-                backgroundColor = ContextCompat.getColor(context, R.color.back)
+                backgroundColor = ContextCompat.getColor(
+                        context,
+                        R.color.back
+                )
                 topMargin = dip(90)
             }
         }

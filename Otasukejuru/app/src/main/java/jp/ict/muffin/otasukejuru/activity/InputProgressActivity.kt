@@ -17,7 +17,10 @@ class InputProgressActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        index = intent.getIntExtra("index", 0)
+        index = intent.getIntExtra(
+                "index",
+                0
+        )
         InputProgressActivityUI(index).setContentView(this)
     }
 

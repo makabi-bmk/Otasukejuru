@@ -11,13 +11,34 @@ import jp.ict.muffin.otasukejuru.fragment.TimerSetTimeFragment
 import org.jetbrains.anko.sdk25.coroutines.onClick
 import org.jetbrains.anko.AnkoContext
 import org.jetbrains.anko.AnkoComponent
+import org.jetbrains.anko.relativeLayout
+import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.textView
+import org.jetbrains.anko.editText
+import org.jetbrains.anko.rightOf
+import org.jetbrains.anko.button
+import org.jetbrains.anko.textColor
+import org.jetbrains.anko.matchParent
+import org.jetbrains.anko.centerHorizontally
+import org.jetbrains.anko.centerVertically
+import org.jetbrains.anko.wrapContent
+import org.jetbrains.anko.below
+import org.jetbrains.anko.dip
+import org.jetbrains.anko.backgroundColor
+import org.jetbrains.anko.alignParentStart
+import org.jetbrains.anko.alignParentTop
+
+import org.jetbrains.anko.centerHorizontally
 
 class TimerSetTimeFragmentUI : AnkoComponent<TimerSetTimeFragment> {
     private lateinit var editTime: EditText
 
     override fun createView(ui: AnkoContext<TimerSetTimeFragment>): View = with(ui) {
         relativeLayout {
-            backgroundColor = ContextCompat.getColor(context, R.color.back)
+            backgroundColor = ContextCompat.getColor(
+                    context,
+                    R.color.back
+            )
 
             lparams {
                 height = matchParent
@@ -26,7 +47,10 @@ class TimerSetTimeFragmentUI : AnkoComponent<TimerSetTimeFragment> {
 
             textView("タイマー") {
                 id = R.id.titleInterval
-                textColor = ContextCompat.getColor(context, R.color.colorPrimary)
+                textColor = ContextCompat.getColor(
+                        context,
+                        R.color.colorPrimary
+                )
                 textSize = 30f
             }.lparams {
                 topMargin = dip(10)
@@ -65,9 +89,19 @@ class TimerSetTimeFragmentUI : AnkoComponent<TimerSetTimeFragment> {
 
                 button("次へ") {
                     id = R.id.nextButton
-                    backgroundColor = Color.argb(0, 0, 0, 0)
+                    backgroundColor = Color.argb(
+                            0,
+                            0,
+                            0,
+                            0
+                    )
                     isEnabled = false
-                    textColor = Color.argb(0, 0, 0, 0)
+                    textColor = Color.argb(
+                            0,
+                            0,
+                            0,
+                            0
+                    )
                     textSize = 20f
                     onClick {
                         val time = editTime.text.toString().toLong()

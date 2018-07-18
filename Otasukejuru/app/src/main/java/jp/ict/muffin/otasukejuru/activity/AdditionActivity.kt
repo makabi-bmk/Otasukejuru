@@ -80,9 +80,18 @@ class AdditionActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        isAdd = intent.getBooleanExtra("add", true)
-        isSub = intent.getBooleanExtra("sub", false)
-        index = intent.getIntExtra("index", -1)
+        isAdd = intent.getBooleanExtra(
+                "add",
+                true
+        )
+        isSub = intent.getBooleanExtra(
+                "sub",
+                false
+        )
+        index = intent.getIntExtra(
+                "index",
+                -1
+        )
 
         if (isSub) {
             isAdd = false
@@ -91,10 +100,16 @@ class AdditionActivity : Activity() {
             selectAddType()
         } else {
             when {
-                isSub || intent.getBooleanExtra("task", false) -> {
+                isSub || intent.getBooleanExtra(
+                        "task",
+                        false
+                ) -> {
                     inputTaskName()
                 }
-                intent.getBooleanExtra("schedule", false) -> {
+                intent.getBooleanExtra(
+                        "schedule",
+                        false
+                ) -> {
                     inputScheduleName()
                 }
             }
@@ -102,8 +117,10 @@ class AdditionActivity : Activity() {
     }
 
     private fun selectAddType() {
-        val binding: ActivitySelectionBinding =
-                DataBindingUtil.setContentView(this, R.layout.activity_selection)
+        val binding: ActivitySelectionBinding = DataBindingUtil.setContentView(
+                this,
+                R.layout.activity_selection
+        )
         setActionBar(find(R.id.toolbar_back))
 
         binding.apply {
@@ -122,8 +139,10 @@ class AdditionActivity : Activity() {
     }
 
     private fun inputScheduleName() {
-        val binding: ActivityInputScheduleNameBinding =
-                DataBindingUtil.setContentView(this, R.layout.activity_input_schedule_name)
+        val binding: ActivityInputScheduleNameBinding = DataBindingUtil.setContentView(
+                this,
+                R.layout.activity_input_schedule_name
+        )
         setActionBar(find(R.id.toolbar_back))
 
         binding.apply {
@@ -153,8 +172,10 @@ class AdditionActivity : Activity() {
     }
 
     private fun startScheduleTime() {
-        val binding: ActivityStartScheduleTimeBinding =
-                DataBindingUtil.setContentView(this, R.layout.activity_start_schedule_time)
+        val binding: ActivityStartScheduleTimeBinding = DataBindingUtil.setContentView(
+                this,
+                R.layout.activity_start_schedule_time
+        )
         setActionBar(find(R.id.toolbar_back))
 
         if (isAdd) {
@@ -208,8 +229,10 @@ class AdditionActivity : Activity() {
     }
 
     private fun finishScheduleTime() {
-        val binding: ActivityFinishScheduleTimeBinding =
-                DataBindingUtil.setContentView(this, R.layout.activity_finish_schedule_time)
+        val binding: ActivityFinishScheduleTimeBinding = DataBindingUtil.setContentView(
+                this,
+                R.layout.activity_finish_schedule_time
+        )
         setActionBar(find(R.id.toolbar_back))
 
         if (isAdd) {
@@ -291,10 +314,11 @@ class AdditionActivity : Activity() {
     }
 
     private fun setScheduleRepeat() {
-        setContentView(R.layout.activity_set_schedule_repeat)
         setActionBar(find(R.id.toolbar_back))
-        val binding: ActivitySetScheduleRepeatBinding =
-                DataBindingUtil.setContentView(this, R.layout.activity_set_schedule_repeat)
+        val binding: ActivitySetScheduleRepeatBinding = DataBindingUtil.setContentView(
+                this,
+                R.layout.activity_set_schedule_repeat
+        )
 
         binding.apply {
             setNextOnClick {
@@ -327,12 +351,6 @@ class AdditionActivity : Activity() {
             setOnClickListener {
                 val str: String = set_notification_time_edit.text.toString()
                 notificationTime = Integer.parseInt(str)
-
-                Log.d("schedule", "タイトル名:" + titleName + "\n予定開始の日付:" + startMonth + "月" +
-                        startDay + "日" + startHour + "時" + startMinute + "分" + "\n予定終了の時間:" +
-                        finishMonth + "月" + finishDay + "日" + finishHour + "時" +
-                        finishMinute + "分" + "\n繰り返し:" + taskRepeat + "\n何分前に通知するか:" +
-                        notificationTime)
 
                 if (isAdd) {
                     if (taskRepeat == 0) {
@@ -558,11 +576,6 @@ class AdditionActivity : Activity() {
                     timeLimit = startHour * 100 + startDay
                 }
 
-                Log.d("task", "タイトル名:" + titleName + "\n期限の開始:" + dateLimit +
-                        "\n繰り返し:" + taskRepeat +
-                        "\nisMust:" + isMust + "\nisShould:" + isShould + "\nisWant to:" +
-                        isWant + "\n終了目安:" + finishHour + "時間" + finishMinute + "分")
-
                 if (taskRepeat == 0) {
                     setTaskInformation()
                 } else {
@@ -606,7 +619,10 @@ class AdditionActivity : Activity() {
 
         setScheduleNotification(scheduleInformation)
         if (isAdd) {
-            GlobalValue.scheduleInfoArrayList.add(0, scheduleInformation)
+            GlobalValue.scheduleInfoArrayList.add(
+                    0,
+                    scheduleInformation
+            )
 
             AddScheduleTaskInfoAsync().execute(scheduleInformation)
         } else {
@@ -622,19 +638,49 @@ class AdditionActivity : Activity() {
         val calendar = Calendar.getInstance()
         calendar.apply {
             timeInMillis = System.currentTimeMillis()
-            add(Calendar.SECOND, Utils().getDiffTime(Utils().getNowDate(), scheduleInfo.start_time) - notificationTime)
+            add(
+                    Calendar.SECOND,
+                    Utils().getDiffTime(
+                            Utils().getNowDate(),
+                            scheduleInfo.start_time
+                    ) - notificationTime
+            )
         }
-        scheduleNotification(scheduleInfo.schedule_name, calendar)
+        scheduleNotification(
+                scheduleInfo.schedule_name,
+                calendar
+        )
     }
 
-    private fun scheduleNotification(content: String, calendar: Calendar) {
-        val notificationIntent = Intent(this, AlarmReceiver::class.java)
-        notificationIntent.putExtra(notificationId, 1)
-        notificationIntent.putExtra(notificationContent, content)
-        val pendingIntent = PendingIntent.getBroadcast(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT)
+    private fun scheduleNotification(
+        content: String,
+        calendar: Calendar
+    ) {
+        val notificationIntent = Intent(
+                this,
+                AlarmReceiver::class.java
+        )
+        notificationIntent.putExtra(
+                notificationId,
+                1
+        )
+        notificationIntent.putExtra(
+                notificationContent,
+                content
+        )
+        val pendingIntent = PendingIntent.getBroadcast(
+                this,
+                0,
+                notificationIntent,
+                PendingIntent.FLAG_UPDATE_CURRENT
+        )
 
         val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, pendingIntent)
+        alarmManager.setExact(
+                AlarmManager.RTC_WAKEUP,
+                calendar.timeInMillis,
+                pendingIntent
+        )
     }
 
     private fun setTaskInformation() {
@@ -661,7 +707,10 @@ class AdditionActivity : Activity() {
         }
 
         if (isAdd) {
-            GlobalValue.taskInfoArrayList.add(0, taskInformation)
+            GlobalValue.taskInfoArrayList.add(
+                    0,
+                    taskInformation
+            )
 
             AddTaskInfoAsync().execute(taskInformation)
         } else {

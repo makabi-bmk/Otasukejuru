@@ -13,7 +13,11 @@ import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 
-class GetInformation : AsyncTask<Unit, Unit, Unit>() {
+class GetInformation : AsyncTask<
+        Unit,
+        Unit,
+        Unit
+        >() {
     private val moshi = Moshi.Builder().build()
     private val client = OkHttpClient()
 
@@ -54,7 +58,11 @@ class GetInformation : AsyncTask<Unit, Unit, Unit>() {
             e.printStackTrace()
             null
         }
-        val keys = arrayListOf("task", "schedule", "every")
+        val keys = arrayListOf(
+                "task",
+                "schedule",
+                "every"
+        )
 
         val friendTaskInfoArray: ArrayList<TaskInfo> = arrayListOf()
         val friendScheduleInfoArray: ArrayList<ScheduleInfo> = arrayListOf()
@@ -118,7 +126,10 @@ class GetInformation : AsyncTask<Unit, Unit, Unit>() {
             e.printStackTrace()
             null
         }
-        val keys = arrayListOf("schedule", "every")
+        val keys = arrayListOf(
+                "schedule",
+                "every"
+        )
 
         val scheduleInfoArray = arrayListOf<ScheduleInfo>()
         val everyInfoArray = arrayListOf<EveryInfo>()

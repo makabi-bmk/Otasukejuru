@@ -15,6 +15,19 @@ import jp.ict.muffin.otasukejuru.view.CircleGraphView
 import org.jetbrains.anko.sdk25.coroutines.onClick
 import org.jetbrains.anko.AnkoComponent
 import org.jetbrains.anko.AnkoContext
+import org.jetbrains.anko.relativeLayout
+import org.jetbrains.anko.toolbar
+import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.textView
+import org.jetbrains.anko.button
+import org.jetbrains.anko.textColor
+import org.jetbrains.anko.matchParent
+import org.jetbrains.anko.centerHorizontally
+import org.jetbrains.anko.wrapContent
+import org.jetbrains.anko.below
+import org.jetbrains.anko.backgroundColor
+import org.jetbrains.anko.centerHorizontally
+import org.jetbrains.anko.frameLayout
 
 class TimerActivityUI(private val time: Long, private val index: Int = -1) :
         AnkoComponent<TimerActivity> {
@@ -26,7 +39,10 @@ class TimerActivityUI(private val time: Long, private val index: Int = -1) :
 
     override fun createView(ui: AnkoContext<TimerActivity>): View = with(ui) {
         relativeLayout {
-            backgroundColor = ContextCompat.getColor(context, R.color.back)
+            backgroundColor = ContextCompat.getColor(
+                    context,
+                    R.color.back
+            )
             lparams {
                 height = matchParent
                 width = matchParent
@@ -34,7 +50,10 @@ class TimerActivityUI(private val time: Long, private val index: Int = -1) :
 
             toolbar {
                 id = R.id.ankoToolbar
-                backgroundColor = ContextCompat.getColor(context, R.color.colorPrimary)
+                backgroundColor = ContextCompat.getColor(
+                        context,
+                        R.color.colorPrimary
+                )
             }.lparams {
                 width = matchParent
                 height = wrapContent
@@ -73,9 +92,17 @@ class TimerActivityUI(private val time: Long, private val index: Int = -1) :
             }
 
             button("一時停止") {
-                textColor = ContextCompat.getColor(context, R.color.colorPrimary)
+                textColor = ContextCompat.getColor(
+                        context,
+                        R.color.colorPrimary
+                )
                 textSize = 30f
-                backgroundColor = Color.argb(0, 0, 0, 0)
+                backgroundColor = Color.argb(
+                        0,
+                        0,
+                        0,
+                        0
+                )
                 onClick {
                     countClick++
                     text = if (countClick % 2 == 0) {
@@ -99,22 +126,36 @@ class TimerActivityUI(private val time: Long, private val index: Int = -1) :
     private fun startTimerInit(context: Context) {
         val params: ArrayList<HashMap<String, Int>> = java.util.ArrayList()
         val map = HashMap<String, Int>()
-        val back = ContextCompat.getColor(context, R.color.back)
+        val back = ContextCompat.getColor(
+                context,
+                R.color.back
+        )
 
-        map.apply {
-            put("color", back)
-            put("value", 60)
-        }
+            map["color"] = back
+            map["value"] = 60
+
         params.add(map)
-        val circleGraphView = CircleGraphView(context, params, true)
+        val circleGraphView = CircleGraphView(
+                context,
+                params,
+                true
+        )
         circleMini.addView(circleGraphView)
         circleGraphView.startAnimation()
 
-        startTimer(context, time, index)
+        startTimer(
+                context,
+                time,
+                index
+        )
         isPushStartButton = true
     }
 
-    private fun drawCircle(context: Context, circle: FrameLayout, time: Long) {
+    private fun drawCircle(
+        context: Context,
+        circle: FrameLayout,
+        time: Long
+    ) {
         if (time == 0L) {
             return
         }
@@ -125,12 +166,24 @@ class TimerActivityUI(private val time: Long, private val index: Int = -1) :
             time % 60L
         }
 
-        val init = arrayListOf(true, false)
+        val init = arrayListOf(
+                true,
+                false
+        )
         (0 until 2).forEach {
             val params: ArrayList<HashMap<String, Int>> = java.util.ArrayList()
-            val backColor = ContextCompat.getColor(context, R.color.back)
-            val redColor = ContextCompat.getColor(context, R.color.mostPriority)
-            val intervalColor = ContextCompat.getColor(context, R.color.colorPrimary)
+            val backColor = ContextCompat.getColor(
+                    context,
+                    R.color.back
+            )
+            val redColor = ContextCompat.getColor(
+                    context,
+                    R.color.mostPriority
+            )
+            val intervalColor = ContextCompat.getColor(
+                    context,
+                    R.color.colorPrimary
+            )
 
             val colors: ArrayList<Int> = arrayListOf(backColor)
             val drawCircleTime: ArrayList<Long> = arrayListOf(60 - drawTime)
@@ -169,18 +222,26 @@ class TimerActivityUI(private val time: Long, private val index: Int = -1) :
 
             (0 until colors.size).forEach { i ->
                 val mapSI = HashMap<String, Int>()
-                mapSI.put("color", colors[i])
-                mapSI.put("value", drawCircleTime[i].toInt())
+                mapSI["color"] = colors[i]
+                mapSI["value"] = drawCircleTime[i].toInt()
                 params.add(mapSI)
             }
 
-            val circleGraphView = CircleGraphView(context, params, init[it])
+            val circleGraphView = CircleGraphView(
+                    context,
+                    params,
+                    init[it]
+            )
             circle.addView(circleGraphView)
             circleGraphView.startAnimation()
         }
     }
 
-    private fun startTimer(context: Context, totalTime: Long, index: Int = -1) {
+    private fun startTimer(
+        context: Context,
+        totalTime: Long,
+        index: Int = -1
+    ) {
         if (totalTime == 0L) {
             return
         }
@@ -195,7 +256,10 @@ class TimerActivityUI(private val time: Long, private val index: Int = -1) :
         drawCircle(context, circle, drawTime)
         if (totalTime - drawTime != 0L) {
             Handler(Looper.getMainLooper()).postDelayed({
-                startTimer(context, totalTime - drawTime)
+                startTimer(
+                        context,
+                        totalTime - drawTime
+                )
             }, drawTime * 60 * 1000)
         } else if (index != -1) {
             context.startActivity<InputProgressActivity>("index" to index)

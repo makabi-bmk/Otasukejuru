@@ -6,6 +6,19 @@ import androidx.core.content.ContextCompat
 import jp.ict.muffin.otasukejuru.fragment.TaskListFragment
 import org.jetbrains.anko.AnkoContext
 import org.jetbrains.anko.AnkoComponent
+import org.jetbrains.anko.relativeLayout
+import org.jetbrains.anko.textView
+import org.jetbrains.anko.matchParent
+import org.jetbrains.anko.wrapContent
+import org.jetbrains.anko.below
+import org.jetbrains.anko.dip
+import org.jetbrains.anko.backgroundColor
+import org.jetbrains.anko.alignParentStart
+import org.jetbrains.anko.alignParentTop
+import org.jetbrains.anko.linearLayout
+import org.jetbrains.anko.imageView
+import org.jetbrains.anko.padding
+import org.jetbrains.anko.scrollView
 
 class TaskListFragmentUI : AnkoComponent<TaskListFragment> {
 
@@ -31,7 +44,10 @@ class TaskListFragmentUI : AnkoComponent<TaskListFragment> {
 
                     imageView {
                         id = R.id.mostPriorityLine
-                        backgroundColor = ContextCompat.getColor(context, R.color.mostPriority)
+                        backgroundColor = ContextCompat.getColor(
+                                context,
+                                R.color.mostPriority
+                        )
                     }.lparams {
                         width = matchParent
                         height = dip(1)
@@ -64,7 +80,10 @@ class TaskListFragmentUI : AnkoComponent<TaskListFragment> {
 
                     imageView {
                         id = R.id.highPriorityLine
-                        backgroundColor = ContextCompat.getColor(context, R.color.highPriority)
+                        backgroundColor = ContextCompat.getColor(
+                                context,
+                                R.color.highPriority
+                        )
                     }.lparams {
                         width = matchParent
                         height = dip(1)
@@ -107,7 +126,10 @@ class TaskListFragmentUI : AnkoComponent<TaskListFragment> {
 
                     imageView {
                         id = R.id.middlePriorityLine
-                        backgroundColor = ContextCompat.getColor(context, R.color.middlePriority)
+                        backgroundColor = ContextCompat.getColor(
+                                context,
+                                R.color.middlePriority
+                        )
                     }.lparams {
                         width = matchParent
                         height = dip(1)
@@ -150,7 +172,10 @@ class TaskListFragmentUI : AnkoComponent<TaskListFragment> {
 
                     imageView {
                         id = R.id.lowPriorityLine
-                        backgroundColor = ContextCompat.getColor(context, R.color.lowPriority)
+                        backgroundColor = ContextCompat.getColor(
+                                context,
+                                R.color.lowPriority
+                        )
                     }.lparams {
                         width = matchParent
                         height = dip(1)

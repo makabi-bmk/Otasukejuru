@@ -11,6 +11,27 @@ import jp.ict.muffin.otasukejuru.activity.TimerActivity
 import jp.ict.muffin.otasukejuru.view.CircleGraphView
 import org.jetbrains.anko.AnkoContext
 import org.jetbrains.anko.AnkoComponent
+import org.jetbrains.anko.relativeLayout
+import org.jetbrains.anko.toolbar
+import org.jetbrains.anko.imageButton
+import org.jetbrains.anko.textView
+import org.jetbrains.anko.rightOf
+import org.jetbrains.anko.button
+import org.jetbrains.anko.textColor
+import org.jetbrains.anko.alignParentBottom
+import org.jetbrains.anko.alignParentEnd
+import org.jetbrains.anko.matchParent
+import org.jetbrains.anko.centerHorizontally
+import org.jetbrains.anko.centerVertically
+import org.jetbrains.anko.wrapContent
+import org.jetbrains.anko.below
+import org.jetbrains.anko.dip
+import org.jetbrains.anko.backgroundColor
+import org.jetbrains.anko.backgroundDrawable
+import org.jetbrains.anko.centerHorizontally
+import org.jetbrains.anko.alignParentStart
+import org.jetbrains.anko.alignParentTop
+import org.jetbrains.anko.numberPicker
 
 class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerActivity> {
     private lateinit var focusHourNumPick: NumberPicker
@@ -23,16 +44,24 @@ class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerActiv
 
     override fun createView(ui: AnkoContext<TimerActivity>): View = with(ui) {
         relativeLayout {
-            backgroundColor = ContextCompat.getColor(context, R.color.back)
+            backgroundColor = ContextCompat.getColor(
+                    context,
+                    R.color.back
+            )
 
             toolbar {
                 id = R.id.ankoToolbar
-                backgroundColor = ContextCompat.getColor(context, R.color.colorPrimary)
+                backgroundColor = ContextCompat.getColor(
+                        context,
+                        R.color.colorPrimary
+                )
 
                 imageButton {
                     id = R.id.ankoBack
-                    backgroundDrawable = ContextCompat.getDrawable(context,
-                            R.drawable.ic_arrow_back_white_48dp)
+                    backgroundDrawable = ContextCompat.getDrawable(
+                            context,
+                            R.drawable.ic_arrow_back_white_48dp
+                    )
                 }.lparams {
                     width = wrapContent
                     height = wrapContent
@@ -45,7 +74,10 @@ class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerActiv
             relativeLayout {
                 textView("集中時間と休憩時間") {
                     id = R.id.titleInterval
-                    textColor = ContextCompat.getColor(context, R.color.colorPrimary)
+                    textColor = ContextCompat.getColor(
+                            context,
+                            R.color.colorPrimary
+                    )
                     textSize = 30f
                     requestFocus()
                 }.lparams {
@@ -84,7 +116,8 @@ class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerActiv
                             }
 
                             val minuteTime = time.toInt() -
-                                    (newValue * 60 + intervalHourNumPick.value * 60 +
+                                    (newValue * 60 +
+                                            intervalHourNumPick.value * 60 +
                                             intervalMinuteNumPick.value)
                             focusMinuteNumPick.maxValue = if (60 <= minuteTime) {
                                 59
@@ -118,7 +151,10 @@ class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerActiv
                             time.toInt() % 60
                         }
 
-                        setFormatter { value -> String.format("%02d", value) }
+                        setFormatter { value -> String.format(
+                                "%02d",
+                                value
+                        ) }
                         setOnValueChangedListener { _, oldValue, newValue ->
                             var remindingTime: Int = time.toInt() -
                                     (focusHourNumPick.value * 60 + newValue)
@@ -216,7 +252,10 @@ class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerActiv
                             time.toInt() % 60
                         }
 
-                        setFormatter { value -> String.format("%02d", value) }
+                        setFormatter { value -> String.format(
+                                "%02d",
+                                value
+                        ) }
                         setOnValueChangedListener { _, oldValue, newValue ->
                             var remindingTime: Int = time.toInt() -
                                     (intervalHourNumPick.value * 60 + newValue)
@@ -262,13 +301,21 @@ class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerActiv
 
                 button("次へ") {
                     id = R.id.nextButton
-                    backgroundColor = Color.argb(0, 0, 0, 0)
-                    textColor = ContextCompat.getColor(context, R.color.colorPrimary)
+                    backgroundColor = Color.argb(
+                            0,
+                            0,
+                            0,
+                            0
+                    )
+                    textColor = ContextCompat.getColor(
+                            context,
+                            R.color.colorPrimary
+                    )
                     textSize = 20f
                 }.lparams {
                     margin = 30
                     alignParentBottom()
-                    alignParentRight()
+                    alignParentEnd()
                 }
             }.lparams {
                 below(R.id.ankoToolbar)
@@ -282,8 +329,14 @@ class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerActiv
             intervalTimeG = intervalTime.toLong()
         }
 
-        val intervalColor = ContextCompat.getColor(context, R.color.colorPrimaryDark)
-        val redColor = ContextCompat.getColor(context, R.color.mostPriority)
+        val intervalColor = ContextCompat.getColor(
+                context,
+                R.color.colorPrimaryDark
+        )
+        val redColor = ContextCompat.getColor(
+                context,
+                R.color.mostPriority
+        )
 
         val params: ArrayList<HashMap<String, Int>> = java.util.ArrayList()
         var time = 0
@@ -316,12 +369,16 @@ class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerActiv
 
         (0 until colors.size).forEach {
             val mapSI = HashMap<String, Int>()
-            mapSI.put("color", colors[it])
-            mapSI.put("value", drawCircleTime[it])
+            mapSI["color"] = colors[it]
+            mapSI["value"] = drawCircleTime[it]
             params.add(mapSI)
         }
 
-        val circleGraphView = CircleGraphView(context, params, true)
+        val circleGraphView = CircleGraphView(
+                context,
+                params,
+                true
+        )
         timerFrame.addView(circleGraphView)
         circleGraphView.startAnimation()
     }

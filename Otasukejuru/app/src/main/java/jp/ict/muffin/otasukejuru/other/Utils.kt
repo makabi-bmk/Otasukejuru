@@ -34,11 +34,45 @@ class Utils {
         return Integer.parseInt(date[0]) * 100 + Integer.parseInt(date[1])
     }
 
-    fun diffDayNum(beforeDate: Int, afterDate: Int, year: Int): Int {
-        val totalDays = if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0) {
-            intArrayOf(0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334)
+    fun diffDayNum(
+        beforeDate: Int,
+        afterDate: Int,
+        year: Int
+    ): Int {
+        val totalDays = if (
+                year % 4 == 0 &&
+                year % 100 != 0 ||
+                year % 400 == 0
+        ) {
+            intArrayOf(
+                    0,
+                    31,
+                    59,
+                    90,
+                    120,
+                    151,
+                    181,
+                    212,
+                    243,
+                    273,
+                    304,
+                    334
+            )
         } else {
-            intArrayOf(0, 31, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335)
+            intArrayOf(
+                    0,
+                    31,
+                    60,
+                    91,
+                    121,
+                    152,
+                    182,
+                    213,
+                    244,
+                    274,
+                    305,
+                    335
+            )
         }
 
         val beforeDay: Int = beforeDate % 100
@@ -55,8 +89,15 @@ class Utils {
         return df.format(date)
     }
 
-    fun getDiffTime(beforeDate: String, afterDate: String): Int {
-        var diffDays = diffDayNum(getDate(beforeDate), getDate(afterDate), Calendar.YEAR) - 1
+    fun getDiffTime(
+        beforeDate: String,
+        afterDate: String
+    ): Int {
+        var diffDays = diffDayNum(
+                getDate(beforeDate),
+                getDate(afterDate),
+                Calendar.YEAR
+        ) - 1
         if (diffDays < 0) {
             diffDays = 0
         }
@@ -67,51 +108,89 @@ class Utils {
         return diffDays * 60 * 24 + afterTime + beforeTime
     }
 
-    fun saveTaskInfoList(ctx: Context) {
+    fun saveTaskInfoList(ctx: Context?) {
+        if (ctx == null) return
         setPriority()
 
         val moshi = Moshi.Builder().build()
-        val taskArrayParameterizedType =
-                Types.newParameterizedType(List::class.java, TaskInfo::class.java)
+        val taskArrayParameterizedType = Types.newParameterizedType(
+                        List::class.java,
+                        TaskInfo::class.java
+                )
         val adapter = moshi.adapter<ArrayList<TaskInfo>>(taskArrayParameterizedType)
 
-        saveString(ctx, ctx.getString(R.string.task_info_key),
-                adapter.toJson(GlobalValue.taskInfoArrayList).toString())
+        saveString(
+                ctx,
+                ctx.getString(R.string.task_info_key),
+                adapter.toJson(GlobalValue.taskInfoArrayList).toString()
+        )
     }
 
     fun saveScheduleInfoList(ctx: Context) {
         val moshi = Moshi.Builder().build()
-        val scheduleArrayParameterizedType =
-                Types.newParameterizedType(List::class.java, ScheduleInfo::class.java)
+        val scheduleArrayParameterizedType = Types.newParameterizedType(
+                List::class.java,
+                ScheduleInfo::class.java
+        )
         val adapter = moshi.adapter<ArrayList<ScheduleInfo>>(scheduleArrayParameterizedType)
 
-        saveString(ctx, ctx.getString(R.string.schedule_info_key),
-                adapter.toJson(GlobalValue.scheduleInfoArrayList).toString())
+        saveString(
+                ctx,
+                ctx.getString(R.string.schedule_info_key),
+                adapter.toJson(GlobalValue.scheduleInfoArrayList).toString()
+        )
     }
 
     fun saveEveryInfoList(ctx: Context) {
         val moshi = Moshi.Builder().build()
-        val everyArrayParameterizedType =
-                Types.newParameterizedType(List::class.java, EveryInfo::class.java)
+        val everyArrayParameterizedType = Types.newParameterizedType(
+                List::class.java,
+                EveryInfo::class.java
+        )
         val adapter = moshi.adapter<ArrayList<EveryInfo>>(everyArrayParameterizedType)
 
-        saveString(ctx, ctx.getString(R.string.every_info_key),
-                adapter.toJson(GlobalValue.everyInfoArrayList).toString())
+        saveString(
+                ctx,
+                ctx.getString(R.string.every_info_key),
+                adapter.toJson(GlobalValue.everyInfoArrayList).toString()
+        )
     }
 
     // 設定値 String を保存（Context は Activity や Application や Service）
-    private fun saveString(ctx: Context, key: String, value: String) {
-        ctx.getSharedPreferences(ctx.getString(R.string.app_name), Context.MODE_PRIVATE).edit().apply {
-            putString(key, value)
+    private fun saveString(
+        ctx: Context,
+        key: String,
+        value: String
+    ) {
+        ctx.getSharedPreferences(
+                ctx.getString(R.string.app_name),
+                Context.MODE_PRIVATE
+        ).edit().apply {
+            putString(
+                    key,
+                    value
+            )
         }.apply()
     }
 
     // 設定値 String を取得（Context は Activity や Application や Service）
-    fun loadString(ctx: Context, key: String): String =
-            ctx.getSharedPreferences(ctx.getString(R.string.app_name),
-                    Context.MODE_PRIVATE).getString(key, "") // 第２引数はkeyが存在しない時に返す初期値
+    fun loadString(
+        ctx: Context,
+        key: String
+    ): String =
+            ctx.getSharedPreferences(
+                    ctx.getString(R.string.app_name),
+                    Context.MODE_PRIVATE
+            ).getString(
+                    key,
+                    ""
+            ) // 第２引数はkeyが存在しない時に返す初期値
 
-    fun parseData(ctx: Context, jsonDataString: String = "", parseKey: String = "") {
+    fun parseData(
+        ctx: Context,
+        jsonDataString: String = "",
+        parseKey: String = ""
+    ) {
         val moshi = Moshi.Builder().build()
         if (jsonDataString == "") {
             return
@@ -167,8 +246,10 @@ class Utils {
                 val diffDays = getDiffDays(it.due_date)
                 val taskPriority = it.priority
                 it.priority =
-                        taskPriority / 100 * 15 + taskPriority % 10 / 10 * 5 +
-                                taskPriority % 100 * 10 + it.progress % 50 + (10 - diffDays) * 6
+                        taskPriority / 100 * 15 +
+                        taskPriority % 10 / 10 * 5 +
+                        taskPriority % 100 * 10 +
+                        it.progress % 50 + (10 - diffDays) * 6
             }
             sortByDescending { it.priority }
             forEach {
