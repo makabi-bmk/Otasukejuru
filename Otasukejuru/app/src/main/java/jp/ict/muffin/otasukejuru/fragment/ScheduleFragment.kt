@@ -2,7 +2,6 @@ package jp.ict.muffin.otasukejuru.fragment
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
-import jp.ict.muffin.otasukejuru.R
 import android.content.Context.LAYOUT_INFLATER_SERVICE
 import android.graphics.Color
 import android.icu.util.Calendar
@@ -16,6 +15,7 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
 import jp.ict.muffin.otasukejuru.activity.AdditionActivity
 import jp.ict.muffin.otasukejuru.activity.InputProgressActivity
@@ -24,14 +24,13 @@ import jp.ict.muffin.otasukejuru.communication.DeleteScheduleInfoAsync
 import jp.ict.muffin.otasukejuru.communication.DeleteTaskInfoAsync
 import jp.ict.muffin.otasukejuru.other.Utils
 import jp.ict.muffin.otasukejuru.ui.ScheduleFragmentUI
-import org.jetbrains.anko.collections.forEachWithIndex
 import org.jetbrains.anko.AnkoContext
+import org.jetbrains.anko.backgroundColor
+import org.jetbrains.anko.collections.forEachWithIndex
+import org.jetbrains.anko.dip
 import org.jetbrains.anko.find
 import org.jetbrains.anko.matchParent
 import org.jetbrains.anko.wrapContent
-import org.jetbrains.anko.dip
-import org.jetbrains.anko.backgroundColor
-import org.jetbrains.anko.startActivity
 import java.util.Timer
 import java.util.TimerTask
 

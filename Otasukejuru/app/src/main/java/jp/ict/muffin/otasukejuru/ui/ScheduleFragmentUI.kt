@@ -1,27 +1,27 @@
 package jp.ict.muffin.otasukejuru.ui
 
 import android.graphics.Color
-import jp.ict.muffin.otasukejuru.R
 import android.view.View
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
+import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.fragment.ScheduleFragment
 import org.jetbrains.anko.AnkoComponent
 import org.jetbrains.anko.AnkoContext
-import java.util.Calendar
-import org.jetbrains.anko.relativeLayout
-import org.jetbrains.anko.linearLayout
-import org.jetbrains.anko.imageView
-import org.jetbrains.anko.textView
-import org.jetbrains.anko.matchParent
-import org.jetbrains.anko.centerVertically
-import org.jetbrains.anko.wrapContent
-import org.jetbrains.anko.dip
-import org.jetbrains.anko.backgroundColor
+import org.jetbrains.anko.alignParentEnd
 import org.jetbrains.anko.alignParentStart
 import org.jetbrains.anko.alignParentTop
-import org.jetbrains.anko.alignParentEnd
+import org.jetbrains.anko.backgroundColor
+import org.jetbrains.anko.centerVertically
+import org.jetbrains.anko.dip
+import org.jetbrains.anko.imageView
+import org.jetbrains.anko.linearLayout
+import org.jetbrains.anko.matchParent
+import org.jetbrains.anko.relativeLayout
 import org.jetbrains.anko.scrollView
+import org.jetbrains.anko.textView
+import org.jetbrains.anko.wrapContent
+import java.util.Calendar
 
 class ScheduleFragmentUI : AnkoComponent<ScheduleFragment> {
 

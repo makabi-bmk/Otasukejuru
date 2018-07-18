@@ -6,34 +6,34 @@ import android.view.View
 import android.widget.FrameLayout
 import android.widget.NumberPicker
 import androidx.core.content.ContextCompat
+import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
 import jp.ict.muffin.otasukejuru.activity.TimerActivity
 import jp.ict.muffin.otasukejuru.view.CircleGraphView
-import org.jetbrains.anko.AnkoContext
 import org.jetbrains.anko.AnkoComponent
-import org.jetbrains.anko.relativeLayout
-import org.jetbrains.anko.toolbar
-import org.jetbrains.anko.imageButton
-import org.jetbrains.anko.textView
-import org.jetbrains.anko.rightOf
-import org.jetbrains.anko.button
-import org.jetbrains.anko.textColor
+import org.jetbrains.anko.AnkoContext
 import org.jetbrains.anko.alignParentBottom
 import org.jetbrains.anko.alignParentEnd
-import org.jetbrains.anko.matchParent
-import org.jetbrains.anko.centerHorizontally
-import org.jetbrains.anko.centerVertically
-import org.jetbrains.anko.wrapContent
-import org.jetbrains.anko.below
-import org.jetbrains.anko.dip
-import org.jetbrains.anko.backgroundColor
-import org.jetbrains.anko.backgroundDrawable
-import org.jetbrains.anko.frameLayout
-import org.jetbrains.anko.margin
 import org.jetbrains.anko.alignParentStart
 import org.jetbrains.anko.alignParentTop
+import org.jetbrains.anko.backgroundColor
+import org.jetbrains.anko.backgroundDrawable
+import org.jetbrains.anko.below
+import org.jetbrains.anko.button
+import org.jetbrains.anko.centerHorizontally
+import org.jetbrains.anko.centerVertically
+import org.jetbrains.anko.dip
+import org.jetbrains.anko.frameLayout
+import org.jetbrains.anko.imageButton
+import org.jetbrains.anko.margin
+import org.jetbrains.anko.matchParent
 import org.jetbrains.anko.numberPicker
-import jp.ict.muffin.otasukejuru.R
+import org.jetbrains.anko.relativeLayout
+import org.jetbrains.anko.rightOf
+import org.jetbrains.anko.textColor
+import org.jetbrains.anko.textView
+import org.jetbrains.anko.toolbar
+import org.jetbrains.anko.wrapContent
 
 class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerActivity> {
     private lateinit var focusHourNumPick: NumberPicker
@@ -153,10 +153,12 @@ class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerActiv
                             time.toInt() % 60
                         }
 
-                        setFormatter { value -> String.format(
-                                "%02d",
-                                value
-                        ) }
+                        setFormatter { value ->
+                            String.format(
+                                    "%02d",
+                                    value
+                            )
+                        }
                         setOnValueChangedListener { _, oldValue, newValue ->
                             var remindingTime: Int = time.toInt() -
                                     (focusHourNumPick.value * 60 + newValue)
@@ -254,10 +256,12 @@ class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerActiv
                             time.toInt() % 60
                         }
 
-                        setFormatter { value -> String.format(
-                                "%02d",
-                                value
-                        ) }
+                        setFormatter { value ->
+                            String.format(
+                                    "%02d",
+                                    value
+                            )
+                        }
                         setOnValueChangedListener { _, oldValue, newValue ->
                             var remindingTime: Int = time.toInt() -
                                     (intervalHourNumPick.value * 60 + newValue)

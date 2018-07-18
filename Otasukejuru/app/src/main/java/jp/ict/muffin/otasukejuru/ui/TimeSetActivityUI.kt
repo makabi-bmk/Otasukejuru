@@ -6,30 +6,28 @@ import android.view.View
 import android.widget.EditText
 import androidx.core.content.ContextCompat
 import jp.ict.muffin.otasukejuru.R
-import androidx.core.content.ContextCompat.startActivity
 import jp.ict.muffin.otasukejuru.activity.TimeSetActivity
 import jp.ict.muffin.otasukejuru.activity.TimerActivity
-import org.jetbrains.anko.sdk25.coroutines.onClick
 import org.jetbrains.anko.AnkoComponent
 import org.jetbrains.anko.AnkoContext
-import org.jetbrains.anko.relativeLayout
-import org.jetbrains.anko.toolbar
-import org.jetbrains.anko.startActivity
-import org.jetbrains.anko.imageButton
-import org.jetbrains.anko.textView
-import org.jetbrains.anko.editText
-import org.jetbrains.anko.rightOf
-import org.jetbrains.anko.button
-import org.jetbrains.anko.textColor
-import org.jetbrains.anko.matchParent
-import org.jetbrains.anko.centerHorizontally
-import org.jetbrains.anko.centerVertically
-import org.jetbrains.anko.wrapContent
-import org.jetbrains.anko.below
-import org.jetbrains.anko.dip
 import org.jetbrains.anko.backgroundColor
 import org.jetbrains.anko.backgroundDrawable
+import org.jetbrains.anko.below
+import org.jetbrains.anko.button
 import org.jetbrains.anko.centerHorizontally
+import org.jetbrains.anko.centerVertically
+import org.jetbrains.anko.dip
+import org.jetbrains.anko.editText
+import org.jetbrains.anko.imageButton
+import org.jetbrains.anko.matchParent
+import org.jetbrains.anko.relativeLayout
+import org.jetbrains.anko.rightOf
+import org.jetbrains.anko.sdk25.coroutines.onClick
+import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.textColor
+import org.jetbrains.anko.textView
+import org.jetbrains.anko.toolbar
+import org.jetbrains.anko.wrapContent
 
 class TimeSetActivityUI(private val index: Int = -1) : AnkoComponent<TimeSetActivity> {
     private lateinit var editTime: EditText

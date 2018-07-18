@@ -8,27 +8,26 @@ import android.view.View
 import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
-import jp.ict.muffin.otasukejuru.`object`.GlobalValue
 import jp.ict.muffin.otasukejuru.R
+import jp.ict.muffin.otasukejuru.`object`.GlobalValue
 import jp.ict.muffin.otasukejuru.activity.InputProgressActivity
 import jp.ict.muffin.otasukejuru.activity.TimerActivity
 import jp.ict.muffin.otasukejuru.view.CircleGraphView
-import org.jetbrains.anko.sdk25.coroutines.onClick
 import org.jetbrains.anko.AnkoComponent
 import org.jetbrains.anko.AnkoContext
-import org.jetbrains.anko.relativeLayout
-import org.jetbrains.anko.toolbar
-import org.jetbrains.anko.startActivity
-import org.jetbrains.anko.textView
-import org.jetbrains.anko.button
-import org.jetbrains.anko.textColor
-import org.jetbrains.anko.matchParent
-import org.jetbrains.anko.centerHorizontally
-import org.jetbrains.anko.wrapContent
-import org.jetbrains.anko.below
 import org.jetbrains.anko.backgroundColor
+import org.jetbrains.anko.below
+import org.jetbrains.anko.button
 import org.jetbrains.anko.centerHorizontally
 import org.jetbrains.anko.frameLayout
+import org.jetbrains.anko.matchParent
+import org.jetbrains.anko.relativeLayout
+import org.jetbrains.anko.sdk25.coroutines.onClick
+import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.textColor
+import org.jetbrains.anko.textView
+import org.jetbrains.anko.toolbar
+import org.jetbrains.anko.wrapContent
 
 class TimerActivityUI(private val time: Long, private val index: Int = -1) :
         AnkoComponent<TimerActivity> {
@@ -132,8 +131,8 @@ class TimerActivityUI(private val time: Long, private val index: Int = -1) :
                 R.color.back
         )
 
-            map["color"] = back
-            map["value"] = 60
+        map["color"] = back
+        map["value"] = 60
 
         params.add(map)
         val circleGraphView = CircleGraphView(

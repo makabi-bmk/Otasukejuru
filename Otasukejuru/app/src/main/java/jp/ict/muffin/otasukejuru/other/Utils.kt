@@ -3,8 +3,8 @@ package jp.ict.muffin.otasukejuru.other
 import android.annotation.SuppressLint
 import android.content.Context
 import com.squareup.moshi.Moshi
-import jp.ict.muffin.otasukejuru.R
 import com.squareup.moshi.Types
+import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.EveryInfo
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
 import jp.ict.muffin.otasukejuru.`object`.ScheduleInfo
@@ -115,9 +115,9 @@ class Utils {
 
         val moshi = Moshi.Builder().build()
         val taskArrayParameterizedType = Types.newParameterizedType(
-                        List::class.java,
-                        TaskInfo::class.java
-                )
+                List::class.java,
+                TaskInfo::class.java
+        )
         val adapter = moshi.adapter<ArrayList<TaskInfo>>(taskArrayParameterizedType)
 
         saveString(

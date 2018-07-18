@@ -14,8 +14,8 @@ import android.widget.ImageView
 import android.widget.NumberPicker
 import android.widget.RadioButton
 import android.widget.TextView
-import jp.ict.muffin.otasukejuru.R
 import androidx.databinding.DataBindingUtil
+import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.EveryInfo
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue.notificationContent

@@ -3,35 +3,33 @@ package jp.ict.muffin.otasukejuru.ui
 import android.graphics.Color
 import android.view.View
 import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.startActivity
 import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.activity.TimerActivity
-import org.jetbrains.anko.sdk25.coroutines.onClick
 import org.jetbrains.anko.AnkoComponent
 import org.jetbrains.anko.AnkoContext
-import org.jetbrains.anko.relativeLayout
-import org.jetbrains.anko.toolbar
-import org.jetbrains.anko.startActivity
-import org.jetbrains.anko.imageButton
-import org.jetbrains.anko.textView
-import org.jetbrains.anko.rightOf
-import org.jetbrains.anko.button
-import org.jetbrains.anko.textColor
-import org.jetbrains.anko.matchParent
-import org.jetbrains.anko.centerHorizontally
-import org.jetbrains.anko.centerVertically
-import org.jetbrains.anko.wrapContent
-import org.jetbrains.anko.below
-import org.jetbrains.anko.dip
-import org.jetbrains.anko.backgroundColor
-import org.jetbrains.anko.backgroundDrawable
-import org.jetbrains.anko.centerHorizontally
-import org.jetbrains.anko.numberPicker
+import org.jetbrains.anko.alignParentBottom
+import org.jetbrains.anko.alignParentEnd
 import org.jetbrains.anko.alignParentStart
 import org.jetbrains.anko.alignParentTop
-import org.jetbrains.anko.alignParentEnd
-import org.jetbrains.anko.alignParentBottom
+import org.jetbrains.anko.backgroundColor
+import org.jetbrains.anko.backgroundDrawable
+import org.jetbrains.anko.below
+import org.jetbrains.anko.button
+import org.jetbrains.anko.centerHorizontally
+import org.jetbrains.anko.centerVertically
+import org.jetbrains.anko.dip
+import org.jetbrains.anko.imageButton
 import org.jetbrains.anko.margin
+import org.jetbrains.anko.matchParent
+import org.jetbrains.anko.numberPicker
+import org.jetbrains.anko.relativeLayout
+import org.jetbrains.anko.rightOf
+import org.jetbrains.anko.sdk25.coroutines.onClick
+import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.textColor
+import org.jetbrains.anko.textView
+import org.jetbrains.anko.toolbar
+import org.jetbrains.anko.wrapContent
 
 class TimerNotificationActivityUI(private val time: Long) :
         AnkoComponent<TimerActivity> {
@@ -95,10 +93,12 @@ class TimerNotificationActivityUI(private val time: Long) :
                         id = R.id.notificationNumPick
                         minValue = 1
                         maxValue = 6
-                        setFormatter { value -> String.format(
-                                "%d",
-                                value * 5
-                        ) }
+                        setFormatter { value ->
+                            String.format(
+                                    "%d",
+                                    value * 5
+                            )
+                        }
                     }.lparams {
                         centerVertically()
                         alignParentStart()

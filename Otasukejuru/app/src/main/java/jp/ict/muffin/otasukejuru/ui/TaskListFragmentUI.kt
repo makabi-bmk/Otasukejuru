@@ -1,25 +1,25 @@
 package jp.ict.muffin.otasukejuru.ui
 
 import android.view.View
-import jp.ict.muffin.otasukejuru.R
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
+import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.fragment.TaskListFragment
-import org.jetbrains.anko.AnkoContext
 import org.jetbrains.anko.AnkoComponent
-import org.jetbrains.anko.relativeLayout
-import org.jetbrains.anko.textView
-import org.jetbrains.anko.matchParent
-import org.jetbrains.anko.wrapContent
-import org.jetbrains.anko.below
-import org.jetbrains.anko.dip
-import org.jetbrains.anko.backgroundColor
+import org.jetbrains.anko.AnkoContext
 import org.jetbrains.anko.alignParentStart
 import org.jetbrains.anko.alignParentTop
-import org.jetbrains.anko.linearLayout
+import org.jetbrains.anko.backgroundColor
+import org.jetbrains.anko.below
+import org.jetbrains.anko.dip
 import org.jetbrains.anko.imageView
+import org.jetbrains.anko.linearLayout
+import org.jetbrains.anko.matchParent
 import org.jetbrains.anko.padding
+import org.jetbrains.anko.relativeLayout
 import org.jetbrains.anko.scrollView
+import org.jetbrains.anko.textView
+import org.jetbrains.anko.wrapContent
 
 class TaskListFragmentUI : AnkoComponent<TaskListFragment> {
 

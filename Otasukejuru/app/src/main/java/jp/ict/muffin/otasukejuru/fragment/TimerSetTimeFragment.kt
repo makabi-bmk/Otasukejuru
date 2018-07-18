@@ -3,7 +3,6 @@ package jp.ict.muffin.otasukejuru.fragment
 import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
-import jp.ict.muffin.otasukejuru.R
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
@@ -12,9 +11,9 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.ui.TimerSetTimeFragmentUI
 import org.jetbrains.anko.AnkoContext
-import org.jetbrains.anko.find
 
 class TimerSetTimeFragment : Fragment(), TextWatcher {
     override fun afterTextChanged(s: Editable?) {

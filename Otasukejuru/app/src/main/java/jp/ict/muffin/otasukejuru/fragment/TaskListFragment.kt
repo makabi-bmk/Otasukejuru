@@ -3,7 +3,6 @@ package jp.ict.muffin.otasukejuru.fragment
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context.LAYOUT_INFLATER_SERVICE
-import jp.ict.muffin.otasukejuru.R
 import android.os.Bundle
 import android.os.Handler
 import android.view.LayoutInflater
@@ -14,6 +13,7 @@ import android.widget.RelativeLayout
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.Fragment
+import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
 import jp.ict.muffin.otasukejuru.`object`.TaskInfo
 import jp.ict.muffin.otasukejuru.activity.AdditionActivity
@@ -36,7 +36,6 @@ import org.jetbrains.anko.AnkoContext
 import org.jetbrains.anko.collections.forEachWithIndex
 import org.jetbrains.anko.dip
 import org.jetbrains.anko.find
-import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.textColor
 import java.util.Calendar
 import java.util.Timer

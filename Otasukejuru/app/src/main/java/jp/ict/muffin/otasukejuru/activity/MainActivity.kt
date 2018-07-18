@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.ViewPager
+import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
 import jp.ict.muffin.otasukejuru.communication.GetInformation
 import jp.ict.muffin.otasukejuru.databinding.ActivityMainBinding
@@ -23,7 +24,6 @@ import kotlinx.android.synthetic.main.activity_main.toolbar
 import org.jetbrains.anko.find
 import org.jetbrains.anko.startActivity
 import java.util.Calendar
-import jp.ict.muffin.otasukejuru.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
