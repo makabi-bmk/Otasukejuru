@@ -3,7 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 'android-P'
     buildToolsVersion '27.0.3'
     defaultConfig {
         applicationId "jp.ict.muffin.otasukejuru"
