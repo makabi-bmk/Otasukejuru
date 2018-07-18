@@ -3,6 +3,7 @@ package jp.ict.muffin.otasukejuru.fragment
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context.LAYOUT_INFLATER_SERVICE
+import jp.ict.muffin.otasukejuru.R
 import android.os.Bundle
 import android.os.Handler
 import android.view.LayoutInflater

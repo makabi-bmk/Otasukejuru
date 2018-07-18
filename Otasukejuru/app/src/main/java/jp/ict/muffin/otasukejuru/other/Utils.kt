@@ -3,6 +3,7 @@ package jp.ict.muffin.otasukejuru.other
 import android.annotation.SuppressLint
 import android.content.Context
 import com.squareup.moshi.Moshi
+import jp.ict.muffin.otasukejuru.R
 import com.squareup.moshi.Types
 import jp.ict.muffin.otasukejuru.`object`.EveryInfo
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue

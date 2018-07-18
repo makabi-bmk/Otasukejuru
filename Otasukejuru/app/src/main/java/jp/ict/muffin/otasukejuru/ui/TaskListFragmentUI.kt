@@ -1,6 +1,7 @@
 package jp.ict.muffin.otasukejuru.ui
 
 import android.view.View
+import jp.ict.muffin.otasukejuru.R
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import jp.ict.muffin.otasukejuru.fragment.TaskListFragment

@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.EditText
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.startActivity
+import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.activity.TimerActivity
 import jp.ict.muffin.otasukejuru.fragment.TimerSetTimeFragment
 import org.jetbrains.anko.sdk25.coroutines.onClick

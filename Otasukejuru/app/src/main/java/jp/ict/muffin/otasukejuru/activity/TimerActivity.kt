@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.ImageButton
 import androidx.core.content.ContextCompat
+import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue.notificationContent
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue.notificationId
 import jp.ict.muffin.otasukejuru.other.AlarmReceiver
@@ -20,7 +21,6 @@ import org.jetbrains.anko.ctx
 import org.jetbrains.anko.find
 import org.jetbrains.anko.setContentView
 import java.util.Calendar
-import kotlin.collections.HashMap
 
 class TimerActivity : Activity() {
     private var time: Long = 0

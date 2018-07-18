@@ -3,6 +3,7 @@ package jp.ict.muffin.otasukejuru.fragment
 import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
+import jp.ict.muffin.otasukejuru.R
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View

@@ -2,6 +2,7 @@ package jp.ict.muffin.otasukejuru.ui
 
 import android.graphics.Color
 import android.view.View
+import jp.ict.muffin.otasukejuru.R
 import android.widget.SeekBar
 import androidx.core.content.ContextCompat
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue

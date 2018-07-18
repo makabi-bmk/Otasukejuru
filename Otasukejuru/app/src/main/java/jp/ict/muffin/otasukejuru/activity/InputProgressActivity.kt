@@ -1,6 +1,7 @@
 package jp.ict.muffin.otasukejuru.activity
 
 import android.os.Bundle
+import jp.ict.muffin.otasukejuru.R
 import android.widget.Button
 import android.widget.SeekBar
 import android.widget.TextView

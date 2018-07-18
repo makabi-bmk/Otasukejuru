@@ -23,6 +23,7 @@ import kotlinx.android.synthetic.main.activity_main.toolbar
 import org.jetbrains.anko.find
 import org.jetbrains.anko.startActivity
 import java.util.Calendar
+import jp.ict.muffin.otasukejuru.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

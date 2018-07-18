@@ -32,6 +32,7 @@ import org.jetbrains.anko.centerHorizontally
 import org.jetbrains.anko.alignParentStart
 import org.jetbrains.anko.alignParentTop
 import org.jetbrains.anko.numberPicker
+import jp.ict.muffin.otasukejuru.R
 
 class TimerIntervalActivityUI(private val time: Long) : AnkoComponent<TimerActivity> {
     private lateinit var focusHourNumPick: NumberPicker

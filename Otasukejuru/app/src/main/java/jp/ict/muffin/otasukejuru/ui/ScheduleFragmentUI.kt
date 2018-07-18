@@ -1,6 +1,7 @@
 package jp.ict.muffin.otasukejuru.ui
 
 import android.graphics.Color
+import jp.ict.muffin.otasukejuru.R
 import android.view.View
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat

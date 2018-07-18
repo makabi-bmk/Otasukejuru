@@ -5,6 +5,7 @@ import android.text.InputType
 import android.view.View
 import android.widget.EditText
 import androidx.core.content.ContextCompat
+import jp.ict.muffin.otasukejuru.R
 import androidx.core.content.ContextCompat.startActivity
 import jp.ict.muffin.otasukejuru.activity.TimeSetActivity
 import jp.ict.muffin.otasukejuru.activity.TimerActivity

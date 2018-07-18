@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.startActivity
+import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.activity.TimerActivity
 import org.jetbrains.anko.sdk25.coroutines.onClick
 import org.jetbrains.anko.AnkoComponent

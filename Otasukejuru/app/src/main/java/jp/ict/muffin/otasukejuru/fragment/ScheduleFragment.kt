@@ -2,6 +2,7 @@ package jp.ict.muffin.otasukejuru.fragment
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
+import jp.ict.muffin.otasukejuru.R
 import android.content.Context.LAYOUT_INFLATER_SERVICE
 import android.graphics.Color
 import android.icu.util.Calendar

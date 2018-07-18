@@ -6,6 +6,7 @@ import android.widget.ImageButton
 import jp.ict.muffin.otasukejuru.ui.TimeSetActivityUI
 import org.jetbrains.anko.find
 import org.jetbrains.anko.setContentView
+import jp.ict.muffin.otasukejuru.R
 
 class TimeSetActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
