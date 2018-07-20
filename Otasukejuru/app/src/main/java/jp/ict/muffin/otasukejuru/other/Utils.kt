@@ -127,7 +127,8 @@ class Utils {
         )
     }
 
-    fun saveScheduleInfoList(ctx: Context) {
+    fun saveScheduleInfoList(ctx: Context?) {
+        if (ctx == null) return
         val moshi = Moshi.Builder().build()
         val scheduleArrayParameterizedType = Types.newParameterizedType(
                 List::class.java,

@@ -1,6 +1,5 @@
 package jp.ict.muffin.otasukejuru.activity
 
-import android.graphics.Color
 import android.graphics.Point
 import android.os.Bundle
 import android.view.Menu
@@ -19,8 +18,6 @@ import jp.ict.muffin.otasukejuru.fragment.ScheduleFragment
 import jp.ict.muffin.otasukejuru.fragment.TaskListFragment
 import jp.ict.muffin.otasukejuru.fragment.TimerSetTimeFragment
 import jp.ict.muffin.otasukejuru.other.Utils
-import kotlinx.android.synthetic.main.activity_main.tabs
-import kotlinx.android.synthetic.main.activity_main.toolbar
 import org.jetbrains.anko.find
 import org.jetbrains.anko.startActivity
 import java.util.Calendar
@@ -34,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         )
 
         val calendar = Calendar.getInstance()
-        setSupportActionBar(toolbar)
+        setSupportActionBar(binding.toolbar)
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         /*G
@@ -55,19 +52,12 @@ class MainActivity : AppCompatActivity() {
         val mViewPager: ViewPager = find(R.id.view_pager)
         mViewPager.adapter = mSectionsPagerAdapter
 
-        tabs.apply {
-            setupWithViewPager(mViewPager)
-            setTabTextColors(
-                    Color.parseColor("#FBFBF0"),
-                    Color.parseColor("#66B7EC")
-            )
-        }
-
         binding.apply {
             this.title = "${(calendar.get(Calendar.MONTH) + 1)}月${calendar.get(Calendar.DATE)}日"
             setOnClick {
                 startActivity<AdditionActivity>()
             }
+            tabs.setupWithViewPager(mViewPager)
         }
 
         val display = windowManager.defaultDisplay

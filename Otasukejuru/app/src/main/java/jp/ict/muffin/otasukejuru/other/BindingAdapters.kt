@@ -9,6 +9,6 @@ import com.google.android.material.tabs.TabLayout
  */
 
 @BindingAdapter("app:pager")
-fun bindViewPagerTabs(view: TabLayout, pagerView: ViewPager) {
-    view.setupWithViewPager(pagerView, true)
+fun TabLayout.bindViewPagerTabs(pagerView: ViewPager) {
+    this.setupWithViewPager(pagerView, true)
 }

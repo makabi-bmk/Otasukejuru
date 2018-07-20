@@ -1,5 +1,7 @@
 package jp.ict.muffin.otasukejuru.activity
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.SeekBar
@@ -14,13 +16,33 @@ import org.jetbrains.anko.sdk25.coroutines.onClick
 import org.jetbrains.anko.setContentView
 
 class InputProgressActivity : AppCompatActivity() {
+
+    companion object {
+        fun start(
+            context: Context?,
+            index: Int = -1
+        ) {
+
+            val intent = Intent(
+                    context,
+                    InputProgressActivity::class.java
+            )
+
+            intent.putExtra(
+                    "index",
+                    index
+            )
+
+            context?.startActivity(intent)
+        }
+    }
     private var index: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         index = intent.getIntExtra(
                 "index",
-                0
+                -1
         )
         InputProgressActivityUI(index).setContentView(this)
     }

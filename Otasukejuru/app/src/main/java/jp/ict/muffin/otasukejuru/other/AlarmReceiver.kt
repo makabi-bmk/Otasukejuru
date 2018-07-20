@@ -5,6 +5,7 @@ import android.app.NotificationManager
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import androidx.core.app.NotificationCompat
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue.notificationContent
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue.notificationId
 
@@ -33,7 +34,7 @@ class AlarmReceiver : BroadcastReceiver() {
         context: Context,
         content: String
     ): Notification {
-        val builder = Notification.Builder(context)
+        val builder = NotificationCompat.Builder(context, content)
         builder.apply {
             setContentTitle("Notification!!")
             setContentText(content)

@@ -1,6 +1,5 @@
 package jp.ict.muffin.otasukejuru.activity
 
-import android.app.Activity
 import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
@@ -14,6 +13,7 @@ import android.widget.ImageView
 import android.widget.NumberPicker
 import android.widget.RadioButton
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.EveryInfo
@@ -42,7 +42,47 @@ import org.jetbrains.anko.ctx
 import org.jetbrains.anko.find
 import java.util.Calendar
 
-class AdditionActivity : Activity() {
+class AdditionActivity : AppCompatActivity() {
+
+    companion object {
+        fun start(
+            context: Context?,
+            isSub: Boolean = false,
+            isAdd: Boolean = false,
+            isSchedule: Boolean = false,
+            isTask: Boolean = false,
+            index: Int = -1
+        ) {
+            val intent = Intent(
+                    context,
+                    AdditionActivity::class.java
+            )
+
+            intent.apply {
+                putExtra(
+                        "sub",
+                        isSub
+                )
+                putExtra(
+                        "add",
+                        isAdd
+                )
+                putExtra(
+                        "schedule",
+                        isSchedule
+                )
+                putExtra(
+                        "task",
+                        isTask
+                )
+                putExtra(
+                        "index",
+                        index
+                )
+            }
+            context?.startActivity(intent)
+        }
+    }
 
     // common
     private var isSchedule: Boolean = false

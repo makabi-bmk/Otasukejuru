@@ -12,6 +12,9 @@
             name="title"
             type="String"/>
 
+        <variable
+            name="viewpager"
+            type="androidx.viewpager.widget.ViewPager"/>
     </data>
 
     <android.support.design.widget.CoordinatorLayout
@@ -32,7 +35,7 @@
             android:paddingTop="@dimen/appbar_padding_top"
             android:theme="@style/AppTheme.AppBarOverlay">
 
-            <android.support.v7.widget.Toolbar
+            <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
@@ -40,11 +43,13 @@
                 app:popupTheme="@style/AppTheme.PopupOverlay"
                 app:title="@{title}">
 
-            </android.support.v7.widget.Toolbar>
+            </androidx.appcompat.widget.Toolbar>
 
-            <android.support.design.widget.TabLayout
+            <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tabs"
                 android:layout_width="match_parent"
+                app:tabTextColor="#FBFBF0"
+                app:tabSelectedTextColor="#66B7EC"
                 android:layout_height="wrap_content"
                 app:tabBackground="@drawable/tab_selector"
                 app:tabIndicatorColor="@color/back"/>

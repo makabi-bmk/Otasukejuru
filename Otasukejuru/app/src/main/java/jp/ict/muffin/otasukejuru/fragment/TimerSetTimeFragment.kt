@@ -17,21 +17,21 @@ import org.jetbrains.anko.AnkoContext
 
 class TimerSetTimeFragment : Fragment(), TextWatcher {
     override fun afterTextChanged(s: Editable?) {
-        find<Button>(R.id.nextButton).apply {
+        this.activity?.findViewById<Button>(R.id.nextButton)?.let {
             if (s.toString() != "") {
-                textColor = ContextCompat.getColor(
+                it.setTextColor(ContextCompat.getColor(
                         context!!,
                         R.color.colorPrimary
-                )
-                isEnabled = true
+                ))
+                it.isEnabled = true
             } else {
-                textColor = Color.argb(
+                it.setTextColor(Color.argb(
                         0,
                         0,
                         0,
                         0
-                )
-                isEnabled = false
+                ))
+                it.isEnabled = false
             }
         }
     }
@@ -71,6 +71,6 @@ class TimerSetTimeFragment : Fragment(), TextWatcher {
                 savedInstanceState
         )
 
-        find<TextView>(R.id.setTimeEdit).addTextChangedListener(this)
+        activity?.findViewById<TextView>(R.id.setTimeEdit)?.addTextChangedListener(this)
     }
 }

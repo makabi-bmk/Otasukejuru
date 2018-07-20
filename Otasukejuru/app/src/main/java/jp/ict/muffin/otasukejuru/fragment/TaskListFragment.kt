@@ -10,8 +10,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
+import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.Fragment
 import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
@@ -113,7 +114,7 @@ class TaskListFragment : Fragment() {
                     inflater.inflate(R.layout.task_card_view, null) as LinearLayout
 
             linearLayout.apply {
-                dateTextView.apply {
+                find<TextView>(R.id.dateTextView).apply {
                     this.text = diffDays.toString()
                     if (
                             element.priority == 0 ||
@@ -125,8 +126,8 @@ class TaskListFragment : Fragment() {
                         )
                     }
                 }
-                taskNameTextView.text = element.task_name
-                cardView.apply {
+                find<TextView>(R.id.taskNameTextView).text = element.task_name
+                find<CardView>(R.id.cardView).apply {
                     this.tag = Utils().getDate(element.due_date)
                     setOnClickListener {
                         createDialog(
@@ -192,16 +193,18 @@ class TaskListFragment : Fragment() {
             setItems(listDialog) { _, which ->
                 when (which) {
                     0 -> {
-                        startActivity<TimeSetActivity>(
-                                "taskIndex" to index
+                        TimeSetActivity.start(
+                                this@TaskListFragment.context?.applicationContext,
+                                index = index
                         )
                     }
 
                     1 -> {
-                        startActivity<AdditionActivity>(
-                                "add" to false,
-                                "index" to index,
-                                "task" to true
+                        AdditionActivity.start(
+                                this@TaskListFragment.context?.applicationContext,
+                                isAdd = false,
+                                isTask = true,
+                                index = index
                         )
                     }
 
@@ -233,8 +236,9 @@ class TaskListFragment : Fragment() {
                     }
 
                     4 -> {
-                        startActivity<InputProgressActivity>(
-                                "index" to index
+                        InputProgressActivity.start(
+                                this@TaskListFragment.context?.applicationContext,
+                                index = index
                         )
                     }
 
@@ -242,7 +246,8 @@ class TaskListFragment : Fragment() {
                     }
                 }
             }
-        }.show()
+            show()
+        }
     }
 
     private fun deleteTask(element: TaskInfo) {

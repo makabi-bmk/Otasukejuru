@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context.LAYOUT_INFLATER_SERVICE
 import android.graphics.Color
-import android.icu.util.Calendar
 import android.os.Bundle
 import android.os.Handler
 import android.view.LayoutInflater
@@ -13,6 +12,8 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
+import android.widget.Toast
+import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import jp.ict.muffin.otasukejuru.R
@@ -24,6 +25,8 @@ import jp.ict.muffin.otasukejuru.communication.DeleteScheduleInfoAsync
 import jp.ict.muffin.otasukejuru.communication.DeleteTaskInfoAsync
 import jp.ict.muffin.otasukejuru.other.Utils
 import jp.ict.muffin.otasukejuru.ui.ScheduleFragmentUI
+import kotlinx.android.synthetic.main.task_card_view.view.cardView
+import kotlinx.android.synthetic.main.task_card_view.view.taskNameTextView
 import org.jetbrains.anko.AnkoContext
 import org.jetbrains.anko.backgroundColor
 import org.jetbrains.anko.collections.forEachWithIndex
@@ -31,11 +34,16 @@ import org.jetbrains.anko.dip
 import org.jetbrains.anko.find
 import org.jetbrains.anko.matchParent
 import org.jetbrains.anko.wrapContent
+import java.util.Calendar
 import java.util.Timer
 import java.util.TimerTask
 
 class ScheduleFragment : Fragment() {
     private var mTimer: Timer? = null
+    private val refreshRelative
+            by lazy { activity?.findViewById<RelativeLayout>(R.id.refreshRelative) }
+    private val taskLinear
+            by lazy { activity?.findViewById<LinearLayout>(R.id.taskLinear) }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -86,7 +94,7 @@ class ScheduleFragment : Fragment() {
             }
         }
 
-        find<RelativeLayout>(R.id.refreshRelative).apply {
+        refreshRelative?.apply {
             addView(line)
             addView(nowText)
         }
@@ -99,7 +107,7 @@ class ScheduleFragment : Fragment() {
         mTimer?.schedule(object : TimerTask() {
             override fun run() {
                 mHandler.post {
-                    find<RelativeLayout>(R.id.refreshRelative).removeAllViews()
+                    refreshRelative?.removeAllViews()
                     setEvery()
 //                    setSubTask()
                     setSchedule()
@@ -121,7 +129,7 @@ class ScheduleFragment : Fragment() {
         val today = (calendar.get(Calendar.MONTH) + 1) * 100 +
                 calendar.get(Calendar.DAY_OF_MONTH)
 
-        find<RelativeLayout>(R.id.refreshRelative).removeAllViews()
+        refreshRelative?.removeAllViews()
         GlobalValue.everyInfoArrayList.forEachWithIndex { index, it ->
             val showScheduleDate = today + 7
 
@@ -184,7 +192,7 @@ class ScheduleFragment : Fragment() {
                 }
 
                 scheduleRelative.addView(scheduleNameText)
-                find<RelativeLayout>(R.id.refreshRelative).addView(
+                refreshRelative?.addView(
                         scheduleRelative,
                         0
                 )
@@ -195,7 +203,7 @@ class ScheduleFragment : Fragment() {
     private fun setSchedule() {
         val calendar = Calendar.getInstance()
         val today = (calendar.get(Calendar.MONTH) + 1) * 100 + calendar.get(Calendar.DAY_OF_MONTH)
-        find<RelativeLayout>(R.id.refreshRelative).removeAllViews()
+        refreshRelative?.removeAllViews()
 
         GlobalValue.scheduleInfoArrayList.forEachWithIndex { index, it ->
             val showScheduleDate = today + 7
@@ -252,7 +260,7 @@ class ScheduleFragment : Fragment() {
                 }
 
                 schedule.addView(scheduleNameText)
-                find<RelativeLayout>(R.id.refreshRelative).addView(
+                refreshRelative?.addView(
                         schedule,
                         0
                 )
@@ -266,7 +274,7 @@ class ScheduleFragment : Fragment() {
         val today = (calendar.get(Calendar.MONTH) + 1) * 100 +
                 calendar.get(Calendar.DAY_OF_MONTH)
 
-        find<LinearLayout>(R.id.taskLinear).removeAllViews()
+        taskLinear?.removeAllViews()
         var taskCount = 0
 
         (GlobalValue.taskInfoArrayList).forEachWithIndex { index, taskInfo ->
@@ -282,29 +290,29 @@ class ScheduleFragment : Fragment() {
             if (-1 < diffDays && diffDays < 8) {
                 val inflater: LayoutInflater =
                         context?.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
-                val linearLayout: LinearLayout =
-                        inflater.inflate(R.layout.task_card_view,
-                                null) as LinearLayout
+                val linearLayout: LinearLayout = inflater.inflate(
+                                R.layout.task_card_view,
+                                null
+                ) as LinearLayout
 
-                linearLayout.apply {
-                    dateTextView.apply {
-                        this.text = diffDays.toString()
+                linearLayout.also {
+                    it.find<TextView>(R.id.dateTextView).also {
+                        it.text = diffDays.toString()
                         if (
                                 taskInfo.priority == 0 ||
-                                (diffDays == 1 ||
-                                        diffDays == 0)
+                                (diffDays == 1 || diffDays == 0)
                         ) {
-                            this.textColor =
-                                    ContextCompat.getColor(
-                                            context,
+                            it.setTextColor(ContextCompat.getColor(
+                                            it.context,
                                             R.color.mostPriority
                                     )
+                            )
                         }
                     }
 
-                    taskNameTextView.text = taskInfo.task_name
+                    it.taskNameTextView.text = taskInfo.task_name
 
-                    cardView.apply {
+                    it.find<CardView>(R.id.cardView).apply {
                         this.tag = Utils().getDate(taskInfo.due_date)
                         setOnClickListener {
                             createDialog(
@@ -313,11 +321,11 @@ class ScheduleFragment : Fragment() {
                             )
                         }
                     }
-                    find<RelativeLayout>(R.id.taskProgress).scaleY =
+                    it.find<RelativeLayout>(R.id.taskProgress).scaleY =
                             taskInfo.progress / 100f * dip(70)
                 }
 
-                find<LinearLayout>(R.id.taskLinear).addView(
+                taskLinear?.addView(
                         linearLayout,
                         taskCount
                 )
@@ -345,9 +353,10 @@ class ScheduleFragment : Fragment() {
                             setTitle(taskInfo.task_name)
                             setMessage("サブタスクを追加しますか？")
                             setPositiveButton("YES") { _, _ ->
-                                startActivity<AdditionActivity>(
-                                        "sub" to true,
-                                        "index" to index
+                                AdditionActivity.start(
+                                        this@ScheduleFragment.context?.applicationContext,
+                                        isSub = true,
+                                        index = index
                                 )
                             }
                             setNegativeButton(
@@ -359,7 +368,7 @@ class ScheduleFragment : Fragment() {
                     }
                 }
 
-                find<RelativeLayout>(R.id.refreshRelative).addView(line)
+                refreshRelative?.addView(line)
                 taskInfo.subTaskArrayList.forEach { element ->
                     val nowTime = Utils().getTime(element.time)
                     val nowMinute = nowTime / 100 * 60 + nowTime % 100
@@ -384,15 +393,22 @@ class ScheduleFragment : Fragment() {
                         this.layoutParams = rParam
                         this.backgroundColor = Color.RED
                         setOnClickListener {
-                            longToast(element.sub_task_name)
+                            Toast.makeText(
+                                    this@ScheduleFragment.context?.applicationContext,
+                                    element.sub_task_name,
+                                    Toast.LENGTH_LONG
+                            ).show()
                         }
                     }
-                    find<RelativeLayout>(R.id.refreshRelative).addView(subTaskSquare)
+                    refreshRelative?.addView(subTaskSquare)
                 }
                 taskCount++
             }
         }
     }
+
+    private fun dip(i: Int): Int = activity?.dip(i) ?: 0
+    private fun dip(f: Float): Int = activity?.dip(f) ?: 0
 
     private fun createDialog(
         index: Int,
@@ -426,24 +442,27 @@ class ScheduleFragment : Fragment() {
                 when (which) {
                     0 -> {
                         if (isTask) {
-                            startActivity<TimeSetActivity>(
-                                    "taskIndex" to index
+                            TimeSetActivity.start(
+                                    this@ScheduleFragment.context?.applicationContext,
+                                    index = index
                             )
                         } else {
-                            startActivity<AdditionActivity>(
-                                    "index" to index,
-                                    "add" to false,
-                                    "schedule" to true
+                            AdditionActivity.start(
+                                    this@ScheduleFragment.context?.applicationContext,
+                                    isAdd = false,
+                                    isSchedule = true,
+                                    index = index
                             )
                         }
                     }
 
                     1 -> {
                         if (isTask) {
-                            startActivity<AdditionActivity>(
-                                    "index" to index,
-                                    "add" to false,
-                                    "task" to true
+                            AdditionActivity.start(
+                                    this@ScheduleFragment.context?.applicationContext,
+                                    isAdd = false,
+                                    isTask = true,
+                                    index = index
                             )
                         } else {
                             AlertDialog.Builder(context).apply {
@@ -501,15 +520,17 @@ class ScheduleFragment : Fragment() {
                     }
 
                     4 -> {
-                        startActivity<AdditionActivity>(
-                                "sub" to true,
-                                "index" to index
+                        AdditionActivity.start(
+                                this@ScheduleFragment.context?.applicationContext,
+                                isSub = true,
+                                index = index
                         )
                     }
 
                     5 -> {
-                        startActivity<InputProgressActivity>(
-                                "index" to index
+                        InputProgressActivity.start(
+                                this@ScheduleFragment.context?.applicationContext,
+                                index = index
                         )
                     }
 
