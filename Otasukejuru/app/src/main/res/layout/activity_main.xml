@@ -5,7 +5,7 @@
     <data>
 
         <variable
-            name="onClick"
+            name="onFabClick"
             type="android.view.View.OnClickListener"/>
 
         <variable
@@ -68,7 +68,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end|bottom"
             android:layout_margin="@dimen/fab_margin"
-            android:onClick="@{onClick}"
+            android:onClick="@{onFabClick}"
             app:fabSize="auto"
             app:srcCompat="@drawable/ic_add_white_48dp"/>
 
