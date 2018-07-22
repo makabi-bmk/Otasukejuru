@@ -48,11 +48,11 @@
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tabs"
                 android:layout_width="match_parent"
-                app:tabTextColor="#FBFBF0"
-                app:tabSelectedTextColor="#66B7EC"
                 android:layout_height="wrap_content"
                 app:tabBackground="@drawable/tab_selector"
-                app:tabIndicatorColor="@color/back"/>
+                app:tabIndicatorColor="@color/back"
+                app:tabSelectedTextColor="#66B7EC"
+                app:tabTextColor="#FBFBF0"/>
 
         </com.google.android.material.appbar.AppBarLayout>
 
@@ -69,8 +69,9 @@
             android:layout_gravity="end|bottom"
             android:layout_margin="@dimen/fab_margin"
             android:onClick="@{onClick}"
+            app:fabSize="auto"
             app:srcCompat="@drawable/ic_add_white_48dp"/>
 
-    </android.support.design.widget.CoordinatorLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
 
