@@ -25,6 +25,7 @@
         </activity>
         <activity
             android:name=".activity.AdditionActivity"
+            android:theme="@style/AppTheme.NoActionBar"
             android:label="">
         </activity>
         <activity
