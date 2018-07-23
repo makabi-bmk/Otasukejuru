@@ -2,6 +2,8 @@
 
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cardView"
     android:layout_width="70dp"
     android:layout_height="70dp"
@@ -10,60 +12,68 @@
 
     <!-- カードに載せる情報 -->
 
-    <RelativeLayout
-        android:id="@+id/cardRelative"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cardConstraint"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center_horizontal"
-        android:translationZ="3dp">
+        android:elevation="8dp"
+        tools:targetApi="lollipop">
 
-        <TextView
-            android:id="@+id/textView3"
+        <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="5dp"
             android:text="残り"
-            android:textSize="12sp"/>
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/dateTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
             android:text="0"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="25sp"/>
+            android:textSize="25sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
-        <TextView
-            android:id="@+id/textView4"
+        <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/dateTextView"
-            android:layout_alignParentEnd="true"
             android:layout_marginEnd="10dp"
-            android:text="日"/>
+            android:text="日"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/dateTextView"/>
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/taskNameTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:paddingBottom="6dp"
+            android:layout_marginBottom="6dp"
             android:text="提出"
-            android:textSize="12sp"/>
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
 
-        <RelativeLayout
+        <FrameLayout
             android:id="@+id/taskProgress"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_alignParentBottom="true"
             android:background="@color/colorPrimary"
-            android:translationZ="-1dp"/>
+            android:translationZ="-1dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
 
-    </RRelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>
 
