@@ -26,6 +26,10 @@ android {
     dataBinding {
         enabled = true
     }
+    lintOptions {
+        disable 'GoogleAppIndexingWarning'
+        baseline file("lint-baseline.xml") // your choice of filename/path here
+    }
 }
 
 dependencies {
