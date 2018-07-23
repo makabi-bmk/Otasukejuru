@@ -110,8 +110,8 @@ class TaskListFragment : Fragment() {
 
             val inflater: LayoutInflater =
                     context?.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
-            val linearLayout: LinearLayout =
-                    inflater.inflate(R.layout.task_card_view, null) as LinearLayout
+            val linearLayout: CardView =
+                    inflater.inflate(R.layout.task_card_view, null) as CardView
 
             linearLayout.apply {
                 find<TextView>(R.id.dateTextView).apply {
