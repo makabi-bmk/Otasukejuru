@@ -162,7 +162,7 @@ class AdditionActivity : AppCompatActivity() {
                 this,
                 R.layout.activity_selection
         )
-        setActionBar(find(R.id.toolbar_back))
+        setSupportActionBar(find(R.id.toolbar_back))
 
         binding.apply {
             setTaskOnClick {
@@ -184,7 +184,7 @@ class AdditionActivity : AppCompatActivity() {
                 this,
                 R.layout.activity_input_schedule_name
         )
-        setActionBar(find(R.id.toolbar_back))
+        setSupportActionBar(find(R.id.toolbar_back))
 
         binding.apply {
             defaultText = if (isAdd) {
@@ -217,7 +217,7 @@ class AdditionActivity : AppCompatActivity() {
                 this,
                 R.layout.activity_start_schedule_time
         )
-        setActionBar(find(R.id.toolbar_back))
+        setSupportActionBar(find(R.id.toolbar_back))
 
         if (isAdd) {
             startMonth = calendar.get(Calendar.MONTH) + 1
@@ -274,7 +274,7 @@ class AdditionActivity : AppCompatActivity() {
                 this,
                 R.layout.activity_finish_schedule_time
         )
-        setActionBar(find(R.id.toolbar_back))
+        setSupportActionBar(find(R.id.toolbar_back))
 
         if (isAdd) {
             finishMonth = startMonth
@@ -355,11 +355,11 @@ class AdditionActivity : AppCompatActivity() {
     }
 
     private fun setScheduleRepeat() {
-        setActionBar(find(R.id.toolbar_back))
         val binding: ActivitySetScheduleRepeatBinding = DataBindingUtil.setContentView(
                 this,
                 R.layout.activity_set_schedule_repeat
         )
+        setSupportActionBar(find(R.id.toolbar_back))
 
         binding.apply {
             setNextOnClick {
@@ -380,7 +380,7 @@ class AdditionActivity : AppCompatActivity() {
 
     private fun setScheduleNotificationTime() {
         setContentView(R.layout.activity_set_schedule_notification_time)
-        setActionBar(find(R.id.toolbar_back))
+        setSupportActionBar(find(R.id.toolbar_back))
 
         set_notification_time_edit.setText("5")
         notificationTime = 5
@@ -411,7 +411,7 @@ class AdditionActivity : AppCompatActivity() {
 
     private fun inputTaskName() {
         setContentView(R.layout.activity_input_task_name)
-        setActionBar(find(R.id.toolbar_back))
+        setSupportActionBar(find(R.id.toolbar_back))
 
         val inputTaskNameEdit = find<EditText>(R.id.input_task_name_edit)
 
@@ -443,7 +443,7 @@ class AdditionActivity : AppCompatActivity() {
 
     private fun finishTaskTime() {
         setContentView(R.layout.activity_finish_task_time)
-        setActionBar(find(R.id.toolbar_back))
+        setSupportActionBar(find(R.id.toolbar_back))
 
         if (isAdd || isSub) {
             finishMonth = calendar.get(Calendar.MONTH) + 1
@@ -511,7 +511,7 @@ class AdditionActivity : AppCompatActivity() {
 
     private fun setTaskRepeat() {
         setContentView(R.layout.activity_set_task_repeat)
-        setActionBar(find(R.id.toolbar_back))
+        setSupportActionBar(find(R.id.toolbar_back))
 
         find<Button>(R.id.button_next).setOnClickListener {
             val num = task_repeat_radio_group.checkedRadioButtonId
@@ -529,7 +529,7 @@ class AdditionActivity : AppCompatActivity() {
 
     private fun setMust() {
         setContentView(R.layout.activity_set_must)
-        setActionBar(find(R.id.toolbar_back))
+        setSupportActionBar(find(R.id.toolbar_back))
 
         find<Button>(R.id.no_must).setOnClickListener {
             isMust = false
@@ -546,7 +546,7 @@ class AdditionActivity : AppCompatActivity() {
 
     private fun setShould() {
         setContentView(R.layout.activity_set_should)
-        setActionBar(find(R.id.toolbar_back))
+        setSupportActionBar(find(R.id.toolbar_back))
 
         find<Button>(R.id.no_should).setOnClickListener {
             isShould = false
@@ -563,7 +563,7 @@ class AdditionActivity : AppCompatActivity() {
 
     private fun setWantTo() {
         setContentView(R.layout.activity_set_want)
-        setActionBar(find(R.id.toolbar_back))
+        setSupportActionBar(find(R.id.toolbar_back))
 
         find<Button>(R.id.no_want).setOnClickListener {
             isWant = false
@@ -580,7 +580,7 @@ class AdditionActivity : AppCompatActivity() {
 
     private fun setTaskGuideTime() {
         setContentView(R.layout.activity_set_task_notification_time)
-        setActionBar(find(R.id.toolbar_back))
+        setSupportActionBar(find(R.id.toolbar_back))
 
         val finishHourEdit = find<EditText>(R.id.finish_hour_edit)
         finishHourEdit.setText(if (isAdd) {

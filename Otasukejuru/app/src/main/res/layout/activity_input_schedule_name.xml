@@ -24,11 +24,11 @@
         android:background="@color/back"
         android:orientation="vertical">
 
-        <Toolbar
+        <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar_back"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?android:colorPrimary"
+            android:background="@color/colorPrimary"
             android:minHeight="?android:actionBarSize">
 
             <ImageButton
@@ -38,7 +38,7 @@
                 android:background="@drawable/ic_arrow_back_white_48dp"
                 android:contentDescription="backButton"
                 android:onClick="@{backOnClick}"/>
-        </Toolbar>
+        </androidx.appcompat.widget.Toolbar>
 
         <RelativeLayout
             android:layout_width="match_parent"
