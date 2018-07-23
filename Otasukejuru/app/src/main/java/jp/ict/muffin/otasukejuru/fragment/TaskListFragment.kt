@@ -8,7 +8,7 @@ import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
+import android.widget.FrameLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.cardview.widget.CardView
@@ -30,9 +30,6 @@ import kotlinx.android.synthetic.main.fragment_list_todo.lowPriorityCardLinear2
 import kotlinx.android.synthetic.main.fragment_list_todo.middlePriorityCardLinear1
 import kotlinx.android.synthetic.main.fragment_list_todo.middlePriorityCardLinear2
 import kotlinx.android.synthetic.main.fragment_list_todo.mostPriorityCardLinear
-import kotlinx.android.synthetic.main.task_card_view.view.cardView
-import kotlinx.android.synthetic.main.task_card_view.view.dateTextView
-import kotlinx.android.synthetic.main.task_card_view.view.taskNameTextView
 import org.jetbrains.anko.AnkoContext
 import org.jetbrains.anko.collections.forEachWithIndex
 import org.jetbrains.anko.dip
@@ -110,10 +107,12 @@ class TaskListFragment : Fragment() {
 
             val inflater: LayoutInflater =
                     context?.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
-            val linearLayout: CardView =
-                    inflater.inflate(R.layout.task_card_view, null) as CardView
+            val cardView: CardView = inflater.inflate(
+                    R.layout.task_card_view,
+                    null
+            ) as CardView
 
-            linearLayout.apply {
+            cardView.apply {
                 find<TextView>(R.id.dateTextView).apply {
                     this.text = diffDays.toString()
                     if (
@@ -127,16 +126,14 @@ class TaskListFragment : Fragment() {
                     }
                 }
                 find<TextView>(R.id.taskNameTextView).text = element.task_name
-                find<CardView>(R.id.cardView).apply {
-                    this.tag = Utils().getDate(element.due_date)
-                    setOnClickListener {
-                        createDialog(
-                                element,
-                                index
-                        )
-                    }
+                tag = Utils().getDate(element.due_date)
+                setOnClickListener {
+                    createDialog(
+                            element,
+                            index
+                    )
                 }
-                find<RelativeLayout>(R.id.taskProgress).scaleY = element.progress / 100f * dip(70)
+                find<FrameLayout>(R.id.taskProgress).scaleY = element.progress / 100f * dip(70)
             }
 
             val position: Int
@@ -172,7 +169,7 @@ class TaskListFragment : Fragment() {
                         lowPriorityCardLinear2
                     }
                 }
-            }.addView(linearLayout, position)
+            }.addView(cardView, position)
         }
     }
 

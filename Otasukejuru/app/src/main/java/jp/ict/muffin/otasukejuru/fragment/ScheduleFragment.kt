@@ -9,6 +9,7 @@ import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
@@ -25,7 +26,6 @@ import jp.ict.muffin.otasukejuru.communication.DeleteScheduleInfoAsync
 import jp.ict.muffin.otasukejuru.communication.DeleteTaskInfoAsync
 import jp.ict.muffin.otasukejuru.other.Utils
 import jp.ict.muffin.otasukejuru.ui.ScheduleFragmentUI
-import kotlinx.android.synthetic.main.task_card_view.view.cardView
 import kotlinx.android.synthetic.main.task_card_view.view.taskNameTextView
 import org.jetbrains.anko.AnkoContext
 import org.jetbrains.anko.backgroundColor
@@ -290,12 +290,12 @@ class ScheduleFragment : Fragment() {
             if (-1 < diffDays && diffDays < 8) {
                 val inflater: LayoutInflater =
                         context?.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
-                val linearLayout: LinearLayout = inflater.inflate(
+                val cardView: CardView = inflater.inflate(
                                 R.layout.task_card_view,
                                 null
-                ) as LinearLayout
+                ) as CardView
 
-                linearLayout.also {
+                cardView.also {
                     it.find<TextView>(R.id.dateTextView).also {
                         it.text = diffDays.toString()
                         if (
@@ -312,21 +312,19 @@ class ScheduleFragment : Fragment() {
 
                     it.taskNameTextView.text = taskInfo.task_name
 
-                    it.find<CardView>(R.id.cardView).apply {
-                        this.tag = Utils().getDate(taskInfo.due_date)
-                        setOnClickListener {
-                            createDialog(
-                                    index,
-                                    true
-                            )
-                        }
+                    it.tag = Utils().getDate(taskInfo.due_date)
+                    it.setOnClickListener {
+                        createDialog(
+                                index,
+                                true
+                        )
                     }
-                    it.find<RelativeLayout>(R.id.taskProgress).scaleY =
+                    it.find<FrameLayout>(R.id.taskProgress).scaleY =
                             taskInfo.progress / 100f * dip(70)
                 }
 
                 taskLinear?.addView(
-                        linearLayout,
+                        cardView,
                         taskCount
                 )
 
