@@ -8,4 +8,4 @@ data class EveryInfo(
     var start_time: String = "",
     var end_time: String = "",
     var repeat_type: Int = 0
-): Serializable
+) : Serializable

@@ -12,4 +12,4 @@ data class TaskInfo(
     var priority: Int = 0,
     var friend: Boolean = false,
     @Transient var subTaskArrayList: ArrayList<SubTaskInfo> = arrayListOf()
-): Serializable
+) : Serializable

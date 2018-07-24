@@ -14,11 +14,11 @@ import jp.ict.muffin.otasukejuru.databinding.FragmentSelectAddTypeBinding
  */
 class SelectAddTypeFragment : Fragment() {
     private lateinit var binding: FragmentSelectAddTypeBinding
-    
+
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(
                 inflater,
