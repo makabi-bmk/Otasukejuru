@@ -38,7 +38,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
                     android:layout_marginTop="10dp"
-                    android:text="タスク終了の目安時間"
+                    android:text="@string/task_finish_time_title"
                     android:textColor="@color/colorPrimary"
                     android:textSize="30sp"/>
 
@@ -49,7 +49,7 @@
                     android:layout_marginLeft="50dp"
                     android:layout_marginRight="50dp"
                     android:layout_marginTop="10dp"
-                    android:text="タスクが終了する目安は何時間ですか？"
+                    android:text="@string/task_finish_time_body"
                     android:textSize="25sp"/>
 
             </RelativeLayout>
@@ -74,7 +74,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="時間"
+                    android:text="@string/time"
                     android:textSize="25sp"/>
 
                 <EditText
@@ -90,7 +90,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="分"
+                    android:text="@string/minute"
                     android:textSize="25sp"/>
 
             </LinearLayout>
@@ -103,7 +103,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
                 android:background="#FBFBF0"
-                android:text="追加"
+                android:text="@string/add"
                 android:textColor="@color/colorPrimary"
                 android:textSize="20sp"/>
 

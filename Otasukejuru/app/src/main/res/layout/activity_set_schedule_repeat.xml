@@ -51,7 +51,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="30dp"
-                    android:text="予定の繰り返し"
+                    android:text="@string/schedule_set_repeat_title"
                     android:textColor="@color/colorPrimary"
                     android:textSize="30sp"/>
 
@@ -62,7 +62,7 @@
                     android:layout_marginLeft="50dp"
                     android:layout_marginRight="50dp"
                     android:layout_marginTop="10dp"
-                    android:text="この予定を繰り返しスケジュールに入れますか？"
+                    android:text="@string/schedule_set_repeat_body"
                     android:textSize="25sp"/>
 
             </RelativeLayout>
@@ -80,7 +80,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:checked="true"
-                    android:text="今回だけ"
+                    android:text="@string/once_only"
                     android:textSize="25sp"/>
 
                 <RadioButton
@@ -88,7 +88,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:text="毎日"
+                    android:text="@string/every_day"
                     android:textSize="25sp"/>
 
                 <RadioButton
@@ -96,7 +96,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:text="毎週"
+                    android:text="@string/every_week"
                     android:textSize="25sp"/>
 
                 <RadioButton
@@ -104,7 +104,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:text="毎月"
+                    android:text="@string/every_month"
                     android:textSize="25sp"/>
 
                 <RadioButton
@@ -112,7 +112,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:text="毎年"
+                    android:text="@string/every_year"
                     android:textSize="25sp"/>
             </RadioGroup>
 

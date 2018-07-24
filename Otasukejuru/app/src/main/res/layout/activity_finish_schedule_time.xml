@@ -50,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="10dp"
-                android:text="予定終了時間"
+                android:text="@string/schedule_finish_time_title"
                 android:textColor="@color/colorPrimary"
                 android:textSize="30sp"/>
 
@@ -61,7 +61,7 @@
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
                 android:layout_marginTop="10dp"
-                android:text="予定はいつまでですか？"
+                android:text="@string/schedule_finish_time_body"
                 android:textSize="25sp"/>
 
         </RelativeLayout>
@@ -101,7 +101,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="4dp"
                             android:layout_marginRight="4dp"
-                            android:text="月"
+                            android:text="@string/month"
                             android:textSize="25sp"/>
 
                         <NumberPicker
@@ -114,7 +114,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="4dp"
                             android:layout_marginRight="4dp"
-                            android:text="日"
+                            android:text="@string/day"
                             android:textSize="25sp"/>
                     </LinearLayout>
 
@@ -134,7 +134,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="4dp"
                             android:layout_marginRight="4dp"
-                            android:text="時"
+                            android:text="@string/hour"
                             android:textSize="25sp"/>
 
                         <NumberPicker
@@ -147,7 +147,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="4dp"
                             android:layout_marginRight="4dp"
-                            android:text="分"
+                            android:text="@string/minute"
                             android:textSize="25sp"/>
                     </LinearLayout>
                 </LinearLayout>

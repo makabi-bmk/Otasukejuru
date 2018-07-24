@@ -21,7 +21,7 @@
 
     <string name="line">This is line.</string>
 
-    <string name="today">今日だけ</string>
+    <string name="today_only">今日だけ</string>
     <string name="every_day">毎日</string>
     <string name="every_week">毎週</string>
     <string name="every_month">毎月</string>
@@ -55,11 +55,32 @@
     <string name="sub_task_hin">細かい目標名</string>
     <string name="task_title">やること名</string>
     <string name="task_body">やること名は何ですか？</string>
-    <string name="tasj_hint">やること名</string>
+    <string name="task_hint">やること名</string>
     <string name="sub_task_time_title">細かい目標の時間</string>
     <string name="sub_task_time_body">細かい目標をいつに入れますか？</string>
     <string name="task_time_title">やることの期限</string>
     <string name="task_time_body">期限はいつまでですか？</string>
     <string name="task_card_due_date_default_text">0</string>
     <string name="task_card_task_name_default_name">無題</string>
+    <string name="minute">分</string>
+    <string name="hour">時</string>
+    <string name="day">日</string>
+    <string name="month">月</string>
+    <string name="schedule_finish_time_title">予定終了時間</string>
+    <string name="schedule_finish_time_body">予定はいつまでですか？</string>
+    <string name="schedule_set_notification_time_title">予定開始・終了前の通知</string>
+    <string name="schedule_set_notification_time_body">予定開始・終了何分前に通知しますか？</string>
+    <string name="schedule_set_repeat_title">予定の繰り返し</string>
+    <string name="schedule_set_repeat_body">この予定を繰り返しスケジュールに入れますか？</string>
+    <string name="once_only">今回だけ</string>
+    <string name="task_priority">タスクの優先度</string>
+    <string name="task_should_body">やった方が良い(should)タスクですか？</string>
+    <string name="task_finish_time_title">タスク終了の目安時間</string>
+    <string name="task_finish_time_body">タスクが終了する目安は何時間ですか？</string>
+    <string name="time">時間</string>
+    <string name="task_set_repeat_title">タスクの繰り返し</string>
+    <string name="task_set_repeat_body">このタスクを繰り返しスケジュールに入れますか？</string>
+    <string name="task_want_body">やりたい(want to)タスクですか？</string>
+    <string name="schedule_set_start_time_title">予定開始時間</string>
+    <string name="schedule_set_start_time_body">予定はいつからですか？</string>
 </resources>

@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="10dp"
-                android:text="タスクの繰り返し"
+                android:text="@string/task_set_repeat_title"
                 android:textColor="@color/colorPrimary"
                 android:textSize="30sp"/>
 
@@ -46,7 +46,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
-                android:text="このタスクを繰り返しスケジュールに入れますか？"
+                android:text="@string/task_set_repeat_body"
                 android:textSize="25sp"/>
         </RelativeLayout>
 
@@ -66,7 +66,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:checked="true"
-                android:text="今日だけ"
+                android:text="@string/today_only"
                 android:textSize="25sp"/>
 
             <RadioButton
@@ -74,7 +74,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:text="毎日"
+                android:text="@string/every_day"
                 android:textSize="25sp"/>
 
             <RadioButton
@@ -82,7 +82,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:text="毎週"
+                android:text="@string/every_week"
                 android:textSize="25sp"/>
 
             <RadioButton
@@ -90,7 +90,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:text="毎月"
+                android:text="@string/every_month"
                 android:textSize="25sp"/>
 
             <RadioButton
@@ -98,7 +98,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:text="毎年"
+                android:text="@string/every_year"
                 android:textSize="25sp"/>
         </RadioGroup>
 
@@ -116,7 +116,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentEnd="true"
                 android:background="#FBFBF0"
-                android:text="次へ"
+                android:text="@string/next"
                 android:textColor="@color/colorPrimary"
                 android:textSize="20sp"/>
 

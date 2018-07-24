@@ -57,7 +57,7 @@
             android:layout_weight="1"
             android:background="@drawable/border"
             android:gravity="center"
-            android:text="日"
+            android:text="@string/day"
             android:textColor="@color/sundayColor"
             android:textSize="20sp"/>
 
@@ -67,7 +67,7 @@
             android:layout_weight="1"
             android:background="@drawable/border"
             android:gravity="center"
-            android:text="月"
+            android:text="@string/month"
             android:textSize="20sp"/>
 
         <TextView

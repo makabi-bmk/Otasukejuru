@@ -37,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="10dp"
-                android:text="タスクの期限"
+                android:text="@string/task_time_title"
                 android:textColor="@color/colorPrimary"
                 android:textSize="30sp"/>
 
@@ -49,7 +49,7 @@
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
                 android:layout_marginTop="10dp"
-                android:text="期限はいつまでですか？"
+                android:text="@string/task_time_body"
                 android:textSize="25sp"/>
 
         </RelativeLayout>
@@ -86,7 +86,7 @@
                         android:layout_gravity="center"
                         android:layout_marginLeft="4dp"
                         android:layout_marginRight="4dp"
-                        android:text="月"
+                        android:text="@string/month"
                         android:textSize="16sp"/>
 
                     <NumberPicker
@@ -100,7 +100,7 @@
                         android:layout_gravity="center"
                         android:layout_marginLeft="4dp"
                         android:layout_marginRight="4dp"
-                        android:text="日"
+                        android:text="@string/day"
                         android:textSize="16sp"/>
                 </LinearLayout>
 
@@ -120,7 +120,7 @@
                         android:layout_gravity="center"
                         android:layout_marginLeft="4dp"
                         android:layout_marginRight="4dp"
-                        android:text="時"
+                        android:text="@string/hour"
                         android:textSize="16sp"/>
 
 
@@ -135,7 +135,7 @@
                         android:layout_gravity="center"
                         android:layout_marginLeft="4dp"
                         android:layout_marginRight="4dp"
-                        android:text="分"
+                        android:text="@string/minute"
                         android:textSize="16sp"/>
                 </LinearLayout>
             </LinearLayout>
@@ -148,7 +148,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
                 android:background="@color/back"
-                android:text="次へ"
+                android:text="@string/next"
                 android:textColor="@color/colorPrimary"
                 android:textSize="20sp"/>
 
