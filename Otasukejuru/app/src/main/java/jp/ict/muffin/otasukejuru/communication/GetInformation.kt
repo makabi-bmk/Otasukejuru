@@ -46,7 +46,7 @@ class GetInformation : AsyncTask<
     }
 
     private fun getFriendInfo() {
-        val response = run("${GlobalValue.SERVER_URL}/get/friend")
+        val response = run("${GlobalValue.SERVER_URL}get/friend")
 
         val taskMoshiAdapter = moshi.adapter(TaskInfo::class.java)
         val scheduleMoshiAdapter = moshi.adapter(ScheduleInfo::class.java)
@@ -95,7 +95,7 @@ class GetInformation : AsyncTask<
     }
 
     private fun getTaskInfo() {
-        val response = run("${GlobalValue.SERVER_URL}/get/todo_list")
+        val response = run("${GlobalValue.SERVER_URL}get/todo_list")
 
         val taskMoshiAdapter = moshi.adapter(TaskInfo::class.java)
 
@@ -115,7 +115,7 @@ class GetInformation : AsyncTask<
     }
 
     private fun getCalendarInfo() {
-        val response = run("${GlobalValue.SERVER_URL}/get/calendar")
+        val response = run("${GlobalValue.SERVER_URL}get/calendar")
 
         val scheduleMoshiAdapter = moshi.adapter(ScheduleInfo::class.java)
         val everyMoshiAdapter = moshi.adapter(EveryInfo::class.java)

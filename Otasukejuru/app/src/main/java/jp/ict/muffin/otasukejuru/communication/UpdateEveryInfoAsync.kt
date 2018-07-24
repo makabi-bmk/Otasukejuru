@@ -17,7 +17,7 @@ class UpdateEveryInfoAsync : AsyncTask<
 
     override fun doInBackground(vararg params: EveryInfo) {
         post(
-                "${GlobalValue.SERVER_URL}/update/schedule",
+                "${GlobalValue.SERVER_URL}update/schedule",
                 convertToJson(params[0])
         )
     }

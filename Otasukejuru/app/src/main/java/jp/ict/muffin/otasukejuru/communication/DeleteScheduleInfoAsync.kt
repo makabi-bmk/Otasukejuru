@@ -17,7 +17,7 @@ class DeleteScheduleInfoAsync : AsyncTask<
 
     override fun doInBackground(vararg params: ScheduleInfo) {
         post(
-                "${GlobalValue.SERVER_URL}/delete/schedule",
+                "${GlobalValue.SERVER_URL}delete/schedule",
                 convertToJson(params[0])
         )
     }

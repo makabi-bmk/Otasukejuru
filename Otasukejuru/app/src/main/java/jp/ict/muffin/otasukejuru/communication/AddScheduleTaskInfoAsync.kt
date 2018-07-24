@@ -17,7 +17,7 @@ class AddScheduleTaskInfoAsync : AsyncTask<
 
     override fun doInBackground(vararg params: ScheduleInfo) {
         post(
-                "${GlobalValue.SERVER_URL}/add/schedule",
+                "${GlobalValue.SERVER_URL}add/schedule",
                 convertToJson(params[0])
         )
     }

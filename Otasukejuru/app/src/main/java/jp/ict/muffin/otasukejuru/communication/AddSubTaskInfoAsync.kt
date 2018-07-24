@@ -17,7 +17,7 @@ class AddSubTaskInfoAsync : AsyncTask<
 
     override fun doInBackground(vararg params: SubTaskInfo) {
         post(
-                "${GlobalValue.SERVER_URL}/add/sub_task",
+                "${GlobalValue.SERVER_URL}add/sub_task",
                 convertToJson(params[0])
         )
     }

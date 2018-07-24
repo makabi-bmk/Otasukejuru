@@ -17,7 +17,7 @@ class UpdateTaskInfoAsync : AsyncTask<
 
     override fun doInBackground(vararg params: TaskInfo) {
         post(
-                "${GlobalValue.SERVER_URL}/update/task",
+                "${GlobalValue.SERVER_URL}update/task",
                 convertToJson(params[0])
         )
     }

@@ -17,7 +17,7 @@ class DeleteTaskInfoAsync : AsyncTask<
 
     override fun doInBackground(vararg params: TaskInfo) {
         post(
-                "${GlobalValue.SERVER_URL}/delete/task",
+                "${GlobalValue.SERVER_URL}delete/task",
                 convertToJson(params[0])
         )
     }
