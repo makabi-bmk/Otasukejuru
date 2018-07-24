@@ -1,80 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/cardView"
-    android:layout_width="@dimen/task_card_size"
-    android:layout_height="@dimen/task_card_size"
-    android:layout_margin="@dimen/task_card_margin"
-    android:foreground="?android:attr/selectableItemBackground">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1">
 
-    <!-- カードに載せる情報 -->
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cardConstraint"
+    <androidx.cardview.widget.CardView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/cardView"
         android:layout_width="@dimen/task_card_size"
         android:layout_height="@dimen/task_card_size"
-        android:layout_gravity="center_horizontal"
-        android:elevation="@dimen/task_card_elevation"
-        tools:targetApi="lollipop">
+        android:layout_margin="10dp"
+        android:foreground="?android:attr/selectableItemBackground">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/task_card_due_text_padding"
-            android:text="残り"
-            android:textSize="@dimen/task_card_due_text_size"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+        <!-- カードに載せる情報 -->
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/dateTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/task_card_due_date_default_text"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="@dimen/task_card_due_date_text_size"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cardConstraint"
+            android:layout_width="@dimen/task_card_size"
+            android:layout_height="@dimen/task_card_size"
+            android:layout_gravity="center_horizontal"
+            android:elevation="@dimen/task_card_elevation"
+            tools:targetApi="lollipop">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/task_card_day_margin"
-            android:layout_marginBottom="@dimen/task_card_day_margin"
-            android:text="日"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/task_card_due_text_padding"
+                android:text="残り"
+                android:textSize="@dimen/task_card_due_text_size"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/taskNameTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/task_card_task_name_text_margin"
-            android:text="@string/task_card_task_name_default_name"
-            android:textSize="@dimen/task_card_task_name_text_size"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/dateTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/task_card_due_date_default_text"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="@dimen/task_card_due_date_text_size"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
-        <FrameLayout
-            android:id="@+id/taskProgress"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/task_card_progress_default_height"
-            android:layout_alignParentBottom="true"
-            android:background="@color/colorPrimary"
-            android:elevation="-1dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="7dp"
+                android:layout_marginBottom="17dp"
+                android:text="日"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/taskNameTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/task_card_task_name_text_margin"
+                android:text="@string/task_card_task_name_default_name"
+                android:textSize="@dimen/task_card_task_name_text_size"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <FrameLayout
+                android:id="@+id/taskProgress"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/task_card_progress_default_height"
+                android:layout_alignParentBottom="true"
+                android:background="@color/colorPrimary"
+                android:elevation="-1dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.cardview.widget.CardView>
-
-
+    </androidx.cardview.widget.CardView>
+</LinearLayout>
