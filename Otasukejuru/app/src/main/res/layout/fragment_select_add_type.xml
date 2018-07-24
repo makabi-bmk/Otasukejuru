@@ -71,7 +71,7 @@
                     android:layout_margin="15dp"
                     android:background="@color/colorPrimary"
                     android:onClick="@{scheduleOnClick}"
-                    android:text="予定"
+                    android:text="@string/schedule"
                     android:textColor="#000"
                     android:textSize="30sp"/>
 
@@ -82,7 +82,7 @@
                     android:layout_margin="15dp"
                     android:background="@color/colorPrimary"
                     android:onClick="@{taskOnClick}"
-                    android:text="タスク"
+                    android:text="@string/todo"
                     android:textColor="#000"
                     android:textSize="30sp"/>
 

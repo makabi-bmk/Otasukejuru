@@ -7,6 +7,9 @@
     <string name="main_tab2">やることリスト</string>
     <string name="main_tab3">タイマー</string>
 
+    <string name="schedule">予定</string>
+    <string name="todo">やること</string>
+
     <string name="init_time">00:00.000</string>
 
     <string name="most_priority">最優先</string>
