@@ -10,7 +10,8 @@
     <dimen name="task_card_due_text_padding">5dp</dimen>
     <dimen name="task_card_due_text_size">12sp</dimen>
     <dimen name="task_card_due_date_text_size">25sp</dimen>
-    <dimen name="task_card_day_margin">10dp</dimen>
+    <dimen name="task_card_day_margin_end">7dp</dimen>
+    <dimen name="task_card_day_margin_bottom">17dp</dimen>
     <dimen name="task_card_task_name_text_margin">4dp</dimen>
     <dimen name="task_card_task_name_text_size">12sp</dimen>
     <dimen name="task_card_progress_default_height">1dp</dimen>
