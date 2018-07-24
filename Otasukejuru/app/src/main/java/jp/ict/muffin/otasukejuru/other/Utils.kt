@@ -247,21 +247,21 @@ class Utils {
             forEach {
                 val diffDays = getDiffDays(it.due_date)
                 val taskPriority = it.priority
-                it.priority =
-                        taskPriority / 100 * 15 +
-                        taskPriority % 10 / 10 * 5 +
-                        taskPriority % 100 * 10 +
-                        it.progress % 50 + (10 - diffDays) * 6
+//                it.priority =
+//                        taskPriority / 100 * 15 +
+//                        taskPriority % 10 / 10 * 5 +
+//                        taskPriority % 100 * 10 +
+//                        it.progress % 50 + (10 - diffDays) * 6
             }
             sortByDescending { it.priority }
-            forEach {
-                it.priority = when (it.priority) {
-                    in 0..25 -> 3
-                    in 26..50 -> 2
-                    in 51..75 -> 1
-                    else -> 0
-                }
-            }
+//            forEach {
+//                it.priority = when (it.priority) {
+//                    in 0..25 -> 3
+//                    in 26..50 -> 2
+//                    in 51..75 -> 1
+//                    else -> 0
+//                }
+//            }
         }
         GlobalValue.taskInfoArrayList = sortedTaskInfoArray
     }
