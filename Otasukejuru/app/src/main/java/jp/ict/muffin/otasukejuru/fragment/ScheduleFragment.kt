@@ -291,8 +291,8 @@ class ScheduleFragment : Fragment() {
                 val inflater: LayoutInflater =
                         context?.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
                 val cardView: CardView = inflater.inflate(
-                                R.layout.task_card_view,
-                                null
+                        R.layout.task_card_view,
+                        null
                 ) as CardView
 
                 cardView.also {
@@ -303,9 +303,9 @@ class ScheduleFragment : Fragment() {
                                 (diffDays == 1 || diffDays == 0)
                         ) {
                             it.setTextColor(ContextCompat.getColor(
-                                            it.context,
-                                            R.color.mostPriority
-                                    )
+                                    it.context,
+                                    R.color.mostPriority
+                            )
                             )
                         }
                     }

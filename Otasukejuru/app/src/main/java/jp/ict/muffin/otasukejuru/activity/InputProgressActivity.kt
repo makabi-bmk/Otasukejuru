@@ -36,6 +36,7 @@ class InputProgressActivity : AppCompatActivity() {
             context?.startActivity(intent)
         }
     }
+
     private var index: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
