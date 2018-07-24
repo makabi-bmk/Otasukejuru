@@ -14,7 +14,6 @@ import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
-import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import jp.ict.muffin.otasukejuru.R
@@ -40,10 +39,12 @@ import java.util.TimerTask
 
 class ScheduleFragment : Fragment() {
     private var mTimer: Timer? = null
-    private val refreshRelative
-            by lazy { activity?.findViewById<RelativeLayout>(R.id.refreshRelative) }
-    private val taskLinear
-            by lazy { activity?.findViewById<LinearLayout>(R.id.taskLinear) }
+//    private val refreshRelative
+//            by lazy { activity?.findViewById<RelativeLayout>(R.id.refreshRelative) }
+    private var refreshRelative: RelativeLayout? = null
+    private var taskLinear: LinearLayout? = null
+//    private val taskLinear
+//            by lazy { activity?.findViewById<LinearLayout>(R.id.taskLinear) }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -60,6 +61,8 @@ class ScheduleFragment : Fragment() {
         savedInstanceState: Bundle?
     ) {
         super.onViewCreated(view, savedInstanceState)
+        refreshRelative = activity?.findViewById(R.id.refreshRelative)
+        taskLinear = activity?.findViewById(R.id.taskLinear)
         setSchedule()
         setCardView()
         drawNowLine()
@@ -102,6 +105,8 @@ class ScheduleFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+        refreshRelative = activity?.findViewById(R.id.refreshRelative)
+        taskLinear = activity?.findViewById(R.id.taskLinear)
         val mHandler = Handler()
         mTimer = Timer()
         mTimer?.schedule(object : TimerTask() {
