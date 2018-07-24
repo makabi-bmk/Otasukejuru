@@ -9,8 +9,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import jp.ict.muffin.otasukejuru.R
@@ -106,12 +106,12 @@ class TaskListFragment : Fragment() {
 
             val inflater: LayoutInflater =
                     context?.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
-            val cardView: CardView = inflater.inflate(
+            val cardLinearLayout: LinearLayout = inflater.inflate(
                     R.layout.task_card_view,
                     null
-            ) as CardView
+            ) as LinearLayout
 
-            cardView.apply {
+            cardLinearLayout.apply {
                 find<TextView>(R.id.dateTextView).apply {
                     this.text = diffDays.toString()
                     if (
@@ -168,7 +168,7 @@ class TaskListFragment : Fragment() {
                         lowPriorityCardLinear2
                     }
                 }
-            }.addView(cardView, position)
+            }.addView(cardLinearLayout, position)
         }
     }
 

@@ -290,12 +290,12 @@ class ScheduleFragment : Fragment() {
             if (-1 < diffDays && diffDays < 8) {
                 val inflater: LayoutInflater =
                         context?.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
-                val cardView: CardView = inflater.inflate(
+                val cardLinearLayout: LinearLayout = inflater.inflate(
                         R.layout.task_card_view,
                         null
-                ) as CardView
+                ) as LinearLayout
 
-                cardView.also {
+                cardLinearLayout.also {
                     it.find<TextView>(R.id.dateTextView).also {
                         it.text = diffDays.toString()
                         if (
@@ -324,7 +324,7 @@ class ScheduleFragment : Fragment() {
                 }
 
                 taskLinear?.addView(
-                        cardView,
+                        cardLinearLayout,
                         taskCount
                 )
 
