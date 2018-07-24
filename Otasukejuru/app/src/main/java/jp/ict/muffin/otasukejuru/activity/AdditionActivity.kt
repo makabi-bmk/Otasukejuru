@@ -31,9 +31,9 @@ import jp.ict.muffin.otasukejuru.communication.UpdateScheduleInfoAsync
 import jp.ict.muffin.otasukejuru.communication.UpdateTaskInfoAsync
 import jp.ict.muffin.otasukejuru.databinding.ActivityFinishScheduleTimeBinding
 import jp.ict.muffin.otasukejuru.databinding.ActivityInputScheduleNameBinding
-import jp.ict.muffin.otasukejuru.databinding.ActivitySelectionBinding
 import jp.ict.muffin.otasukejuru.databinding.ActivitySetScheduleRepeatBinding
 import jp.ict.muffin.otasukejuru.databinding.ActivityStartScheduleTimeBinding
+import jp.ict.muffin.otasukejuru.databinding.FragmentSelectAddTypeBinding
 import jp.ict.muffin.otasukejuru.other.AlarmReceiver
 import jp.ict.muffin.otasukejuru.other.Utils
 import kotlinx.android.synthetic.main.activity_set_schedule_notification_time.set_notification_time_edit
@@ -158,9 +158,9 @@ class AdditionActivity : AppCompatActivity() {
     }
 
     private fun selectAddType() {
-        val binding: ActivitySelectionBinding = DataBindingUtil.setContentView(
+        val binding: FragmentSelectAddTypeBinding = DataBindingUtil.setContentView(
                 this,
-                R.layout.activity_selection
+                R.layout.fragment_select_add_type
         )
         setSupportActionBar(find(R.id.toolbar_back))
 
