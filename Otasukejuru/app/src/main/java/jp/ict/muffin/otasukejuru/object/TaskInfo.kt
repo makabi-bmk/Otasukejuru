@@ -1,5 +1,7 @@
 package jp.ict.muffin.otasukejuru.`object`
 
+import java.io.Serializable
+
 data class TaskInfo(
     var _id: String = "",
     var task_name: String = "",
@@ -10,4 +12,4 @@ data class TaskInfo(
     var priority: Int = 0,
     var friend: Boolean = false,
     @Transient var subTaskArrayList: ArrayList<SubTaskInfo> = arrayListOf()
-)
+): Serializable
