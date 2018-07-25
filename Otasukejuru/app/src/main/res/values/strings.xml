@@ -83,4 +83,5 @@
     <string name="task_want_body">やりたい(want to)タスクですか？</string>
     <string name="schedule_set_start_time_title">予定開始時間</string>
     <string name="schedule_set_start_time_body">予定はいつからですか？</string>
+    <string name="task_card_view_due">残り</string>
 </resources>
