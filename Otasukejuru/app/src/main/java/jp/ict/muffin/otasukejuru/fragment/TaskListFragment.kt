@@ -190,14 +190,14 @@ class TaskListFragment : Fragment() {
                 when (which) {
                     0 -> {
                         TimeSetActivity.start(
-                                this@TaskListFragment.context?.applicationContext,
+                                this@TaskListFragment.context,
                                 index = index
                         )
                     }
 
                     1 -> {
                         AdditionActivity.start(
-                                this@TaskListFragment.context?.applicationContext,
+                                this@TaskListFragment.context,
                                 isAdd = false,
                                 isTask = true,
                                 index = index
@@ -233,7 +233,7 @@ class TaskListFragment : Fragment() {
 
                     4 -> {
                         InputProgressActivity.start(
-                                this@TaskListFragment.context?.applicationContext,
+                                this@TaskListFragment.context,
                                 index = index
                         )
                     }

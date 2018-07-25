@@ -55,7 +55,11 @@ class MainActivity : AppCompatActivity() {
         binding.apply {
             this.title = "${(calendar.get(Calendar.MONTH) + 1)}月${calendar.get(Calendar.DATE)}日"
             setOnFabClick {
-                startActivity<AdditionActivity>()
+//                startActivity<AdditionActivity>()
+                AdditionActivity.start(
+                        this@MainActivity,
+                        isAdd = true
+                )
             }
             tabs.setupWithViewPager(mViewPager)
         }

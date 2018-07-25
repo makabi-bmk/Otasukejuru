@@ -357,7 +357,7 @@ class ScheduleFragment : Fragment() {
                             setMessage("サブタスクを追加しますか？")
                             setPositiveButton("YES") { _, _ ->
                                 AdditionActivity.start(
-                                        this@ScheduleFragment.context?.applicationContext,
+                                        this@ScheduleFragment.context,
                                         isSub = true,
                                         index = index
                                 )
@@ -397,7 +397,7 @@ class ScheduleFragment : Fragment() {
                         this.backgroundColor = Color.RED
                         setOnClickListener {
                             Toast.makeText(
-                                    this@ScheduleFragment.context?.applicationContext,
+                                    this@ScheduleFragment.context,
                                     element.sub_task_name,
                                     Toast.LENGTH_LONG
                             ).show()
@@ -446,12 +446,12 @@ class ScheduleFragment : Fragment() {
                     0 -> {
                         if (isTask) {
                             TimeSetActivity.start(
-                                    this@ScheduleFragment.context?.applicationContext,
+                                    this@ScheduleFragment.context,
                                     index = index
                             )
                         } else {
                             AdditionActivity.start(
-                                    this@ScheduleFragment.context?.applicationContext,
+                                    this@ScheduleFragment.context,
                                     isAdd = false,
                                     isSchedule = true,
                                     index = index
@@ -462,7 +462,7 @@ class ScheduleFragment : Fragment() {
                     1 -> {
                         if (isTask) {
                             AdditionActivity.start(
-                                    this@ScheduleFragment.context?.applicationContext,
+                                    this@ScheduleFragment.context,
                                     isAdd = false,
                                     isTask = true,
                                     index = index
@@ -524,7 +524,7 @@ class ScheduleFragment : Fragment() {
 
                     4 -> {
                         AdditionActivity.start(
-                                this@ScheduleFragment.context?.applicationContext,
+                                this@ScheduleFragment.context,
                                 isSub = true,
                                 index = index
                         )
@@ -532,7 +532,7 @@ class ScheduleFragment : Fragment() {
 
                     5 -> {
                         InputProgressActivity.start(
-                                this@ScheduleFragment.context?.applicationContext,
+                                this@ScheduleFragment.context,
                                 index = index
                         )
                     }
