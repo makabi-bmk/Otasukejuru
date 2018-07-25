@@ -87,7 +87,7 @@ class ScheduleFragment : Fragment() {
         }
 
         nowText.apply {
-            text = "現在"
+            text = context.getString(R.string.now)
             layoutParams = RelativeLayout.LayoutParams(
                     wrapContent,
                     wrapContent
@@ -358,8 +358,8 @@ class ScheduleFragment : Fragment() {
                     setOnClickListener {
                         AlertDialog.Builder(activity).apply {
                             setTitle(taskInfo.task_name)
-                            setMessage("サブタスクを追加しますか？")
-                            setPositiveButton("YES") { _, _ ->
+                            setMessage(context.getString(R.string.add_sub_body))
+                            setPositiveButton(getString(R.string.yes_en)) { _, _ ->
                                 AdditionActivity.start(
                                         this@ScheduleFragment.context,
                                         isSub = true,
@@ -367,7 +367,7 @@ class ScheduleFragment : Fragment() {
                                 )
                             }
                             setNegativeButton(
-                                    "NO",
+                                    context.getString(R.string.no_en),
                                     null
                             )
                             show()
@@ -475,14 +475,14 @@ class ScheduleFragment : Fragment() {
                             AlertDialog.Builder(context).apply {
                                 setTitle(title)
                                 setMessage(getString(R.string.delete_massage))
-                                setPositiveButton("OK") { _, _ ->
+                                setPositiveButton(getString(R.string.ok)) { _, _ ->
                                     deleteElement(
                                             isTask,
                                             index
                                     )
                                 }
                                 setNegativeButton(
-                                        "Cancel",
+                                        getString(R.string.cancel_en),
                                         null
                                 )
                                 show()
@@ -494,7 +494,7 @@ class ScheduleFragment : Fragment() {
                         AlertDialog.Builder(context).apply {
                             setTitle(title)
                             setMessage(getString(R.string.complicated_massage))
-                            setPositiveButton("Yes") { _, _ ->
+                            setPositiveButton(getString(R.string.yes_en)) { _, _ ->
                                 deleteElement(
                                         isTask,
                                         index
@@ -512,14 +512,14 @@ class ScheduleFragment : Fragment() {
                         AlertDialog.Builder(context).apply {
                             setTitle(title)
                             setMessage(getString(R.string.delete_massage))
-                            setPositiveButton("OK") { _, _ ->
+                            setPositiveButton(getString(R.string.ok)) { _, _ ->
                                 deleteElement(
                                         isTask,
                                         index
                                 )
                             }
                             setNegativeButton(
-                                    "Cancel",
+                                    getString(R.string.cancel_en),
                                     null
                             )
                             show()

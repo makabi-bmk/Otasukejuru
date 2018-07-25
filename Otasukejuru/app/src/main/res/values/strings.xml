@@ -43,7 +43,7 @@
     <string name="change">変更</string>
     <string name="complete">完了</string>
     <string name="delete">削除</string>
-    <string name="add_sub">サブタスクの追加</string>
+    <string name="add_sub">細かい目標の追加</string>
     <string name="progress">進み具合</string>
     <string name="no_title">無題</string>
     <string name="schedule_title">予定名</string>
@@ -84,4 +84,10 @@
     <string name="schedule_set_start_time_title">予定開始時間</string>
     <string name="schedule_set_start_time_body">予定はいつからですか？</string>
     <string name="task_card_view_due">残り</string>
+    <string name="now">現在</string>
+    <string name="ok">OK</string>
+    <string name="yes_en">YES</string>
+    <string name="cancel_en">Cancel</string>
+    <string name="no_en">NO</string>
+    <string name="add_sub_body">細かい目標を追加しますか？</string>
 </resources>
