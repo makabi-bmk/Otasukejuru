@@ -60,13 +60,17 @@ class TaskListFragment : Fragment() {
         super.onResume()
         val mHandler = Handler()
         mTimer = Timer()
-        mTimer?.schedule(object : TimerTask() {
-            override fun run() {
-                mHandler.post {
-                    setCardView()
-                }
-            }
-        }, 5000, 5000)
+        mTimer?.schedule(
+                object : TimerTask() {
+                    override fun run() {
+                        mHandler.post {
+                            setCardView()
+                        }
+                    }
+                },
+                5000,
+                5000
+        )
     }
 
     override fun onStop() {

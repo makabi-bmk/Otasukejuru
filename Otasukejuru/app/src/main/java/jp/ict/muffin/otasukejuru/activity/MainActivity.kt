@@ -19,7 +19,6 @@ import jp.ict.muffin.otasukejuru.fragment.TaskListFragment
 import jp.ict.muffin.otasukejuru.fragment.TimerSetTimeFragment
 import jp.ict.muffin.otasukejuru.other.Utils
 import org.jetbrains.anko.find
-import org.jetbrains.anko.startActivity
 import java.util.Calendar
 
 class MainActivity : AppCompatActivity() {

@@ -109,18 +109,22 @@ class ScheduleFragment : Fragment() {
         taskLinear = activity?.findViewById(R.id.taskLinear)
         val mHandler = Handler()
         mTimer = Timer()
-        mTimer?.schedule(object : TimerTask() {
-            override fun run() {
-                mHandler.post {
-                    refreshRelative?.removeAllViews()
-                    setEvery()
+        mTimer?.schedule(
+                object : TimerTask() {
+                    override fun run() {
+                        mHandler.post {
+                            refreshRelative?.removeAllViews()
+                            setEvery()
 //                    setSubTask()
-                    setSchedule()
-                    setCardView()
-                    drawNowLine()
-                }
-            }
-        }, 5000, 5000)
+                            setSchedule()
+                            setCardView()
+                            drawNowLine()
+                        }
+                    }
+                },
+                5000,
+                5000
+        )
     }
 
     override fun onPause() {
