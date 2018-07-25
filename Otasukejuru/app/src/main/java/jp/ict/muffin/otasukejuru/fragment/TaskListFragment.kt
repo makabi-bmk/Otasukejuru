@@ -132,7 +132,7 @@ class TaskListFragment : Fragment() {
                             index
                     )
                 }
-                find<FrameLayout>(R.id.taskProgress).scaleY = element.progress / 100f * dip(70)
+                find<FrameLayout>(R.id.taskProgress).scaleY = element.progress / 100f * dip(47)
             }
 
             val position: Int

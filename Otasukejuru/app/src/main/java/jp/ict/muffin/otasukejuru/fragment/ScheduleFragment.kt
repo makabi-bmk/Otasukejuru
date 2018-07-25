@@ -325,7 +325,7 @@ class ScheduleFragment : Fragment() {
                         )
                     }
                     it.find<FrameLayout>(R.id.taskProgress).scaleY =
-                            taskInfo.progress / 100f * dip(70)
+                            taskInfo.progress / 100f * dip(47)
                 }
 
                 taskLinear?.addView(
