@@ -1,5 +1,7 @@
 package jp.ict.muffin.otasukejuru.activity
 
+import android.app.Dialog
+import android.app.PendingIntent.getActivity
 import android.graphics.Point
 import android.os.Bundle
 import android.os.Handler
@@ -23,6 +25,8 @@ import org.jetbrains.anko.find
 import java.util.Calendar
 import java.util.Timer
 import java.util.TimerTask
+import android.content.DialogInterface
+import androidx.appcompat.app.AlertDialog
 
 class MainActivity : AppCompatActivity() {
     private var mTimer: Timer? = null
