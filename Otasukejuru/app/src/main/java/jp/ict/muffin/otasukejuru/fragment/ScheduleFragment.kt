@@ -293,10 +293,10 @@ class ScheduleFragment : Fragment() {
             val diffDays = Utils().diffDayNum(
                     today,
                     Utils().getDate(taskInfo.due_date),
-                    calendar.get(Calendar.YEAR
-                    ))
+                    calendar.get(Calendar.YEAR)
+            )
 
-            if (-1 < diffDays && diffDays < 8) {
+            if (diffDays in 0..3) {
                 val inflater: LayoutInflater =
                         context?.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
                 val cardLinearLayout: LinearLayout = inflater.inflate(
