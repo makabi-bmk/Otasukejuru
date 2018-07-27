@@ -27,7 +27,6 @@
     <string name="every_month">毎月</string>
     <string name="every_year">毎年</string>
 
-    <string name="attention_massage">変更リクエストが届いています。\n変更を受け入れますか？\n優先度が変わる可能性があります。</string>
     <string name="delete_massage">削除します。\nよろしいですか？</string>
     <string name="complicated_massage">完了しましたか？</string>
 
@@ -52,7 +51,7 @@
     <string name="add">追加</string>
     <string name="sub_task_title">細かい目標名</string>
     <string name="sub_task_body">細かい目標名はなんですか</string>
-    <string name="sub_task_hin">細かい目標名</string>
+    <string name="sub_task_hint">細かい目標名</string>
     <string name="task_title">やること名</string>
     <string name="task_body">やること名は何ですか？</string>
     <string name="task_hint">やること名</string>

@@ -420,9 +420,9 @@ class AdditionActivity : AppCompatActivity() {
         }
 
         if (isSub) {
-            find<TextView>(R.id.title).text = "サブタスク名"
-            find<TextView>(R.id.question_text).text = "サブタスク名はなんですか"
-            inputTaskNameEdit.hint = "サブタスク名"
+            find<TextView>(R.id.title).text = getString(R.string.sub_task_title)
+            find<TextView>(R.id.question_text).text = getString(R.string.sub_task_body)
+            inputTaskNameEdit.hint = getString(R.string.sub_task_hint)
         }
 
         find<Button>(R.id.button_next).setOnClickListener {
@@ -459,8 +459,8 @@ class AdditionActivity : AppCompatActivity() {
         }
 
         if (isSub) {
-            find<TextView>(R.id.title).text = "サブタスクの時間"
-            find<TextView>(R.id.question_text).text = "サブタスクをいつに入れますか？"
+            find<TextView>(R.id.title).text = getString(R.string.sub_task_time_title)
+            find<TextView>(R.id.question_text).text = getString(R.string.sub_task_time_body)
         }
         find<NumberPicker>(R.id.finish_month_num_pick).apply {
             maxValue = 12
