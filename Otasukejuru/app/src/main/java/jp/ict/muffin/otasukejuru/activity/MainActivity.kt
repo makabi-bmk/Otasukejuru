@@ -2,6 +2,7 @@ package jp.ict.muffin.otasukejuru.activity
 
 import android.graphics.Point
 import android.os.Bundle
+import android.os.Handler
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
@@ -20,8 +21,11 @@ import jp.ict.muffin.otasukejuru.fragment.TimerSetTimeFragment
 import jp.ict.muffin.otasukejuru.other.Utils
 import org.jetbrains.anko.find
 import java.util.Calendar
+import java.util.Timer
+import java.util.TimerTask
 
 class MainActivity : AppCompatActivity() {
+    private var mTimer: Timer? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding: ActivityMainBinding = DataBindingUtil.setContentView(
@@ -75,6 +79,28 @@ class MainActivity : AppCompatActivity() {
         GetInformation().execute()
     }
 
+    override fun onResume() {
+        super.onResume()
+        val mHandler = Handler()
+        mTimer = Timer()
+        mTimer?.schedule(
+                object : TimerTask() {
+                    override fun run() {
+                        mHandler.post {
+                        }
+                    }
+                },
+                5000,
+                5000
+        )
+    }
+    
+    
+    override fun onStop() {
+        super.onStop()
+        mTimer?.cancel()
+        mTimer = null
+    }
     private fun loadInfoList() {
         Utils().apply {
             parseData(
