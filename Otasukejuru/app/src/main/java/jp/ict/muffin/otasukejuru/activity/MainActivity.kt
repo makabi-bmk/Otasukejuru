@@ -95,6 +95,23 @@ class MainActivity : AppCompatActivity() {
         )
     }
     
+    fun showDialog(
+            title: String,
+            clickListener: DialogInterface.OnClickListener
+    ) {
+        AlertDialog.Builder(this@MainActivity)
+                .setTitle(title)
+                .setMessage(getString(R.string.change_message))
+                .setPositiveButton(
+                        getString(R.string.ok),
+                        clickListener
+                )
+                .setNegativeButton(
+                        getString(R.string.cancel_en),
+                        null
+                )
+                .show()
+    }
     
     override fun onStop() {
         super.onStop()
