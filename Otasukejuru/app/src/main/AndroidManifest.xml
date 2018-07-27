@@ -32,7 +32,8 @@
             android:name=".activity.TimerActivity"
             android:label="">
         </activity>
-        <activity android:name=".activity.TimeSetActivity">
+        <activity android:name=".activity.TimeSetActivity"
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity android:name=".activity.InputProgressActivity">
         </activity>
