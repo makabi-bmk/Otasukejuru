@@ -1,7 +1,5 @@
 package jp.ict.muffin.otasukejuru.activity
 
-import android.app.Dialog
-import android.app.PendingIntent.getActivity
 import android.graphics.Point
 import android.os.Bundle
 import android.os.Handler
@@ -91,6 +89,38 @@ class MainActivity : AppCompatActivity() {
                 object : TimerTask() {
                     override fun run() {
                         mHandler.post {
+                            GlobalValue.friendEveryInfoArrayList.forEach {
+                                val clickListener = DialogInterface.OnClickListener { _, _ ->
+                                    GlobalValue.everyInfoArrayList.add(it)
+                                }
+                                showDialog(
+                                        it.every_name,
+                                        clickListener
+                                )
+                            }
+                            GlobalValue.friendEveryInfoArrayList.clear()
+
+                            GlobalValue.friendTaskInfoArrayList.forEach {
+                                val clickListener = DialogInterface.OnClickListener { _, _ ->
+                                    GlobalValue.taskInfoArrayList.add(it)
+                                }
+                                showDialog(
+                                        it.task_name,
+                                        clickListener
+                                )
+                            }
+                            GlobalValue.taskInfoArrayList.clear()
+
+                            GlobalValue.friendScheduleInfoArrayList.forEach {
+                                val clickListener = DialogInterface.OnClickListener { _, _ ->
+                                    GlobalValue.scheduleInfoArrayList.add(it)
+                                }
+                                showDialog(
+                                        it.schedule_name,
+                                        clickListener
+                                )
+                            }
+                            GlobalValue.scheduleInfoArrayList.clear()
                         }
                     }
                 },
@@ -98,10 +128,10 @@ class MainActivity : AppCompatActivity() {
                 5000
         )
     }
-    
+
     fun showDialog(
-            title: String,
-            clickListener: DialogInterface.OnClickListener
+        title: String,
+        clickListener: DialogInterface.OnClickListener
     ) {
         AlertDialog.Builder(this@MainActivity)
                 .setTitle(title)
@@ -116,7 +146,7 @@ class MainActivity : AppCompatActivity() {
                 )
                 .show()
     }
-    
+
     override fun onStop() {
         super.onStop()
         mTimer?.cancel()
