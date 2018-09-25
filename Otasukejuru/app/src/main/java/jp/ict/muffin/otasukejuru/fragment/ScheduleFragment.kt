@@ -297,6 +297,7 @@ class ScheduleFragment : Fragment() {
             )
 
             if (diffDays in 0..3) {
+                if (taskCount > 2) return@forEachWithIndex
                 val inflater: LayoutInflater =
                         context?.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
                 val cardLinearLayout: LinearLayout = inflater.inflate(
