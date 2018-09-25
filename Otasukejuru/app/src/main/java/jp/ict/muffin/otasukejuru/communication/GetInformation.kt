@@ -13,11 +13,7 @@ import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 
-class GetInformation : AsyncTask<
-        Unit,
-        Unit,
-        Unit
-        >() {
+class GetInformation : AsyncTask<Unit, Unit, Unit>() {
     private val moshi = Moshi.Builder().build()
     private val client = OkHttpClient()
 
@@ -26,7 +22,8 @@ class GetInformation : AsyncTask<
     }
 
     private fun run(url: String): String {
-        val request = Request.Builder()
+        val request = Request
+                .Builder()
                 .url(url)
                 .build()
 

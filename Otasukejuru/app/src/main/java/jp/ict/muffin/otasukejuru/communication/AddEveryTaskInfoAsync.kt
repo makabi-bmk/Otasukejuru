@@ -8,11 +8,7 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody
 
-class AddEveryTaskInfoAsync : AsyncTask<
-        EveryInfo,
-        Void,
-        Unit
-        >() {
+class AddEveryTaskInfoAsync : AsyncTask<EveryInfo, Void, Unit>() {
     private val client = OkHttpClient()
 
     override fun doInBackground(vararg params: EveryInfo) {

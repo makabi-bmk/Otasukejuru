@@ -60,7 +60,10 @@ class ScheduleFragment : Fragment() {
         view: View,
         savedInstanceState: Bundle?
     ) {
-        super.onViewCreated(view, savedInstanceState)
+        super.onViewCreated(
+                view,
+                savedInstanceState
+        )
         refreshRelative = activity?.findViewById(R.id.refreshRelative)
         taskLinear = activity?.findViewById(R.id.taskLinear)
         setSchedule()
@@ -78,7 +81,8 @@ class ScheduleFragment : Fragment() {
         line.apply {
             layoutParams = RelativeLayout.LayoutParams(
                     matchParent,
-                    3).apply {
+                    3
+            ).apply {
                 leftMargin = dip(40)
                 rightMargin = dip(20)
                 topMargin = dip(0.1556f * nowMinute) // + dip(25)// - dip(70)
@@ -217,8 +221,11 @@ class ScheduleFragment : Fragment() {
         GlobalValue.scheduleInfoArrayList.forEachWithIndex { index, it ->
             val showScheduleDate = today + 7
 
-            val diffDays = Utils().diffDayNum(today, Utils().getDate(it.start_time),
-                    calendar.get(Calendar.YEAR))
+            val diffDays = Utils().diffDayNum(
+                    today,
+                    Utils().getDate(it.start_time),
+                    calendar.get(Calendar.YEAR)
+            )
 
             if (Utils().getDate(it.start_time) in today..showScheduleDate) {
                 val schedule = RelativeLayout(context)
@@ -305,7 +312,7 @@ class ScheduleFragment : Fragment() {
                         null
                 ) as LinearLayout
 
-                cardLinearLayout.also {
+                cardLinearLayout.also { it ->
                     it.find<TextView>(R.id.dateTextView).also {
                         it.text = diffDays.toString()
                         if (
@@ -315,8 +322,7 @@ class ScheduleFragment : Fragment() {
                             it.setTextColor(ContextCompat.getColor(
                                     it.context,
                                     R.color.mostPriority
-                            )
-                            )
+                            ))
                         }
                     }
 

@@ -8,11 +8,7 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody
 
-class DeleteScheduleInfoAsync : AsyncTask<
-        ScheduleInfo,
-        Void,
-        Unit
-        >() {
+class DeleteScheduleInfoAsync : AsyncTask<ScheduleInfo, Void, Unit>() {
     private val client = OkHttpClient()
 
     override fun doInBackground(vararg params: ScheduleInfo) {

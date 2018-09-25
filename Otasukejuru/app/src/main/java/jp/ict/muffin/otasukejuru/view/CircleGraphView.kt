@@ -44,7 +44,8 @@ class CircleGraphView(
             if (endAngleTmp < endAngle) {
                 endAngle = endAngleTmp
             }
-            createPieSlice(c,
+            createPieSlice(
+                    c,
                     params[it]["color"] ?: 0,
                     startAngle,
                     endAngle,

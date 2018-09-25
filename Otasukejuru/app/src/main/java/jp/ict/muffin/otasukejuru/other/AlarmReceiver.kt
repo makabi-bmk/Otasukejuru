@@ -34,7 +34,10 @@ class AlarmReceiver : BroadcastReceiver() {
         context: Context,
         content: String
     ): Notification {
-        val builder = NotificationCompat.Builder(context, content)
+        val builder = NotificationCompat.Builder(
+                context,
+                content
+        )
         builder.apply {
             setContentTitle("Notification!!")
             setContentText(content)
