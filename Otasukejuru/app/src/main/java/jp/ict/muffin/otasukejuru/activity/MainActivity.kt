@@ -25,7 +25,6 @@ import java.util.Timer
 import java.util.TimerTask
 import android.content.DialogInterface
 import androidx.appcompat.app.AlertDialog
-import jp.ict.muffin.otasukejuru.`object`.TaskInfo
 
 class MainActivity : AppCompatActivity() {
     private var mTimer: Timer? = null
@@ -83,7 +82,6 @@ class MainActivity : AppCompatActivity() {
         showDialog(
                 "レポート",
                 DialogInterface.OnClickListener { _, _ ->
-                
                 }
         )
     }
