@@ -15,4 +15,5 @@
     <dimen name="task_card_task_name_text_margin">4dp</dimen>
     <dimen name="task_card_task_name_text_size">12sp</dimen>
     <dimen name="task_card_progress_default_height">1dp</dimen>
+    <dimen name="base_text_size">20sp</dimen>
 </resources>
