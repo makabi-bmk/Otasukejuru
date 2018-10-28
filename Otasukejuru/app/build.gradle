@@ -54,8 +54,8 @@ dependencies {
     implementation "org.jetbrains.anko:anko-appcompat-v7-coroutines:$anko_version"
     implementation "org.jetbrains.anko:anko-design-coroutines:$anko_version"
     implementation 'com.github.kittinunf.fuel:fuel:1.13.0'
-    implementation 'androidx.databinding:databinding-runtime:3.3.0-alpha11'
-    implementation 'androidx.databinding:databinding-adapters:3.3.0-alpha11'
+    implementation 'androidx.databinding:databinding-runtime:3.4.0-alpha02'
+    implementation 'androidx.databinding:databinding-adapters:3.4.0-alpha02'
     testImplementation 'junit:junit:4.12'
     implementation files('libs/moshi-1.5.0.jar')
 }
