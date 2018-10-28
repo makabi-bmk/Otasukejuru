@@ -1,4 +1,4 @@
-package jp.ict.muffin.otasukejuru.ui
+package jp.ict.muffin.otasukejuru.ui.timer.interval
 
 import android.content.Context
 import android.graphics.Color
@@ -8,7 +8,7 @@ import android.widget.NumberPicker
 import androidx.core.content.ContextCompat
 import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
-import jp.ict.muffin.otasukejuru.activity.TimerActivity
+import jp.ict.muffin.otasukejuru.ui.timer.timer.TimerActivity
 import jp.ict.muffin.otasukejuru.view.CircleGraphView
 import org.jetbrains.anko.AnkoComponent
 import org.jetbrains.anko.AnkoContext

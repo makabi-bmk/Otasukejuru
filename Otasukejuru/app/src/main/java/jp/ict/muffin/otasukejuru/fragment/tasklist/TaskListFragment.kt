@@ -1,4 +1,4 @@
-package jp.ict.muffin.otasukejuru.fragment
+package jp.ict.muffin.otasukejuru.fragment.tasklist
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
@@ -15,13 +15,13 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
-import jp.ict.muffin.otasukejuru.`object`.TaskInfo
-import jp.ict.muffin.otasukejuru.activity.AdditionActivity
-import jp.ict.muffin.otasukejuru.activity.InputProgressActivity
-import jp.ict.muffin.otasukejuru.activity.TimeSetActivity
+import jp.ict.muffin.otasukejuru.model.TaskInfo
+import jp.ict.muffin.otasukejuru.ui.task.AdditionActivity
+import jp.ict.muffin.otasukejuru.ui.progress.InputProgressActivity
+import jp.ict.muffin.otasukejuru.ui.timer.set.TimeSetActivity
 import jp.ict.muffin.otasukejuru.communication.DeleteTaskInfoAsync
-import jp.ict.muffin.otasukejuru.other.Utils
-import jp.ict.muffin.otasukejuru.ui.TaskListFragmentUI
+import jp.ict.muffin.otasukejuru.utils.Utils
+import jp.ict.muffin.otasukejuru.ui.task.list.TaskListFragmentUI
 import kotlinx.android.synthetic.main.fragment_list_todo.highPriorityCardLinear1
 import kotlinx.android.synthetic.main.fragment_list_todo.highPriorityCardLinear2
 import kotlinx.android.synthetic.main.fragment_list_todo.lowPriorityCardLinear1
@@ -177,8 +177,8 @@ class TaskListFragment : Fragment() {
     }
 
     private fun createDialog(
-        element: TaskInfo,
-        index: Int
+            element: TaskInfo,
+            index: Int
     ) {
         val listDialog = arrayOf(
                 getString(R.string.start),

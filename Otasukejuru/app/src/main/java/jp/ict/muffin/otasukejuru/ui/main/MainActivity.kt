@@ -1,4 +1,4 @@
-package jp.ict.muffin.otasukejuru.activity
+package jp.ict.muffin.otasukejuru.ui.main
 
 import android.graphics.Point
 import android.os.Bundle
@@ -15,16 +15,17 @@ import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
 import jp.ict.muffin.otasukejuru.communication.GetInformation
 import jp.ict.muffin.otasukejuru.databinding.ActivityMainBinding
-import jp.ict.muffin.otasukejuru.fragment.ScheduleFragment
-import jp.ict.muffin.otasukejuru.fragment.TaskListFragment
-import jp.ict.muffin.otasukejuru.fragment.TimerSetTimeFragment
-import jp.ict.muffin.otasukejuru.other.Utils
+import jp.ict.muffin.otasukejuru.fragment.schedule.ScheduleFragment
+import jp.ict.muffin.otasukejuru.fragment.tasklist.TaskListFragment
+import jp.ict.muffin.otasukejuru.fragment.timer.TimerSetTimeFragment
+import jp.ict.muffin.otasukejuru.utils.Utils
 import org.jetbrains.anko.find
 import java.util.Calendar
 import java.util.Timer
 import java.util.TimerTask
 import android.content.DialogInterface
 import androidx.appcompat.app.AlertDialog
+import jp.ict.muffin.otasukejuru.ui.task.AdditionActivity
 
 class MainActivity : AppCompatActivity() {
     private var mTimer: Timer? = null

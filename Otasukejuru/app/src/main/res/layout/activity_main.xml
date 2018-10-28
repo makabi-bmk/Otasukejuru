@@ -26,7 +26,7 @@
         android:layout_height="match_parent"
         android:background="@color/back"
         android:fitsSystemWindows="true"
-        tools:context="jp.ict.muffin.otasukejuru.activity.MainActivity">
+        tools:context="jp.ict.muffin.otasukejuru.ui.main.MainActivity">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appbar"

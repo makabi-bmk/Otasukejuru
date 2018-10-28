@@ -1,4 +1,4 @@
-package jp.ict.muffin.otasukejuru.activity
+package jp.ict.muffin.otasukejuru.ui.task
 
 import android.app.AlarmManager
 import android.app.PendingIntent
@@ -16,13 +16,13 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import jp.ict.muffin.otasukejuru.R
-import jp.ict.muffin.otasukejuru.`object`.EveryInfo
+import jp.ict.muffin.otasukejuru.model.EveryInfo
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue.notificationContent
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue.notificationId
-import jp.ict.muffin.otasukejuru.`object`.ScheduleInfo
-import jp.ict.muffin.otasukejuru.`object`.SubTaskInfo
-import jp.ict.muffin.otasukejuru.`object`.TaskInfo
+import jp.ict.muffin.otasukejuru.model.ScheduleInfo
+import jp.ict.muffin.otasukejuru.model.SubTaskInfo
+import jp.ict.muffin.otasukejuru.model.TaskInfo
 import jp.ict.muffin.otasukejuru.communication.AddEveryTaskInfoAsync
 import jp.ict.muffin.otasukejuru.communication.AddScheduleTaskInfoAsync
 import jp.ict.muffin.otasukejuru.communication.AddTaskInfoAsync
@@ -35,7 +35,7 @@ import jp.ict.muffin.otasukejuru.databinding.ActivitySetScheduleRepeatBinding
 import jp.ict.muffin.otasukejuru.databinding.ActivityStartScheduleTimeBinding
 import jp.ict.muffin.otasukejuru.databinding.FragmentSelectAddTypeBinding
 import jp.ict.muffin.otasukejuru.other.AlarmReceiver
-import jp.ict.muffin.otasukejuru.other.Utils
+import jp.ict.muffin.otasukejuru.utils.Utils
 import kotlinx.android.synthetic.main.activity_set_schedule_notification_time.set_notification_time_edit
 import kotlinx.android.synthetic.main.activity_set_task_repeat.task_repeat_radio_group
 import org.jetbrains.anko.ctx

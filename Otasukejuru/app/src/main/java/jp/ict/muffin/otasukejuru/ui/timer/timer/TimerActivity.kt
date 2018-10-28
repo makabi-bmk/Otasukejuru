@@ -1,4 +1,4 @@
-package jp.ict.muffin.otasukejuru.activity
+package jp.ict.muffin.otasukejuru.ui.timer.timer
 
 import android.app.Activity
 import android.app.AlarmManager
@@ -14,8 +14,7 @@ import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue.notificationContent
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue.notificationId
 import jp.ict.muffin.otasukejuru.other.AlarmReceiver
-import jp.ict.muffin.otasukejuru.ui.TimerActivityUI
-import jp.ict.muffin.otasukejuru.ui.TimerIntervalActivityUI
+import jp.ict.muffin.otasukejuru.ui.timer.interval.TimerIntervalActivityUI
 import jp.ict.muffin.otasukejuru.view.CircleGraphView
 import org.jetbrains.anko.ctx
 import org.jetbrains.anko.find

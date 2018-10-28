@@ -1,10 +1,10 @@
-package jp.ict.muffin.otasukejuru.ui
+package jp.ict.muffin.otasukejuru.ui.timer.notification
 
 import android.graphics.Color
 import android.view.View
 import androidx.core.content.ContextCompat
 import jp.ict.muffin.otasukejuru.R
-import jp.ict.muffin.otasukejuru.activity.TimerActivity
+import jp.ict.muffin.otasukejuru.ui.timer.timer.TimerActivity
 import org.jetbrains.anko.AnkoComponent
 import org.jetbrains.anko.AnkoContext
 import org.jetbrains.anko.alignParentBottom

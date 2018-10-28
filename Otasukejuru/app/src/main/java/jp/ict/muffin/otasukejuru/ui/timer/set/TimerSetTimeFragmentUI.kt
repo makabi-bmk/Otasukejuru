@@ -1,4 +1,4 @@
-package jp.ict.muffin.otasukejuru.ui
+package jp.ict.muffin.otasukejuru.ui.timer.set
 
 import android.graphics.Color
 import android.text.InputType
@@ -6,8 +6,8 @@ import android.view.View
 import android.widget.EditText
 import androidx.core.content.ContextCompat
 import jp.ict.muffin.otasukejuru.R
-import jp.ict.muffin.otasukejuru.activity.TimerActivity
-import jp.ict.muffin.otasukejuru.fragment.TimerSetTimeFragment
+import jp.ict.muffin.otasukejuru.ui.timer.timer.TimerActivity
+import jp.ict.muffin.otasukejuru.fragment.timer.TimerSetTimeFragment
 import org.jetbrains.anko.AnkoComponent
 import org.jetbrains.anko.AnkoContext
 import org.jetbrains.anko.alignParentStart

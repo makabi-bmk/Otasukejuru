@@ -1,4 +1,4 @@
-package jp.ict.muffin.otasukejuru.`object`
+package jp.ict.muffin.otasukejuru.model
 
 import java.io.Serializable
 

@@ -1,4 +1,4 @@
-package jp.ict.muffin.otasukejuru.activity
+package jp.ict.muffin.otasukejuru.ui.progress
 
 import android.content.Context
 import android.content.Intent
@@ -9,8 +9,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
-import jp.ict.muffin.otasukejuru.other.Utils
-import jp.ict.muffin.otasukejuru.ui.InputProgressActivityUI
+import jp.ict.muffin.otasukejuru.utils.Utils
 import org.jetbrains.anko.find
 import org.jetbrains.anko.sdk25.coroutines.onClick
 import org.jetbrains.anko.setContentView

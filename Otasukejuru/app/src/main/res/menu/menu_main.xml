@@ -1,7 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:app="http://schemas.android.com/apk/res-auto"
       xmlns:tools="http://schemas.android.com/tools"
-      tools:context="jp.ict.muffin.otasukejuru.activity.MainActivity">
+      tools:context="jp.ict.muffin.otasukejuru.ui.main.MainActivity">
     <item
         android:id="@+id/move_to_top"
         android:icon="@drawable/app_icon"

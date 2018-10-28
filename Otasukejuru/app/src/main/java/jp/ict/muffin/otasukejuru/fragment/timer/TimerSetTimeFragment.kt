@@ -1,4 +1,4 @@
-package jp.ict.muffin.otasukejuru.fragment
+package jp.ict.muffin.otasukejuru.fragment.timer
 
 import android.graphics.Color
 import android.os.Bundle
@@ -12,7 +12,7 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import jp.ict.muffin.otasukejuru.R
-import jp.ict.muffin.otasukejuru.ui.TimerSetTimeFragmentUI
+import jp.ict.muffin.otasukejuru.ui.timer.set.TimerSetTimeFragmentUI
 import org.jetbrains.anko.AnkoContext
 
 class TimerSetTimeFragment : Fragment(), TextWatcher {

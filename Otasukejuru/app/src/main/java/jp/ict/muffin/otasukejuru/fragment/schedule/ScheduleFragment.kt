@@ -1,4 +1,4 @@
-package jp.ict.muffin.otasukejuru.fragment
+package jp.ict.muffin.otasukejuru.fragment.schedule
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
@@ -18,13 +18,13 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
-import jp.ict.muffin.otasukejuru.activity.AdditionActivity
-import jp.ict.muffin.otasukejuru.activity.InputProgressActivity
-import jp.ict.muffin.otasukejuru.activity.TimeSetActivity
+import jp.ict.muffin.otasukejuru.ui.task.AdditionActivity
+import jp.ict.muffin.otasukejuru.ui.progress.InputProgressActivity
+import jp.ict.muffin.otasukejuru.ui.timer.set.TimeSetActivity
 import jp.ict.muffin.otasukejuru.communication.DeleteScheduleInfoAsync
 import jp.ict.muffin.otasukejuru.communication.DeleteTaskInfoAsync
-import jp.ict.muffin.otasukejuru.other.Utils
-import jp.ict.muffin.otasukejuru.ui.ScheduleFragmentUI
+import jp.ict.muffin.otasukejuru.utils.Utils
+import jp.ict.muffin.otasukejuru.ui.schedule.ScheduleFragmentUI
 import kotlinx.android.synthetic.main.task_card_view.view.taskNameTextView
 import org.jetbrains.anko.AnkoContext
 import org.jetbrains.anko.backgroundColor
