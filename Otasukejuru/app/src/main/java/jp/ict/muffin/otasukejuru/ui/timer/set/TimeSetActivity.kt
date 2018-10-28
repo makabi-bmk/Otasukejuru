@@ -1,4 +1,4 @@
-package jp.ict.muffin.otasukejuru.activity
+package jp.ict.muffin.otasukejuru.ui.timer.set
 
 import android.content.Context
 import android.content.Intent
@@ -12,7 +12,6 @@ import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import jp.ict.muffin.otasukejuru.R
-import jp.ict.muffin.otasukejuru.ui.TimeSetActivityUI
 import org.jetbrains.anko.find
 import org.jetbrains.anko.setContentView
 

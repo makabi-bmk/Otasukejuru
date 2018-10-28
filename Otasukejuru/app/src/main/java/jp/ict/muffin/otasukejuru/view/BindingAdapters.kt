@@ -1,4 +1,4 @@
-package jp.ict.muffin.otasukejuru.other
+package jp.ict.muffin.otasukejuru.view
 
 import androidx.databinding.BindingAdapter
 import androidx.viewpager.widget.ViewPager

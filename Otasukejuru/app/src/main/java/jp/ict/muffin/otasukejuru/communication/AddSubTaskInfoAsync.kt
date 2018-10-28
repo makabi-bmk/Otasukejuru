@@ -3,7 +3,7 @@ package jp.ict.muffin.otasukejuru.communication
 import android.os.AsyncTask
 import com.squareup.moshi.Moshi
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
-import jp.ict.muffin.otasukejuru.`object`.SubTaskInfo
+import jp.ict.muffin.otasukejuru.model.SubTaskInfo
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody

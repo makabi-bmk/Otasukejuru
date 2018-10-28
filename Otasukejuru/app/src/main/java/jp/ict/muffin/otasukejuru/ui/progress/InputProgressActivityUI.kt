@@ -1,4 +1,4 @@
-package jp.ict.muffin.otasukejuru.ui
+package jp.ict.muffin.otasukejuru.ui.progress
 
 import android.graphics.Color
 import android.view.View
@@ -6,7 +6,6 @@ import android.widget.SeekBar
 import androidx.core.content.ContextCompat
 import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
-import jp.ict.muffin.otasukejuru.activity.InputProgressActivity
 import jp.ict.muffin.otasukejuru.communication.UpdateTaskInfoAsync
 import org.jetbrains.anko.AnkoComponent
 import org.jetbrains.anko.AnkoContext

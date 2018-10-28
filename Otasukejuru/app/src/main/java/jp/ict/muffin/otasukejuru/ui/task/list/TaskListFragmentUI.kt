@@ -1,10 +1,10 @@
-package jp.ict.muffin.otasukejuru.ui
+package jp.ict.muffin.otasukejuru.ui.task.list
 
 import android.view.View
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import jp.ict.muffin.otasukejuru.R
-import jp.ict.muffin.otasukejuru.fragment.TaskListFragment
+import jp.ict.muffin.otasukejuru.fragment.tasklist.TaskListFragment
 import org.jetbrains.anko.AnkoComponent
 import org.jetbrains.anko.AnkoContext
 import org.jetbrains.anko.alignParentStart

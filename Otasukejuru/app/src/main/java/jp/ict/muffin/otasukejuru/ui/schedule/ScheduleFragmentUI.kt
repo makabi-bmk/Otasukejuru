@@ -1,11 +1,11 @@
-package jp.ict.muffin.otasukejuru.ui
+package jp.ict.muffin.otasukejuru.ui.schedule
 
 import android.graphics.Color
 import android.view.View
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import jp.ict.muffin.otasukejuru.R
-import jp.ict.muffin.otasukejuru.fragment.ScheduleFragment
+import jp.ict.muffin.otasukejuru.fragment.schedule.ScheduleFragment
 import org.jetbrains.anko.AnkoComponent
 import org.jetbrains.anko.AnkoContext
 import org.jetbrains.anko.alignParentEnd

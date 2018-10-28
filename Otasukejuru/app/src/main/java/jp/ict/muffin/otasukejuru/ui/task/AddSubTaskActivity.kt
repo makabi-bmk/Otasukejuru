@@ -1,4 +1,4 @@
-package jp.ict.muffin.otasukejuru.activity
+package jp.ict.muffin.otasukejuru.ui.task
 
 import androidx.appcompat.app.AppCompatActivity
 

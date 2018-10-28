@@ -1,4 +1,4 @@
-package jp.ict.muffin.otasukejuru.ui
+package jp.ict.muffin.otasukejuru.ui.timer.set
 
 import android.graphics.Color
 import android.text.InputType
@@ -6,19 +6,19 @@ import android.view.View
 import android.widget.EditText
 import androidx.core.content.ContextCompat
 import jp.ict.muffin.otasukejuru.R
-import jp.ict.muffin.otasukejuru.activity.TimeSetActivity
-import jp.ict.muffin.otasukejuru.activity.TimerActivity
+import jp.ict.muffin.otasukejuru.ui.timer.timer.TimerActivity
+import jp.ict.muffin.otasukejuru.fragment.timer.TimerSetTimeFragment
 import org.jetbrains.anko.AnkoComponent
 import org.jetbrains.anko.AnkoContext
+import org.jetbrains.anko.alignParentStart
+import org.jetbrains.anko.alignParentTop
 import org.jetbrains.anko.backgroundColor
-import org.jetbrains.anko.backgroundDrawable
 import org.jetbrains.anko.below
 import org.jetbrains.anko.button
 import org.jetbrains.anko.centerHorizontally
 import org.jetbrains.anko.centerVertically
 import org.jetbrains.anko.dip
 import org.jetbrains.anko.editText
-import org.jetbrains.anko.imageButton
 import org.jetbrains.anko.matchParent
 import org.jetbrains.anko.relativeLayout
 import org.jetbrains.anko.rightOf
@@ -26,13 +26,12 @@ import org.jetbrains.anko.sdk25.coroutines.onClick
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.textColor
 import org.jetbrains.anko.textView
-import org.jetbrains.anko.toolbar
 import org.jetbrains.anko.wrapContent
 
-class TimeSetActivityUI(private val index: Int = -1) : AnkoComponent<TimeSetActivity> {
+class TimerSetTimeFragmentUI : AnkoComponent<TimerSetTimeFragment> {
     private lateinit var editTime: EditText
 
-    override fun createView(ui: AnkoContext<TimeSetActivity>): View = with(ui) {
+    override fun createView(ui: AnkoContext<TimerSetTimeFragment>): View = with(ui) {
         relativeLayout {
             backgroundColor = ContextCompat.getColor(
                     context,
@@ -44,28 +43,6 @@ class TimeSetActivityUI(private val index: Int = -1) : AnkoComponent<TimeSetActi
                 width = matchParent
             }
 
-            toolbar {
-                id = R.id.ankoToolbar
-                backgroundColor = ContextCompat.getColor(
-                        context,
-                        R.color.colorPrimary
-                )
-
-                imageButton {
-                    id = R.id.ankoBack
-                    backgroundDrawable = ContextCompat.getDrawable(
-                            context,
-                            R.drawable.ic_arrow_back_white_48dp
-                    )
-                }.lparams {
-                    width = wrapContent
-                    height = wrapContent
-                }
-            }.lparams {
-                width = matchParent
-                height = wrapContent
-            }
-
             textView("タイマー") {
                 id = R.id.titleInterval
                 textColor = ContextCompat.getColor(
@@ -74,9 +51,10 @@ class TimeSetActivityUI(private val index: Int = -1) : AnkoComponent<TimeSetActi
                 )
                 textSize = 30f
             }.lparams {
-                below(R.id.ankoToolbar)
                 topMargin = dip(10)
                 leftMargin = dip(30)
+                alignParentStart()
+                alignParentTop()
             }
 
             textView("タイマーを何分間セットしますか？") {
@@ -90,7 +68,6 @@ class TimeSetActivityUI(private val index: Int = -1) : AnkoComponent<TimeSetActi
             }
 
             relativeLayout {
-
                 editTime = editText {
                     inputType = InputType.TYPE_CLASS_NUMBER
                     id = R.id.setTimeEdit
@@ -130,10 +107,7 @@ class TimeSetActivityUI(private val index: Int = -1) : AnkoComponent<TimeSetActi
                             text.clear()
                             editTime.clearFocus()
                         }
-                        startActivity<TimerActivity>(
-                                "time" to time,
-                                "index" to index
-                        )
+                        startActivity<TimerActivity>("time" to time)
                     }
                 }.lparams {
                     below(editTime)

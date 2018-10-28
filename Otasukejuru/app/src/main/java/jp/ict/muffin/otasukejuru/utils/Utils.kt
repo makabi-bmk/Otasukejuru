@@ -1,14 +1,14 @@
-package jp.ict.muffin.otasukejuru.other
+package jp.ict.muffin.otasukejuru.utils
 
 import android.annotation.SuppressLint
 import android.content.Context
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
 import jp.ict.muffin.otasukejuru.R
-import jp.ict.muffin.otasukejuru.`object`.EveryInfo
+import jp.ict.muffin.otasukejuru.model.EveryInfo
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
-import jp.ict.muffin.otasukejuru.`object`.ScheduleInfo
-import jp.ict.muffin.otasukejuru.`object`.TaskInfo
+import jp.ict.muffin.otasukejuru.model.ScheduleInfo
+import jp.ict.muffin.otasukejuru.model.TaskInfo
 import org.json.JSONArray
 import java.sql.Date
 import java.text.SimpleDateFormat

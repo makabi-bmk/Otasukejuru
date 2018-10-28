@@ -1,5 +1,8 @@
 package jp.ict.muffin.otasukejuru.`object`
 
+import jp.ict.muffin.otasukejuru.model.EveryInfo
+import jp.ict.muffin.otasukejuru.model.ScheduleInfo
+import jp.ict.muffin.otasukejuru.model.TaskInfo
 import okhttp3.MediaType
 
 object GlobalValue {

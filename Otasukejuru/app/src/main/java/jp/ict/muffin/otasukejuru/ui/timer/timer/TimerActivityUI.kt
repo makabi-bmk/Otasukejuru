@@ -1,4 +1,4 @@
-package jp.ict.muffin.otasukejuru.ui
+package jp.ict.muffin.otasukejuru.ui.timer.timer
 
 import android.content.Context
 import android.graphics.Color
@@ -10,8 +10,7 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
-import jp.ict.muffin.otasukejuru.activity.InputProgressActivity
-import jp.ict.muffin.otasukejuru.activity.TimerActivity
+import jp.ict.muffin.otasukejuru.ui.progress.InputProgressActivity
 import jp.ict.muffin.otasukejuru.view.CircleGraphView
 import org.jetbrains.anko.AnkoComponent
 import org.jetbrains.anko.AnkoContext
