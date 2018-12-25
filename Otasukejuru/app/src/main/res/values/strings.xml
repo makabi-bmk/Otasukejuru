@@ -90,4 +90,8 @@
     <string name="no_en">NO</string>
     <string name="add_sub_body">細かい目標を追加しますか？</string>
     <string name="stop_pause">一時停止</string>
+    <string name="title_timer">タイマー</string>
+    <string name="question_timer">タイマーを何分間セットしますか？</string>
+    <string name="support_edit_timer">分間</string>
+    <string name="hint_set_time_timer">10</string>
 </resources>
