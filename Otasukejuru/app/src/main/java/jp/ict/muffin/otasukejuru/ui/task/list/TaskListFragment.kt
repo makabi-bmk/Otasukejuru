@@ -16,7 +16,7 @@ import androidx.fragment.app.Fragment
 import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
 import jp.ict.muffin.otasukejuru.model.TaskInfo
-import jp.ict.muffin.otasukejuru.ui.task.AdditionActivity
+import jp.ict.muffin.otasukejuru.ui.task.addition.AdditionActivity
 import jp.ict.muffin.otasukejuru.ui.progress.InputProgressActivity
 import jp.ict.muffin.otasukejuru.ui.timer.set.TimeSetActivity
 import jp.ict.muffin.otasukejuru.communication.DeleteTaskInfoAsync

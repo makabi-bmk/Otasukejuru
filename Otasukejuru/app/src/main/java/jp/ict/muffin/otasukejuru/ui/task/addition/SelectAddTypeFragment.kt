@@ -1,4 +1,4 @@
-package jp.ict.muffin.otasukejuru.ui.addition
+package jp.ict.muffin.otasukejuru.ui.task.addition
 
 import android.os.Bundle
 import android.view.LayoutInflater

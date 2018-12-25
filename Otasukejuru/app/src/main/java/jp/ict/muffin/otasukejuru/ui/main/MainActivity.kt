@@ -23,7 +23,7 @@ import java.util.Timer
 import java.util.TimerTask
 import android.content.DialogInterface
 import androidx.appcompat.app.AlertDialog
-import jp.ict.muffin.otasukejuru.ui.task.AdditionActivity
+import jp.ict.muffin.otasukejuru.ui.task.addition.AdditionActivity
 
 class MainActivity : AppCompatActivity() {
     private var mTimer: Timer? = null

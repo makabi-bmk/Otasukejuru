@@ -24,7 +24,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.task.AdditionActivity"
+            android:name=".ui.task.addition.AdditionActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:label="">
         </activity>
@@ -37,7 +37,7 @@
         </activity>
         <activity android:name=".ui.progress.InputProgressActivity">
         </activity>
-        <activity android:name=".ui.task.AddSubTaskActivity">
+        <activity android:name=".ui.task.addition.AddSubTaskActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
