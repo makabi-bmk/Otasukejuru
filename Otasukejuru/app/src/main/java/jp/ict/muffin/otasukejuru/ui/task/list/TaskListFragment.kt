@@ -1,4 +1,4 @@
-package jp.ict.muffin.otasukejuru.fragment.tasklist
+package jp.ict.muffin.otasukejuru.ui.task.list
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
@@ -21,7 +21,6 @@ import jp.ict.muffin.otasukejuru.ui.progress.InputProgressActivity
 import jp.ict.muffin.otasukejuru.ui.timer.set.TimeSetActivity
 import jp.ict.muffin.otasukejuru.communication.DeleteTaskInfoAsync
 import jp.ict.muffin.otasukejuru.utils.Utils
-import jp.ict.muffin.otasukejuru.ui.task.list.TaskListFragmentUI
 import kotlinx.android.synthetic.main.fragment_list_todo.highPriorityCardLinear1
 import kotlinx.android.synthetic.main.fragment_list_todo.highPriorityCardLinear2
 import kotlinx.android.synthetic.main.fragment_list_todo.lowPriorityCardLinear1

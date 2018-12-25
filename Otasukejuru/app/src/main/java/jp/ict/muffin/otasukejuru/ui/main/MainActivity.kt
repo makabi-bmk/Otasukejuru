@@ -3,8 +3,6 @@ package jp.ict.muffin.otasukejuru.ui.main
 import android.graphics.Point
 import android.os.Bundle
 import android.os.Handler
-import android.view.Menu
-import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -15,9 +13,9 @@ import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
 import jp.ict.muffin.otasukejuru.communication.GetInformation
 import jp.ict.muffin.otasukejuru.databinding.ActivityMainBinding
-import jp.ict.muffin.otasukejuru.fragment.schedule.ScheduleFragment
-import jp.ict.muffin.otasukejuru.fragment.tasklist.TaskListFragment
-import jp.ict.muffin.otasukejuru.fragment.timer.TimerSetTimeFragment
+import jp.ict.muffin.otasukejuru.ui.schedule.ScheduleFragment
+import jp.ict.muffin.otasukejuru.ui.task.list.TaskListFragment
+import jp.ict.muffin.otasukejuru.ui.timer.TimerSetTimeFragment
 import jp.ict.muffin.otasukejuru.utils.Utils
 import org.jetbrains.anko.find
 import java.util.Calendar

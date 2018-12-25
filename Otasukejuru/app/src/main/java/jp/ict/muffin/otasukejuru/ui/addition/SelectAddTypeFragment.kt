@@ -1,4 +1,4 @@
-package jp.ict.muffin.otasukejuru.fragment.addition
+package jp.ict.muffin.otasukejuru.ui.addition
 
 import android.os.Bundle
 import android.view.LayoutInflater

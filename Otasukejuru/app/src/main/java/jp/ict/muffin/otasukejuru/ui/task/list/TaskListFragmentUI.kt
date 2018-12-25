@@ -4,7 +4,6 @@ import android.view.View
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import jp.ict.muffin.otasukejuru.R
-import jp.ict.muffin.otasukejuru.fragment.tasklist.TaskListFragment
 import org.jetbrains.anko.AnkoComponent
 import org.jetbrains.anko.AnkoContext
 import org.jetbrains.anko.alignParentStart

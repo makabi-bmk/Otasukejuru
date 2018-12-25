@@ -1,4 +1,4 @@
-package jp.ict.muffin.otasukejuru.fragment.schedule
+package jp.ict.muffin.otasukejuru.ui.schedule
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
@@ -24,7 +24,6 @@ import jp.ict.muffin.otasukejuru.ui.timer.set.TimeSetActivity
 import jp.ict.muffin.otasukejuru.communication.DeleteScheduleInfoAsync
 import jp.ict.muffin.otasukejuru.communication.DeleteTaskInfoAsync
 import jp.ict.muffin.otasukejuru.utils.Utils
-import jp.ict.muffin.otasukejuru.ui.schedule.ScheduleFragmentUI
 import kotlinx.android.synthetic.main.task_card_view.view.taskNameTextView
 import org.jetbrains.anko.AnkoContext
 import org.jetbrains.anko.backgroundColor

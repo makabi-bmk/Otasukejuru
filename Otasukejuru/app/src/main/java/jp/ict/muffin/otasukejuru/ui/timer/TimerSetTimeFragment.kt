@@ -1,4 +1,4 @@
-package jp.ict.muffin.otasukejuru.fragment.timer
+package jp.ict.muffin.otasukejuru.ui.timer
 
 import android.graphics.Color
 import android.os.Bundle
