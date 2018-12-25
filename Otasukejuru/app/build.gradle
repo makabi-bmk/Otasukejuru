@@ -36,7 +36,7 @@ dependencies {
     androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0-alpha3', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    implementation "androidx.appcompat:appcompat:$supportlibrary_version"
+    implementation "androidx.appcompat:appcompat:1.0.2"
     implementation "com.google.android.material:material:$supportlibrary_version"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
@@ -66,8 +66,8 @@ dependencies {
     implementation 'com.github.kittinunf.fuel:fuel:1.13.0'
 
 //    databinding
-    implementation 'androidx.databinding:databinding-runtime:3.4.0-alpha02'
-    implementation 'androidx.databinding:databinding-adapters:3.4.0-alpha02'
+    implementation 'androidx.databinding:databinding-runtime:3.4.0-alpha09'
+    implementation 'androidx.databinding:databinding-adapters:3.4.0-alpha09'
     testImplementation 'junit:junit:4.12'
     implementation files('libs/moshi-1.5.0.jar')
 }
