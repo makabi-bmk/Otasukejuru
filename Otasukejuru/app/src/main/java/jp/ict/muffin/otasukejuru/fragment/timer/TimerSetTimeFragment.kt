@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.databinding.FragmentTimerSetTimeBinding
@@ -57,12 +58,16 @@ class TimerSetTimeFragment : Fragment(), TextWatcher {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? =
-            FragmentTimerSetTimeBinding.inflate(
-                    inflater,
-                    container,
-                    false
-            ).root
+    ): View? {
+        val binding: FragmentTimerSetTimeBinding = DataBindingUtil.inflate(
+                inflater,
+                R.layout.fragment_timer_set_time,
+                container,
+                false
+        )
+        
+        return binding.root
+    }
 
     override fun onViewCreated(
         view: View,
