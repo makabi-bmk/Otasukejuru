@@ -14,8 +14,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.databinding.FragmentTimerSetTimeBinding
-import jp.ict.muffin.otasukejuru.ui.timer.set.TimerSetTimeFragmentUI
-import org.jetbrains.anko.AnkoContext
 
 class TimerSetTimeFragment : Fragment(), TextWatcher {
     override fun afterTextChanged(s: Editable?) {
@@ -65,7 +63,7 @@ class TimerSetTimeFragment : Fragment(), TextWatcher {
                 container,
                 false
         )
-        
+
         return binding.root
     }
 
