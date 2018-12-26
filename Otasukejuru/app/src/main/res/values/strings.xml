@@ -94,4 +94,5 @@
     <string name="question_timer">タイマーを何分間セットしますか？</string>
     <string name="support_edit_timer">分間</string>
     <string name="hint_set_time_timer">10</string>
+    <string name="confirmation">確認</string>
 </resources>

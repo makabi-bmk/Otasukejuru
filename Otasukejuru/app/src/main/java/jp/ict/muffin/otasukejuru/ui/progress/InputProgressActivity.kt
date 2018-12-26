@@ -7,8 +7,10 @@ import android.widget.Button
 import android.widget.SeekBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.`object`.GlobalValue
+import jp.ict.muffin.otasukejuru.databinding.ActivityInputProgressBinding
 import jp.ict.muffin.otasukejuru.utils.Utils
 import org.jetbrains.anko.find
 import org.jetbrains.anko.sdk25.coroutines.onClick
@@ -45,6 +47,10 @@ class InputProgressActivity : AppCompatActivity() {
                 -1
         )
         InputProgressActivityUI(index).setContentView(this)
+        val binding: ActivityInputProgressBinding = DataBindingUtil.setContentView(
+                this,
+                R.layout.activity_input_progress
+        )
     }
 
     override fun onResume() {
