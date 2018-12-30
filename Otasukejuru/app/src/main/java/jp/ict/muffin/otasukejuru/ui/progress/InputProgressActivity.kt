@@ -13,8 +13,6 @@ import jp.ict.muffin.otasukejuru.`object`.GlobalValue
 import jp.ict.muffin.otasukejuru.databinding.ActivityInputProgressBinding
 import jp.ict.muffin.otasukejuru.utils.Utils
 import org.jetbrains.anko.find
-import org.jetbrains.anko.sdk25.coroutines.onClick
-import org.jetbrains.anko.setContentView
 
 class InputProgressActivity : AppCompatActivity() {
 
@@ -46,7 +44,6 @@ class InputProgressActivity : AppCompatActivity() {
                 "index",
                 -1
         )
-        InputProgressActivityUI(index).setContentView(this)
         val binding: ActivityInputProgressBinding = DataBindingUtil.setContentView(
                 this,
                 R.layout.activity_input_progress
@@ -55,7 +52,7 @@ class InputProgressActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        val seekBar = find<SeekBar>(R.id.inputProgressSeek)
+        val seekBar = find<SeekBar>(R.id.input_progress_seek)
 
         seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             // ツマミがドラッグされると呼ばれる
@@ -64,7 +61,7 @@ class InputProgressActivity : AppCompatActivity() {
                 progress: Int,
                 fromUser: Boolean
             ) {
-                find<TextView>(R.id.progressTextView).text = seekBar.progress.toString()
+                find<TextView>(R.id.progress_text_view).text = seekBar.progress.toString()
                 GlobalValue.taskInfoArrayList[index].progress = progress
             }
 
@@ -77,7 +74,7 @@ class InputProgressActivity : AppCompatActivity() {
             }
         })
 
-        find<Button>(R.id.finishButton).onClick {
+        find<Button>(R.id.finish_button).setOnClickListener {
             Utils().saveTaskInfoList(this@InputProgressActivity)
             finish()
         }
