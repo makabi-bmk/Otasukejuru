@@ -17,10 +17,10 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/back"
-        android:layout_marginTop="90dp">
+        android:layout_marginTop="90dp"
+        android:background="@color/back">
 
-        <RelativeLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/task_constraint"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -29,7 +29,7 @@
                 android:id="@+id/refresh_relative"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
-        </RelativeLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </ScrollView>
