@@ -95,4 +95,8 @@
     <string name="support_edit_timer">分間</string>
     <string name="hint_set_time_timer">10</string>
     <string name="confirmation">確認</string>
+    <string name="focus_and_break_time">集中時間と休憩時間</string>
+    <string name="focus_time">集中する時間</string>
+    <string name="minutue">分間</string>
+    <string name="title_break_time">休憩する時間</string>
 </resources>
