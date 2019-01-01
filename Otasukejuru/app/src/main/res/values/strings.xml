@@ -99,4 +99,7 @@
     <string name="focus_time">集中する時間</string>
     <string name="minutue">分間</string>
     <string name="title_break_time">休憩する時間</string>
+    <string name="notification_before_end">終了前の通知</string>
+    <string name="notification_before_end_body">終了何分前に通知しますか？</string>
+    <string name="before_minutes">分前</string>
 </resources>
