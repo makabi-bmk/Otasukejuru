@@ -38,11 +38,6 @@
         <activity android:name=".ui.progress.InputProgressActivity">
         </activity>
         <activity android:name=".ui.task.addition.AddSubTaskActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
     </application>
 
