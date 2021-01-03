@@ -31,6 +31,24 @@ android {
         disable 'GoogleAppIndexingWarning'
         baseline file("lint-baseline.xml") // your choice of filename/path here
     }
+
+    buildFeatures {
+        compose true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+        useIR = true
+    }
+
+    composeOptions {
+        kotlinCompilerVersion '1.4.20'
+        kotlinCompilerExtensionVersion '1.0.0-alpha08'
+    }
 }
 
 dependencies {
@@ -72,6 +90,24 @@ dependencies {
     implementation 'androidx.databinding:databinding-adapters:7.0.0-alpha03'
     testImplementation 'junit:junit:4.13.1'
     implementation files('libs/moshi-1.5.0.jar')
+
+    implementation 'androidx.compose.ui:ui:1.0.0-alpha09'
+    // Tooling support (Previews, etc.)
+    implementation 'androidx.compose.ui:ui-tooling:1.0.0-alpha09'
+    // Foundation (Border, Background, Box, Image, Scroll, shapes, animations, etc.)
+    implementation 'androidx.compose.foundation:foundation:1.0.0-alpha09'
+    // Material Design
+    implementation 'androidx.compose.material:material:1.0.0-alpha09'
+    // Material design icons
+    implementation 'androidx.compose.material:material-icons-core:1.0.0-alpha09'
+    implementation 'androidx.compose.material:material-icons-extended:1.0.0-alpha09'
+    // Integration with observables
+    implementation 'androidx.compose.runtime:runtime-livedata:1.0.0-alpha09'
+    implementation 'androidx.compose.runtime:runtime-rxjava2:1.0.0-alpha09'
+
+    // UI Tests
+    androidTestImplementation 'androidx.compose.ui:ui-test-junit4:1.0.0-alpha09'
+
 }
 kotlin {
     experimental {
