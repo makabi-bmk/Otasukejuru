@@ -16,75 +16,79 @@ import org.jetbrains.anko.find
 import org.jetbrains.anko.setContentView
 
 class TimeSetActivity : AppCompatActivity(), TextWatcher {
-    override fun beforeTextChanged(
-            p0: CharSequence?,
-            p1: Int,
-            p2: Int,
-            p3: Int
-    ) {
-    }
+  override fun beforeTextChanged(
+    p0: CharSequence?,
+    p1: Int,
+    p2: Int,
+    p3: Int
+  ) {
+  }
 
-    override fun onTextChanged(
-            p0: CharSequence?,
-            p1: Int,
-            p2: Int,
-            p3: Int
-    ) {
-    }
+  override fun onTextChanged(
+    p0: CharSequence?,
+    p1: Int,
+    p2: Int,
+    p3: Int
+  ) {
+  }
 
-    override fun afterTextChanged(p0: Editable?) {
-        findViewById<Button>(R.id.nextButton)?.let {
-            if (p0.toString() != "") {
-                it.setTextColor(ContextCompat.getColor(
-                        this,
-                        R.color.colorPrimary
-                ))
-                it.isEnabled = true
-            } else {
-
-                it.setTextColor(Color.argb(
-                        0,
-                        0,
-                        0,
-                        0
-                ))
-                it.isEnabled = false
-            }
-        }
-    }
-
-    companion object {
-        fun start(
-            context: Context?,
-            index: Int = -1
-        ) {
-            val intent = Intent(
-                    context,
-                    TimeSetActivity::class.java
-            )
-
-            intent.putExtra(
-                    "index",
-                    index
-            )
-
-            context?.startActivity(intent)
-        }
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        val index = intent.getIntExtra(
-                "index",
-                -1
+  override fun afterTextChanged(p0: Editable?) {
+    findViewById<Button>(R.id.nextButton)?.let {
+      if (p0.toString() != "") {
+        it.setTextColor(
+          ContextCompat.getColor(
+            this,
+            R.color.colorPrimary
+          )
         )
-        TimeSetActivityUI(index).setContentView(this)
+        it.isEnabled = true
+      } else {
 
-        find<ImageButton>(R.id.ankoBack).setOnClickListener {
-            finish()
-        }
-
-        find<EditText>(R.id.setTimeEdit).addTextChangedListener(this)
+        it.setTextColor(
+          Color.argb(
+            0,
+            0,
+            0,
+            0
+          )
+        )
+        it.isEnabled = false
+      }
     }
+  }
+
+  companion object {
+    fun start(
+      context: Context?,
+      index: Int = -1
+    ) {
+      val intent = Intent(
+        context,
+        TimeSetActivity::class.java
+      )
+
+      intent.putExtra(
+        "index",
+        index
+      )
+
+      context?.startActivity(intent)
+    }
+  }
+
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+
+    val index = intent.getIntExtra(
+      "index",
+      -1
+    )
+    TimeSetActivityUI(index).setContentView(this)
+
+    find<ImageButton>(R.id.ankoBack).setOnClickListener {
+      finish()
+    }
+
+    find<EditText>(R.id.setTimeEdit).addTextChangedListener(this)
+  }
 }

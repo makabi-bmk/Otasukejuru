@@ -16,66 +16,70 @@ import jp.ict.muffin.otasukejuru.R
 import jp.ict.muffin.otasukejuru.databinding.FragmentTimerSetTimeBinding
 
 class TimerSetTimeFragment : Fragment(), TextWatcher {
-    override fun afterTextChanged(s: Editable?) {
-        this.activity?.findViewById<Button>(R.id.nextButton)?.let {
-            if (s.toString() != "") {
-                it.setTextColor(ContextCompat.getColor(
-                        context!!,
-                        R.color.colorPrimary
-                ))
-                it.isEnabled = true
-            } else {
-                it.setTextColor(Color.argb(
-                        0,
-                        0,
-                        0,
-                        0
-                ))
-                it.isEnabled = false
-            }
-        }
-    }
-
-    override fun beforeTextChanged(
-        s: CharSequence?,
-        start: Int,
-        count: Int,
-        after: Int
-    ) {
-    }
-
-    override fun onTextChanged(
-        s: CharSequence?,
-        start: Int,
-        before: Int,
-        count: Int
-    ) {
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val binding: FragmentTimerSetTimeBinding = DataBindingUtil.inflate(
-                inflater,
-                R.layout.fragment_timer_set_time,
-                container,
-                false
+  override fun afterTextChanged(s: Editable?) {
+    this.activity?.findViewById<Button>(R.id.nextButton)?.let {
+      if (s.toString() != "") {
+        it.setTextColor(
+          ContextCompat.getColor(
+            context!!,
+            R.color.colorPrimary
+          )
         )
-
-        return binding.root
-    }
-
-    override fun onViewCreated(
-        view: View,
-        savedInstanceState: Bundle?
-    ) {
-        super.onViewCreated(
-                view,
-                savedInstanceState
+        it.isEnabled = true
+      } else {
+        it.setTextColor(
+          Color.argb(
+            0,
+            0,
+            0,
+            0
+          )
         )
-
-        activity?.findViewById<TextView>(R.id.setTimeEdit)?.addTextChangedListener(this)
+        it.isEnabled = false
+      }
     }
+  }
+
+  override fun beforeTextChanged(
+    s: CharSequence?,
+    start: Int,
+    count: Int,
+    after: Int
+  ) {
+  }
+
+  override fun onTextChanged(
+    s: CharSequence?,
+    start: Int,
+    before: Int,
+    count: Int
+  ) {
+  }
+
+  override fun onCreateView(
+    inflater: LayoutInflater,
+    container: ViewGroup?,
+    savedInstanceState: Bundle?
+  ): View? {
+    val binding: FragmentTimerSetTimeBinding = DataBindingUtil.inflate(
+      inflater,
+      R.layout.fragment_timer_set_time,
+      container,
+      false
+    )
+
+    return binding.root
+  }
+
+  override fun onViewCreated(
+    view: View,
+    savedInstanceState: Bundle?
+  ) {
+    super.onViewCreated(
+      view,
+      savedInstanceState
+    )
+
+    activity?.findViewById<TextView>(R.id.setTimeEdit)?.addTextChangedListener(this)
+  }
 }

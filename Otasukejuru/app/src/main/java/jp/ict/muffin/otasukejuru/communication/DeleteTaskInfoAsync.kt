@@ -9,40 +9,40 @@ import okhttp3.Request
 import okhttp3.RequestBody
 
 class DeleteTaskInfoAsync : AsyncTask<TaskInfo, Void, Unit>() {
-    private val client = OkHttpClient()
+  private val client = OkHttpClient()
 
-    override fun doInBackground(vararg params: TaskInfo) {
-        post(
-                "${GlobalValue.SERVER_URL}delete/task",
-                convertToJson(params[0])
-        )
+  override fun doInBackground(vararg params: TaskInfo) {
+    post(
+      "${GlobalValue.SERVER_URL}delete/task",
+      convertToJson(params[0])
+    )
+  }
+
+  private fun post(
+    url: String,
+    json: String
+  ): String? {
+    try {
+      val body = RequestBody.create(
+        GlobalValue.mediaType,
+        json
+      )
+      val request = Request.Builder().apply {
+        url(url)
+        post(body)
+      }.build()
+      val response = client.newCall(request).execute()
+      return response.body()?.string()
+    } catch (e: Exception) {
+      e.printStackTrace()
     }
+    return null
+  }
 
-    private fun post(
-        url: String,
-        json: String
-    ): String? {
-        try {
-            val body = RequestBody.create(
-                    GlobalValue.mediaType,
-                    json
-            )
-            val request = Request.Builder().apply {
-                url(url)
-                post(body)
-            }.build()
-            val response = client.newCall(request).execute()
-            return response.body()?.string()
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-        return null
-    }
+  private fun convertToJson(taskInfo: TaskInfo): String {
+    val moshi = Moshi.Builder().build()
+    val taskMoshiAdapter = moshi.adapter(TaskInfo::class.java)
 
-    private fun convertToJson(taskInfo: TaskInfo): String {
-        val moshi = Moshi.Builder().build()
-        val taskMoshiAdapter = moshi.adapter(TaskInfo::class.java)
-
-        return taskMoshiAdapter.toJson(taskInfo)
-    }
+    return taskMoshiAdapter.toJson(taskInfo)
+  }
 }

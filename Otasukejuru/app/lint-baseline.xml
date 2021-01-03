@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<issues format="5" by="lint 3.4 Canary 2">
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 21 (current min is 19): `android.view.View#setTranslationZ`">
+        <location
+            file="src/main/java/jp/ict/muffin/otasukejuru/ui/timer/timer/TimerActivityUI.kt"
+            line="73"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 21 (current min is 19): `android.view.View#setTranslationZ`">
+        <location
+            file="src/main/java/jp/ict/muffin/otasukejuru/ui/timer/timer/TimerActivityUI.kt"
+            line="84"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="`android:colorControlNormal` requires API level 21 (current min is 19)">
+        <location
+            file="src/main/res/values/styles.xml"
+            line="21"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="`android:colorControlActivated` requires API level 21 (current min is 19)">
+        <location
+            file="src/main/res/values/styles.xml"
+            line="22"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="`android:colorControlHighlight` requires API level 21 (current min is 19)">
+        <location
+            file="src/main/res/values/styles.xml"
+            line="23"/>
+    </issue>
+
+    <issue
+        id="Overdraw"
+        message="Possible overdraw: Root element paints background `@color/back` with a theme that also paints a background (inferred theme is `@style/AppTheme`)">
+        <location
+            file="src/main/res/layout/activity_timer.xml"
+            line="8"/>
+    </issue>
+
+    <issue
+        id="Overdraw"
+        message="Possible overdraw: Root element paints background `#FBFBF0` with a theme that also paints a background (inferred theme is `@style/AppTheme`)">
+        <location
+            file="src/main/res/layout/fragment_calendar.xml"
+            line="7"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.layout.activity_input_progress` appears to be unused">
+        <location
+            file="src/main/res/layout/activity_input_progress.xml"
+            line="2"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.layout.activity_timer` appears to be unused">
+        <location
+            file="src/main/res/layout/activity_timer.xml"
+            line="2"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.layout.activity_timer_set` appears to be unused">
+        <location
+            file="src/main/res/layout/activity_timer_set.xml"
+            line="2"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.drawable.border` appears to be unused">
+        <location
+            file="src/main/res/drawable/border.xml"
+            line="2"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.layout.cell` appears to be unused">
+        <location
+            file="src/main/res/layout/cell.xml"
+            line="2"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.drawable.circle_background` appears to be unused">
+        <location
+            file="src/main/res/drawable/circle_background.xml"
+            line="1"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.todayColor` appears to be unused">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="9"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.sundayColor` appears to be unused">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="15"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.saturdayColor` appears to be unused">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="16"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.dimen.activity_horizontal_margin` appears to be unused">
+        <location
+            file="src/main/res/values/dimens.xml"
+            line="3"/>
+        <location
+            file="src/main/res/values-w820dp/dimens.xml"
+            line="5"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.dimen.activity_vertical_margin` appears to be unused">
+        <location
+            file="src/main/res/values/dimens.xml"
+            line="4"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.dimen.base_text_size` appears to be unused">
+        <location
+            file="src/main/res/values/dimens.xml"
+            line="18"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.layout.fragment_calendar` appears to be unused">
+        <location
+            file="src/main/res/layout/fragment_calendar.xml"
+            line="2"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.layout.fragment_list_todo` appears to be unused">
+        <location
+            file="src/main/res/layout/fragment_list_todo.xml"
+            line="2"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.layout.fragment_main` appears to be unused">
+        <location
+            file="src/main/res/layout/fragment_main.xml"
+            line="1"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.layout.fragment_schedule` appears to be unused">
+        <location
+            file="src/main/res/layout/fragment_schedule.xml"
+            line="2"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.layout.fragment_task_list` appears to be unused">
+        <location
+            file="src/main/res/layout/fragment_task_list.xml"
+            line="2"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.layout.fragment_timer` appears to be unused">
+        <location
+            file="src/main/res/layout/fragment_timer.xml"
+            line="2"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.drawable.frame_shape` appears to be unused">
+        <location
+            file="src/main/res/drawable/frame_shape.xml"
+            line="2"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.layout.high_priority` appears to be unused">
+        <location
+            file="src/main/res/layout/high_priority.xml"
+            line="2"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.mipmap.ic_launcher` appears to be unused">
+        <location
+            file="src/main/res/mipmap-hdpi/ic_launcher.png"/>
+        <location
+            file="src/main/res/mipmap-mdpi/ic_launcher.png"/>
+        <location
+            file="src/main/res/mipmap-xhdpi/ic_launcher.png"/>
+        <location
+            file="src/main/res/mipmap-xxhdpi/ic_launcher.png"/>
+        <location
+            file="src/main/res/mipmap-xxxhdpi/ic_launcher.png"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.drawable.ic_navigate_before` appears to be unused">
+        <location
+            file="src/main/res/drawable-hdpi/ic_navigate_before.png"/>
+        <location
+            file="src/main/res/drawable-mdpi/ic_navigate_before.png"/>
+        <location
+            file="src/main/res/drawable-xhdpi/ic_navigate_before.png"/>
+        <location
+            file="src/main/res/drawable-xxhdpi/ic_navigate_before.png"/>
+        <location
+            file="src/main/res/drawable-xxxhdpi/ic_navigate_before.png"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.drawable.ic_navigate_next` appears to be unused">
+        <location
+            file="src/main/res/drawable-hdpi/ic_navigate_next.png"/>
+        <location
+            file="src/main/res/drawable-mdpi/ic_navigate_next.png"/>
+        <location
+            file="src/main/res/drawable-xhdpi/ic_navigate_next.png"/>
+        <location
+            file="src/main/res/drawable-xxhdpi/ic_navigate_next.png"/>
+        <location
+            file="src/main/res/drawable-xxxhdpi/ic_navigate_next.png"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.layout.low_priority` appears to be unused">
+        <location
+            file="src/main/res/layout/low_priority.xml"
+            line="2"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.layout.middle_priority` appears to be unused">
+        <location
+            file="src/main/res/layout/middle_priority.xml"
+            line="2"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.layout.most_priority` appears to be unused">
+        <location
+            file="src/main/res/layout/most_priority.xml"
+            line="2"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.action_settings` appears to be unused">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="3"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.section_format` appears to be unused">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="4"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.init_time` appears to be unused">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.format_month_year` appears to be unused">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="20"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.line` appears to be unused">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="22"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.task_hint` appears to be unused">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="57"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.stop_pause` appears to be unused">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="92"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.style.TabLayoutStyle` appears to be unused">
+        <location
+            file="src/main/res/values/styles.xml"
+            line="26"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.style.TabTextAppearance` appears to be unused">
+        <location
+            file="src/main/res/values/styles.xml"
+            line="34"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.layout.timer_circle` appears to be unused">
+        <location
+            file="src/main/res/layout/timer_circle.xml"
+            line="2"/>
+    </issue>
+
+    <issue
+        id="RedundantNamespace"
+        message="This namespace declaration is redundant">
+        <location
+            file="src/main/res/layout/fragment_calendar.xml"
+            line="121"/>
+    </issue>
+
+    <issue
+        id="IconColors"
+        message="Action Bar icons should use a single gray color (`#333333` for light themes (with 60%/30% opacity for enabled/disabled), and `#FFFFFF` with opacity 80%/30% for dark themes">
+        <location
+            file="src/main/res/drawable/app_icon.png"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/app_icon.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/app_icon.png"/>
+    </issue>
+
+    <issue
+        id="Autofill"
+        message="Missing `autofillHints` attribute">
+        <location
+            file="src/main/res/layout/activity_input_schedule_name.xml"
+            line="85"/>
+    </issue>
+
+    <issue
+        id="Autofill"
+        message="Missing `autofillHints` attribute">
+        <location
+            file="src/main/res/layout/activity_input_task_name.xml"
+            line="51"/>
+    </issue>
+
+    <issue
+        id="Autofill"
+        message="Missing `autofillHints` attribute">
+        <location
+            file="src/main/res/layout/activity_set_schedule_notification_time.xml"
+            line="65"/>
+    </issue>
+
+    <issue
+        id="Autofill"
+        message="Missing `autofillHints` attribute">
+        <location
+            file="src/main/res/layout/activity_set_task_notification_time.xml"
+            line="64"/>
+    </issue>
+
+    <issue
+        id="Autofill"
+        message="Missing `autofillHints` attribute">
+        <location
+            file="src/main/res/layout/activity_set_task_notification_time.xml"
+            line="80"/>
+    </issue>
+
+</issues>

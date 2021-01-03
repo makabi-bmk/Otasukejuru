@@ -19,107 +19,111 @@ import jp.ict.muffin.otasukejuru.view.CircleGraphView
 import org.jetbrains.anko.ctx
 import org.jetbrains.anko.find
 import org.jetbrains.anko.setContentView
-import java.util.Calendar
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
+import kotlin.collections.arrayListOf
+import kotlin.collections.forEach
 
 class TimerActivity : Activity() {
-    private var time: Long = 0
-    private var index: Int = -1
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        time = intent.getLongExtra(
-                "time",
-                0L
-        )
-        index = intent.getIntExtra(
-                "index",
-                -1
-        )
+  private var time: Long = 0
+  private var index: Int = -1
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    time = intent.getLongExtra(
+      "time",
+      0L
+    )
+    index = intent.getIntExtra(
+      "index",
+      -1
+    )
 
-        setInterval()
+    setInterval()
+  }
+
+  private fun setInterval() {
+    TimerIntervalActivityUI(time).setContentView(this)
+    find<ImageButton>(R.id.ankoBack).setOnClickListener {
+      finish()
     }
 
-    private fun setInterval() {
-        TimerIntervalActivityUI(time).setContentView(this)
-        find<ImageButton>(R.id.ankoBack).setOnClickListener {
-            finish()
-        }
-
-        find<Button>(R.id.nextButton).setOnClickListener {
-            startTimer()
-        }
-
-        val params: ArrayList<HashMap<String, Int>> = arrayListOf(HashMap<String, Int>().apply {
-            put(
-                    "color",
-                    ContextCompat.getColor(
-                            ctx,
-                            R.color.mostPriority
-                    )
-            )
-            put(
-                    "value",
-                    60
-            )
-        })
-
-        val circleGraphView = CircleGraphView(
-                ctx,
-                params,
-                true
-        )
-        find<FrameLayout>(R.id.circleFrame).addView(circleGraphView)
-        circleGraphView.startAnimation()
+    find<Button>(R.id.nextButton).setOnClickListener {
+      startTimer()
     }
 
-    private fun startTimer() {
-        TimerActivityUI(time).setContentView(this)
-        (1..3).forEach {
-            val calendar = Calendar.getInstance()
-            calendar.apply {
-                timeInMillis = System.currentTimeMillis()
-                add(
-                        Calendar.SECOND,
-                        time.time.toInt() - 5
-                )
-            }
-            scheduleNotification(
-                    "終了${it * 5}分前です",
-                    calendar,
-                    it
-            )
-        }
-    }
+    val params: ArrayList<HashMap<String, Int>> = arrayListOf(HashMap<String, Int>().apply {
+      put(
+        "color",
+        ContextCompat.getColor(
+          ctx,
+          R.color.mostPriority
+        )
+      )
+      put(
+        "value",
+        60
+      )
+    })
 
-    private fun scheduleNotification(
-        content: String,
-        calendar: Calendar,
-        id: Int
-    ) {
-        val notificationIntent = Intent(
-                this,
-                AlarmReceiver::class.java
-        )
-        notificationIntent.apply {
-            putExtra(
-                    notificationId,
-                    id
-            )
-            putExtra(
-                    notificationContent,
-                    content
-            )
-        }
-        val pendingIntent = PendingIntent.getBroadcast(
-                this,
-                0,
-                notificationIntent,
-                PendingIntent.FLAG_UPDATE_CURRENT
-        )
+    val circleGraphView = CircleGraphView(
+      ctx,
+      params,
+      true
+    )
+    find<FrameLayout>(R.id.circleFrame).addView(circleGraphView)
+    circleGraphView.startAnimation()
+  }
 
-        (getSystemService(Context.ALARM_SERVICE) as AlarmManager).setExact(
-                AlarmManager.RTC_WAKEUP,
-                calendar.timeInMillis,
-                pendingIntent
+  private fun startTimer() {
+    TimerActivityUI(time).setContentView(this)
+    (1..3).forEach {
+      val calendar = Calendar.getInstance()
+      calendar.apply {
+        timeInMillis = System.currentTimeMillis()
+        add(
+          Calendar.SECOND,
+          time.time.toInt() - 5
         )
+      }
+      scheduleNotification(
+        "終了${it * 5}分前です",
+        calendar,
+        it
+      )
     }
+  }
+
+  private fun scheduleNotification(
+    content: String,
+    calendar: Calendar,
+    id: Int
+  ) {
+    val notificationIntent = Intent(
+      this,
+      AlarmReceiver::class.java
+    )
+    notificationIntent.apply {
+      putExtra(
+        notificationId,
+        id
+      )
+      putExtra(
+        notificationContent,
+        content
+      )
+    }
+    val pendingIntent = PendingIntent.getBroadcast(
+      this,
+      0,
+      notificationIntent,
+      PendingIntent.FLAG_UPDATE_CURRENT
+    )
+
+    (getSystemService(Context.ALARM_SERVICE) as AlarmManager).setExact(
+      AlarmManager.RTC_WAKEUP,
+      calendar.timeInMillis,
+      pendingIntent
+    )
+  }
 }

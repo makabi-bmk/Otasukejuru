@@ -13,20 +13,20 @@ import jp.ict.muffin.otasukejuru.databinding.FragmentSelectAddTypeBinding
  * Created by mito on 2018/07/24.
  */
 class SelectAddTypeFragment : Fragment() {
-    private lateinit var binding: FragmentSelectAddTypeBinding
+  private lateinit var binding: FragmentSelectAddTypeBinding
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = DataBindingUtil.inflate(
-                inflater,
-                R.layout.fragment_select_add_type,
-                container,
-                false
-        )
+  override fun onCreateView(
+    inflater: LayoutInflater,
+    container: ViewGroup?,
+    savedInstanceState: Bundle?
+  ): View? {
+    binding = DataBindingUtil.inflate(
+      inflater,
+      R.layout.fragment_select_add_type,
+      container,
+      false
+    )
 
-        return binding.root
-    }
+    return binding.root
+  }
 }
